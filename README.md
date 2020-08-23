@@ -8,10 +8,10 @@
         <img alt="GitHub" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat">
       </a>
   </p>
-  <h1 align="center">The Chess Centre | Platform</h1>
+  <h1 align="center"><strong>BETA:</strong> The Chess Centre | Platform</h1>
 </p>
  
-The project constains the starting point for our AWS configuration details and an empty front-end React JS application.
+The project contains the starting point for our AWS configuration details and an empty front-end React JS application.
 
 ## Architecture
 
