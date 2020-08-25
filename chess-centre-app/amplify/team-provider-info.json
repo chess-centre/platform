@@ -1,0 +1,22 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-chesscentreapp-dev-195015-authRole",
+            "UnauthRoleArn": "arn:aws:iam::232961751688:role/amplify-chesscentreapp-dev-195015-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::232961751688:role/amplify-chesscentreapp-dev-195015-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-chesscentreapp-dev-195015-deployment",
+            "UnauthRoleName": "amplify-chesscentreapp-dev-195015-unauthRole",
+            "StackName": "amplify-chesscentreapp-dev-195015",
+            "StackId": "arn:aws:cloudformation:eu-west-1:232961751688:stack/amplify-chesscentreapp-dev-195015/d2003ad0-e703-11ea-9241-0a698fadb4d4",
+            "AmplifyAppId": "d342mp2svoptqi"
+        },
+        "categories": {
+            "auth": {
+                "chesscentreappecf8e7c7": {
+                    "hostedUIProviderCreds": "[]"
+                }
+            }
+        }
+    }
+}

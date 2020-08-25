@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"chesscentreappecf8e7c7": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
