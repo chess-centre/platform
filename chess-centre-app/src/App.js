@@ -1,33 +1,28 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
-import SignIn from './SignIn';
+import React, { lazy } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import AccessibleNavigationAnnouncer from './components/AccessibleNavigationAnnouncer'
 
-function Copyright() {
+const Layout = lazy(() => import('./containers/Layout'))
+const Login = lazy(() => import('./pages/Auth/Login'))
+const Home = lazy(() => import('./pages/Home/LandingPage'));
+const CreateAccount = lazy(() => import('./pages/Auth/CreateAccount'))
+const ForgotPassword = lazy(() => import('./pages/Auth/ForgotPassword'))
+
+function App() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+    <>
+      <Router>
+        <AccessibleNavigationAnnouncer />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={CreateAccount} />
+          <Route path="/forgot-password" component={ForgotPassword} />
+          <Route path="/app" component={Layout} />
+        </Switch>
+      </Router>
+    </>
+  )
 }
 
-export default function App() {
-  return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App v4-beta example
-        </Typography>
-        <SignIn />
-        <Copyright />
-      </Box>
-    </Container>
-  );
-}
+export default App

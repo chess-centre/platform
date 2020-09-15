@@ -1,24 +1,75 @@
 {
-  "name": "chess-centre-app",
-  "version": "0.1.0",
+  "name": "windmill-dashboard-react",
+  "version": "0.4.0",
+  "description": "A multi theme, completely accessible, with components and pages examples, (almost) ready for production dashboard.",
   "private": true,
-  "dependencies": {
-    "@aws-amplify/ui-react": "^0.2.15",
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "aws-amplify": "^3.0.24",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
-  },
   "scripts": {
+    "tailwind:dev": "postcss src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css",
+    "tailwind:build": "cross-env NODE_ENV=production postcss src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css",
+    "prestart": "npm run tailwind:dev",
     "start": "react-scripts start",
+    "prebuild": "npm run tailwind:build",
     "build": "react-scripts build",
+    "cz": "git-cz",
+    "release": "release-it",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "4.2.4",
+    "@testing-library/react": "9.5.0",
+    "@testing-library/user-event": "7.2.1",
+    "@windmill/react-ui": "0.3.1",
+    "chart.js": "2.9.3",
+    "classnames": "2.2.6",
+    "faker": "4.1.0",
+    "postcss": "^8.0.3",
+    "react": "^16.13.1",
+    "react-chartjs-2": "2.9.0",
+    "react-dom": "^16.13.1",
+    "react-focus-lock": "2.4.0",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "3.4.1",
+    "react-transition-group": "4.4.1"
+  },
+  "devDependencies": {
+    "@release-it/conventional-changelog": "1.1.4",
+    "@svgr/webpack": "5.4.0",
+    "autoprefixer": "9.8.0",
+    "commitizen": "4.1.2",
+    "cross-env": "7.0.2",
+    "cssnano": "4.1.10",
+    "cz-conventional-changelog": "3.2.0",
+    "postcss-cli": "^7.1.2",
+    "react-axe": "3.5.2",
+    "release-it": "13.6.4",
+    "tailwindcss": "1.4.6"
+  },
+  "keywords": [
+    "windmill",
+    "dashboard",
+    "admin",
+    "tailwind",
+    "react"
+  ],
+  "release-it": {
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
+      }
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
