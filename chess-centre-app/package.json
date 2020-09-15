@@ -1,7 +1,7 @@
 {
-  "name": "windmill-dashboard-react",
+  "name": "@chess-centre/app",
   "version": "0.4.0",
-  "description": "A multi theme, completely accessible, with components and pages examples, (almost) ready for production dashboard.",
+  "description": "Chess Centre App",
   "private": true,
   "scripts": {
     "tailwind:dev": "postcss src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css",
@@ -44,32 +44,6 @@
     "react-axe": "3.5.2",
     "release-it": "13.6.4",
     "tailwindcss": "1.4.6"
-  },
-  "keywords": [
-    "windmill",
-    "dashboard",
-    "admin",
-    "tailwind",
-    "react"
-  ],
-  "release-it": {
-    "github": {
-      "release": true
-    },
-    "npm": {
-      "publish": false
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular",
-        "infile": "CHANGELOG.md"
-      }
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "eslintConfig": {
     "extends": "react-app"
