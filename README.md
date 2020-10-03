@@ -19,6 +19,18 @@ The project contains the starting point for our AWS configuration details and an
   <img src="img/bcc-architecture.png" />	
 </p>	
 
+### Getting started
+
+```bash
+cd chess-centre-app && yarn start
+```
+
+The front-end app uses `create-react-app` and `tailwindcss`. The backend is entirely serverless using AWS.
+
 ## Contributing	
 
-See our [welcome](https://github.com/chess-centre/welcome) respository for guidelines on helping us develop this platform
+See our [welcome](https://github.com/chess-centre/welcome) respository for guidelines on helping us develop this platform.
+
+## License
+
+[MIT](../LICENSE.md)
