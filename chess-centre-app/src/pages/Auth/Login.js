@@ -1,24 +1,17 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import ImageLight from '../../assets/img/chess-player.jpg'
-import ImageDark from '../../assets/img/chess-players.jpg'
-import Logo from '../../assets/img/logo.png';
-import { GithubIcon } from '../../icons'
-import { Label, Input, Button } from '@windmill/react-ui'
-import { loginUser, useAuthDispatch, useAuthState } from '../../context/Auth';
-
-
-
-// AWS.config.region = 'us-east-2'; // Region
-// AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-//     IdentityPoolId: 'us-east-2:deb30f6e-2433-4c9f-bc6e-a17ca2c54e44',
-// });
+import ImageLight from "../../assets/img/chess-player.jpg";
+import ImageDark from "../../assets/img/chess-players.jpg";
+import Logo from "../../assets/img/logo.png";;
+import { GithubIcon } from "../../icons";
+import { Label, Input, Button } from "@windmill/react-ui";
+import { loginUser, useAuthDispatch, useAuthState } from "../../context/Auth";
 
 function Login(props) {
 
-  const [Email, setEmail] = useState("")
-  const [Password, setPassword] = useState("")
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
 
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
@@ -27,14 +20,14 @@ function Login(props) {
     try {
       let response = await loginUser(dispatch, Email, Password); 
       if (response) {
-        props.history.push('/app');
+        props.history.push("/app");
       }
       else{
-        return
+        return;
       }
 
     } catch (error) {
-      console.log(error);
+      return error;
     }
   } 
   return (
@@ -71,7 +64,7 @@ function Login(props) {
               </Label>
 
               <Button className="mt-4" onClick={signIn} disabled={loading}>
-              {loading ? "loading...." :  'Log in'}
+              {loading ? "loading...." :  "Log in"}
               </Button>
 
               <hr className="my-8" />

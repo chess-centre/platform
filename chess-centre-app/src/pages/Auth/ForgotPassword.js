@@ -1,40 +1,39 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import ImageLight from '../../assets/img/chess-players.jpg'
-import ImageDark from '../../assets/img/chess-players.jpg'
-import { Label, Input, Button } from '@windmill/react-ui'
-import { useAuthDispatch, UserPasswordForgotSubmit, UserPasswordForgot, useAuthState } from '../../context/Auth'
+import React, { useState } from "react";
+import ImageLight from "../../assets/img/chess-players.jpg";
+import ImageDark from "../../assets/img/chess-players.jpg";
+import { Label, Input, Button } from "@windmill/react-ui";
+import { useAuthDispatch, UserPasswordForgotSubmit, UserPasswordForgot, useAuthState } from "../../context/Auth";
 
 function ForgotPassword(props) {
-  const [Email, setEmail] = useState("")
-  const [Code, setCode] = useState("")
-  const [Password, setPassword] = useState("")
-  const [Forget, setForget] = useState(false)
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
+  const [forget, setForget] = useState(false);
 
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
 
   async function PasswordForgot() {
-    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (!Email && !Email.match(mailformat)) {
-      dispatch({ type: 'LOGIN_ERROR', error: "You have entered an invalid email address!" });
-      return false
+    const mailFormat = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
+    if (!email && !email.match(mailFormat)) {
+      dispatch({ type: "LOGIN_ERROR", error: "You have entered an invalid email address!" });
+      return false;
     }
     else {
-      await UserPasswordForgot(dispatch, Email)
-      setForget(true)
+      await UserPasswordForgot(dispatch, Email);
+      setForget(true);
     }
 
   }
   async function PasswordForgotSubmit() {
-    if (!Code && !Password) {
-      dispatch({ type: 'LOGIN_ERROR', error: "Please enter code and password" });
+    if (!code && !password) {
+      dispatch({ type: "LOGIN_ERROR", error: "Please enter code and password" });
       return false
     }
     else {
-     const changed =  await UserPasswordForgotSubmit(dispatch, Email, Code, Password)
+     const changed =  await UserPasswordForgotSubmit(dispatch, email, code, password)
      if(changed){
-       props.history.push('/login')
+       props.history.push("/login");
      }
     }
   }
@@ -64,25 +63,25 @@ function ForgotPassword(props) {
                 Forgot password
               </h1>
 
-              {!Forget ?
+              {!forget ?
                 <Label>
                   <span>Email</span>
-                  <Input disabled={loading} className="mt-1" onChange={e => setEmail(e.target.value)} type="email" placeholder="email@example.com" />
+                  <Input disabled={loading} className="mt-1" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email@example.com" />
                 </Label>
                 :
                 <>
                   <Label>
                     <span>Code</span>
-                    <Input disabled={loading} className="mt-1" onChange={e => setCode(e.target.value)} type="text" placeholder="Code" />
+                    <Input disabled={loading} className="mt-1" onChange={(e) => setCode(e.target.value)} type="text" placeholder="Code" />
                   </Label>
                   <Label>
                     <span>New Password</span>
-                    <Input disabled={loading} className="mt-1" onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" />
+                    <Input disabled={loading} className="mt-1" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
                   </Label>
                 </>
               }
-              <Button onClick={Forget ? PasswordForgotSubmit : PasswordForgot} block className="mt-4">
-                {Forget ? "Submit Password" : "Recover password"}
+              <Button onClick={forget ? PasswordForgotSubmit : PasswordForgot} block className="mt-4">
+                {forget ? "Submit Password" : "Recover password"}
               </Button>
             </div>
           </main>

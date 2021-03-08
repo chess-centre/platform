@@ -1,56 +1,56 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import Logo from '../../assets/img/logo.png';
-import ImageLight from '../../assets/img/create-account-light.jpg'
-import ImageDark from '../../assets/img/create-account-light.jpg'
-import { GithubIcon } from '../../icons'
-import { Input, Label, Button } from '@windmill/react-ui';
-import { useAuthDispatch, useAuthState, signUpUser } from '../../context/Auth';
+import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import Logo from "../../assets/img/logo.png";
+import ImageLight from "../../assets/img/create-account-light.jpg"
+import ImageDark from "../../assets/img/create-account-light.jpg"
+import { GithubIcon } from "../../icons"
+import { Input, Label, Button } from "@windmill/react-ui";
+import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
 
 function Login() {
 
-  const [Email, setEmail] = useState("")
-  const [Password, setPassword] = useState("")
-  const [RePassword, setRePassword] = useState("")
-  const [ischecked, setischecked] = useState(false)
-  const [isButton, setisButton] = useState(true)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
+  const [ischecked, setischecked] = useState(false);
+  const [isButton, setisButton] = useState(true);
 
 
   const dispatch = useAuthDispatch();
 
   useEffect(() => {
-    if (!Email && !Password && Password !== RePassword && !ischecked) {
-      setisButton(true)
+    if (!email && !password && password !== rePassword && !ischecked) {
+      setisButton(true);
     }
     else {
-      setisButton(false)
+      setisButton(false);
     }
-  }, [Email, Password, RePassword, ischecked])
+  }, [email, password, rePassword, ischecked]);
 
   const { loading, errorMessage } = useAuthState();
 
   async function signUp(props) {
-    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; 
-    if (!Email) {
-      dispatch({ type: 'LOGIN_ERROR', error: "Email cannot be empty" });
+    const mailFormat = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
+    if (!email) {
+      dispatch({ type: "LOGIN_ERROR", error: "Email cannot be empty" });
     }
-    else if (!Email.match(mailformat)) { 
-      dispatch({ type: 'LOGIN_ERROR', error: "You have entered an invalid email address!" });
+    else if (!email.match(mailFormat)) { 
+      dispatch({ type: "LOGIN_ERROR", error: "You have entered an invalid email address!" });
     }
-    else if (Password !== RePassword) {
-      dispatch({ type: 'LOGIN_ERROR', error: "Password is not match" });
+    else if (password !== rePassword) {
+      dispatch({ type: "LOGIN_ERROR", error: "Password is not match" });
     }
     else {
       try {
         let response = await signUpUser(dispatch, Email, Password);
         if (response) {
-          props.history.push('/app');
+          props.history.push("/app");
         }
         else {
-          return
+          return;
         }
       } catch (error) {
-        console.log(error);
+        dispatch({ type: "LOGIN_ERROR", error });
       }
     }
   }
@@ -83,21 +83,21 @@ function Login() {
               <Label>
                 <span>Email</span>
                 <Input disabled={loading}
-                  value={Email}
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="mt-1" type="email" placeholder="john@doe.com" />
               </Label>
               <Label className="mt-4">
                 <span>Password</span>
                 <Input disabled={loading}
-                  value={Password}
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)} className="mt-1"
                   placeholder="***************" type="password" />
               </Label>
               <Label className="mt-4">
                 <span>Confirm password</span>
                 <Input disabled={loading}
-                  value={RePassword}
+                  value={rePassword}
                   className="mt-1"
                   onChange={(e) => setRePassword(e.target.value)}
                   placeholder="***************"
@@ -106,7 +106,7 @@ function Login() {
 
               <Label className="mt-6" check>
                 <Input type="checkbox" checked={ischecked} disabled={loading}
-                  onChange={e => setischecked(e.target.checked)} />
+                  onChange={(e) => setischecked(e.target.checked)} />
                 <span className="ml-2">
                   I agree to the <span className="underline">privacy policy</span>
                 </span>

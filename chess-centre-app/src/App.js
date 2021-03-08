@@ -1,46 +1,42 @@
 import React, { lazy } from "react";
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
+  Switch
 } from "react-router-dom";
+import AccessibleNavigationAnnouncer from "./components/AccessibleNavigationAnnouncer";
+import { AuthProvider } from "./context/Auth";
+import AppRoutes from "./components/AppRoute";
 
-import AccessibleNavigationAnnouncer from './components/AccessibleNavigationAnnouncer'
-import { AuthProvider, useAuthState } from './context/Auth';
-import AppRoutes from './components/AppRoute';
-
-const Layout = lazy(() => import('./containers/Layout'))
-const Login = lazy(() => import('./pages/Auth/Login'))
-const Home = lazy(() => import('./pages/Home/LandingPage'));
-const CreateAccount = lazy(() => import('./pages/Auth/CreateAccount'))
-const ForgotPassword = lazy(() => import('./pages/Auth/ForgotPassword'))
-
+const Layout = lazy(() => import("./containers/Layout"))
+const Login = lazy(() => import("./pages/Auth/Login"))
+const Home = lazy(() => import("./pages/Home/LandingPage"));
+const CreateAccount = lazy(() => import("./pages/Auth/CreateAccount"))
+const ForgotPassword = lazy(() => import("./pages/Auth/ForgotPassword"))
 const routes = [
   {
-    path: '/',
+    path: "/",
     component: Home,
     isPrivate: false,
     exact:true
   },
   {
-    path: '/login',
+    path: "/login",
     component: Login,
     isPrivate: false,
   },
   {
 
-    path: '/register',
+    path: "/register",
     component: CreateAccount,
     isPrivate: false,
   },
   {
-    path: '/forgot-password',
+    path: "/forgot-password",
     component: ForgotPassword,
     isPrivate: false,
   },
   {
-    path: '/app',
+    path: "/app",
     component: Layout,
     isPrivate: true,
   }

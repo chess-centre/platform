@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { SidebarContext } from '../context/SidebarContext'
-
+import React, { useContext, useState } from "react";
+import { SidebarContext } from "../context/SidebarContext";
 import {
   MoonIcon,
   SunIcon,
@@ -8,26 +7,23 @@ import {
   OutlinePersonIcon,
   OutlineCogIcon,
   OutlineLogoutIcon,
-} from '../icons'
-
-import { Avatar, Dropdown, DropdownItem, WindmillContext } from '@windmill/react-ui'
- 
-import { logout, useAuthDispatch } from '../context/Auth'
+} from "../icons";
+import { Avatar, Dropdown, DropdownItem, WindmillContext } from "@windmill/react-ui";
+import { logout, useAuthDispatch } from "../context/Auth";
 
 
 function Header() {
 
   const dispatch = useAuthDispatch();
-  const { mode, toggleMode } = useContext(WindmillContext)
-  const { toggleSidebar } = useContext(SidebarContext)
-
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
+  const { mode, toggleMode } = useContext(WindmillContext);
+  const { toggleSidebar } = useContext(SidebarContext);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   function handleProfileClick() {
-    setIsProfileMenuOpen(!isProfileMenuOpen)
+    setIsProfileMenuOpen(!isProfileMenuOpen);
   }
   function signOut() { 
-    logout(dispatch) 
+    logout(dispatch);
   }
   return (
     <header className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800">
@@ -51,7 +47,7 @@ function Header() {
               onClick={toggleMode}
               aria-label="Toggle color mode"
             >
-              {mode === 'dark' ? (
+              {mode === "dark" ? (
                 <SunIcon className="w-5 h-5" aria-hidden="true" />
               ) : (
                 <MoonIcon className="w-5 h-5" aria-hidden="true" />
