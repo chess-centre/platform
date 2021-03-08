@@ -7,11 +7,11 @@ import AccessibleNavigationAnnouncer from "./components/AccessibleNavigationAnno
 import { AuthProvider } from "./context/Auth";
 import AppRoutes from "./components/AppRoute";
 
-const Layout = lazy(() => import("./containers/Layout"))
-const Login = lazy(() => import("./pages/Auth/Login"))
+const Layout = lazy(() => import("./containers/Layout"));
+const Login = lazy(() => import("./pages/Auth/Login"));
 const Home = lazy(() => import("./pages/Home/LandingPage"));
-const CreateAccount = lazy(() => import("./pages/Auth/CreateAccount"))
-const ForgotPassword = lazy(() => import("./pages/Auth/ForgotPassword"))
+const CreateAccount = lazy(() => import("./pages/Auth/CreateAccount"));
+const ForgotPassword = lazy(() => import("./pages/Auth/ForgotPassword"));
 const routes = [
   {
     path: "/",

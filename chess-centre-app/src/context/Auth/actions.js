@@ -17,11 +17,10 @@ export async function loginUser(dispatch, Email, Password) {
 		return;
 	} catch (error) {
 		dispatch({ type: "LOGIN_ERROR", error: error.message });
-		console.log(error);
 	}
 }
 
-export async function UserPasswordForgot(dispatch, email) {
+export async function userPasswordForgot(dispatch, email) {
 	try {
 		dispatch({ type: "REQUEST_LOGIN" });
 		let data = await Auth.forgotPassword(email);
@@ -33,7 +32,7 @@ export async function UserPasswordForgot(dispatch, email) {
 	}
 }
 
-export async function UserPasswordForgotSubmit(dispatch, email, code, newPassword) {
+export async function userPasswordForgotSubmit(dispatch, email, code, newPassword) {
 	try {
 		dispatch({ type: "REQUEST_LOGIN" });
 		let data = await Auth.forgotPasswordSubmit(email, code, newPassword);
@@ -61,7 +60,6 @@ export async function signUpUser(dispatch, Email, Password) {
 		return;
 	} catch (error) {
 		dispatch({ type: "LOGIN_ERROR", error: error.message });
-		console.log(error);
 	}
 }
 

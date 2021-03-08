@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.png";
-import ImageLight from "../../assets/img/create-account-light.jpg"
-import ImageDark from "../../assets/img/create-account-light.jpg"
-import { GithubIcon } from "../../icons"
+import ImageLight from "../../assets/img/create-account-light.jpg";
+import ImageDark from "../../assets/img/create-account-light.jpg";
+import { GithubIcon } from "../../icons";
 import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
 
@@ -42,7 +42,7 @@ function Login() {
     }
     else {
       try {
-        let response = await signUpUser(dispatch, Email, Password);
+        let response = await signUpUser(dispatch, email, password);
         if (response) {
           props.history.push("/app");
         }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ImageLight from "../../assets/img/chess-players.jpg";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import { Label, Input, Button } from "@windmill/react-ui";
-import { useAuthDispatch, UserPasswordForgotSubmit, UserPasswordForgot, useAuthState } from "../../context/Auth";
+import { useAuthDispatch, userPasswordForgotSubmit, userPasswordForgot, useAuthState } from "../../context/Auth";
 
 function ForgotPassword(props) {
   const [email, setEmail] = useState("");
@@ -13,25 +13,25 @@ function ForgotPassword(props) {
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
 
-  async function PasswordForgot() {
+  async function passwordForgot() {
     const mailFormat = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
     if (!email && !email.match(mailFormat)) {
       dispatch({ type: "LOGIN_ERROR", error: "You have entered an invalid email address!" });
       return false;
     }
     else {
-      await UserPasswordForgot(dispatch, Email);
+      await userPasswordForgot(dispatch, Email);
       setForget(true);
     }
 
   }
-  async function PasswordForgotSubmit() {
+  async function passwordForgotSubmit() {
     if (!code && !password) {
       dispatch({ type: "LOGIN_ERROR", error: "Please enter code and password" });
       return false
     }
     else {
-     const changed =  await UserPasswordForgotSubmit(dispatch, email, code, password)
+     const changed =  await userPasswordForgotSubmit(dispatch, email, code, password)
      if(changed){
        props.history.push("/login");
      }
@@ -80,7 +80,7 @@ function ForgotPassword(props) {
                   </Label>
                 </>
               }
-              <Button onClick={forget ? PasswordForgotSubmit : PasswordForgot} block className="mt-4">
+              <Button onClick={forget ? passwordForgotSubmit : passwordForgot} block className="mt-4">
                 {forget ? "Submit Password" : "Recover password"}
               </Button>
             </div>
