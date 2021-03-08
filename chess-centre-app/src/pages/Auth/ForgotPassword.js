@@ -20,7 +20,7 @@ function ForgotPassword(props) {
       return false;
     }
     else {
-      await userPasswordForgot(dispatch, Email);
+      await userPasswordForgot(dispatch, email);
       setForget(true);
     }
 
@@ -28,10 +28,10 @@ function ForgotPassword(props) {
   async function passwordForgotSubmit() {
     if (!code && !password) {
       dispatch({ type: "LOGIN_ERROR", error: "Please enter code and password" });
-      return false
+      return false;
     }
     else {
-     const changed =  await userPasswordForgotSubmit(dispatch, email, code, password)
+     const changed =  await userPasswordForgotSubmit(dispatch, email, code, password);
      if(changed){
        props.history.push("/login");
      }

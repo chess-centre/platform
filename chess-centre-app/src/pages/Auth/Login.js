@@ -10,25 +10,20 @@ import { loginUser, useAuthDispatch, useAuthState } from "../../context/Auth";
 
 function Login(props) {
 
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
 
   async function signIn() {
-    try {
-      let response = await loginUser(dispatch, Email, Password); 
+      let response = await loginUser(dispatch, email, password); 
       if (response) {
         props.history.push("/app");
       }
       else{
         return;
       }
-
-    } catch (error) {
-      return error;
-    }
   } 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">

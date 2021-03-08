@@ -5,19 +5,15 @@ Amplify.configure(AWS_AUTH);
 
 
 export async function loginUser(dispatch, Email, Password) {
-	try {
-		dispatch({ type: "REQUEST_LOGIN" });
-		let data = await Auth.signIn(Email, Password);
-		if (data.attributes) {
-			dispatch({ type: "LOGIN_SUCCESS", payload: data });
-			localStorage.setItem("currentUser", JSON.stringify(data.attributes));
-			return data.attributes;
-		}
-		dispatch({ type: "LOGIN_ERROR", error: data.message });
-		return;
-	} catch (error) {
-		dispatch({ type: "LOGIN_ERROR", error: error.message });
+	dispatch({ type: "REQUEST_LOGIN" });
+	let data = await Auth.signIn(Email, Password);
+	if (data.attributes) {
+		dispatch({ type: "LOGIN_SUCCESS", payload: data });
+		localStorage.setItem("currentUser", JSON.stringify(data.attributes));
+		return data.attributes;
 	}
+	dispatch({ type: "LOGIN_ERROR", error: data.message });
+	return;
 }
 
 export async function userPasswordForgot(dispatch, email) {
@@ -28,7 +24,6 @@ export async function userPasswordForgot(dispatch, email) {
 		return data;
 	} catch (error) {
 		dispatch({ type: "LOGIN_ERROR", error: error.message });
-		console.log(error);
 	}
 }
 
