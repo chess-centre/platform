@@ -1,11 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
 import ImageLight from '../../assets/img/chess-players.jpg'
 import ImageDark from '../../assets/img/chess-players.jpg'
 import { Label, Input, Button } from '@windmill/react-ui'
+import { useAuthDispatch, UserPasswordForgotSubmit, UserPasswordForgot, useAuthState } from '../../context/Auth'
 
-function ForgotPassword() {
+function ForgotPassword(props) {
+  const [Email, setEmail] = useState("")
+  const [Code, setCode] = useState("")
+  const [Password, setPassword] = useState("")
+  const [Forget, setForget] = useState(false)
+
+  const dispatch = useAuthDispatch();
+  const { loading, errorMessage } = useAuthState();
+
+  async function PasswordForgot() {
+    var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (!Email && !Email.match(mailformat)) {
+      dispatch({ type: 'LOGIN_ERROR', error: "You have entered an invalid email address!" });
+      return false
+    }
+    else {
+      await UserPasswordForgot(dispatch, Email)
+      setForget(true)
+    }
+
+  }
+  async function PasswordForgotSubmit() {
+    if (!Code && !Password) {
+      dispatch({ type: 'LOGIN_ERROR', error: "Please enter code and password" });
+      return false
+    }
+    else {
+     const changed =  await UserPasswordForgotSubmit(dispatch, Email, Code, Password)
+     if(changed){
+       props.history.push('/login')
+     }
+    }
+  }
+
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
@@ -26,17 +59,30 @@ function ForgotPassword() {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
+              {errorMessage && <p>{errorMessage}</p>}
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Forgot password
               </h1>
 
-              <Label>
-                <span>Email</span>
-                <Input className="mt-1" placeholder="Matt Webb" />
-              </Label>
-
-              <Button tag={Link} to="/login" block className="mt-4">
-                Recover password
+              {!Forget ?
+                <Label>
+                  <span>Email</span>
+                  <Input disabled={loading} className="mt-1" onChange={e => setEmail(e.target.value)} type="email" placeholder="email@example.com" />
+                </Label>
+                :
+                <>
+                  <Label>
+                    <span>Code</span>
+                    <Input disabled={loading} className="mt-1" onChange={e => setCode(e.target.value)} type="text" placeholder="Code" />
+                  </Label>
+                  <Label>
+                    <span>New Password</span>
+                    <Input disabled={loading} className="mt-1" onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" />
+                  </Label>
+                </>
+              }
+              <Button onClick={Forget ? PasswordForgotSubmit : PasswordForgot} block className="mt-4">
+                {Forget ? "Submit Password" : "Recover password"}
               </Button>
             </div>
           </main>
