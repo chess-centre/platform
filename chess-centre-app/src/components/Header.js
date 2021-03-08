@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { SidebarContext } from '../context/SidebarContext'
+import React, { useContext, useState } from "react";
+import { SidebarContext } from "../context/SidebarContext";
 import {
   MoonIcon,
   SunIcon,
@@ -8,19 +7,24 @@ import {
   OutlinePersonIcon,
   OutlineCogIcon,
   OutlineLogoutIcon,
-} from '../icons'
-import { Avatar, Dropdown, DropdownItem, WindmillContext } from '@windmill/react-ui'
+} from "../icons";
+import { Avatar, Dropdown, DropdownItem, WindmillContext } from "@windmill/react-ui";
+import { logout, useAuthDispatch } from "../context/Auth";
+
 
 function Header() {
-  const { mode, toggleMode } = useContext(WindmillContext)
-  const { toggleSidebar } = useContext(SidebarContext)
 
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
+  const dispatch = useAuthDispatch();
+  const { mode, toggleMode } = useContext(WindmillContext);
+  const { toggleSidebar } = useContext(SidebarContext);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   function handleProfileClick() {
-    setIsProfileMenuOpen(!isProfileMenuOpen)
+    setIsProfileMenuOpen(!isProfileMenuOpen);
   }
-
+  function signOut() { 
+    logout(dispatch);
+  }
   return (
     <header className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800">
       <div className="container flex items-center justify-between h-full px-6 mx-auto text-teal-600 dark:text-teal-300">
@@ -43,7 +47,7 @@ function Header() {
               onClick={toggleMode}
               aria-label="Toggle color mode"
             >
-              {mode === 'dark' ? (
+              {mode === "dark" ? (
                 <SunIcon className="w-5 h-5" aria-hidden="true" />
               ) : (
                 <MoonIcon className="w-5 h-5" aria-hidden="true" />
@@ -71,17 +75,17 @@ function Header() {
               isOpen={isProfileMenuOpen}
               onClose={() => setIsProfileMenuOpen(false)}
             >
-              <DropdownItem tag="a" href="#">
+              <DropdownItem tag="a" href="/app/profile">
                 <OutlinePersonIcon className="w-4 h-4 mr-3" aria-hidden="true" />
-                <Link to="/app/profile">Profile</Link>
+                Profile
               </DropdownItem>
-              <DropdownItem tag="a" href="#">
+              <DropdownItem tag="a" href="/app/profile/settings">
                 <OutlineCogIcon className="w-4 h-4 mr-3" aria-hidden="true" />
-                <Link to="/app/settings">Settings</Link>
+                Settings
               </DropdownItem>
-              <DropdownItem onClick={() => alert('Log out!')}>
+              <DropdownItem onClick={() => signOut()}>
                 <OutlineLogoutIcon className="w-4 h-4 mr-3" aria-hidden="true" />
-                <Link to="/">Log out</Link>
+                Log out
               </DropdownItem>
             </Dropdown>
           </li>

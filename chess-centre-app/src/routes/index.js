@@ -22,11 +22,7 @@ const routes = [
   {
     path: '/results',
     component: Results
-  },
-  {
-    path: '/members',
-    component: Members
-  },
+  }, 
   {
     path: '/members',
     component: Members

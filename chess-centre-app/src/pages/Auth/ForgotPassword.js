@@ -1,11 +1,43 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import ImageLight from "../../assets/img/chess-players.jpg";
+import ImageDark from "../../assets/img/chess-players.jpg";
+import { Label, Input, Button } from "@windmill/react-ui";
+import { useAuthDispatch, userPasswordForgotSubmit, userPasswordForgot, useAuthState } from "../../context/Auth";
 
-import ImageLight from '../../assets/img/chess-players.jpg'
-import ImageDark from '../../assets/img/chess-players.jpg'
-import { Label, Input, Button } from '@windmill/react-ui'
+function ForgotPassword(props) {
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
+  const [forget, setForget] = useState(false);
 
-function ForgotPassword() {
+  const dispatch = useAuthDispatch();
+  const { loading, errorMessage } = useAuthState();
+
+  async function passwordForgot() {
+    const mailFormat = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
+    if (!email && !email.match(mailFormat)) {
+      dispatch({ type: "LOGIN_ERROR", error: "You have entered an invalid email address!" });
+      return false;
+    }
+    else {
+      await userPasswordForgot(dispatch, email);
+      setForget(true);
+    }
+
+  }
+  async function passwordForgotSubmit() {
+    if (!code && !password) {
+      dispatch({ type: "LOGIN_ERROR", error: "Please enter code and password" });
+      return false;
+    }
+    else {
+     const changed =  await userPasswordForgotSubmit(dispatch, email, code, password);
+     if(changed){
+       props.history.push("/login");
+     }
+    }
+  }
+
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
@@ -26,17 +58,30 @@ function ForgotPassword() {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
+              {errorMessage && <p>{errorMessage}</p>}
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Forgot password
               </h1>
 
-              <Label>
-                <span>Email</span>
-                <Input className="mt-1" placeholder="Matt Webb" />
-              </Label>
-
-              <Button tag={Link} to="/login" block className="mt-4">
-                Recover password
+              {!forget ?
+                <Label>
+                  <span>Email</span>
+                  <Input disabled={loading} className="mt-1" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email@example.com" />
+                </Label>
+                :
+                <>
+                  <Label>
+                    <span>Code</span>
+                    <Input disabled={loading} className="mt-1" onChange={(e) => setCode(e.target.value)} type="text" placeholder="Code" />
+                  </Label>
+                  <Label>
+                    <span>New Password</span>
+                    <Input disabled={loading} className="mt-1" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
+                  </Label>
+                </>
+              }
+              <Button onClick={forget ? passwordForgotSubmit : passwordForgot} block className="mt-4">
+                {forget ? "Submit Password" : "Recover password"}
               </Button>
             </div>
           </main>
