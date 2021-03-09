@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.png";
 import ImageLight from "../../assets/img/create-account-light.jpg";
 import ImageDark from "../../assets/img/create-account-light.jpg";
-import { GithubIcon } from "../../icons";
+// import { GithubIcon } from "../../icons";
 import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
+import PrivacyPolicyModal from "../../components/PrivacyPolicyModal";
 
 function Login() {
 
@@ -14,6 +15,14 @@ function Login() {
   const [rePassword, setRePassword] = useState("");
   const [ischecked, setischecked] = useState(false);
   const [isButton, setisButton] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function openModal() {
+    setIsModalOpen(true)
+  }
+  function closeModal() {
+    setIsModalOpen(false)
+  }
 
 
   const dispatch = useAuthDispatch();
@@ -118,10 +127,10 @@ function Login() {
 
               <hr className="my-8" />
 
-              <Button block layout="outline">
+              {/* <Button block layout="outline">
                 <GithubIcon className="w-4 h-4 mr-2" aria-hidden="true" />
                 Github
-              </Button>
+              </Button> */}
 
               <p className="mt-4">
                 <Link
@@ -132,6 +141,7 @@ function Login() {
                 </Link>
               </p>
             </div>
+            <PrivacyPolicyModal></PrivacyPolicyModal>
           </main>
         </div>
       </div>

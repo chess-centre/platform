@@ -34,17 +34,6 @@ const routes = [
   {
     path: '/settings',
     component: Settings
-  },
-
-  {
-    path: '/blog',
-    component: Blog
-  },
-
-  // ROLE PROTECTED ROUTE
-  {
-    path: '/admin',
-    component: Admin
   }
 ]
 

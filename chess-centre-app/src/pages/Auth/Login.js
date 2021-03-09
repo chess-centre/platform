@@ -45,8 +45,11 @@ function Login(props) {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
-              <img src={Logo} className="object-contain h-48 w-full" alt="The Chess Centre" />
+              
+              {errorMessage && <p className="mb-4 text-xl font-semibold text-red-700 dark:text-red-200 justify-center">{errorMessage}</p>}
+              <a href="/">
+                <img src={Logo} className="object-contain h-48 w-full" alt="The Chess Centre" />
+              </a>
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Login</h1>
               <Label>
                 <span>Email</span>

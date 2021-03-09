@@ -12,6 +12,7 @@ const Login = lazy(() => import("./pages/Auth/Login"));
 const Home = lazy(() => import("./pages/Home/LandingPage"));
 const CreateAccount = lazy(() => import("./pages/Auth/CreateAccount"));
 const ForgotPassword = lazy(() => import("./pages/Auth/ForgotPassword"));
+const ConfirmEmail = lazy(() => import("./pages/Auth/ConfirmEmail"));
 const routes = [
   {
     path: "/",
@@ -25,9 +26,13 @@ const routes = [
     isPrivate: false,
   },
   {
-
     path: "/register",
     component: CreateAccount,
+    isPrivate: false,
+  },
+  {
+    path: "/register/confirm",
+    component: ConfirmEmail,
     isPrivate: false,
   },
   {
