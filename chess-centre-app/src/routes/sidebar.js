@@ -19,11 +19,6 @@ const routes = [
     path: '/app/members',
     icon: 'UsersIcon',
     name: 'Members'
-  },
-  {
-    path: '/blog',
-    icon: 'NewspaperIcon',
-    name: 'Blog'
   }
 ]
 

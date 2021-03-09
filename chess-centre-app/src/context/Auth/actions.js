@@ -38,24 +38,31 @@ export async function userPasswordForgotSubmit(dispatch, email, code, newPasswor
 	}
 }
 
-export async function signUpUser(dispatch, Email, Password) {
+export async function signUpUser(dispatch, email, password) {
 	try {
 		dispatch({ type: "REQUEST_LOGIN" });
 		let data = await Auth.signUp({
-			username: Email,
-			password: Password,
-			attributes: { email: Email, }
+			username: email,
+			password,
+			attributes: { email }
 		});
 		if (data.attributes) {
 			dispatch({ type: "LOGIN_SUCCESS", payload: data });
 			localStorage.setItem("currentUser", JSON.stringify(data.attributes));
 			return data.attributes;
+		
 		}
+
+
 		dispatch({ type: "LOGIN_ERROR", error: data.message });
 		return;
 	} catch (error) {
 		dispatch({ type: "LOGIN_ERROR", error: error.message });
 	}
+}
+
+export async function confirmEmail(dispatch) {
+	
 }
 
 export async function logout(dispatch) {
