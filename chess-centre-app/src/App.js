@@ -13,6 +13,9 @@ const Home = lazy(() => import("./pages/Home/LandingPage"));
 const CreateAccount = lazy(() => import("./pages/Auth/CreateAccount"));
 const ForgotPassword = lazy(() => import("./pages/Auth/ForgotPassword"));
 const ConfirmEmail = lazy(() => import("./pages/Auth/ConfirmEmail"));
+const Events = lazy(() => import('./pages/Home/Events'));
+const OurMission = lazy(() => import('./pages/Home/OurMission'));
+const Membership = lazy(() => import('./pages/Home/Membership'));
 const routes = [
   {
     path: "/",
@@ -38,6 +41,21 @@ const routes = [
   {
     path: "/forgot-password",
     component: ForgotPassword,
+    isPrivate: false,
+  },
+  {
+    path: "/our-mission",
+    component: OurMission,
+    isPrivate: false,
+  },
+  {
+    path: "/events",
+    component: Events,
+    isPrivate: false,
+  },
+  {
+    path: "/membership",
+    component: Membership,
     isPrivate: false,
   },
   {

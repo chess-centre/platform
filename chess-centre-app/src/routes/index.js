@@ -5,10 +5,9 @@ const Dashboard = lazy(() => import('../pages/Dashboard/Dashboard'))
 const Events = lazy(() => import('../pages/Dashboard/Events'))
 const Results = lazy(() => import('../pages/Dashboard/Results'))
 const Members = lazy(() => import('../pages/Dashboard/Members'))
-const Blog = lazy(() => import('../pages/Home/Blog'))
 const Profile = lazy(() => import('../pages/User/Profile'))
 const Settings = lazy(() => import('../pages/User/Settings'))
-const Admin = lazy(() => import('../pages/Admin/Admin'))
+
 
 const routes = [
   {

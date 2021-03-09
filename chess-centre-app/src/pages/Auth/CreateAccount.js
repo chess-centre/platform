@@ -141,7 +141,6 @@ function Login() {
                 </Link>
               </p>
             </div>
-            <PrivacyPolicyModal></PrivacyPolicyModal>
           </main>
         </div>
       </div>
