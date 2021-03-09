@@ -10,6 +10,11 @@
       "StackName": "amplify-chesscentreapp-dev-204000",
       "StackId": "arn:aws:cloudformation:eu-west-1:089308357993:stack/amplify-chesscentreapp-dev-204000/9f70e8e0-8117-11eb-a3be-0a6ae1197ba5",
       "AmplifyAppId": "d3qblzy5sygnwb"
+    },
+    "categories": {
+      "auth": {
+        "chesscentreappd43b41f8": {}
+      }
     }
   }
 }

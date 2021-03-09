@@ -1,1 +1,10 @@
-{}
+{
+  "auth": {
+    "chesscentreappd43b41f8": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
