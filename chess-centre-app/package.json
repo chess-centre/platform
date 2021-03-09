@@ -1,6 +1,6 @@
 {
-  "name": "platform-2",
-  "version": "0.1.0",
+  "name": "the-chess-centre-platform",
+  "version": "0.6.0",
   "private": true,
   "dependencies": {
     "@geoffcodesthings/react-scripts": "4.0.1",
