@@ -16,6 +16,7 @@ const ConfirmEmail = lazy(() => import("./pages/Auth/ConfirmEmail"));
 const Events = lazy(() => import('./pages/Home/Events'));
 const OurMission = lazy(() => import('./pages/Home/OurMission'));
 const Membership = lazy(() => import('./pages/Home/Membership'));
+const About = lazy(() => import('./pages/Home/About'));
 const routes = [
   {
     path: "/",
@@ -56,6 +57,11 @@ const routes = [
   {
     path: "/membership",
     component: Membership,
+    isPrivate: false,
+  },
+  {
+    path: "/about",
+    component: About,
     isPrivate: false,
   },
   {

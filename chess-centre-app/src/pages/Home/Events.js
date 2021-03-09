@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo  from "../../assets/img/logo.svg";
+import FooterLanding from "../../components/Footer/LandingFooter";
 
 function Events() {
   return (
@@ -98,6 +99,7 @@ function Events() {
           </div>
         </div>
       </div>
+      <FooterLanding></FooterLanding>
     </>
   )
 }
