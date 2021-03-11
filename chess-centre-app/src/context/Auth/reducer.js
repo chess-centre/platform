@@ -1,10 +1,17 @@
-
-let user = localStorage.getItem("currentUser")
-	? (localStorage.getItem("currentUser"))
-	: "";
-let token = localStorage.getItem("currentUser")
-	? (localStorage.getItem("currentUser"))
-	: "";
+let user = (() => {
+	try {
+		return JSON.parse(localStorage.getItem("currentUser"));
+	} catch {
+		return;
+	}
+})();
+let token = (() => {
+	try {
+		return JSON.parse(localStorage.getItem("currentUser"));
+	} catch {
+		return;
+	}
+})();
 
 export const initialState = {
 	user: "" || user,

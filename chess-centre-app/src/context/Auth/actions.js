@@ -2,8 +2,6 @@ import Amplify, { Auth } from "aws-amplify";
 import AWS_AUTH from "../../aws-exports";
 Amplify.configure(AWS_AUTH);
 
-
-
 export async function loginUser(dispatch, Email, Password) {
 	dispatch({ type: "REQUEST_LOGIN" });
 	const user = await Auth.signIn(Email, Password).catch(error => {

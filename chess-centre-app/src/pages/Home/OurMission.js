@@ -35,7 +35,7 @@ function OurMission() {
         <div className="lg:grid lg:grid-cols-2 lg:gap-6">
           <div className="prose prose-indigo prose-lg text-gray-500 lg:max-w-none">
             <p>Ultrices ultricies a in odio consequat egestas rutrum. Ut vitae aliquam in ipsum. Duis nullam placerat cursus risus ultrices nisi, vitae tellus in. Qui non fugiat aut minus aut rerum. Perspiciatis iusto mollitia iste minima soluta id.</p>
-            <p>Erat pellentesque dictumst ligula porttitor risus eget et eget. Ultricies tellus felis id dignissim eget. Est augue <a href="#">maecenas</a> risus nulla ultrices congue nunc tortor. Eu leo risus porta integer suspendisse sed sit ligula elit.</p>
+            <p>Erat pellentesque dictumst ligula porttitor risus eget et eget. Ultricies tellus felis id dignissim eget. Est augue <a href="/">maecenas</a> risus nulla ultrices congue nunc tortor. Eu leo risus porta integer suspendisse sed sit ligula elit.</p>
             <ol>
               <li>Integer varius imperdiet sed interdum felis cras in nec nunc.</li>
               <li>Quam malesuada odio ut sit egestas. Elementum at porta vitae.</li>

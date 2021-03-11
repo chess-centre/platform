@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
 import LogoWithName from "../../assets/img/logo-light-theme.png"
 import FooterLanding from "../../components/Footer/LandingFooter";
+import { useAuthState } from "../../context/Auth";
 
 const LandingPage = () => {
 
-  const [isExpanded, toggleExpansion] = React.useState(false);
+  const [isExpanded, toggleExpansion] = React.useState(true);
+  const { user } = useAuthState();
 
   return (
     <div>
@@ -56,7 +58,11 @@ const LandingPage = () => {
               </div>
               <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
                 <span className="inline-flex rounded-md shadow">
-                  <Link to="/login" className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none focus:border-teal-300 focus:shadow-outline-teal active:bg-gray-50 active:text-teal-700 transition duration-150 ease-in-out">Log in</Link>
+                  {user ?
+                    <Link to="/app" className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-orange-600 bg-white hover:text-orange-500 focus:outline-none focus:border-orange-300 focus:shadow-outline-orange active:bg-gray-50 active:text-orange-700 transition duration-150 ease-in-out">My Dashboard</Link> :
+                    <Link to="/login" className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none focus:border-teal-300 focus:shadow-outline-teal active:bg-gray-50 active:text-teal-700 transition duration-150 ease-in-out">Log in</Link>
+                  }
+
                 </span>
               </div>
             </nav>
@@ -67,7 +73,7 @@ const LandingPage = () => {
             <div className="rounded-lg shadow-md">
               <div className="rounded-lg bg-white shadow-xs overflow-hidden" role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
                 <div className="px-5 pt-4 flex items-center justify-between">
-                    <img className="object-centre h-8 w-auto" src={LogoWithName} alt="Logo" />
+                  <img className="object-centre h-8 w-auto" src={LogoWithName} alt="Logo" />
                   <div className="-mr-2">
                     <button onClick={() => toggleExpansion(!isExpanded)} type="button" className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out" aria-label="Close menu">
                       <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -82,9 +88,16 @@ const LandingPage = () => {
                   <Link className="text-centre sm:text-left mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-teal-900 hover:bg-orange-50 focus:outline-none focus:text-teal-900 focus:bg-orange-50 transition duration-150 ease-in-out" role="menuitem" to="/our-mission">Our Mission</Link>
                 </div>
                 <div>
-                  <Link className="block w-full px-5 py-3 text-center font-medium text-teal-900 bg-gray-50 hover:bg-gray-100 hover:text-teal-700 focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out" role="menuitem" to="/login">
-                    Log in
-                  </Link>
+                  {
+                    user ?
+                      <Link className="block w-full px-5 py-3 text-center font-medium text-teal-900 bg-gray-50 hover:bg-gray-100 hover:text-teal-700 focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out" role="menuitem" to="/app">
+                        My Dashboard
+                      </Link> : 
+                      <Link className="block w-full px-5 py-3 text-center font-medium text-teal-900 bg-gray-50 hover:bg-gray-100 hover:text-teal-700 focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out" role="menuitem" to="/login">
+                        Log in
+                      </Link>
+                  }
+
                 </div>
               </div>
             </div>
@@ -93,23 +106,23 @@ const LandingPage = () => {
           <main className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
             <div className="text-center">
               <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-                Welcome to
+                Welcome to 
               <br className="xl:hidden" />
-                <span className="text-teal-500">The Chess Centre</span>
+                <span className="text-teal-500"> The Chess Centre</span>
               </h2>
               <p className="mt-5 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                 It's time things changed around here. Brace yourselves! <span role="img">🚀</span>
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-                <div className="rounded-md shadow">
+                <div className={user ? "hidden" : "rounded-md shadow"}>
                   <Link to="/register" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                     Join Now
-              </Link>
+                  </Link>
                 </div>
                 <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
                   <Link to="/events" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none focus:border-teal-300 focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                     More Info
-              </Link>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -123,7 +136,7 @@ const LandingPage = () => {
             <div>
               <div className="flex items-center justify-center h-12 w-12 rounded-md bg-orange-400 text-white">
                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                 </svg>
               </div>
               <div className="mt-5">
@@ -138,7 +151,7 @@ const LandingPage = () => {
             <div>
               <div className="flex items-center justify-center h-12 w-12 rounded-md bg-orange-400 text-white">
                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
                 </svg>
               </div>
               <div className="mt-5">
@@ -153,7 +166,7 @@ const LandingPage = () => {
             <div>
               <div className="flex items-center justify-center h-12 w-12 rounded-md bg-orange-400 text-white">
                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
               <div className="mt-5">

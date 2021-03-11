@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import ImageLight from "../../assets/img/chess-player.jpg";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import Logo from "../../assets/img/logo.png";
-import { GithubIcon } from "../../icons";
 import { Label, Input, Button } from "@windmill/react-ui";
 import { loginUser, useAuthDispatch, useAuthState } from "../../context/Auth";
 
