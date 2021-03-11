@@ -30,7 +30,7 @@ The project contains the starting point for our AWS configuration details and an
 cd chess-centre-app
 yarn install          # install dependencies
 amplify env pull dev  # pull the Amplify dev environment and generate aws-exports.js
-yarn start            # start the local dev server which will run at http://localhost:3000
+yarn start            # start the local dev server which is running at http://localhost:3000
 ```
 
 The front-end app uses `create-react-app` and `tailwindcss`. The backend is entirely serverless using AWS.
