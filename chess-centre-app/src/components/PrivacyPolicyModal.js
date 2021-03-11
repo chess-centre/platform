@@ -18,7 +18,7 @@ function PrivacyPolicyModal() {
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <ModalHeader>Privacy Policy</ModalHeader>
         <ModalBody>
-           <iframe src="/privacy-policy"></iframe>
+           Privacy Policy Here
         </ModalBody>
         <ModalFooter>
           <Button className="w-full sm:w-auto" layout="outline" onClick={closeModal}>

@@ -1,9 +1,9 @@
 
 let user = localStorage.getItem("currentUser")
-	? JSON.parse(localStorage.getItem("currentUser"))
+	? (localStorage.getItem("currentUser"))
 	: "";
 let token = localStorage.getItem("currentUser")
-	? JSON.parse(localStorage.getItem("currentUser"))
+	? (localStorage.getItem("currentUser"))
 	: "";
 
 export const initialState = {
@@ -60,6 +60,14 @@ export const AuthReducer = (initialState, action) => {
 				token: "",
 				errorMessage: null
 			};
+		case "CONFIRM_EMAIL_PENDING":
+			return {
+				...initialState,
+				user: {
+					userConfirmed: false
+				},
+				errorMessage: null
+			}
 		default:
 			throw new Error(`Unhandled action type: ${action.type}`);
 	}
