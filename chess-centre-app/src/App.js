@@ -32,11 +32,13 @@ const routes = [
   {
     path: "/register",
     component: CreateAccount,
+    exact:true,
     isPrivate: false,
   },
   {
     path: "/register/confirm",
     component: ConfirmEmail,
+    exact:true,
     isPrivate: false,
   },
   {

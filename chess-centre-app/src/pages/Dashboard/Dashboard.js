@@ -25,8 +25,8 @@ function Dashboard() {
         <InfoCard title="Members" value="207">
           <RoundIcon
             icon={PeopleIcon}
-            iconColorClass="text-orange-500 dark:text-orange-100"
-            bgColorClass="bg-orange-100 dark:bg-orange-500"
+            iconColorclassName="text-orange-500 dark:text-orange-100"
+            bgColorclassName="bg-orange-100 dark:bg-orange-500"
             className="mr-4"
           />
         </InfoCard>
@@ -34,8 +34,8 @@ function Dashboard() {
         <InfoCard title="Prize Fund" value="£ 460.00">
           <RoundIcon
             icon={MoneyIcon}
-            iconColorClass="text-green-500 dark:text-green-100"
-            bgColorClass="bg-green-100 dark:bg-green-500"
+            iconColorclassName="text-green-500 dark:text-green-100"
+            bgColorclassName="bg-green-100 dark:bg-green-500"
             className="mr-4"
           />
         </InfoCard>

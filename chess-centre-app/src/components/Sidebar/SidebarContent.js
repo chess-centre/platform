@@ -3,7 +3,7 @@ import routes from '../../routes/sidebar'
 import { NavLink, Route } from 'react-router-dom'
 import * as Icons from '../../icons'
 import SidebarSubmenu from './SidebarSubmenu'
-import { Button, Avatar } from '@windmill/react-ui'
+import { Button } from '@windmill/react-ui'
 
 import ImageLight from '../../assets/img/logo-light-theme.png';
 import ImageDark from '../../assets/img/logo-dark-theme.png';
