@@ -3,60 +3,63 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.png";
 import ImageLight from "../../assets/img/create-account-light.jpg";
 import ImageDark from "../../assets/img/create-account-light.jpg";
-// import { GithubIcon } from "../../icons";
 import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
-import PrivacyPolicyModal from "../../components/PrivacyPolicyModal";
+import validateEmail from '../../utils/validateEmail';
 
-function Login() {
+
+function Login(props) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
-  const [ischecked, setischecked] = useState(false);
-  const [isButton, setisButton] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  function openModal() {
-    setIsModalOpen(true)
-  }
-  function closeModal() {
-    setIsModalOpen(false)
-  }
-
-
+  const [isChecked, setIsChecked] = useState(false);
+  const [isSubmitButtonActive, setSubmitButtonActive] = useState(true);
   const dispatch = useAuthDispatch();
 
   useEffect(() => {
-    if (!email && !password && password !== rePassword && !ischecked) {
-      setisButton(true);
+    if (!email && !password && password !== rePassword && !isChecked) {
+      setSubmitButtonActive(true);
     }
     else {
-      setisButton(false);
+      setSubmitButtonActive(false);
     }
-  }, [email, password, rePassword, ischecked]);
+  }, [email, password, rePassword, isChecked]);
 
   const { loading, errorMessage } = useAuthState();
 
-  async function signUp(props) {
-    const mailFormat = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
+  async function signUp() {
+
+    const isValidEmail = validateEmail(email);
+    let isFormValid = true;
+
     if (!email) {
-      dispatch({ type: "LOGIN_ERROR", error: "Email cannot be empty" });
+      dispatch({ type: "LOGIN_ERROR", error: "Your Email address is a required field." });
+      isFormValid = false;
     }
-    else if (!email.match(mailFormat)) { 
-      dispatch({ type: "LOGIN_ERROR", error: "You have entered an invalid email address!" });
+
+    if (!isValidEmail) {
+      dispatch({ type: "LOGIN_ERROR", error: "Oops! You have entered an invalid email address!" });
+      isFormValid = false;
     }
-    else if (password !== rePassword) {
-      dispatch({ type: "LOGIN_ERROR", error: "Password is not match" });
+
+    if (!password || !(password === rePassword)) {
+      dispatch({ type: "LOGIN_ERROR", error: "Please check and retype your password." });
+      isFormValid = false;
     }
-    else {
+
+    if (!isChecked) {
+      dispatch({ type: "LOGIN_ERROR", error: "Please read & accept our privacy policy before creating your account." });
+      isFormValid = false;
+    }
+
+    if (isFormValid) {
       try {
         let response = await signUpUser(dispatch, email, password);
         if (response) {
           props.history.push("/app");
-        }
-        else {
-          return;
+        } else {
+          dispatch({ type: "LOGIN_ERROR", error: "Something went wrong. Please try again." });
         }
       } catch (error) {
         dispatch({ type: "LOGIN_ERROR", error });
@@ -84,7 +87,6 @@ function Login() {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
               <img src={Logo} className="object-contain h-48 w-full" alt="The Chess Centre" />
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Create account
@@ -114,23 +116,32 @@ function Login() {
               </Label>
 
               <Label className="mt-6" check>
-                <Input type="checkbox" checked={ischecked} disabled={loading}
-                  onChange={(e) => setischecked(e.target.checked)} />
+                <Input type="checkbox" checked={isChecked} disabled={loading}
+                  onChange={(e) => setIsChecked(e.target.checked)} />
                 <span className="ml-2">
                   I agree to the <span className="underline">privacy policy</span>
                 </span>
               </Label>
 
-              <Button onClick={signUp} disabled={isButton && "disabled"} block className="mt-4">
-                Create account
-              </Button>
+
+              {
+                loading ? (<Button disabled={"disabled"} block className="mt-4">
+                  <div className="rounded animate-spin ease duration-300 w-4 h-4 border-2 border-orange"></div>
+                  <span className="mx-2">Please wait ...</span>
+                </Button>) : (
+
+                  <Button onClick={signUp} disabled={isSubmitButtonActive && "disabled"} block className="mt-4">
+                    <span className="mx-2">Create account</span>
+                  </Button>
+                )
+              }
+              
+              <div className={errorMessage ? "my-2 text-centre" : ""}>
+                <p className={errorMessage ? "text-sm font-semibold text-red-700" : "hidden"}>{ errorMessage }</p>
+              </div>
+              
 
               <hr className="my-8" />
-
-              {/* <Button block layout="outline">
-                <GithubIcon className="w-4 h-4 mr-2" aria-hidden="true" />
-                Github
-              </Button> */}
 
               <p className="mt-4">
                 <Link

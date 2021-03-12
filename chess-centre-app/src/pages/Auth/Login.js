@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import ImageLight from "../../assets/img/chess-player.jpg";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import Logo from "../../assets/img/logo.png";
-import { GithubIcon } from "../../icons";
 import { Label, Input, Button } from "@windmill/react-ui";
 import { loginUser, useAuthDispatch, useAuthState } from "../../context/Auth";
 
@@ -17,6 +16,7 @@ function Login(props) {
   const { loading, errorMessage } = useAuthState();
 
   async function signIn() {
+
       let response = await loginUser(dispatch, email, password); 
       if (response) {
         props.history.push("/app");
@@ -45,8 +45,7 @@ function Login(props) {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              
-              {errorMessage && <p className="mb-4 text-xl font-semibold text-red-700 dark:text-red-200 justify-center">{errorMessage}</p>}
+            
               <a href="/">
                 <img src={Logo} className="object-contain h-48 w-full" alt="The Chess Centre" />
               </a>
@@ -62,15 +61,19 @@ function Login(props) {
               </Label>
 
               <Button className="mt-4" onClick={signIn} disabled={loading}>
-              {loading ? "loading...." :  "Log in"}
+                { 
+                  loading ? <div>
+                    <div>Loading ...</div>
+                  </div>
+                  :  "Log in"
+                  }
               </Button>
+
+              <div className={errorMessage ? "my-2 text-centre" : ""}>
+                <p className={errorMessage ? "text-sm font-semibold text-red-700" : "hidden"}>{ errorMessage }</p>
+              </div>
 
               <hr className="my-8" />
-
-              <Button block layout="outline">
-                <GithubIcon className="w-4 h-4 mr-2" aria-hidden="true" />
-                Github
-              </Button>
 
               <p className="mt-4">
                 <Link
