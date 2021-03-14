@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/img/logo.png";
-import ImageLight from "../../assets/img/create-account-light.jpg";
-import ImageDark from "../../assets/img/create-account-light.jpg";
+import Logo from "../../assets/img/logo.svg";
+import ImageLarge from "../../assets/img/create-account-large.jpg";
+import ImageSmall from "../../assets/img/create-account-small.jpg";
 import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
 import validateEmail from '../../utils/validateEmail';
@@ -74,20 +74,20 @@ function Login(props) {
           <div className="h-32 md:h-auto md:w-1/2">
             <img
               aria-hidden="true"
-              className="object-cover w-full h-full dark:hidden"
-              src={ImageLight}
+              className="hidden object-cover w-full h-full sm:block"
+              src={ImageLarge}
               alt="Office"
             />
             <img
               aria-hidden="true"
-              className="hidden object-cover w-full h-full dark:block"
-              src={ImageDark}
+              className="sm:hidden object-cover object-bottom w-full h-full"
+              src={ImageSmall}
               alt="Office"
             />
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              <img src={Logo} className="object-contain h-48 w-full" alt="The Chess Centre" />
+              <img src={Logo} className="object-contain h-20 w-full md:h-36 " alt="The Chess Centre" />
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Create account
               </h1>
@@ -149,6 +149,14 @@ function Login(props) {
                   to="/login"
                 >
                   Already have an account? Login
+                </Link>
+              </p>
+              <p className="mt-1">
+                <Link
+                  className="text-sm font-medium text-gray-400 dark:text-gray-900 hover:underline"
+                  to="/"
+                >
+                  Home
                 </Link>
               </p>
             </div>

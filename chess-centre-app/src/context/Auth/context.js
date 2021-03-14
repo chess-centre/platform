@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 	return (
 		<AuthStateContext.Provider value={user}>
 			<AuthDispatchContext.Provider value={dispatch}>
-				{children}
+				{ children }
 			</AuthDispatchContext.Provider>
 		</AuthStateContext.Provider>
 	);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect, useMemo } from 'react'
+import React, { useState, useEffect, useRef, useLayoutEffect, useMemo } from "react";
 
 /**
  * Saves the old theme for future use
@@ -20,7 +20,7 @@ function usePrevious(theme) {
  */
 function useStorageTheme(key) {
   const userPreference =
-    !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    !!window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
 
   const [theme, setTheme] = useState(
     // use stored theme; fallback to user preference
@@ -40,7 +40,7 @@ export const ThemeContext = React.createContext()
 
 // create context provider
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useStorageTheme('theme')
+  const [theme, setTheme] = useStorageTheme("theme")
 
   // update root element class on theme change
   const oldTheme = usePrevious(theme)
@@ -50,8 +50,8 @@ export const ThemeProvider = ({ children }) => {
   }, [theme, oldTheme])
 
   function toggleTheme() {
-    if (theme === 'light') setTheme('dark')
-    else setTheme('light')
+    if (theme === "light") setTheme("dark")
+    else setTheme("light")
   }
 
   const value = useMemo(
