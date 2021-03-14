@@ -4,24 +4,22 @@ import ImageDark from "../../assets/img/chess-players.jpg";
 import { Label, Input, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState } from "../../context/Auth";
 
-function ConfirmEmail(props) {
+function ConfirmEmail() {
 
     const [code, setCode] = useState("");
     const dispatch = useAuthDispatch();
-    const { loading, errorMessage } = useAuthState();
+    const { errorMessage } = useAuthState();
 
     async function submitActivationCode() {
-       
         if (!code) {
             dispatch({ type: "ACTIVATION_CODE_ERROR", error: "The code you entered is invalid" });
             return false;
         }
         else {
-
+            dispatch({ type: "ACTIVATION_CODE_SUBMIT", code });
+            return;
         }
-
     }
-
 
     return (
         <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
@@ -43,13 +41,13 @@ function ConfirmEmail(props) {
                     </div>
                     <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                         <div className="w-full">
-                            {errorMessage && <p>{errorMessage}</p>}
                             <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Account Activation</h1>
                             <Label>
-                                <span>Code</span>
-                                <Input disabled={loading} className="mt-1" onChange={(e) => setCode(e.target.value)} type="text" placeholder="Code" />
+                                <span>Enter your code (sent to you via email)</span>
+                                <Input className="mt-1" onChange={(e) => setCode(e.target.value)} type="text" placeholder="000000" />
                             </Label>
-                            <Button onClick={submitActivationCode} block className="mt-4"></Button>
+                            <Button onClick={submitActivationCode} block className="mt-4">Confirm Sign Up</Button>
+                            <p className={errorMessage ? "font-semibold text-red-500" : "hidden"}></p>
                         </div>
                     </main>
                 </div>

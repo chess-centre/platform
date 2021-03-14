@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ImageLight from "../../assets/img/chess-players.jpg";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import { Label, Input, Button } from "@windmill/react-ui";
@@ -83,6 +84,15 @@ function ForgotPassword(props) {
               <Button onClick={forget ? passwordForgotSubmit : passwordForgot} block className="mt-4">
                 {forget ? "Submit Password" : "Recover password"}
               </Button>
+              <hr className="my-4" />
+              <p className="mt-1">
+                <Link
+                  className="text-sm font-medium text-gray-400 dark:text-gray-900 hover:underline"
+                  to="/"
+                >
+                  Home
+                </Link>
+              </p>
             </div>
           </main>
         </div>

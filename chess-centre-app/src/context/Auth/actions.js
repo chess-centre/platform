@@ -2,17 +2,26 @@ import Amplify, { Auth } from "aws-amplify";
 import AWS_AUTH from "../../aws-exports";
 Amplify.configure(AWS_AUTH);
 
-
-
 export async function loginUser(dispatch, Email, Password) {
 	dispatch({ type: "REQUEST_LOGIN" });
-	let data = await Auth.signIn(Email, Password);
-	if (data.attributes) {
-		dispatch({ type: "LOGIN_SUCCESS", payload: data });
-		localStorage.setItem("currentUser", JSON.stringify(data.attributes));
-		return data.attributes;
+	const user = await Auth.signIn(Email, Password).catch(error => {
+		dispatch({ type: "LOGIN_ERROR", error: error.message });
+	});
+
+	if(user) {
+		dispatch({ type: "LOGIN_SUCCESS", payload: user });
+		localStorage.setItem("currentUser", JSON.stringify(user));
+		return user;
 	}
-	dispatch({ type: "LOGIN_ERROR", error: data.message });
+	return;
+}
+
+export async function getCurrentAuthenticatedUser(dispatch) {
+	const user = await Auth.currentAuthenticatedUser();
+	if(user) {
+		localStorage.setItem("currentUser", JSON.stringify(user));
+		return user;
+	}
 	return;
 }
 
@@ -41,28 +50,38 @@ export async function userPasswordForgotSubmit(dispatch, email, code, newPasswor
 export async function signUpUser(dispatch, email, password) {
 	try {
 		dispatch({ type: "REQUEST_LOGIN" });
-		let data = await Auth.signUp({
+
+		let user = await Auth.signUp({
 			username: email,
 			password,
 			attributes: { email }
 		});
-		if (data.attributes) {
-			dispatch({ type: "LOGIN_SUCCESS", payload: data });
-			localStorage.setItem("currentUser", JSON.stringify(data.attributes));
-			return data.attributes;
-		
+
+		if (user) {
+			dispatch({ type: "LOGIN_SUCCESS", payload: user });
+			localStorage.setItem("currentUser", JSON.stringify(user));
+			return user;	
 		}
-
-
-		dispatch({ type: "LOGIN_ERROR", error: data.message });
 		return;
 	} catch (error) {
 		dispatch({ type: "LOGIN_ERROR", error: error.message });
 	}
 }
 
-export async function confirmEmail(dispatch) {
+export async function confirmEmail(dispatch, email, code) {
+	const user = await Auth.confirmSignUp(email, code)
+				.catch(error => {
+					dispatch({ type: "CONFIRM_EMAIL_ERROR", error });
+					return;
+				});
 	
+	localStorage.setItem("currentUser", JSON.stringify(user));
+	dispatch({ type: "LOGIN_SUCCESS", payload: user });
+}
+
+export async function resentSendUp(email) {
+	const sent = await Auth.resendSignUp();
+	return sent;
 }
 
 export async function logout(dispatch) {

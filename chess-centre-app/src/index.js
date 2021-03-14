@@ -1,27 +1,27 @@
-import React, { Suspense } from 'react'
-import ReactDOM from 'react-dom'
-import './assets/css/tailwind.output.css'
-import App from './App'
-import { SidebarProvider } from './context/SidebarContext'
-import ThemedSuspense from './components/ThemedSuspense'
-import { Windmill } from '@windmill/react-ui'
-import Theme from './theme.js';
-import * as serviceWorker from './serviceWorker'
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom";
+import "./assets/css/style.scss";
+import App from "./App";
+import { SidebarProvider } from "./context/SidebarContext";
+import ThemedSuspense from "./components/ThemedSuspense";
+import { Windmill } from "@windmill/react-ui";
+import Theme from "./theme.js";
+import * as serviceWorker from "./serviceWorker";
 
-// if (process.env.NODE_ENV !== 'production') {
-//   const axe = require('react-axe')
+// if (process.env.NODE_ENV !== "production") {
+//   const axe = require("react-axe")
 //   axe(React, ReactDOM, 1000)
 // }
 
 ReactDOM.render(
-  <SidebarProvider>
-    <Suspense fallback={<ThemedSuspense />}>
-      <Windmill usePreferences theme={Theme}>
-        <App />
-      </Windmill>
-    </Suspense>
-  </SidebarProvider>,
-  document.getElementById('root')
+    <SidebarProvider>
+      <Suspense fallback={<ThemedSuspense />}>
+        <Windmill usePreferences theme={Theme}>
+          <App />
+        </Windmill>
+      </Suspense>
+    </SidebarProvider>,
+  document.getElementById("root")
 )
 
 // If you want your app to work offline and load faster, you can change

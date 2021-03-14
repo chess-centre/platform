@@ -1,0 +1,190 @@
+:focus,
+button:focus,
+.btn:focus,
+.btn-sm:focus,
+.form-input:focus,
+.form-textarea:focus,
+.form-multiselect:focus,
+.form-select:focus,
+.form-checkbox:focus,
+.form-radio:focus {
+    @apply outline-blue;
+}
+
+.form-input,
+.form-textarea,
+.form-multiselect,
+.form-select,
+.form-checkbox,
+.form-radio {
+
+    &:focus {
+        box-shadow: none !important;
+    }
+}
+
+// Hamburger button
+.hamburger {
+
+    svg > * {
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+            transform-origin: center;
+            transform: rotate(0deg);
+        }
+
+        &:nth-child(1) {
+            transition: y 0.075s 0.12s ease, opacity 0.075s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+
+        &:nth-child(2) {
+            transition-property: transform;
+            transition-duration: 0.075s;
+            transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+
+        &:nth-child(3) {
+            transition: y 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }        
+    }
+
+    &.active {
+
+        svg > * {
+
+            &:nth-child(1) {
+                opacity: 0;
+                transform: rotate(45deg);
+                y: 11;
+                transition: y 0.075s ease, opacity 0.075s 0.12s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+    
+            &:nth-child(2) {
+                transform: rotate(45deg);
+                transition-delay: 0.12s;
+                transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+    
+            &:nth-child(3) {
+                y: 11;
+                transform: rotate(-45deg);
+                transition: y 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+        }
+    }
+}
+
+// Light switch
+.form-switch {
+
+    input[type="checkbox"].light-switch {
+
+        + label {
+            @apply bg-teal-500;
+
+            > span:first-child {
+
+                .dark & {        
+                    left: 22px;
+                }
+            }                      
+        }
+    }
+}
+
+// Custom Swiper styles
+.carousel {
+
+    &.swiper-container {
+        @apply overflow-visible;
+    }
+
+    .swiper-slide {
+
+        img {
+            opacity: .32;
+        }
+
+        > div > div {
+            @apply opacity-0;
+        }        
+
+        &.swiper-slide-active,
+        &.swiper-slide-duplicate-active {
+            @apply shadow-2xl;
+
+            img {
+                @apply opacity-100;
+            }
+
+            > div > div {
+                @apply opacity-100;
+            }
+        }
+    }
+}
+
+// Helper class to fix swipering carousel on Safari
+.translate-z-0 {
+    transform: translateZ(0);
+}
+
+// Tags animation
+$tags-animation-duration: 30000ms;
+
+
+.tags-animation {
+    animation: tagsmove $tags-animation-duration linear infinite;
+}
+
+.tags-1 {
+    animation-delay: $tags-animation-duration * -0.1; // -0.1 will make the tag move 76px right (i.e. 768px container size * -0.1) 
+}
+
+.tags-2 {
+    animation-delay: $tags-animation-duration * -0.16;
+}
+
+.tags-3 {
+    animation-delay: $tags-animation-duration * -0.23;
+}
+
+.tags-4 {
+    animation-delay: $tags-animation-duration * -0.27;
+}
+
+.tags-5 {
+    animation-delay: $tags-animation-duration * -0.44;
+}
+
+.tags-6 {
+    animation-delay: $tags-animation-duration * -0.55;
+}
+
+.tags-7 {
+    animation-delay: $tags-animation-duration * -0.63;
+}
+
+.tags-8 {
+    animation-delay: $tags-animation-duration * -0.73;
+}
+
+.tags-9 {
+    animation-delay: $tags-animation-duration * -0.76;
+}
+
+.tags-10 {
+    animation-delay: $tags-animation-duration * -0.8;
+}
+
+@keyframes tagsmove {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(768px);
+  }
+}

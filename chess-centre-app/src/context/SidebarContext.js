@@ -18,8 +18,10 @@ export const SidebarProvider = ({ children }) => {
     () => ({
       isSidebarOpen,
       toggleSidebar,
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       closeSidebar,
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [isSidebarOpen]
   )
 
