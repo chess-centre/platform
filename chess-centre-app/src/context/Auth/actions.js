@@ -10,7 +10,16 @@ export async function loginUser(dispatch, Email, Password) {
 
 	if(user) {
 		dispatch({ type: "LOGIN_SUCCESS", payload: user });
-		localStorage.setItem("currentUser", user);
+		localStorage.setItem("currentUser", JSON.stringify(user));
+		return user;
+	}
+	return;
+}
+
+export async function getCurrentAuthenticatedUser(dispatch) {
+	const user = await Auth.currentAuthenticatedUser();
+	if(user) {
+		localStorage.setItem("currentUser", JSON.stringify(user));
 		return user;
 	}
 	return;
@@ -50,9 +59,9 @@ export async function signUpUser(dispatch, email, password) {
 
 		if (user) {
 			dispatch({ type: "LOGIN_SUCCESS", payload: user });
-			localStorage.setItem("currentUser", user);
+			localStorage.setItem("currentUser", JSON.stringify(user));
 			return user;	
-		} 
+		}
 		return;
 	} catch (error) {
 		dispatch({ type: "LOGIN_ERROR", error: error.message });
@@ -65,8 +74,14 @@ export async function confirmEmail(dispatch, email, code) {
 					dispatch({ type: "CONFIRM_EMAIL_ERROR", error });
 					return;
 				});
+	
 	localStorage.setItem("currentUser", JSON.stringify(user));
 	dispatch({ type: "LOGIN_SUCCESS", payload: user });
+}
+
+export async function resentSendUp(email) {
+	const sent = await Auth.resendSignUp();
+	return sent;
 }
 
 export async function logout(dispatch) {

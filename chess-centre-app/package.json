@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.13.10",
-    "@geoffcodesthings/react-scripts": "4.0.1",
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.4.0",
@@ -13,18 +12,25 @@
     "@testing-library/user-event": "^12.1.10",
     "@windmill/react-ui": "^0.5.1",
     "aws-amplify": "^3.3.23",
-    "postcss": "^8.1.10",
+    "node-sass": "4.14.1",
+    "postcss-nested": "^5.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
+    "react-transition-group": "^4.4.1",
+    "@craco/craco": "^5.7.0",
+    "aos": "^3.0.0-beta.6",
+    "cruip-js-toolkit": "^1.0.2",
+    "postcss": "^8.2.8",
+    "react-scripts": "3.4.1",
+    "swiper": "^6.4.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "npm run watch:css && react-scripts start",
-    "build": "npm run watch:css && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "watch:css": "postcss src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "eslintConfig": {
     "extends": [

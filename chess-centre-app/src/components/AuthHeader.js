@@ -79,10 +79,10 @@ function Header() {
                 <OutlinePersonIcon className="w-4 h-4 mr-3" aria-hidden="true" />
                 Profile
               </DropdownItem>
-              <DropdownItem tag="a" href="/app/profile/settings">
+              {/* <DropdownItem tag="a" href="/app/profile/settings">
                 <OutlineCogIcon className="w-4 h-4 mr-3" aria-hidden="true" />
                 Settings
-              </DropdownItem>
+              </DropdownItem> */}
               <DropdownItem onClick={() => signOut()}>
                 <OutlineLogoutIcon className="w-4 h-4 mr-3" aria-hidden="true" />
                 Log out
@@ -95,4 +95,4 @@ function Header() {
   )
 }
 
-export default Header
+export default Header;

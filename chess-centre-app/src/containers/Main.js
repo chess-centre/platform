@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function Main({ children }) {
   return (
@@ -8,4 +8,4 @@ function Main({ children }) {
   )
 }
 
-export default Main
+export default Main;
