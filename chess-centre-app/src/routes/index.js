@@ -49,6 +49,11 @@ const routes = [
     component: lazy(() => import("../pages/Home/About")),
     isPrivate: false,
   },
+  {
+    path: "/code-of-conduct",
+    component: lazy(() => import("../pages/Home/CodeOfConduct")),
+    isPrivate: false,
+  },
   // Authenticated Routes
   {
     path: "/app",
