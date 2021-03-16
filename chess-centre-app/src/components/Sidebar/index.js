@@ -8,7 +8,7 @@ function Sidebar() {
       <DesktopSidebar />
       <MobileSidebar />
     </>
-  )
+  );
 }
 
 export default Sidebar;

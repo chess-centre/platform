@@ -1,14 +1,20 @@
 import React, { useState } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "@windmill/react-ui";
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+} from "@windmill/react-ui";
 
 function PrivacyPolicyModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function openModal() {
-    setIsModalOpen(true)
+    setIsModalOpen(true);
   }
   function closeModal() {
-    setIsModalOpen(false)
+    setIsModalOpen(false);
   }
   return (
     <>
@@ -17,17 +23,19 @@ function PrivacyPolicyModal() {
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <ModalHeader>Privacy Policy</ModalHeader>
-        <ModalBody>
-           Privacy Policy Here
-        </ModalBody>
+        <ModalBody>Privacy Policy Here</ModalBody>
         <ModalFooter>
-          <Button className="w-full sm:w-auto" layout="outline" onClick={closeModal}>
+          <Button
+            className="w-full sm:w-auto"
+            layout="outline"
+            onClick={closeModal}
+          >
             Cancel
           </Button>
           <Button className="w-full sm:w-auto">Accept</Button>
         </ModalFooter>
       </Modal>
     </>
-  )
+  );
 }
-export default PrivacyPolicyModal
+export default PrivacyPolicyModal;

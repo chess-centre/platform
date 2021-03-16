@@ -1,25 +1,24 @@
-
 const routes = [
   {
-    path: '/app/dashboard',
-    icon: 'HomeIcon',
-    name: 'Dashboard'
+    path: "/app/dashboard",
+    icon: "HomeIcon",
+    name: "Dashboard",
   },
   {
-    path: '/app/events', 
-    icon: 'CalendarIcon',
-    name: 'Events'
+    path: "/app/events",
+    icon: "CalendarIcon",
+    name: "Events",
   },
   {
-    path: '/app/results',
-    icon: 'ChartBarIcon',
-    name: 'Results'
+    path: "/app/results",
+    icon: "ChartBarIcon",
+    name: "Results",
   },
   {
-    path: '/app/members',
-    icon: 'UsersIcon',
-    name: 'Members'
-  }
-]
+    path: "/app/members",
+    icon: "UsersIcon",
+    name: "Members",
+  },
+];
 
-export default routes
+export default routes;

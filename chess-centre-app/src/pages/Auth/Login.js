@@ -8,7 +8,6 @@ import { Label, Input, Button } from "@windmill/react-ui";
 import { loginUser, useAuthDispatch, useAuthState } from "../../context/Auth";
 
 function Login(props) {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,15 +15,13 @@ function Login(props) {
   const { loading, errorMessage } = useAuthState();
 
   async function signIn() {
-
-      let response = await loginUser(dispatch, email, password); 
-      if (response) {
-        props.history.push("/app");
-      }
-      else{
-        return;
-      }
-  } 
+    let response = await loginUser(dispatch, email, password);
+    if (response) {
+      props.history.push("/app");
+    } else {
+      return;
+    }
+  }
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-200 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
@@ -39,32 +36,58 @@ function Login(props) {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-            
               <a href="/">
-                <img src={Logo} className="object-contain h-20 md:h-36 w-full" alt="The Chess Centre" />
+                <img
+                  src={Logo}
+                  className="object-contain h-20 md:h-36 w-full"
+                  alt="The Chess Centre"
+                />
               </a>
-              <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Login</h1>
+              <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                Login
+              </h1>
               <Label>
                 <span>Email</span>
-                <Input disabled={loading} className="mt-1" type="email" placeholder="john@doe.com" onChange={(e) => setEmail(e.target.value)} />
+                <Input
+                  disabled={loading}
+                  className="mt-1"
+                  type="email"
+                  placeholder="john@doe.com"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </Label>
 
               <Label className="mt-4">
                 <span>Password</span>
-                <Input disabled={loading} className="mt-1" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="***************" />
+                <Input
+                  disabled={loading}
+                  className="mt-1"
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="***************"
+                />
               </Label>
 
               <Button className="mt-4" onClick={signIn} disabled={loading}>
-                { 
-                  loading ? <div>
+                {loading ? (
+                  <div>
                     <div>Loading ...</div>
                   </div>
-                  :  "Log in"
-                  }
+                ) : (
+                  "Log in"
+                )}
               </Button>
 
               <div className={errorMessage ? "my-2 text-centre" : ""}>
-                <p className={errorMessage ? "text-sm font-semibold text-red-700" : "hidden"}>{ errorMessage }</p>
+                <p
+                  className={
+                    errorMessage
+                      ? "text-sm font-semibold text-red-700"
+                      : "hidden"
+                  }
+                >
+                  {errorMessage}
+                </p>
               </div>
 
               <hr className="my-8" />
@@ -98,7 +121,7 @@ function Login(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

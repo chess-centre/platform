@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { DropdownIcon } from '../../icons'
-import * as Icons from '../../icons'
-import { Transition } from '@windmill/react-ui'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { DropdownIcon } from "../../icons";
+import * as Icons from "../../icons";
+import { Transition } from "@windmill/react-ui";
 
 function Icon({ icon, ...props }) {
-  const Icon = Icons[icon]
-  return <Icon {...props} />
+  const Icon = Icons[icon];
+  return <Icon {...props} />;
 }
 
 function SidebarSubmenu({ route }) {
-  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false)
+  const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
 
   function handleDropdownMenuClick() {
-    setIsDropdownMenuOpen(!isDropdownMenuOpen)
+    setIsDropdownMenuOpen(!isDropdownMenuOpen);
   }
 
   return (
@@ -55,7 +55,7 @@ function SidebarSubmenu({ route }) {
         </ul>
       </Transition>
     </li>
-  )
+  );
 }
 
-export default SidebarSubmenu
+export default SidebarSubmenu;

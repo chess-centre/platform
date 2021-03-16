@@ -2,8 +2,6 @@ import React, { useContext, Suspense, useEffect, lazy } from "react";
 import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 //import routes from "../routes";
 
-
-
 import Sidebar from "../components/Sidebar";
 import Header from "../components/AuthHeader.js";
 import Main from "../containers/Main";
@@ -11,50 +9,40 @@ import Main from "../containers/Main";
 import ThemedSuspense from "../components/ThemedSuspense";
 import { SidebarContext } from "../context/SidebarContext";
 
-
-
 // use lazy for better code splitting, a.k.a. load faster
-const Dashboard = lazy(() => import('../pages/Dashboard/Dashboard'))
-const Events = lazy(() => import('../pages/Dashboard/Events'))
-const Results = lazy(() => import('../pages/Dashboard/Results'))
-const Members = lazy(() => import('../pages/Dashboard/Members'))
-const Profile = lazy(() => import('../pages/User/Profile'))
-const Settings = lazy(() => import('../pages/User/Settings'))
-
+const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
+const Events = lazy(() => import("../pages/Dashboard/Events"));
+const Results = lazy(() => import("../pages/Dashboard/Results"));
+const Members = lazy(() => import("../pages/Dashboard/Members"));
+const Profile = lazy(() => import("../pages/User/Profile"));
+const Settings = lazy(() => import("../pages/User/Settings"));
 
 const routes = [
   {
-    path: '/dashboard',
-    component: Dashboard
+    path: "/dashboard",
+    component: Dashboard,
   },
   {
-    path: '/events',
-    component: Events
+    path: "/events",
+    component: Events,
   },
   {
-    path: '/results',
-    component: Results
-  }, 
-  {
-    path: '/members',
-    component: Members
+    path: "/results",
+    component: Results,
   },
   {
-    path: '/profile',
-    component: Profile
+    path: "/members",
+    component: Members,
   },
   {
-    path: '/settings',
-    component: Settings
-  }
-]
-
-
-
-
-
-
-
+    path: "/profile",
+    component: Profile,
+  },
+  {
+    path: "/settings",
+    component: Settings,
+  },
+];
 
 const Page404 = lazy(() => import("../pages/404"));
 
@@ -64,13 +52,15 @@ function Layout() {
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    closeSidebar()
+    closeSidebar();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   return (
     <div
-      className={`flex h-screen bg-gray-50 dark:bg-gray-900 ${isSidebarOpen && "overflow-hidden"}`}
+      className={`flex h-screen bg-gray-50 dark:bg-gray-900 ${
+        isSidebarOpen && "overflow-hidden"
+      }`}
     >
       <Sidebar />
 
@@ -87,7 +77,7 @@ function Layout() {
                     path={`/app${route.path}`}
                     render={(props) => <route.component {...props} />}
                   />
-                ) : null
+                ) : null;
               })}
               <Redirect exact from="/app" to="/app/dashboard" />
               <Route component={Page404} />
@@ -96,7 +86,7 @@ function Layout() {
         </Main>
       </div>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
