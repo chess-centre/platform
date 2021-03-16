@@ -3,6 +3,61 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 import LandingNav from "../../components/Navigation/LandingNav";
 
 function Events() {
+  
+  // const __events__ = [
+  //   // MAY
+  //   {
+  //     name:"Junior Club",
+  //     description: "",
+  //     time: "6:00pm onwards",
+  //     date: new Date(2021, 05, 18),
+  //     textDate: "Tuesday 18th May",
+  //     link: ""
+  //   },
+  //   {
+  //     name:"Club Night",
+  //     description: "",
+  //     time: "7:00pm onwards",
+  //     date: new Date(2021, 05, 20),
+  //     textDate: "Thursday 20th May",
+  //     url: ""
+  //   },
+  //   {
+  //     name:"Open Congress",
+  //     description: "",
+  //     time: "",
+  //     date: new Date(2021, 05, 22),
+  //     textDate: "Saturday 22nd May & Sunday 23rd May",
+  //     url: ""
+  //   },
+  //   {
+  //     name:"Junior Club",
+  //     description: "",
+  //     time: "6:00pm onwards",
+  //     date: new Date(2021, 05, 18),
+  //     textDate: "Tuesday 25th May",
+  //     link: ""
+  //   },
+  //   {
+  //     name:"Club Night",
+  //     description: "",
+  //     time: "7:00pm onwards",
+  //     date: new Date(2021, 05, 27),
+  //     textDate: "Thursday 27th May",
+  //     link: ""
+  //   },
+  //   {
+  //     name:"Open RapidPlay",
+  //     description: "",
+  //     time: "7:00pm onwards",
+  //     date: new Date(2021, 05, 29),
+  //     textDate: "Saturday 29th May",
+  //     link: ""
+  //   },
+  //   // JUNE
+  // ]
+
+
 
   return (
     <div className="relative bg-gray-50 overflow-hidden">
