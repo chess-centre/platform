@@ -1,8 +1,8 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
-
-
-
-
+import {
+  ModelInit,
+  MutableModel,
+  PersistentModelConstructor,
+} from "@aws-amplify/datastore";
 
 export declare class Event {
   readonly id: string;
@@ -11,5 +11,8 @@ export declare class Event {
   readonly rounds?: number;
   readonly entries?: number;
   constructor(init: ModelInit<Event>);
-  static copyOf(source: Event, mutator: (draft: MutableModel<Event>) => MutableModel<Event> | void): Event;
+  static copyOf(
+    source: Event,
+    mutator: (draft: MutableModel<Event>) => MutableModel<Event> | void
+  ): Event;
 }

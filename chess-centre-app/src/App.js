@@ -1,16 +1,11 @@
 import React, { lazy } from "react";
-import {
-  BrowserRouter as Router,
-  Switch
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { AuthProvider } from "./context/Auth";
 import AppRoutes from "./components/AppRoute";
 import AOS from "aos";
 import routes from "./routes";
 
-
 function App() {
-
   React.useEffect(() => {
     AOS.init({
       once: true,
@@ -24,21 +19,19 @@ function App() {
     <AuthProvider>
       <Router>
         <Switch>
-          {
-            routes.map((route, index) => (
-              <AppRoutes
-                key={route.path + index}
-                path={route.path}
-                component={route.component}
-                isPrivate={route.isPrivate}
-                exact={route.exact}
-              />
-            ))
-          }
+          {routes.map((route, index) => (
+            <AppRoutes
+              key={route.path + index}
+              path={route.path}
+              component={route.component}
+              isPrivate={route.isPrivate}
+              exact={route.exact}
+            />
+          ))}
         </Switch>
       </Router>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;

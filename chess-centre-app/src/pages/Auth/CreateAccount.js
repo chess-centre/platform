@@ -5,11 +5,9 @@ import ImageLarge from "../../assets/img/create-account-large.jpg";
 import ImageSmall from "../../assets/img/create-account-small.jpg";
 import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
-import validateEmail from '../../utils/validateEmail';
-
+import validateEmail from "../../utils/validateEmail";
 
 function Login(props) {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
@@ -20,8 +18,7 @@ function Login(props) {
   useEffect(() => {
     if (!email && !password && password !== rePassword && !isChecked) {
       setSubmitButtonActive(true);
-    }
-    else {
+    } else {
       setSubmitButtonActive(false);
     }
   }, [email, password, rePassword, isChecked]);
@@ -29,27 +26,39 @@ function Login(props) {
   const { loading, errorMessage } = useAuthState();
 
   async function signUp() {
-
     const isValidEmail = validateEmail(email);
     let isFormValid = true;
 
     if (!email) {
-      dispatch({ type: "LOGIN_ERROR", error: "Your Email address is a required field." });
+      dispatch({
+        type: "LOGIN_ERROR",
+        error: "Your Email address is a required field.",
+      });
       isFormValid = false;
     }
 
     if (!isValidEmail) {
-      dispatch({ type: "LOGIN_ERROR", error: "Oops! You have entered an invalid email address!" });
+      dispatch({
+        type: "LOGIN_ERROR",
+        error: "Oops! You have entered an invalid email address!",
+      });
       isFormValid = false;
     }
 
     if (!password || !(password === rePassword)) {
-      dispatch({ type: "LOGIN_ERROR", error: "Please check and retype your password." });
+      dispatch({
+        type: "LOGIN_ERROR",
+        error: "Please check and retype your password.",
+      });
       isFormValid = false;
     }
 
     if (!isChecked) {
-      dispatch({ type: "LOGIN_ERROR", error: "Please read & accept our privacy policy before creating your account." });
+      dispatch({
+        type: "LOGIN_ERROR",
+        error:
+          "Please read & accept our privacy policy before creating your account.",
+      });
       isFormValid = false;
     }
 
@@ -59,7 +68,10 @@ function Login(props) {
         if (response) {
           props.history.push("/app");
         } else {
-          dispatch({ type: "LOGIN_ERROR", error: "Something went wrong. Please try again." });
+          dispatch({
+            type: "LOGIN_ERROR",
+            error: "Something went wrong. Please try again.",
+          });
         }
       } catch (error) {
         dispatch({ type: "LOGIN_ERROR", error });
@@ -87,59 +99,88 @@ function Login(props) {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              <img src={Logo} className="object-contain h-20 w-full md:h-36 " alt="The Chess Centre" />
+              <img
+                src={Logo}
+                className="object-contain h-20 w-full md:h-36 "
+                alt="The Chess Centre"
+              />
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Create account
               </h1>
               <Label>
                 <span>Email</span>
-                <Input disabled={loading}
+                <Input
+                  disabled={loading}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="mt-1" type="email" placeholder="john@doe.com" />
+                  className="mt-1"
+                  type="email"
+                  placeholder="john@doe.com"
+                />
               </Label>
               <Label className="mt-4">
                 <span>Password</span>
-                <Input disabled={loading}
+                <Input
+                  disabled={loading}
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)} className="mt-1"
-                  placeholder="***************" type="password" />
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1"
+                  placeholder="***************"
+                  type="password"
+                />
               </Label>
               <Label className="mt-4">
                 <span>Confirm password</span>
-                <Input disabled={loading}
+                <Input
+                  disabled={loading}
                   value={rePassword}
                   className="mt-1"
                   onChange={(e) => setRePassword(e.target.value)}
                   placeholder="***************"
-                  type="password" />
+                  type="password"
+                />
               </Label>
 
               <Label className="mt-6" check>
-                <Input type="checkbox" checked={isChecked} disabled={loading}
-                  onChange={(e) => setIsChecked(e.target.checked)} />
+                <Input
+                  type="checkbox"
+                  checked={isChecked}
+                  disabled={loading}
+                  onChange={(e) => setIsChecked(e.target.checked)}
+                />
                 <span className="ml-2">
-                  I agree to the <span className="underline">privacy policy</span>
+                  I agree to the{" "}
+                  <span className="underline">privacy policy</span>
                 </span>
               </Label>
 
-
-              {
-                loading ? (<Button disabled={"disabled"} block className="mt-4">
+              {loading ? (
+                <Button disabled={"disabled"} block className="mt-4">
                   <div className="rounded animate-spin ease duration-300 w-4 h-4 border-2 border-orange"></div>
                   <span className="mx-2">Please wait ...</span>
-                </Button>) : (
+                </Button>
+              ) : (
+                <Button
+                  onClick={signUp}
+                  disabled={isSubmitButtonActive && "disabled"}
+                  block
+                  className="mt-4"
+                >
+                  <span className="mx-2">Create account</span>
+                </Button>
+              )}
 
-                  <Button onClick={signUp} disabled={isSubmitButtonActive && "disabled"} block className="mt-4">
-                    <span className="mx-2">Create account</span>
-                  </Button>
-                )
-              }
-              
               <div className={errorMessage ? "my-2 text-centre" : ""}>
-                <p className={errorMessage ? "text-sm font-semibold text-red-700" : "hidden"}>{ errorMessage }</p>
+                <p
+                  className={
+                    errorMessage
+                      ? "text-sm font-semibold text-red-700"
+                      : "hidden"
+                  }
+                >
+                  {errorMessage}
+                </p>
               </div>
-              
 
               <hr className="my-8" />
 
@@ -164,7 +205,7 @@ function Login(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

@@ -1,0 +1,5 @@
+{
+    "tableName": "chess-centre-events",
+    "partitionKeyName": "name",
+    "partitionKeyType": "S"
+}

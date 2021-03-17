@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import ImageLight from "../../assets/img/chess-players.jpg";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import { Label, Input, Button } from "@windmill/react-ui";
-import { useAuthDispatch, userPasswordForgotSubmit, userPasswordForgot, useAuthState } from "../../context/Auth";
+import {
+  useAuthDispatch,
+  userPasswordForgotSubmit,
+  userPasswordForgot,
+  useAuthState,
+} from "../../context/Auth";
 
 function ForgotPassword(props) {
   const [email, setEmail] = useState("");
@@ -15,27 +20,35 @@ function ForgotPassword(props) {
   const { loading, errorMessage } = useAuthState();
 
   async function passwordForgot() {
-    const mailFormat = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
+    const mailFormat = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (!email && !email.match(mailFormat)) {
-      dispatch({ type: "LOGIN_ERROR", error: "You have entered an invalid email address!" });
+      dispatch({
+        type: "LOGIN_ERROR",
+        error: "You have entered an invalid email address!",
+      });
       return false;
-    }
-    else {
+    } else {
       await userPasswordForgot(dispatch, email);
       setForget(true);
     }
-
   }
   async function passwordForgotSubmit() {
     if (!code && !password) {
-      dispatch({ type: "LOGIN_ERROR", error: "Please enter code and password" });
+      dispatch({
+        type: "LOGIN_ERROR",
+        error: "Please enter code and password",
+      });
       return false;
-    }
-    else {
-     const changed =  await userPasswordForgotSubmit(dispatch, email, code, password);
-     if(changed){
-       props.history.push("/login");
-     }
+    } else {
+      const changed = await userPasswordForgotSubmit(
+        dispatch,
+        email,
+        code,
+        password
+      );
+      if (changed) {
+        props.history.push("/login");
+      }
     }
   }
 
@@ -64,24 +77,46 @@ function ForgotPassword(props) {
                 Forgot password
               </h1>
 
-              {!forget ?
+              {!forget ? (
                 <Label>
                   <span>Email</span>
-                  <Input disabled={loading} className="mt-1" onChange={(e) => setEmail(e.target.value)} type="email" placeholder="email@example.com" />
+                  <Input
+                    disabled={loading}
+                    className="mt-1"
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    placeholder="email@example.com"
+                  />
                 </Label>
-                :
+              ) : (
                 <>
                   <Label>
                     <span>Code</span>
-                    <Input disabled={loading} className="mt-1" onChange={(e) => setCode(e.target.value)} type="text" placeholder="Code" />
+                    <Input
+                      disabled={loading}
+                      className="mt-1"
+                      onChange={(e) => setCode(e.target.value)}
+                      type="text"
+                      placeholder="Code"
+                    />
                   </Label>
                   <Label>
                     <span>New Password</span>
-                    <Input disabled={loading} className="mt-1" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
+                    <Input
+                      disabled={loading}
+                      className="mt-1"
+                      onChange={(e) => setPassword(e.target.value)}
+                      type="password"
+                      placeholder="Password"
+                    />
                   </Label>
                 </>
-              }
-              <Button onClick={forget ? passwordForgotSubmit : passwordForgot} block className="mt-4">
+              )}
+              <Button
+                onClick={forget ? passwordForgotSubmit : passwordForgot}
+                block
+                className="mt-4"
+              >
                 {forget ? "Submit Password" : "Recover password"}
               </Button>
               <hr className="my-4" />
@@ -98,7 +133,7 @@ function ForgotPassword(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default ForgotPassword
+export default ForgotPassword;

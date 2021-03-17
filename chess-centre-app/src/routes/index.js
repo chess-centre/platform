@@ -5,7 +5,7 @@ const routes = [
     path: "/",
     component: lazy(() => import("../pages/Home/LandingPage")),
     isPrivate: false,
-    exact:true
+    exact: true,
   },
   {
     path: "/login",
@@ -15,13 +15,13 @@ const routes = [
   {
     path: "/register",
     component: lazy(() => import("../pages/Auth/CreateAccount")),
-    exact:true,
+    exact: true,
     isPrivate: false,
   },
   {
     path: "/register/confirm",
     component: lazy(() => import("../pages/Auth/ConfirmEmail")),
-    exact:true,
+    exact: true,
     isPrivate: false,
   },
   {
@@ -49,15 +49,17 @@ const routes = [
     component: lazy(() => import("../pages/Home/About")),
     isPrivate: false,
   },
+  {
+    path: "/code-of-conduct",
+    component: lazy(() => import("../pages/Home/CodeOfConduct")),
+    isPrivate: false,
+  },
   // Authenticated Routes
   {
     path: "/app",
     component: lazy(() => import("../containers/Layout")),
     isPrivate: true,
-  }
+  },
 ];
 
 export default routes;
-
-
-

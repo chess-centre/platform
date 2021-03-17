@@ -8,12 +8,15 @@ import {
   OutlineCogIcon,
   OutlineLogoutIcon,
 } from "../icons";
-import { Avatar, Dropdown, DropdownItem, WindmillContext } from "@windmill/react-ui";
+import {
+  Avatar,
+  Dropdown,
+  DropdownItem,
+  WindmillContext,
+} from "@windmill/react-ui";
 import { logout, useAuthDispatch } from "../context/Auth";
 
-
 function Header() {
-
   const dispatch = useAuthDispatch();
   const { mode, toggleMode } = useContext(WindmillContext);
   const { toggleSidebar } = useContext(SidebarContext);
@@ -22,7 +25,7 @@ function Header() {
   function handleProfileClick() {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   }
-  function signOut() { 
+  function signOut() {
     logout(dispatch);
   }
   return (
@@ -37,8 +40,7 @@ function Header() {
           <MenuIcon className="w-6 h-6" aria-hidden="true" />
         </button>
         {/* <!-- Search input --> */}
-        <div className="flex justify-center flex-1 lg:mr-32">
-        </div>
+        <div className="flex justify-center flex-1 lg:mr-32"></div>
         <ul className="flex items-center flex-shrink-0 space-x-6">
           {/* <!-- Theme toggler --> */}
           <li className="flex">
@@ -76,7 +78,10 @@ function Header() {
               onClose={() => setIsProfileMenuOpen(false)}
             >
               <DropdownItem tag="a" href="/app/profile">
-                <OutlinePersonIcon className="w-4 h-4 mr-3" aria-hidden="true" />
+                <OutlinePersonIcon
+                  className="w-4 h-4 mr-3"
+                  aria-hidden="true"
+                />
                 Profile
               </DropdownItem>
               {/* <DropdownItem tag="a" href="/app/profile/settings">
@@ -84,7 +89,10 @@ function Header() {
                 Settings
               </DropdownItem> */}
               <DropdownItem onClick={() => signOut()}>
-                <OutlineLogoutIcon className="w-4 h-4 mr-3" aria-hidden="true" />
+                <OutlineLogoutIcon
+                  className="w-4 h-4 mr-3"
+                  aria-hidden="true"
+                />
                 Log out
               </DropdownItem>
             </Dropdown>
@@ -92,7 +100,7 @@ function Header() {
         </ul>
       </div>
     </header>
-  )
+  );
 }
 
 export default Header;
