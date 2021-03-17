@@ -161,7 +161,6 @@ function Profile() {
 
                 <div className="col-span-3">
                   <label className="block text-sm font-medium text-gray-700">
-                    Cover photo
                   </label>
                   <div className="mt-1 border-2 border-gray-300 border-dashed rounded-md px-6 pt-5 pb-6 flex justify-center">
                     <div className="space-y-1 text-center">
@@ -221,7 +220,7 @@ function Profile() {
                   Personal Information
                 </h3>
                 <p className="mt-1 text-sm text-gray-500">
-                  Use a permanent address where you can recieve mail.
+                  We would never share this information with anyone.
                 </p>
               </div>
 
