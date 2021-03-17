@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import PageTitle from '../../components/Typography/PageTitle'
+import PageTitle from "../../components/Typography/PageTitle";
 
 function Settings() {
   return (
     <>
       <PageTitle>Settings</PageTitle>
     </>
-  )
+  );
 }
 
-export default Settings
+export default Settings;
