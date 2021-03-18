@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import ImageLight from "../../assets/img/chess-players.jpg";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import { Label, Input, Button } from "@windmill/react-ui";
-import { useAuthDispatch, useAuthState } from "../../context/Auth";
+import {
+  useAuthDispatch,
+  useAuthState,
+  confirmEmail,
+  resendActivationCode,
+} from "../../context/Auth";
 
-function ConfirmEmail() {
+function ConfirmEmail(props) {
+  const email = props?.match.params.email;
   const [code, setCode] = useState("");
   const dispatch = useAuthDispatch();
-  const { errorMessage } = useAuthState();
+  const { errorMessage, loading } = useAuthState();
 
   async function submitActivationCode() {
     if (!code) {
@@ -17,9 +23,18 @@ function ConfirmEmail() {
       });
       return false;
     } else {
-      dispatch({ type: "ACTIVATION_CODE_SUBMIT", code });
+      const confirmed = await confirmEmail(dispatch, email, code);
+      if (confirmed) {
+        // after confirmation, the user needs to login
+        props.history.push("/login");
+      }
       return;
     }
+  }
+
+  async function resendCode() {
+    // visual indicator that this succeeded?
+    await resendActivationCode(email);
   }
 
   return (
@@ -47,21 +62,35 @@ function ConfirmEmail() {
               </h1>
               <Label>
                 <span>Enter your code (sent to you via email)</span>
-                <Input
-                  className="mt-1"
-                  onChange={(e) => setCode(e.target.value)}
-                  type="text"
-                  placeholder="000000"
-                />
+
+                <div className="flex space-x-3 mt-1">
+                  <Input
+                    disabled={loading}
+                    onChange={(e) => setCode(e.target.value)}
+                    type="text"
+                    placeholder="000000"
+                  />
+
+                  <Button disabled={loading} onClick={resendCode} className="">
+                    Resend
+                  </Button>
+                </div>
               </Label>
-              <Button onClick={submitActivationCode} block className="mt-4">
+              <Button
+                disabled={loading}
+                onClick={submitActivationCode}
+                block
+                className="mt-4"
+              >
                 Confirm Sign Up
               </Button>
               <p
                 className={
                   errorMessage ? "font-semibold text-red-500" : "hidden"
                 }
-              ></p>
+              >
+                {errorMessage}
+              </p>
             </div>
           </main>
         </div>

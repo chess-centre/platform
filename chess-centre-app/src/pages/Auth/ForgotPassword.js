@@ -52,6 +52,11 @@ function ForgotPassword(props) {
     }
   }
 
+  async function resendCode() {
+    // visual indicator that this succeeded?
+    await userPasswordForgot(dispatch, email);
+  }
+
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
@@ -92,13 +97,17 @@ function ForgotPassword(props) {
                 <>
                   <Label>
                     <span>Code</span>
-                    <Input
-                      disabled={loading}
-                      className="mt-1"
-                      onChange={(e) => setCode(e.target.value)}
-                      type="text"
-                      placeholder="Code"
-                    />
+                    <div className="flex space-x-3 mt-1">
+                      <Input
+                        disabled={loading}
+                        onChange={(e) => setCode(e.target.value)}
+                        type="text"
+                        placeholder="000000"
+                      />
+                      <Button disabled={loading} onClick={resendCode}>
+                        Resend
+                      </Button>
+                    </div>
                   </Label>
                   <Label>
                     <span>New Password</span>

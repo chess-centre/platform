@@ -31,6 +31,7 @@ export const AuthReducer = (initialState, action) => {
       return {
         ...initialState,
         loading: false,
+        errorMessage: null,
       };
     case "LOGIN_SUCCESS":
       return {
@@ -70,10 +71,24 @@ export const AuthReducer = (initialState, action) => {
     case "CONFIRM_EMAIL_PENDING":
       return {
         ...initialState,
+        loading: true,
         user: {
           userConfirmed: false,
         },
         errorMessage: null,
+      };
+    case "CONFIRM_EMAIL_SUCCESS":
+      return {
+        ...initialState,
+        loading: false,
+        errorMessage: null,
+      };
+    case "CONFIRM_EMAIL_ERROR":
+    case "ACTIVATION_CODE_ERROR":
+      return {
+        ...initialState,
+        loading: false,
+        errorMessage: action.error,
       };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
