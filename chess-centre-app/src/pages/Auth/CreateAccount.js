@@ -66,13 +66,8 @@ function Login(props) {
       try {
         let response = await signUpUser(dispatch, email, password);
         if (response) {
-          props.history.push("/app");
-        } else {
-          dispatch({
-            type: "LOGIN_ERROR",
-            error: "Something went wrong. Please try again.",
-          });
-        }
+          props.history.push(`/register/confirm/${email}`);
+        } // if there's no response, the action dispatched a contextual error already
       } catch (error) {
         dispatch({ type: "LOGIN_ERROR", error });
       }

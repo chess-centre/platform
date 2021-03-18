@@ -4,7 +4,7 @@
     "resourceNameTruncated": "platfoe3724a3f",
     "userPoolName": "platformchesscentreapp",
     "autoVerifiedAttributes": [
-        "phone_number"
+        "email"
     ],
     "mfaConfiguration": "OFF",
     "mfaTypes": [
