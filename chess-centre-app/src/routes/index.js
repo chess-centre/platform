@@ -19,7 +19,7 @@ const routes = [
     isPrivate: false,
   },
   {
-    path: "/register/confirm",
+    path: "/register/confirm/:email",
     component: lazy(() => import("../pages/Auth/ConfirmEmail")),
     exact: true,
     isPrivate: false,

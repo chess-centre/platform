@@ -2,10 +2,11 @@ import {
   loginUser,
   logout,
   signUpUser,
+  confirmEmail,
   userPasswordForgot,
   userPasswordForgotSubmit,
   getCurrentAuthenticatedUser,
-  resentSendUp,
+  resendActivationCode,
 } from "./actions";
 import { AuthProvider, useAuthDispatch, useAuthState } from "./context";
 
@@ -15,8 +16,9 @@ export {
   useAuthDispatch,
   loginUser,
   signUpUser,
+  confirmEmail,
   getCurrentAuthenticatedUser,
-  resentSendUp,
+  resendActivationCode,
   userPasswordForgot,
   userPasswordForgotSubmit,
   logout,

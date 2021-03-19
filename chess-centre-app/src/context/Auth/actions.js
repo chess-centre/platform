@@ -44,9 +44,9 @@ export async function userPasswordForgotSubmit(
 ) {
   try {
     dispatch({ type: "REQUEST_LOGIN" });
-    let data = await Auth.forgotPasswordSubmit(email, code, newPassword);
+    await Auth.forgotPasswordSubmit(email, code, newPassword);
     dispatch({ type: "STOP_LOADING" });
-    return data;
+    return "SUCCESS";
   } catch (error) {
     dispatch({ type: "LOGIN_ERROR", error: error.message });
   }
@@ -74,17 +74,18 @@ export async function signUpUser(dispatch, email, password) {
 }
 
 export async function confirmEmail(dispatch, email, code) {
-  const user = await Auth.confirmSignUp(email, code).catch((error) => {
-    dispatch({ type: "CONFIRM_EMAIL_ERROR", error });
+  dispatch({ type: "CONFIRM_EMAIL_PENDING" });
+  const success = await Auth.confirmSignUp(email, code, {}).catch((error) => {
+    dispatch({ type: "CONFIRM_EMAIL_ERROR", error: error.message });
     return;
   });
 
-  localStorage.setItem("currentUser", JSON.stringify(user));
-  dispatch({ type: "LOGIN_SUCCESS", payload: user });
+  if (success) dispatch({ type: "CONFIRM_EMAIL_SUCCESS" });
+  return success;
 }
 
-export async function resentSendUp(email) {
-  const sent = await Auth.resendSignUp();
+export async function resendActivationCode(email) {
+  const sent = await Auth.resendSignUp(email);
   return sent;
 }
 
