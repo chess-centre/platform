@@ -5,6 +5,7 @@ import ImageLarge from "../../assets/img/create-account-large.jpg";
 import ImageSmall from "../../assets/img/create-account-small.jpg";
 import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
+import PrivacyPolicyModal from "../../components/PrivacyPolicyModal.js";
 import validateEmail from "../../utils/validateEmail";
 
 function Login(props) {
@@ -24,6 +25,13 @@ function Login(props) {
   }, [email, password, rePassword, isChecked]);
 
   const { loading, errorMessage } = useAuthState();
+
+  const setPrivacyPolicyStatus = checked => {
+    checked ? 
+      window.localStorage.setItem("privacyPolicy", "accepted") : 
+      window.localStorage.removeItem("privacyPolicy");
+    setIsChecked(checked);
+  }
 
   async function signUp() {
     const isValidEmail = validateEmail(email);
@@ -141,11 +149,11 @@ function Login(props) {
                   type="checkbox"
                   checked={isChecked}
                   disabled={loading}
-                  onChange={(e) => setIsChecked(e.target.checked)}
+                  onChange={(e) => setPrivacyPolicyStatus(e.target.checked)}
                 />
                 <span className="ml-2">
                   I agree to the{" "}
-                  <span className="underline">privacy policy</span>
+                  <PrivacyPolicyModal />
                 </span>
               </Label>
 
@@ -195,6 +203,7 @@ function Login(props) {
                   Home
                 </Link>
               </p>
+              
             </div>
           </main>
         </div>
