@@ -15,7 +15,6 @@ const Events = lazy(() => import("../pages/Dashboard/Events"));
 const Results = lazy(() => import("../pages/Dashboard/Results"));
 const Members = lazy(() => import("../pages/Dashboard/Members"));
 const Profile = lazy(() => import("../pages/User/Profile"));
-const Settings = lazy(() => import("../pages/User/Settings"));
 
 const routes = [
   {
@@ -37,11 +36,7 @@ const routes = [
   {
     path: "/profile",
     component: Profile,
-  },
-  {
-    path: "/settings",
-    component: Settings,
-  },
+  }
 ];
 
 const Page404 = lazy(() => import("../pages/404"));

@@ -1,8 +1,5 @@
 import React from "react";
-import InfoCard from "../../components/Cards/InfoCard";
 import PageTitle from "../../components/Typography/PageTitle";
-import { MoneyIcon, PeopleIcon } from "../../icons";
-import RoundIcon from "../../components/RoundIcon";
 
 import {
   TableBody,

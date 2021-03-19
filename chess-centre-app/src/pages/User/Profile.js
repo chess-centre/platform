@@ -1,7 +1,5 @@
 import React from "react";
 
-import PageTitle from "../../components/Typography/PageTitle";
-
 function Profile() {
   return (
     <div className="mt-4 mb-4 lg:grid lg:grid-cols-12 lg:gap-x-5">

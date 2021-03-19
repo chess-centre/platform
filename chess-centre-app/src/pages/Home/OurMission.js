@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "../../assets/img/logo.svg";
 import LandingNav from "../../components/Navigation/LandingNav";
 
 function OurMission() {

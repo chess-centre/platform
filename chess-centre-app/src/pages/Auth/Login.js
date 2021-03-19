@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
-import ImageLight from "../../assets/img/chess-player.jpg";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import Logo from "../../assets/img/logo.svg";
 import { Label, Input, Button } from "@windmill/react-ui";
