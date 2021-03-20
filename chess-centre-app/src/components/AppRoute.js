@@ -4,7 +4,6 @@ import { useAuthState } from "../context/Auth";
 
 const AppRoutes = ({ component: Component, path, isPrivate, ...rest }) => {
   const userDetails = useAuthState();
-  console.log("userDetails", userDetails, path, isPrivate);
 
   if (isPrivate) {
     return (

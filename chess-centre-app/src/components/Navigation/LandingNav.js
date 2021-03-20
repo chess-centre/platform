@@ -4,11 +4,18 @@ import Logo from "../../assets/img/logo.svg";
 import { useAuthState } from "../../context/Auth";
 import LogoWithName from "../../assets/img/logo-light-theme.png";
 
-const LandingNav = () => {
+const LandingNav = (props) => {
+  
+  const { current } = props;
   const { user } = useAuthState();
   const [isExpanded, toggleExpansion] = React.useState(true);
+  const activeMenu = "text-orange-400";
+  const selectableMenu = "text-gray-500 hover:text-orange-400";
+  const activeMenuMobile = "text-orange-400";
+  const selectableMenuMobile = "text-gray-700 hover:text-teal-900 hover:bg-orange-50"
 
   return (
+   
     <div>
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6">
         <nav className="relative flex items-center justify-between sm:h-10 md:justify-center">
@@ -54,19 +61,25 @@ const LandingNav = () => {
           </div>
           <div className="hidden md:flex md:space-x-10">
             <Link
-              className="font-medium text-gray-500 hover:text-orange-400 transition duration-150 ease-in-out"
+              className={ (current === "events" ? 
+              activeMenu : 
+              selectableMenu) + " font-medium transition duration-150 ease-in-out" }
               to="/events"
             >
               Events
             </Link>
             <Link
-              className="font-medium text-gray-500 hover:text-orange-400 transition duration-150 ease-in-out"
+              className={ (current === "membership" ? 
+              activeMenu : 
+              selectableMenu) + " font-medium transition duration-150 ease-in-out" }
               to="/membership"
             >
               Membership
             </Link>
             <Link
-              className="font-medium text-gray-500 hover:text-orange-400 transition duration-150 ease-in-out"
+              className={ (current === "our-mission" ? 
+              activeMenu : 
+              selectableMenu) + " font-medium transition duration-150 ease-in-out" }
               to="/our-mission"
             >
               Our Mission
@@ -138,21 +151,27 @@ const LandingNav = () => {
             </div>
             <div className="px-2 pt-2 pb-3">
               <Link
-                className="text-centre sm:text-left block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-teal-900 hover:bg-orange-50 focus:outline-none focus:text-teal-900 focus:bg-orange-50 transition duration-150 ease-in-out"
+                className={ (current === "events" ? 
+                activeMenuMobile : 
+                selectableMenuMobile) + " text-centre sm:text-left block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:text-teal-900 focus:bg-orange-50 transition duration-150 ease-in-out" }
                 role="menuitem"
                 to="/events"
               >
                 Events
               </Link>
               <Link
-                className="text-centre sm:text-left mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-teal-900 hover:bg-orange-50 focus:outline-none focus:text-teal-900 focus:bg-orange-50 transition duration-150 ease-in-out"
+                className={ (current === "membership" ? 
+                activeMenuMobile : 
+                selectableMenuMobile) + " text-centre sm:text-left mt-1 block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:text-teal-900 focus:bg-orange-50 transition duration-150 ease-in-out" }
                 role="menuitem"
                 to="/membership"
               >
                 Membership
               </Link>
               <Link
-                className="text-centre sm:text-left mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-teal-900 hover:bg-orange-50 focus:outline-none focus:text-teal-900 focus:bg-orange-50 transition duration-150 ease-in-out"
+                className={ (current === "our-mission" ? 
+                activeMenu : 
+                selectableMenu) + " text-centre sm:text-left mt-1 block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:text-teal-900 focus:bg-orange-50 transition duration-150 ease-in-out" }
                 role="menuitem"
                 to="/our-mission"
               >

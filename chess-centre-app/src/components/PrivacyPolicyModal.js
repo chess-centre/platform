@@ -13,26 +13,27 @@ function PrivacyPolicyModal() {
   function openModal() {
     setIsModalOpen(true);
   }
-  function closeModal() {
+  function closeModal(accepted = false) {
+    if (accepted) {
+      // probably not necessary:
+      window.localStorage.setItem("privacyPolicy", "accepted");
+    }
     setIsModalOpen(false);
   }
   return (
     <>
-      <div>
-        <Button onClick={openModal}>Open modal</Button>
-      </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <span onClick={openModal} className="underline">
+        privacy policy
+      </span>
+      <Modal isOpen={isModalOpen} onClose={() => closeModal(false)}>
         <ModalHeader>Privacy Policy</ModalHeader>
-        <ModalBody>Privacy Policy Here</ModalBody>
+        <ModalBody>
+          <iframe title="The Chess Centre | Privacy Policy" width="100%" src="/privacy-policy.html" />
+        </ModalBody>
         <ModalFooter>
-          <Button
-            className="w-full sm:w-auto"
-            layout="outline"
-            onClick={closeModal}
-          >
-            Cancel
+          <Button className="w-full sm:w-auto" onClick={() => closeModal(true)}>
+            Accept
           </Button>
-          <Button className="w-full sm:w-auto">Accept</Button>
         </ModalFooter>
       </Modal>
     </>

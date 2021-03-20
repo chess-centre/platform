@@ -1,12 +1,12 @@
 import React from "react";
-import Logo from "../../assets/img/logo.svg";
 import LandingNav from "../../components/Navigation/LandingNav";
+import FooterLanding from "../../components/Footer/LandingFooter";
 
 function OurMission() {
   return (
     <div>
       <div className="relative z-10 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
-        <LandingNav />
+        <LandingNav current="our-mission" />
       </div>
       <div className="py-16 xl:py-36 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
         <div className="max-w-max lg:max-w-7xl mx-auto">
@@ -156,6 +156,7 @@ function OurMission() {
           </div>
         </div>
       </div>
+      <FooterLanding />
     </div>
   );
 }

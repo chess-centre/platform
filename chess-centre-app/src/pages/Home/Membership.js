@@ -54,7 +54,7 @@ function Membership() {
   return (
     <div>
       <div className="relative bg-gray-50 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
-        <LandingNav />
+        <LandingNav current="membership" />
       </div>
 
       <div className="bg-teal-700">

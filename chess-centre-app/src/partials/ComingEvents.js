@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import getEventDetails from "./Calendar";
 
 function Card({ name, description, time, url, textDate, color }) {
-  console.log(name);
   return (
     <article
       className={color + " p-6 dark:bg-gray-800 shadow-2xl flex flex-col"}
@@ -13,8 +12,8 @@ function Card({ name, description, time, url, textDate, color }) {
         </h3>
       </header>
       <div className="text-gray-600 dark:text-gray-400 flex-grow">
-        <p>{textDate}</p>
-        <p>{description}</p>
+        <p className="text-sm text-teal-700 font-bold">{textDate}</p>
+        <p className="text-justify">{description}</p>
       </div>
       {url ? (
         <a

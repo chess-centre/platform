@@ -46,12 +46,10 @@ function MembershipCard({ title, price, subHeading, benefits, discounted }) {
         <div className="rounded-md shadow">
           <a
             href="/"
-            className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-${
-              discounted ? "orange-600" : "teal-800"
-            } hover:bg-${
-              discounted ? "orange-700" : "teal-900"
-            }" aria-describedby="tier-standard`}
-          >
+            className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${
+              discounted ? "bg-orange-600 " : "bg-teal-700 "
+            } ${
+              discounted ? "hover:bg-orange-700" : "hover:bg-teal-800"}`} aria-describedby="tier-standard">
             Sign up
           </a>
         </div>
