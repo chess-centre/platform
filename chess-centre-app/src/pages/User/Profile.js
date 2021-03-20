@@ -94,7 +94,7 @@ function Profile() {
               <div className="grid grid-cols-3 gap-6">
                 <div className="col-span-3 sm:col-span-2">
                   <label
-                    htmlFor="company_website"
+                    htmlFor="username"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Username
@@ -111,7 +111,47 @@ function Profile() {
                       className="focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
                     />
                   </div>
+              </div>
+            
+
+              <div className="grid grid-cols-6 gap-6">
+                <div className="col-span-6 sm:col-span-3">
+                <label
+                    htmlFor="ecf_id"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    ECF id
+                  </label>
+                  <div className="mt-1 rounded-md shadow-sm flex">
+                    <input
+                      type="text"
+                      name="username"
+                      id="username"
+                      autoComplete="username"
+                      className="focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-none rounded-md sm:text-sm border-gray-300"
+                    />
+                  </div>
                 </div>
+                <div className="col-span-6 sm:col-span-3">
+                <label
+                    htmlFor="fide_id"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    FIDE id
+                  </label>
+                  <div className="mt-1 rounded-md shadow-sm flex">
+                    <input
+                      type="text"
+                      name="username"
+                      id="username"
+                      autoComplete="username"
+                      className="focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-none rounded-md sm:text-sm border-gray-300"
+                    />
+                  </div>
+                </div>
+              </div>
+
+ 
 
                 <div className="col-span-3">
                   <label
