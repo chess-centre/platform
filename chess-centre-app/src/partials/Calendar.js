@@ -31,6 +31,7 @@ const MatchNight = {
   name: "Match Night",
   description:
     "Organised graded match events, including leagues and competitions.",
+  time: "7:00pm start",
   url: "",
   color: "bg-brown-50",
 };

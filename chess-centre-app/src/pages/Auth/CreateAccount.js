@@ -26,12 +26,12 @@ function Login(props) {
 
   const { loading, errorMessage } = useAuthState();
 
-  const setPrivacyPolicyStatus = checked => {
-    checked ? 
-      window.localStorage.setItem("privacyPolicy", "accepted") : 
-      window.localStorage.removeItem("privacyPolicy");
+  const setPrivacyPolicyStatus = (checked) => {
+    checked
+      ? window.localStorage.setItem("privacyPolicy", "accepted")
+      : window.localStorage.removeItem("privacyPolicy");
     setIsChecked(checked);
-  }
+  };
 
   async function signUp() {
     const isValidEmail = validateEmail(email);
@@ -102,11 +102,13 @@ function Login(props) {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              <img
-                src={Logo}
-                className="object-contain h-20 w-full md:h-36 "
-                alt="The Chess Centre"
-              />
+              <Link to="/">
+                <img
+                  src={Logo}
+                  className="object-contain h-20 w-full md:h-36 "
+                  alt="The Chess Centre"
+                />
+              </Link>
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Create account
               </h1>
@@ -118,7 +120,7 @@ function Login(props) {
                   onChange={(e) => setEmail(e.target.value)}
                   className="mt-1"
                   type="email"
-                  placeholder="john@doe.com"
+                  placeholder="garry@kasparov.com"
                 />
               </Label>
               <Label className="mt-4">
@@ -152,8 +154,7 @@ function Login(props) {
                   onChange={(e) => setPrivacyPolicyStatus(e.target.checked)}
                 />
                 <span className="ml-2">
-                  I agree to the{" "}
-                  <PrivacyPolicyModal />
+                  I agree to the <PrivacyPolicyModal />
                 </span>
               </Label>
 
@@ -203,7 +204,6 @@ function Login(props) {
                   Home
                 </Link>
               </p>
-              
             </div>
           </main>
         </div>

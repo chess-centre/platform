@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function MembershipCard({ title, price, subHeading, benefits, discounted }) {
   return (
@@ -44,14 +45,14 @@ function MembershipCard({ title, price, subHeading, benefits, discounted }) {
           ))}
         </ul>
         <div className="rounded-md shadow">
-          <a
-            href="/"
+          <Link
+            to="/register"
             className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${
-              discounted ? "bg-orange-600 " : "bg-teal-700 "
+              discounted ? "bg-orange-500 " : "bg-teal-600 "
             } ${
-              discounted ? "hover:bg-orange-700" : "hover:bg-teal-800"}`} aria-describedby="tier-standard">
+              discounted ? "hover:bg-orange-brand" : "hover:bg-teal-brand"}`} aria-describedby="tier-standard">
             Sign up
-          </a>
+          </Link>
         </div>
       </div>
     </div>

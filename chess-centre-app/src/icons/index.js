@@ -30,6 +30,7 @@ import { ReactComponent as CalendarIcon } from "./calendar.svg";
 import { ReactComponent as NewspaperIcon } from "./newspaper.svg";
 import { ReactComponent as UsersIcon } from "./users.svg";
 import { ReactComponent as UserIcon } from "./user.svg";
+import { ReactComponent as ClockIcon } from "./clock.svg";
 
 export {
   ButtonsIcon,
@@ -64,4 +65,5 @@ export {
   NewspaperIcon,
   UsersIcon,
   UserIcon,
+  ClockIcon,
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import PageTitle from "../../components/Typography/PageTitle";
 
 function Dashboard() {
   // MOVE TO DB:
@@ -168,7 +167,7 @@ function Dashboard() {
 
   return (
     <>
-      <PageTitle>Dashboard</PageTitle>
+      <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Dashboard</h1>
       <main className="max-w-7xl mx-auto pb-10 lg:py-12 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-5">
           <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">

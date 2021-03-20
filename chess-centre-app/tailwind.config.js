@@ -57,6 +57,13 @@ module.exports = windmill({
           800: "#97266D",
           900: "#702459",
         },
+        // BRAND COLORS:
+        orange: {
+          brand: "#f0802b"
+        },
+        teal: {
+          brand: "#5499ab"
+        }
       },
       outline: {
         blue: "2px solid rgba(0, 112, 244, 0.5)",
@@ -87,6 +94,7 @@ module.exports = windmill({
       },
       animation: {
         float: "float 5s ease-in-out infinite",
+        "spin-slow": "spin 3s linear infinite"
       },
       keyframes: {
         float: {

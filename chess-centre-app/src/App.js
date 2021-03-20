@@ -1,9 +1,11 @@
-import React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import React, { lazy } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./context/Auth";
 import AppRoutes from "./components/AppRoute";
 import AOS from "aos";
 import routes from "./routes";
+
+const Page404 = lazy(() => import("./pages/404"));
 
 function App() {
   React.useEffect(() => {
@@ -28,6 +30,7 @@ function App() {
               exact={route.exact}
             />
           ))}
+          <Route component={Page404} />
         </Switch>
       </Router>
     </AuthProvider>
