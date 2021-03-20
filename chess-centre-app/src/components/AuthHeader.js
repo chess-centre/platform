@@ -5,11 +5,9 @@ import {
   SunIcon,
   MenuIcon,
   OutlinePersonIcon,
-  OutlineCogIcon,
   OutlineLogoutIcon,
 } from "../icons";
 import {
-  Avatar,
   Dropdown,
   DropdownItem,
   WindmillContext,

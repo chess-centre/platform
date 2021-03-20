@@ -11,7 +11,6 @@ function Header() {
   // close the mobile menu on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {
-      console.log("what is happening!", mobileNavOpen, target);
       if (!mobileNavOpen || mobileNav.current.contains(target)) return;
       setMobileNavOpen(false);
     };
