@@ -6,7 +6,7 @@ function Events() {
   return (
     <div className="relative bg-gray-50 overflow-hidden">
       <div className="relative pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
-        <LandingNav />
+        <LandingNav current="events" />
       </div>
       <div className="bg-white">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
