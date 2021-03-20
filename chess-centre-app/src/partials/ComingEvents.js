@@ -50,11 +50,11 @@ function Timeline() {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="py-12 md:py-20 border-t border-gray-200 dark:border-gray-800">
+        <div className="py-12 md:py-20 border-t border-gray-200">
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
             <h2 className="h2 font-red-hat-display mb-4">Our next Events</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
+            <p className="text-xl text-gray-600">
               See what's coming up
             </p>
           </div>
@@ -63,23 +63,24 @@ function Timeline() {
           <div>
             <div className="flex items-start">
               {/* Timeline buttons */}
-              <div className="relative mr-4 sm:mr-12 lg:mr-32">
+              <div className="relative mr-4 sm:mr-12 lg:mr-24">
                 <div
                   className="absolute inset-0 my-6 ml-16 pointer-events-none -z-1"
                   aria-hidden="true"
                 >
-                  <div className="absolute inset-0 w-0.5 h-full bg-gray-300 dark:bg-gray-700"></div>
+                  <div className="absolute inset-0 w-0.5 h-full bg-gray-300"></div>
                 </div>
-                {months.map((m) => {
+                { months.map((m, i) => {
+                  const isEven = i % 2 === 0;
                   return (
                     <button
-                      className="flex items-center justify-between font-medium text-gray-500 dark:text-gray-400 w-20 py-3 pr-2 text-left"
+                      className="flex items-center justify-between font-medium text-gray-500 w-20 py-3 pr-2 text-left"
                       onClick={() => setMonth(m)}
                     >
                       <span className="block w-12 truncate">{m}</span>
                       <span
-                        className={`block w-3.5 h-3.5 bg-gray-400 dark:bg-gray-700 border-2 border-white dark:border-gray-900 rounded-full ${
-                          month === m && "bg-teal-500 dark:bg-teal-500"
+                        className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white dark:border-gray-900 rounded-full ${
+                          month === m && (isEven ? "bg-teal-brand " : "bg-orange-brand ") 
                         }`}
                       ></span>
                     </button>
