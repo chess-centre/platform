@@ -29,8 +29,8 @@ function Membership() {
     },
     {
       title: "Student",
-      price: "£15",
-      subHeading: "Adult Players",
+      price: "£10",
+      subHeading: "Full-time studying? We offer a 50% discount",
       benefits: [
         "Weekly Social Chess",
         "Weekly Rated Match Chess",
@@ -40,8 +40,8 @@ function Membership() {
     },
     {
       title: "OAP",
-      price: "£15",
-      subHeading: "Adult Players",
+      price: "£10",
+      subHeading: "Retired. Over 65s",
       benefits: [
         "Weekly Social Chess",
         "Weekly Rated Match Chess",
@@ -94,7 +94,7 @@ function Membership() {
                 </div>
                 <div className="mt-6 rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
                   <a
-                    href="/"
+                    href="mailto:info@chesscentre.online"
                     className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
                   >
                     Contact Us

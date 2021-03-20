@@ -11,44 +11,51 @@ const LandingFooter = () => {
         >
           <div className="px-5 py-2">
             <Link
-              to="/about"
-              className="text-base text-gray-500 hover:text-teal-900"
-            >
-              About
-            </Link>
-          </div>
-
-          <div className="px-5 py-2">
-            <Link
-              to="/membership"
-              className="text-base text-gray-500 hover:text-teal-900"
-            >
-              Membership
-            </Link>
-          </div>
-
-          <div className="px-5 py-2">
-            <Link
-              to="/our-mission"
-              className="text-base text-gray-500 hover:text-teal-900"
-            >
-              Our Mission
-            </Link>
-          </div>
-
-          <div className="px-5 py-2">
-            <Link
               to="/events"
-              className="text-base text-gray-500 hover:text-teal-900"
+              className="text-base text-gray-500 hover:text-teal-brand"
             >
               Events
             </Link>
           </div>
+          <div className="px-5 py-2">
+            <Link
+              to="/membership"
+              className="text-base text-gray-500 hover:text-teal-brand"
+            >
+              Membership
+            </Link>
+          </div>
+          <div className="px-5 py-2">
+            <Link
+              to="/our-mission"
+              className="text-base text-gray-500 hover:text-teal-brand"
+            >
+              Our Mission
+            </Link>
+          </div>
+          <div className="px-5 py-2">
+            <Link
+              to="/about"
+              className="text-base text-gray-500 hover:text-teal-brand"
+            >
+              About Us
+            </Link>
+          </div>
+          <div className="px-5 py-2">
+            <Link
+              to="/code-of-conduct"
+              className="text-base text-gray-500 hover:text-teal-brand"
+            >
+              Code of conduct
+            </Link>
+          </div>
+
+
         </nav>
-        <div className="mt-8 flex justify-center space-x-6">
+        <div className="mt-6 flex justify-center space-x-6">
           <a
             href="https://twitter.com/chess_centre"
-            className="text-gray-400 hover:text-teal-500"
+            className="text-gray-400 hover:text-blue-400"
           >
             <span className="sr-only">Twitter</span>
             <svg
@@ -62,7 +69,7 @@ const LandingFooter = () => {
           </a>
           <a
             href="https://github.com/chess-centre/welcome"
-            className="text-gray-400 hover:text-teal-500"
+            className="text-gray-400 hover:text-gray-900"
           >
             <span className="sr-only">GitHub</span>
             <svg
@@ -79,7 +86,7 @@ const LandingFooter = () => {
             </svg>
           </a>
         </div>
-        <p className="mt-8 text-center text-base text-gray-400">
+        <p className="mt-6 text-center text-base text-gray-400">
           &copy; 2020 The Chess Centre. All rights reserved.
         </p>
       </div>

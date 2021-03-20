@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import ImageLight from "../../assets/img/chess-players.jpg";
-import ImageDark from "../../assets/img/chess-players.jpg";
+import Image from "../../assets/img/chess-players.jpg";
 import { Label, Input, Button } from "@windmill/react-ui";
 import {
   useAuthDispatch,
@@ -64,14 +63,8 @@ function ForgotPassword(props) {
           <div className="h-32 md:h-auto md:w-1/2">
             <img
               aria-hidden="true"
-              className="object-cover w-full h-full dark:hidden"
-              src={ImageLight}
-              alt="Chess Players"
-            />
-            <img
-              aria-hidden="true"
-              className="hidden object-cover w-full h-full dark:block"
-              src={ImageDark}
+              className="object-cover w-full h-full"
+              src={Image}
               alt="Chess Players"
             />
           </div>
@@ -90,7 +83,7 @@ function ForgotPassword(props) {
                     className="mt-1"
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
-                    placeholder="email@example.com"
+                    placeholder="garry@kasparov.com"
                   />
                 </Label>
               ) : (

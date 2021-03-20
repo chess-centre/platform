@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import getEventDetails from "./Calendar";
+import { CalendarIcon, ClockIcon } from "../icons";
 
 function Card({ name, description, time, url, textDate, color }) {
   return (
@@ -8,12 +9,16 @@ function Card({ name, description, time, url, textDate, color }) {
     >
       <header>
         <h3 className="h4 font-red-hat-display mb-1">
-          <a href="#0">{name}</a>
+          {name}
         </h3>
       </header>
       <div className="text-gray-600 dark:text-gray-400 flex-grow">
-        <p className="text-sm text-teal-700 font-bold">{textDate}</p>
-        <p className="text-justify">{description}</p>
+        <div>
+        <p className="sm:inline mr-1 text-sm text-teal-700 font-bold"><CalendarIcon class="w-4 h-4 inline mr-1" /><span className="inline">{textDate}</span> </p>
+        { time ? <p className="sm:inline text-sm text-teal-700"><ClockIcon class="w-4 h-4 inline mr-1" /><span className="inline">{time}</span> </p> : null }
+        </div>
+
+        <p className="mr-1">{description}</p>
       </div>
       {url ? (
         <a

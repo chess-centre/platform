@@ -9,9 +9,9 @@ const LandingNav = (props) => {
   const { current } = props;
   const { user } = useAuthState();
   const [isExpanded, toggleExpansion] = React.useState(true);
-  const activeMenu = "text-orange-400";
-  const selectableMenu = "text-gray-500 hover:text-orange-400";
-  const activeMenuMobile = "text-orange-400";
+  const activeMenu = "text-orange-brand";
+  const selectableMenu = "text-gray-500 hover:text-orange-brand";
+  const activeMenuMobile = "text-orange-brand";
   const selectableMenuMobile = "text-gray-700 hover:text-teal-900 hover:bg-orange-50"
 
   return (
@@ -21,13 +21,13 @@ const LandingNav = (props) => {
         <nav className="relative flex items-center justify-between sm:h-10 md:justify-center">
           <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
             <div className="flex items-center justify-between w-full md:w-auto">
-              <a href="/" aria-label="Home">
+              <Link to="/" aria-label="Home">
                 <img
                   className="object-center h-10 md:w-auto"
                   src={Logo}
                   alt="Logo"
                 />
-              </a>
+              </Link>
               <div
                 className={
                   (isExpanded ? "" : "hidden") +
@@ -90,7 +90,7 @@ const LandingNav = (props) => {
               {user ? (
                 <Link
                   to="/app"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-orange-600 bg-white hover:text-orange-500 focus:outline-none focus:border-orange-300 focus:shadow-outline-orange active:bg-gray-50 active:text-orange-700 transition duration-150 ease-in-out"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-orange-brand bg-white hover:text-orange-600 focus:outline-none focus:border-orange-300 focus:shadow-outline-orange active:bg-gray-50 active:text-orange-700 transition duration-150 ease-in-out"
                 >
                   My Dashboard
                 </Link>
