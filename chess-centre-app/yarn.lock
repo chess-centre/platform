@@ -4603,11 +4603,6 @@ check-types@^11.1.1:
   resolved "https://registry.yarnpkg.com/check-types/-/check-types-11.1.2.tgz#86a7c12bf5539f6324eb0e70ca8896c0e38f3e2f"
   integrity sha512-tzWzvgePgLORb9/3a0YenggReLKAIb2owL03H2Xdoe5pKcUyWRSEQ8xfCar8t2SIAuEDwtmx2da1YB52YuHQMQ==
 
-chess.js@^0.10.2:
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/chess.js/-/chess.js-0.10.3.tgz#8c3b98e8411c2ff3ab4b1fc022ddebd1ae037120"
-  integrity sha512-i51JgVM0ksFMbLJYKoDpfrcFxJHq/XQQx8NltCdfMyDv7vpU5JVzsZz1EOw7nA27eGA5t8tSxodAN+Wc704BoQ==
-
 chokidar@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.8.tgz#804b3a7b6a99358c3c5c61e71d8728f041cff917"
@@ -11117,7 +11112,7 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-dom@^16.3.2, react-dom@^16.4.0:
+react-dom@^16.4.0:
   version "16.14.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.14.0.tgz#7ad838ec29a777fb3c75c3a190f661cf92ab8b89"
   integrity sha512-1gCeQXDLoIqMgqD3IO2Ah9bnf0w9kzhwN5q4FGnHZ67hBm9yePzB5JJAIQCc8x3pFnNlwFq4RidZggNAAkzWWw==
@@ -11174,16 +11169,6 @@ react-native-get-random-values@^1.4.0:
   integrity sha512-sPTRTJk4bpuZeTBf6d7DldQGAOCi0GZh5NxzNI3eHXzxwHbNkV13Q22TehiSb3bsaVqwLC4UAa6QvYIucyyc+A==
   dependencies:
     fast-base64-decode "^1.0.0"
-
-react-pgn-viewer@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/react-pgn-viewer/-/react-pgn-viewer-0.2.4.tgz#fc5dd8d5d548c0c9b1f92dcfc717fbe8c77a32eb"
-  integrity sha512-11sps/DQesdqQtk1CqIzBxX8XSptLJkV+/BWdsVrBiYKxNlv9CGd3UJjyDHn+LMk23FR8pu9jixgrg8dmmt8dg==
-  dependencies:
-    chess.js "^0.10.2"
-    react "^16.3.2"
-    react-dom "^16.3.2"
-    reactjs-chessboard "0.0.8"
 
 react-redux@^5.0.7:
   version "5.1.2"
@@ -11308,7 +11293,7 @@ react-transition-group@4.4.1, react-transition-group@^4.4.1:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@^16.3.2, react@^16.4.0:
+react@^16.4.0:
   version "16.14.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
   integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
@@ -11324,20 +11309,6 @@ react@^17.0.1:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-
-reactjs-chessboard@0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/reactjs-chessboard/-/reactjs-chessboard-0.0.8.tgz#cc463731c08906c685769f7f8eed4bfe534d4277"
-  integrity sha1-zEY3McCJBsaFdp9/ju1L/lNNQnc=
-  dependencies:
-    classnames "^2.2.5"
-    prop-types "^15.6.1"
-    react "^16.4.0"
-    react-dom "^16.4.0"
-    react-redux "^5.0.7"
-    redux "^3.7.2"
-    redux-thunk "^2.2.0"
-    uuid "^3.2.1"
 
 reactjs-chessboard@^0.0.9:
   version "0.0.9"
