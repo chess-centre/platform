@@ -174,11 +174,11 @@ function Login(props) {
                 </Button>
               )}
 
-              <div className={errorMessage ? "my-2 text-centre" : ""}>
+              <div className={errorMessage ? "my-2 text-centre" : "hidden"}>
                 <p
                   className={
                     errorMessage
-                      ? "text-sm font-semibold text-red-700"
+                      ? "text-sm text-red-700 dark:text-red-500"
                       : "hidden"
                   }
                 >
@@ -198,7 +198,7 @@ function Login(props) {
               </p>
               <p className="mt-1">
                 <Link
-                  className="text-sm font-medium text-gray-400 dark:text-gray-900 hover:underline"
+                  className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"
                   to="/"
                 >
                   Home

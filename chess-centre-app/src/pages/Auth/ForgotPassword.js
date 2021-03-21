@@ -70,11 +70,9 @@ function ForgotPassword(props) {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              {errorMessage && <p>{errorMessage}</p>}
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Forgot password
               </h1>
-
               {!forget ? (
                 <Label>
                   <span>Email</span>
@@ -121,10 +119,23 @@ function ForgotPassword(props) {
               >
                 {forget ? "Submit Password" : "Recover password"}
               </Button>
+
+              <div className={errorMessage ? "my-2 text-centre" : "hidden"}>
+                <p
+                  className={
+                    errorMessage
+                      ? "text-sm text-red-700 dark:text-red-500"
+                      : "hidden"
+                  }
+                >
+                  {errorMessage}
+                </p>
+              </div>
+
               <hr className="my-4" />
               <p className="mt-1">
                 <Link
-                  className="text-sm font-medium text-gray-400 dark:text-gray-900 hover:underline"
+                  className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"
                   to="/"
                 >
                   Home
