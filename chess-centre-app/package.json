@@ -20,12 +20,11 @@
     "react-scripts": "^4.0.3",
     "react-transition-group": "^4.4.1",
     "reactjs-chessboard": "^0.0.9",
-    "swiper": "^6.4.1",
-    "web-vitals": "^0.2.4"
+    "swiper": "^6.4.1"
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "craco build --verbose",
     "test": "craco test",
     "eject": "craco eject"
   },
