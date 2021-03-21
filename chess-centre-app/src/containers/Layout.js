@@ -9,33 +9,31 @@ import Main from "../containers/Main";
 import ThemedSuspense from "../components/ThemedSuspense";
 import { SidebarContext } from "../context/SidebarContext";
 
-// use lazy for better code splitting, a.k.a. load faster
-const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
-const Events = lazy(() => import("../pages/Dashboard/Events"));
-const Results = lazy(() => import("../pages/Dashboard/Results"));
-const Members = lazy(() => import("../pages/Dashboard/Members"));
-const Profile = lazy(() => import("../pages/User/Profile"));
 
 const routes = [
   {
     path: "/dashboard",
-    component: Dashboard,
+    component: lazy(() => import("../pages/Dashboard/Dashboard")),
   },
   {
     path: "/events",
-    component: Events,
+    component: lazy(() => import("../pages/Dashboard/Events")),
   },
   {
     path: "/results",
-    component: Results,
+    component: lazy(() => import("../pages/Dashboard/Results")),
   },
   {
     path: "/members",
-    component: Members,
+    component: lazy(() => import("../pages/Dashboard/Members")),
+  },
+  {
+    path: "/members/:memberId",
+    component: lazy(() => import("../components/MemberProfile/MemberProfile")),
   },
   {
     path: "/profile",
-    component: Profile,
+    component: lazy(() => import("../pages/User/Profile")),
   }
 ];
 

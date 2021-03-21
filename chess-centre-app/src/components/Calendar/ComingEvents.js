@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import getEventDetails from "./Calendar";
-import { CalendarIcon, ClockIcon } from "../icons";
+import { CalendarIcon, ClockIcon } from "../../icons";
 
 function Card({ name, description, time, url, textDate, color }) {
   return (
