@@ -50,7 +50,7 @@ function Login(props) {
                   disabled={loading}
                   className="mt-1"
                   type="email"
-                  placeholder="john@doe.com"
+                  placeholder="magnus@carlsen.com"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Label>
@@ -108,7 +108,7 @@ function Login(props) {
               </p>
               <p className="mt-1">
                 <Link
-                  className="text-sm font-medium text-gray-400 dark:text-gray-900 hover:underline"
+                  className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"
                   to="/"
                 >
                   Home

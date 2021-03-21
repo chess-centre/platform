@@ -35,14 +35,14 @@ function CodeOfConduct() {
                 Management Team Email:{" "}
                 <a
                   href="mailto:info@chesscentre.online"
-                  className="text-sm font-medium text-teal-600 dark:text-teal-700 hover:underline"
+                  className="text-sm font-medium text-teal-600 hover:underline"
                 >
                   info@chesscentre.online
                 </a>
               </p>
             </div>
             <div className="mt-12 lg:mt-0 lg:col-span-2">
-              <div class="prose prose-indigo prose-lg text-gray-500 lg:max-w-none">
+              <div className="prose prose-indigo prose-lg text-gray-500 lg:max-w-none">
                 <ol>
                   <li>
                     Act with respect towards opponents, fellow members,

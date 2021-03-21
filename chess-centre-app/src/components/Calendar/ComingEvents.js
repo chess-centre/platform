@@ -5,17 +5,17 @@ import { CalendarIcon, ClockIcon } from "../../icons";
 function Card({ name, description, time, url, textDate, color }) {
   return (
     <article
-      className={color + " p-6 dark:bg-gray-800 shadow-2xl flex flex-col"}
+      className={color + " p-6 shadow-2xl flex flex-col"}
     >
       <header>
         <h3 className="h4 font-red-hat-display mb-1">
           {name}
         </h3>
       </header>
-      <div className="text-gray-600 dark:text-gray-400 flex-grow">
+      <div className="text-gray-600 flex-grow">
         <div>
-        <p className="sm:inline mr-1 text-sm text-teal-700 font-bold"><CalendarIcon class="w-4 h-4 inline mr-1" /><span className="inline">{textDate}</span> </p>
-        { time ? <p className="sm:inline text-sm text-teal-700"><ClockIcon class="w-4 h-4 inline mr-1" /><span className="inline">{time}</span> </p> : null }
+        <p className="sm:inline mr-1 text-sm text-teal-700 font-bold"><CalendarIcon className="w-4 h-4 inline mr-1" /><span className="inline">{textDate}</span> </p>
+        { time ? <p className="sm:inline text-sm text-teal-700"><ClockIcon className="w-4 h-4 inline mr-1" /><span className="inline">{time}</span> </p> : null }
         </div>
 
         <p className="mr-1">{description}</p>
@@ -79,7 +79,7 @@ function Timeline() {
                     >
                       <span className="block w-12 truncate">{m}</span>
                       <span
-                        className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white dark:border-gray-900 rounded-full ${
+                        className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full ${
                           month === m && (isEven ? "bg-teal-brand " : "bg-orange-brand ") 
                         }`}
                       ></span>
