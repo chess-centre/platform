@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   // MOVE TO DB:
@@ -7,96 +8,114 @@ function Dashboard() {
       name: "Bob Burns",
       entries: [
         {
+          id: "1",
           name: "Matthew Webb",
           gradeNo: "225527D",
           grade: "Inactive",
         },
         {
+          id: "1",
           name: "Peter Shaw",
           gradeNo: "166609F",
           grade: "2172",
         },
         {
+          id: "1",
           name: "Mike Walker",
           gradeNo: "142953L",
           grade: "2073",
         },
         {
+          id: "1",
           name: "David Barlow",
           gradeNo: "106225G",
           grade: "2005",
         },
         {
+          id: "1",
           name: "Gary Corcoran",
           gradeNo: "258651E",
           grade: "1878",
         },
         {
+          id: "1",
           name: "John Holliday",
           gradeNo: "180699D",
           grade: "1713",
         },
         {
+          id: "1",
           name: "Andrew Wainwright",
           gradeNo: "185834J",
           grade: "2013",
         },
         {
+          id: "1",
           name: "Gawain Ako",
           gradeNo: "265438G",
           grade: "161",
-        }
+        },
       ],
     },
     {
       name: "May Rapidplay",
       entries: [
         {
+          id: "1",
           name: "Peter Shaw",
           gradeNo: "166609F",
           grade: "2172",
         },
         {
+          id: "1",
           name: "Andrew Wainwright",
           gradeNo: "185834J",
           grade: "2013",
         },
         {
+          id: "1",
           name: "David Barlow",
           gradeNo: "106225G",
           grade: "2005",
         },
         {
+          id: "1",
           name: "Max Shaw",
           gradeNo: "312992F",
           grade: "2000*",
         },
         {
+          id: "1",
           name: "Chris Wright",
           gradeNo: "214108F",
           grade: "1968",
         },
         {
+          id: "1",
           name: "Sam Davies",
           gradeNo: "289559G",
           grade: "1908",
         },
         {
+          id: "1",
           name: "Gary Corcoran",
           gradeNo: "258651E",
           grade: "1878",
         },
         {
+          id: "1",
           name: "John Holliday",
           gradeNo: "180699D",
           grade: "1713",
         },
         {
+          id: "1",
           name: "Tony Youngs",
           gradeNo: "",
           grade: "Inactive",
         },
         {
+          id: "1",
           name: "Steven Law",
           gradeNo: "",
           grade: "Ungraded",
@@ -107,56 +126,67 @@ function Dashboard() {
       name: "May Congress",
       entries: [
         {
+          id: "1",
           name: "Peter Shaw",
           gradeNo: "166609F",
           grade: "2172",
         },
         {
+          id: "1",
           name: "Andrew Wainwright",
           gradeNo: "185834J",
           grade: "2013",
         },
         {
+          id: "1",
           name: "David Barlow",
           gradeNo: "106225G",
           grade: "2005",
         },
         {
+          id: "1",
           name: "Max Shaw",
           gradeNo: "312992F",
           grade: "2000*",
         },
         {
+          id: "1",
           name: "Sam Davies",
           gradeNo: "289559G",
           grade: "1908",
         },
         {
+          id: "1",
           name: "Gary Corcoran",
           gradeNo: "258651E",
           grade: "1878",
         },
         {
+          id: "1",
           name: "Gawain Ako",
           gradeNo: "265438G",
           grade: "161",
         },
         {
+          id: "1",
           name: "Gawain Ako",
           gradeNo: "265438G",
           grade: "161",
         },
         {
+          id: "1",
           name: "Bob Gaunt",
           gradeNo: "",
           grade: "Ungraded",
         },
         {
+          id: "1",
           name: "Steven Law",
           gradeNo: "",
           grade: "Ungraded",
         },
         {
+          id: "1",
           name: "Jacob Smith",
           gradeNo: "",
           grade: "Ungraded",
@@ -167,7 +197,9 @@ function Dashboard() {
 
   return (
     <>
-      <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">Dashboard</h1>
+      <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Dashboard
+      </h1>
       <main className="max-w-7xl mx-auto pb-10 lg:py-12 lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-5">
           <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
@@ -226,12 +258,12 @@ function Dashboard() {
                                     {p.grade}
                                   </td>
                                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a
-                                      href="#"
+                                    <Link
+                                      to={`/app/members/${p.id}`}
                                       className="text-orange-600 hover:text-orange-900"
                                     >
                                       View
-                                    </a>
+                                    </Link>
                                   </td>
                                 </tr>
                               );

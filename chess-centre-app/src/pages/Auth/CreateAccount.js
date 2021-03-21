@@ -6,7 +6,7 @@ import ImageSmall from "../../assets/img/create-account-small.jpg";
 import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
 import PrivacyPolicyModal from "../../components/PrivacyPolicyModal.js";
-import validateEmail from "../../utils/validateEmail";
+import ValidateEmail from "../../utils/ValidateEmail";
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ function Login(props) {
   };
 
   async function signUp() {
-    const isValidEmail = validateEmail(email);
+    const isValidEmail = ValidateEmail(email);
     let isFormValid = true;
 
     if (!email) {

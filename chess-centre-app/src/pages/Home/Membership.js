@@ -1,7 +1,7 @@
 import React from "react";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
-import MembershipCard from "../../partials/MembershipCard";
+import MembershipCard from "../../components/Membership/MembershipCard";
 
 function Membership() {
   const data = [

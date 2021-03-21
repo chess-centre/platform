@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { useAuthState } from "../../context/Auth";
 import LandingNav from "../../components/Navigation/LandingNav";
-import ComingEvents from "../../partials/ComingEvents";
+import ComingEvents from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 
 const LandingPage = () => {
