@@ -68,7 +68,7 @@ const LandingFooter = () => {
             </svg>
           </a>
           <a
-            href="https://github.com/chess-centre/welcome"
+            href="https://github.com/chess-centre/"
             className="text-gray-400 hover:text-gray-900"
           >
             <span className="sr-only">GitHub</span>
