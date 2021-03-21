@@ -45,12 +45,6 @@ function Dashboard() {
         },
         {
           id: "1",
-          name: "Andrew Wainwright",
-          gradeNo: "185834J",
-          grade: "2013",
-        },
-        {
-          id: "1",
           name: "Gawain Ako",
           gradeNo: "265438G",
           grade: "161",
@@ -225,7 +219,7 @@ function Dashboard() {
                               </th>
                               <th
                                 scope="col"
-                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                className="hidden sm:block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                               >
                                 ECF Ref
                               </th>
@@ -251,7 +245,7 @@ function Dashboard() {
                                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     {p.name}
                                   </td>
-                                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                  <td className="hidden sm:block px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {p.gradeNo}
                                   </td>
                                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
