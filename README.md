@@ -7,6 +7,9 @@
       <a href="https://github.com/chess-centre/welcome/blob/master/CONTRIBUTING.md">
         <img alt="GitHub" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat">
       </a>
+      <a href="https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade">
+        <img src="https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1"/>
+      </a>
   </p>
   <h1 align="center"><strong>BETA:</strong> The Chess Centre | Platform</h1>
 </p>
