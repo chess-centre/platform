@@ -15,9 +15,13 @@ The project contains the starting point for our AWS configuration details and an
 
 ## Architecture
 
+<details>
+<summary>Overview</summary>
 <p align="center">
   <img src="img/bcc-architecture.png" />
 </p>
+</details>
+
 
 ### Prerequisites
 
