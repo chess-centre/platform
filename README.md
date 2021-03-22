@@ -11,7 +11,8 @@
         <img src="https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1"/>
       </a>
   </p>
-  <h1 align="center"><strong>BETA:</strong> The Chess Centre | Platform</h1>
+  <h1 align="center"><strong></strong> The Chess Centre | Platform</h1>
+  <h3 align="center">Beta</h3
 </p>
 
 The project contains the starting point for our AWS configuration details and an empty front-end React JS application.
