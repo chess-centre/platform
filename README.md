@@ -12,7 +12,7 @@
       </a>
   </p>
   <h1 align="center"><strong></strong> The Chess Centre | Platform</h1>
-  <h3 align="center">Beta</h3
+  <h3 align="center" style="color:red;">Beta</h3
 </p>
 
 The project contains the starting point for our AWS configuration details and an empty front-end React JS application.
