@@ -17,16 +17,16 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
+    "@geoffcodesthings/react-scripts": "4.0.1",
     "react-transition-group": "^4.4.1",
     "reactjs-chessboard": "^0.0.9",
     "swiper": "^6.4.1"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build --verbose",
-    "test": "craco test",
-    "eject": "craco eject"
+    "start": "react-scripts start",
+    "build": "react-scripts build --verbose",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -47,11 +47,11 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.2.5",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "postcss-cli": "^8.3.1",
     "prettier": "2.2.1",
-    "tailwindcss": "^2.0.3"
+    "tailwindcss": "^2.0.4"
   }
 }
