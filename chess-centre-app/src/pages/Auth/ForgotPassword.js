@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import ImageLight from "../../assets/img/chess-players.jpg";
-import ImageDark from "../../assets/img/chess-players.jpg";
+import Image from "../../assets/img/chess-players.jpg";
 import { Label, Input, Button } from "@windmill/react-ui";
 import {
   useAuthDispatch,
@@ -64,24 +63,16 @@ function ForgotPassword(props) {
           <div className="h-32 md:h-auto md:w-1/2">
             <img
               aria-hidden="true"
-              className="object-cover w-full h-full dark:hidden"
-              src={ImageLight}
-              alt="Chess Players"
-            />
-            <img
-              aria-hidden="true"
-              className="hidden object-cover w-full h-full dark:block"
-              src={ImageDark}
+              className="object-cover w-full h-full"
+              src={Image}
               alt="Chess Players"
             />
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              {errorMessage && <p>{errorMessage}</p>}
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Forgot password
               </h1>
-
               {!forget ? (
                 <Label>
                   <span>Email</span>
@@ -90,7 +81,7 @@ function ForgotPassword(props) {
                     className="mt-1"
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
-                    placeholder="email@example.com"
+                    placeholder="garry@kasparov.com"
                   />
                 </Label>
               ) : (
@@ -128,10 +119,23 @@ function ForgotPassword(props) {
               >
                 {forget ? "Submit Password" : "Recover password"}
               </Button>
+
+              <div className={errorMessage ? "my-2 text-centre" : "hidden"}>
+                <p
+                  className={
+                    errorMessage
+                      ? "text-sm text-red-700 dark:text-red-500"
+                      : "hidden"
+                  }
+                >
+                  {errorMessage}
+                </p>
+              </div>
+
               <hr className="my-4" />
               <p className="mt-1">
                 <Link
-                  className="text-sm font-medium text-gray-400 dark:text-gray-900 hover:underline"
+                  className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"
                   to="/"
                 >
                   Home

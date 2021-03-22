@@ -34,13 +34,13 @@ function Login(props) {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              <a href="/">
+              <Link to="/">
                 <img
                   src={Logo}
                   className="object-contain h-20 md:h-36 w-full"
                   alt="The Chess Centre"
                 />
-              </a>
+              </Link>
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Login
               </h1>
@@ -50,7 +50,7 @@ function Login(props) {
                   disabled={loading}
                   className="mt-1"
                   type="email"
-                  placeholder="john@doe.com"
+                  placeholder="magnus@carlsen.com"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Label>
@@ -108,7 +108,7 @@ function Login(props) {
               </p>
               <p className="mt-1">
                 <Link
-                  className="text-sm font-medium text-gray-400 dark:text-gray-900 hover:underline"
+                  className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"
                   to="/"
                 >
                   Home
