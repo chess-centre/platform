@@ -13,7 +13,7 @@ const FindUs = () => {
         <p>LS29 8DE</p>
         <div className="mt-12">
           <Map
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYNBaE53VILdXPgtAl_Itsth-tSpMp8m4"
+            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnoxH8i-1VmO6KVg3VomCsv3l8tOfObOI"
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} />}
