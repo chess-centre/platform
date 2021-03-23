@@ -5,7 +5,7 @@ function Dashboard() {
   // MOVE TO DB:
   const eventData = [
     {
-      name: "Bob Burns",
+      name: "May Rapidplay",
       entries: [
         {
           id: "1",
@@ -13,47 +13,6 @@ function Dashboard() {
           gradeNo: "225527D",
           grade: "Inactive",
         },
-        {
-          id: "1",
-          name: "Peter Shaw",
-          gradeNo: "166609F",
-          grade: "2172",
-        },
-        {
-          id: "1",
-          name: "Mike Walker",
-          gradeNo: "142953L",
-          grade: "2073",
-        },
-        {
-          id: "1",
-          name: "David Barlow",
-          gradeNo: "106225G",
-          grade: "2005",
-        },
-        {
-          id: "1",
-          name: "Gary Corcoran",
-          gradeNo: "258651E",
-          grade: "1878",
-        },
-        {
-          id: "1",
-          name: "John Holliday",
-          gradeNo: "180699D",
-          grade: "1713",
-        },
-        {
-          id: "1",
-          name: "Gawain Ako",
-          gradeNo: "265438G",
-          grade: "161",
-        },
-      ],
-    },
-    {
-      name: "May Rapidplay",
-      entries: [
         {
           id: "1",
           name: "Peter Shaw",
@@ -187,6 +146,53 @@ function Dashboard() {
         },
       ],
     },
+    {
+      name: "Bob Burns",
+      entries: [
+        {
+          id: "1",
+          name: "Matthew Webb",
+          gradeNo: "225527D",
+          grade: "Inactive",
+        },
+        {
+          id: "1",
+          name: "Peter Shaw",
+          gradeNo: "166609F",
+          grade: "2172",
+        },
+        {
+          id: "1",
+          name: "Mike Walker",
+          gradeNo: "142953L",
+          grade: "2073",
+        },
+        {
+          id: "1",
+          name: "David Barlow",
+          gradeNo: "106225G",
+          grade: "2005",
+        },
+        {
+          id: "1",
+          name: "Gary Corcoran",
+          gradeNo: "258651E",
+          grade: "1878",
+        },
+        {
+          id: "1",
+          name: "John Holliday",
+          gradeNo: "180699D",
+          grade: "1713",
+        },
+        {
+          id: "1",
+          name: "Gawain Ako",
+          gradeNo: "265438G",
+          grade: "161",
+        },
+      ],
+    }
   ];
 
   return (
