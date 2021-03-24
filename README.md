@@ -15,16 +15,15 @@
   <h3 align="center" style="color:red;">Beta</h3
 </p>
 
-This project contains the source code of our front-end of The Chess Centre application, including steps for configuring the AWS serverless backend. 
+This project contains the source code of our front-end of The Chess Centre application, including steps for configuring the AWS serverless backend.
 
 ## Motivation
 
 **The Chess Centre** was born through a love of Chess and the amazing community it has! This platform serves to provide chess players who enjoy playing over-the-board (in person), with modern, accessible features to easily find upcoming events, register and quickly track results of their real games!
 
 To support this goal, a dedicated centre (physical premises) has been set up for players to come and play. Although there is a cost for members to join, **every single penny** will be recycled entirely back into the growth of chess to ensure the beautiful game continues to grow and embrace the new world we live in.
- 
-- website: [chesscentre.online](https:chesscentre.online)
 
+- website: [chesscentre.online](https:chesscentre.online)
 
 ### Prerequisites
 
@@ -59,7 +58,7 @@ $ yarn install
 
 At this point you now have everything you need, minus the AWS configuration to run locally.
 
-1) Our current practise is to manually set up AWS IAM users (contact [@matt-d-webb](https://github.com/matt-d-webb) for this), with specific Amplify settings which is used for authentication. Example:
+1. Our current practise is to manually set up AWS IAM users (contact [@matt-d-webb](https://github.com/matt-d-webb) for this), with specific Amplify settings which is used for authentication. Example:
 
 ```js
 const awsmobile = {
@@ -67,11 +66,11 @@ const awsmobile = {
   aws_cognito_identity_pool_id: "eu-west-1:xxxxx-xxxx-xxxxx-xxxx-xxxx",
   aws_cognito_region: "eu-west-1",
   aws_user_pools_id: "eu-west-1_xxxxxxxx",
-  aws_user_pools_web_client_id: "123xyz456ABC789dEFg"
-}
+  aws_user_pools_web_client_id: "123xyz456ABC789dEFg",
+};
 ```
 
-2) The alternative is setting up your own AWS account. _This is advised if you're forking this project for your own use. Steps in the future will be added, feel free to reach out for help, happy to discussed._
+2. The alternative is setting up your own AWS account. _This is advised if you're forking this project for your own use. Steps in the future will be added, feel free to reach out for help, happy to discussed._
 
 Once you are setup with an IAM user, you'll be sent this config which you can add in the app root as `aws-exports.js`
 
