@@ -1,19 +1,12 @@
 <p align="center">
   <img src="img/bcc-logo.png" width="150" />
-    <p align="center">
-      <a href="https://github.com/chess-centre/welcome/blob/master/LICENSE">
-        <img alt="GitHub" src="https://img.shields.io/github/license/chess-centre/welcome?style=flat">
-      </a>
-      <a href="https://github.com/chess-centre/welcome/blob/master/CONTRIBUTING.md">
-        <img alt="GitHub" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat">
-      </a>
-      <a href="https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade">
-        <img src="https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1"/>
-      </a>
-  </p>
   <h1 align="center"><strong></strong> The Chess Centre | Platform</h1>
-  <h3 align="center" style="color:red;">Beta</h3
+  <h3 align="center">Beta</h3
 </p>
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade&style=flat-square)
+[![GitHub](https://img.shields.io/github/license/chess-centre/welcome)](https://img.shields.io/github/license/chess-centre/welcome?style=flat-square)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
 This project contains the source code of our front-end of The Chess Centre application, including steps for configuring the AWS serverless backend.
 
@@ -119,3 +112,23 @@ This project used many amazing open source libraries, but for chess specifically
 ## License
 
 [MIT](../LICENSE.md)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://chesscentre.online"><img src="https://avatars.githubusercontent.com/u/36933715?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matt D. Webb</b></sub></a><br /><a href="https://github.com/chess-centre/platform/commits?author=matt-d-webb" title="Code">💻</a> <a href="https://github.com/chess-centre/platform/commits?author=matt-d-webb" title="Tests">⚠️</a> <a href="https://github.com/chess-centre/platform/commits?author=matt-d-webb" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
