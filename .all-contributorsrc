@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "matt-d-webb",
+      "name": "Matt D. Webb",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36933715?v=4",
+      "profile": "https://chesscentre.online",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "platform",
+  "projectOwner": "chess-centre",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
