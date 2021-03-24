@@ -1,6 +1,7 @@
 import React from "react";
 
 function Profile() {
+  
   return (
     <div className="mt-4 mb-4 lg:grid lg:grid-cols-12 lg:gap-x-5">
       <aside className="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
@@ -78,7 +79,7 @@ function Profile() {
       </aside>
 
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-        <form action="#" method="POST">
+        <div>
           <div className="shadow sm:rounded-md sm:overflow-hidden">
             <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
               <div>
@@ -86,7 +87,7 @@ function Profile() {
                   Profile
                 </h3>
                 <p className="mt-1 text-sm text-gray-500">
-                  This information will be displayed publicly so be careful what
+                  This indivation will be displayed publicly so be careful what
                   you share.
                 </p>
               </div>
@@ -150,8 +151,6 @@ function Profile() {
                   </div>
                 </div>
               </div>
-
- 
 
                 <div className="col-span-3">
                   <label
@@ -241,16 +240,15 @@ function Profile() {
             </div>
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
               <button
-                type="submit"
                 className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
                 Save
               </button>
             </div>
           </div>
-        </form>
+        </div>
 
-        <form action="#" method="POST">
+        <div>
           <div className="shadow sm:rounded-md sm:overflow-hidden">
             <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
               <div>
@@ -258,7 +256,7 @@ function Profile() {
                   Personal Information
                 </h3>
                 <p className="mt-1 text-sm text-gray-500">
-                  We would never share this information with anyone.
+                  These details are used to help pairing 
                 </p>
               </div>
 
@@ -303,6 +301,7 @@ function Profile() {
                     Email address
                   </label>
                   <input
+                    disabled="true"
                     type="text"
                     name="email_address"
                     id="email_address"
@@ -310,82 +309,19 @@ function Profile() {
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
                   />
                 </div>
-
-                <div className="col-span-6">
-                  <label
-                    htmlFor="street_address"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Street address
-                  </label>
-                  <input
-                    type="text"
-                    name="street_address"
-                    id="street_address"
-                    autoComplete="street-address"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                  />
-                </div>
-
-                <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                  <label
-                    htmlFor="city"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    City
-                  </label>
-                  <input
-                    type="text"
-                    name="city"
-                    id="city"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                  />
-                </div>
-
-                <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <label
-                    htmlFor="state"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    County
-                  </label>
-                  <input
-                    type="text"
-                    name="state"
-                    id="state"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                  />
-                </div>
-
-                <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <label
-                    htmlFor="postal_code"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Post Code
-                  </label>
-                  <input
-                    type="text"
-                    name="postal_code"
-                    id="postal_code"
-                    autoComplete="postal-code"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
-                  />
-                </div>
               </div>
             </div>
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
               <button
-                type="submit"
                 className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
                 Save
               </button>
             </div>
           </div>
-        </form>
+        </div>
 
-        <form action="#" method="POST">
+        <div>
           <div className="shadow sm:rounded-md sm:overflow-hidden">
             <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
               <div>
@@ -405,14 +341,14 @@ function Profile() {
                   <div className="flex items-start">
                     <div className="h-5 flex items-center">
                       <input
-                        id="comments"
-                        name="comments"
+                        id="events_email"
+                        name="events_email"
                         type="checkbox"
                         className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
                       />
                     </div>
                     <div className="ml-3 text-sm">
-                      <label htmlFor="comments" className="font-medium text-gray-700">
+                      <label htmlFor="events_email" className="font-medium text-gray-700">
                         Events
                       </label>
                       <p className="text-gray-500">
@@ -424,14 +360,14 @@ function Profile() {
                     <div className="flex items-start">
                       <div className="h-5 flex items-center">
                         <input
-                          id="offers"
-                          name="offers"
+                          id="offers_email"
+                          name="offers_email"
                           type="checkbox"
                           className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
                         />
                       </div>
                       <div className="ml-3 text-sm">
-                        <label htmlFor="offers" className="font-medium text-gray-700">
+                        <label htmlFor="offers_email" className="font-medium text-gray-700">
                           Offers and Promotions
                         </label>
                         <p className="text-gray-500">
@@ -450,14 +386,14 @@ function Profile() {
                   <div className="flex items-start">
                     <div className="h-5 flex items-center">
                       <input
-                        id="comments"
-                        name="comments"
+                        id="events_text"
+                        name="events_text"
                         type="checkbox"
                         className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
                       />
                     </div>
                     <div className="ml-3 text-sm">
-                      <label htmlFor="comments" className="font-medium text-gray-700">
+                      <label htmlFor="events_text" className="font-medium text-gray-700">
                         Events
                       </label>
                       <p className="text-gray-500">
@@ -469,14 +405,14 @@ function Profile() {
                     <div className="flex items-start">
                       <div className="h-5 flex items-center">
                         <input
-                          id="offers"
-                          name="offers"
+                          id="offers_text"
+                          name="offers_text"
                           type="checkbox"
                           className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
                         />
                       </div>
                       <div className="ml-3 text-sm">
-                        <label htmlFor="offers" className="font-medium text-gray-700">
+                        <label htmlFor="offers_text" className="font-medium text-gray-700">
                           Offers and Promotions
                         </label>
                         <p className="text-gray-500">
@@ -490,14 +426,13 @@ function Profile() {
             </div>
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
               <button
-                type="submit"
                 className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600"
               >
                 Save
               </button>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
