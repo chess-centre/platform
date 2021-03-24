@@ -5,6 +5,8 @@ import { useAuthState } from "../../context/Auth";
 import LandingNav from "../../components/Navigation/LandingNav";
 import ComingEvents from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
+import FindUs from "../../components/Map/FindUs";
+
 
 const LandingPage = () => {
   const { user } = useAuthState();
@@ -120,8 +122,12 @@ const LandingPage = () => {
           </main>
         </div>
       </div>
+
+
       <ComingEvents />
       <FAQs />
+      <FindUs />
+
       <FooterLanding />
     </div>
   );

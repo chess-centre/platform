@@ -73,7 +73,7 @@ function Timeline() {
                 { months.map((m, i) => {
                   const isEven = i % 2 === 0;
                   return (
-                    <button
+                    <button key={i}
                       className="flex items-center justify-between font-medium text-gray-500 w-20 py-3 pr-2 text-left"
                       onClick={() => setMonth(m)}
                     >
@@ -88,12 +88,12 @@ function Timeline() {
                 })}
               </div>
 
-              {months.map((m) => {
+              {months.map((m, i) => {
                 return (
-                  <div className={`flex-grow ${month !== m && "hidden"}`}>
+                  <div key={i} className={`flex-grow ${month !== m && "hidden"}`}>
                     <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-                      {getEventDetails(m).map((d) => (
-                        <Card {...d} />
+                      {getEventDetails(m).map((d, index) => (
+                        <Card key={index} {...d} />
                       ))}
                     </div>
                   </div>
