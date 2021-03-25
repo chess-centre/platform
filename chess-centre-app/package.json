@@ -20,10 +20,8 @@
     "react-children-utilities": "^2.5.0",
     "react-dom": "^17.0.1",
     "react-google-maps": "^9.4.5",
-    "react-pgn-viewer": "^0.2.4",
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.1",
-    "reactjs-chessboard": "^0.0.9",
     "swiper": "^6.4.1",
     "uuid": "^8.3.2"
   },

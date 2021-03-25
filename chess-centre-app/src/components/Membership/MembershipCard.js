@@ -2,6 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function MembershipCard({ title, price, subHeading, benefits, discounted }) {
+
+  // HERE WE SHOULD DETERMINE CURRENT SIGNED IN / SUBSCRIBED STATUS
+
+  // IF NOT SIGNED IN && NOT SUBSCRIBED = "sign in"
+
+  // IF SIGNED IN && NOT SUBSCRIBED = "subscribe"
+
+  // IF SIGNED && SUBSCRIBED = "cancel" OR "switch membership" OR direct to profile payment management screen
+
   return (
     <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
       <div className="px-6 py-8 bg-white sm:p-10 sm:pb-6">
