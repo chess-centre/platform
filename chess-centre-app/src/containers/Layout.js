@@ -1,11 +1,8 @@
 import React, { useContext, Suspense, useEffect, lazy } from "react";
 import { Switch, Route, Redirect, useLocation } from "react-router-dom";
-//import routes from "../routes";
-
 import Sidebar from "../components/Sidebar";
 import Header from "../components/AuthHeader.js";
 import Main from "../containers/Main";
-
 import ThemedSuspense from "../components/ThemedSuspense";
 import { SidebarContext } from "../context/SidebarContext";
 
@@ -13,19 +10,19 @@ import { SidebarContext } from "../context/SidebarContext";
 const routes = [
   {
     path: "/dashboard",
-    component: lazy(() => import("../pages/Dashboard/Dashboard")),
+    component: lazy(() => import("../pages/App/Dashboard")),
   },
   {
     path: "/events",
-    component: lazy(() => import("../pages/Dashboard/Events")),
+    component: lazy(() => import("../pages/App/Events")),
   },
   {
     path: "/results",
-    component: lazy(() => import("../pages/Dashboard/Results")),
+    component: lazy(() => import("../pages/App/Results")),
   },
   {
     path: "/members",
-    component: lazy(() => import("../pages/Dashboard/Members")),
+    component: lazy(() => import("../pages/App/Members")),
   },
   {
     path: "/members/:memberId",
@@ -33,11 +30,11 @@ const routes = [
   },
   {
     path: "/profile",
-    component: lazy(() => import("../pages/User/Profile")),
+    component: lazy(() => import("../pages/App/User/Profile")),
   }
 ];
 
-const Page404 = lazy(() => import("../pages/404"));
+const Page404 = lazy(() => import("../pages/Error/404"));
 
 function Layout() {
   const { isSidebarOpen, closeSidebar } = useContext(SidebarContext);

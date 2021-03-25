@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/img/logo.svg";
+import Logo from "../../assets/img/logo.svg";
 
 function Page404() {
   return (

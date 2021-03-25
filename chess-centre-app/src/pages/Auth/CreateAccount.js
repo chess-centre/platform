@@ -5,7 +5,7 @@ import ImageLarge from "../../assets/img/create-account-large.jpg";
 import ImageSmall from "../../assets/img/create-account-small.jpg";
 import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
-import PrivacyPolicyModal from "../../components/PrivacyPolicyModal.js";
+import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal.js";
 import ValidateEmail from "../../utils/ValidateEmail";
 
 function Login(props) {

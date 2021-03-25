@@ -5,7 +5,7 @@ import AppRoutes from "./components/AppRoute";
 import AOS from "aos";
 import routes from "./routes";
 
-const Page404 = lazy(() => import("./pages/404"));
+const Page404 = lazy(() => import("./pages/Error/404"));
 
 function App() {
   React.useEffect(() => {
