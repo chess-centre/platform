@@ -2,7 +2,6 @@ import React, { useLayoutEffect } from "react";
 import Children from "react-children-utilities";
 import * as uuid from "uuid";
 import { pgnView } from "@mliebelt/pgn-viewer";
-import "./custom-board-styles.css";
 
 function PGNViewer(props) {
   const { layout }  = props;
