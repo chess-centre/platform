@@ -144,11 +144,11 @@ function MemberProfile() {
         </div>
       </div>
       { /* WEB SPECIFIC */ }
-      <div className="hidden sm:block bg-white shadow overflow-auto sm:rounded-lg m-1 p-4 mt-5 ml-4">
+      <div className="hidden sm:block bg-white shadow overflow-auto sm:rounded-lg m-1 p-4 mt-5">
         <PGNViewer layout={"left"}>{getGame(selectedGame)}</PGNViewer>
       </div>
       { /* MOBILE SPECIFIC */ }
-      <div className="block sm:hidden bg-white shadow overflow-hidden mt-2 sm:m-4 p-6">
+      <div className="block sm:hidden bg-white shadow overflow-hidden p-2">
         <PGNViewer layout={"top"}>{getGame(selectedGame)}</PGNViewer>
       </div>
     </div>

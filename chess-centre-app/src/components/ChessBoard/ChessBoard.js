@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from "react";
 import Children from "react-children-utilities";
 import * as uuid from "uuid";
 import { pgnView } from "@mliebelt/pgn-viewer";
+import "./custom-board-styles.css";
 
 function PGNViewer(props) {
   const { layout }  = props;
@@ -17,7 +18,7 @@ function PGNViewer(props) {
       hideMovesBefore: true,
       locale: "en",
       showResult: true,
-      boardSize: "280",
+      boardSize: "300",
       showFen: false,
       pieceStyle: "alpha",
     });
