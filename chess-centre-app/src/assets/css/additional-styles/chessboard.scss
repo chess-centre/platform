@@ -1,75 +1,73 @@
 .moves {
-    font-weight: 300;
-    font-size: 0.875rem;
-    text-align: left;
-    padding: 4px;
-    grid-template-columns: 0em;
-    width: auto;
-  }
-  
-  .last-move {
-    background-color: rgba(84,153,171, .8) !important;
-    
-  }
-  
-  .whole.layout-left {
-    display: unset;
-    text-align: center;
-  }
-  
-  .cg-wrap.coords-inner {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .whole.viewMode.layout-left .buttons {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  div.buttons > i.button:hover {
-    background-color: rgb(3, 84, 94) !important;
-    border-radius: 6px;
-    border: 0;
-  }
-  
-  .moves .move a.yellow {
-    color: #f0802b;
-    font-weight: bold;
-    background-color: transparent;
-  }
-  
-  .moves .move a:hover {
-    color: #f0802b;
-    background-color: rgba(250,250,250, .95);
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
-  div.buttons > i.button {
-    color: #fff;
-    border-radius: 6px;
-    border: 0;
-    background-color: rgb(4, 116, 129);
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  .blackHeader,
-  .whiteHeader {
-    color: rgb(29, 29, 32);
-    margin: 2px;
-    text-align: center;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    font-weight: 500;
-  }
-  
-  .result {
-      font-weight: 500;
-  }
-  
+  font-weight: 300 !important;
+  font-size: 0.875rem !important;
+  text-align: left !important;
+  padding: 4px !important;
+  grid-template-columns: 0em !important;
+  width: auto !important;
+}
+
+.last-move {
+  background-color: rgba(84, 153, 171, 0.8) !important;
+}
+
+.whole.layout-left {
+  display: unset !important;
+  text-align: center !important;
+}
+
+.cg-wrap.coords-inner {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.whole.viewMode.layout-left .buttons {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+div.buttons > i.button:hover {
+  background-color: rgb(3, 84, 94) !important;
+  border-radius: 6px !important;
+  border: 0 !important;
+}
+
+.moves .move a.yellow {
+  color: #f0802b !important;
+  font-weight: bold !important;
+  background-color: transparent !important;
+}
+
+.moves .move a:hover {
+  color: #f0802b !important;
+  background-color: rgba(250, 250, 250, 0.95) !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+}
+
+div.buttons > i.button {
+  color: #fff !important;
+  border-radius: 6px !important;
+  border: 0 !important;
+  background-color: rgb(4, 116, 129) !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.blackHeader,
+.whiteHeader {
+  color: rgb(29, 29, 32) !important;
+  margin: 2px !important;
+  text-align: center !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  font-weight: 500 !important;
+}
+
+.result {
+  font-weight: 500 !important;
+}
