@@ -18,6 +18,13 @@
   }
 }
 
+@layer utilities {
+  .text-gradient {
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 // See Alpine.js: https://github.com/alpinejs/alpine#x-cloak
 [x-cloak] {
   display: none;
@@ -26,30 +33,3 @@
 // AOS styles
 $aos-distance: 16px;
 @import "node_modules/aos/src/sass/aos.scss";
-
-.moves {
-  font-weight: 300 !important;
-  text-align: left !important;
-}
-
-.last-move {
-  background-color: #5499ab !important;
-}
-
-.moves .move a.yellow {
-  color: #f0802b !important;
-  font-weight: bold !important;
-  background-color: transparent !important;
-}
-
-.moves .move a:hover {
-  color: #f0802b !important;
-  background-color: #fad6bb !important;
-  cursor: pointer !important;
-}
-
-div.buttons > i.button {
-  color: #223d44 !important;
-  border-radius: 1px !important;
-  background-color: #5499ab !important;
-}

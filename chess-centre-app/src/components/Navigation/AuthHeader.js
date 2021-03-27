@@ -1,18 +1,18 @@
 import React, { useContext, useState } from "react";
-import { SidebarContext } from "../context/SidebarContext";
+import { SidebarContext } from "../../context/SidebarContext";
 import {
   MoonIcon,
   SunIcon,
   MenuIcon,
   OutlinePersonIcon,
   OutlineLogoutIcon,
-} from "../icons";
+} from "../../icons";
 import {
   Dropdown,
   DropdownItem,
   WindmillContext,
 } from "@windmill/react-ui";
-import { logout, useAuthDispatch } from "../context/Auth";
+import { logout, useAuthDispatch } from "../../context/Auth";
 
 function Header() {
   const dispatch = useAuthDispatch();
@@ -21,6 +21,7 @@ function Header() {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   function handleProfileClick() {
+    console.log(isProfileMenuOpen)
     setIsProfileMenuOpen(!isProfileMenuOpen);
   }
   function signOut() {

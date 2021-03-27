@@ -1,7 +1,12 @@
+import { fromJSON } from "postcss";
 import React from "react";
+import { useAuthState } from "../../../context/Auth";
 
 function Profile() {
   
+  const { user: { attributes: { email }} } = useAuthState();
+
+ 
   return (
     <div className="mt-4 mb-4 lg:grid lg:grid-cols-12 lg:gap-x-5">
       <aside className="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
@@ -301,12 +306,13 @@ function Profile() {
                     Email address
                   </label>
                   <input
-                    disabled="true"
+                    value={email}
+                    disabled
                     type="text"
                     name="email_address"
                     id="email_address"
                     autoComplete="email"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+                    className="mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
                   />
                 </div>
               </div>
