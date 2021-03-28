@@ -60,6 +60,11 @@ const routes = [
     component: lazy(() => import("../containers/Layout")),
     isPrivate: true,
   },
+  {
+    path: "/broadcast/live",
+    component: lazy(() => import("../pages/Broadcast/Live")),
+    isPrivate: true,
+  },
 ];
 
 export default routes;
