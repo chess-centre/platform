@@ -34,3 +34,8 @@
 // AOS styles
 $aos-distance: 16px;
 @import "node_modules/aos/src/sass/aos.scss";
+
+
+::selection {
+  background-color: rgba(213,63,140, 0.5);
+}

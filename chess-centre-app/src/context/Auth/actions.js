@@ -16,6 +16,23 @@ export async function loginUser(dispatch, Email, Password) {
   return;
 }
 
+export async function updateUserAttributes(firstName, lastName) {
+  const user = await Auth.currentAuthenticatedUser();
+
+  Auth.updateUserAttributes(user, {
+    given_name: firstName,
+    family_name: lastName
+  }).then(async (u) =>  {
+    // TODO: tidy up this repeative logic / move to central call to update local storage:
+    const updatedUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+    return u;
+  }).catch(e => {
+    console.log("error", e.message);
+    return e.message;
+  });
+}
+
 export async function getCurrentAuthenticatedUser(dispatch) {
   const user = await Auth.currentAuthenticatedUser();
   if (user) {
