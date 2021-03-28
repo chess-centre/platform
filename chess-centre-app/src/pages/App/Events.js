@@ -1,23 +1,23 @@
 import React from "react";
+import UpComingEvents from "../../components/Events/AppEvents";
 
 function Events() {
   return (
     <>
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
-              Events
-            </h2>
-            <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-              Join us
-            </p>
-            <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-              Our members can register for events and see more about the players already entered.
-            </p>
-          </div>
+      <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Events
+      </h1>
+      <div className="pb-5 border-b border-gray-200">
+        <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
+          <h3 className="ml-2 mt-2 text-lg leading-6 font-medium text-gray-900">
+            May
+          </h3>
+          <p className="ml-2 mt-1 text-sm text-gray-500 truncate">entries for our upcoming events</p>
         </div>
       </div>
+      <main className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <UpComingEvents />
+      </main>
     </>
   );
 }

@@ -17,7 +17,7 @@ function PGNViewer(props) {
       hideMovesBefore: true,
       locale: "en",
       showResult: true,
-      boardSize: "280",
+      boardSize: "300",
       showFen: false,
       pieceStyle: "alpha",
     });

@@ -1,7 +1,27 @@
 import React from "react";
+import { useAuthState, updateUserAttributes } from "../../../context/Auth";
 
 function Profile() {
   
+  const { user } = useAuthState();
+  const { email, family_name, given_name } = user.attributes;
+  const [personalInfo, setPersonalInfo] = React.useState({
+    email,
+    family_name,
+    given_name
+  })
+
+  const updatePersonalInfo = async () => {
+    if(!personalInfo.family_name || !personalInfo.given_name) {
+      // TODO: handle input warnings!
+      return;
+    }
+    const updated = await updateUserAttributes(personalInfo.given_name, personalInfo.family_name);
+    // TODO: handle completed update!
+    console.log(updated);
+  }
+
+
   return (
     <div className="mt-4 mb-4 lg:grid lg:grid-cols-12 lg:gap-x-5">
       <aside className="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
@@ -173,7 +193,7 @@ function Profile() {
                   </p>
                 </div>
 
-                <div className="col-span-3">
+                {/* <div className="col-span-3">
                   <label className="block text-sm font-medium text-gray-700">
                     Photo
                   </label>
@@ -194,9 +214,9 @@ function Profile() {
                       Change
                     </button>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="col-span-3">
+                {/* <div className="col-span-3">
                   <label className="block text-sm font-medium text-gray-700">
                   </label>
                   <div className="mt-1 border-2 border-gray-300 border-dashed rounded-md px-6 pt-5 pb-6 flex justify-center">
@@ -235,7 +255,7 @@ function Profile() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -269,6 +289,8 @@ function Profile() {
                     First name
                   </label>
                   <input
+                    value={personalInfo.given_name}
+                    onChange={e => setPersonalInfo(s => ({...s, given_name: e.target.value }))}
                     type="text"
                     name="first_name"
                     id="first_name"
@@ -285,6 +307,8 @@ function Profile() {
                     Last name
                   </label>
                   <input
+                    value={personalInfo.family_name}
+                    onChange={e => setPersonalInfo(s => ({...s, family_name: e.target.value }))}
                     type="text"
                     name="last_name"
                     id="last_name"
@@ -301,18 +325,20 @@ function Profile() {
                     Email address
                   </label>
                   <input
-                    disabled="true"
+                    value={email}
+                    disabled
                     type="text"
                     name="email_address"
                     id="email_address"
                     autoComplete="email"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+                    className="mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
                   />
                 </div>
               </div>
             </div>
             <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
               <button
+                onClick={updatePersonalInfo}
                 className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
                 Save

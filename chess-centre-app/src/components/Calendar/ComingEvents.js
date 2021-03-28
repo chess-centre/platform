@@ -5,7 +5,7 @@ import { CalendarIcon, ClockIcon } from "../../icons";
 function Card({ name, description, time, url, textDate, color }) {
   return (
     <article
-      className={color + " p-6 shadow-2xl flex flex-col"}
+      className={color + " p-6 shadow-2xl flex flex-col rounded-xl"}
     >
       <header>
         <h3 className="h4 font-red-hat-display mb-1">
@@ -50,9 +50,9 @@ function Timeline() {
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="py-12 md:py-20 border-t border-gray-200">
+        <div className="py-12 md:py-10 border-t border-gray-200">
           {/* Section header */}
-          <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
+          <div className="max-w-3xl mx-auto text-center pb-12 md:pb-10">
             <h2 className="h2 font-red-hat-display mb-4">Our next Events</h2>
             <p className="text-xl text-gray-600">
               See what's coming up

@@ -54,6 +54,11 @@ const routes = [
     component: lazy(() => import("../pages/Home/CodeOfConduct")),
     isPrivate: false,
   },
+  {
+    path: "/roadmap",
+    component: lazy(() => import("../components/Roadmap")),
+    isPrivate: false,
+  },
   // Authenticated Routes (see `src/containers/Layout` for nested routes)
   {
     path: "/app",

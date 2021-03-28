@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 import PGNViewer from "../ChessBoard/ChessBoard";
 import { games } from "../../api/mock.games";
 
 function MemberProfile() {
-  const { memberId } = useParams();
+  //const { memberId } = useParams();
   const [member, setMember] = useState({});
   const [selectedGame, setSelectedGame] = useState(0);
 
@@ -100,38 +100,44 @@ function MemberProfile() {
                             </tr>
                           </thead>
                           <tbody className="bg-white divide-y divide-gray-200">
-                            {games.map((game, i) => (
-                              <tr>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <div className="flex items-center">
-                                    <div className="ml-2">
-                                      <div className="text-sm font-medium text-gray-900">
-                                        {game.opponent}
-                                      </div>
-                                      <div className="text-sm text-gray-500">
-                                        {game.event}
+                            {games.map((game, i) => {
+                              const isActive = i === selectedGame;
+                              return (
+                                <tr key={i} className={isActive ? "bg-orange-50" : ""}>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="flex items-center">
+                                      <div className="ml-2">
+                                        <div className="text-sm font-medium text-gray-900">
+                                          {game.opponent}
+                                        </div>
+                                        <div className="text-sm text-gray-500">
+                                          {game.event}
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <div className="text-sm">{game.colour}</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    {game.result}
-                                  </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                  <a
-                                    onClick={() => setSelectedGame(i)}
-                                    className="text-teal-600 hover:text-teal-900"
-                                  >
-                                    View
-                                  </a>
-                                </td>
-                              </tr>
-                            ))}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm">{game.colour}</div>
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap">
+                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                      {game.result}
+                                    </span>
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button
+
+                                      onClick={() => setSelectedGame(i)}
+                                      className={ isActive ? 
+                                        "bg-teal-600 text-white cursor-not-allowed opacity-50 border border-transparent rounded-md shadow-sm py-1 px-2 inline-flex justify-center" : 
+                                        "bg-teal-600 border border-transparent rounded-md shadow-sm py-1 px-2 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"}
+                                      >
+                                      View
+                                    </button>
+                                  </td>
+                                </tr>
+                              );
+                            })}
                           </tbody>
                         </table>
                       </div>
@@ -143,12 +149,12 @@ function MemberProfile() {
           </div>
         </div>
       </div>
-      { /* WEB SPECIFIC */ }
-      <div className="hidden sm:block bg-white shadow overflow-auto sm:rounded-lg m-1 p-4 mt-5 ml-4">
+      {/* WEB SPECIFIC */}
+      <div className="hidden sm:block bg-white shadow overflow-auto sm:rounded-lg m-1 p-4 mt-5">
         <PGNViewer layout={"left"}>{getGame(selectedGame)}</PGNViewer>
       </div>
-      { /* MOBILE SPECIFIC */ }
-      <div className="block sm:hidden bg-white shadow overflow-hidden mt-2 sm:m-4 p-6">
+      {/* MOBILE SPECIFIC */}
+      <div className="block sm:hidden bg-white shadow overflow-auto p-2">
         <PGNViewer layout={"top"}>{getGame(selectedGame)}</PGNViewer>
       </div>
     </div>
