@@ -7,7 +7,7 @@ function UpComingEvents() {
     <>
       {eventData.map(({ name, entries }, index) => {
         return (
-          <section className="relative">
+          <section key={index} className="relative" data-aos="flip-left">
             <div className="bg-white pt-6 shadow sm:rounded-md sm:overflow-hidden">
               <div className="px-4 sm:px-6">
                 <h2 className="text-lg leading-6 font-medium text-gray-900">

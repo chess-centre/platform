@@ -5,7 +5,7 @@ import { CalendarIcon, ClockIcon } from "../../icons";
 function Card({ name, description, time, url, textDate, color }) {
   return (
     <article
-      className={color + " p-6 shadow-2xl flex flex-col"}
+      className={color + " p-6 shadow-2xl flex flex-col rounded-xl"}
     >
       <header>
         <h3 className="h4 font-red-hat-display mb-1">
