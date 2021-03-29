@@ -5,6 +5,7 @@ import AppRoutes from "./components/Navigation/AppRoute";
 import AOS from "aos";
 import routes from "./routes";
 
+
 const Page404 = lazy(() => import("./pages/Error/404"));
 
 function App() {

@@ -11,7 +11,7 @@ const FindUs = () => {
         <p>8 Crescent Court</p>
         <p>Ilkley</p>
         <p>LS29 8DE</p>
-        <div className="mt-12">
+        <div className="mt-12 rounded-lg">
           <Map
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnoxH8i-1VmO6KVg3VomCsv3l8tOfObOI"
             loadingElement={<div style={{ height: `100%` }} />}

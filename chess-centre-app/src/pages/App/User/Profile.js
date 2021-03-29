@@ -29,13 +29,13 @@ function Profile() {
           {/* <!-- Current: "bg-gray-50 text-teal-700 hover:text-teal-700 hover:bg-white", Default: "text-gray-900 hover:text-gray-900 hover:bg-gray-50" --> */}
           <a
             href="#"
-            className="bg-gray-50 text-teal-700 hover:text-teal-700 hover:bg-white group rounded-md px-3 py-2 flex items-center text-sm font-medium"
+            className="bg-gray-50 dark:bg-gray-800 text-teal-700 dark:text-teal-400 hover:text-teal-700 hover:bg-white group rounded-md px-3 py-2 flex items-center text-sm font-medium"
             aria-current="page"
           >
             {/* <!-- Current: "text-teal-500 group-hover:text-teal-500", Default: "text-gray-400 group-hover:text-gray-500" --> */}
 
             <svg
-              className="text-teal-500 group-hover:text-teal-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6"
+              className="text-teal-500 dark:text-teal-400 group-hover:text-teal-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -54,7 +54,7 @@ function Profile() {
 
           <a
             href="#"
-            className="text-gray-900 hover:text-gray-900 hover:bg-gray-50 group rounded-md px-3 py-2 flex items-center text-sm font-medium"
+            className="text-gray-900 dark:text-gray-50 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-700 group rounded-md px-3 py-2 flex items-center text-sm font-medium"
           >
             <svg
               className="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6"
@@ -76,7 +76,7 @@ function Profile() {
 
           <a
             href="#"
-            className="text-gray-900 hover:text-gray-900 hover:bg-gray-50 group rounded-md px-3 py-2 flex items-center text-sm font-medium"
+            className="text-gray-900 dark:text-gray-50 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-700  group rounded-md px-3 py-2 flex items-center text-sm font-medium"
           >
             <svg
               className="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6"
@@ -101,12 +101,12 @@ function Profile() {
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
         <div>
           <div className="shadow sm:rounded-md sm:overflow-hidden">
-            <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
+            <div className="bg-white dark:bg-gray-800 py-6 px-4 space-y-6 sm:p-6">
               <div>
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
+                <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
                   Profile
                 </h3>
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
                   This indivation will be displayed publicly so be careful what
                   you share.
                 </p>
@@ -116,12 +116,12 @@ function Profile() {
                 <div className="col-span-3 sm:col-span-2">
                   <label
                     htmlFor="username"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                   >
                     Username
                   </label>
                   <div className="mt-1 rounded-md shadow-sm flex">
-                    <span className="bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm">
+                    <span className="bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">
                       chesscentre.online/member/
                     </span>
                     <input
@@ -129,7 +129,7 @@ function Profile() {
                       name="username"
                       id="username"
                       autoComplete="username"
-                      className="focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                      className="focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900"
                     />
                   </div>
               </div>
@@ -139,7 +139,7 @@ function Profile() {
                 <div className="col-span-6 sm:col-span-3">
                 <label
                     htmlFor="ecf_id"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                   >
                     ECF id
                   </label>
@@ -149,14 +149,14 @@ function Profile() {
                       name="username"
                       id="username"
                       autoComplete="username"
-                      className="focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-none rounded-md sm:text-sm border-gray-300"
+                      className="focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-md dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900 sm:text-sm border-gray-300"
                     />
                   </div>
                 </div>
                 <div className="col-span-6 sm:col-span-3">
                 <label
                     htmlFor="fide_id"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                   >
                     FIDE id
                   </label>
@@ -166,7 +166,7 @@ function Profile() {
                       name="username"
                       id="username"
                       autoComplete="username"
-                      className="focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-none rounded-md sm:text-sm border-gray-300"
+                      className="focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-md dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900 sm:text-sm border-gray-300"
                     />
                   </div>
                 </div>
@@ -175,7 +175,7 @@ function Profile() {
                 <div className="col-span-3">
                   <label
                     htmlFor="about"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                   >
                     About
                   </label>
@@ -184,81 +184,17 @@ function Profile() {
                       id="about"
                       name="about"
                       rows="3"
-                      className="shadow-sm focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border-gray-300 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900 rounded-md"
                       placeholder="you@example.com"
                     ></textarea>
                   </div>
-                  <p className="mt-2 text-sm text-gray-500">
+                  <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
                     Brief description for your profile. URLs are hyperlinked.
                   </p>
                 </div>
-
-                {/* <div className="col-span-3">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Photo
-                  </label>
-                  <div className="mt-1 flex items-center">
-                    <span className="inline-block bg-gray-100 rounded-full overflow-hidden h-12 w-12">
-                      <svg
-                        className="h-full w-full text-gray-300"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                      </svg>
-                    </span>
-                    <button
-                      type="button"
-                      className="ml-5 bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-                    >
-                      Change
-                    </button>
-                  </div>
-                </div> */}
-
-                {/* <div className="col-span-3">
-                  <label className="block text-sm font-medium text-gray-700">
-                  </label>
-                  <div className="mt-1 border-2 border-gray-300 border-dashed rounded-md px-6 pt-5 pb-6 flex justify-center">
-                    <div className="space-y-1 text-center">
-                      <svg
-                        className="mx-auto h-12 w-12 text-gray-400"
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 48 48"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <div className="flex text-sm text-gray-600">
-                        <label
-                          htmlFor="file-upload"
-                          className="relative cursor-pointer bg-white rounded-md font-medium text-teal-600 hover:text-teal-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-teal-500"
-                        >
-                          <span>Upload a file</span>
-                          <input
-                            id="file-upload"
-                            name="file-upload"
-                            type="file"
-                            className="sr-only"
-                          />
-                        </label>
-                        <p className="pl-1">or drag and drop</p>
-                      </div>
-                      <p className="text-xs text-gray-500">
-                        PNG, JPG, GIF up to 10MB
-                      </p>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
-            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6 dark:divide-white dark:divide-y">
               <button
                 className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
@@ -270,12 +206,12 @@ function Profile() {
 
         <div>
           <div className="shadow sm:rounded-md sm:overflow-hidden">
-            <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
+            <div className="bg-white dark:bg-gray-800 py-6 px-4 space-y-6 sm:p-6">
               <div>
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
+                <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
                   Personal Information
                 </h3>
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
                   These details are used to help pairing 
                 </p>
               </div>
@@ -284,7 +220,7 @@ function Profile() {
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="first_name"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                   >
                     First name
                   </label>
@@ -295,14 +231,14 @@ function Profile() {
                     name="first_name"
                     id="first_name"
                     autoComplete="given-name"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
                   />
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
                   <label
                     htmlFor="last_name"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                   >
                     Last name
                   </label>
@@ -313,14 +249,14 @@ function Profile() {
                     name="last_name"
                     id="last_name"
                     autoComplete="family-name"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
                   />
                 </div>
 
                 <div className="col-span-6 sm:col-span-4">
                   <label
                     htmlFor="email_address"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
                   >
                     Email address
                   </label>
@@ -331,12 +267,12 @@ function Profile() {
                     name="email_address"
                     id="email_address"
                     autoComplete="email"
-                    className="mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"
+                    className="mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
                   />
                 </div>
               </div>
             </div>
-            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6">
               <button
                 onClick={updatePersonalInfo}
                 className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
@@ -349,18 +285,18 @@ function Profile() {
 
         <div>
           <div className="shadow sm:rounded-md sm:overflow-hidden">
-            <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
+            <div className="bg-white dark:bg-gray-800 py-6 px-4 space-y-6 sm:p-6">
               <div>
-                <h3 className="text-lg leading-6 font-medium text-gray-900">
+                <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
                   Notifications
                 </h3>
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
                   Let us know how we can keep in touch with you. We promise never to spam you 😊
                 </p>
               </div>
 
               <fieldset>
-                <legend className="text-base font-medium text-gray-900">
+                <legend className="text-base font-medium text-gray-900 dark:text-gray-300">
                   By Email
                 </legend>
                 <div className="mt-4 space-y-4">
@@ -370,14 +306,14 @@ function Profile() {
                         id="events_email"
                         name="events_email"
                         type="checkbox"
-                        className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                        className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:text-orange-brand dark:focus:ring-orange-brand rounded"
                       />
                     </div>
                     <div className="ml-3 text-sm">
-                      <label htmlFor="events_email" className="font-medium text-gray-700">
+                      <label htmlFor="events_email" className="font-medium text-gray-700 dark:text-gray-300">
                         Events
                       </label>
-                      <p className="text-gray-500">
+                      <p className="text-gray-500 dark:text-gray-500">
                         Get notified about special events and invitationals 
                       </p>
                     </div>
@@ -389,14 +325,14 @@ function Profile() {
                           id="offers_email"
                           name="offers_email"
                           type="checkbox"
-                          className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                          className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:text-orange-brand dark:focus:ring-orange-800 rounded"
                         />
                       </div>
                       <div className="ml-3 text-sm">
-                        <label htmlFor="offers_email" className="font-medium text-gray-700">
+                        <label htmlFor="offers_email" className="font-medium text-gray-700 dark:text-gray-300">
                           Offers and Promotions
                         </label>
-                        <p className="text-gray-500">
+                        <p className="text-gray-500 dark:text-gray-500">
                           Get notified if we have any special offers or promotions on entries to our events.
                         </p>
                       </div>
@@ -405,7 +341,7 @@ function Profile() {
                 </div>
               </fieldset>
               <fieldset>
-                <legend className="text-base font-medium text-gray-900">
+                <legend className="text-base font-medium text-gray-900 dark:text-gray-300">
                   By Text
                 </legend>
                 <div className="mt-4 space-y-4">
@@ -415,14 +351,14 @@ function Profile() {
                         id="events_text"
                         name="events_text"
                         type="checkbox"
-                        className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                        className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:text-orange-brand dark:focus:ring-orange-800 rounded"
                       />
                     </div>
                     <div className="ml-3 text-sm">
-                      <label htmlFor="events_text" className="font-medium text-gray-700">
+                      <label htmlFor="events_text" className="font-medium text-gray-700 dark:text-gray-300">
                         Events
                       </label>
-                      <p className="text-gray-500">
+                      <p className="text-gray-500 dark:text-gray-500">
                         Get notified about special events and invitationals 
                       </p>
                     </div>
@@ -434,14 +370,14 @@ function Profile() {
                           id="offers_text"
                           name="offers_text"
                           type="checkbox"
-                          className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                          className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:text-orange-brand dark:focus:ring-orange-800 rounded"
                         />
                       </div>
                       <div className="ml-3 text-sm">
-                        <label htmlFor="offers_text" className="font-medium text-gray-700">
+                        <label htmlFor="offers_text" className="font-medium text-gray-700 dark:text-gray-300">
                           Offers and Promotions
                         </label>
-                        <p className="text-gray-500">
+                        <p className="text-gray-500 dark:text-gray-500">
                           Get notified if we have any special offers or promotions on entries to our events.
                         </p>
                       </div>
@@ -450,7 +386,7 @@ function Profile() {
                 </div>
               </fieldset>
             </div>
-            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6">
               <button
                 className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600"
               >
