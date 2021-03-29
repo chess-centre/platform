@@ -13,7 +13,35 @@
       "contributions": [
         "code",
         "test",
+        "doc",
+        "business"
+      ]
+    },
+    {
+      "login": "jbeasley123",
+      "name": "jbeasley123",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13149185?v=4",
+      "profile": "https://github.com/jbeasley123",
+      "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "AndyW359",
+      "name": "AndyW359",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71315264?v=4",
+      "profile": "https://github.com/AndyW359",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "CatVarley",
+      "name": "Cat Varley",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16880382?v=4",
+      "profile": "https://github.com/CatVarley",
+      "contributions": [
+        "ideas"
       ]
     }
   ],
