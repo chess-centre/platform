@@ -3,8 +3,8 @@ import routes from "../../routes/sidebar";
 import { NavLink, Route } from "react-router-dom";
 import * as Icons from "../../icons";
 import SidebarSubmenu from "./SidebarSubmenu";
-import ImageLight from "../../assets/img/logo-light-theme.png";
-import ImageDark from "../../assets/img/logo-dark-theme.png";
+import ImageLight from "../../assets/img/logo-light-theme-small.png";
+import ImageDark from "../../assets/img/logo-dark-theme-small.png";
 
 
 function Icon({ icon, ...props }) {
