@@ -12,6 +12,7 @@ function Membership() {
       benefits: [
         "Weekly Training Sessions",
         "Tailored Development Curriculum",
+        "Custom Events and Competitions",
         "Professional Coaching and Tuition",
       ],
       discounted: false,
@@ -24,6 +25,7 @@ function Membership() {
         "Weekly Social Chess",
         "Weekly Rated Match Chess",
         "Wide Range of Club Events and Competitions",
+        "Live Games"
       ],
       discounted: false,
     },
@@ -65,8 +67,7 @@ function Membership() {
                 Join our community
               </p>
               <p className="text-xl text-gray-300">
-                It's so much more than chess, it's being part of our community,
-                learning, playing and discovering what makes this game so
+                Learning, playing and discovering what makes this game so
                 amazing!
               </p>
             </div>
@@ -83,21 +84,21 @@ function Membership() {
               </div>
             </div>
           </div>
-          <div className="mt-4 relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:mt-5">
+          <div className="mt-6 relative max-w-7xl mx-auto px-2 sm:px-6 lg:px-4 lg:mt-6">
             <div className="max-w-md mx-auto lg:max-w-5xl">
               <div className="rounded-lg bg-gray-100 px-6 py-8 sm:p-10 lg:flex lg:items-center">
                 <div className="flex-1">
-                  <div className="mt-4 text-lg text-gray-600">
+                  <div className="text-lg text-gray-600">
                     Got an amazing idea to grow our community and bring Chess to
                     a greater audience?
                   </div>
                 </div>
-                <div className="mt-6 rounded-md shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
+                <div className="mt-3 rounded-lh shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
                   <a
                     href="mailto:info@chesscentre.online"
                     className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
                   >
-                    Contact Us
+                     Contact Us ♟️
                   </a>
                 </div>
               </div>

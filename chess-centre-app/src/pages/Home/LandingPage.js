@@ -6,14 +6,14 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import ComingEvents from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
-
+import DownloadPWA  from "../../components/PWA/Download";
 
 const LandingPage = () => {
   const { user } = useAuthState();
 
   return (
     <div>
-      <div className="relative bg-gray-50 overflow-hidden">
+      <div className="relative bg-gray-100 sm:bg-gray-50 overflow-hidden">
         <div
           className="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full"
           aria-hidden="true"
@@ -86,15 +86,15 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="relative pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
+        <div className="relative pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-24 xl:pb-24">
           <LandingNav />
 
-          <main className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
+          <main className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-18 xl:mt-24">
             <div className="text-center">
               <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
                 Welcome to
                 <br className="xl:hidden" />
-                <span className="text-teal-500"> The Chess Centre</span>
+                <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400"> The Chess Centre</span>
               </h2>
               <p className="mt-5 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                 It's time things changed around here. Brace yourselves!{" "}
@@ -127,6 +127,7 @@ const LandingPage = () => {
       <ComingEvents />
       <FAQs />
       <FindUs />
+      <DownloadPWA />
 
       <FooterLanding />
     </div>

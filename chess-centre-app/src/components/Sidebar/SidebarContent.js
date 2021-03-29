@@ -6,6 +6,7 @@ import SidebarSubmenu from "./SidebarSubmenu";
 import ImageLight from "../../assets/img/logo-light-theme.png";
 import ImageDark from "../../assets/img/logo-dark-theme.png";
 
+
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon];
   return <Icon {...props} />;

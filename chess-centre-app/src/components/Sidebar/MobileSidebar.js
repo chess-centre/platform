@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-
 import SidebarContent from "./SidebarContent";
 import { Transition, Backdrop } from "@windmill/react-ui";
-
 import { SidebarContext } from "../../context/SidebarContext";
+const VERSION = process.env.REACT_APP_VERSION || "v0.0.0"
 
 function MobileSidebar() {
   const { isSidebarOpen, closeSidebar } = useContext(SidebarContext);
@@ -32,7 +31,11 @@ function MobileSidebar() {
         >
           <aside className="fixed inset-y-0 z-50 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 lg:hidden">
             <SidebarContent />
+            <div class="mx-6 inline-block align-bottom align-text-bottom z-10">
+            { VERSION }
+          </div>
           </aside>
+
         </Transition>
       </>
     </Transition>

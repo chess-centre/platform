@@ -54,10 +54,20 @@ const routes = [
     component: lazy(() => import("../pages/Home/CodeOfConduct")),
     isPrivate: false,
   },
+  {
+    path: "/roadmap",
+    component: lazy(() => import("../components/Roadmap")),
+    isPrivate: false,
+  },
   // Authenticated Routes (see `src/containers/Layout` for nested routes)
   {
     path: "/app",
     component: lazy(() => import("../containers/Layout")),
+    isPrivate: true,
+  },
+  {
+    path: "/broadcast/live",
+    component: lazy(() => import("../pages/Broadcast/Live")),
     isPrivate: true,
   },
 ];

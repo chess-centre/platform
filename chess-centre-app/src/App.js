@@ -1,9 +1,10 @@
 import React, { lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./context/Auth";
-import AppRoutes from "./components/AppRoute";
+import AppRoutes from "./components/Navigation/AppRoute";
 import AOS from "aos";
 import routes from "./routes";
+
 
 const Page404 = lazy(() => import("./pages/Error/404"));
 

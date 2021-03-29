@@ -16,7 +16,7 @@ function MembershipCard({ title, price, subHeading, benefits, discounted }) {
       <div className="px-6 py-8 bg-white sm:p-10 sm:pb-6">
         <div>
           <h3
-            className="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-orange-100 text-orange-600"
+            className="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-gradient-to-r from-pink-600 to-pink-400 text-white"
             id="tier-standard"
           >
             {title}
@@ -33,21 +33,19 @@ function MembershipCard({ title, price, subHeading, benefits, discounted }) {
           {benefits.map((benefit) => (
             <li className="flex items-start">
               <div className="flex-shrink-0">
-                <svg
-                  className="h-6 w-6 text-green-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
+              <span className="h-6 flex items-center sm:h-7">
+                      <svg
+                        className="flex-shrink-0 h-5 w-5 text-teal-500"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
               </div>
               <p className="ml-3 text-base text-gray-700">{benefit}</p>
             </li>
@@ -57,9 +55,9 @@ function MembershipCard({ title, price, subHeading, benefits, discounted }) {
           <Link
             to="/register"
             className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${
-              discounted ? "bg-orange-500 " : "bg-teal-600 "
+              discounted ? "bg-orange-brand " : "bg-teal-600 "
             } ${
-              discounted ? "hover:bg-orange-brand" : "hover:bg-teal-brand"}`} aria-describedby="tier-standard">
+              discounted ? "hover:bg-orange-400" : "hover:bg-teal-brand"}`} aria-describedby="tier-standard">
             Sign up
           </Link>
         </div>
