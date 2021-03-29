@@ -4,7 +4,7 @@ function Stats() {
   return (
     <div>
       <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
+        <div className="relative bg-white dark:bg-gray-600 pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
           <dt>
             <div className="absolute bg-teal-500 rounded-md p-3">
               <svg
@@ -22,17 +22,17 @@ function Stats() {
                 />
               </svg>
             </div>
-            <p className="ml-16 text-sm font-medium text-gray-500 truncate">
+            <p className="ml-16 text-sm font-medium text-gray-500 dark:text-gray-300 truncate">
               My Events
             </p>
           </dt>
           <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
-            <p className="text-2xl font-semibold text-gray-900">3</p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+            <p className="text-2xl font-semibold text-gray-900 dark:text-white">3</p>
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6">
               <div className="text-sm">
                 <a
                   href="#"
-                  className="font-medium text-pink-600 hover:text-pink-600"
+                  className="font-medium text-orange-brand hover:text-orange-500"
                 >
                   {" "}
                   View all
@@ -42,7 +42,7 @@ function Stats() {
           </dd>
         </div>
 
-        <div className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
+        <div className="relative bg-white dark:bg-gray-600 pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
           <dt>
             <div className="absolute bg-teal-500 rounded-md p-3">
               <svg
@@ -60,17 +60,17 @@ function Stats() {
                 />
               </svg>
             </div>
-            <p className="ml-16 text-sm font-medium text-gray-500 truncate">
+            <p className="ml-16 text-sm font-medium text-gray-500 dark:text-gray-300 truncate">
               My Games
             </p>
           </dt>
           <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
-            <p className="text-2xl font-semibold text-gray-900">5</p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+            <p className="text-2xl font-semibold text-gray-900 dark:text-white">5</p>
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6">
               <div className="text-sm">
                 <a
                   href="#"
-                  className="font-medium text-pink-600 hover:text-pink-500"
+                  className="font-medium text-orange-brand hover:text-orange-500"
                 >
                   {" "}
                   View all
@@ -80,7 +80,7 @@ function Stats() {
           </dd>
         </div>
 
-        <div className="relative bg-white pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
+        <div className="relative bg-white dark:bg-gray-600 pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
           <dt>
             <div className="absolute bg-teal-500 rounded-md p-3">
               <svg
@@ -104,13 +104,13 @@ function Stats() {
                 />
               </svg>
             </div>
-            <p className="ml-16 text-sm font-medium text-gray-500 truncate">
+            <p className="ml-16 text-sm font-medium text-gray-500 dark:text-gray-300 truncate">
               My Rating
             </p>
           </dt>
           <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
-            <p className="text-2xl font-semibold text-gray-900">2317</p>
-            <p className="ml-2 flex items-baseline text-sm font-semibold text-red-600">
+            <p className="text-2xl font-semibold text-gray-900 dark:text-white">2317</p>
+            <p className="ml-2 flex items-baseline text-sm font-semibold text-red-500">
               <svg
                 className="self-center flex-shrink-0 h-5 w-5 text-red-500"
                 fill="currentColor"
@@ -125,11 +125,11 @@ function Stats() {
               </svg>
               3.2
             </p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 px-4 py-4 sm:px-6">
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6">
               <div className="text-sm">
                 <a
                   href="#"
-                  className="font-medium text-pink-600 hover:text-pink-500"
+                  className="font-medium text-orange-brand hover:text-orange-500"
                 >
                   {" "}
                   View all
