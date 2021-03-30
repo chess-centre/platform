@@ -1,11 +1,31 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+// MOVE TO DATABASE:
+const pageData = {
+  id: 1,
+  events: {
+    total: 3,
+  },
+  games: {
+    total: 5
+  },
+  rating: {
+    current: 2317,
+    previous: 2417
+  }
+}
+
 
 function Stats() {
+
+  const { id, events, games, rating } = pageData;
+
   return (
     <div>
       <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="relative bg-white dark:bg-gray-600 pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
-          <dt>
+        <div className="relative bg-white dark:bg-gray-800 pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
+          <dt className="">
             <div className="absolute bg-teal-500 rounded-md p-3">
               <svg
                 className="h-6 w-6 text-white"
@@ -27,22 +47,19 @@ function Stats() {
             </p>
           </dt>
           <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
-            <p className="text-2xl font-semibold text-gray-900 dark:text-white">3</p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6">
+            <p className="text-2xl font-semibold text-gray-900 dark:text-white">{events.total}</p>
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6  border-t border-gray-50 dark:border-gray-700">
               <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-orange-brand hover:text-orange-500"
-                >
-                  {" "}
+                <Link to={`/app/members/${id}`}
+                  className="font-medium text-orange-brand hover:text-orange-500">
                   View all
-                </a>
+                </Link>
               </div>
             </div>
           </dd>
         </div>
 
-        <div className="relative bg-white dark:bg-gray-600 pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
+        <div className="relative bg-white dark:bg-gray-800 pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
           <dt>
             <div className="absolute bg-teal-500 rounded-md p-3">
               <svg
@@ -65,22 +82,19 @@ function Stats() {
             </p>
           </dt>
           <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
-            <p className="text-2xl font-semibold text-gray-900 dark:text-white">5</p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6">
+            <p className="text-2xl font-semibold text-gray-900 dark:text-white">{games.total}</p>
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6 border-t border-gray-50 dark:border-gray-700">
               <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-orange-brand hover:text-orange-500"
-                >
-                  {" "}
+                <Link to={`/app/members/${id}`}
+                  className="font-medium text-orange-brand hover:text-orange-500">
                   View all
-                </a>
+                </Link>
               </div>
             </div>
           </dd>
         </div>
 
-        <div className="relative bg-white dark:bg-gray-600 pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
+        <div className="relative bg-white dark:bg-gray-800 pt-5 px-4 pb-12 sm:pt-6 sm:px-6 shadow rounded-lg overflow-hidden">
           <dt>
             <div className="absolute bg-teal-500 rounded-md p-3">
               <svg
@@ -109,7 +123,7 @@ function Stats() {
             </p>
           </dt>
           <dd className="ml-16 pb-6 flex items-baseline sm:pb-7">
-            <p className="text-2xl font-semibold text-gray-900 dark:text-white">2317</p>
+            <p className="text-2xl font-semibold text-gray-900 dark:text-white">{rating.current}</p>
             <p className="ml-2 flex items-baseline text-sm font-semibold text-red-500">
               <svg
                 className="self-center flex-shrink-0 h-5 w-5 text-red-500"
@@ -125,15 +139,12 @@ function Stats() {
               </svg>
               3.2
             </p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6">
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6 border-t border-gray-50 dark:border-gray-700">
               <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-orange-brand hover:text-orange-500"
-                >
-                  {" "}
+                <Link to={`/app/members/${id}`}
+                  className="font-medium text-orange-brand hover:text-orange-500">
                   View all
-                </a>
+                </Link>
               </div>
             </div>
           </dd>

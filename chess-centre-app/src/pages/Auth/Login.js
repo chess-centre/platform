@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import Logo from "../../assets/img/logo.svg";
 import { Label, Input, Button } from "@windmill/react-ui";
@@ -8,6 +8,7 @@ import { loginUser, useAuthDispatch, useAuthState } from "../../context/Auth";
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { redirect } = useParams();
 
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
@@ -15,6 +16,9 @@ function Login(props) {
   async function signIn() {
     let response = await loginUser(dispatch, email, password);
     if (response) {
+      if(redirect && redirect.includes("broadcast")) {
+        props.history.push("/broadcast/live");
+      }
       props.history.push("/app");
     } else {
       return;

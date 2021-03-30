@@ -127,8 +127,8 @@ function Profile() {
                     Username
                   </label>
                   <div className="mt-1 rounded-md shadow-sm flex">
-                    <span className=" text-xs  bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">
-                      chesscentre.online/member/
+                    <span className="text-xs  bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">
+                      chesscentre.online/app/members/
                     </span>
                     <input
                       type="text"

@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuthState } from "../../context/Auth"
 
 function MembershipCard({ title, price, subHeading, benefits, discounted }) {
+
+  const user = useAuthState();
+
+
 
   // HERE WE SHOULD DETERMINE CURRENT SIGNED IN / SUBSCRIBED STATUS
 
@@ -15,12 +20,20 @@ function MembershipCard({ title, price, subHeading, benefits, discounted }) {
     <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
       <div className="px-6 py-8 bg-white sm:p-10 sm:pb-6">
         <div>
-          <h3
+          {discounted ? (<h3
+            className="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-gradient-to-r from-orange-500 to-orange-300 text-white"
+            id="tier-standard"
+          >
+            {title}
+          </h3>) : 
+          (<h3
             className="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-gradient-to-r from-pink-600 to-pink-400 text-white"
             id="tier-standard"
           >
             {title}
-          </h3>
+          </h3>)
+          }
+
         </div>
         <div className="mt-4 flex items-baseline text-6xl font-extrabold">
           {price}
@@ -33,19 +46,19 @@ function MembershipCard({ title, price, subHeading, benefits, discounted }) {
           {benefits.map((benefit) => (
             <li className="flex items-start">
               <div className="flex-shrink-0">
-              <span className="h-6 flex items-center sm:h-7">
-                      <svg
-                        className="flex-shrink-0 h-5 w-5 text-teal-500"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
+                <span className="h-6 flex items-center sm:h-7">
+                  <svg
+                    className="flex-shrink-0 h-5 w-5 text-teal-500"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
               </div>
               <p className="ml-3 text-base text-gray-700">{benefit}</p>
             </li>
@@ -54,10 +67,8 @@ function MembershipCard({ title, price, subHeading, benefits, discounted }) {
         <div className="rounded-md shadow">
           <Link
             to="/register"
-            className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${
-              discounted ? "bg-orange-brand " : "bg-teal-600 "
-            } ${
-              discounted ? "hover:bg-orange-400" : "hover:bg-teal-brand"}`} aria-describedby="tier-standard">
+            className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${discounted ? "bg-orange-brand " : "bg-teal-600 "
+              } ${discounted ? "hover:bg-orange-400" : "hover:bg-teal-brand"}`} aria-describedby="tier-standard">
             Sign up
           </Link>
         </div>

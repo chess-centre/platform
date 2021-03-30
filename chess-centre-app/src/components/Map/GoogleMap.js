@@ -5,7 +5,7 @@ import {
   withGoogleMap,
   withScriptjs,
 } from "react-google-maps";
-import Logo from "../../assets/img/logo-map-pin.svg";
+import Logo from "../../assets/img/logo-map-pin-orange.svg";
 
 const GoogleMap = withScriptjs(
   withGoogleMap((props) => (
