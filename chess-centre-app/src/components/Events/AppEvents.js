@@ -29,12 +29,6 @@ function UpComingEvents() {
                             </th>
                             <th
                               scope="col"
-                              className="hidden 2xl:block px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                            >
-                              ECF Ref
-                            </th>
-                            <th
-                              scope="col"
                               className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                             >
                               Rating
@@ -58,9 +52,6 @@ function UpComingEvents() {
                               >
                                 <td className="px-2 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
                                   {p.name}
-                                </td>
-                                <td className="hidden 2xl:block px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                                  {p.gradeNo}
                                 </td>
                                 <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300">
                                   {p.grade}

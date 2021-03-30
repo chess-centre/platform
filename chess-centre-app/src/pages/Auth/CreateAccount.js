@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link , useParams } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
 import ImageLarge from "../../assets/img/create-account-desktop.png";
 import ImageSmall from "../../assets/img/create-account-small.jpg";
@@ -9,7 +9,10 @@ import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal.js";
 import ValidateEmail from "../../utils/ValidateEmail";
 
 function Login(props) {
+  const { redirect } = useParams();
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
@@ -17,7 +20,7 @@ function Login(props) {
   const dispatch = useAuthDispatch();
 
   useEffect(() => {
-    if (!email && !password && password !== rePassword && !isChecked) {
+    if (isFormValid()) {
       setSubmitButtonActive(true);
     } else {
       setSubmitButtonActive(false);
@@ -33,9 +36,36 @@ function Login(props) {
     setIsChecked(checked);
   };
 
+  const isFormValid= () => {
+      if(!email) return false;
+      if(!firstName) return false;
+      if(!surname) return false;
+      if(!password) return false;
+      if(!rePassword) return false;
+      if(!isChecked) return false;
+      if(password !== rePassword) return false;
+      return true;
+  }
+
   async function signUp() {
     const isValidEmail = ValidateEmail(email);
     let isFormValid = true;
+
+    if(!firstName) {
+      dispatch({
+        type: "LOGIN_ERROR",
+        error: "Your first name is a required field.",
+      });
+      isFormValid = false;
+    }
+
+    if(!surname) {
+      dispatch({
+        type: "LOGIN_ERROR",
+        error: "Your surname is a required field.",
+      });
+      isFormValid = false;
+    }
 
     if (!email) {
       dispatch({
@@ -72,8 +102,13 @@ function Login(props) {
 
     if (isFormValid) {
       try {
-        let response = await signUpUser(dispatch, email, password);
+        let response = await signUpUser(dispatch, email, password, firstName, surname);
         if (response) {
+
+          if(redirect && redirect.includes("broadcast")) {
+            const param = "&redirect=broadcast"
+          }
+
           props.history.push(`/register/confirm/${email}`);
         } // if there's no response, the action dispatched a contextual error already
       } catch (error) {
@@ -86,7 +121,7 @@ function Login(props) {
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div className="flex flex-col overflow-y-auto md:flex-row">
-          <div className="h-32 md:h-auto md:w-1/2">
+          <div className="h-22 md:h-auto md:w-1/2">
             <img
               aria-hidden="true"
               className="hidden object-cover w-full h-full sm:block"
@@ -112,6 +147,28 @@ function Login(props) {
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Create account
               </h1>
+              <Label>
+                <span>First Name</span>
+                <Input
+                  disabled={loading}
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="mt-1"
+                  type="text"
+                  placeholder="Garry"
+                />
+              </Label>
+              <Label>
+                <span>Surname</span>
+                <Input
+                  disabled={loading}
+                  value={surname}
+                  onChange={(e) => setSurname(e.target.value)}
+                  className="mt-1"
+                  type="text"
+                  placeholder="Kasparov"
+                />
+              </Label>
               <Label>
                 <span>Email</span>
                 <Input

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-//import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import PGNViewer from "../ChessBoard/ChessBoard";
 import { games } from "../../api/mock.games";
+import MembershipCard from "../Membership/MembershipCard";
 
 function MemberProfile() {
-  //const { memberId } = useParams();
+  const { memberId } = useParams();
   const [member, setMember] = useState({});
   const [selectedGame, setSelectedGame] = useState(0);
 
@@ -17,6 +18,7 @@ function MemberProfile() {
     setTimeout(() => {
       setMember((member) => ({
         ...member,
+        id: memberId,
         // EXAMPLE RESPONSE:
         name: "Matthew Webb",
         grade: 247,

@@ -69,14 +69,18 @@ export async function userPasswordForgotSubmit(
   }
 }
 
-export async function signUpUser(dispatch, email, password) {
+export async function signUpUser(dispatch, email, password, firstName, surname) {
   try {
     dispatch({ type: "REQUEST_LOGIN" });
 
     let user = await Auth.signUp({
       username: email,
       password,
-      attributes: { email },
+      attributes: { 
+        email,
+        given_name: firstName,
+        family_name: surname
+      },
     });
 
     if (user) {
