@@ -189,12 +189,12 @@ function Profile() {
                       id="about"
                       name="about"
                       rows="3"
-                      className="text-sx shadow-sm focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border-gray-300 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900 rounded-md"
-                      placeholder="My favourite opening is the Sicilian."
+                      className="text-xs shadow-sm focus:ring-teal-500 focus:border-teal-500 mt-1 block w-full sm:text-sm border-gray-300 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900 rounded-md"
+                      placeholder="Example: My favourite opening is the Sicilian."
                     ></textarea>
                   </div>
                   <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                    Brief description for your profile. URLs are hyperlinked.
+                    Tell us what you love about Chess ♟️
                   </p>
                 </div>
               </div>

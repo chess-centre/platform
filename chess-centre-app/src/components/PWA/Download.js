@@ -40,8 +40,8 @@ function DownloadPWA() {
                   <p className="text-base font-medium text-white">
                     Matt Webb
                   </p>
-                  <p className="text-base font-medium text-indigo-100">
-                    Co-Founder @ <span className="text-gray-900">The Chess Centre</span>
+                  <p className="text-base font-medium text-gray-700">
+                    Co-Founder @ <span className="font-bold text-gray-900">The Chess Centre</span>
                   </p>
                 </footer>
               </blockquote>

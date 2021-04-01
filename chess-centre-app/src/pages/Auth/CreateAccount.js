@@ -7,6 +7,7 @@ import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
 import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal.js";
 import ValidateEmail from "../../utils/ValidateEmail";
+import Loading from "../../assets/img/loading.svg";
 
 function Login(props) {
   const { redirect } = useParams();
@@ -25,7 +26,7 @@ function Login(props) {
     } else {
       setSubmitButtonActive(false);
     }
-  }, [email, password, rePassword, isChecked]);
+  }, [email, password, rePassword, isChecked, firstName, surname]);
 
   const { loading, errorMessage } = useAuthState();
 
@@ -36,7 +37,7 @@ function Login(props) {
     setIsChecked(checked);
   };
 
-  const isFormValid= () => {
+  const isFormValid = () => {
       if(!email) return false;
       if(!firstName) return false;
       if(!surname) return false;
@@ -215,15 +216,15 @@ function Login(props) {
                 </span>
               </Label>
 
-              {loading ? (
+              { loading ? (
                 <Button disabled={"disabled"} block className="mt-4">
-                  <div className="rounded animate-spin ease duration-300 w-4 h-4 border-2 border-orange"></div>
-                  <span className="mx-2">Please wait ...</span>
+                  <img className="h-5 w-5" src={Loading} />
+                  <span className="mx-2">Creating account ...</span>
                 </Button>
               ) : (
                 <Button
                   onClick={signUp}
-                  disabled={isSubmitButtonActive && "disabled"}
+                  disabled={!isSubmitButtonActive && "disabled"}
                   block
                   className="mt-4"
                 >

@@ -4,6 +4,7 @@ import ImageDark from "../../assets/img/chess-players.jpg";
 import Logo from "../../assets/img/logo.svg";
 import { Label, Input, Button } from "@windmill/react-ui";
 import { loginUser, useAuthDispatch, useAuthState } from "../../context/Auth";
+import Loading from "../../assets/img/loading.svg";
 
 function Login(props) {
   const [email, setEmail] = useState("");
@@ -24,6 +25,7 @@ function Login(props) {
       return;
     }
   }
+
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-200 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
@@ -73,10 +75,10 @@ function Login(props) {
               <Button className="mt-4" onClick={signIn} disabled={loading}>
                 {loading ? (
                   <div>
-                    <div>Loading ...</div>
+                    <div className="flex"><img className="h-5 w-5 mr-3" src={Loading} /> <span className="inline-block align-middle text-sm">Loading ...</span></div>
                   </div>
                 ) : (
-                  "Log in"
+                  "Login"
                 )}
               </Button>
 
