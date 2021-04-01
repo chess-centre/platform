@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
+import LogoBeta from "../../assets/img/logo.svg"; // "../../assets/img/beta/logo-light-theme-beta-small.png"; // <-- needs to be SVG!
 import { useAuthState } from "../../context/Auth";
 import LogoWithName from "../../assets/img/logo-light-theme.png";
+import LogoWithNameBeta from "../../assets/img/beta/logo-light-theme-beta-small.png";
+
+let isDev = true;
+if (process.env.NODE_ENV.includes("prod")) {
+    isDev = false
+};
 
 const LandingNav = (props) => {
   
@@ -25,7 +32,7 @@ const LandingNav = (props) => {
               <Link to="/" aria-label="Home">
                 <img
                   className="object-center h-10 md:w-auto"
-                  src={Logo}
+                  src={isDev ? LogoBeta : Logo}
                   alt="Logo"
                 />
               </Link>
@@ -100,7 +107,7 @@ const LandingNav = (props) => {
                   to="/login"
                   className="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none focus:border-teal-300 focus:shadow-outline-teal active:bg-gray-50 active:text-teal-700 transition duration-150 ease-in-out"
                 >
-                  Log in
+                  Login
                 </Link>
               )}
             </span>
@@ -123,8 +130,8 @@ const LandingNav = (props) => {
           >
             <div className="px-5 pt-4 flex items-center justify-between">
               <img
-                className="object-centre h-8 w-auto"
-                src={LogoWithName}
+                className={ isDev ? "h-6 w-auto" : "object-centre h-8 w-auto"}
+                src={isDev ? LogoWithNameBeta : LogoWithName }
                 alt="Logo"
               />
               <div className="-mr-2">

@@ -21,7 +21,6 @@ function Header() {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   function handleProfileClick() {
-    console.log(isProfileMenuOpen)
     setIsProfileMenuOpen(!isProfileMenuOpen);
   }
   function signOut() {
