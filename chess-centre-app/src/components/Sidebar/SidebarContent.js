@@ -7,7 +7,7 @@ import ImageLight from "../../assets/img/logo-light-theme-small.png";
 import ImageDark from "../../assets/img/logo-dark-theme-small.png";
 import ImageLightBeta from "../../assets/img/beta/logo-light-theme-beta-small.png";
 import ImageDarkBeta from "../../assets/img/beta/logo-dark-theme-beta-small.png";
-const version = process.env.CHESS_CENTRE_VERSION;
+const version = process.env.REACT_APP_VERSION || "0.0.0";
 
 let isDev = true;
 if (process.env.NODE_ENV.includes("prod")) {
