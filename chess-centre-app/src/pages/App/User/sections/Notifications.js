@@ -1,13 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
+import { useToasts } from "react-toast-notifications";
 
-function Notifications() {
+function Notifications({ eventsByEmail, promoByEmail, eventsByText, promoByText }) {
+
+  const [eByEmail, setEventsByEmail] = useState(eventsByEmail);
+  const [pByEmail, setPromoByEmail] = useState(promoByEmail);
+  const [eByText, setEventsByText] = useState(eventsByText);
+  const [pByText, setPromoByText] = useState(promoByText);
+  const { addToast } = useToasts();
+
+  const updateNatificationPeferences = () => {
+    console.log(eByEmail, pByEmail, eByText, pByText);
+    addToast("Notification preferences - saved!", { appearance: 'success', autoDismiss: true })
+  }
+
+  const handleCheckboxChange = e => {
+    const { name, checked } = e.target;
+    switch (name) {
+      case "events_email":
+        setEventsByEmail(checked);
+        break;
+      case "promos_email":
+        setPromoByEmail(checked);
+        break;
+      case "events_text":
+        setEventsByText(checked);
+        break;
+      case "promos_text":
+        setPromoByText(checked);
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <div>
       <div className="shadow sm:rounded-md sm:overflow-hidden">
         <div className="bg-white dark:bg-gray-800 py-6 px-4 space-y-6 sm:p-6">
           <div>
             <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
-              Notifications
+              Notification preferences
             </h3>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
               Let us know how we can keep in touch with you. We promise never to
@@ -26,6 +59,8 @@ function Notifications() {
                     id="events_email"
                     name="events_email"
                     type="checkbox"
+                    onChange={(e) => handleCheckboxChange(e)}
+                    defaultChecked={eventsByEmail}
                     className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:text-orange-brand dark:focus:ring-orange-brand rounded"
                   />
                 </div>
@@ -45,9 +80,11 @@ function Notifications() {
                 <div className="flex items-start">
                   <div className="h-5 flex items-center">
                     <input
-                      id="offers_email"
-                      name="offers_email"
+                      id="promos_email"
+                      name="promos_email"
                       type="checkbox"
+                      onChange={(e) => handleCheckboxChange(e)}
+                      defaultChecked={promoByEmail}
                       className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:text-orange-brand dark:focus:ring-orange-800 rounded"
                     />
                   </div>
@@ -78,6 +115,8 @@ function Notifications() {
                     id="events_text"
                     name="events_text"
                     type="checkbox"
+                    onChange={(e) => handleCheckboxChange(e)}
+                    defaultChecked={eventsByText}
                     className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:text-orange-brand dark:focus:ring-orange-800 rounded"
                   />
                 </div>
@@ -97,9 +136,11 @@ function Notifications() {
                 <div className="flex items-start">
                   <div className="h-5 flex items-center">
                     <input
-                      id="offers_text"
-                      name="offers_text"
+                      id="promos_text"
+                      name="promos_text"
                       type="checkbox"
+                      onChange={(e) => handleCheckboxChange(e)}
+                      defaultChecked={promoByText}
                       className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 dark:bg-gray-900 dark:border-gray-700 dark:text-orange-brand dark:focus:ring-orange-800 rounded"
                     />
                   </div>
@@ -121,7 +162,9 @@ function Notifications() {
           </fieldset>
         </div>
         <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6">
-          <button className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600">
+          <button 
+          onClick={updateNatificationPeferences}
+          className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600">
             Save
           </button>
         </div>

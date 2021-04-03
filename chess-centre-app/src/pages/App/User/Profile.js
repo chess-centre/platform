@@ -15,7 +15,6 @@ function Profile() {
       const m = await getOrCreateMember(u);
       setMember(m);
     }
-
     getUser();
   }, [])
 

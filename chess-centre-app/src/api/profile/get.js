@@ -2,12 +2,11 @@ import { DataStore } from '@aws-amplify/datastore';
 import { FidePlayer, Member } from '../../models';
 
 export const getFideData = async (id) => {
-    const record = await DataStore.query(FidePlayer, (p) => p.fideId("eq", id));
-    console.log('record', record);
+    const record = await DataStore.query(FidePlayer, (p) => p.fideId("eq", Number(id)));
     if(Array.isArray(record) && record.length) {
         return record[0];
     } else {
-        return {};
+        return;
     }
 }
 
