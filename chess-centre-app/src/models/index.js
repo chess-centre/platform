@@ -1,7 +1,13 @@
 // @ts-check
-import { initSchema } from "@aws-amplify/datastore";
-import { schema } from "./schema";
+import { initSchema } from '@aws-amplify/datastore';
+import { schema } from './schema';
 
-const { Event } = initSchema(schema);
 
-export { Event };
+
+const { FidePlayer, Member, Event } = initSchema(schema);
+
+export {
+  FidePlayer,
+  Member,
+  Event
+};

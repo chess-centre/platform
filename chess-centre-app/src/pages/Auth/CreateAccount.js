@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link , useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
 import ImageLarge from "../../assets/img/create-account-desktop.png";
 import ImageSmall from "../../assets/img/create-account-small.jpg";
@@ -10,7 +10,6 @@ import ValidateEmail from "../../utils/ValidateEmail";
 import Loading from "../../assets/img/loading.svg";
 
 function Login(props) {
-  const { redirect } = useParams();
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
@@ -21,23 +20,7 @@ function Login(props) {
   const dispatch = useAuthDispatch();
 
   useEffect(() => {
-    if (isFormValid()) {
-      setSubmitButtonActive(true);
-    } else {
-      setSubmitButtonActive(false);
-    }
-  }, [email, password, rePassword, isChecked, firstName, surname]);
-
-  const { loading, errorMessage } = useAuthState();
-
-  const setPrivacyPolicyStatus = (checked) => {
-    checked
-      ? window.localStorage.setItem("privacyPolicy", "accepted")
-      : window.localStorage.removeItem("privacyPolicy");
-    setIsChecked(checked);
-  };
-
-  const isFormValid = () => {
+    const isFormValid = () => {
       if(!email) return false;
       if(!firstName) return false;
       if(!surname) return false;
@@ -47,6 +30,21 @@ function Login(props) {
       if(password !== rePassword) return false;
       return true;
   }
+    if (isFormValid()) {
+      setSubmitButtonActive(true);
+    } else {
+      setSubmitButtonActive(false);
+    }
+  }, [email, firstName, isChecked, password, rePassword, surname]);
+
+  const { loading, errorMessage } = useAuthState();
+
+  const setPrivacyPolicyStatus = (checked) => {
+    checked
+      ? window.localStorage.setItem("privacyPolicy", "accepted")
+      : window.localStorage.removeItem("privacyPolicy");
+    setIsChecked(checked);
+  };
 
   async function signUp() {
     const isValidEmail = ValidateEmail(email);
@@ -106,9 +104,9 @@ function Login(props) {
         let response = await signUpUser(dispatch, email, password, firstName, surname);
         if (response) {
 
-          if(redirect && redirect.includes("broadcast")) {
-            const param = "&redirect=broadcast"
-          }
+          // if(redirect && redirect.includes("broadcast")) {
+          //   const param = "&redirect=broadcast"
+          // }
 
           props.history.push(`/register/confirm/${email}`);
         } // if there's no response, the action dispatched a contextual error already
@@ -218,7 +216,7 @@ function Login(props) {
 
               { loading ? (
                 <Button disabled={"disabled"} block className="mt-4">
-                  <img className="h-5 w-5" src={Loading} />
+                  <img alt="Loading" className="h-5 w-5" src={Loading} />
                   <span className="mx-2">Creating account ...</span>
                 </Button>
               ) : (

@@ -75,7 +75,7 @@ function Login(props) {
               <Button className="mt-4" onClick={signIn} disabled={loading}>
                 {loading ? (
                   <div>
-                    <div className="flex"><img className="h-5 w-5 mr-3" src={Loading} /> <span className="inline-block align-middle text-sm">Loading ...</span></div>
+                    <div className="flex"><img alt="Loading" className="h-5 w-5 mr-3" src={Loading} /> <span className="inline-block align-middle text-sm">Loading ...</span></div>
                   </div>
                 ) : (
                   "Login"
