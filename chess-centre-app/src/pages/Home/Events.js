@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
@@ -30,20 +31,17 @@ function Events() {
         <div className="">
           <div className="max-w-7xl mx-auto py-10 px-4 sm:py-10 sm:px-6 lg:px-8 text-center">
             <div className="sm:hidden">
-              <label for="tabs" className="sr-only">
+              <label htmlFor="tabs" className="sr-only">
                 Select a tab
               </label>
               <select
                 id="tabs"
                 name="tabs"
+                defaultValue="All"
                 className="block w-full focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
               >
-                <option selected>All</option>
-
                 <option>Junior</option>
-
                 <option>Congresses</option>
-
                 <option>Socials</option>
               </select>
             </div>
@@ -52,8 +50,8 @@ function Events() {
                 className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"
                 aria-label="Tabs"
               >
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   className="text-gray-900 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"
                   aria-current="page"
                 >
@@ -62,10 +60,10 @@ function Events() {
                     aria-hidden="true"
                     className="bg-teal-500 absolute inset-x-0 bottom-0 h-0.5"
                   ></span>
-                </a>
+                </Link>
 
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   className="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"
                 >
                   <span>Junior</span>
@@ -73,10 +71,10 @@ function Events() {
                     aria-hidden="true"
                     className="bg-transparent absolute inset-x-0 bottom-0 h-0.5"
                   ></span>
-                </a>
+                </Link>
 
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   className="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"
                 >
                   <span>Congresses</span>
@@ -84,10 +82,10 @@ function Events() {
                     aria-hidden="true"
                     className="bg-transparent absolute inset-x-0 bottom-0 h-0.5"
                   ></span>
-                </a>
+                </Link>
 
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   className="text-gray-500 hover:text-gray-700 rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"
                 >
                   <span>Socials</span>
@@ -95,7 +93,7 @@ function Events() {
                     aria-hidden="true"
                     className="bg-transparent absolute inset-x-0 bottom-0 h-0.5"
                   ></span>
-                </a>
+                </Link>
               </nav>
             </div>
           </div>

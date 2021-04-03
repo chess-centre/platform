@@ -2,37 +2,35 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PGNViewer from "../ChessBoard/ChessBoard";
 import { games } from "../../api/mock.games";
-import MembershipCard from "../Membership/MembershipCard";
+import { Members as members } from "../../api/mock.members";
 
 function MemberProfile() {
   const { memberId } = useParams();
   const [member, setMember] = useState({});
+  const [memberGames, setMemberGames] = useState([]);
   const [selectedGame, setSelectedGame] = useState(0);
 
+  const id = Number(memberId);
+
+  const profileInfo = members.find(m => m.id === id);
+  const profileGames = games.find(m => m.memberId === id);
+
   const getGame = (id) => {
-    return games[id].pgn;
+    if(profileGames) {
+      return profileGames.games[id].pgn;
+    } else {
+      return "";
+    }
   };
 
   useEffect(() => {
     // Fetch Member Info
     setTimeout(() => {
-      setMember((member) => ({
-        ...member,
-        id: memberId,
-        // EXAMPLE RESPONSE:
-        name: "Matthew Webb",
-        grade: 247,
-        rating: 2249,
-        club: "The Chess Centre",
-        about:
-          "My favourite player is Bobby Fischer, followed closely by Rashid Nezhmetdinov.",
-        // GET GAMES OF PLAYER
-      }));
+      setMember(() => profileInfo);
+      setMemberGames(() => profileGames);
     }, 100);
-    // Ensure is a signed in user
 
-    // Any subsciber required data
-  }, []);
+  }, [profileGames, profileInfo]);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3">
@@ -58,7 +56,7 @@ function MemberProfile() {
               </div>
               <div className="sm:col-span-1">
                 <dt className="text-sm font-medium text-gray-500 dark:text-gray-200">Grade</dt>
-                <dd className="mt-1 text-sm text-gray-900 dark:text-white">{member.grade}</dd>
+                <dd className="mt-1 text-sm text-gray-900 dark:text-white">{member.gradingInfo ? member.gradingInfo.grade : ""}</dd>
               </div>
               <div className="sm:col-span-2">
                 <dt className="text-sm font-medium text-gray-500 dark:text-gray-200">About</dt>
@@ -102,7 +100,7 @@ function MemberProfile() {
                             </tr>
                           </thead>
                           <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-500">
-                            {games.map((game, i) => {
+                            { memberGames && memberGames.games ? memberGames.games.map((game, i) => {
                               const isActive = i === selectedGame;
                               return (
                                 <tr key={i} className={isActive ? "bg-orange-50 dark:bg-teal-700" : ""}>
@@ -138,8 +136,14 @@ function MemberProfile() {
                                     </button>
                                   </td>
                                 </tr>
-                              );
-                            })}
+                              )
+                            }) : <tr><td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex align-center">
+                              <div className="ml-1 text-xs">
+                                No Games
+                              </div>
+                            </div>
+                          </td></tr>}
                           </tbody>
                         </table>
                       </div>

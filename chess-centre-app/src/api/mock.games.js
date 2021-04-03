@@ -1,5 +1,7 @@
   // TO BE MOVE TO BACKEND
-  export const games = [
+  export const games = [{
+    memberId: 1,
+ games:[
     {
       opponent: "Merry, Alan B",
       event: "Scarborough Congress 2017",
@@ -54,4 +56,4 @@
     1.c4 e5 2.g3 Nc6 3.Bg2 f5 4.Nc3 Nf6 5.e3 g6 6.d4 e4 7.f3 exf3 8.Nxf3 d6 9.O-O Bg7 10.d5 Ne5 11.Nxe5 dxe5 12.e4 O-O 13.Be3 Ng4 14.Bc5 Rf7 15.exf5 gxf5 16.h3 b6 17.hxg4 bxc5 18.gxf5 Bxf5 19.Be4 Qg5 20.Qd3 Raf8 21.Bxf5 Rxf5 22.Rxf5 Rxf5 23.Ne4 Qg4 24.Kg2 Bf8 25.Rf1 Rxf1 26.Kxf1 Qh3+ 27.Kg1 Be7 28.Nf2 Qh5 29.Kg2 Qg5 30.Qf3 h5 31.Ne4 Qg6 32.Kf2 Kg7 33.Ke2 Qa6 34.Qc3 Bf6 35.a3 Qb6 36.b3 a5 37.Qf3 Be7 38.Qxh5 Qxb3 39.Qxe5+ Kf7 40.Qh5+ Kg7 41.Qg4+ Kh8 42.Nd2 Qb8 43.Qg6 Bf8 44.g4 Qb2 45.Qh5+ Kg8 46.Qg5+ Kf7 47.Qf5+ Ke7 48.Qf4 Qb6 49.Qg5+ Kf7 50.Qh5+ Kg8 51.g5 Bg7 52.Qe8+ Kh7 53.Qe4+ Kh8 54.Qe6 Qb8 55.Kf3 Qf8+ 56.Kg4 Qf2 57.Qc8+ Bf8 58.Nf3 Kg8 59.Qxc7 Qg2+ 60.Kf4 Qe2 61.g6 Bh6+ 62.Kg3 1-0
     `,
     },
-  ];
+  ]}];

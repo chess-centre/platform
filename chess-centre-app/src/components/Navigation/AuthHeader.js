@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { SidebarContext } from "../../context/SidebarContext";
 import {
   MoonIcon,
@@ -7,11 +8,7 @@ import {
   OutlinePersonIcon,
   OutlineLogoutIcon,
 } from "../../icons";
-import {
-  Dropdown,
-  DropdownItem,
-  WindmillContext,
-} from "@windmill/react-ui";
+import { Dropdown, DropdownItem, WindmillContext } from "@windmill/react-ui";
 import { logout, useAuthDispatch } from "../../context/Auth";
 
 function Header() {
@@ -63,7 +60,7 @@ function Header() {
               aria-label="Account"
               aria-haspopup="true"
             >
-            <span className="inline-block align-middle bg-gray-100 rounded-full overflow-hidden h-8 w-8">
+              <span className="inline-block align-middle bg-gray-100 rounded-full overflow-hidden h-8 w-8">
                 <svg
                   className="h-full w-full text-gray-300"
                   fill="currentColor"
@@ -78,17 +75,16 @@ function Header() {
               isOpen={isProfileMenuOpen}
               onClose={() => setIsProfileMenuOpen(false)}
             >
-              <DropdownItem tag="a" href="/app/profile">
-                <OutlinePersonIcon
-                  className="w-4 h-4 mr-3"
-                  aria-hidden="true"
-                />
-                Profile
-              </DropdownItem>
-              {/* <DropdownItem tag="a" href="/app/profile/settings">
-                <OutlineCogIcon className="w-4 h-4 mr-3" aria-hidden="true" />
-                Settings
-              </DropdownItem> */}
+              <Link to="/app/profile" className="divide-white mb-2">
+                <DropdownItem>
+                  <OutlinePersonIcon
+                    className="w-4 h-4 mr-3"
+                    aria-hidden="true"
+                  />
+                  Profile
+                </DropdownItem>
+              </Link>
+
               <DropdownItem onClick={() => signOut()}>
                 <OutlineLogoutIcon
                   className="w-4 h-4 mr-3"
