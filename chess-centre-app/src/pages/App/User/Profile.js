@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getCurrentAuthenticatedUser } from "../../../context/Auth";
-import { getOrCreateMember } from "../../../api/profile/get";
-import ProfileInfo from "./sections/ProfileInfo";
-import PersonalInfo from "./sections/PersonalInfo";
-import Notifications from "./sections/Notifications";
+import { getOrCreateMember } from "../../../api/profile/chess";
+import { ChessInfo, AccountInfo, Preferences } from "./sections";
 
 function Profile() {
   const [member, setMember] = useState({})
@@ -96,9 +94,9 @@ function Profile() {
         </nav>
       </aside>
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-        <ProfileInfo {...member} />
-        <PersonalInfo {...member} />
-        <Notifications {...member}  />
+        <ChessInfo {...member} />
+        <AccountInfo {...member} />
+        <Preferences {...member}  />
       </div>
     </div>
   );

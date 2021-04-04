@@ -1,5 +1,62 @@
 export const schema = {
     "models": {
+        "ECFPlayer": {
+            "name": "ECFPlayer",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "ecfId": {
+                    "name": "ecfId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "club": {
+                    "name": "club",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "currentRating": {
+                    "name": "currentRating",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "ECFPlayers",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "FidePlayer": {
             "name": "FidePlayer",
             "fields": {
@@ -91,7 +148,7 @@ export const schema = {
                 "ecfId": {
                     "name": "ecfId",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -230,5 +287,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "e80d8654c606c0ee637c6c1123d035d9"
+    "version": "3f53df31ac663db650c9360912e7ed50"
 };

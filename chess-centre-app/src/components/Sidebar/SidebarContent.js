@@ -10,7 +10,7 @@ import ImageDarkBeta from "../../assets/img/beta/logo-dark-theme-beta-small.png"
 const version = process.env.REACT_APP_VERSION || "0.0.0";
 
 let isDev = true;
-if (process.env.NODE_ENV.includes("prod")) {
+if (process.env.NODE_ENV === "production") {
     isDev = false
 };
 

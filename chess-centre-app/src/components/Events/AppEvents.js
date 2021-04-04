@@ -64,7 +64,7 @@ function UpComingEvents() {
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                   <Link
-                                    to={`/app/members/${id}`}
+                                    to={`/app/non-members/${id}`}
                                     className="text-orange-600 hover:text-orange-900 dark:text-orange-brand dark:hover:text-orange-400"
                                   >
                                     View

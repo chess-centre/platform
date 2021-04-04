@@ -1,3 +1,10 @@
+type ECFPlayer @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  ecfId: String
+  club: String
+  currentRating: String
+}
+
 type FidePlayer @model @auth(rules: [{allow: public}]) {
   id: ID!
   fideId: Int
@@ -10,7 +17,7 @@ type Member @model @auth(rules: [{allow: public}]) {
   id: ID!
   about: String
   fideId: Int
-  ecfId: Int
+  ecfId: String
   username: String
   eventsByEmail: Boolean
   promoByEmail: Boolean

@@ -4,6 +4,15 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class ECFPlayer {
+  readonly id: string;
+  readonly ecfId?: string;
+  readonly club?: string;
+  readonly currentRating?: string;
+  constructor(init: ModelInit<ECFPlayer>);
+  static copyOf(source: ECFPlayer, mutator: (draft: MutableModel<ECFPlayer>) => MutableModel<ECFPlayer> | void): ECFPlayer;
+}
+
 export declare class FidePlayer {
   readonly id: string;
   readonly fideId?: number;
@@ -18,7 +27,7 @@ export declare class Member {
   readonly id: string;
   readonly about?: string;
   readonly fideId?: number;
-  readonly ecfId?: number;
+  readonly ecfId?: string;
   readonly username?: string;
   readonly eventsByEmail?: boolean;
   readonly promoByEmail?: boolean;

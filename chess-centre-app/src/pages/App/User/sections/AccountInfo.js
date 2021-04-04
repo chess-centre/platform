@@ -2,7 +2,7 @@ import React from "react";
 import { useAuthState, updateUserAttributes } from "../../../../context/Auth";
 import { useToasts } from "react-toast-notifications";
 
-function PersonalInfo() {
+function AccountInfo() {
   const { addToast } = useToasts();
   const { user } = useAuthState();
   const { email, family_name, given_name, email_verified } = user.attributes;
@@ -13,28 +13,36 @@ function PersonalInfo() {
   });
 
   const updatePersonalInfo = async () => {
-    if (!personalInfo.family_name || !personalInfo.given_name) {
+    const { given_name, family_name } = personalInfo;
+
+    if (!given_name || !family_name) {
       addToast("First Name or Surname cannot be blank.", {
         appearance: "warning",
         autoDismiss: true,
       });
       return;
     }
-    const error = await updateUserAttributes(
-      personalInfo.given_name,
-      personalInfo.family_name
-    );
+    const error = await updateUserAttributes(given_name, family_name);
     if (error) {
       addToast("Oops! Something went wrong.", {
         appearance: "error",
         autoDismiss: true,
       });
+      return;
     } else {
-      addToast("Presonal Info - saved!", {
+      addToast("Account info - saved!", {
         appearance: "success",
         autoDismiss: true,
       });
+      return;
     }
+  };
+
+  const handleInput = (value) => {
+    setPersonalInfo((state) => ({
+      ...state,
+      ...value,
+    }));
   };
 
   return (
@@ -43,7 +51,7 @@ function PersonalInfo() {
         <div className="bg-white dark:bg-gray-800 py-6 px-4 space-y-6 sm:p-6">
           <div>
             <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
-              Personal Information
+              Account Information
             </h3>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
               These details are used to help pairing
@@ -60,17 +68,12 @@ function PersonalInfo() {
               </label>
               <input
                 value={personalInfo.given_name}
-                onChange={(e) =>
-                  setPersonalInfo((s) => ({
-                    ...s,
-                    given_name: e.target.value,
-                  }))
-                }
+                onChange={(e) => handleInput(e.target.value)}
                 type="text"
                 name="first_name"
                 id="first_name"
                 autoComplete="given-name"
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
+                className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500  dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
               />
             </div>
 
@@ -83,17 +86,12 @@ function PersonalInfo() {
               </label>
               <input
                 value={personalInfo.family_name}
-                onChange={(e) =>
-                  setPersonalInfo((s) => ({
-                    ...s,
-                    family_name: e.target.value,
-                  }))
-                }
+                onChange={(e) => handleInput(e.target.value)}
                 type="text"
                 name="last_name"
                 id="last_name"
                 autoComplete="family-name"
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
+                className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
               />
             </div>
 
@@ -111,7 +109,7 @@ function PersonalInfo() {
                 name="email_address"
                 id="email_address"
                 autoComplete="email"
-                className="text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm dark:text-gray-400 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-50"
+                className="text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-50"
               />
             </div>
             {email_verified ? (
@@ -139,12 +137,12 @@ function PersonalInfo() {
             null}
           </div>
         </div>
-        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6">
+        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6 border-t border-gray-50 dark:border-gray-700">
           <button
             onClick={updatePersonalInfo}
-            className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-xs sm:text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
-            Save
+            Update
           </button>
         </div>
       </div>
@@ -152,4 +150,4 @@ function PersonalInfo() {
   );
 }
 
-export default PersonalInfo;
+export default AccountInfo;

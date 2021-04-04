@@ -40,7 +40,7 @@ function Notifications({ eventsByEmail, promoByEmail, eventsByText, promoByText 
         <div className="bg-white dark:bg-gray-800 py-6 px-4 space-y-6 sm:p-6">
           <div>
             <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
-              Notification preferences
+              Preferences
             </h3>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
               Let us know how we can keep in touch with you. We promise never to
@@ -161,11 +161,11 @@ function Notifications({ eventsByEmail, promoByEmail, eventsByText, promoByText 
             </div>
           </fieldset>
         </div>
-        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6">
+        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6 border-t border-gray-50 dark:border-gray-700">
           <button 
           onClick={updateNatificationPeferences}
-          className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600">
-            Save
+          className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-xs sm:text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600">
+            Update
           </button>
         </div>
       </div>
