@@ -1,5 +1,6 @@
   // TO BE MOVE TO BACKEND
   export const games = [{
+    username: "matthew-webb-test",
     memberId: 1,
  games:[
     {

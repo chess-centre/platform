@@ -4,7 +4,7 @@ import Logo from "../../assets/img/logo.svg";
 function Page404() {
   return (
     <div className="flex flex-col items-center">
-      <h1><img className="w-12 h-12 mt-8" src={Logo} /></h1>
+      <h1><img alt="Logo" className="w-12 h-12 mt-8" src={Logo} /></h1>
       <h1 className="text-6xl font-semibold text-gray-700 dark:text-gray-200 mb-8">
         404
       </h1>

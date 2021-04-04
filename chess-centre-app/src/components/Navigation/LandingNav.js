@@ -7,7 +7,7 @@ import LogoWithName from "../../assets/img/logo-light-theme.png";
 import LogoWithNameBeta from "../../assets/img/beta/logo-light-theme-beta-small.png";
 
 let isDev = true;
-if (process.env.NODE_ENV.includes("prod")) {
+if (process.env.NODE_ENV === "production") {
     isDev = false
 };
 
@@ -115,13 +115,15 @@ const LandingNav = (props) => {
         </nav>
       </div>
 
+
+      { /* MOBILE */ }
       <div
         className={
           (isExpanded ? "hidden " : "") +
           "absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
         }
       >
-        <div className="rounded-lg shadow-md">
+        <div className="rounded-lg shadow-md slide">
           <div
             className="rounded-lg bg-white shadow-xs overflow-hidden"
             role="menu"
