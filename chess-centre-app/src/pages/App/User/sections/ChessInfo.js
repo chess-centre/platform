@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import * as Icons from "../../../../icons";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
@@ -21,7 +21,9 @@ const Loading = () => {
       <div className="">
         <img alt="Loading" className="h-5 w-5" src={LoadingGif} />
       </div>
-      <div className="text-xs  text-pink-700 dark:text-pink-500 ml-2">retrieving...</div>
+      <div className="text-xs  text-pink-700 dark:text-pink-500 ml-2">
+        retrieving...
+      </div>
     </div>
   );
 };
@@ -59,20 +61,23 @@ const SearchRating = ({ ratingType, searching, useFlag }) => {
   );
 };
 
-function ProfileInfo({ id, username, about, fideId, ecfId, cognitoId }) {
+function ProfileInfo({ id, username, about, fideId, ecfId }) {
   const [newUsername, setUsername] = useState(username);
   const [newAbout, setAboutMe] = useState(about);
 
   // Fetches data from the "ECFPlayer" & "FidePlayer" dataStores and matches it to the users ID provided:
-  const [ecfRating, setECFRating] = useState({ ecfId: ecfId });
-  const [fideRating, setFideRating] = useState({ fideId: fideId });
+  const [ecfRating, setECFRating] = useState({});
+  const [fideRating, setFideRating] = useState({});
+
+  // Input values:
+  const fideIdValue = useRef(fideId);
+  const ecfIdValue = useRef(ecfId);
 
   // Loading States:
   const [isSearchingECF, setIsSearchingECF] = useState(false);
   const [isSearchingFIDE, setIsSearchingFIDE] = useState(false);
   const { addToast } = useToasts();
 
-  // TODO: needs works!
   const hasChanged = () => {
     // basic check to see if we actually need to do anything:
     let changed = false;
@@ -95,22 +100,23 @@ function ProfileInfo({ id, username, about, fideId, ecfId, cognitoId }) {
     return changed;
   };
 
-  const getECFInfo = async (id) => {
-    if (id) {
-      const info = await getECFData(id);
+  const getECFInfo = async (searchId) => {
+    if (searchId) {
+      const info = await getECFData(searchId);
       if (info && info.currentRating) {
-        setECFRating(info);
+        setECFRating(result => ({...result, ...info, searchStatus: "" }));
       } else {
         setECFRating({ searchStatus: "Not found. ☹️" });
       }
     }
   };
 
-  const getFIDEInfo = async (id) => {
-    if (id) {
-      const info = await getFideData(id);
+  const getFIDEInfo = async (searchId) => {
+    if (searchId) {
+      const info = await getFideData(searchId);
       if (info && info.currentRating) {
-        setFideRating(info);
+        setFideRating(result => ({...result, ...info, searchStatus: "" }));
+        console.log(fideRating);
       } else {
         setFideRating({ searchStatus: "Not found. ☹️" });
       }
@@ -118,13 +124,13 @@ function ProfileInfo({ id, username, about, fideId, ecfId, cognitoId }) {
   };
 
   const handleSave = async () => {
-    const data = {
-      newUsername,
-      newAbout,
-      fideId: fideRating.fideRating,
-      ecfId: ecfRating.ecfId,
-    };
     if (hasChanged()) {
+      const data = {
+        newUsername,
+        fideId: fideIdValue.current.value ? Number(fideIdValue.current.value) : null,
+        ecfId: ecfIdValue.current.value,
+        newAbout,
+      };
       await updateChessInfo(id, data);
       addToast("Updates - saved!", {
         appearance: "success",
@@ -143,8 +149,10 @@ function ProfileInfo({ id, username, about, fideId, ecfId, cognitoId }) {
         setIsSearchingECF(false);
       }, 1000);
     } else {
+      setECFRating({});
       setIsSearchingECF(false);
     }
+    setECFRating(s => ({ ...s , ecfId: value }));
   };
 
   const searchFIDE = async (value) => {
@@ -155,9 +163,12 @@ function ProfileInfo({ id, username, about, fideId, ecfId, cognitoId }) {
         setIsSearchingFIDE(false);
       }, 1000);
     } else {
+      setFideRating({})
       setIsSearchingFIDE(false);
     }
+
   };
+
 
   return (
     <div>
@@ -186,13 +197,17 @@ function ProfileInfo({ id, username, about, fideId, ecfId, cognitoId }) {
                   className={`text-xs bg-gray-50 border border-r-1 border-gray-300 rounded-l-md px-3 inline-flex 
                         items-center text-gray-500 sm:text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400`}
                 >
-                  <span className="hidden sm:block">chesscentre.online/app/</span>members/
+                  <span className="hidden sm:block">
+                    chesscentre.online/app/
+                  </span>
+                  members/
                 </span>
                 <input
                   type="text"
                   name="username"
                   onChange={(e) => setUsername(e.target.value)}
                   defaultValue={username}
+                  autoComplete="off"
                   id="username"
                   className={`text-xs focus:ring-teal-500 focus:border-teal-500 flex-grow block 
                       w-full min-w-0 rounded-none border border-r-1 dark:text-gray-400 sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900`}
@@ -233,6 +248,7 @@ function ProfileInfo({ id, username, about, fideId, ecfId, cognitoId }) {
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
                     onChange={(e) => searchECF(e.target.value)}
+                    ref={ecfIdValue}
                     type="text"
                     name="ecf_ref"
                     id="ecf_ref"
@@ -245,7 +261,11 @@ function ProfileInfo({ id, username, about, fideId, ecfId, cognitoId }) {
             </div>
 
             {/* Fetch ECF Rating on ID input */}
-            <SearchRating ratingType={ecfRating} searching={isSearchingECF} useFlag={false} />
+            <SearchRating
+              ratingType={ecfRating}
+              searching={isSearchingECF}
+              useFlag={false}
+            />
 
             <div className="col-span-3 sm:col-span-2">
               <div className="col-span-12 gap-6">
@@ -271,6 +291,7 @@ function ProfileInfo({ id, username, about, fideId, ecfId, cognitoId }) {
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
                     onChange={(e) => searchFIDE(e.target.value)}
+                    ref={fideIdValue}
                     type="text"
                     name="fide_ref"
                     id="fide_ref"
@@ -283,7 +304,11 @@ function ProfileInfo({ id, username, about, fideId, ecfId, cognitoId }) {
             </div>
 
             {/* Fetch FIDE Rating on ID input */}
-            <SearchRating ratingType={fideRating} searching={isSearchingFIDE} useFlag={true} />
+            <SearchRating
+              ratingType={fideRating}
+              searching={isSearchingFIDE}
+              useFlag={true}
+            />
 
             <div className="col-span-6">
               <label

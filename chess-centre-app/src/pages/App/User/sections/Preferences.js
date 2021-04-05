@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useToasts } from "react-toast-notifications";
+import { updatePreferencesInfo } from "../../../../api/profile/perferences";
 
-function Notifications({ eventsByEmail, promoByEmail, eventsByText, promoByText }) {
+function Notifications({ id, eventsByEmail, promoByEmail, eventsByText, promoByText }) {
 
   const [eByEmail, setEventsByEmail] = useState(eventsByEmail);
   const [pByEmail, setPromoByEmail] = useState(promoByEmail);
@@ -9,16 +10,22 @@ function Notifications({ eventsByEmail, promoByEmail, eventsByText, promoByText 
   const [pByText, setPromoByText] = useState(promoByText);
   const { addToast } = useToasts();
 
-  const updateNatificationPeferences = () => {
-    console.log(eByEmail, pByEmail, eByText, pByText);
-    addToast("Notification preferences - saved!", { appearance: 'success', autoDismiss: true })
+  const updateNatificationPreferences = async () => {
+    const data = { eByEmail, pByEmail, eByText, pByText };
+    const updated = await updatePreferencesInfo(id, data);
+    
+    if(updated) {
+      addToast("Notification preferences - saved!", { appearance: 'success', autoDismiss: true })
+    } else {
+      addToast("Oops! Something went wrong.", { appearance: 'error', autoDismiss: true })
+    }
   }
 
   const handleCheckboxChange = e => {
     const { name, checked } = e.target;
     switch (name) {
       case "events_email":
-        setEventsByEmail(checked);
+        setEventsByEmail(checked); 
         break;
       case "promos_email":
         setPromoByEmail(checked);
@@ -163,7 +170,7 @@ function Notifications({ eventsByEmail, promoByEmail, eventsByText, promoByText 
         </div>
         <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 text-right sm:px-6 border-t border-gray-50 dark:border-gray-700">
           <button 
-          onClick={updateNatificationPeferences}
+          onClick={updateNatificationPreferences}
           className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-xs sm:text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600">
             Update
           </button>
