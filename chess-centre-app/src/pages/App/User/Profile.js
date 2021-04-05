@@ -63,7 +63,7 @@ function Profile() {
               />
             </svg>
             <span className="truncate">
-              Plan &amp; Billing{" "}
+              Subscription{" "}
               <span className="text-gray-400">(coming soon)</span>
             </span>
           </Link>

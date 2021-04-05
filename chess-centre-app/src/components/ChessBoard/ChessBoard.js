@@ -4,7 +4,7 @@ import * as uuid from "uuid";
 import { pgnView } from "@mliebelt/pgn-viewer";
 
 function PGNViewer(props) {
-  const { layout }  = props;
+  const { layout, size }  = props;
   const gameDecription = Children.onlyText(props.children);
   const id = "board-" + uuid.v4();
 
@@ -17,7 +17,7 @@ function PGNViewer(props) {
       hideMovesBefore: true,
       locale: "en",
       showResult: true,
-      boardSize: "300",
+      boardSize: size,
       showFen: false,
       pieceStyle: "alpha",
     });
