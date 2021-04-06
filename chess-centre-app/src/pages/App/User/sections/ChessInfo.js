@@ -204,21 +204,19 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
                 </span>
                 <input
                   type="text"
-                  name="username"
+                  disabled
                   onChange={(e) => setUsername(e.target.value)}
                   defaultValue={username}
                   autoComplete="off"
                   id="username"
-                  className={`text-xs focus:ring-teal-500 focus:border-teal-500 flex-grow block 
+                  className={`disabled:opacity-50 text-xs focus:ring-teal-500 focus:border-teal-500 flex-grow block 
                       w-full min-w-0 rounded-none border border-r-1 dark:text-gray-400 sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900`}
                 />
-                <button className="text-xs bg-teal-600 border border-teal-600 hover:bg-teal-700 rounded-r-md px-2 sm:px-3 inline-flex items-center text-gray-500 sm:text-sm dark:border-gray-700">
-                  <Link to={`/app/members/${username}`}>
+                <button disabled className="disabled:opacity-50 text-xs bg-teal-600 border border-teal-600 hover:bg-teal-700 rounded-r-md px-2 sm:px-3 inline-flex items-center text-gray-500 sm:text-sm dark:border-gray-700">
                     <Icon
                       className="ml-1 w-5 h-5 text-white"
                       icon="ClickIcon"
                     />
-                  </Link>
                 </button>
               </div>
             </div>

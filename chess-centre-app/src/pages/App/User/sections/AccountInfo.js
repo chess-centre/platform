@@ -98,7 +98,7 @@ function AccountInfo() {
             <div className="col-span-4 sm:col-span-3">
               <label
                 htmlFor="email_address"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-200"
               >
                 Email address
               </label>
@@ -109,7 +109,7 @@ function AccountInfo() {
                 name="email_address"
                 id="email_address"
                 autoComplete="email"
-                className="text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-50"
+                className="text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-70"
               />
             </div>
             {email_verified ? (

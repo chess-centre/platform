@@ -1,5 +1,6 @@
 import React from "react";
-import AppEvents from "../../components/Events/AppEvents";
+//import AppEvents from "../../components/Events/AppEvents";
+import AllPlayAll from "../../components/Events/Tables/AllPlayAll";
 
 function Events() {
   return (
@@ -15,8 +16,9 @@ function Events() {
           <p className="ml-2 mt-1 text-sm text-gray-500 dark:text-gray-300 truncate">entries for our upcoming events</p>
         </div>
       </div>
-      <main className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        <AppEvents />
+      <main className="mt-5">
+        {/* <AppEvents /> */}
+        <AllPlayAll></AllPlayAll>
       </main>
     </>
   );
