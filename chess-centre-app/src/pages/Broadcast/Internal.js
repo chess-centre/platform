@@ -103,12 +103,12 @@ const Internal = (props) => {
     <div className="grid grid-rows-2 grid-flow-col gap-4 px-10 py-10 h-screen">
       <div className="row-span-3 col-span-4 bg-gray-100 rounded-lg shadow-xs overflow-hidden">
         <div>
-          <div className="aspect-w-16 aspect-h-10">
+          <div className="aspect-w-16 aspect-h-11">
             <iframe
               title="Live Games"
               frameBorder="0"
               allowFullScreen
-              src={url}
+              src={"http://localhost:1982/liveviewer/index.html"}
             />
           </div>
         </div>
