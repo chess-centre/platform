@@ -15,7 +15,7 @@ function Events() {
           <p className="ml-2 mt-1 text-sm text-gray-500 dark:text-gray-300 truncate">entries for our upcoming events</p>
         </div>
       </div>
-      <main className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <main className="mt-5 grid grid-cols-3 grid-flow-row">
         <AppEvents />
       </main>
     </>
