@@ -1,6 +1,7 @@
 import React from "react";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import LandingNav from "../../components/Navigation/LandingNav";
+import MattAndyImage from "../../assets/img/matt-andy.jpg";
 
 const About = () => {
   return (
@@ -15,38 +16,52 @@ const About = () => {
               <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
                 About us
               </h2>
-              <p className="text-xl text-gray-500">
-                Nulla quam felis, enim faucibus proin velit, ornare id pretium.
-                Augue ultrices sed arcu condimentum vestibulum suspendisse.
-                Volutpat eu faucibus vivamus eget bibendum cras.
+              <div className="mb-2 m-auto object-center">
+                <img
+                  className="object-cover shadow-lg rounded-lg"
+                  src={MattAndyImage}
+                  alt=""
+                />
+              </div>
+              <p className="text-xl text-gray-500 text-center sm:text-left">
+                Playing chess together since secondary school Andy &#38; Matt
+                finally decided it was time to put their professional skills to
+                good use and setup a dedicated centre for this wonderful game.
               </p>
             </div>
+
             <div className="lg:col-span-2">
               <ul className="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:gap-x-8">
                 <li>
                   <div className="space-y-4">
-                    <div className="aspect-w-3 aspect-h-2">
-                      <img
-                        className="object-cover shadow-lg rounded-lg"
-                        src="/andrew-wainwright.jpg"
-                        alt=""
-                      />
+                    <div className="text-lg leading-6 font-medium space-y-1 text-center sm:text-left">
+                      <h3>Matthew Webb</h3>
+                      <p className="text-teal-600">Co-founder</p>
                     </div>
-                    <div className="text-lg leading-6 font-medium space-y-1">
-                      <h3>Andrew Wainwright</h3>
-                      <p className="text-teal-600">Co Founder</p>
-                    </div>
-                    <div className="text-lg">
-                      <p className="text-gray-500">
-                        Ultricies massa malesuada viverra cras lobortis. Tempor
-                        orci hac ligula dapibus mauris sit ut eu. Eget turpis
-                        urna maecenas cras. Nisl dictum.
+                    <div className="text-lg text-justify text-gray-500 mb-2">
+                      <p className="mb-2">
+                        Matt has a competed in a wide range of International
+                        chess events from the British Championships to the
+                        European Club Cup. He has also proudly represented
+                        Yorkshire on board one, winning three county Open
+                        Championships.
                       </p>
+                      <p className="mb-2">
+                        Bringins his technical expertise to the centre, Matt is
+                        focused on modernising the way players discover, sign up
+                        and participate in competitions and events.
+                      </p>
+                      <p className="mb-2">
+                        His favourite player is Rashid Nezhmetdinov and often enjoys playing unsound offbeat chess openings
+                        as a way to induce exciting tactical attacking games of chess.
+                      </p>
+                      <p></p>
                     </div>
+
                     <ul className="flex space-x-5">
                       <li>
                         <a
-                          href="https://www.linkedin.com/in/andrew-wainwright-88b60a6/"
+                          href="https://www.linkedin.com/in/matt-d-webb/"
                           className="text-gray-400 hover:text-blue-700"
                         >
                           <span className="sr-only">LinkedIn</span>
@@ -64,31 +79,6 @@ const About = () => {
                           </svg>
                         </a>
                       </li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <div className="space-y-4">
-                    <div className="aspect-w-3 aspect-h-2">
-                      <img
-                        className="object-cover shadow-lg rounded-lg"
-                        src="/me.jpg"
-                        alt=""
-                      />
-                    </div>
-                    <div className="text-lg leading-6 font-medium space-y-1">
-                      <h3>Matthew Webb</h3>
-                      <p className="text-teal-600">Co Founder</p>
-                    </div>
-                    <div className="text-lg">
-                      <p className="text-gray-500">
-                        Ultricies massa malesuada viverra cras lobortis. Tempor
-                        orci hac ligula dapibus mauris sit ut eu. Eget turpis
-                        urna maecenas cras. Nisl dictum.
-                      </p>
-                    </div>
-
-                    <ul className="flex space-x-5">
                       <li>
                         <a
                           href="https://github.com/matt-d-webb"
@@ -109,9 +99,36 @@ const About = () => {
                           </svg>
                         </a>
                       </li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <div className="space-y-4">
+                    <div className="text-lg leading-6 font-medium space-y-1 text-center sm:text-left">
+                      <h3>Andrew Wainwright</h3>
+                      <p className="text-teal-600">Co-founder</p>
+                    </div>
+                    <div className="text-lg text-justify">
+                      <p className="text-gray-500 mb-2">
+                        Andy has run a range of teams, clubs and Chess events
+                        for over 20 years, ranging from local leagues, to county
+                        and junior chess. Having learned Chess at an early age
+                        Andy was keen to share the benefits of the game with his
+                        own children, and has also coached junior players for
+                        many years. As such, Andy leads our junior development
+                        activities and is lead coach for all of our beginners.
+                      </p>
+                      <p className="text-gray-500 mb-2">
+                        When not coaching Chess, Andy is a Technology lawyer,
+                        Junior Football Coach, Dad and keen Labrador walker! His
+                        favourite opening is the Sicilian Najdorf, and his
+                        favourite player is Mikhail Tal!
+                      </p>
+                    </div>
+                    <ul className="flex space-x-5">
                       <li>
                         <a
-                          href="https://www.linkedin.com/in/matt-d-webb/"
+                          href="https://www.linkedin.com/in/andrew-wainwright-88b60a6/"
                           className="text-gray-400 hover:text-blue-700"
                         >
                           <span className="sr-only">LinkedIn</span>
