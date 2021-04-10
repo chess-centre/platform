@@ -1,10 +1,18 @@
 import React from "react";
 import routes from "../../routes/sidebar";
-import { NavLink, Route } from "react-router-dom";
+import { NavLink, Route, Link } from "react-router-dom";
 import * as Icons from "../../icons";
 import SidebarSubmenu from "./SidebarSubmenu";
-import ImageLight from "../../assets/img/logo-light-theme.png";
-import ImageDark from "../../assets/img/logo-dark-theme.png";
+import ImageLight from "../../assets/img/logo-light-theme-small.png";
+import ImageDark from "../../assets/img/logo-dark-theme-small.png";
+import ImageLightBeta from "../../assets/img/beta/logo-light-theme-beta-small.png";
+import ImageDarkBeta from "../../assets/img/beta/logo-dark-theme-beta-small.png";
+const version = process.env.REACT_APP_VERSION || "0.0.0";
+
+let isDev = true;
+if (process.env.NODE_ENV === "production") {
+    isDev = false
+};
 
 
 function Icon({ icon, ...props }) {
@@ -17,18 +25,18 @@ function SidebarContent() {
     <div className="py-4 text-gray-500 dark:text-gray-400">
       <NavLink
         to="/"
-        className="ml-6 text-lg font-bold text-gray-800 dark:text-gray-500 hover:text-gray-500"
+        className="text-lg font-bold text-gray-800 dark:text-gray-500 hover:text-gray-500"
       >
         <img
           aria-hidden="true"
-          className="inline-block h-6 w-auto dark:hidden"
-          src={ImageLight}
+          className="object-scale-down h-6 w-full inline-block  dark:hidden"
+          src={ isDev ? ImageLightBeta : ImageLight }
           alt="Logo"
         />
         <img
           aria-hidden="true"
-          className="h-6 w-auto dark:inline-block hidden"
-          src={ImageDark}
+          className="object-scale-down h-6 w-full dark:inline-block hidden"
+          src={ isDev ? ImageDarkBeta : ImageDark }
           alt="Logo"
         />
       </NavLink>
@@ -61,6 +69,9 @@ function SidebarContent() {
           )
         )}
       </ul>
+      <div className="absolute bottom-1 px-6 my-6 text-xs hover:underline">
+          <Link to="/roadmap">{ `v${version}` }</Link>
+      </div>
     </div>
   );
 }

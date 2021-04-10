@@ -1,3 +1,31 @@
+type ECFPlayer @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  ecfId: String
+  club: String
+  currentRating: String
+}
+
+type FidePlayer @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  fideId: Int
+  federation: String
+  title: String
+  currentRating: Int
+}
+
+type Member @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  about: String
+  fideId: Int
+  ecfId: String
+  username: String
+  eventsByEmail: Boolean
+  promoByEmail: Boolean
+  eventsByText: Boolean
+  promoByText: Boolean
+  cognitoId: String
+}
+
 type Event @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String
@@ -5,3 +33,4 @@ type Event @model @auth(rules: [{allow: public}]) {
   rounds: Int
   entries: Int
 }
+ 

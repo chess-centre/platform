@@ -25,6 +25,7 @@ export async function updateUserAttributes(firstName, lastName) {
   }).then(async (u) =>  {
     // TODO: tidy up this repeative logic / move to central call to update local storage:
     const updatedUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+    localStorage.removeItem("currentUser");
     localStorage.setItem("currentUser", JSON.stringify(updatedUser));
     return u;
   }).catch(e => {
@@ -36,6 +37,7 @@ export async function updateUserAttributes(firstName, lastName) {
 export async function getCurrentAuthenticatedUser(dispatch) {
   const user = await Auth.currentAuthenticatedUser();
   if (user) {
+    localStorage.removeItem("currentUser");
     localStorage.setItem("currentUser", JSON.stringify(user));
     return user;
   }
@@ -69,14 +71,18 @@ export async function userPasswordForgotSubmit(
   }
 }
 
-export async function signUpUser(dispatch, email, password) {
+export async function signUpUser(dispatch, email, password, firstName, surname) {
   try {
     dispatch({ type: "REQUEST_LOGIN" });
 
     let user = await Auth.signUp({
       username: email,
       password,
-      attributes: { email },
+      attributes: { 
+        email,
+        given_name: firstName,
+        family_name: surname
+      },
     });
 
     if (user) {

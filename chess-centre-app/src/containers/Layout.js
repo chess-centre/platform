@@ -25,7 +25,12 @@ const routes = [
     component: lazy(() => import("../pages/App/Members")),
   },
   {
-    path: "/members/:memberId",
+    path: "/non-members/:memberId",
+    component: lazy(() => import("../components/MemberProfile/NonMemberProfile")),
+  },
+  // this is auto-generated with given_name-family_name but can be set by the user: app/profile
+  {
+    path: "/members/:username",
     component: lazy(() => import("../components/MemberProfile/MemberProfile")),
   },
   {
