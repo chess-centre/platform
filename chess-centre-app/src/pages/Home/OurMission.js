@@ -16,7 +16,7 @@ function OurMission() {
                 Our Mission
               </h2>
               <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                Make Chess Great Again
+                A blueprint for the future
               </p>
             </div>
           </div>
@@ -89,68 +89,47 @@ function OurMission() {
             </svg>
             <div className="relative md:bg-white md:p-6">
               <div className="lg:grid lg:grid-cols-2 lg:gap-6">
-                <div className="prose prose-indigo prose-lg text-gray-500 lg:max-w-none">
+                <div className="prose-lg text-gray-500 lg:max-w-none">
                   <p>
-                    Ultrices ultricies a in odio consequat egestas rutrum. Ut
-                    vitae aliquam in ipsum. Duis nullam placerat cursus risus
-                    ultrices nisi, vitae tellus in. Qui non fugiat aut minus aut
-                    rerum. Perspiciatis iusto mollitia iste minima soluta id.
+                    The Chess Centre is a dedicated, modern and comfortable
+                    facility for the learning and playing of Chess. The idea
+                    behind the Chess Centre was born out of the desire to having
+                    cutting edge physical and digital facilities to support the
+                    development of Chess. The founders, having played Chess
+                    themselves since a young age, recognize the need to provide
+                    a safe and appealing environment for encouraging new players
+                    of all ages, backgrounds and abilities to the game.
                   </p>
                   <p>
-                    Erat pellentesque dictumst ligula porttitor risus eget et
-                    eget. Ultricies tellus felis id dignissim eget. Est augue{" "}
-                    <a href="/">maecenas</a> risus nulla ultrices congue nunc
-                    tortor. Eu leo risus porta integer suspendisse sed sit
-                    ligula elit.
-                  </p>
-                  <ol>
-                    <li>
-                      Integer varius imperdiet sed interdum felis cras in nec
-                      nunc.
-                    </li>
-                    <li>
-                      Quam malesuada odio ut sit egestas. Elementum at porta
-                      vitae.
-                    </li>
-                  </ol>
-                  <p>
-                    Amet, eu nulla id molestie quis tortor. Auctor erat justo,
-                    sed pellentesque scelerisque interdum blandit lectus. Nec
-                    viverra amet ac facilisis vestibulum. Vestibulum purus nibh
-                    ac ultricies congue.
+                    The Chess Centre is open to all. Chess is not a game that
+                    discriminates. Chess is universal and open to anyone who
+                    wants to learn and play the game. The Chess Centre provides
+                    a range of opportunities for those who share these aims to
+                    meet, socialise and enjoy playing Chess.
                   </p>
                 </div>
-                <div className="mt-6 prose prose-indigo prose-lg text-gray-500 lg:mt-0">
+                <div className="mt-6 prose-lg text-gray-500 lg:mt-0">
                   <p>
-                    Erat pellentesque dictumst ligula porttitor risus eget et
-                    eget. Ultricies tellus felis id dignissim eget. Est augue
-                    maecenas risus nulla ultrices congue nunc tortor.
+                    It is our hope that the Chess Centre can provide a
+                    blue-print for how the game of Chess can be organised,
+                    modernized and made accessible to a new generation of Chess
+                    players.
                   </p>
                   <p>
-                    Eu leo risus porta integer suspendisse sed sit ligula elit.
-                    Elit egestas lacinia sagittis pellentesque neque dignissim
-                    vulputate sodales. Diam sed mauris felis risus, ultricies
-                    mauris netus tincidunt. Mauris sit eu ac tellus nibh non
-                    eget sed accumsan. Viverra ac sed venenatis pulvinar elit.
-                    Cras diam quis tincidunt lectus. Non mi vitae, scelerisque
-                    felis nisi, netus amet nisl.
+                    We welcome you to come join us on this journey, to be a
+                    member, a volunteer or a contributor we know that however
+                    large or small, we are sincerely grateful to everyone who
+                    supports us.
                   </p>
-                  <p>
-                    Eu eu mauris bibendum scelerisque adipiscing et. Justo,
-                    elementum consectetur morbi eros, posuere ipsum tortor. Eget
-                    cursus massa sed velit feugiat sed ut. Faucibus eros mauris
-                    morbi aliquam nullam. Scelerisque elementum sit magna
-                    ullamcorper dignissim pretium.
-                  </p>
+                  <div className="inline-flex rounded-md shadow text-white">
+                    <a
+                      href="/membership"
+                      className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-500 hover:bg-teal-700"
+                    >
+                      Join us
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div className="mt-8 inline-flex rounded-md shadow">
-                <a
-                  href="/membership"
-                  className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
-                >
-                  Join us
-                </a>
               </div>
             </div>
           </div>

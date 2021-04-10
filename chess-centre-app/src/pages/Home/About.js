@@ -40,19 +40,19 @@ const About = () => {
                     </div>
                     <div className="text-lg text-justify text-gray-500 mb-2">
                       <p className="mb-2">
-                        Matt has a competed in a wide range of International
-                        chess events from the British Championships to the
+                        Matt has competed in a wide range of International
+                        Chess events from the British Championships to the
                         European Club Cup. He has also proudly represented
                         Yorkshire on board one, winning three county Open
                         Championships.
                       </p>
                       <p className="mb-2">
-                        Bringins his technical expertise to the centre, Matt is
-                        focused on modernising the way players discover, sign up
-                        and participate in competitions and events.
+                        Bringing his technical expertise to the centre, Matt is
+                        focused on modernising the way person discover, sign up
+                        and participate in Chess competitions and events.
                       </p>
                       <p className="mb-2">
-                        His favourite player is Rashid Nezhmetdinov and often enjoys playing unsound offbeat chess openings
+                        His favourite player is Rashid Nezhmetdinov and he often enjoys playing unsound offbeat chess openings
                         as a way to induce exciting tactical attacking games of chess.
                       </p>
                       <p></p>
@@ -122,7 +122,7 @@ const About = () => {
                         When not coaching Chess, Andy is a Technology lawyer,
                         Junior Football Coach, Dad and keen Labrador walker! His
                         favourite opening is the Sicilian Najdorf, and his
-                        favourite player is Mikhail Tal!
+                        favourite player is Mikhail Tal.
                       </p>
                     </div>
                     <ul className="flex space-x-5">
