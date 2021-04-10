@@ -1,7 +1,7 @@
 const JuniorClub = {
     name: "Junior Club",
     description: "Join our tailored chess coaching sessions.",
-    url: "",
+    url: "/events/junior",
     time: "6:00pm onwards",
     color: "bg-yellow-50",
   };
@@ -16,14 +16,14 @@ const JuniorClub = {
   const Congress = {
     name: "Open Congress",
     description: "Five Round - ECF Graded Long Play matches.",
-    url: "",
+    url: "/events/congress",
     color: "bg-blue-50",
   };
   
   const RapidPlay = {
     name: "Open RapidPlay",
     description: "Five Round - ECF Graded 25min per player events.",
-    url: "",
+    url: "/events/rapidplay",
     color: "bg-orange-50",
   };
   
@@ -47,6 +47,7 @@ const JuniorClub = {
   export const eventDetails = [
     // MAY
     {
+      id: 1,
       ...JuniorClub,
       date: new Date(2021, 5, 18),
       textDate: "Tues, 18th May",
@@ -62,11 +63,13 @@ const JuniorClub = {
       textDate: "Thur, 20th May",
     },
     {
+      id: 1,
       ...Congress,
       date: new Date(2021, 5, 22),
       textDate: "Sat, 22nd - Sun, 23rd May",
     },
     {
+      id: 2,
       ...JuniorClub,
       date: new Date(2021, 5, 25),
       textDate: "Tues, 25th May",

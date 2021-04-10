@@ -16,7 +16,7 @@ function MembershipCard({ title, price, subHeading, benefits, discounted }) {
         <div>
           {discounted ? (
             <h3
-              className="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-gradient-to-r from-orange-500 to-orange-300 text-white"
+              className="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-gradient-to-r from-orange-500 to-red-300 text-white"
               id="tier-standard"
             >
               {title}
