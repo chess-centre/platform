@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import getEventDetails from "./Calendar";
 import { CalendarIcon, ClockIcon } from "../../icons";
 
-function Card({ name, description, time, url, textDate, color }) {
+function Card({ id, name, description, time, url, textDate, color }) {
   return (
     <article
       className={color + " p-6 shadow-2xl flex flex-col rounded-xl"}
@@ -23,7 +23,7 @@ function Card({ name, description, time, url, textDate, color }) {
       {url ? (
         <a
           className="inline-flex items-center font-medium text-teal-500 hover:underline mt-2"
-          href={url}
+          href={ id ? `${url}/${id}` : url }
         >
           <span>Find out more</span>
           <svg
