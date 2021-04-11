@@ -67,7 +67,7 @@ function AccountInfo() {
                 First name
               </label>
               <input
-                value={personalInfo.given_name}
+                defaultValue={personalInfo.given_name}
                 onChange={(e) => handleInput(e.target.value)}
                 type="text"
                 name="first_name"
@@ -85,7 +85,7 @@ function AccountInfo() {
                 Last name
               </label>
               <input
-                value={personalInfo.family_name}
+                defaultValue={personalInfo.family_name}
                 onChange={(e) => handleInput(e.target.value)}
                 type="text"
                 name="last_name"
