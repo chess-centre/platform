@@ -22,7 +22,7 @@
 export const Members = [
     {
         id: 1,
-        name: "Matthew Webb",
+        name: "Joe Bloggs",
         club: "The Chess Centre",
         about: "My favourite player is Bobby Fischer, followed closely by Rashid Nezhmetdinov.",
         gradingInfo: {
@@ -36,7 +36,7 @@ export const Members = [
     },
     {
         id: 2,
-        name: "Peter Shaw",
+        name: "John Smith",
         gradingInfo: {
             ecfId: "166609F",
             grade: 2172,
@@ -45,7 +45,7 @@ export const Members = [
     },
     {
         id: 3,
-        name: "Andrew Wainwright",
+        name: "Alice Wood",
         gradingInfo: {
             ecfId: "185834J",
             grade: 2013,
@@ -54,7 +54,7 @@ export const Members = [
     },
     {
         id: 4,
-        name: "David Barlow",
+        name: "Paul Allen",
         gradingInfo: {
             ecfId: "106225G",
             grade: 2005,
@@ -63,7 +63,7 @@ export const Members = [
     },
     {
         id: 5,
-        name: "Chris Wright",
+        name: "Nigel Francis",
         gradingInfo: {
             ecfId: "214108F",
             grade: 1968,
@@ -72,7 +72,7 @@ export const Members = [
     },
     {
         id: 6,
-        name: "Max Shaw",
+        name: "Robert Andrews",
         gradingInfo: {
             ecfId: "312992F",
             grade: 2000,
@@ -81,7 +81,7 @@ export const Members = [
     },
     {
         id: 7,
-        name: "Sam Davies",
+        name: "Claire Bloomberg",
         gradingInfo: {
             ecfId: "289559G",
             grade: 1908,
@@ -90,7 +90,7 @@ export const Members = [
     },
     {
         id: 8,
-        name: "Gary Corcoran",
+        name: "Elise Redding",
         gradingInfo: {
             ecfId: "258651E",
             grade: 1878,
@@ -99,7 +99,7 @@ export const Members = [
     },
     {
         id: 9,
-        name: "John Holliday",
+        name: "Patrick Antonious",
         gradingInfo: {
             ecfId: "180699D",
             grade: 1713,
@@ -108,7 +108,7 @@ export const Members = [
     },
     {
         id: 10,
-        name: "Tony Youngs",
+        name: "Anthony Richards",
         gradingInfo: {
             ecfId: "",
             grade: 0,
@@ -117,7 +117,7 @@ export const Members = [
     },
     {
         id: 11,
-        name: "Steven Law",
+        name: "Simon Smith",
         gradingInfo: {
             ecfId: "",
             grade: 0,
@@ -126,7 +126,7 @@ export const Members = [
     },
     {
         id: 12,
-        name: "Gawain Ako",
+        name: "Clark Kent",
         gradingInfo: {
             ecfId: "265438G",
             grade: 161,
@@ -135,7 +135,7 @@ export const Members = [
     },
     {
         id: 13,
-        name: "Bob Gaunt",
+        name: "Jim Carter",
         gradingInfo: {
             ecfId: "",
             grade: 0,
@@ -144,7 +144,7 @@ export const Members = [
     },
     {
         id: 14,
-        name: "Steven Law",
+        name: "Roger Matthews",
         gradingInfo: {
             ecfId: "",
             grade: 0,
@@ -153,7 +153,7 @@ export const Members = [
     },
     {
         id: 15,
-        name: "Jacob Smith",
+        name: "Sandra Simmons",
         gradingInfo: {
             ecfId: "",
             grade: 0,

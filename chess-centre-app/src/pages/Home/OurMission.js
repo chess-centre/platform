@@ -8,7 +8,7 @@ function OurMission() {
       <div className="relative z-10 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
         <LandingNav current="our-mission" />
       </div>
-      <div className="py-16 xl:py-36 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+      <div className="py-16 xl:py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
         <div className="max-w-max lg:max-w-7xl mx-auto">
           <div className="relative mb-8 md:mb-2 md:px-6">
             <div className="text-base max-w-prose lg:max-w-none">

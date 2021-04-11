@@ -108,7 +108,7 @@ const Internal = (props) => {
               title="Live Games"
               frameBorder="0"
               allowFullScreen
-              src={"http://localhost:1982/liveviewer/index.html"}
+              src={ url ? url : "http://localhost:1982/liveviewer/index.html"}
             />
           </div>
         </div>
