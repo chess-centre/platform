@@ -23,7 +23,7 @@ const Roadmap = () => {
               
             </p>
             <p className="text-base max-w-xl mt-5 mx-auto sm:text-xl text-gray-500">
-              Checkout the things we're working on, get involved with the ideas we are thinking about and help us make things better!
+              Checkout the things we're working on and get involved with the ideas to help us continually make things better!
               </p>
           </div>
         </div>
@@ -34,7 +34,7 @@ const Roadmap = () => {
             <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
               The Centre
             </h2>
-            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500">Things we are working on in the centre to your experience as fantasic as possible.</p>
+            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500">Things we are working on in the centre to make your experience as fantasic as possible.</p>
             <CentreRoadmap />
           </div>
           <div>

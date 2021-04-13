@@ -6,6 +6,8 @@ function Shop() {
   script.src =
     "https://shop.spreadshirt.no/shopfiles/shopclient/shopclient.nocache.js";
 
+  document.body.appendChild(script);
+
   return (
     <div className="shopBody">
       <div id="myShop"></div>
