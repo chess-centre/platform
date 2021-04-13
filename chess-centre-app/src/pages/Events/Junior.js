@@ -1,11 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
 function JuniorEvent() {
-  const { id } = useParams();
-
   return (
     <div>
       <div className="relative bg-gray-50 overflow-hidden">
@@ -39,8 +36,9 @@ function JuniorEvent() {
                 all of which is possible as part of our Junior Club activities.
               </p>
               <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-                So if you would like to learn more about the game of Chess in a fun, friendly and safe environment
-                then please contact us at info@chesscentre.online to book a place.
+                So if you would like to learn more about the game of Chess in a
+                fun, friendly and safe environment then please contact us at
+                info@chesscentre.online to book a place.
               </p>
             </div>
           </div>

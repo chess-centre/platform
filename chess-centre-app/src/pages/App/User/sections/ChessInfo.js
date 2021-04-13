@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import * as Icons from "../../../../icons";
-import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import ReactCountryFlag from "react-country-flag";
 import {

@@ -31,7 +31,7 @@ export const TechRoadmap = () => {
             </div>
           </div>
           <div className="ml-12">
-            <p>May 2021 - our platform launches 🎉</p>
+            <p>May 2021 - platform launch 🥂</p>
             <ul className="list-disc ml-5">
               <li>
                 code available here:{" "}
@@ -43,8 +43,7 @@ export const TechRoadmap = () => {
                 </a>
               </li>
               <li>
-                <span className="text-purple-800">new volunteers</span> - amazing 🤓 giving up their free time to support
-                ♟️ { /* https://github.com/chess-centre/platform#contributors- */}
+                <a href="https://github.com/chess-centre/platform#contributors-" className="text-teal-800 hover:underline">new volunteers</a> - <span className="text-xs text-gray-500">amazing people giving up their free time to support</span>
               </li>
             </ul>
           </div>
@@ -61,8 +60,8 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>live games <Issue issue="6" /></li>
-              <li>improved dashboard metrics <Issue issue="35" /></li>
+              <li>live games ♟️ <Issue issue="99" /></li>
+              <li>dashboard insights <Issue issue="100" /></li>
             </ul>
           </div>
         </li>
@@ -79,15 +78,15 @@ export const TechRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li>league tables <Issue issue="3" /></li>
-              <li>grand prix <Issue issue="64" /></li>
+              <li>grand prix <Issue issue="101" /></li>
             </ul>
           </div>
         </li>
         <li className="mb-2">
-          <div className="flex items-center mb-1">
+        <div className="flex items-center mb-1">
             <div className="bg-teal-500 rounded-full h-4 w-4"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-yellow-200 text-black p-1 rounded leading-none">
+              <span className="mr-2 bg-yellow-200 text-black p-1 rounded  leading-none">
                 Soon
               </span>
               <span className="font-thin">v1.3.0</span>
@@ -95,9 +94,9 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>downloadable games <Issue issue="64" /></li>
-              <li>event registration <Issue issue="32" /></li>
-              <li>app feature voting <Issue issue="31" /></li>
+              <li> Have your say 
+                <a className="text-pink-600 hover:underline" href="https://github.com/chess-centre/platform/discussions"> here</a>{" "}💡
+              </li>
             </ul>
           </div>
         </li>

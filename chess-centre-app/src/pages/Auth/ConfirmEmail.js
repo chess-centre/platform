@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 import ImageLight from "../../assets/img/chess-players.jpg";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import { Label, Input, Button } from "@windmill/react-ui";
@@ -10,6 +12,7 @@ import {
 } from "../../context/Auth";
 
 function ConfirmEmail(props) {
+  const { addToast } = useToasts();
   const email = props?.match.params.email;
   const [code, setCode] = useState("");
   const dispatch = useAuthDispatch();
@@ -33,8 +36,11 @@ function ConfirmEmail(props) {
   }
 
   async function resendCode() {
-    // visual indicator that this succeeded?
     await resendActivationCode(email);
+    addToast(`Activation code resent to ${email}`, {
+      appearance: "success",
+      autoDismiss: true,
+    });
   }
 
   return (
@@ -58,10 +64,10 @@ function ConfirmEmail(props) {
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                Account Activation
+                Account activation
               </h1>
               <Label>
-                <span>Enter your code (sent to you via email)</span>
+                <span>Enter your code <span className="text-xs text-gray-600">(sent to you via email)</span></span>
 
                 <div className="flex space-x-3 mt-1">
                   <Input
@@ -70,10 +76,6 @@ function ConfirmEmail(props) {
                     type="text"
                     placeholder="000000"
                   />
-
-                  <Button disabled={loading} onClick={resendCode} className="">
-                    Resend
-                  </Button>
                 </div>
               </Label>
               <Button
@@ -91,7 +93,25 @@ function ConfirmEmail(props) {
               >
                 {errorMessage}
               </p>
+              <hr className="my-8" />
+              <p className="mt-4">
+                <Link
+                  className="text-sm font-medium text-teal-600 dark:text-teal-400 hover:underline"
+                  onClick={resendCode}
+                >
+                  Resend
+                </Link>
+              </p>
+            <p className="mt-1">
+                <Link
+                  className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"
+                  to="/"
+                >
+                  Home
+                </Link>
+              </p>
             </div>
+
           </main>
         </div>
       </div>

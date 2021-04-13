@@ -116,15 +116,15 @@ function OurMission() {
                     players.
                   </p>
                   <p>
-                    We welcome you to come join us on this journey, to be a
-                    member, a volunteer or a contributor we know that however
-                    large or small, we are sincerely grateful to everyone who
-                    supports us.
+                    We welcome you to come join us on this exciting journey, to be a
+                    member, a volunteer, a code contributor or just a friendly face to pop in from time to time. 
+                    We know that however large or small we are sincerely grateful to everyone who
+                    supports us. ❤️
                   </p>
-                  <div className="inline-flex rounded-md shadow text-white">
+                  <div className="inline-flex rounded-md shadow text-white float-right">
                     <a
                       href="/membership"
-                      className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-500 hover:bg-teal-700"
+                      className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
                     >
                       Join us
                     </a>
