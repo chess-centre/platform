@@ -4,6 +4,18 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class EventType {
+  readonly id: string;
+  readonly name: string;
+  readonly description?: string;
+  readonly url?: string;
+  readonly color?: string;
+  readonly time?: string;
+  readonly maxEntries?: number;
+  constructor(init: ModelInit<EventType>);
+  static copyOf(source: EventType, mutator: (draft: MutableModel<EventType>) => MutableModel<EventType> | void): EventType;
+}
+
 export declare class ECFPlayer {
   readonly id: string;
   readonly ecfId?: string;
@@ -43,7 +55,12 @@ export declare class Event {
   readonly name?: string;
   readonly description?: string;
   readonly rounds?: number;
+  readonly time?: string;
+  readonly type: EventType;
+  readonly startDate: string;
+  readonly endDate?: string;
   readonly entries?: number;
+  readonly maxEntries?: number;
   constructor(init: ModelInit<Event>);
   static copyOf(source: Event, mutator: (draft: MutableModel<Event>) => MutableModel<Event> | void): Event;
 }

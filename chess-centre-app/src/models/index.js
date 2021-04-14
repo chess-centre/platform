@@ -4,9 +4,10 @@ import { schema } from './schema';
 
 
 
-const { ECFPlayer, FidePlayer, Member, Event } = initSchema(schema);
+const { EventType, ECFPlayer, FidePlayer, Member, Event } = initSchema(schema);
 
 export {
+  EventType,
   ECFPlayer,
   FidePlayer,
   Member,
