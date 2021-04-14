@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DataStore } from "@aws-amplify/datastore";
+import { DataStore, Predicates, SortDirection } from "@aws-amplify/datastore";
 import { CalendarIcon, ClockIcon } from "../../icons";
 import { Event } from "../../models";
 
@@ -75,7 +75,9 @@ function Timeline() {
 
   async function fetchEvents() {
     try {
-      const events = await DataStore.query(Event);
+      const events = await DataStore.query(Event, Predicates.ALL, {
+        sort: (e) => e.startDate(SortDirection.ASCENDING),
+      });
       setEvents(events);
     } catch (err) {
       console.log("error fetching events");
