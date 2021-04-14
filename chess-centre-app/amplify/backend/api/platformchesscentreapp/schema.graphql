@@ -1,3 +1,13 @@
+type EventType @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  description: String
+  url: String
+  color: String
+  time: String
+  maxEntries: Int
+}
+
 type ECFPlayer @model @auth(rules: [{allow: public}]) {
   id: ID!
   ecfId: String
@@ -31,6 +41,11 @@ type Event @model @auth(rules: [{allow: public}]) {
   name: String
   description: String
   rounds: Int
+  time: String
+  type: EventType! @connection
+  startDate: AWSDate!
+  endDate: AWSDate
   entries: Int
+  maxEntries: Int
 }
  
