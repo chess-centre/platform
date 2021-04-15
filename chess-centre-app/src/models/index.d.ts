@@ -45,7 +45,6 @@ export declare class Member {
   readonly promoByEmail?: boolean;
   readonly eventsByText?: boolean;
   readonly promoByText?: boolean;
-  readonly cognitoId?: string;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
 }

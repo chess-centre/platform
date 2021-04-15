@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { DataStore, Predicates, SortDirection } from "@aws-amplify/datastore";
+import { API } from "aws-amplify";
 import { CalendarIcon, ClockIcon } from "../../icons";
-import { Event } from "../../models";
 
 function formatDate(date) {
   return new Date(date).toLocaleDateString("en-GB", {
@@ -14,12 +13,10 @@ function formatDate(date) {
 function Card({ event }) {
   return (
     <article
-      className={event.type.color + " p-6 shadow-2xl flex flex-col rounded-xl"}
+      className={event.color + " p-6 shadow-2xl flex flex-col rounded-xl"}
     >
       <header>
-        <h3 className="h4 font-red-hat-display mb-1">
-          {event.name || event.type.name}
-        </h3>
+        <h3 className="h4 font-red-hat-display mb-1">{event.name}</h3>
       </header>
       <div className="text-gray-600 flex-grow">
         <div>
@@ -29,22 +26,20 @@ function Card({ event }) {
               event.endDate ? ` - ${formatDate(event.endDate)}` : ""
             }`}</span>{" "}
           </p>
-          {event.time || event.type.time ? (
+          {event.time && (
             <p className="sm:inline text-sm text-teal-700">
               <ClockIcon className="w-4 h-4 inline mr-1" />
-              <span className="inline">
-                {event.time || event.type.time}
-              </span>{" "}
+              <span className="inline">{event.time}</span>{" "}
             </p>
-          ) : null}
+          )}
         </div>
 
-        <p className="mr-1">{event.description || event.type.description}</p>
+        <p className="mr-1">{event.description}</p>
       </div>
-      {event.type.url ? (
+      {event.url && (
         <a
           className="inline-flex items-center font-medium text-teal-500 hover:underline mt-2"
-          href={`${event.type.url}/${event.id}`}
+          href={`${event.url}/${event.id}`}
         >
           <span>Find out more</span>
           <svg
@@ -58,7 +53,7 @@ function Card({ event }) {
             />
           </svg>
         </a>
-      ) : null}
+      )}
     </article>
   );
 }
@@ -75,11 +70,10 @@ function Timeline() {
 
   async function fetchEvents() {
     try {
-      const events = await DataStore.query(Event, Predicates.ALL, {
-        sort: (e) => e.startDate(SortDirection.ASCENDING),
-      });
+      const events = await API.get("public", "/events");
       setEvents(events);
     } catch (err) {
+      console.log(err);
       console.log("error fetching events");
     }
   }

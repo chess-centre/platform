@@ -133,7 +133,6 @@ Parameters:
   adminQueries:
     Type: String
             
-            
   
   thirdPartyAuth:
     Type: String
@@ -148,6 +147,23 @@ Parameters:
             
         
   dependsOn:
+    Type: CommaDelimitedList
+      
+  triggers:
+    Type: String
+  
+            
+  
+  hostedUI:
+    Type: String
+            
+            
+      
+  parentStack:
+    Type: String
+        
+        
+  permissions:
     Type: CommaDelimitedList
       
 Conditions:
@@ -214,6 +230,9 @@ Resources:
       AutoVerifiedAttributes: !Ref autoVerifiedAttributes
       
       
+      EmailVerificationMessage: !Ref emailVerificationMessage
+      EmailVerificationSubject: !Ref emailVerificationSubject
+      
       Policies:
         PasswordPolicy:
           MinimumLength: !Ref passwordPolicyMinLength
@@ -230,6 +249,18 @@ Resources:
         SnsCallerArn: !GetAtt SNSRole.Arn
         ExternalId: platfoe3724a3f_role_external_id
     
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  # Updating lambda role with permissions to Cognito
+  
   
   UserPoolClientWeb:
   # Created provide application access to user pool
