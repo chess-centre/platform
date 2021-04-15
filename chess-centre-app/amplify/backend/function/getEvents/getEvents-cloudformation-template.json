@@ -1,27 +1,28 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda resource stack creation using Amplify CLI",
+  "Description": "Lambda Function resource stack creation using Amplify CLI",
   "Parameters": {
-    "env": {
-      "Type": "String"
-    },
-    "storagecentrecentredbName": {
+    "CloudWatchRule": {
       "Type": "String",
-      "Default": "storagecentrecentredbName"
-    },
-    "storagecentrecentredbArn": {
-      "Type": "String",
-      "Default": "storagecentrecentredbArn"
-    },
-    "storagecentrecentredbStreamArn": {
-      "Type": "String",
-      "Default": "storagecentrecentredbArn"
+      "Default": "NONE",
+      "Description": " Schedule Expression"
     },
     "deploymentBucketName": {
       "Type": "String"
     },
+    "env": {
+      "Type": "String"
+    },
     "s3Key": {
       "Type": "String"
+    },
+    "apiplatformchesscentreappGraphQLAPIIdOutput": {
+      "Type": "String",
+      "Default": "apiplatformchesscentreappGraphQLAPIIdOutput"
+    },
+    "apiplatformchesscentreappGraphQLAPIEndpointOutput": {
+      "Type": "String",
+      "Default": "apiplatformchesscentreappGraphQLAPIEndpointOutput"
     }
   },
   "Conditions": {
@@ -42,16 +43,24 @@
         "aws:asset:property": "Code"
       },
       "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": {
+            "Ref": "s3Key"
+          }
+        },
         "Handler": "index.handler",
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "centrecentredbTrigger7c009209",
+            "getEvents",
             {
               "Fn::Join": [
                 "",
                 [
-                  "centrecentredbTrigger7c009209",
+                  "getEvents",
                   "-",
                   {
                     "Ref": "env"
@@ -65,6 +74,15 @@
           "Variables": {
             "ENV": {
               "Ref": "env"
+            },
+            "REGION": {
+              "Ref": "AWS::Region"
+            },
+            "API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIIDOUTPUT": {
+              "Ref": "apiplatformchesscentreappGraphQLAPIIdOutput"
+            },
+            "API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIENDPOINTOUTPUT": {
+              "Ref": "apiplatformchesscentreappGraphQLAPIEndpointOutput"
             }
           }
         },
@@ -75,15 +93,8 @@
           ]
         },
         "Runtime": "nodejs14.x",
-        "Timeout": "25",
-        "Code": {
-          "S3Bucket": {
-            "Ref": "deploymentBucketName"
-          },
-          "S3Key": {
-            "Ref": "s3Key"
-          }
-        }
+        "Layers": [],
+        "Timeout": "25"
       }
     },
     "LambdaExecutionRole": {
@@ -92,12 +103,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "centrecentredbLambdaRole7c009209",
+            "platformchesscentreaLambdaRole5e21c416",
             {
               "Fn::Join": [
                 "",
                 [
-                  "centrecentredbLambdaRole7c009209",
+                  "platformchesscentreaLambdaRole5e21c416",
                   "-",
                   {
                     "Ref": "env"
@@ -168,13 +179,13 @@
         }
       }
     },
-    "centrecentredbTriggerPolicy": {
+    "AmplifyResourcesPolicy": {
       "DependsOn": [
         "LambdaExecutionRole"
       ],
       "Type": "AWS::IAM::Policy",
       "Properties": {
-        "PolicyName": "lambda-trigger-policy",
+        "PolicyName": "amplify-lambda-execution-policy",
         "Roles": [
           {
             "Ref": "LambdaExecutionRole"
@@ -186,39 +197,33 @@
             {
               "Effect": "Allow",
               "Action": [
-                "dynamodb:DescribeStream",
-                "dynamodb:GetRecords",
-                "dynamodb:GetShardIterator",
-                "dynamodb:ListStreams"
+                "appsync:GraphQL"
               ],
               "Resource": [
                 {
-                  "Ref": "storagecentrecentredbStreamArn"
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:appsync:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":apis/",
+                      {
+                        "Ref": "apiplatformchesscentreappGraphQLAPIIdOutput"
+                      },
+                      "/types/Query/*"
+                    ]
+                  ]
                 }
               ]
             }
           ]
         }
-      }
-    },
-    "centrecentredbTrigger": {
-      "Type": "AWS::Lambda::EventSourceMapping",
-      "DependsOn": [
-        "centrecentredbTriggerPolicy"
-      ],
-      "Properties": {
-        "BatchSize": 100,
-        "Enabled": true,
-        "EventSourceArn": {
-          "Ref": "storagecentrecentredbStreamArn"
-        },
-        "FunctionName": {
-          "Fn::GetAtt": [
-            "LambdaFunction",
-            "Arn"
-          ]
-        },
-        "StartingPosition": "LATEST"
       }
     }
   },

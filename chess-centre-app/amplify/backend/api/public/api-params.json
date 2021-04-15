@@ -2,25 +2,22 @@
     "paths": [
         {
             "name": "/events",
-            "lambdaFunction": "events",
+            "lambdaFunction": "getEvents",
             "privacy": {
-                "private": true,
-                "auth": [
-                    "/GET"
-                ]
+                "open": true
             },
             "policyResourceName": "/events"
         }
     ],
-    "resourceName": "chesscentreapi",
-    "apiName": "chesscentreapi",
+    "resourceName": "public",
+    "apiName": "public",
     "functionArns": [
         {
-            "lambdaFunction": "events"
+            "lambdaFunction": "getEvents"
         }
     ],
     "privacy": {
-        "auth": 1,
+        "auth": 0,
         "unauth": 0,
         "authRoleName": "amplify-platformchesscentrea-dev-45655-authRole",
         "unAuthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole"
@@ -28,7 +25,7 @@
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "events",
+            "resourceName": "getEvents",
             "attributes": [
                 "Name",
                 "Arn"

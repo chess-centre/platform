@@ -14,10 +14,9 @@
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "description": "api key description"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authplatformchesscentreapp"
             }
           },
           "additionalAuthenticationProviders": [
@@ -28,13 +27,13 @@
         }
       }
     },
-    "chesscentreapi": {
+    "public": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "events",
+          "resourceName": "getEvents",
           "attributes": [
             "Name",
             "Arn"
@@ -44,46 +43,21 @@
     }
   },
   "function": {
-    "centrecentredbTrigger7c009209": {
-      "service": "Lambda",
-      "providerPlugin": "awscloudformation",
+    "getEvents": {
       "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
       "dependsOn": [
         {
-          "category": "storage",
-          "resourceName": "centrecentredb",
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
           "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
           ]
-        }
-      ]
-    },
-    "events": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "centrecentredb",
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "attributeEnvMap": {
-            "Name": "TABLE_NAME",
-            "Arn": "TABLE_ARN"
-          }
         }
       ]
     }
   },
-  "storage": {
-    "centrecentredb": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    }
-  }
+  "storage": {}
 }
