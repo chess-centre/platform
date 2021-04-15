@@ -122,13 +122,10 @@ const LandingPage = () => {
           </main>
         </div>
       </div>
-
-
       <ComingEvents />
       <FAQs />
       <FindUs />
       <DownloadPWA />
-
       <FooterLanding />
     </div>
   );
