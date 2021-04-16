@@ -6,11 +6,15 @@ import { Label, Input, Button } from "@windmill/react-ui";
 import { loginUser, useAuthDispatch, useAuthState } from "../../context/Auth";
 import Loading from "../../assets/img/loading.svg";
 import SpecialLoading from "../../assets/img/special-loading.gif";
+import queryString from "query-string";
+import { API, Auth } from "aws-amplify";
+import { useStripe } from "@stripe/react-stripe-js";
 
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { redirect } = useParams();
+  const stripe = useStripe();
 
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
@@ -22,8 +26,27 @@ function Login(props) {
         props.history.push("/broadcast/live");
       }
 
-      props.history.push("/app");
+      const { search } = props.location;
+      const parsed = queryString.parse(search);
+      if (parsed.plan) {
+        // We'll want to add a loading state here
+        const {
+          attributes: { email },
+        } = await Auth.currentAuthenticatedUser();
+        const redirectTo = `${window.location.origin}/app/dashboard`;
+        const { sessionId } = await API.post("public", "/checkout", {
+          body: {
+            priceId: parsed.plan,
+            successUrl: redirectTo,
+            cancelUrl: redirectTo,
+            email,
+          },
+        });
 
+        await stripe.redirectToCheckout({ sessionId });
+      } else {
+        props.history.push("/app");
+      }
     } else {
       return;
     }

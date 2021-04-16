@@ -23,7 +23,13 @@ type FidePlayer @model @auth(rules: [{allow: private}]) {
   currentRating: Int
 }
 
-type Member @model @auth(rules: [{allow: owner}]) {
+type Member @model
+@auth(rules: [
+  {allow: private, provider: iam},
+  {allow: owner, ownerField: "id", operations: [read, update]}
+])
+@key(name: "stripe", fields: ["stripeCustomerId"])
+{
   id: ID!
   about: String
   fideId: Int
@@ -33,9 +39,19 @@ type Member @model @auth(rules: [{allow: owner}]) {
   promoByEmail: Boolean
   eventsByText: Boolean
   promoByText: Boolean
+
+  stripeCustomerId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}])
+  stripeCurrentPeriodEnd: Int @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}])
+  stripePriceId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}])
+  stripeProductId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}])
 }
 
-type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) {
+type Event @model
+@auth(rules: [
+  {allow: private},
+  {allow: private, provider: iam}
+])
+{
   id: ID!
   name: String
   description: String

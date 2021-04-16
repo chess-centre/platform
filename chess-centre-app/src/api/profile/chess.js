@@ -20,18 +20,17 @@ export const getECFData = async (id) => {
 };
 
 /**
- * @name getOrCreateMember
+ * @name getMember
  * @description ensures we are working with an existing record to assist updating of the whole user profile!
- * @param {*} user
  * @returns
  */
-export const getOrCreateMember = async (user) => {
+export const getMember = async () => {
   const record = await DataStore.query(Member);
+
   if (Array.isArray(record) && record.length) {
     return record[0];
   } else {
-    const member = await createMember(user);
-    return member; // hand back the ID for future updates!
+    return undefined;
   }
 };
 
@@ -50,22 +49,4 @@ export const updateChessInfo = async (
     })
   );
   return updated;
-};
-
-const createMember = async (user) => {
-  const member = await DataStore.save(
-    new Member({
-      username: createUserName(user), // TODO: ensure is unqiue, duplication issue here!
-      promoByEmail: false,
-      promoByText: false,
-      eventsByEmail: false,
-      eventsByText: false,
-    })
-  );
-  return member;
-};
-
-const createUserName = (user) => {
-  const { given_name, family_name } = user.attributes;
-  return `${given_name.toLowerCase()}-${family_name.toLowerCase()}`;
 };

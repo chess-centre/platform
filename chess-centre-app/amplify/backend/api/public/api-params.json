@@ -7,6 +7,44 @@
                 "open": true
             },
             "policyResourceName": "/events"
+        },
+        {
+            "name": "/checkout",
+            "lambdaFunction": "stripeCheckout",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/checkout"
+        },
+        {
+            "name": "/stripe/webhook",
+            "lambdaFunction": "stripeWebhook",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/stripe/webhook"
+        },
+        {
+            "name": "/customer-portal",
+            "lambdaFunction": "stripeCustomerPortal",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/customer-portal"
         }
     ],
     "resourceName": "public",
@@ -14,10 +52,19 @@
     "functionArns": [
         {
             "lambdaFunction": "getEvents"
+        },
+        {
+            "lambdaFunction": "stripeCheckout"
+        },
+        {
+            "lambdaFunction": "stripeWebhook"
+        },
+        {
+            "lambdaFunction": "stripeCustomerPortal"
         }
     ],
     "privacy": {
-        "auth": 0,
+        "auth": 2,
         "unauth": 0,
         "authRoleName": "amplify-platformchesscentrea-dev-45655-authRole",
         "unAuthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole"
@@ -30,6 +77,31 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "stripeCheckout",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "stripeWebhook",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "stripeCustomerPortal",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
-    ]
+    ],
+    "uuid": "89bd213d"
 }

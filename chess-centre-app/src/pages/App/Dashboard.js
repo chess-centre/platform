@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import queryString from "query-string";
 import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
 import { Line, Bar } from "react-chartjs-2";
@@ -10,13 +11,25 @@ import {
   lineLegends,
   barLegends,
 } from "../../api/mock.dashboard";
+import Auth from "@aws-amplify/auth";
 
-function Dashboard() {
+function Dashboard(props) {
+  const {
+    user: {
+      attributes: { given_name },
+    },
+  } = useAuthState();
 
-  const { user: { attributes: { given_name }}} = useAuthState();
+  useEffect(() => {
+    const { search } = props.location;
+    const parsed = queryString.parse(search);
 
-
-
+    if (parsed && parsed.session_id) {
+      // This happens after a member completes checkout through Stripe.
+      // We want to ensure that the user claims are updated.
+      Auth.currentAuthenticatedUser({ bypassCache: true });
+    }
+  }, [props.location]);
 
   return (
     <>
@@ -29,7 +42,7 @@ function Dashboard() {
             Overview
           </h3>
           <p className="ml-2 mt-1 text-sm text-gray-500 truncate dark:text-gray-400">
-            We're tracking your performance { given_name }
+            We're tracking your performance {given_name}
           </p>
         </div>
       </div>

@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function MembershipCard({ title, price, subHeading, benefits, discounted }) {
+function MembershipCard({
+  title,
+  price,
+  subHeading,
+  benefits,
+  discounted,
+  stripePriceId,
+}) {
   // HERE WE SHOULD DETERMINE CURRENT SIGNED IN / SUBSCRIBED STATUS
 
   // IF NOT SIGNED IN && NOT SUBSCRIBED = "sign in"
@@ -61,7 +68,7 @@ function MembershipCard({ title, price, subHeading, benefits, discounted }) {
         </ul>
         <div className="rounded-md shadow">
           <Link
-            to="/register"
+            to={`/register?plan=${stripePriceId}`}
             className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${
               discounted ? "bg-orange-brand " : "bg-teal-600 "
             } ${discounted ? "hover:bg-orange-400" : "hover:bg-teal-brand"}`}

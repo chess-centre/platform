@@ -113,7 +113,9 @@ function Login(props) {
         if (response) {
           setIsSpecialLoading(true);
           setTimeout(() => {
-            props.history.push(`/register/confirm/${email}`);
+            props.history.push(
+              `/register/confirm/${email}${props.location.search}`
+            );
             setIsSpecialLoading(false);
           }, 3000);
         } // if there's no response, the action dispatched a contextual error already
@@ -146,7 +148,11 @@ function Login(props) {
             <div className="w-full">
               <Link to="/">
                 {isSpecialLoading ? (
-                  <img src={SpecialLoading} className="object-contain h-24 w-full md:h-44" alt="Creating Account" />
+                  <img
+                    src={SpecialLoading}
+                    className="object-contain h-24 w-full md:h-44"
+                    alt="Creating Account"
+                  />
                 ) : (
                   <img
                     src={Logo}
@@ -170,7 +176,9 @@ function Login(props) {
                 />
               </Label>
               <Label>
-                <span onClick={() => setIsSpecialLoading(!isSpecialLoading)}>Surname</span>
+                <span onClick={() => setIsSpecialLoading(!isSpecialLoading)}>
+                  Surname
+                </span>
                 <Input
                   disabled={loading}
                   value={surname}

@@ -5,7 +5,6 @@ import {
   confirmEmail,
   userPasswordForgot,
   userPasswordForgotSubmit,
-  getCurrentAuthenticatedUser,
   updateUserAttributes,
   resendActivationCode,
 } from "./actions";
@@ -18,7 +17,6 @@ export {
   loginUser,
   signUpUser,
   confirmEmail,
-  getCurrentAuthenticatedUser,
   updateUserAttributes,
   resendActivationCode,
   userPasswordForgot,
