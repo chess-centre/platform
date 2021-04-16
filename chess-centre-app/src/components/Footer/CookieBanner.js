@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import CookieTermsModal from "../Modal/CookieTermsModal";
 import { CogIcon, XIcon } from "@heroicons/react/outline";
-import { useState } from "react/cjs/react.development";
 import { useEffect } from "react";
 const COOKIE_POLICY = "cookiePolicy";
 
