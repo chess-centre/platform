@@ -36,7 +36,7 @@ function Login(props) {
         const redirectTo = `${window.location.origin}/app/dashboard`;
         const { sessionId } = await API.post("public", "/checkout", {
           body: {
-            priceId: parsed.plan,
+            plan: parsed.plan,
             successUrl: redirectTo,
             cancelUrl: redirectTo,
             email,

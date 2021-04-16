@@ -1,4 +1,15 @@
+/* Amplify Params - DO NOT EDIT
+	API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIIDOUTPUT
+	API_PLATFORMCHESSCENTREAPP_PLANTABLE_ARN
+	API_PLATFORMCHESSCENTREAPP_PLANTABLE_NAME
+	ENV
+	REGION
+Amplify Params - DO NOT EDIT */
+
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
+const AWS = require("aws-sdk");
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+const planTable = process.env.API_PLATFORMCHESSCENTREAPP_PLANTABLE_NAME;
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -24,15 +35,41 @@ exports.handler = async (event) => {
   // cognitoAuthenticationProvider looks like
   // "cognito-idp.eu-west-1.amazonaws.com/eu-west-1_dbFaqW6eN,cognito-idp.eu-west-1.amazonaws.com/eu-west-1_dbFaqW6eN:CognitoSignIn:c4bd1329-5b2c-4cab-929f-561f0d8ec018"
   const [userSub] = identity.cognitoAuthenticationProvider.split(":").slice(-1);
-  const { priceId, successUrl, cancelUrl, email } = JSON.parse(body);
+  const { plan, successUrl, cancelUrl, email } = JSON.parse(body);
 
-  if (!priceId || !successUrl || !cancelUrl) {
+  if (!plan || !successUrl || !cancelUrl) {
     return {
       statusCode: 400,
       headers,
       body: "Invalid request body",
     };
   }
+
+  const queryParams = {
+    TableName: planTable,
+    IndexName: "key",
+    KeyConditionExpression: "#key = :plan",
+    ExpressionAttributeNames: {
+      "#key": "key",
+    },
+    ExpressionAttributeValues: {
+      ":plan": plan,
+    },
+  };
+
+  const { Items } = await dynamodb.query(queryParams).promise();
+  const [planRecord] = Items;
+
+  if (!planRecord) {
+    console.warn(`Couldn't find plan with id=${plan}`);
+    return {
+      statusCode: 400,
+      headers,
+      body: "No plan record found.",
+    };
+  }
+
+  console.log(JSON.stringify(planRecord));
 
   // See https://stripe.com/docs/api/checkout/sessions/create
   // for additional parameters to pass.
@@ -42,7 +79,7 @@ exports.handler = async (event) => {
       payment_method_types: ["card"],
       line_items: [
         {
-          price: priceId,
+          price: planRecord.stripePriceId,
           // For metered billing, do not pass quantity
           quantity: 1,
         },

@@ -155,7 +155,7 @@ async function handleCustomerSubscriptionEvent(data) {
     UpdateExpression:
       "set stripeCurrentPeriodEnd = :current_period_end, stripePriceId = :price, stripeProductId = :product",
     ExpressionAttributeValues: {
-      ":current_period_end": current_period_end,
+      ":current_period_end": current_period_end * 1000,
       ":price": price,
       ":product": product,
     },

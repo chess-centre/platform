@@ -42,7 +42,7 @@ exports.handler = async (event, context, callback) => {
 
   const { stripeCurrentPeriodEnd } = member || {};
   const activeThrough = stripeCurrentPeriodEnd
-    ? new Date(stripeCurrentPeriodEnd * 1000) // stored as seconds, need ms
+    ? new Date(stripeCurrentPeriodEnd)
     : undefined;
 
   console.log(activeThrough);

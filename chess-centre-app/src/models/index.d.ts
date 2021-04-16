@@ -4,6 +4,15 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class Plan {
+  readonly id: string;
+  readonly key: string;
+  readonly stripePriceId: string;
+  readonly stripeProductId: string;
+  constructor(init: ModelInit<Plan>);
+  static copyOf(source: Plan, mutator: (draft: MutableModel<Plan>) => MutableModel<Plan> | void): Plan;
+}
+
 export declare class EventType {
   readonly id: string;
   readonly name: string;
@@ -45,6 +54,10 @@ export declare class Member {
   readonly promoByEmail?: boolean;
   readonly eventsByText?: boolean;
   readonly promoByText?: boolean;
+  readonly stripeCustomerId?: string;
+  readonly stripeCurrentPeriodEnd?: number;
+  readonly stripePriceId?: string;
+  readonly stripeProductId?: string;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
 }

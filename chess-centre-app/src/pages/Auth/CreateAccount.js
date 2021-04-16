@@ -267,7 +267,7 @@ function Login(props) {
               <p className="mt-4">
                 <Link
                   className="text-sm font-medium text-teal-600 dark:text-teal-400 hover:underline"
-                  to="/login"
+                  to={`/login${props.location.search}`}
                 >
                   Already have an account? Login
                 </Link>

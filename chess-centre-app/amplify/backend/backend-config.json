@@ -105,7 +105,15 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
-      "dependsOn": []
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ]
+        }
+      ]
     },
     "stripeWebhook": {
       "build": true,

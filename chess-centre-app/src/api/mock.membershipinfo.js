@@ -10,7 +10,7 @@ const data = [
       "Professional Coaching and Tuition",
     ],
     discounted: false,
-    stripePriceId: "price_1IgSnSHSMP8H4TL9t3Sq1Cad",
+    plan: "juniors",
   },
   {
     title: "Premium Member",
@@ -23,7 +23,7 @@ const data = [
       "Live Games",
     ],
     discounted: false,
-    stripePriceId: "price_1ISWXEHSMP8H4TL9E9K1wgfY",
+    plan: "premium",
   },
   {
     title: "Student",
@@ -35,7 +35,7 @@ const data = [
       "Wide Range of Club Events and Competitions",
     ],
     discounted: true,
-    stripePriceId: "price_1IgSppHSMP8H4TL9hmOdcUn3",
+    plan: "student",
   },
   {
     title: "OAP",
@@ -47,7 +47,7 @@ const data = [
       "Wide Range of Club Events and Competitions",
     ],
     discounted: true,
-    stripePriceId: "price_1IgSqNHSMP8H4TL9MWzjGWgE",
+    plan: "oap",
   },
 ];
 

@@ -22,11 +22,11 @@
         },
         "stripeCheckout": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeCheckout-4353445638636f346968-build.zip"
+          "s3Key": "amplify-builds/stripeCheckout-4c547a7357596e695737-build.zip"
         },
         "stripeWebhook": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeWebhook-61535a572b4e6e56354c-build.zip"
+          "s3Key": "amplify-builds/stripeWebhook-46594d7859786d74546e-build.zip"
         },
         "platformchesscentreappPostConfirmation": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -34,7 +34,7 @@
         },
         "platformchesscentreappPreTokenGeneration": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/platformchesscentreappPreTokenGeneration-476e4467364d45714956-build.zip"
+          "s3Key": "amplify-builds/platformchesscentreappPreTokenGeneration-725849694e424b4a2f30-build.zip"
         },
         "stripeCustomerPortal": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
