@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CookieBanner  from "./CookieBanner";
 
 const LandingFooter = () => {
   return (
@@ -97,6 +98,7 @@ const LandingFooter = () => {
         <p className="mt-6 text-center text-base text-gray-400">
           &copy; 2020 The Chess Centre. All rights reserved.
         </p>
+        <CookieBanner />
       </div>
     </footer>
   );
