@@ -55,7 +55,6 @@ export declare class Member {
   readonly eventsByText?: boolean;
   readonly promoByText?: boolean;
   readonly stripeCustomerId?: string;
-  readonly stripeCurrentPeriodEnd?: number;
   readonly stripePriceId?: string;
   readonly stripeProductId?: string;
   constructor(init: ModelInit<Member>);

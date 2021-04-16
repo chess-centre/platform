@@ -30,7 +30,9 @@ export const getMember = async () => {
   if (Array.isArray(record) && record.length) {
     return record[0];
   } else {
-    return undefined;
+    // DataStore may be stale
+    await DataStore.start();
+    return await getMember();
   }
 };
 
@@ -39,7 +41,7 @@ export const updateChessInfo = async (
   { newUsername, ecfId, fideId, newAbout }
 ) => {
   console.log(newUsername, ecfId, fideId, newAbout);
-  const record = await DataStore.query(Member, id);
+  const record = await DataStore.query(Member);
   const updated = await DataStore.save(
     Member.copyOf(record, (updated) => {
       updated.username = newUsername;

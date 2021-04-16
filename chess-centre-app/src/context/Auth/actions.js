@@ -1,4 +1,4 @@
-import Amplify, { Auth } from "aws-amplify";
+import Amplify, { Auth, API, DataStore } from "aws-amplify";
 import AWS_AUTH from "../../aws-exports";
 Amplify.configure(AWS_AUTH);
 
@@ -114,7 +114,42 @@ export async function resendActivationCode(email) {
 
 export async function logout(dispatch) {
   await Auth.signOut();
+  await DataStore.clear();
   dispatch({ type: "LOGOUT" });
   localStorage.removeItem("currentUser");
   localStorage.removeItem("token");
+}
+
+export async function subscribe(plan, stripe) {
+  const {
+    attributes: { email },
+  } = await Auth.currentAuthenticatedUser();
+  const redirectTo = `${window.location.origin}/app/dashboard`;
+  const { sessionId } = await API.post("public", "/checkout", {
+    body: {
+      plan,
+      successUrl: redirectTo,
+      cancelUrl: redirectTo,
+      email,
+    },
+  });
+
+  await stripe.redirectToCheckout({ sessionId });
+}
+
+export async function isPaidMember() {
+  const getGroups = (user) => {
+    return user.signInUserSession.idToken.payload["cognito:groups"];
+  };
+
+  // First, try to get the user from cache; if it already
+  // has the group, return true. Else, do a fetch to make sure
+  // we have the latest claims from Cognito.
+  let user = await Auth.currentAuthenticatedUser();
+  let groups = getGroups(user);
+  if (groups && groups.includes("Member")) return true;
+
+  user = await Auth.currentAuthenticatedUser({ bypassCache: true });
+  groups = getGroups(user);
+  return groups && groups.includes("Member");
 }

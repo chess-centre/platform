@@ -348,13 +348,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "stripeCurrentPeriodEnd": {
-                    "name": "stripeCurrentPeriodEnd",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "stripePriceId": {
                     "name": "stripePriceId",
                     "isArray": false,
@@ -533,5 +526,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "54132de84d895c48ad60cfbe048d4718"
+    "version": "635b41988c3c36560f7897594c46a972"
 };

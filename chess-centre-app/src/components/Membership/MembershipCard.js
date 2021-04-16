@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useStripe } from "@stripe/react-stripe-js";
+import { subscribe } from "../../context/Auth";
+import { Button } from "@windmill/react-ui";
 
 function MembershipCard({
+  direct,
   title,
   price,
   subHeading,
@@ -9,6 +13,13 @@ function MembershipCard({
   discounted,
   plan,
 }) {
+  const stripe = useStripe();
+
+  const checkout = async () => {
+    // Need a loading state here
+    await subscribe(plan, stripe);
+  };
+
   // HERE WE SHOULD DETERMINE CURRENT SIGNED IN / SUBSCRIBED STATUS
 
   // IF NOT SIGNED IN && NOT SUBSCRIBED = "sign in"
@@ -66,17 +77,29 @@ function MembershipCard({
             </li>
           ))}
         </ul>
-        <div className="rounded-md shadow">
-          <Link
-            to={`/register?plan=${plan}`}
+        {direct ? (
+          <Button
             className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${
               discounted ? "bg-orange-brand " : "bg-teal-600 "
             } ${discounted ? "hover:bg-orange-400" : "hover:bg-teal-brand"}`}
             aria-describedby="tier-standard"
+            onClick={checkout}
           >
-            Sign up
-          </Link>
-        </div>
+            Upgrade
+          </Button>
+        ) : (
+          <div className="rounded-md shadow">
+            <Link
+              to={`/register?plan=${plan}`}
+              className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${
+                discounted ? "bg-orange-brand " : "bg-teal-600 "
+              } ${discounted ? "hover:bg-orange-400" : "hover:bg-teal-brand"}`}
+              aria-describedby="tier-standard"
+            >
+              Sign up
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

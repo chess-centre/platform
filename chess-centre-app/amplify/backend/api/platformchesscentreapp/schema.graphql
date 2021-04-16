@@ -47,7 +47,6 @@ type Member @model
   eventsByText: Boolean
   promoByText: Boolean
   stripeCustomerId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}])
-  stripeCurrentPeriodEnd: Int @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}])
   stripePriceId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}])
   stripeProductId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}])
 }
