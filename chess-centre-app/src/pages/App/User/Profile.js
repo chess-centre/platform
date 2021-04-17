@@ -3,14 +3,16 @@ import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
 import { getMember } from "../../../api/profile/chess";
 import { ChessInfo, AccountInfo, Preferences } from "./sections";
+import { useAuthState } from "../../../context/Auth";
 
 function Profile() {
+  const { user } = useAuthState();
   const [member, setMember] = useState({});
   const [customerPortalUrl, setCustomerPortalUrl] = useState();
 
   useEffect(() => {
     const getUser = async () => {
-      const m = await getMember();
+      const m = await getMember(user);
       setMember(m);
     };
 
@@ -27,7 +29,7 @@ function Profile() {
 
     getUser();
     getCustomerPortal();
-  }, []);
+  }, [user]);
 
   return (
     <div className="mt-4 mb-4 lg:grid lg:grid-cols-12 lg:gap-x-5">

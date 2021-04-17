@@ -446,7 +446,12 @@ export const schema = {
                                 "identityClaim": "cognito:username"
                             },
                             {
-                                "allow": "private",
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "Member"
+                                ],
                                 "operations": [
                                     "read"
                                 ]

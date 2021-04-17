@@ -36,7 +36,7 @@ type FidePlayer @model @auth(rules: [{allow: private}]) {
 }
 
 type Member @model
-@auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: private, operations: [read]}])
+@auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: groups, groups: ["Member"], operations: [read]}])
 @key(name: "stripe", fields: ["stripeCustomerId"])
 {
   id: ID!

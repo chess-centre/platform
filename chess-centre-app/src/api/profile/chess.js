@@ -24,16 +24,8 @@ export const getECFData = async (id) => {
  * @description ensures we are working with an existing record to assist updating of the whole user profile!
  * @returns
  */
-export const getMember = async () => {
-  const record = await DataStore.query(Member);
-
-  if (Array.isArray(record) && record.length) {
-    return record[0];
-  } else {
-    // DataStore may be stale
-    await DataStore.start();
-    return await getMember();
-  }
+export const getMember = async (user) => {
+  return await DataStore.query(Member, user.attributes.sub);
 };
 
 export const updateChessInfo = async (
@@ -41,7 +33,7 @@ export const updateChessInfo = async (
   { newUsername, ecfId, fideId, newAbout }
 ) => {
   console.log(newUsername, ecfId, fideId, newAbout);
-  const record = await DataStore.query(Member);
+  const record = await DataStore.query(Member, id);
   const updated = await DataStore.save(
     Member.copyOf(record, (updated) => {
       updated.username = newUsername;
