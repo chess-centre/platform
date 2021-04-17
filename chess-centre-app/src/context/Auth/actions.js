@@ -1,4 +1,4 @@
-import Amplify, { Auth } from "aws-amplify";
+import Amplify, { Auth, API, DataStore } from "aws-amplify";
 import AWS_AUTH from "../../aws-exports";
 Amplify.configure(AWS_AUTH);
 
@@ -21,27 +21,21 @@ export async function updateUserAttributes(firstName, lastName) {
 
   Auth.updateUserAttributes(user, {
     given_name: firstName,
-    family_name: lastName
-  }).then(async (u) =>  {
-    // TODO: tidy up this repeative logic / move to central call to update local storage:
-    const updatedUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
-    localStorage.removeItem("currentUser");
-    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
-    return u;
-  }).catch(e => {
-    console.log("error", e.message);
-    return e.message;
-  });
-}
-
-export async function getCurrentAuthenticatedUser(dispatch) {
-  const user = await Auth.currentAuthenticatedUser();
-  if (user) {
-    localStorage.removeItem("currentUser");
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    return user;
-  }
-  return;
+    family_name: lastName,
+  })
+    .then(async (u) => {
+      // TODO: tidy up this repeative logic / move to central call to update local storage:
+      const updatedUser = await Auth.currentAuthenticatedUser({
+        bypassCache: true,
+      });
+      localStorage.removeItem("currentUser");
+      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+      return u;
+    })
+    .catch((e) => {
+      console.log("error", e.message);
+      return e.message;
+    });
 }
 
 export async function userPasswordForgot(dispatch, email) {
@@ -71,17 +65,23 @@ export async function userPasswordForgotSubmit(
   }
 }
 
-export async function signUpUser(dispatch, email, password, firstName, surname) {
+export async function signUpUser(
+  dispatch,
+  email,
+  password,
+  firstName,
+  surname
+) {
   try {
     dispatch({ type: "REQUEST_LOGIN" });
 
     let user = await Auth.signUp({
       username: email,
       password,
-      attributes: { 
+      attributes: {
         email,
         given_name: firstName,
-        family_name: surname
+        family_name: surname,
       },
     });
 
@@ -114,7 +114,47 @@ export async function resendActivationCode(email) {
 
 export async function logout(dispatch) {
   await Auth.signOut();
+  await DataStore.clear();
   dispatch({ type: "LOGOUT" });
   localStorage.removeItem("currentUser");
   localStorage.removeItem("token");
+}
+
+export async function subscribe(plan, stripe) {
+  const {
+    attributes: { email },
+  } = await Auth.currentAuthenticatedUser();
+  const redirectTo = `${window.location.origin}/app/dashboard`;
+  const { sessionId } = await API.post("public", "/checkout", {
+    body: {
+      plan,
+      successUrl: redirectTo,
+      cancelUrl: redirectTo,
+      email,
+    },
+  });
+
+  await stripe.redirectToCheckout({ sessionId });
+}
+
+export async function isPaidMember(existing) {
+  const getGroups = (user) => {
+    return user.signInUserSession.idToken.payload["cognito:groups"];
+  };
+
+  if (existing) {
+    let groups = getGroups(existing);
+    if (groups && groups.includes("Member")) return true;
+  }
+
+  // First, try to get the user from cache; if it already
+  // has the group, return true. Else, do a fetch to make sure
+  // we have the latest claims from Cognito.
+  let user = await Auth.currentAuthenticatedUser();
+  let groups = getGroups(user);
+  if (groups && groups.includes("Member")) return true;
+
+  user = await Auth.currentAuthenticatedUser({ bypassCache: true });
+  groups = getGroups(user);
+  return (groups && groups.includes("Member")) || false;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import routes from "../../routes/sidebar";
 import { NavLink, Route, Link } from "react-router-dom";
 import * as Icons from "../../icons";
@@ -7,13 +7,13 @@ import ImageLight from "../../assets/img/logo-light-theme-small.png";
 import ImageDark from "../../assets/img/logo-dark-theme-small.png";
 import ImageLightBeta from "../../assets/img/beta/logo-light-theme-beta-small.png";
 import ImageDarkBeta from "../../assets/img/beta/logo-dark-theme-beta-small.png";
+import { isPaidMember } from "../../context/Auth";
 const version = process.env.REACT_APP_VERSION || "0.0.0";
 
 let isDev = true;
 if (process.env.NODE_ENV === "production") {
-    isDev = false
-};
-
+  isDev = false;
+}
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon];
@@ -21,6 +21,17 @@ function Icon({ icon, ...props }) {
 }
 
 function SidebarContent() {
+  const [needsUpgrade, setNeedsUpgrade] = useState(false);
+
+  async function checkMemberStatus() {
+    const isPaid = await isPaidMember();
+    setNeedsUpgrade(!isPaid);
+  }
+
+  useEffect(() => {
+    checkMemberStatus();
+  }, []);
+
   return (
     <div className="py-4 text-gray-500 dark:text-gray-400">
       <NavLink
@@ -30,13 +41,13 @@ function SidebarContent() {
         <img
           aria-hidden="true"
           className="object-scale-down h-6 w-full inline-block  dark:hidden"
-          src={ isDev ? ImageLightBeta : ImageLight }
+          src={isDev ? ImageLightBeta : ImageLight}
           alt="Logo"
         />
         <img
           aria-hidden="true"
           className="object-scale-down h-6 w-full dark:inline-block hidden"
-          src={ isDev ? ImageDarkBeta : ImageDark }
+          src={isDev ? ImageDarkBeta : ImageDark}
           alt="Logo"
         />
       </NavLink>
@@ -69,8 +80,16 @@ function SidebarContent() {
           )
         )}
       </ul>
+      {needsUpgrade && (
+        <Link
+          to="/app/upgrade"
+          className="align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-teal-600 border border-transparent active:bg-teal-600 hover:bg-teal-700 focus:shadow-outline-teal ml-5 mt-3"
+        >
+          Upgrade Membership
+        </Link>
+      )}
       <div className="absolute bottom-1 px-6 my-6 text-xs hover:underline">
-          <Link to="/roadmap">{ `v${version}` }</Link>
+        <Link to="/roadmap">{`v${version}`}</Link>
       </div>
     </div>
   );

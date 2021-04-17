@@ -6,7 +6,6 @@ import Main from "../containers/Main";
 import ThemedSuspense from "../components/ThemedSuspense";
 import { SidebarContext } from "../context/SidebarContext";
 
-
 const routes = [
   {
     path: "/dashboard",
@@ -25,8 +24,14 @@ const routes = [
     component: lazy(() => import("../pages/App/Members")),
   },
   {
+    path: "/upgrade",
+    component: lazy(() => import("../pages/App/Upgrade")),
+  },
+  {
     path: "/non-members/:memberId",
-    component: lazy(() => import("../components/MemberProfile/NonMemberProfile")),
+    component: lazy(() =>
+      import("../components/MemberProfile/NonMemberProfile")
+    ),
   },
   // this is auto-generated with given_name-family_name but can be set by the user: app/profile
   {
@@ -36,7 +41,7 @@ const routes = [
   {
     path: "/profile",
     component: lazy(() => import("../pages/App/User/Profile")),
-  }
+  },
 ];
 
 const Page404 = lazy(() => import("../pages/Error/404"));

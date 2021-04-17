@@ -53,6 +53,36 @@
     "EmptyOutput": {
       "Description": "An empty output. You may delete this if you have at least one resource above.",
       "Value": ""
+    },
+    "StaticGraphQLAPIId": {
+      "Description": "GraphQL API ID with static export name",
+      "Value": {
+        "Ref": "AppSyncApiId"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Join": [
+            ":",
+            [
+              {
+                "Fn::Join": [
+                  "",
+                  [
+                    "api",
+                    {
+                      "Ref": "AppSyncApiName"
+                    }
+                  ]
+                ]
+              },
+              {
+                "Ref": "env"
+              },
+              "StaticGraphQLApiId"
+            ]
+          ]
+        }
+      }
     }
   }
 }

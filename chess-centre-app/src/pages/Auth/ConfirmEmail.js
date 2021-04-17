@@ -29,7 +29,7 @@ function ConfirmEmail(props) {
       const confirmed = await confirmEmail(dispatch, email, code);
       if (confirmed) {
         // after confirmation, the user needs to login
-        props.history.push("/login");
+        props.history.push(`/login${props.location.search}`);
       }
       return;
     }
@@ -67,7 +67,12 @@ function ConfirmEmail(props) {
                 Account activation
               </h1>
               <Label>
-                <span>Enter your code <span className="text-xs text-gray-600">(sent to you via email)</span></span>
+                <span>
+                  Enter your code{" "}
+                  <span className="text-xs text-gray-600">
+                    (sent to you via email)
+                  </span>
+                </span>
 
                 <div className="flex space-x-3 mt-1">
                   <Input
@@ -102,7 +107,7 @@ function ConfirmEmail(props) {
                   Resend
                 </Link>
               </p>
-            <p className="mt-1">
+              <p className="mt-1">
                 <Link
                   className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"
                   to="/"
@@ -111,7 +116,6 @@ function ConfirmEmail(props) {
                 </Link>
               </p>
             </div>
-
           </main>
         </div>
       </div>

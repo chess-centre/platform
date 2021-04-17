@@ -5,9 +5,10 @@ import {
   confirmEmail,
   userPasswordForgot,
   userPasswordForgotSubmit,
-  getCurrentAuthenticatedUser,
   updateUserAttributes,
   resendActivationCode,
+  isPaidMember,
+  subscribe,
 } from "./actions";
 import { AuthProvider, useAuthDispatch, useAuthState } from "./context";
 
@@ -18,10 +19,11 @@ export {
   loginUser,
   signUpUser,
   confirmEmail,
-  getCurrentAuthenticatedUser,
   updateUserAttributes,
   resendActivationCode,
   userPasswordForgot,
   userPasswordForgotSubmit,
   logout,
+  isPaidMember,
+  subscribe,
 };
