@@ -141,6 +141,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
             id
           }
         }
+        _version
       }
     }
   `;
@@ -149,6 +150,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
     data: {
       getEvent: {
         entries: { items: entries },
+        _version,
       },
     },
   } = await executeGraphql(getEvent, {
@@ -160,11 +162,18 @@ async function handleCheckoutSessionCompletedPayment(id) {
   const entryCount = entries.length + 1; // add one for this entry
 
   const createEntry = gql`
-    mutation createEntry($eventId: ID!, $memberId: ID!, $entryCount: Int!) {
+    mutation createEntry(
+      $eventId: ID!
+      $memberId: ID!
+      $entryCount: Int!
+      $_version: Int!
+    ) {
       createEntry(input: { eventId: $eventId, memberId: $memberId }) {
         id
       }
-      updateEvent(input: { id: $eventId, entryCount: $entryCount }) {
+      updateEvent(
+        input: { id: $eventId, entryCount: $entryCount, _version: $_version }
+      ) {
         id
       }
     }
@@ -174,6 +183,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
     eventId,
     memberId,
     entryCount,
+    _version,
   });
   console.log(JSON.stringify(data));
 }
