@@ -137,10 +137,15 @@ export async function subscribe(plan, stripe) {
   await stripe.redirectToCheckout({ sessionId });
 }
 
-export async function isPaidMember() {
+export async function isPaidMember(existing) {
   const getGroups = (user) => {
     return user.signInUserSession.idToken.payload["cognito:groups"];
   };
+
+  if (existing) {
+    let groups = getGroups(existing);
+    if (groups && groups.includes("Member")) return true;
+  }
 
   // First, try to get the user from cache; if it already
   // has the group, return true. Else, do a fetch to make sure
@@ -151,5 +156,5 @@ export async function isPaidMember() {
 
   user = await Auth.currentAuthenticatedUser({ bypassCache: true });
   groups = getGroups(user);
-  return groups && groups.includes("Member");
+  return (groups && groups.includes("Member")) || false;
 }

@@ -11,6 +11,8 @@ exports.handler = async (event, context, callback) => {
     },
   } = event;
 
+  const name = `${given_name} ${family_name}`;
+
   const timestamp = new Date().toISOString();
   const params = {
     TableName: memberTable,
@@ -22,6 +24,7 @@ exports.handler = async (event, context, callback) => {
       createdAt: timestamp,
       updatedAt: timestamp,
       username: `${given_name.toLowerCase()}-${family_name.toLowerCase()}`,
+      name,
       email,
       promoByEmail: false,
       promoByText: false,

@@ -81,6 +81,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "eventRegister",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
@@ -124,7 +132,8 @@
           "category": "api",
           "resourceName": "platformchesscentreapp",
           "attributes": [
-            "GraphQLAPIIdOutput"
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
           ]
         }
       ]
@@ -149,6 +158,21 @@
           "resourceName": "platformchesscentreapp",
           "attributes": [
             "GraphQLAPIIdOutput"
+          ]
+        }
+      ]
+    },
+    "eventRegister": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
           ]
         }
       ]

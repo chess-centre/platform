@@ -21,6 +21,7 @@ export declare class EventType {
   readonly color?: string;
   readonly time?: string;
   readonly maxEntries?: number;
+  readonly stripePriceId?: string;
   constructor(init: ModelInit<EventType>);
   static copyOf(source: EventType, mutator: (draft: MutableModel<EventType>) => MutableModel<EventType> | void): EventType;
 }
@@ -50,15 +51,27 @@ export declare class Member {
   readonly fideId?: number;
   readonly ecfId?: string;
   readonly username?: string;
+  readonly name?: string;
+  readonly email?: string;
   readonly eventsByEmail?: boolean;
   readonly promoByEmail?: boolean;
   readonly eventsByText?: boolean;
   readonly promoByText?: boolean;
+  readonly entries?: Entry[];
   readonly stripeCustomerId?: string;
+  readonly stripeCurrentPeriodEnd?: number;
   readonly stripePriceId?: string;
   readonly stripeProductId?: string;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
+}
+
+export declare class Entry {
+  readonly id: string;
+  readonly event?: Event;
+  readonly member?: Member;
+  constructor(init: ModelInit<Entry>);
+  static copyOf(source: Entry, mutator: (draft: MutableModel<Entry>) => MutableModel<Entry> | void): Entry;
 }
 
 export declare class Event {
@@ -70,8 +83,9 @@ export declare class Event {
   readonly type: EventType;
   readonly startDate: string;
   readonly endDate?: string;
-  readonly entries?: number;
+  readonly entries?: Entry[];
   readonly maxEntries?: number;
+  readonly entryCount?: number;
   constructor(init: ModelInit<Event>);
   static copyOf(source: Event, mutator: (draft: MutableModel<Event>) => MutableModel<Event> | void): Event;
 }

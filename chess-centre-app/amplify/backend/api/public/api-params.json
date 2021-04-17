@@ -45,6 +45,21 @@
                 ]
             },
             "policyResourceName": "/customer-portal"
+        },
+        {
+            "name": "/event/register",
+            "lambdaFunction": "eventRegister",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/event/register"
         }
     ],
     "resourceName": "public",
@@ -61,10 +76,13 @@
         },
         {
             "lambdaFunction": "stripeCustomerPortal"
+        },
+        {
+            "lambdaFunction": "eventRegister"
         }
     ],
     "privacy": {
-        "auth": 2,
+        "auth": 3,
         "unauth": 0,
         "authRoleName": "amplify-platformchesscentrea-dev-45655-authRole",
         "unAuthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole"
@@ -101,7 +119,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "eventRegister",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "89bd213d"
+    "uuid": "a14adc3d"
 }

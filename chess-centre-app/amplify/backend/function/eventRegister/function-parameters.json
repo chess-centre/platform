@@ -5,13 +5,6 @@
         "Query",
         "Mutation"
       ]
-    },
-    "storage": {
-      "Member:@model(appsync)": [
-        "create",
-        "read",
-        "update"
-      ]
     }
   },
   "lambdaLayers": []

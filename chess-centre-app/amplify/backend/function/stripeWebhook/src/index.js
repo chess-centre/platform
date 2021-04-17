@@ -1,4 +1,5 @@
 /* Amplify Params - DO NOT EDIT
+	API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIENDPOINTOUTPUT
 	API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIIDOUTPUT
 	API_PLATFORMCHESSCENTREAPP_MEMBERTABLE_ARN
 	API_PLATFORMCHESSCENTREAPP_MEMBERTABLE_NAME
@@ -10,6 +11,16 @@ const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 const AWS = require("aws-sdk");
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const memberTable = process.env.API_PLATFORMCHESSCENTREAPP_MEMBERTABLE_NAME;
+
+const https = require("https");
+const urlParse = require("url").URL;
+const appsyncUrl =
+  process.env.API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIENDPOINTOUTPUT;
+const region = process.env.REGION;
+const endpoint = new urlParse(appsyncUrl).hostname.toString();
+const gql = require("graphql-tag");
+const graphql = require("graphql");
+const { print } = graphql;
 
 exports.handler = async (event) => {
   console.log(JSON.stringify(event));
@@ -88,9 +99,17 @@ exports.handler = async (event) => {
 
 async function handleCheckoutSessionCompleted(data) {
   const {
-    object: { client_reference_id: id, customer },
+    object: { client_reference_id: id, customer, mode },
   } = data;
 
+  if (mode === "subscription") {
+    await handleCheckoutSessionCompletedSubscription(id, customer);
+  } else if (mode === "payment") {
+    await handleCheckoutSessionCompletedPayment(id, customer);
+  }
+}
+
+async function handleCheckoutSessionCompletedSubscription(id, customer) {
   // Go ahead and set this since we know they should be considered
   // a paid member; we'll get a more specific date from subsequent
   // webhook events.
@@ -109,6 +128,54 @@ async function handleCheckoutSessionCompleted(data) {
   };
 
   await dynamodb.update(updateParams).promise();
+}
+
+async function handleCheckoutSessionCompletedPayment(id) {
+  const [memberId, eventId] = id.split("#");
+
+  const getEvent = gql`
+    query getEvent($eventId: ID!) {
+      getEvent(id: $eventId) {
+        entries {
+          items {
+            id
+          }
+        }
+      }
+    }
+  `;
+
+  const {
+    data: {
+      getEvent: {
+        entries: { items: entries },
+      },
+    },
+  } = await executeGraphql(getEvent, {
+    eventId,
+  });
+
+  console.log(entries);
+
+  const entryCount = entries.length + 1; // add one for this entry
+
+  const createEntry = gql`
+    mutation createEntry($eventId: ID!, $memberId: ID!, $entryCount: Int!) {
+      createEntry(input: { eventId: $eventId, memberId: $memberId }) {
+        id
+      }
+      updateEvent(input: { id: $eventId, entryCount: $entryCount }) {
+        id
+      }
+    }
+  `;
+
+  const data = await executeGraphql(createEntry, {
+    eventId,
+    memberId,
+    entryCount,
+  });
+  console.log(JSON.stringify(data));
 }
 
 async function handleCustomerSubscriptionEvent(data) {
@@ -162,4 +229,34 @@ async function handleCustomerSubscriptionEvent(data) {
   };
 
   await dynamodb.update(updateParams).promise();
+}
+
+async function executeGraphql(query, variables) {
+  const req = new AWS.HttpRequest(appsyncUrl, region);
+
+  req.method = "POST";
+  req.path = "/graphql";
+  req.headers.host = endpoint;
+  req.headers["Content-Type"] = "application/json";
+  req.body = JSON.stringify({
+    query: print(query),
+    variables,
+  });
+
+  const signer = new AWS.Signers.V4(req, "appsync", true);
+  signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
+
+  const data = await new Promise((resolve, reject) => {
+    const httpRequest = https.request({ ...req, host: endpoint }, (result) => {
+      result.on("data", (data) => {
+        resolve(JSON.parse(data.toString()));
+      });
+      result.on("error", reject);
+    });
+
+    httpRequest.write(req.body);
+    httpRequest.end();
+  });
+
+  return data;
 }
