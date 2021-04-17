@@ -5,15 +5,8 @@ import * as Icons from "../../icons";
 import SidebarSubmenu from "./SidebarSubmenu";
 import ImageLight from "../../assets/img/logo-light-theme-small.png";
 import ImageDark from "../../assets/img/logo-dark-theme-small.png";
-import ImageLightBeta from "../../assets/img/beta/logo-light-theme-beta-small.png";
-import ImageDarkBeta from "../../assets/img/beta/logo-dark-theme-beta-small.png";
 import { isPaidMember } from "../../context/Auth";
 const version = process.env.REACT_APP_VERSION || "0.0.0";
-
-let isDev = true;
-if (process.env.NODE_ENV === "production") {
-  isDev = false;
-}
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon];
@@ -41,13 +34,13 @@ function SidebarContent() {
         <img
           aria-hidden="true"
           className="object-scale-down h-6 w-full inline-block  dark:hidden"
-          src={isDev ? ImageLightBeta : ImageLight}
+          src={ImageLight}
           alt="Logo"
         />
         <img
           aria-hidden="true"
           className="object-scale-down h-6 w-full dark:inline-block hidden"
-          src={isDev ? ImageDarkBeta : ImageDark}
+          src={ImageDark}
           alt="Logo"
         />
       </NavLink>

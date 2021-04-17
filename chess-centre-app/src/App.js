@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
 import { AuthProvider } from "./context/Auth";
 import AppRoutes from "./components/Navigation/AppRoute";
-import AOS from "aos";
 import routes from "./routes";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -17,15 +16,6 @@ const stripePromise = loadStripe(
 const Page404 = lazy(() => import("./pages/Error/404"));
 
 function App() {
-  React.useEffect(() => {
-    AOS.init({
-      once: true,
-      disable: "phone",
-      duration: 750,
-      easing: "ease-out-quart",
-    });
-  });
-
   return (
     <AuthProvider>
       <Elements stripe={stripePromise}>

@@ -31,7 +31,7 @@ export const TechRoadmap = () => {
             </div>
           </div>
           <div className="ml-12">
-            <p>May 2021 - platform launch 🥂</p>
+            <p>May - platform launch 🥂</p>
             <ul className="list-disc ml-5">
               <li>
                 code available here:{" "}

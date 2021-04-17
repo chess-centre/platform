@@ -2,7 +2,7 @@ import React from "react";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import MembershipCard from "../../components/Membership/MembershipCard";
-import data from "../../api/mock.membershipinfo";
+import data from "../../api/membership-info";
 
 function Membership() {
 
@@ -26,7 +26,7 @@ function Membership() {
             </div>
           </div>
         </div>
-        <div className="mt-8 pb-12 bg-gray-50 sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-20">
+        <div className="mt-8 pb-12 bg-gray-50 sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-10">
           <div className="relative">
             <div className="absolute inset-0 h-3/4 bg-teal-700"></div>
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,9 +41,9 @@ function Membership() {
             <div className="max-w-md mx-auto lg:max-w-5xl">
               <div className="rounded-lg bg-gray-100 px-6 py-8 sm:p-10 lg:flex lg:items-center">
                 <div className="flex-1">
-                  <div className="text-lg text-gray-600">
-                    Got an amazing idea to grow our community and bring Chess to
-                    a greater audience?
+                  <div className="text-md text-gray-600">
+                    Got an amazing idea to help grow our community and bring Chess to
+                    a greater audience? 
                   </div>
                 </div>
                 <div className="mt-3 rounded-lh shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
@@ -51,7 +51,7 @@ function Membership() {
                     href="mailto:info@chesscentre.online"
                     className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
                   >
-                     Contact Us ♟️
+                     <i className="fak fa-chess-centre mr-2"></i>Contact Us 
                   </a>
                 </div>
               </div>

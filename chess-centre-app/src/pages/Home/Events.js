@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
@@ -28,7 +27,8 @@ export default function Events() {
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap content-evenly items-center">
+        <div className="container mx-auto px-44">
+        <div className="grid grid-cols-3 gap-2">
             <EventCard
               icon="fa-chess-queen-alt"
               cost="20"
@@ -50,6 +50,7 @@ export default function Events() {
               clock="60 min"
               rounds="5"
             />
+        </div>
         </div>
         <NewsLetter />
       </div>

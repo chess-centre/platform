@@ -1,0 +1,353 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-platformchesscentrea-dev-45655-authRole",
+      "UnauthRoleArn": "arn:aws:iam::089308357993:role/amplify-platformchesscentrea-dev-45655-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::089308357993:role/amplify-platformchesscentrea-dev-45655-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+      "UnauthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole",
+      "StackName": "amplify-platformchesscentrea-dev-45655",
+      "StackId": "arn:aws:cloudformation:eu-west-1:089308357993:stack/amplify-platformchesscentrea-dev-45655/80140260-8258-11eb-b760-0a09f476c48f",
+      "AmplifyAppId": "dmw9mluzv0ulb"
+    }
+  },
+  "auth": {
+    "platformchesscentreapp": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "platformchesscentreappPostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "platformchesscentreappPreTokenGeneration",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
+      "customAuth": false,
+      "output": {
+        "UserPoolId": "eu-west-1_dbFaqW6eN",
+        "AppClientIDWeb": "53qknmptu461oe8n0jtd3did8e",
+        "AppClientID": "3ales0d8r8delf2t4g04kb8d8k",
+        "IdentityPoolId": "eu-west-1:baf26f2d-8855-4def-9416-9c98be7e62e2",
+        "IdentityPoolName": "testAuthIdentityPool__dev",
+        "UserPoolName": "platformchesscentreapp"
+      },
+      "lastPushTimeStamp": "2021-04-17T11:00:51.809Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/auth/platformchesscentreapp-cloudformation-template.yml",
+        "logicalId": "authplatformchesscentreapp"
+      }
+    }
+  },
+  "api": {
+    "platformchesscentreapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authplatformchesscentreapp"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
+        },
+        "GraphQLAPIIdOutput": "t4firjcspvbstgnjr3jw5ldj54",
+        "GraphQLAPIEndpointOutput": "https://h5vl356n55ak5g757nl3bzg6d4.appsync-api.eu-west-1.amazonaws.com/graphql"
+      },
+      "lastPushTimeStamp": "2021-04-17T11:00:58.321Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiplatformchesscentreapp"
+      },
+      "lastPushDirHash": "KfKyirZ9ezGLaNsZ7V3YXSVXBrg="
+    },
+    "public": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "getEvents",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "stripeCheckout",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "stripeWebhook",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "stripeCustomerPortal",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "eventRegister",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "output": {
+        "ApiName": "public",
+        "RootUrl": "https://bd7p7atax7.execute-api.eu-west-1.amazonaws.com/dev",
+        "ApiId": "bd7p7atax7"
+      },
+      "lastPushTimeStamp": "2021-04-17T11:00:51.814Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/api/public-cloudformation-template.json",
+        "logicalId": "apipublic"
+      },
+      "lastPushDirHash": "ruiXj7kzgK61I94KyYwL7Q+Cf74="
+    }
+  },
+  "function": {
+    "getEvents": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        }
+      ],
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:089308357993:function:getEvents-dev",
+        "Name": "getEvents-dev",
+        "LambdaExecutionRole": "platformchesscentreaLambdaRole5e21c416-dev"
+      },
+      "lastPushTimeStamp": "2021-04-17T11:00:51.815Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/function/getEvents-cloudformation-template.json",
+        "logicalId": "functiongetEvents"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+        "s3Key": "amplify-builds/getEvents-50696a2f6c5a35636f79-build.zip"
+      }
+    },
+    "stripeCheckout": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ]
+        }
+      ],
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:089308357993:function:stripeCheckout-dev",
+        "Name": "stripeCheckout-dev",
+        "LambdaExecutionRole": "platformchesscentreaLambdaRoled2fbe4de-dev"
+      },
+      "lastPushTimeStamp": "2021-04-17T11:00:51.816Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/function/stripeCheckout-cloudformation-template.json",
+        "logicalId": "functionstripeCheckout"
+      },
+      "lastBuildTimeStamp": "2021-04-16T15:52:00.349Z",
+      "lastPackageTimeStamp": "2021-04-16T15:52:00.700Z",
+      "distZipFilename": "stripeCheckout-4c547a7357596e695737-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+        "s3Key": "amplify-builds/stripeCheckout-4c547a7357596e695737-build.zip"
+      },
+      "lastPushDirHash": "flHhdE5zlXJRX0yFgwgsD+5kqW4="
+    },
+    "stripeWebhook": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        }
+      ],
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:089308357993:function:stripeWebhook-dev",
+        "Name": "stripeWebhook-dev",
+        "LambdaExecutionRole": "platformchesscentreaLambdaRole6d6b1270-dev"
+      },
+      "lastPushTimeStamp": "2021-04-17T11:00:51.817Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/function/stripeWebhook-cloudformation-template.json",
+        "logicalId": "functionstripeWebhook"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+        "s3Key": "amplify-builds/stripeWebhook-48462b7a47786e482f4f-build.zip"
+      },
+      "lastBuildTimeStamp": "2021-04-17T10:41:49.616Z",
+      "lastPackageTimeStamp": "2021-04-17T10:41:50.415Z",
+      "distZipFilename": "stripeWebhook-48462b7a47786e482f4f-build.zip",
+      "lastPushDirHash": "5sXSeHYq/1IKkoxZ8jzD+FThC8I="
+    },
+    "platformchesscentreappPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::089308357993:role/platformchesscentreappPostConfirmation-dev",
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:089308357993:function:platformchesscentreappPostConfirmation-dev",
+        "Name": "platformchesscentreappPostConfirmation-dev",
+        "LambdaExecutionRole": "platformchesscentreappPostConfirmation-dev"
+      },
+      "lastPushTimeStamp": "2021-04-17T11:00:51.818Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/function/platformchesscentreappPostConfirmation-cloudformation-template.json",
+        "logicalId": "functionplatformchesscentreappPostConfirmation"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+        "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-7679507537382f464d59-build.zip"
+      },
+      "lastBuildTimeStamp": "2021-04-17T09:05:25.606Z",
+      "lastPackageTimeStamp": "2021-04-17T09:05:25.693Z",
+      "distZipFilename": "platformchesscentreappPostConfirmation-7679507537382f464d59-build.zip",
+      "lastPushDirHash": "f4ks9yyvykFuFNvK4UYEiTcTX7E="
+    },
+    "platformchesscentreappPreTokenGeneration": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:089308357993:function:platformchesscentreappPreTokenGeneration-dev",
+        "Name": "platformchesscentreappPreTokenGeneration-dev",
+        "LambdaExecutionRole": "platformchesscentreappPreTokenGeneration-dev"
+      },
+      "lastPushTimeStamp": "2021-04-17T11:00:51.819Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/function/platformchesscentreappPreTokenGeneration-cloudformation-template.json",
+        "logicalId": "functionplatformchesscentreappPreTokenGeneration"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+        "s3Key": "amplify-builds/platformchesscentreappPreTokenGeneration-725849694e424b4a2f30-build.zip"
+      },
+      "lastBuildTimeStamp": "2021-04-16T16:11:13.640Z",
+      "lastPackageTimeStamp": "2021-04-16T16:11:13.741Z",
+      "distZipFilename": "platformchesscentreappPreTokenGeneration-725849694e424b4a2f30-build.zip",
+      "lastPushDirHash": "hGge6awGlWKDl5+t9bTp2JlhIFA="
+    },
+    "stripeCustomerPortal": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ]
+        }
+      ],
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:089308357993:function:stripeCustomerPortal-dev",
+        "Name": "stripeCustomerPortal-dev",
+        "LambdaExecutionRole": "platformchesscentreaLambdaRole2cd22332-dev"
+      },
+      "lastPushTimeStamp": "2021-04-17T11:00:51.820Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/function/stripeCustomerPortal-cloudformation-template.json",
+        "logicalId": "functionstripeCustomerPortal"
+      },
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+        "s3Key": "amplify-builds/stripeCustomerPortal-50674b4f356a70354e64-build.zip"
+      }
+    },
+    "eventRegister": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2021-04-16T19:07:17.922Z",
+      "lastPackageTimeStamp": "2021-04-16T19:07:18.631Z",
+      "distZipFilename": "eventRegister-55452f4f566734614374-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+        "s3Key": "amplify-builds/eventRegister-55452f4f566734614374-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/function/eventRegister-cloudformation-template.json",
+        "logicalId": "functioneventRegister"
+      },
+      "lastPushTimeStamp": "2021-04-17T11:00:51.821Z",
+      "output": {
+        "Region": "eu-west-1",
+        "Arn": "arn:aws:lambda:eu-west-1:089308357993:function:eventRegister-dev",
+        "Name": "eventRegister-dev",
+        "LambdaExecutionRole": "platformchesscentreaLambdaRole98d517c5-dev"
+      },
+      "lastPushDirHash": "7EP2ciOvyyvdNGUiVwufDA8rNHQ="
+    }
+  },
+  "storage": {}
+}

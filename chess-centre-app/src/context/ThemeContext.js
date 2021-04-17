@@ -25,13 +25,13 @@ function usePrevious(theme) {
  * @return {array} getter and setter for user preferred theme
  */
 function useStorageTheme(key) {
-  const userPreference =
-    !!window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
+  // const userPreference =
+  //   !!window.matchMedia &&
+  //   window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  const [theme, setTheme] = useState(
+  const [theme, setTheme] = useState('light'
     // use stored theme; fallback to user preference
-    localStorage.getItem(key) || userPreference
+    //localStorage.getItem(key) // || userPreference
   );
 
   // update stored theme
