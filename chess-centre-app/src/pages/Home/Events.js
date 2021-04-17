@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
+import EventCard from "../../components/Events/EventCard";
 
 export default function Events() {
   return (
@@ -26,6 +27,29 @@ export default function Events() {
               </p>
             </div>
           </div>
+        </div>
+        <div className="flex flex-wrap content-evenly items-center">
+            <EventCard
+              icon="fa-chess-queen-alt"
+              cost="20"
+              title="May Congress"
+              clock="90 min"
+              rounds="6"
+            />
+            <EventCard
+              icon="fa-chess-king-alt"
+              cost="15"
+              title="May Rapidplay"
+              clock="25 min"
+              rounds="6"
+            />
+            <EventCard
+              icon="fa-chess-bishop-alt"
+              cost="20"
+              title="Bob Burns"
+              clock="60 min"
+              rounds="5"
+            />
         </div>
         <NewsLetter />
       </div>
