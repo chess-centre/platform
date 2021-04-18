@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import { SidebarContext } from "../../context/SidebarContext";
 import {
   MenuIcon,
@@ -57,17 +56,15 @@ function Header() {
               isOpen={isProfileMenuOpen}
               onClose={() => setIsProfileMenuOpen(false)}
             >
-              <DropdownItem>
+              <DropdownItem tag="a" href="/app/profile">
                 <OutlinePersonIcon
                   className="w-4 h-4 mr-3"
                   aria-hidden="true"
                 />
-                <Link to="/app/profile" className="divide-white">
-                  Profile
-                </Link>
+                Profile
               </DropdownItem>
 
-              <DropdownItem onClick={() => signOut()}>
+              <DropdownItem onClick={signOut}>
                 <OutlineLogoutIcon
                   className="w-4 h-4 mr-3"
                   aria-hidden="true"

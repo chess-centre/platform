@@ -31,8 +31,7 @@ function MembershipCard({
             >
               <span className="font-normal">
                 <i className="fak fa-chess-centre mr-1"></i>
-              </span>
-              
+              </span>  
               {title}
             </h3>
         </div>
@@ -40,18 +39,18 @@ function MembershipCard({
           {price}
           <span className="ml-1 text-2xl font-medium text-gray-500">/mo</span>
         </div>
-        <p className="mt-5 text-lg text-gray-500">{subHeading}</p>
+        <p className="mt-5 text-lg text-gray-900">{subHeading}</p>
       </div>
       <div className="flex-1 flex flex-col justify-between px-6 pt-6 pb-8 bg-gray-50 space-y-6 sm:p-10 sm:pt-6">
         <ul className="space-y-4">
-          {benefits.map((benefit) => (
-            <li className="flex items-start">
+          {benefits.map((benefit, key) => (
+            <li key={key} className="flex items-start">
               <div className="flex-shrink-0">
-                <span className="text-gray-900 ml-2">
-                <i className="fas fa-chess-queen-alt"></i>
+                <span className="text-teal-500 ml-2">
+                < i className={benefit.iconClasses}></i>
                 </span>
               </div>
-              <p className="ml-3 text-base text-gray-700">{benefit}</p>
+              <p className="ml-3 text-md text-gray-700">{benefit.name}</p>
             </li>
           ))}
         </ul>

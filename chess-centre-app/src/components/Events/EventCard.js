@@ -31,7 +31,7 @@ export default function EventCard({ icon, title, cost, clock, rounds }) {
         <p className="text-center">
           <span className="text-3xl">
             <i
-              class="fad fa-chess-clock"
+              className="fad fa-chess-clock"
               style={{
                 "--fa-secondary-color": "#f0802c",
                 "--fa-secondary-opacity": 1.0,

@@ -88,14 +88,14 @@ const LandingNav = (props) => {
             <span className="inline-flex rounded-md">
               {user ? (
                 <div className="grid grid-cols-2">
-                  <div class="text-teal-brand bg-white hover:text-teal-700 ">
+                  <div className="text-teal-brand bg-white hover:text-teal-700 ">
                     <Link
                       to="/app"
                       className={`inline-flex items-center px-4 py-2 border border-transparent 
                         text-base leading-4 font-medium rounded-md 
                         focus:outline-none  active:bg-gray-50 active:text-orange-700 transition duration-300 ease-in-out shadow`}
                     >
-                      <span alt="Dashboard"><i class="fad fa-user"></i> <span className="text-gray-600 hover:text-teal-700 text-sm">Profile</span></span>
+                      <span alt="Dashboard"><i className="fad fa-user"></i> <span className="text-gray-600 hover:text-teal-700 text-sm">Profile</span></span>
                     </Link>
                   </div>
                   <div className="ml-1 text-gray-700 hover:text-white transition duration-300 ease-in-out">
@@ -106,7 +106,7 @@ const LandingNav = (props) => {
                       text-base leading-4 font-medium rounded-md text-white bg-gray-400 hover:text-gray-900
                       focus:outline-none active:bg-gray-50 active:text-orange-700 transition duration-300 ease-in-out shadow`}
                     >
-                      <span alt="Logout"><i class="fad fa-sign-out"></i> <span className="text-sm">Logout</span></span>
+                      <span alt="Logout"><i className="fad fa-sign-out"></i> <span className="text-sm">Logout</span></span>
                     </button>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ const LandingNav = (props) => {
                   className={`inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none 
                   focus:border-teal-300 focus:shadow-outline-teal active:bg-gray-50 active:text-teal-700 transition duration-150 ease-in-out shadow`}
                 >
-                  <span className="text-gray-900"><i class="fas fa-chess"></i> <span className="text-sm">Login</span></span>
+                  <span className="text-sm">Login</span>
                 </Link>
               )}
             </span>
@@ -176,7 +176,7 @@ const LandingNav = (props) => {
                       (current === url
                         ? activeMenuMobile
                         : selectableMenuMobile) +
-                      " text-centre sm:text-left block px-3 py-2 rounded-md text-base font-medium focus:outline-none focus:text-teal-900 focus:bg-orange-50 transition duration-150 ease-in-out"
+                      " text-centre sm:text-left block px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:text-teal-900 focus:bg-orange-50 transition duration-150 ease-in-out"
                     }
                     role="menuitem"
                     to={`/${url}`}
@@ -188,20 +188,33 @@ const LandingNav = (props) => {
             </div>
             <div>
               {user ? (
+                <>
                 <Link
-                  className="block w-full px-5 py-3 text-center font-medium text-teal-900 bg-gray-50 hover:bg-gray-100 hover:text-teal-700 focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out"
+                  className={`block w-full px-5 py-3 text-center font-medium text-teal-500 bg-gray-50 hover:bg-gray-100 hover:text-teal-700 border-gray-100 border-2
+                  focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out`}
                   role="menuitem"
                   to="/app"
                 >
-                  <i className="fa fa-user"></i>
+                  <span alt="Dashboard"><i className="fad fa-user"></i> <span className="text-teal-500 hover:text-teal-700 text-sm">Profile</span></span>
                 </Link>
+                <button
+                  onClick={signOut}
+                  className={`block w-full px-5 py-3 text-center font-medium text-gray-900 bg-gray-200 hover:bg-gray-100 border-gray-300 border-b-2
+                   hover:text-teal-700 focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out`}
+                  role="menuitem"
+                  to="/app"
+                >
+                  <span alt="Logout"><i className="fad fa-sign-out"></i> <span className="text-sm">Logout</span></span>
+                </button>
+                </>
               ) : (
                 <Link
-                  className="block w-full px-5 py-3 text-center font-medium text-teal-900 bg-gray-50 hover:bg-gray-100 hover:text-teal-700 focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out"
+                  className={`block w-full px-5 py-3 text-center font-medium text-teal-900 bg-gray-100 hover:bg-gray-100 hover:text-teal-700 
+                  focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out`}
                   role="menuitem"
                   to="/login"
                 >
-                  Log in
+                  <span className="text-gray-900"><i className="fas fa-chess"></i> <span className="text-sm ml-1">Login</span></span>
                 </Link>
               )}
             </div>

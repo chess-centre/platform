@@ -1,6 +1,9 @@
 const windmill = require("@windmill/react-ui/config");
 
 module.exports = windmill({
+  corePlugins: {
+    ringColor: false
+  },
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: "class",
   theme: {
@@ -117,10 +120,6 @@ module.exports = windmill({
       translate: ["group-hover"],
     },
   },
-  plugins: [
-    // eslint-disable-next-line global-require
-    require("@tailwindcss/forms"),
-  ],
   plugins: [
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),

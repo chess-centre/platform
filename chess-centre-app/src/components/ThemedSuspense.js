@@ -3,7 +3,7 @@ import Logo from "../assets/img/logo.svg";
 
 function ThemedSuspense() {
   return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
       <div className="m-auto">
         <p className="mb-10">
           <img className="animate-ping" src={Logo} alt="Loading" />

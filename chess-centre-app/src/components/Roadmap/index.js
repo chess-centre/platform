@@ -34,14 +34,14 @@ const Roadmap = () => {
             <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
               The Centre
             </h2>
-            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500">Things we are working on in the centre to make your experience as fantasic as possible.</p>
+            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">Things we are working on in the centre to make your experience as fantasic as possible.</p>
             <CentreRoadmap />
           </div>
           <div>
-            <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide ">
+            <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
               The Platform
             </h2>
-            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500">Our technical road map, how we're improving the online experience for all our members.</p>
+            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">Our technical road map, how we're improving the online experience for all our members.</p>
             <TechRoadmap />
           </div>
         </div>
