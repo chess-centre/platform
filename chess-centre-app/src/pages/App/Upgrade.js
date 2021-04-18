@@ -1,7 +1,7 @@
 import React from "react";
 import MembershipCard from "../../components/Membership/MembershipCard";
 
-import data from "../../api/mock.membershipinfo";
+import data from "../../api/membership-info";
 
 function Upgrade() {
   return (
@@ -14,8 +14,8 @@ function Upgrade() {
           <div className="absolute inset-0 h-3/4 bg-teal-700"></div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-md mx-auto space-y-4 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0">
-              {data.map((m, key) => {
-                return <MembershipCard direct key={key} {...m} />;
+              {data.map((membership, key) => {
+                return <MembershipCard direct key={key} {...membership} />;
               })}
             </div>
           </div>

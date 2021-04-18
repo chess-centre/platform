@@ -30,7 +30,7 @@ const Loading = () => {
 const SearchRating = ({ ratingType, searching, useFlag }) => {
   return (
     <div className="col-span-3 sm:col-span-4">
-      {ratingType.currentRating && !searching ? (
+      {(ratingType.currentRating || ratingType.club_name) && !searching ? (
         <div className="flex mt-9">
           {useFlag ? (
             <>
@@ -43,7 +43,7 @@ const SearchRating = ({ ratingType, searching, useFlag }) => {
             </>
           ) : (
             <div className="text-xs text-gray-500 dark:text-gray-400">
-              {ratingType.currentRating}
+              {ratingType.currentRating || ratingType.club_name}
             </div>
           )}
         </div>
@@ -102,7 +102,8 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
   const getECFInfo = async (searchId) => {
     if (searchId) {
       const info = await getECFData(searchId);
-      if (info && info.currentRating) {
+      console.log(info);
+      if (info && info.club_name) {
         setECFRating(result => ({...result, ...info, searchStatus: "" }));
       } else {
         setECFRating({ searchStatus: "Not found. ☹️" });
@@ -141,7 +142,7 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
   };
 
   const searchECF = async (value) => {
-    if (value.length === 7) {
+    if (value.length === 6) {
       setIsSearchingECF(true);
       setTimeout(async () => {
         await getECFInfo(value);
@@ -229,7 +230,7 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
                   <div className="flex">
                     ECF ref{" "}
                     <a
-                      href="https://englishchessonline.org.uk/monthly-rating/"
+                      href="https://www.ecfrating.org.uk/v2/new/list_players.php"
                       alt="ECF Rating Website"
                       target="_blank"
                       rel="noreferrer"
@@ -294,7 +295,7 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
                     id="fide_ref"
                     autoComplete="off"
                     defaultValue={fideId}
-                    className="text-xs sm:text-base focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-md dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900 border-gray-300"
+                    className="text-xs sm:text-sm focus:ring-teal-500 focus:border-teal-500 flex-grow block w-full min-w-0 rounded-md dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900 border-gray-300"
                   />
                 </div>
               </div>
@@ -326,7 +327,7 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
                 ></textarea>
               </div>
               <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                Tell us what you love about Chess ♟️
+                Tell us what you love about Chess <span className="text-gray-900"><i className="fas fa-chess"></i></span>
               </p>
             </div>
           </div>

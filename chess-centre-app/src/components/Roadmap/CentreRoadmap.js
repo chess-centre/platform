@@ -1,14 +1,4 @@
 import React from "react";
-const Issue = ({issue}) => {
-  return (
-    <a
-      className="text-pink-600 hover:underline"
-      href={`https://github.com/chess-centre/platform/issues/${issue}`}
-    >
-      {`#${issue}`}
-    </a>
-  );
-};
 
 export const CentreRoadmap = () => {
   return (
