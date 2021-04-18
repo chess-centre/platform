@@ -179,8 +179,7 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
               Profile
             </h3>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
-              This indivation will be displayed publicly so be careful what you
-              share.
+              This information will be displayed publicly so be careful what you share.
             </p>
           </div>
 
@@ -214,7 +213,7 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
                 />
                 <button disabled className="disabled:opacity-50 text-xs bg-teal-600 border border-teal-600 hover:bg-teal-700 rounded-r-md px-2 sm:px-3 inline-flex items-center text-gray-500 sm:text-sm dark:border-gray-700">
                     <Icon
-                      className="ml-1 w-5 h-5 text-white"
+                      className="w-5 h-5 text-white"
                       icon="ClickIcon"
                     />
                 </button>

@@ -27,8 +27,8 @@ export default function Events() {
             </div>
           </div>
         </div>
-        <div className="container mx-auto px-44">
-        <div className="grid grid-cols-3 gap-2">
+        <div className="container m-auto">
+        <div className="flex m-auto">
             <EventCard
               icon="fa-chess-queen-alt"
               cost="20"

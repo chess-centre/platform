@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import Logo from "../../assets/img/logo.svg";
 import { Label, Input, Button } from "@windmill/react-ui";
@@ -17,7 +17,6 @@ import { useStripe } from "@stripe/react-stripe-js";
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { redirect } = useParams();
   const stripe = useStripe();
 
   const dispatch = useAuthDispatch();
@@ -26,15 +25,11 @@ function Login(props) {
   async function signIn() {
     let response = await loginUser(dispatch, email, password);
     if (response) {
-      if (redirect && redirect.includes("broadcast")) {
-        props.history.push("/broadcast/live");
-      }
-
       const { search } = props.location;
       const parsed = queryString.parse(search);
       if (parsed.plan) {
         // We'll want to add a loading state here
-        await subscribe(parsed.plan, stripe);
+        await subscribe(dispatch, parsed.plan, stripe);
       } else {
         props.history.push("/app");
       }
@@ -61,13 +56,13 @@ function Login(props) {
                 {loading ? (
                   <img
                     src={SpecialLoading}
-                    className="object-contain h-24 w-full md:h-44"
+                    className="object-contain h-24 w-full md:h-40"
                     alt="Creating Account"
                   />
                 ) : (
                   <img
                     src={Logo}
-                    className="object-contain h-20 md:h-36 w-full"
+                    className="object-contain h-20 sm:h-28 w-full"
                     alt="The Chess Centre"
                   />
                 )}

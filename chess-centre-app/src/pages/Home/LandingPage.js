@@ -6,7 +6,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import ComingEvents from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
-import DownloadPWA  from "../../components/PWA/Download";
+import DownloadPWA from "../../components/PWA/Download";
 
 const LandingPage = () => {
   const { user } = useAuthState();
@@ -91,13 +91,22 @@ const LandingPage = () => {
 
           <main className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-18 xl:mt-24">
             <div className="text-center">
-              <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-                Welcome to
-                <br className="xl:hidden" />
-                <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400"> The Chess Centre</span>
+              <h2 className="-mt-5">
+                <span className="text-gray-900 text-8xl sm:text-9xl">
+                  <i className="fas fa-chess"></i>
+                </span>
               </h2>
-              <p className="mt-5 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                It's time things changed around here. Brace yourselves!{" "}
+              <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
+              <span className="font-light">Welcome to</span>
+                <br className="xl:hidden" />
+                <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400">
+                  {" "}
+                  The Chess Centre
+                </span>
+              </h2>
+
+              <p className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                It's time things changed around here. <br className="md:hidden" /> Brace yourselves!{" "}
                 <span role="img">🚀</span>
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">

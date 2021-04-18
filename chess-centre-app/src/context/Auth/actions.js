@@ -120,7 +120,8 @@ export async function logout(dispatch) {
   localStorage.removeItem("token");
 }
 
-export async function subscribe(plan, stripe) {
+export async function subscribe(dispatch, plan, stripe) {
+  dispatch({ type: "LOADING"});
   const {
     attributes: { email },
   } = await Auth.currentAuthenticatedUser();
@@ -135,6 +136,7 @@ export async function subscribe(plan, stripe) {
   });
 
   await stripe.redirectToCheckout({ sessionId });
+  dispatch({ type: "STOP_LOADING"});
 }
 
 export async function isPaidMember(existing) {
