@@ -8,7 +8,7 @@ function OurMission() {
       <div className="relative z-10 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
         <LandingNav current="our-mission" />
       </div>
-      <div className="py-16 xl:py-36 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+      <div className="py-16 xl:py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
         <div className="max-w-max lg:max-w-7xl mx-auto">
           <div className="relative mb-8 md:mb-2 md:px-6">
             <div className="text-base max-w-prose lg:max-w-none">
@@ -116,15 +116,15 @@ function OurMission() {
                     players.
                   </p>
                   <p>
-                    We welcome you to come join us on this journey, to be a
-                    member, a volunteer or a contributor we know that however
-                    large or small, we are sincerely grateful to everyone who
-                    supports us.
+                    We welcome you to come join us on this exciting journey, to be a
+                    member, a volunteer, a code contributor or just a friendly face to pop in from time to time. 
+                    We know that however large or small we are sincerely grateful to everyone who
+                    supports us. ❤️
                   </p>
-                  <div className="inline-flex rounded-md shadow text-white">
+                  <div className="inline-flex rounded-md shadow text-white float-right">
                     <a
                       href="/membership"
-                      className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-500 hover:bg-teal-700"
+                      className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
                     >
                       Join us
                     </a>

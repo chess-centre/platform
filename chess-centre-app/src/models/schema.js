@@ -1,5 +1,166 @@
 export const schema = {
     "models": {
+        "Plan": {
+            "name": "Plan",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "key": {
+                    "name": "key",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "stripePriceId": {
+                    "name": "stripePriceId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "stripeProductId": {
+                    "name": "stripeProductId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Plans",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "key",
+                        "fields": [
+                            "key"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "provider": "iam",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "EventType": {
+            "name": "EventType",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "url": {
+                    "name": "url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "color": {
+                    "name": "color",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "time": {
+                    "name": "time",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "maxEntries": {
+                    "name": "maxEntries",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "stripePriceId": {
+                    "name": "stripePriceId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "EventTypes",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "ECFPlayer": {
             "name": "ECFPlayer",
             "fields": {
@@ -44,7 +205,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "public",
+                                "allow": "private",
                                 "operations": [
                                     "create",
                                     "update",
@@ -108,7 +269,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "public",
+                                "allow": "private",
                                 "operations": [
                                     "create",
                                     "update",
@@ -159,6 +320,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "eventsByEmail": {
                     "name": "eventsByEmail",
                     "isArray": false,
@@ -187,10 +362,45 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "cognitoId": {
-                    "name": "cognitoId",
+                "entries": {
+                    "name": "entries",
+                    "isArray": true,
+                    "type": {
+                        "model": "Entry"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "member"
+                    }
+                },
+                "stripeCustomerId": {
+                    "name": "stripeCustomerId",
                     "isArray": false,
-                    "type": "String",
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "stripeCurrentPeriodEnd": {
+                    "name": "stripeCurrentPeriodEnd",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "stripePriceId": {
+                    "name": "stripePriceId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "stripeProductId": {
+                    "name": "stripeProductId",
+                    "isArray": false,
+                    "type": "ID",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -203,11 +413,137 @@ export const schema = {
                     "properties": {}
                 },
                 {
+                    "type": "key",
+                    "properties": {
+                        "name": "stripe",
+                        "fields": [
+                            "stripeCustomerId"
+                        ]
+                    }
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
                             {
-                                "allow": "public",
+                                "allow": "private",
+                                "provider": "iam",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "provider": "userPools",
+                                "ownerField": "id",
+                                "allow": "owner",
+                                "operations": [
+                                    "read",
+                                    "update"
+                                ],
+                                "identityClaim": "cognito:username"
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "Member"
+                                ],
+                                "operations": [
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Entry": {
+            "name": "Entry",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "event": {
+                    "name": "event",
+                    "isArray": false,
+                    "type": {
+                        "model": "Event"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "eventId"
+                    }
+                },
+                "member": {
+                    "name": "member",
+                    "isArray": false,
+                    "type": {
+                        "model": "Member"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "memberId"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "Entries",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byEvent",
+                        "fields": [
+                            "eventId"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byMember",
+                        "fields": [
+                            "memberId"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "Member"
+                                ],
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "provider": "iam",
                                 "operations": [
                                     "create",
                                     "update",
@@ -251,8 +587,63 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "time": {
+                    "name": "time",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "type": {
+                    "name": "type",
+                    "isArray": false,
+                    "type": {
+                        "model": "EventType"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "eventTypeId"
+                    }
+                },
+                "startDate": {
+                    "name": "startDate",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "endDate": {
+                    "name": "endDate",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "entries": {
                     "name": "entries",
+                    "isArray": true,
+                    "type": {
+                        "model": "Entry"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "event"
+                    }
+                },
+                "maxEntries": {
+                    "name": "maxEntries",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "entryCount": {
+                    "name": "entryCount",
                     "isArray": false,
                     "type": "Int",
                     "isRequired": false,
@@ -271,7 +662,17 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "public",
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "provider": "iam",
                                 "operations": [
                                     "create",
                                     "update",
@@ -287,5 +688,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "3f53df31ac663db650c9360912e7ed50"
+    "version": "53512c7dbdcb11154b857db0cf8c9241"
 };

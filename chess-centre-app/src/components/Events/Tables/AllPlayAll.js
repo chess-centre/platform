@@ -1,4 +1,5 @@
 import React from "react";
+import { Members } from "../../../api/mock.members";
 
 const SixPlayerPairings = [
   {
@@ -82,68 +83,10 @@ const results = [
   },
 ];
 
-const players = [
-  {
-    seed: 1,
-    name: "Matthew Webb",
-    club: "The Chess Centre",
-    about:
-      "My favourite player is Bobby Fischer, followed closely by Rashid Nezhmetdinov.",
-    gradingInfo: {
-      ecfId: "225527D",
-      grade: 247,
-      type: "standard",
-    },
-    ratingInfo: {
-      rating: 2249,
-    },
-  },
-  {
-    seed: 2,
-    name: "Peter Shaw",
-    gradingInfo: {
-      ecfId: "166609F",
-      grade: 2172,
-      type: "standard",
-    },
-  },
-  {
-    seed: 3,
-    name: "Andrew Wainwright",
-    gradingInfo: {
-      ecfId: "185834J",
-      grade: 2013,
-      type: "standard",
-    },
-  },
-  {
-    seed: 4,
-    name: "David Barlow",
-    gradingInfo: {
-      ecfId: "106225G",
-      grade: 2005,
-      type: "standard",
-    },
-  },
-  {
-    seed: 5,
-    name: "Chris Wright",
-    gradingInfo: {
-      ecfId: "214108F",
-      grade: 1968,
-      type: "standard",
-    },
-  },
-  {
-    seed: 6,
-    name: "Max Shaw",
-    gradingInfo: {
-      ecfId: "312992F",
-      grade: 2000,
-      type: "standard",
-    },
-  },
-];
+const players = [...Members.slice(0, 6).map((m, i) => {
+  m.seed = i + 1;
+  return m;
+})];
 
 const resultCheck = () => {
   const resultBySeed = [];
@@ -171,6 +114,8 @@ const resultCheck = () => {
     });
   });
   const roundByRound = resultBySeed.reduce((player, { seed, result }) => {
+
+    console.log(players);
     if (!player[seed]) {
       player[seed] = {
         rounds: [result],
@@ -191,7 +136,7 @@ const { resultBySeed, roundByRound } = resultCheck(players);
 const Standings = () => {
   return (<div>
     <h2 className="mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">Standings</h2>
-    <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 table-auto border-gray-300 border dark:border-gray-700 shadow">
+    <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
       <thead className="bg-gray-50 dark:bg-gray-800">
         <tr>
           <th
@@ -356,7 +301,7 @@ const PairsTable = ({ format, players, results }) => {
           <tr className="bg-white dark:bg-gray-800">
             {/* using colSpan=3 here means the header VS doesn't align center with the Round */}
             <td className="px-4 sm:px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300"></td>
-            <td className="px-4 sm:px-6 py-1 text-center text-sm font-medium text-gray-900 dark:text-gray-300">
+            <td className="px-4 sm:px-6 py-1 text-center text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-300">
               Round {round}
             </td>
             <td className="px-4 sm:px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300"></td>
@@ -367,7 +312,7 @@ const PairsTable = ({ format, players, results }) => {
             ).pairResults[key];
             return (
               <tr key={key} className="bg-white dark:bg-gray-800">
-                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-sm font-medium text-gray-700 dark:text-gray-300">
+                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
                   {players.find((player) => player.seed === p[0]).name}
                 </td>
                 <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300 border-l-2 border-r-2 border-gray-100 dark:border-gray-700">
@@ -376,7 +321,7 @@ const PairsTable = ({ format, players, results }) => {
                     }`
                     : "? - ?"}
                 </td>
-                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-sm font-medium text-gray-700 dark:text-gray-300">
+                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
                   {players.find((player) => player.seed === p[1]).name}
                 </td>
               </tr>
@@ -392,17 +337,22 @@ function AllPlayAll() {
   return (
     <>
       <section className="flex flex-wrap overflow-hidden">
-        <div className="px-4 w-1/3 -mr-2 overflow-hidden">
-          <Standings></Standings>
+        <div className="px-4 grid grid-cols-1 sm:w-2/3 sm:grid-cols-2 gap-4 overflow-x-auto ">
+          <div className="">
+            <Standings></Standings> 
+          </div>
+          <div>
+            <CrossTable players={players} results={results}></CrossTable>
+          </div>
         </div>
-        <div className="w-2/3 px-2 overflow-hidden">
-          <CrossTable players={players} results={results}></CrossTable>
+        <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          
         </div>
 
       </section>
       <section className="relative mb-10">
         <h2 className="mb-2 mt-5 px-4 text-2xl font-semibold text-gray-700 dark:text-gray-200">Pairings</h2>
-        <div className="px-4 grid grid-cols-3 gap-4">
+        <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
 
           {SixPlayerPairings.map((pairings, key) => {
             return (

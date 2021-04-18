@@ -1,57 +1,77 @@
 import React from "react";
+const Issue = ({issue}) => {
+  return (
+    <a
+      className="text-pink-600 hover:underline"
+      href={`https://github.com/chess-centre/platform/issues/${issue}`}
+    >
+      {`#${issue}`}
+    </a>
+  );
+};
 
 export const CentreRoadmap = () => {
   return (
-    <div className="relative w-1/2 m-8">
+    <div className="relative m-8 text-sm sm:text-base">
       <div
-        className="border-r-2 border-gray-500 absolute h-full top-0 l-4"
+        className="border-r-2 border-orange-brand absolute h-full top-0"
+        style={{ left: "7.5px" }}
+      ></div>
+      <div
+        className="border-r-2 border-teal-500 absolute h-full top-2"
+        style={{ left: "7.5px" }}
       ></div>
       <ul className="list-none m-0 p-0">
         <li className="mb-2">
           <div className="flex items-center mb-1">
-            <div className="bg-gray-500 rounded-full h-8 w-8"></div>
-            <div className="flex-1 ml-4 font-medium">Oct 2017 - First Release</div>
-          </div>
-          <div className="ml-12">First release of Tailwind CSS</div>
-        </li>
-        <li className="mb-2">
-          <div className="flex items-center mb-1">
-            <div className="bg-gray-500 rounded-full h-8 w-8"></div>
+            <div className="bg-orange-brand rounded-full h-4 w-4 z-10"></div>
             <div className="flex-1 ml-4 font-medium">
-              Nov 2017 - Multiple Releases
-            </div>
-          </div>
-          <div className="ml-12">v0.1.0 - v0.2.2</div>
-        </li>
-        <li className="mb-2">
-          <div className="flex items-center mb-1">
-            <div className="bg-gray-500 rounded-full h-8 w-8"></div>
-            <div className="flex-1 ml-4 font-medium">
-              Feb 2018 - Other stuff happened
+              Grand Openning
             </div>
           </div>
           <div className="ml-12">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus
-            perspiciatis facilis deserunt excepturi sunt pariatur consequuntur
-            eveniet molestias ea quia? Magni veniam illo optio tempora modi
-            exercitationem qui adipisci ex.
+            <p>May - launch parties and more 🎉</p>
+            <ul className="list-disc ml-5">
+              <li>Junior Club begins</li>
+              <li>Team Challenges started</li>
+            </ul>
           </div>
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
-            <div className="bg-gray-500 rounded-full h-8 w-8"></div>
+            <div className="bg-teal-500 rounded-full h-4 w-4"></div>
             <div className="flex-1 ml-4 font-medium">
-              July 2018 - More stuff happened
+              <span className="mr-2 bg-yellow-200 text-black p-1 rounded  leading-none">
+                Soon
+              </span>
             </div>
           </div>
           <div className="ml-12">
-            Consequuntur odit explicabo officiis veniam incidunt non velit ex
-            consectetur magnam minima vero hic impedit cumque, blanditiis autem
-            distinctio facere dolor atque facilis, eos, labore sunt iusto.
-            Beatae, quas, dolorem?
+            <ul className="list-disc ml-5">
+              <li>First Congress</li>
+              <li>First Rapidplay</li>
+              <li>First Official League Matches</li>
+            </ul>
+          </div>
+        </li>
+        <li className="mb-2">
+          <div className="flex items-center mb-1">
+            <div className="bg-teal-500 rounded-full h-4 w-4"></div>
+            <div className="flex-1 ml-4 font-medium">
+              <span className="mr-2 bg-yellow-200 text-black p-1 rounded  leading-none">
+                Soon
+              </span>
+            </div>
+          </div>
+          <div className="ml-12">
+            <ul className="list-disc ml-5">
+              <li>Alcohol License approved 🍺</li>
+              <li>First Live Game Broadcast 📺</li>
+            </ul>
           </div>
         </li>
       </ul>
+      <br />
     </div>
   );
 };

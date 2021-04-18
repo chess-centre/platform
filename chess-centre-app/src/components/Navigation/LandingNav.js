@@ -24,7 +24,7 @@ const LandingNav = (props) => {
   return (
    
     <div>
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-">
         {/* DESKTOP */}
         <nav className="relative flex items-center justify-between sm:h-10 md:justify-center">
           <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">

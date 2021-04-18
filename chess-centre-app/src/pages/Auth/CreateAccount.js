@@ -8,8 +8,10 @@ import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
 import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal.js";
 import ValidateEmail from "../../utils/ValidateEmail";
 import Loading from "../../assets/img/loading.svg";
+import SpecialLoading from "../../assets/img/special-loading.gif";
 
 function Login(props) {
+  const [isSpecialLoading, setIsSpecialLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
@@ -21,15 +23,15 @@ function Login(props) {
 
   useEffect(() => {
     const isFormValid = () => {
-      if(!email) return false;
-      if(!firstName) return false;
-      if(!surname) return false;
-      if(!password) return false;
-      if(!rePassword) return false;
-      if(!isChecked) return false;
-      if(password !== rePassword) return false;
+      if (!email) return false;
+      if (!firstName) return false;
+      if (!surname) return false;
+      if (!password) return false;
+      if (!rePassword) return false;
+      if (!isChecked) return false;
+      if (password !== rePassword) return false;
       return true;
-  }
+    };
     if (isFormValid()) {
       setSubmitButtonActive(true);
     } else {
@@ -50,7 +52,7 @@ function Login(props) {
     const isValidEmail = ValidateEmail(email);
     let isFormValid = true;
 
-    if(!firstName) {
+    if (!firstName) {
       dispatch({
         type: "LOGIN_ERROR",
         error: "Your first name is a required field.",
@@ -58,7 +60,7 @@ function Login(props) {
       isFormValid = false;
     }
 
-    if(!surname) {
+    if (!surname) {
       dispatch({
         type: "LOGIN_ERROR",
         error: "Your surname is a required field.",
@@ -101,17 +103,25 @@ function Login(props) {
 
     if (isFormValid) {
       try {
-        let response = await signUpUser(dispatch, email, password, firstName, surname);
+        let response = await signUpUser(
+          dispatch,
+          email,
+          password,
+          firstName,
+          surname
+        );
         if (response) {
-
-          // if(redirect && redirect.includes("broadcast")) {
-          //   const param = "&redirect=broadcast"
-          // }
-
-          props.history.push(`/register/confirm/${email}`);
+          setIsSpecialLoading(true);
+          setTimeout(() => {
+            props.history.push(
+              `/register/confirm/${email}${props.location.search}`
+            );
+            setIsSpecialLoading(false);
+          }, 3000);
         } // if there's no response, the action dispatched a contextual error already
       } catch (error) {
         dispatch({ type: "LOGIN_ERROR", error });
+        setIsSpecialLoading(false);
       }
     }
   }
@@ -132,16 +142,24 @@ function Login(props) {
               className="sm:hidden object-cover object-bottom w-full h-full"
               src={ImageSmall}
               alt="Office"
-            />
+            />{" "}
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
               <Link to="/">
-                <img
-                  src={Logo}
-                  className="object-contain h-20 w-full md:h-36 "
-                  alt="The Chess Centre"
-                />
+                {isSpecialLoading ? (
+                  <img
+                    src={SpecialLoading}
+                    className="object-contain h-24 w-full md:h-44"
+                    alt="Creating Account"
+                  />
+                ) : (
+                  <img
+                    src={Logo}
+                    className="object-contain h-20 w-full md:h-36 "
+                    alt="The Chess Centre"
+                  />
+                )}
               </Link>
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Create account
@@ -158,7 +176,9 @@ function Login(props) {
                 />
               </Label>
               <Label>
-                <span>Surname</span>
+                <span onClick={() => setIsSpecialLoading(!isSpecialLoading)}>
+                  Surname
+                </span>
                 <Input
                   disabled={loading}
                   value={surname}
@@ -214,7 +234,7 @@ function Login(props) {
                 </span>
               </Label>
 
-              { loading ? (
+              {loading ? (
                 <Button disabled={"disabled"} block className="mt-4">
                   <img alt="Loading" className="h-5 w-5" src={Loading} />
                   <span className="mx-2">Creating account ...</span>
@@ -247,7 +267,7 @@ function Login(props) {
               <p className="mt-4">
                 <Link
                   className="text-sm font-medium text-teal-600 dark:text-teal-400 hover:underline"
-                  to="/login"
+                  to={`/login${props.location.search}`}
                 >
                   Already have an account? Login
                 </Link>

@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "../../assets/img/logo.svg";
 import AllPlayAll from "../../components/Events/Tables/AllPlayAll";
 
 

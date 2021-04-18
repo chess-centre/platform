@@ -1,4 +1,5 @@
 import { TechRoadmap } from "./TechRoadmap";
+import { CentreRoadmap } from "./CentreRoadmap";
 import LandingNav from "../Navigation/LandingNav";
 import FooterLanding from "../Footer/LandingFooter";
 
@@ -18,16 +19,34 @@ const Roadmap = () => {
               What's going on?
             </p>
             <p className="text-base max-w-xl mt-5 mx-auto sm:text-xl text-gray-500">
-              We want to involve as many people as possible in our mission! Follow our plans, get involved.
+              We want to involve as many people as possible in our mission.
+              
             </p>
-            
+            <p className="text-base max-w-xl mt-5 mx-auto sm:text-xl text-gray-500">
+              Checkout the things we're working on and get involved with the ideas to help us continually make things better!
+              </p>
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-2 sm:px-8 lg:px-10">
-        <TechRoadmap></TechRoadmap>
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 mt-4 ">
+          <div>
+            <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
+              The Centre
+            </h2>
+            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500">Things we are working on in the centre to make your experience as fantasic as possible.</p>
+            <CentreRoadmap />
+          </div>
+          <div>
+            <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide ">
+              The Platform
+            </h2>
+            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500">Our technical road map, how we're improving the online experience for all our members.</p>
+            <TechRoadmap />
+          </div>
+        </div>
       </div>
-      
+
       <FooterLanding />
     </div>
   );

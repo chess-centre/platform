@@ -3,7 +3,26 @@
     "platformchesscentreapp": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "platformchesscentreappPostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "platformchesscentreappPreTokenGeneration",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
       "customAuth": false
     }
   },
@@ -14,10 +33,9 @@
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "description": "api key description"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authplatformchesscentreapp"
             }
           },
           "additionalAuthenticationProviders": [
@@ -28,13 +46,45 @@
         }
       }
     },
-    "chesscentreapi": {
+    "public": {
       "service": "API Gateway",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "events",
+          "resourceName": "getEvents",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "stripeCheckout",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "stripeWebhook",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "stripeCustomerPortal",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "eventRegister",
           "attributes": [
             "Name",
             "Arn"
@@ -44,46 +94,89 @@
     }
   },
   "function": {
-    "centrecentredbTrigger7c009209": {
-      "service": "Lambda",
-      "providerPlugin": "awscloudformation",
+    "getEvents": {
       "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
       "dependsOn": [
         {
-          "category": "storage",
-          "resourceName": "centrecentredb",
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
           "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
           ]
         }
       ]
     },
-    "events": {
+    "stripeCheckout": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda",
       "dependsOn": [
         {
-          "category": "storage",
-          "resourceName": "centrecentredb",
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
           "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "attributeEnvMap": {
-            "Name": "TABLE_NAME",
-            "Arn": "TABLE_ARN"
-          }
+            "GraphQLAPIIdOutput"
+          ]
+        }
+      ]
+    },
+    "stripeWebhook": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
+        }
+      ]
+    },
+    "platformchesscentreappPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "platformchesscentreappPreTokenGeneration": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "stripeCustomerPortal": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ]
+        }
+      ]
+    },
+    "eventRegister": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ]
         }
       ]
     }
   },
-  "storage": {
-    "centrecentredb": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
-    }
-  }
+  "storage": {}
 }
