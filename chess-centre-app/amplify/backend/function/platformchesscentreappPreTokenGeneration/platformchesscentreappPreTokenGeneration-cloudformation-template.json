@@ -93,6 +93,30 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "GRAPHQLID": {
+              "Fn::ImportValue": {
+                "Fn::Join": [
+                  ":",
+                  [
+                    {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "api",
+                          {
+                            "Ref": "AppSyncApiName"
+                          }
+                        ]
+                      ]
+                    },
+                    {
+                      "Ref": "env"
+                    },
+                    "StaticGraphQLApiId"
+                  ]
+                ]
+              }
             }
           }
         },
