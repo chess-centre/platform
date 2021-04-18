@@ -19,7 +19,7 @@ function Card({ event }) {
       </header>
       <div className="text-gray-600 flex-grow">
         <div>
-          <p className="sm:inline mr-1 text-sm text-teal-700 font-bold">
+          <p className="sm:inline mr-1 text-sm text-teal-700">
             <i className="fad fa-calendar-alt mr-1"></i>
             <span className="inline">{`${formatDate(event.startDate)}${
               event.endDate ? ` - ${formatDate(event.endDate)}` : ""
@@ -34,8 +34,8 @@ function Card({ event }) {
           {
             event.rounds && (
               <p className="sm:inline text-sm text-teal-700">
-              <i className="fad fa-clock mr-1"></i>
-              <span className="inline">{event.time}</span>{" "}
+              <i className="fad fa-flag mr-1"></i>
+              <span className="inline">{event.rounds}</span>{" "}
             </p>
             )
           }
