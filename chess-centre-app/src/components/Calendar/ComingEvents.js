@@ -70,8 +70,7 @@ function Timeline() {
         setIsLoadingEvent(true);
         // TODO: refine to only retreive next two months:
         const events = await API.get("public", "/events");
-        console.log(events)
-        setEvents(events);
+        setEvents(events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate)));
         setIsLoadingEvent(false);
       } catch (err) {
         console.log(err);
