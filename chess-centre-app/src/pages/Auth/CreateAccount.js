@@ -139,7 +139,7 @@ function Login(props) {
             />
             <img
               aria-hidden="true"
-              className="sm:hidden object-cover object-bottom w-full h-full"
+              className="sm:hidden object-cover object-bottom w-full h-32"
               src={ImageSmall}
               alt="Office"
             />{" "}
@@ -156,7 +156,7 @@ function Login(props) {
                 ) : (
                   <img
                     src={Logo}
-                    className="object-contain h-20 w-full md:h-36 "
+                    className="object-contain h-20 w-full md:h-36"
                     alt="The Chess Centre"
                   />
                 )}

@@ -15,7 +15,7 @@ function Members() {
                 <h1 className="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">COMING SOON!</h1>
                 <h4 className="text-center text-1xl font-extrabold text-orange-500">Members</h4>
                 <p>
-                  Bear with us, we're busy building your amazing members experience!
+                  <span role="img">🐻</span> with us, we're busy building your amazing members experience!
                 </p>
                 <ul className="list-disc space-y-2">
                   <li className="flex items-start">

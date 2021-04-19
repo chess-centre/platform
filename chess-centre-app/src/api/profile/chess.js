@@ -1,5 +1,5 @@
 import { DataStore } from "@aws-amplify/datastore";
-import { FidePlayer, ECFPlayer, Member } from "../../models";
+import { FidePlayer, Member } from "../../models";
 
 export const getFideData = async (id) => {
   const record = await DataStore.query(FidePlayer, (p) =>
@@ -12,18 +12,15 @@ export const getFideData = async (id) => {
 };
 
 export const getECFData = async (id) => {
-  const record = await DataStore.query(ECFPlayer, (p) => p.ecfId("eq", id));
-  if (Array.isArray(record) && record.length) {
-    return record[0];
+  const response = await fetch(`https://www.ecfrating.org.uk/v2/new/api.php?v2/players/code/${id}`).catch(e => {
+    return {};
+  });
+  if(response.ok) {
+    return await response.json();
   }
-  return;
+  return {};
 };
 
-/**
- * @name getMember
- * @description ensures we are working with an existing record to assist updating of the whole user profile!
- * @returns
- */
 export const getMember = async (user) => {
   return await DataStore.query(Member, user.attributes.sub);
 };

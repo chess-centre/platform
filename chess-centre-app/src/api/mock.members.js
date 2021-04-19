@@ -1,24 +1,3 @@
-
-// interface Rating {
-//     fideId: string,
-//     rating: number,
-//     type: string
-// }
-
-// interface Grading {
-//     ecfId: string,
-//     grade: number,
-//     type: string
-// }
-
-// interface Member {
-//     id: number,
-//     name: string,
-//     ratingInfo?: Rating
-//     gradingInfo?: Grading,
-//     club?: string
-// }
-
 export const Members = [
     {
         id: 1,

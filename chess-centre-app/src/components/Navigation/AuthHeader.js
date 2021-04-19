@@ -1,24 +1,20 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import { SidebarContext } from "../../context/SidebarContext";
 import {
-  MoonIcon,
-  SunIcon,
   MenuIcon,
   OutlinePersonIcon,
   OutlineLogoutIcon,
 } from "../../icons";
-import { Dropdown, DropdownItem, WindmillContext } from "@windmill/react-ui";
+import { Dropdown, DropdownItem } from "@windmill/react-ui";
 import { logout, useAuthDispatch } from "../../context/Auth";
 
 function Header() {
   const dispatch = useAuthDispatch();
-  const { mode, toggleMode } = useContext(WindmillContext);
-  const { toggleSidebar } = useContext(SidebarContext);
+  const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   function handleProfileClick() {
-    setIsProfileMenuOpen(!isProfileMenuOpen);
+    setIsProfileMenuOpen(true);
   }
   function signOut() {
     logout(dispatch);
@@ -32,26 +28,11 @@ function Header() {
           onClick={toggleSidebar}
           aria-label="Menu"
         >
-          <MenuIcon className="w-6 h-6" aria-hidden="true" />
+          { isSidebarOpen ? <span><i className="fas fa-times"></i></span> : <MenuIcon className="w-6 h-6" aria-hidden="true" /> }
         </button>
         {/* <!-- Search input --> */}
         <div className="flex justify-center flex-1 lg:mr-32"></div>
         <ul className="flex items-center flex-shrink-0 space-x-6">
-          {/* <!-- Theme toggler --> */}
-          <li className="flex">
-            <button
-              className="rounded-md focus:outline-none focus:shadow-outline-teal"
-              onClick={toggleMode}
-              aria-label="Toggle color mode"
-            >
-              {mode === "dark" ? (
-                <SunIcon className="w-5 h-5" aria-hidden="true" />
-              ) : (
-                <MoonIcon className="w-5 h-5" aria-hidden="true" />
-              )}
-            </button>
-          </li>
-
           {/* <!-- Profile menu --> */}
           <li className="relative">
             <button
@@ -60,9 +41,9 @@ function Header() {
               aria-label="Account"
               aria-haspopup="true"
             >
-              <span className="inline-block align-middle bg-gray-100 rounded-full overflow-hidden h-8 w-8">
+              <span className="inline-block align-middle bg-gray-100 rounded-full border-teal-600 border overflow-hidden h-8 w-8">
                 <svg
-                  className="h-full w-full text-gray-300"
+                  className="h-full w-full text-gray-300 "
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -75,17 +56,15 @@ function Header() {
               isOpen={isProfileMenuOpen}
               onClose={() => setIsProfileMenuOpen(false)}
             >
-              <Link to="/app/profile" className="divide-white mb-2">
-                <DropdownItem>
-                  <OutlinePersonIcon
-                    className="w-4 h-4 mr-3"
-                    aria-hidden="true"
-                  />
-                  Profile
-                </DropdownItem>
-              </Link>
+              <DropdownItem tag="a" href="/app/profile">
+                <OutlinePersonIcon
+                  className="w-4 h-4 mr-3"
+                  aria-hidden="true"
+                />
+                Profile
+              </DropdownItem>
 
-              <DropdownItem onClick={() => signOut()}>
+              <DropdownItem onClick={signOut}>
                 <OutlineLogoutIcon
                   className="w-4 h-4 mr-3"
                   aria-hidden="true"

@@ -42,20 +42,17 @@ const routes = [
   {
     path: "/events/junior/:id",
     component: lazy(() => import("../pages/Events/Junior")),
-    isPrivate: false,
-    exact: true
+    isPrivate: false
   },
   {
     path: "/events/congress/:id",
     component: lazy(() => import("../pages/Events/Congress")),
-    isPrivate: false,
-    exact: true
+    isPrivate: false
   },
   {
     path: "/events/rapidplay/:id",
     component: lazy(() => import("../pages/Events/Rapidplay")),
-    isPrivate: false,
-    exact: true
+    isPrivate: false
   },
   {
     path: "/events",

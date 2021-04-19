@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { API } from "aws-amplify";
-import { CalendarIcon, ClockIcon } from "../../icons";
 
 function formatDate(date) {
   return new Date(date).toLocaleDateString("en-GB", {
@@ -13,25 +12,33 @@ function formatDate(date) {
 function Card({ event }) {
   return (
     <article
-      className={event.color + " p-6 shadow-2xl flex flex-col rounded-xl"}
+      className={event.color + " p-6 shadow-2xl flex flex-col rounded-xl border border-light-blue-300"}
     >
       <header>
         <h3 className="h4 font-red-hat-display mb-1">{event.name}</h3>
       </header>
       <div className="text-gray-600 flex-grow">
         <div>
-          <p className="sm:inline mr-1 text-sm text-teal-700 font-bold">
-            <CalendarIcon className="w-4 h-4 inline mr-1" />
+          <p className="sm:inline mr-1 text-sm text-teal-700">
+            <i className="fad fa-calendar-alt mr-1"></i>
             <span className="inline">{`${formatDate(event.startDate)}${
               event.endDate ? ` - ${formatDate(event.endDate)}` : ""
             }`}</span>{" "}
           </p>
           {event.time && (
             <p className="sm:inline text-sm text-teal-700">
-              <ClockIcon className="w-4 h-4 inline mr-1" />
+              <i className="fad fa-clock mr-1"></i>
               <span className="inline">{event.time}</span>{" "}
             </p>
           )}
+          {
+            event.rounds && (
+              <p className="sm:inline text-sm text-teal-700">
+              <i className="fad fa-flag mr-1"></i>
+              <span className="inline">{event.rounds}</span>{" "}
+            </p>
+            )
+          }
         </div>
 
         <p className="mr-1">{event.description}</p>
@@ -41,17 +48,7 @@ function Card({ event }) {
           className="inline-flex items-center font-medium text-teal-500 hover:underline mt-2"
           href={`${event.url}/${event.id}`}
         >
-          <span>Find out more</span>
-          <svg
-            className="w-3 h-3 flex-shrink-0 mt-px ml-2"
-            viewBox="0 0 12 12"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              className="fill-current"
-              d="M6.602 11l-.875-.864L9.33 6.534H0v-1.25h9.33L5.727 1.693l.875-.875 5.091 5.091z"
-            />
-          </svg>
+          <span>More Info <i className="fad fa-arrow-right"></i></span>
         </a>
       )}
     </article>
@@ -59,24 +56,30 @@ function Card({ event }) {
 }
 
 function Timeline() {
-  const [month, setMonth] = useState(4);
+  const today = new Date();
+  const currentMonth = today.getUTCMonth() + 1;
+  const nextMonth = currentMonth + 1;
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [events, setEvents] = useState([]);
-
-  const months = [4, 5, 6, 7];
+  const [isLoadingEvents, setIsLoadingEvent] = useState(false);
+  const months = [currentMonth, nextMonth];
 
   useEffect(() => {
+    async function fetchEvents() {
+      try {
+        setIsLoadingEvent(true);
+        // TODO: refine to only retreive next two months:
+        const events = await API.get("public", "/events");
+        setEvents(events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate)));
+        setIsLoadingEvent(false);
+      } catch (err) {
+        console.log(err);
+        console.log("error fetching events");
+        setIsLoadingEvent(false);
+      }
+    }
     fetchEvents();
   }, []);
-
-  async function fetchEvents() {
-    try {
-      const events = await API.get("public", "/events");
-      setEvents(events);
-    } catch (err) {
-      console.log(err);
-      console.log("error fetching events");
-    }
-  }
 
   return (
     <section>
@@ -92,53 +95,67 @@ function Timeline() {
           <div>
             <div className="flex items-start">
               {/* Timeline buttons */}
-              <div className="relative mr-4 sm:mr-12 lg:mr-24">
+              { !isLoadingEvents ? (<div className="relative mr-4 sm:mr-12 lg:mr-24">
+                
                 <div
                   className="absolute inset-0 my-6 ml-16 pointer-events-none -z-1"
                   aria-hidden="true"
                 >
                   <div className="absolute inset-0 w-0.5 h-full bg-gray-300"></div>
                 </div>
-                {months.map((m, i) => {
+                { months.map((month, i) => {
                   const isEven = i % 2 === 0;
                   return (
                     <button
                       key={i}
                       className="flex items-center justify-between font-medium text-gray-500 w-20 py-3 pr-2 text-left"
-                      onClick={() => setMonth(m)}
+                      onClick={() => setSelectedMonth(month)}
                     >
                       <span className="block w-12 truncate">
-                        {new Date(2000, m, 1).toLocaleString("default", {
+                        {new Date(2000, month, 1).toLocaleString("default", {
                           month: "long",
                         })}
                       </span>
                       <span
                         className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full ${
-                          month === m &&
+                          selectedMonth === month &&
                           (isEven ? "bg-teal-brand " : "bg-orange-brand ")
                         }`}
                       ></span>
                     </button>
                   );
                 })}
-              </div>
+              </div>) : "" }
+              
 
-              {months.map((m, i) => {
-                return (
-                  <div
-                    key={i}
-                    className={`flex-grow ${month !== m && "hidden"}`}
-                  >
-                    <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-                      {events
-                        .filter((d) => new Date(d.startDate).getMonth() === m)
-                        .map((d, index) => (
-                          <Card key={index} event={d} />
-                        ))}
-                    </div>
-                  </div>
-                );
-              })}
+              {!isLoadingEvents ? (
+                <>
+                  {months.map((month, i) => {
+                    return (
+                      <div
+                        key={i}
+                        className={`flex-grow ${
+                          selectedMonth !== month && "hidden"
+                        }`}
+                      >
+                        <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                          {events
+                            .filter(
+                              (d) => new Date(d.startDate).getMonth() === month
+                            )
+                            .map((d, index) => (
+                              <Card key={index} event={d} />
+                            ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </>
+              ) : (
+                <div className="grid m-auto">
+                  <div className="text-9xl text-gray-900"><i className="fak fa-chess-centre animate-spin-slow"></i></div>
+                </div>
+              )}
             </div>
           </div>
         </div>

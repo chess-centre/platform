@@ -1,14 +1,4 @@
 import React from "react";
-const Issue = ({issue}) => {
-  return (
-    <a
-      className="text-pink-600 hover:underline"
-      href={`https://github.com/chess-centre/platform/issues/${issue}`}
-    >
-      {`#${issue}`}
-    </a>
-  );
-};
 
 export const CentreRoadmap = () => {
   return (
@@ -67,6 +57,22 @@ export const CentreRoadmap = () => {
             <ul className="list-disc ml-5">
               <li>Alcohol License approved 🍺</li>
               <li>First Live Game Broadcast 📺</li>
+            </ul>
+          </div>
+        </li>
+        <li className="mb-2">
+          <div className="flex items-center mb-1">
+            <div className="bg-teal-500 rounded-full h-4 w-4"></div>
+            <div className="flex-1 ml-4 font-medium">
+              <span className="mr-2 bg-blue-200 text-black p-1 rounded  leading-none">
+                Discuss
+              </span>
+            </div>
+          </div>
+          <div className="ml-12">
+            <ul className="list-disc ml-5">
+              <li>FIDE rated events</li>
+              <li>New event types</li>
             </ul>
           </div>
         </li>

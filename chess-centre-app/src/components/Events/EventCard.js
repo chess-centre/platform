@@ -2,7 +2,7 @@ import React from "react";
 
 export default function EventCard({ icon, title, cost, clock, rounds }) {
   return (
-    <div className="m-auto border-2 border-teal-500 rounded-lg shadow-sm divide-y divide-gray-200 max-w-xs bg-white">
+    <div className="m-2 border-2 border-teal-500 rounded-lg shadow-sm divide-y divide-gray-200 max-w-xs bg-white">
       <div className="p-6 px-10">
         <h2 className="text-lg leading-6 font-medium text-gray-900">
           <span className="text-teal-500 text-4xl">
@@ -31,7 +31,7 @@ export default function EventCard({ icon, title, cost, clock, rounds }) {
         <p className="text-center">
           <span className="text-3xl">
             <i
-              class="fad fa-chess-clock"
+              className="fad fa-chess-clock"
               style={{
                 "--fa-secondary-color": "#f0802c",
                 "--fa-secondary-opacity": 1.0,

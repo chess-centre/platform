@@ -114,8 +114,6 @@ const resultCheck = () => {
     });
   });
   const roundByRound = resultBySeed.reduce((player, { seed, result }) => {
-
-    console.log(players);
     if (!player[seed]) {
       player[seed] = {
         rounds: [result],
@@ -337,7 +335,7 @@ function AllPlayAll() {
   return (
     <>
       <section className="flex flex-wrap overflow-hidden">
-        <div className="px-4 grid grid-cols-1 sm:w-2/3 sm:grid-cols-2 gap-4 overflow-x-auto ">
+        <div className="px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-x-auto">
           <div className="">
             <Standings></Standings> 
           </div>
