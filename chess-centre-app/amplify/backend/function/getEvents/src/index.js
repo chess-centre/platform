@@ -26,6 +26,7 @@ const listEvents = gql`
         time
         startDate
         endDate
+        rounds
 
         type {
           id
@@ -39,10 +40,6 @@ const listEvents = gql`
     }
   }
 `;
-
-const headers = {
-  "Access-Control-Allow-Origin": "*",
-};
 
 exports.handler = async (_event) => {
   const req = new AWS.HttpRequest(appsyncUrl, region);
@@ -63,12 +60,15 @@ exports.handler = async (_event) => {
     const data = await new Promise((resolve, reject) => {
       const httpRequest = https.request(
         { ...req, host: endpoint },
-        (result) => {
-          result.on("data", (data) => {
-            resolve(JSON.parse(data.toString()));
+        (response) => {
+          let data = '';
+          response.on("data", (chunk) => {
+            data += chunk;
           });
-
-          result.on("error", (error) => reject(error));
+          response.on('end', () => {
+            resolve(JSON.parse(data.toString()));
+          })
+          response.on("error", (error) => reject(error));
         }
       );
 
@@ -94,15 +94,12 @@ exports.handler = async (_event) => {
     return {
       statusCode: 200,
       body: JSON.stringify(mapped),
-      headers,
     };
   } catch (error) {
     console.error(error);
-
     return {
       statusCode: 500,
-      body: JSON.stringify(error),
-      headers,
+      body: JSON.stringify(error)
     };
   }
 };
