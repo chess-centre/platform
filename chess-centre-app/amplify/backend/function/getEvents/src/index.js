@@ -41,6 +41,10 @@ const listEvents = gql`
   }
 `;
 
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+};
+
 exports.handler = async (_event) => {
   const req = new AWS.HttpRequest(appsyncUrl, region);
 
@@ -51,9 +55,6 @@ exports.handler = async (_event) => {
   req.body = JSON.stringify({
     query: print(listEvents),
     operationName: "listEvents",
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    }
   });
 
   const signer = new AWS.Signers.V4(req, "appsync", true);
@@ -97,12 +98,14 @@ exports.handler = async (_event) => {
     return {
       statusCode: 200,
       body: JSON.stringify(mapped),
+      headers
     };
   } catch (error) {
     console.error(error);
     return {
       statusCode: 500,
-      body: JSON.stringify(error)
+      body: JSON.stringify(error),
+      headers
     };
   }
 };
