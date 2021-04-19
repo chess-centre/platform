@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useStripe } from "@stripe/react-stripe-js";
-import { subscribe } from "../../context/Auth";
+import { subscribe, useAuthDispatch, useAuthState } from "../../context/Auth";
 import { Button } from "@windmill/react-ui";
+import Loading from "../../assets/img/loading.svg";
 
 function MembershipCard({
   direct,
@@ -15,10 +16,12 @@ function MembershipCard({
   buttonColour
 }) {
   const stripe = useStripe();
+  const dispatch = useAuthDispatch();
+  const { loading } = useAuthState();
 
   const checkout = async () => {
     // Need a loading state here
-    await subscribe(plan, stripe);
+    await subscribe(dispatch, plan, stripe);
   };
 
   return (
@@ -62,7 +65,7 @@ function MembershipCard({
             aria-describedby="tier-standard"
             onClick={checkout}
           >
-            Upgrade
+            { loading ? <><img alt="Loading" className="h-5 w-5 mr-1" src={Loading} /><span className="text-sm"> Redirecting...</span></> : "Upgrade" }
           </Button>
         ) : (
           <div className="rounded-md shadow">
