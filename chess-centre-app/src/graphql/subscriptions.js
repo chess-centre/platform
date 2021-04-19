@@ -103,8 +103,8 @@ export const onDeleteEventType = /* GraphQL */ `
     }
   }
 `;
-export const onCreateEcfPlayer = /* GraphQL */ `
-  subscription OnCreateEcfPlayer {
+export const onCreateECFPlayer = /* GraphQL */ `
+  subscription OnCreateECFPlayer {
     onCreateECFPlayer {
       id
       ecfId
@@ -118,8 +118,8 @@ export const onCreateEcfPlayer = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateEcfPlayer = /* GraphQL */ `
-  subscription OnUpdateEcfPlayer {
+export const onUpdateECFPlayer = /* GraphQL */ `
+  subscription OnUpdateECFPlayer {
     onUpdateECFPlayer {
       id
       ecfId
@@ -133,8 +133,8 @@ export const onUpdateEcfPlayer = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteEcfPlayer = /* GraphQL */ `
-  subscription OnDeleteEcfPlayer {
+export const onDeleteECFPlayer = /* GraphQL */ `
+  subscription OnDeleteECFPlayer {
     onDeleteECFPlayer {
       id
       ecfId
