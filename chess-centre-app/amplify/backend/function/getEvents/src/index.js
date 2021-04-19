@@ -51,6 +51,9 @@ exports.handler = async (_event) => {
   req.body = JSON.stringify({
     query: print(listEvents),
     operationName: "listEvents",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    }
   });
 
   const signer = new AWS.Signers.V4(req, "appsync", true);
@@ -61,13 +64,13 @@ exports.handler = async (_event) => {
       const httpRequest = https.request(
         { ...req, host: endpoint },
         (response) => {
-          let data = '';
+          let data = "";
           response.on("data", (chunk) => {
             data += chunk;
           });
-          response.on('end', () => {
+          response.on("end", () => {
             resolve(JSON.parse(data.toString()));
-          })
+          });
           response.on("error", (error) => reject(error));
         }
       );
