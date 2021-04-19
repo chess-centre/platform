@@ -121,8 +121,8 @@ export const deleteEventType = /* GraphQL */ `
     }
   }
 `;
-export const createEcfPlayer = /* GraphQL */ `
-  mutation CreateEcfPlayer(
+export const createECFPlayer = /* GraphQL */ `
+  mutation CreateECFPlayer(
     $input: CreateECFPlayerInput!
     $condition: ModelECFPlayerConditionInput
   ) {
@@ -139,8 +139,8 @@ export const createEcfPlayer = /* GraphQL */ `
     }
   }
 `;
-export const updateEcfPlayer = /* GraphQL */ `
-  mutation UpdateEcfPlayer(
+export const updateECFPlayer = /* GraphQL */ `
+  mutation UpdateECFPlayer(
     $input: UpdateECFPlayerInput!
     $condition: ModelECFPlayerConditionInput
   ) {
@@ -157,8 +157,8 @@ export const updateEcfPlayer = /* GraphQL */ `
     }
   }
 `;
-export const deleteEcfPlayer = /* GraphQL */ `
-  mutation DeleteEcfPlayer(
+export const deleteECFPlayer = /* GraphQL */ `
+  mutation DeleteECFPlayer(
     $input: DeleteECFPlayerInput!
     $condition: ModelECFPlayerConditionInput
   ) {

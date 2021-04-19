@@ -9,7 +9,7 @@ const data = [
       iconClasses: "fas fa-chess-clock-alt"
     },
     {
-      name: "Wide range of club events and competitions",
+      name: "Club events and competitions",
       iconClasses: "fad fa-trophy-alt"
     },
     {
@@ -32,7 +32,7 @@ const data = [
   {
     title: "Junior",
     price: "£20",
-    subHeading: "Our tailored membership offering.",
+    subHeading: "Our tailored junior membership offering.",
     benefits: [
       {
         name: "Weekly training sessions",

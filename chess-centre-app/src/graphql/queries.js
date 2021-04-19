@@ -147,8 +147,8 @@ export const listEventTypes = /* GraphQL */ `
     }
   }
 `;
-export const getEcfPlayer = /* GraphQL */ `
-  query GetEcfPlayer($id: ID!) {
+export const getECFPlayer = /* GraphQL */ `
+  query GetECFPlayer($id: ID!) {
     getECFPlayer(id: $id) {
       id
       ecfId
@@ -162,8 +162,8 @@ export const getEcfPlayer = /* GraphQL */ `
     }
   }
 `;
-export const listEcfPlayers = /* GraphQL */ `
-  query ListEcfPlayers(
+export const listECFPlayers = /* GraphQL */ `
+  query ListECFPlayers(
     $filter: ModelECFPlayerFilterInput
     $limit: Int
     $nextToken: String
@@ -185,8 +185,8 @@ export const listEcfPlayers = /* GraphQL */ `
     }
   }
 `;
-export const syncEcfPlayers = /* GraphQL */ `
-  query SyncEcfPlayers(
+export const syncECFPlayers = /* GraphQL */ `
+  query SyncECFPlayers(
     $filter: ModelECFPlayerFilterInput
     $limit: Int
     $nextToken: String
