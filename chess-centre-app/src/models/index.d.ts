@@ -22,17 +22,11 @@ export declare class EventType {
   readonly time?: string;
   readonly maxEntries?: number;
   readonly stripePriceId?: string;
+  readonly timeControl?: string;
+  readonly eventType?: string;
+  readonly defaultPrice?: string;
   constructor(init: ModelInit<EventType>);
   static copyOf(source: EventType, mutator: (draft: MutableModel<EventType>) => MutableModel<EventType> | void): EventType;
-}
-
-export declare class ECFPlayer {
-  readonly id: string;
-  readonly ecfId?: string;
-  readonly club?: string;
-  readonly currentRating?: string;
-  constructor(init: ModelInit<ECFPlayer>);
-  static copyOf(source: ECFPlayer, mutator: (draft: MutableModel<ECFPlayer>) => MutableModel<ECFPlayer> | void): ECFPlayer;
 }
 
 export declare class FidePlayer {

@@ -27,6 +27,8 @@ const listEvents = gql`
         startDate
         endDate
         rounds
+        maxEntries
+        entryCount
 
         type {
           id
@@ -34,7 +36,8 @@ const listEvents = gql`
           description
           url
           color
-          time
+          timeControl
+          eventType
         }
       }
     }
@@ -90,7 +93,7 @@ exports.handler = async (_event) => {
       ...i,
       name: i.name || i.type.name,
       description: i.description || i.type.description,
-      time: i.time || i.type.time,
+      time: i.time || i.type.timeControl,
       color: i.type.color,
       url: i.type.url,
     }));

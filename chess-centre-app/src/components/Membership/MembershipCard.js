@@ -13,7 +13,7 @@ function MembershipCard({
   benefits,
   plan,
   pillColour,
-  buttonColour
+  buttonColour,
 }) {
   const stripe = useStripe();
   const dispatch = useAuthDispatch();
@@ -28,15 +28,15 @@ function MembershipCard({
     <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
       <div className="px-6 py-8 bg-white sm:p-10 sm:pb-6">
         <div>
-            <h3
-              className={`inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-gradient-to-r ${pillColour} text-white`}
-              id="tier-standard"
-            >
-              <span className="font-normal">
-                <i className="fak fa-chess-centre mr-1"></i>
-              </span>  
-              {title}
-            </h3>
+          <h3
+            className={`inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-gradient-to-r ${pillColour} text-white`}
+            id="tier-standard"
+          >
+            <span className="font-normal">
+              <i className="fak fa-chess-centre mr-1"></i>
+            </span>
+            {title}
+          </h3>
         </div>
         <div className="mt-4 flex items-baseline text-6xl font-extrabold">
           {price}
@@ -50,7 +50,7 @@ function MembershipCard({
             <li key={key} className="flex items-start">
               <div className="flex-shrink-0">
                 <span className="text-teal-500 ml-2">
-                < i className={benefit.iconClasses}></i>
+                  <i className={benefit.iconClasses}></i>
                 </span>
               </div>
               <p className="ml-3 text-md text-gray-700">{benefit.name}</p>
@@ -65,7 +65,14 @@ function MembershipCard({
             aria-describedby="tier-standard"
             onClick={checkout}
           >
-            { loading ? <><img alt="Loading" className="h-5 w-5 mr-1" src={Loading} /><span className="text-sm"> Redirecting...</span></> : "Upgrade" }
+            {loading ? (
+              <>
+                <img alt="Loading" className="h-5 w-5 mr-1" src={Loading} />
+                <span className="text-sm"> Redirecting...</span>
+              </>
+            ) : (
+              "Upgrade"
+            )}
           </Button>
         ) : (
           <div className="rounded-md shadow">
