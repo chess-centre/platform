@@ -134,6 +134,20 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "timeControl": {
+                    "name": "timeControl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "eventType": {
+                    "name": "eventType",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -688,5 +702,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "53512c7dbdcb11154b857db0cf8c9241"
+    "version": "07bf15ca66d2b5588c6b5c6c50260a50"
 };
