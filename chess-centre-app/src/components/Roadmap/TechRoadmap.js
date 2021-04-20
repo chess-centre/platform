@@ -43,7 +43,7 @@ export const TechRoadmap = () => {
                 </a>
               </li>
               <li>
-                <a href="https://github.com/chess-centre/platform#contributors-" className="text-teal-800 hover:underline">new volunteers</a> - <span className="text-xs text-gray-500">amazing people giving up their free time to support</span>
+                <a href="https://github.com/chess-centre/platform#contributors-" className="text-teal-800 hover:underline">new volunteers</a> - <span className="text-xs text-gray-500">amazing people giving up their free time to support us</span>
               </li>
             </ul>
           </div>
