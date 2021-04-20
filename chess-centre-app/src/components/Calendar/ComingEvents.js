@@ -12,7 +12,7 @@ function formatDate(date) {
 function Card({ event }) {
   return (
     <article
-      className={event.color + " p-6 shadow-2xl flex flex-col rounded-xl border border-light-blue-300"}
+      className={`bg-${event.color}-50 p-6 shadow-2xl flex flex-col rounded-xl border border-light-blue-300`}
     >
       <header>
         <h3 className="h4 font-red-hat-display mb-1">{event.name}</h3>

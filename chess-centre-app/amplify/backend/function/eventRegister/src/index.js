@@ -83,7 +83,7 @@ exports.handler = async (event) => {
         type: { stripePriceId, maxEntries: defaultMaxEntries },
         entries: { items: entries },
       },
-      getMember: { stripeCustomerId, stripeCurrentPeriodEnd },
+      getMember: { stripeCustomerId },
     },
   } = eventData;
 
@@ -105,15 +105,6 @@ exports.handler = async (event) => {
       body: "This member is already registered for this event.",
     };
   }
-
-  // Business Requirement Change: disable member only registration!
-  // if (new Date(stripeCurrentPeriodEnd) < new Date()) {
-  //   return {
-  //     statusCode: 401,
-  //     headers,
-  //     body: "This member does not have a paid membership.",
-  //   };
-  // }
 
   // See https://stripe.com/docs/api/checkout/sessions/create
   // for additional parameters to pass.
@@ -178,11 +169,11 @@ async function fetchEvent(id, memberId) {
 
   const data = await new Promise((resolve, reject) => {
     const httpRequest = https.request({ ...req, host: endpoint }, (response) => {
-      let data = ''
+      let data = "";
       response.on("data", (chunk) => {
         data += chunk; 
       });
-      response('end', () => {
+      response.on("end", () => {
         resolve(JSON.parse(data.toString()));
       });
       response.on("error", reject);
