@@ -148,67 +148,17 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "defaultPrice": {
+                    "name": "defaultPrice",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
             "pluralName": "EventTypes",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "ECFPlayer": {
-            "name": "ECFPlayer",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "ecfId": {
-                    "name": "ecfId",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "club": {
-                    "name": "club",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "currentRating": {
-                    "name": "currentRating",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "ECFPlayers",
             "attributes": [
                 {
                     "type": "model",
@@ -702,5 +652,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "07bf15ca66d2b5588c6b5c6c50260a50"
+    "version": "0c00fc14948cb80da901f7fa4a06c4ff"
 };

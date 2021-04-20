@@ -16,13 +16,7 @@ type EventType @model @auth(rules: [{allow: private}]) {
   stripePriceId: String @auth(rules: [{allow: private, operations: [read]}])
   timeControl: String
   eventType: String
-}
-
-type ECFPlayer @model @auth(rules: [{allow: private}]) {
-  id: ID!
-  ecfId: String
-  club: String
-  currentRating: String
+  defaultPrice: String
 }
 
 type FidePlayer @model @auth(rules: [{allow: private}]) {

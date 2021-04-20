@@ -6,24 +6,39 @@ import EventCard from "../../components/Events/EventCard";
 import { API } from "aws-amplify";
 
 function formatDate(startDate, endDate) {
+  const d = (date) =>
+    new Date(date).toLocaleDateString("en-GB", {
+      weekday: "short",
+      day: "numeric",
+      month: "long",
+    });
 
-  const d = date => new Date(date).toLocaleDateString("en-GB", {
-    weekday: "short",
-    day: "numeric",
-    month: "long",
-  });
-
-  if(!endDate) {
+  if (!endDate) {
     return `${d(startDate)}`;
   } else {
     return `${d(startDate)} - ${d(endDate)}`;
   }
 }
 
+function setIcon(type) {
+   switch (type) {
+     case "congress":
+       return "fa-chess-king-alt";
+    case "rapidplay":
+      return "fa-chess-queen-alt";
+    case "junior":
+      return "fa-chess-rook-alt"
+     default:
+       return "fa-chess-bishop-alt"
+   }
+}
+
 export default function Events() {
   const [events, setEvents] = useState([]);
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
-  const [selectedEventType, setSelectedEventType] = useState("congress");
+  const [selectedEventType, setSelectedEventType] = useState("all");
+
+  const selectableEventTypes = ["all", "congress", "rapidplay", "junior"];
 
   useEffect(() => {
     async function fetchEvents() {
@@ -58,7 +73,7 @@ export default function Events() {
                 Join us
               </p>
               <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-                If you're registered you can sign up for anu event
+                Register your account to sign up for any of our events!
               </p>
             </div>
           </div>
@@ -66,58 +81,83 @@ export default function Events() {
         <div className="container m-auto">
           <div className="sm:flex sm:flex-col sm:align-center">
             <div className="relative self-center mt-6 bg-gray-100 rounded-lg p-0.5 flex sm:mt-8">
-              <button
-                type="button"
-                className="relative w-1/2 bg-white border-gray-200 rounded-md shadow-sm py-2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8"
-              >
-                Congresses
-              </button>
-              <button
-                type="button"
-                className="ml-0.5 relative w-1/2 border border-transparent rounded-md py-2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8"
-              >
-                Rapidplays
-              </button>
-              <button
-                type="button"
-                className="ml-0.5 relative w-1/2 border border-transparent rounded-md py-2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8"
-              >
-                Junior Events
-              </button>
+              {selectableEventTypes.map((type, key) => {
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setSelectedEventType(type)}
+                    type="button"
+                    className={`${
+                      type === selectedEventType
+                        ? "bg-white border-gray-200"
+                        : ""
+                    } relative w-1/2 rounded-md shadow-sm py-2 text-sm font-medium text-gray-700 
+                    whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8`}
+                  >
+                    {`${type.charAt(0).toUpperCase()}${type.slice(1)}`}
+                  </button>
+                );
+              })}
             </div>
           </div>
-          <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4">
+          <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4 mb-10">
             {!isLoadingEvents
-              ? events.filter(({eventType}) => eventType === "congress" || eventType === "rapidplay" || eventType === "junior").map(({ name, description, cost, rounds, startDate, endDate, timeControl, eventType }) => {
-                  return (
-                    <EventCard
-                      icon="fa-chess-queen-alt"
-                      cost={cost}
-                      type={eventType}
-                      name={name}
-                      description={description}
-                      details={[
-                        {
-                          icon: "fad fa-calendar-alt",
-                          ariaName: "Date / Time",
-                          information: `${formatDate(startDate, endDate)}`
-                        },
-                        {
-                          icon: "fad fa-flag",
-                          ariaName: "Number of Rounds",
-                          information: `${rounds} rounds`,
-                          show: !!rounds
-                        },
-                        {
-                          icon: "fad fa-chess-clock",
-                          ariaName: "Time Control",
-                          information: "90 min",
-                          show: !!timeControl
-                        }
-                      ]}
-                    />
-                  );
-                })
+              ? events
+                  .filter((event) =>
+                    selectedEventType === "all"
+                      ? // we don't want all other event types, just these from the clickable buttons (above)
+                        selectableEventTypes.some(
+                          (e) => e === event.type.eventType
+                        )
+                      : // we return a specific type:
+                        event.type.eventType === selectedEventType
+                  )
+                  .map(
+                    (
+                      {
+                        id,
+                        name,
+                        description,
+                        rounds,
+                        startDate,
+                        endDate,
+                        type,
+                      },
+                      key
+                    ) => {
+                      return (
+                        <EventCard
+                          key={key}
+                          id={id}
+                          icon={setIcon(type.eventType)}
+                          defaultPrice={type.defaultPrice}
+                          type={type.eventType}
+                          name={name}
+                          description={description}
+                          details={[
+                            {
+                              icon: "fad fa-calendar-alt",
+                              ariaName: "Date / Time",
+                              information: `${formatDate(startDate, endDate)}`,
+                              show: !!startDate,
+                            },
+                            {
+                              icon: "fad fa-flag",
+                              ariaName: "Number of Rounds",
+                              information: `${rounds} rounds`,
+                              show: !!rounds,
+                            },
+                            {
+                              icon: "fad fa-chess-clock",
+                              ariaName: "Time Control",
+                              information: "90 min",
+                              show: !!type.timeControl,
+                            },
+                          ]}
+                        />
+                      );
+                    }
+                  )
               : "Loading..."}
           </div>
         </div>

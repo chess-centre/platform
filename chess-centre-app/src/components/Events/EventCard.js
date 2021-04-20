@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function EventCard({ icon, name, description, cost, details }) {
+export default function EventCard({ id, icon, name, description, defaultPrice, details }) {
   return (
     <div className="m-2 border-2 border-teal-500 rounded-lg shadow-sm divide-y divide-gray-200 max-w-xs bg-white">
       <div className="p-6 px-10">
@@ -14,11 +14,11 @@ export default function EventCard({ icon, name, description, cost, details }) {
           { description }
         </p>
         <p className="mt-8">
-          <span className="text-4xl font-extrabold text-gray-900">£{cost}</span>
+          <span className="text-4xl font-extrabold text-gray-900">£{defaultPrice}</span>
           <span className="text-base font-medium text-gray-500">entry fee</span>
         </p>
         <a
-          href="/"
+          href={`/register?eventId=${id}`}
           className="mt-8 block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900"
         >
           <span>Register Now</span>
