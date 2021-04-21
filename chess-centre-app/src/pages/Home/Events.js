@@ -111,7 +111,7 @@ export default function Events() {
                       : // we return a specific type:
                         event.type.eventType === selectedEventType
                   )
-                  .sort((a, b) => b.startDate - a.startDate)
+                  .sort((a, b) =>new Date(a.startDate) - new Date(b.startDate))
                   .map(
                     (
                       {
