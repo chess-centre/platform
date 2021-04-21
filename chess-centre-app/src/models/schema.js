@@ -622,6 +622,17 @@ export const schema = {
                     "properties": {}
                 },
                 {
+                    "type": "key",
+                    "properties": {
+                        "name": "eventsByStartDate",
+                        "fields": [
+                            "startDate",
+                            "name"
+                        ],
+                        "queryField": "eventsByStartDate"
+                    }
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -652,5 +663,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "0c00fc14948cb80da901f7fa4a06c4ff"
+    "version": "560140cb30afee46422158ccb1ac91ae"
 };

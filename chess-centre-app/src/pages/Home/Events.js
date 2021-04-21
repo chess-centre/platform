@@ -34,6 +34,9 @@ function setIcon(type) {
 }
 
 export default function Events() {
+  const today = new Date();
+  const now = today.toISOString();
+  const future = today.setDate(today.getDate + 100);
   const [events, setEvents] = useState([]);
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
   const [selectedEventType, setSelectedEventType] = useState("all");
@@ -44,8 +47,8 @@ export default function Events() {
     async function fetchEvents() {
       try {
         setIsLoadingEvent(true);
-        const events = await API.get("public", "/events");
-        setEvents(events);
+        const events = await API.get("public", `/events?startDate=${now}&endDate=${future}`);
+        setEvents(events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate)));
         setIsLoadingEvent(false);
       } catch (err) {
         console.log(err);
@@ -111,7 +114,6 @@ export default function Events() {
                       : // we return a specific type:
                         event.type.eventType === selectedEventType
                   )
-                  .sort((a, b) =>new Date(a.startDate) - new Date(b.startDate))
                   .map(
                     (
                       {
@@ -121,7 +123,9 @@ export default function Events() {
                         rounds,
                         startDate,
                         endDate,
+                        color,
                         type,
+                        entryCount
                       },
                       key
                     ) => {
@@ -130,6 +134,7 @@ export default function Events() {
                           key={key}
                           id={id}
                           icon={setIcon(type.eventType)}
+                          color={color}
                           defaultPrice={type.defaultPrice}
                           type={type.eventType}
                           name={name}
@@ -153,6 +158,12 @@ export default function Events() {
                               information: "90 min",
                               show: !!type.timeControl,
                             },
+                            {
+                              icon: "fad fa-user-friends",
+                              ariaName: "Entries",
+                              information: `${entryCount}`,
+                              show: !!entryCount
+                            }
                           ]}
                         />
                       );

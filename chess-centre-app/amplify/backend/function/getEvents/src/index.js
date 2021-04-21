@@ -17,8 +17,8 @@ const graphql = require("graphql");
 const { print } = graphql;
 
 const listEvents = gql`
-  query listEvents {
-    listEvents {
+  query listEvents($startDate: String!, $endDate: String!) {
+    listEvents(filter: {startDate: {between: [$startDate, $endDate]}}) {
       items {
         id
         name
@@ -49,8 +49,11 @@ const headers = {
   "Access-Control-Allow-Origin": "*",
 };
 
-exports.handler = async (_event) => {
+exports.handler = async (event) => {
   const req = new AWS.HttpRequest(appsyncUrl, region);
+
+  // on event some query params
+  const { startDate, endDate } = event.queryStringParameters;
 
   req.method = "POST";
   req.path = "/graphql";
@@ -59,6 +62,10 @@ exports.handler = async (_event) => {
   req.body = JSON.stringify({
     query: print(listEvents),
     operationName: "listEvents",
+    variables: {
+      startDate,
+      endDate
+    }
   });
 
   const signer = new AWS.Signers.V4(req, "appsync", true);

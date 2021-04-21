@@ -68,6 +68,9 @@ export const createEventType = /* GraphQL */ `
       color
       time
       maxEntries
+      timeControl
+      eventType
+      defaultPrice
       _version
       _deleted
       _lastChangedAt
@@ -90,6 +93,9 @@ export const updateEventType = /* GraphQL */ `
       color
       time
       maxEntries
+      timeControl
+      eventType
+      defaultPrice
       _version
       _deleted
       _lastChangedAt
@@ -112,66 +118,15 @@ export const deleteEventType = /* GraphQL */ `
       color
       time
       maxEntries
+      timeControl
+      eventType
+      defaultPrice
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
       stripePriceId
-    }
-  }
-`;
-export const createECFPlayer = /* GraphQL */ `
-  mutation CreateECFPlayer(
-    $input: CreateECFPlayerInput!
-    $condition: ModelECFPlayerConditionInput
-  ) {
-    createECFPlayer(input: $input, condition: $condition) {
-      id
-      ecfId
-      club
-      currentRating
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateECFPlayer = /* GraphQL */ `
-  mutation UpdateECFPlayer(
-    $input: UpdateECFPlayerInput!
-    $condition: ModelECFPlayerConditionInput
-  ) {
-    updateECFPlayer(input: $input, condition: $condition) {
-      id
-      ecfId
-      club
-      currentRating
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteECFPlayer = /* GraphQL */ `
-  mutation DeleteECFPlayer(
-    $input: DeleteECFPlayerInput!
-    $condition: ModelECFPlayerConditionInput
-  ) {
-    deleteECFPlayer(input: $input, condition: $condition) {
-      id
-      ecfId
-      club
-      currentRating
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -317,6 +272,9 @@ export const createMember = /* GraphQL */ `
               color
               time
               maxEntries
+              timeControl
+              eventType
+              defaultPrice
               _version
               _deleted
               _lastChangedAt
@@ -421,6 +379,9 @@ export const updateMember = /* GraphQL */ `
               color
               time
               maxEntries
+              timeControl
+              eventType
+              defaultPrice
               _version
               _deleted
               _lastChangedAt
@@ -525,6 +486,9 @@ export const deleteMember = /* GraphQL */ `
               color
               time
               maxEntries
+              timeControl
+              eventType
+              defaultPrice
               _version
               _deleted
               _lastChangedAt
@@ -572,6 +536,9 @@ export const createEvent = /* GraphQL */ `
         color
         time
         maxEntries
+        timeControl
+        eventType
+        defaultPrice
         _version
         _deleted
         _lastChangedAt
@@ -638,6 +605,9 @@ export const createEvent = /* GraphQL */ `
               color
               time
               maxEntries
+              timeControl
+              eventType
+              defaultPrice
               _version
               _deleted
               _lastChangedAt
@@ -685,6 +655,9 @@ export const updateEvent = /* GraphQL */ `
         color
         time
         maxEntries
+        timeControl
+        eventType
+        defaultPrice
         _version
         _deleted
         _lastChangedAt
@@ -751,6 +724,9 @@ export const updateEvent = /* GraphQL */ `
               color
               time
               maxEntries
+              timeControl
+              eventType
+              defaultPrice
               _version
               _deleted
               _lastChangedAt
@@ -798,6 +774,9 @@ export const deleteEvent = /* GraphQL */ `
         color
         time
         maxEntries
+        timeControl
+        eventType
+        defaultPrice
         _version
         _deleted
         _lastChangedAt
@@ -864,6 +843,9 @@ export const deleteEvent = /* GraphQL */ `
               color
               time
               maxEntries
+              timeControl
+              eventType
+              defaultPrice
               _version
               _deleted
               _lastChangedAt
@@ -994,6 +976,9 @@ export const createEntry = /* GraphQL */ `
           color
           time
           maxEntries
+          timeControl
+          eventType
+          defaultPrice
           _version
           _deleted
           _lastChangedAt
@@ -1168,6 +1153,9 @@ export const updateEntry = /* GraphQL */ `
           color
           time
           maxEntries
+          timeControl
+          eventType
+          defaultPrice
           _version
           _deleted
           _lastChangedAt
@@ -1342,6 +1330,9 @@ export const deleteEntry = /* GraphQL */ `
           color
           time
           maxEntries
+          timeControl
+          eventType
+          defaultPrice
           _version
           _deleted
           _lastChangedAt

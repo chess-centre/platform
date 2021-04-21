@@ -89,6 +89,9 @@ export const syncEventTypes = /* GraphQL */ `
         color
         time
         maxEntries
+        timeControl
+        eventType
+        defaultPrice
         _version
         _deleted
         _lastChangedAt
@@ -111,6 +114,9 @@ export const getEventType = /* GraphQL */ `
       color
       time
       maxEntries
+      timeControl
+      eventType
+      defaultPrice
       _version
       _deleted
       _lastChangedAt
@@ -135,79 +141,15 @@ export const listEventTypes = /* GraphQL */ `
         color
         time
         maxEntries
+        timeControl
+        eventType
+        defaultPrice
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
         stripePriceId
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getECFPlayer = /* GraphQL */ `
-  query GetECFPlayer($id: ID!) {
-    getECFPlayer(id: $id) {
-      id
-      ecfId
-      club
-      currentRating
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listECFPlayers = /* GraphQL */ `
-  query ListECFPlayers(
-    $filter: ModelECFPlayerFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listECFPlayers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        ecfId
-        club
-        currentRating
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncECFPlayers = /* GraphQL */ `
-  query SyncECFPlayers(
-    $filter: ModelECFPlayerFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncECFPlayers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        ecfId
-        club
-        currentRating
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
       }
       nextToken
       startedAt
@@ -458,6 +400,9 @@ export const getMember = /* GraphQL */ `
               color
               time
               maxEntries
+              timeControl
+              eventType
+              defaultPrice
               _version
               _deleted
               _lastChangedAt
@@ -593,6 +538,9 @@ export const listEvents = /* GraphQL */ `
           color
           time
           maxEntries
+          timeControl
+          eventType
+          defaultPrice
           _version
           _deleted
           _lastChangedAt
@@ -683,6 +631,9 @@ export const getEvent = /* GraphQL */ `
         color
         time
         maxEntries
+        timeControl
+        eventType
+        defaultPrice
         _version
         _deleted
         _lastChangedAt
@@ -749,6 +700,9 @@ export const getEvent = /* GraphQL */ `
               color
               time
               maxEntries
+              timeControl
+              eventType
+              defaultPrice
               _version
               _deleted
               _lastChangedAt
@@ -765,6 +719,114 @@ export const getEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
+    }
+  }
+`;
+export const eventsByStartDate = /* GraphQL */ `
+  query EventsByStartDate(
+    $startDate: AWSDate
+    $name: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelEventFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    eventsByStartDate(
+      startDate: $startDate
+      name: $name
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          timeControl
+          eventType
+          defaultPrice
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          stripePriceId
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              eventsByEmail
+              promoByEmail
+              eventsByText
+              promoByText
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -804,6 +866,9 @@ export const syncEvents = /* GraphQL */ `
           color
           time
           maxEntries
+          timeControl
+          eventType
+          defaultPrice
           _version
           _deleted
           _lastChangedAt
@@ -977,6 +1042,9 @@ export const getEntry = /* GraphQL */ `
           color
           time
           maxEntries
+          timeControl
+          eventType
+          defaultPrice
           _version
           _deleted
           _lastChangedAt
@@ -1115,6 +1183,9 @@ export const listEntrys = /* GraphQL */ `
             color
             time
             maxEntries
+            timeControl
+            eventType
+            defaultPrice
             _version
             _deleted
             _lastChangedAt
@@ -1224,6 +1295,9 @@ export const syncEntries = /* GraphQL */ `
             color
             time
             maxEntries
+            timeControl
+            eventType
+            defaultPrice
             _version
             _deleted
             _lastChangedAt
