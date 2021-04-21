@@ -63,13 +63,15 @@ function Timeline() {
   const [events, setEvents] = useState([]);
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
   const months = [currentMonth, nextMonth];
+  const now = today.toISOString();
+  const future = today.setDate(today.getDate + 30);
 
   useEffect(() => {
     async function fetchEvents() {
       try {
         setIsLoadingEvent(true);
         // TODO: refine to only retreive next two months:
-        const events = await API.get("public", "/events");
+        const events = await API.get("public", `/events?startDate=${now}&endDate=${future}`);
         setEvents(events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate)));
         setIsLoadingEvent(false);
       } catch (err) {
