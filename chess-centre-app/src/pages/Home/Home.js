@@ -8,7 +8,7 @@ import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/PWA/Download";
 
-const LandingPage = () => {
+const Home = () => {
   const { user } = useAuthState();
 
   return (
@@ -86,7 +86,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="relative pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-24 xl:pb-24">
+        <div className="relative pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
           <LandingNav />
 
           <main className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-18 xl:mt-24">
@@ -140,4 +140,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default Home;

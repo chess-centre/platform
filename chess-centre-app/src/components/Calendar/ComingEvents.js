@@ -89,15 +89,15 @@ function Timeline() {
         <div className="py-12 md:py-10 border-t border-gray-200">
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-10">
-            <h2 className="h2 font-red-hat-display mb-4">Our next Events</h2>
-            <p className="text-xl text-gray-600">See what's coming up</p>
+            <h2 className="h2 font-red-hat-display mb-4">Our Calendar</h2>
+            <p className="text-xl text-gray-600"><i class="fad fa-calendar-alt text-gray-900"></i>  See what's coming up</p>
           </div>
 
           {/* Section content */}
           <div>
             <div className="flex items-start">
               {/* Timeline buttons */}
-              { !isLoadingEvents ? (<div className="relative mr-4 sm:mr-12 lg:mr-24">
+              { !isLoadingEvents ? (<div className="relative mr-4 sm:mr-12 lg:mr-22">
                 
                 <div
                   className="absolute inset-0 my-6 ml-16 pointer-events-none -z-1"
@@ -140,7 +140,7 @@ function Timeline() {
                           selectedMonth !== month && "hidden"
                         }`}
                       >
-                        <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4">
                           {events
                             .filter(
                               (d) => new Date(d.startDate).getMonth() === month
