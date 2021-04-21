@@ -25,6 +25,7 @@ export declare class EventType {
   readonly timeControl?: string;
   readonly eventType?: string;
   readonly defaultPrice?: string;
+  readonly canRegister?: boolean;
   constructor(init: ModelInit<EventType>);
   static copyOf(source: EventType, mutator: (draft: MutableModel<EventType>) => MutableModel<EventType> | void): EventType;
 }

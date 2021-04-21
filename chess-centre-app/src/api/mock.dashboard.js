@@ -8,7 +8,7 @@ export const barLegends = [
   { title: "Rapid", color: "bg-orange-brand" },
 ];
 
-export const lineOptions = {
+export const RatingProgressChart = (longPlayRatings, rapidplayRatings) => ({
   data: {
     labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
     datasets: [
@@ -16,7 +16,7 @@ export const lineOptions = {
         label: "Long Play",
         backgroundColor: "#0694a2",
         borderColor: "#0694a2",
-        data: [2240, 2245, 2270, 2290, 2210, 2201, 2231],
+        data: [...longPlayRatings],
         fill: false,
       },
       {
@@ -24,7 +24,7 @@ export const lineOptions = {
         fill: false,
         backgroundColor: "#f0802b",
         borderColor: "#f0802b",
-        data: [2310, 2345, 2290, 2295, 2410, 2370, 2365],
+        data: [...rapidplayRatings],
       },
     ],
   },
@@ -58,9 +58,9 @@ export const lineOptions = {
   legend: {
     display: false,
   },
-};
+});
 
-export const barOptions = {
+export const GamesChart = ( longPlayGamesCount, rapidplayGamesCount) => ({
   data: {
     labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
     datasets: [
@@ -68,13 +68,13 @@ export const barOptions = {
         label: "Long Play",
         backgroundColor: "#0694a2",
         borderWidth: 1,
-        data: [3, 14, 10, 9, 16, 1, 3],
+        data: [...longPlayGamesCount],
       },
       {
         label: "Rapid",
         backgroundColor: "#f0802b",
         borderWidth: 1,
-        data: [22, 20, 16, 13, 9, 1, 5],
+        data: [rapidplayGamesCount],
       },
     ],
   },
@@ -84,4 +84,4 @@ export const barOptions = {
   legend: {
     display: false,
   },
-};
+});

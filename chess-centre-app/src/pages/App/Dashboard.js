@@ -1,35 +1,16 @@
-import React, { useEffect } from "react";
-import queryString from "query-string";
+import React from "react";
 import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
 import { Line, Bar } from "react-chartjs-2";
 import ChartLegend from "../../components/Chart/ChartLegend";
-import { useAuthState } from "../../context/Auth";
 import {
-  lineOptions,
-  barOptions,
   lineLegends,
+  GamesChart,
+  RatingProgressChart,
   barLegends,
 } from "../../api/mock.dashboard";
-import Auth from "@aws-amplify/auth";
 
-function Dashboard(props) {
-  const {
-    user: {
-      attributes: { given_name },
-    },
-  } = useAuthState();
-
-  useEffect(() => {
-    const { search } = props.location;
-    const parsed = queryString.parse(search);
-
-    if (parsed && parsed.session_id) {
-      // This happens after a member completes checkout through Stripe.
-      // We want to ensure that the user claims are updated.
-      Auth.currentAuthenticatedUser({ bypassCache: true });
-    }
-  }, [props.location]);
+export default function Dashboard() {
 
   return (
     <>
@@ -42,24 +23,22 @@ function Dashboard(props) {
             Overview
           </h3>
           <p className="ml-2 mt-1 text-sm text-gray-500 truncate dark:text-gray-400">
-            We're tracking your performance {given_name}
+            here is where we'll provide insights to your past events
           </p>
         </div>
       </div>
       <Stats />
       <div className="grid gap-6 mb-8 md:grid-cols-2 mt-6">
         <ChartCard title="Rating">
-          <Line {...lineOptions} />
+          <Line {...RatingProgressChart([],[])} />
           <ChartLegend legends={lineLegends} />
         </ChartCard>
 
         <ChartCard title="Games">
-          <Bar {...barOptions} />
+          <Bar {...GamesChart([],[])} />
           <ChartLegend legends={barLegends} />
         </ChartCard>
       </div>
     </>
   );
-}
-
-export default Dashboard;
+};
