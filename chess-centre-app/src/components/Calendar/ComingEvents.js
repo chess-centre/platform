@@ -154,8 +154,9 @@ function Timeline() {
                   })}
                 </>
               ) : (
-                <div className="grid m-auto">
-                  <div className="text-9xl text-gray-900"><i className="fak fa-chess-centre animate-spin-slow"></i></div>
+                <div className="m-auto text-center">
+                  <div className="text-teal-500 mb-2"><i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i></div>
+                  <div className="italic text-gray-500">fetching events...</div>
                 </div>
               )}
             </div>
