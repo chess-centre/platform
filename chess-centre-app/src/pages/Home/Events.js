@@ -45,7 +45,6 @@ export default function Events() {
       try {
         setIsLoadingEvent(true);
         const events = await API.get("public", "/events");
-        console.log(events);
         setEvents(events);
         setIsLoadingEvent(false);
       } catch (err) {
@@ -79,7 +78,7 @@ export default function Events() {
           </div>
         </div>
         <div className="container m-auto">
-          <div className="sm:flex sm:flex-col sm:align-center">
+          <div className=" pr-4 pl-4 sm:flex sm:flex-col sm:align-center">
             <div className="relative self-center mt-6 bg-gray-100 rounded-lg p-0.5 flex sm:mt-8">
               {selectableEventTypes.map((type, key) => {
                 return (
@@ -89,7 +88,7 @@ export default function Events() {
                     type="button"
                     className={`${
                       type === selectedEventType
-                        ? "bg-white border-gray-200"
+                        ? "bg-white border-gray-200 text-teal-500"
                         : ""
                     } relative w-1/2 rounded-md shadow-sm py-2 text-sm font-medium text-gray-700 
                     whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8`}
@@ -100,7 +99,7 @@ export default function Events() {
               })}
             </div>
           </div>
-          <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4 mb-10">
+          <div className="ml-5 mt-10 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4 mb-10">
             {!isLoadingEvents
               ? events
                   .filter((event) =>
@@ -112,6 +111,7 @@ export default function Events() {
                       : // we return a specific type:
                         event.type.eventType === selectedEventType
                   )
+                  .sort((a, b) =>new Date(a.startDate) - new Date(b.startDate))
                   .map(
                     (
                       {
