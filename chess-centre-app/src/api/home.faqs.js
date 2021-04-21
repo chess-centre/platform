@@ -2,7 +2,7 @@ export const faqs = [
     {
       question: "Do I need a chess rating to participate in an event?",
       answer:
-        "Nope. Anyone can register to play in our events, we try to skill match players so the games are hard fought and competitive. Most of our events will be ECF rated so you will get one once you begin playing.",
+        "No. Anyone can register to play in our events, we try to skill match players so the games are hard fought and competitive. Most of our events will be ECF rated so you will get one once you begin playing.",
     },
     {
       question: "Do I need to be a member to join an event?",
@@ -29,6 +29,14 @@ export const faqs = [
         and we'll do our best to re-work our event.`,
     },
     {
+      question: "Can I pay my Mmembership annually?",
+      answer: `Sure! This functionality is not yet available via our app but talk to us when you are next in the club and we will process this request for you.`
+    },
+    {
+      question: "How can I find my live games or results?",
+      answer: `As all most all our congress and rapidplay games will be played on DGT boards, the pgn games will be uploaded against your profile. This will appear once the result is published on the app.`
+    },
+    {
       question: "Do you offer any discounts?",
       answer:
         `To provide the absolute best value whilst ensuring your whole experience 
@@ -41,10 +49,6 @@ export const faqs = [
       answer: `Of course! We have no contract or painful 30-day notice periods. 
       We want you to really love and enjoy being part of The Chess Centre and what we represent. 
       You can cancel your recurring membership from your profile under "Subscription" anytime you wish, your membership will be valid until the next payment cicle. And you are always welcome back, anytime!`
-    },
-    {
-      question: "Can I pay my Membership annually?",
-      answer: `Sure! This functionality is not yet available via our app but talk to us when you are next in the club and we will process this request for you.`
     },
     {
       question: "How can I find my live games or results?",
