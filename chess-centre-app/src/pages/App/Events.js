@@ -10,7 +10,7 @@ function Events() {
       <div className="pb-5 border-b border-gray-200">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
           <h3 className="ml-2 mt-2 text-lg leading-6 font-medium text-gray-900 dark:text-white">
-            May
+            What's coming up?
           </h3>
           <p className="ml-2 mt-1 text-sm text-gray-500 dark:text-gray-300 truncate">entries for our upcoming events</p>
         </div>

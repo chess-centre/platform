@@ -90,7 +90,7 @@ function Timeline() {
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-10">
             <h2 className="h2 font-red-hat-display mb-4">Our Calendar</h2>
-            <p className="text-xl text-gray-600"><i class="fad fa-calendar-alt text-gray-900"></i>  See what's coming up</p>
+            <p className="text-xl text-gray-600"><i className="fad fa-calendar-alt text-gray-900"></i>  See what's coming up</p>
           </div>
 
           {/* Section content */}

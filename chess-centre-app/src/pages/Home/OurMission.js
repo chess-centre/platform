@@ -104,14 +104,14 @@ function OurMission() {
                     <Link to="/about" className="text-teal-500 hover:text-teal-700">
                       the founders
                     </Link>
-                    , have played Chess from an early age have benefitted from
-                    the discipline, concrentration and creativity that this game
+                    , having played Chess from an early age have benefitted from
+                    the discipline, concentration and creativity that this game
                     brings. It is these benefits which we want to share with
                     you.
                   </p>
                   <p>
                     The Chess Centre is open to all, it is not a game that
-                    discriminates, it is universal, open all and welcomes anyone
+                    discriminates, it is universal and welcomes anyone
                     who wants to learn and play. The Chess Centre provides a
                     range of opportunities for those who share these aims to
                     meet, socialise and enjoy playing Chess.

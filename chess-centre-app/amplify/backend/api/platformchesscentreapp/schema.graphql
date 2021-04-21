@@ -17,6 +17,7 @@ type EventType @model @auth(rules: [{allow: private}]) {
   timeControl: String
   eventType: String
   defaultPrice: String
+  canRegister: Boolean
 }
 
 type FidePlayer @model @auth(rules: [{allow: private}]) {
