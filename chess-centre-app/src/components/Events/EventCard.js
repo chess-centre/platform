@@ -13,8 +13,8 @@ export default function EventCard({ id, icon, name, description, defaultPrice, d
         <p className="text-teal-500 mt-4 text-sm">
           { description }
         </p>
-        <p className="mt-8">
-          <span className="text-4xl font-extrabold text-gray-900">£{defaultPrice}</span>
+        <p className="mt-5">
+          <span className="text-4xl font-extrabold text-gray-900 mr-1">£{defaultPrice}</span>
           <span className="text-base font-medium text-gray-500">entry fee</span>
         </p>
         <a
