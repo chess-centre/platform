@@ -96,14 +96,15 @@ function UpComingEvents() {
         } = await API.graphql({ query: listEvents });
 
         const sorted = events
-          .filter((e) => !!e.type.canRegister)
-          .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
-
-        console.log(sorted);
+        // TODO: move to graphQL query:
+        .filter(e => !!e.type.canRegister)
+        .sort(
+          (a, b) => new Date(a.startDate) - new Date(b.startDate)
+        );
 
         const mapped = sorted.map((event) => ({
           ...event,
-          canRegister: !alreadyRegistered(event) && !isFull(event),
+          allowedToRegister: !alreadyRegistered(event) && !isFull(event),
         }));
         setEvents(mapped);
       } catch (err) {
@@ -147,7 +148,7 @@ function UpComingEvents() {
             startDate,
             endDate,
             time,
-            canRegister,
+            allowedToRegister,
             maxEntries,
             entryCount,
             rounds,
@@ -156,8 +157,8 @@ function UpComingEvents() {
         ) => {
           return (
             <section key={index} className="relative">
-              <div className="m-2 bg-white dark:bg-gray-800 pt-6 shadow sm:rounded-md sm:overflow-hidden">
-                <div className="px-4 sm:px-6 space-y-2">
+              <div className="m-2 bg-white dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden">
+                <div className="px-4 sm:px-4 space-y-2 pb-4">
                   <div class="flex">
                     <div className="w-2/3">
                       <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
@@ -169,13 +170,11 @@ function UpComingEvents() {
                           maxEntries || type.maxEntries
                         }`}
                       </p>
-                      <p className="text-sm text-gray-900 dark:text-white">
-                        {description || type.description}
-                      </p>
+
                     </div>
                     <div className="w-1/3">
                       <div className="text-right">
-                        {canRegister && (
+                        {allowedToRegister && (
                           <Button
                             className="text-right"
                             onClick={() => register(id)}
@@ -185,9 +184,18 @@ function UpComingEvents() {
                         )}
                       </div>
                     </div>
+
+                    
                   </div>
                   <div>
-                    <p className="sm:inline text-xs text-teal-700 mr-2">
+                    <div class="w-full">
+                    <p className="text-sm text-gray-900 dark:text-white">
+                        {description || type.description}
+                      </p>
+                      </div>
+                    </div>
+                  <div>
+                    <p className="sm:inline text-xs text-teal-700 mr-2 mb-2">
                       <i className="fad fa-calendar-alt mr-1"></i>
                       <span>
                         {`${formatDate(startDate)}${
@@ -196,7 +204,7 @@ function UpComingEvents() {
                       </span>{" "}
                     </p>
                     {(time || type.time) && (
-                      <p className="sm:inline text-xs text-teal-700 mr-2">
+                      <p className="sm:inline text-xs text-teal-700 mr-2 mb-2">
                         <i className="fad fa-clock mr-1"></i>
                         <span className="inline">{time || type.time}</span>{" "}
                       </p>
@@ -209,7 +217,7 @@ function UpComingEvents() {
                     )}
                   </div>
                 </div>
-                <div className="w-full  mb-4 mt-5 bg-white">
+                <div className="w-full mb-4 mt-5 bg-white">
                   {entries?.items.length > 0 && (
                     <table className="table-auto m-auto border border-gray-100">
                       <thead className="bg-gray-100 dark:bg-gray-800 border-b-2">

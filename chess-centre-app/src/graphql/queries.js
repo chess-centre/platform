@@ -92,6 +92,7 @@ export const syncEventTypes = /* GraphQL */ `
         timeControl
         eventType
         defaultPrice
+        canRegister
         _version
         _deleted
         _lastChangedAt
@@ -117,6 +118,7 @@ export const getEventType = /* GraphQL */ `
       timeControl
       eventType
       defaultPrice
+      canRegister
       _version
       _deleted
       _lastChangedAt
@@ -144,6 +146,7 @@ export const listEventTypes = /* GraphQL */ `
         timeControl
         eventType
         defaultPrice
+        canRegister
         _version
         _deleted
         _lastChangedAt
@@ -403,6 +406,7 @@ export const getMember = /* GraphQL */ `
               timeControl
               eventType
               defaultPrice
+              canRegister
               _version
               _deleted
               _lastChangedAt
@@ -541,6 +545,7 @@ export const listEvents = /* GraphQL */ `
           timeControl
           eventType
           defaultPrice
+          canRegister
           _version
           _deleted
           _lastChangedAt
@@ -634,6 +639,7 @@ export const getEvent = /* GraphQL */ `
         timeControl
         eventType
         defaultPrice
+        canRegister
         _version
         _deleted
         _lastChangedAt
@@ -703,6 +709,7 @@ export const getEvent = /* GraphQL */ `
               timeControl
               eventType
               defaultPrice
+              canRegister
               _version
               _deleted
               _lastChangedAt
@@ -765,6 +772,7 @@ export const eventsByStartDate = /* GraphQL */ `
           timeControl
           eventType
           defaultPrice
+          canRegister
           _version
           _deleted
           _lastChangedAt
@@ -869,6 +877,7 @@ export const syncEvents = /* GraphQL */ `
           timeControl
           eventType
           defaultPrice
+          canRegister
           _version
           _deleted
           _lastChangedAt
@@ -1045,6 +1054,7 @@ export const getEntry = /* GraphQL */ `
           timeControl
           eventType
           defaultPrice
+          canRegister
           _version
           _deleted
           _lastChangedAt
@@ -1186,6 +1196,7 @@ export const listEntrys = /* GraphQL */ `
             timeControl
             eventType
             defaultPrice
+            canRegister
             _version
             _deleted
             _lastChangedAt
@@ -1298,6 +1309,7 @@ export const syncEntries = /* GraphQL */ `
             timeControl
             eventType
             defaultPrice
+            canRegister
             _version
             _deleted
             _lastChangedAt

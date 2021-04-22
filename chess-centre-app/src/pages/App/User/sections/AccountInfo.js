@@ -1,28 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { Input } from "@windmill/react-ui";
 import { useAuthState, updateUserAttributes } from "../../../../context/Auth";
+
 import { useToasts } from "react-toast-notifications";
+const FIRST_NAME = "first_name";
+const LAST_NAME = "last_name";
+const EMAIL_ADDRESS = "email_address"
+
 
 function AccountInfo() {
   const { addToast } = useToasts();
   const { user } = useAuthState();
-  const { email, family_name, given_name, email_verified } = user.attributes;
-  const [personalInfo, setPersonalInfo] = React.useState({
-    email,
-    family_name,
-    given_name,
-  });
+  const { email, email_verified, given_name, family_name } = user.attributes;
+
+  const [firstName, setFirstName] = useState(given_name);
+  const [lastName, setLastName] = useState(family_name);
 
   const updatePersonalInfo = async () => {
-    const { given_name, family_name } = personalInfo;
-
-    if (!given_name || !family_name) {
+    if (!firstName || !lastName) {
       addToast("First Name or Surname cannot be blank.", {
         appearance: "warning",
         autoDismiss: true,
       });
       return;
     }
-    const error = await updateUserAttributes(given_name, family_name);
+    const error = await updateUserAttributes(firstName, lastName);
     if (error) {
       addToast("Oops! Something went wrong.", {
         appearance: "error",
@@ -38,17 +40,22 @@ function AccountInfo() {
     }
   };
 
-  const handleInput = (value) => {
-    setPersonalInfo((state) => ({
-      ...state,
-      ...value,
-    }));
+  const handleInput = (id, value) => {
+    switch (id) {
+      case FIRST_NAME:
+        setFirstName(value);
+        break;
+      case LAST_NAME:
+        setLastName(value);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
-    <div>
-      <div className="shadow sm:rounded-md sm:overflow-hidden">
-        <div className="bg-white dark:bg-gray-800 py-6 px-4 space-y-6 sm:p-6">
+      <div className="shadow rounded-lg overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 py-6 px-6 space-y-6 sm:p-6">
           <div>
             <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
               Account Information
@@ -61,43 +68,43 @@ function AccountInfo() {
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6 sm:col-span-3">
               <label
-                htmlFor="first_name"
+                htmlFor={FIRST_NAME}
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 First name
               </label>
-              <input
-                defaultValue={personalInfo.given_name}
-                onChange={(e) => handleInput(e.target.value)}
+              <Input
+                className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-400 focus:border-teal-400 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
+                value={firstName}
+                onChange={(e) => handleInput(e.target.id, e.target.value)}
                 type="text"
-                name="first_name"
-                id="first_name"
-                autoComplete="given-name"
-                className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500  dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
+                name={FIRST_NAME}
+                id={FIRST_NAME}
+                autoComplete="off"
               />
             </div>
 
             <div className="col-span-6 sm:col-span-3">
               <label
-                htmlFor="last_name"
+                htmlFor={LAST_NAME}
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Last name
               </label>
-              <input
-                defaultValue={personalInfo.family_name}
+              <Input
+                value={lastName}
                 onChange={(e) => handleInput(e.target.value)}
                 type="text"
-                name="last_name"
-                id="last_name"
-                autoComplete="family-name"
-                className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
+                name={LAST_NAME}
+                id={LAST_NAME}
+                autoComplete="off"
+                className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-400 focus:border-teal-400 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
               />
             </div>
 
             <div className="col-span-4 sm:col-span-3">
               <label
-                htmlFor="email_address"
+                htmlFor={EMAIL_ADDRESS}
                 className="block text-sm font-medium text-gray-700 dark:text-gray-200"
               >
                 Email address
@@ -106,8 +113,8 @@ function AccountInfo() {
                 value={email}
                 disabled
                 type="text"
-                name="email_address"
-                id="email_address"
+                name={EMAIL_ADDRESS}
+                id={EMAIL_ADDRESS}
                 autoComplete="email"
                 className="text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3 focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-70"
               />
@@ -146,7 +153,6 @@ function AccountInfo() {
           </button>
         </div>
       </div>
-    </div>
   );
 }
 

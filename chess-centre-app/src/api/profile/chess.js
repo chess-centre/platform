@@ -29,7 +29,6 @@ export const updateChessInfo = async (
   id,
   { newUsername, ecfId, fideId, newAbout }
 ) => {
-  console.log(newUsername, ecfId, fideId, newAbout);
   const record = await DataStore.query(Member, id);
   const updated = await DataStore.save(
     Member.copyOf(record, (updated) => {

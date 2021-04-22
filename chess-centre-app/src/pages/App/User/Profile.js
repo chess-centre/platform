@@ -1,9 +1,116 @@
 import React, { useEffect, useState } from "react";
 import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
-import { getMember } from "../../../api/profile/chess";
+
 import { ChessInfo, AccountInfo } from "./sections";
 import { useAuthState } from "../../../context/Auth";
+
+const getMember = /* GraphQL */ `
+  query GetMember($id: ID!) {
+    getMember(id: $id) {
+      id
+      about
+      fideId
+      ecfId
+      username
+      name
+      email
+      eventsByEmail
+      promoByEmail
+      eventsByText
+      promoByText
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      stripeCustomerId
+      stripeCurrentPeriodEnd
+      stripePriceId
+      stripeProductId
+      entries {
+        items {
+          id
+          eventId
+          memberId
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          member {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            eventsByEmail
+            promoByEmail
+            eventsByText
+            promoByText
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              timeControl
+              eventType
+              defaultPrice
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripePriceId
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        nextToken
+        startedAt
+      }
+    }
+  }
+`;
+
+
 
 function Profile() {
   const { user } = useAuthState();
@@ -12,8 +119,11 @@ function Profile() {
 
   useEffect(() => {
     const getUser = async () => {
-      const m = await getMember(user);
-      setMember(m);
+      const { data: {
+        getMember: member
+      }} = await API.graphql({ query: getMember, authMode: 'AWS_IAM', variables: { id: user.username } });
+      console.log('member', member)
+      setMember(member);
     };
 
     const getCustomerPortal = async () => {
@@ -32,53 +142,33 @@ function Profile() {
   }, [user]);
 
   return (
-    <div className="mt-4 mb-4 lg:grid lg:grid-cols-12 lg:gap-x-5">
+    <div className="sm:mt-10 mb-4 lg:grid lg:grid-cols-12 lg:gap-x-5">
       <aside className="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
         <nav className="space-y-1">
           <Link
             to="#"
-            className="bg-gray-50 dark:bg-gray-800 text-teal-700 dark:text-teal-400 hover:text-teal-700 hover:bg-white group rounded-md px-3 py-2 flex items-center text-sm font-medium"
+            className={`dark:bg-gray-800 text-teal-700 dark:text-teal-400 hover:text-teal-700 
+            bg-white group rounded-md flex items-center
+              shadow
+            `}
             aria-current="page"
           >
-            <svg
-              className="text-teal-500 dark:text-teal-400 group-hover:text-teal-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span className="truncate">Account</span>
+            <span className="text-center inline-block align-middle p-3">
+              
+              <span className="truncate text-sm inline-block align-middle fa-2x font-medium"><i class="fas fa-user-circle mr-2 text-teal-500 dark:text-teal-400"></i> Account</span>
+            </span>
           </Link>
 
           {customerPortalUrl && (
             <a
               href={customerPortalUrl}
-              className="text-gray-900 dark:text-gray-50 hover:text-gray-900 hover:bg-gray-50 dark:hover:bg-gray-700 group rounded-md px-3 py-2 flex items-center text-sm font-medium"
+              className="text-teal-700 dark:text-teal-400 hover:text-teal-700 
+              bg-gray-50 hover:shadow hover:bg-white group rounded-md flex items-center
+                "
             >
-              <svg
-                className="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                />
-              </svg>
-              <span className="truncate">Subscription</span>
+              <span className="text-gray-500 inline-block align-middle p-3">
+                <span className="truncate text-sm inline-block align-middle fa-2x font-medium"><i class="text-teal-500 fas fa-credit-card mr-2"></i> Subscription</span>
+              </span>
             </a>
           )}
         </nav>
@@ -86,7 +176,6 @@ function Profile() {
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
         <ChessInfo {...member} />
         <AccountInfo {...member} />
-        {/* <Preferences {...member} /> */}
       </div>
     </div>
   );

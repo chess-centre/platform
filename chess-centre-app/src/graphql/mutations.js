@@ -71,6 +71,7 @@ export const createEventType = /* GraphQL */ `
       timeControl
       eventType
       defaultPrice
+      canRegister
       _version
       _deleted
       _lastChangedAt
@@ -96,6 +97,7 @@ export const updateEventType = /* GraphQL */ `
       timeControl
       eventType
       defaultPrice
+      canRegister
       _version
       _deleted
       _lastChangedAt
@@ -121,6 +123,7 @@ export const deleteEventType = /* GraphQL */ `
       timeControl
       eventType
       defaultPrice
+      canRegister
       _version
       _deleted
       _lastChangedAt
@@ -275,6 +278,7 @@ export const createMember = /* GraphQL */ `
               timeControl
               eventType
               defaultPrice
+              canRegister
               _version
               _deleted
               _lastChangedAt
@@ -382,6 +386,7 @@ export const updateMember = /* GraphQL */ `
               timeControl
               eventType
               defaultPrice
+              canRegister
               _version
               _deleted
               _lastChangedAt
@@ -489,6 +494,7 @@ export const deleteMember = /* GraphQL */ `
               timeControl
               eventType
               defaultPrice
+              canRegister
               _version
               _deleted
               _lastChangedAt
@@ -539,6 +545,7 @@ export const createEvent = /* GraphQL */ `
         timeControl
         eventType
         defaultPrice
+        canRegister
         _version
         _deleted
         _lastChangedAt
@@ -608,6 +615,7 @@ export const createEvent = /* GraphQL */ `
               timeControl
               eventType
               defaultPrice
+              canRegister
               _version
               _deleted
               _lastChangedAt
@@ -658,6 +666,7 @@ export const updateEvent = /* GraphQL */ `
         timeControl
         eventType
         defaultPrice
+        canRegister
         _version
         _deleted
         _lastChangedAt
@@ -727,6 +736,7 @@ export const updateEvent = /* GraphQL */ `
               timeControl
               eventType
               defaultPrice
+              canRegister
               _version
               _deleted
               _lastChangedAt
@@ -777,6 +787,7 @@ export const deleteEvent = /* GraphQL */ `
         timeControl
         eventType
         defaultPrice
+        canRegister
         _version
         _deleted
         _lastChangedAt
@@ -846,6 +857,7 @@ export const deleteEvent = /* GraphQL */ `
               timeControl
               eventType
               defaultPrice
+              canRegister
               _version
               _deleted
               _lastChangedAt
@@ -979,6 +991,7 @@ export const createEntry = /* GraphQL */ `
           timeControl
           eventType
           defaultPrice
+          canRegister
           _version
           _deleted
           _lastChangedAt
@@ -1156,6 +1169,7 @@ export const updateEntry = /* GraphQL */ `
           timeControl
           eventType
           defaultPrice
+          canRegister
           _version
           _deleted
           _lastChangedAt
@@ -1333,6 +1347,7 @@ export const deleteEntry = /* GraphQL */ `
           timeControl
           eventType
           defaultPrice
+          canRegister
           _version
           _deleted
           _lastChangedAt
