@@ -106,6 +106,10 @@ exports.handler = async (event) => {
     };
   }
 
+  if(!stripeCustomerId) {
+    console.log("stripeCustomerId does not exist for this user.")
+  }
+
   // See https://stripe.com/docs/api/checkout/sessions/create
   // for additional parameters to pass.
   try {
@@ -127,6 +131,9 @@ exports.handler = async (event) => {
       client_reference_id: `${memberId}#${eventId}`,
       customer: stripeCustomerId,
     });
+
+    console.log("stripe session ============");
+    console.log(session);
 
     return {
       statusCode: 200,
