@@ -10,7 +10,7 @@ export default function FAQs() {
         </h2>
         <div className="mt-12">
           <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-x-8 md:gap-y-12 lg:grid-cols-3">
-            {faqs.map(({ question, answer }, index) => {
+            {faqs.slice(0, 6).map(({ question, answer }, index) => {
               return (
                 <div key={index}>
                   <dt className="text-lg leading-6 font-medium text-gray-900">

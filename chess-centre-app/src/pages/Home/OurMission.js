@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
@@ -89,47 +90,66 @@ function OurMission() {
             </svg>
             <div className="relative md:bg-white md:p-6">
               <div className="lg:grid lg:grid-cols-2 lg:gap-6">
-                <div className="prose-lg text-gray-500 lg:max-w-none">
+                <div className="prose-lg text-gray-700 lg:max-w-none">
                   <p>
                     The Chess Centre is a dedicated, modern and comfortable
-                    facility for the learning and playing of Chess. The idea
-                    behind the Chess Centre was born out of the desire to having
-                    cutting edge physical and digital facilities to support the
-                    development of Chess. The founders, having played Chess
-                    themselves since a young age, recognize the need to provide
-                    a safe and appealing environment for encouraging new players
-                    of all ages, backgrounds and abilities to the game.
+                    facility for learning and playing Chess.
                   </p>
                   <p>
-                    The Chess Centre is open to all. Chess is not a game that
-                    discriminates. Chess is universal and open to anyone who
-                    wants to learn and play the game. The Chess Centre provides
-                    a range of opportunities for those who share these aims to
+                    Our focus is to provide cutting-edge physical and digital
+                    facilities to support the growth and development of Chess.
+                  </p>
+                  <p>
+                    We,{" "}
+                    <Link to="/about" className="text-teal-500 hover:text-teal-700">
+                      the founders
+                    </Link>
+                    , having played Chess from an early age have benefitted from
+                    the discipline, concentration and creativity that this game
+                    brings. It is these benefits which we want to share with
+                    you.
+                  </p>
+                  <p>
+                    The Chess Centre is open to all, it is not a game that
+                    discriminates, it is universal and welcomes anyone
+                    who wants to learn and play. The Chess Centre provides a
+                    range of opportunities for those who share these aims to
                     meet, socialise and enjoy playing Chess.
                   </p>
                 </div>
-                <div className="mt-6 prose-lg text-gray-500 lg:mt-0">
+                <div className="mt-6 prose prose-lg text-gray-700 lg:mt-0">
                   <p>
                     It is our hope that the Chess Centre can provide a
                     blue-print for how the game of Chess can be organised,
-                    modernized and made accessible to a new generation of Chess
-                    players.
+                    modernized and made accessible to all.
                   </p>
+                  <blockquote>
+                    <p>
+                      This is only a foretaste of what is to come, and only the
+                      shadow of what is going to be
+                    </p>
+                  </blockquote>
                   <p>
-                    We welcome you to come join us on this exciting journey, to be a
-                    member, a volunteer, a code contributor or just a friendly face to pop in from time to time. 
-                    We know that however large or small we are sincerely grateful to everyone who
-                    supports us. ❤️
+                    We invite you to come join us on this exciting journey, to
+                    be a member, a volunteer, a code contributor or just a
+                    friendly face to pop in from time to time. We know that
+                    however large or small your involvement we are sincerely
+                    grateful to everyone who supports us. ❤️
                   </p>
-                  <div className="inline-flex rounded-md shadow text-white float-right">
-                    <a
-                      href="/membership"
-                      className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
-                    >
-                      Join us
-                    </a>
-                  </div>
                 </div>
+                <div></div>
+
+              </div>
+              <div className="lg:grid lg:grid-cols-1 lg:gap-6">
+                <div className="object-center mt-10 sm:-mt-10">
+                <Link
+                  to="/membership"
+                  className="sm:float-right flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
+                >
+                  Join us
+                </Link>
+                </div>
+
               </div>
             </div>
           </div>

@@ -17,8 +17,8 @@ const graphql = require("graphql");
 const { print } = graphql;
 
 const listEvents = gql`
-  query listEvents {
-    listEvents {
+  query listEvents($startDate: String!, $endDate: String!) {
+    listEvents(filter: {startDate: {between: [$startDate, $endDate]}}) {
       items {
         id
         name
@@ -26,6 +26,9 @@ const listEvents = gql`
         time
         startDate
         endDate
+        rounds
+        maxEntries
+        entryCount
 
         type {
           id
@@ -33,7 +36,9 @@ const listEvents = gql`
           description
           url
           color
-          time
+          timeControl
+          eventType
+          defaultPrice
         }
       }
     }
@@ -44,8 +49,11 @@ const headers = {
   "Access-Control-Allow-Origin": "*",
 };
 
-exports.handler = async (_event) => {
+exports.handler = async (event) => {
   const req = new AWS.HttpRequest(appsyncUrl, region);
+
+  // on event some query params
+  const { startDate, endDate } = event.queryStringParameters;
 
   req.method = "POST";
   req.path = "/graphql";
@@ -54,6 +62,10 @@ exports.handler = async (_event) => {
   req.body = JSON.stringify({
     query: print(listEvents),
     operationName: "listEvents",
+    variables: {
+      startDate,
+      endDate
+    }
   });
 
   const signer = new AWS.Signers.V4(req, "appsync", true);
@@ -63,12 +75,15 @@ exports.handler = async (_event) => {
     const data = await new Promise((resolve, reject) => {
       const httpRequest = https.request(
         { ...req, host: endpoint },
-        (result) => {
-          result.on("data", (data) => {
+        (response) => {
+          let data = "";
+          response.on("data", (chunk) => {
+            data += chunk;
+          });
+          response.on("end", () => {
             resolve(JSON.parse(data.toString()));
           });
-
-          result.on("error", (error) => reject(error));
+          response.on("error", (error) => reject(error));
         }
       );
 
@@ -86,7 +101,7 @@ exports.handler = async (_event) => {
       ...i,
       name: i.name || i.type.name,
       description: i.description || i.type.description,
-      time: i.time || i.type.time,
+      time: i.time || i.type.timeControl,
       color: i.type.color,
       url: i.type.url,
     }));
@@ -94,15 +109,14 @@ exports.handler = async (_event) => {
     return {
       statusCode: 200,
       body: JSON.stringify(mapped),
-      headers,
+      headers
     };
   } catch (error) {
     console.error(error);
-
     return {
       statusCode: 500,
       body: JSON.stringify(error),
-      headers,
+      headers
     };
   }
 };

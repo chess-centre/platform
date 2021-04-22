@@ -18,31 +18,31 @@
       "function": {
         "getEvents": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/getEvents-50696a2f6c5a35636f79-build.zip"
+          "s3Key": "amplify-builds/getEvents-79757a31303238566947-build.zip"
         },
         "stripeCheckout": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeCheckout-4c547a7357596e695737-build.zip"
+          "s3Key": "amplify-builds/stripeCheckout-595750672b6734744c2b-build.zip"
         },
         "stripeWebhook": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeWebhook-48462b7a47786e482f4f-build.zip"
+          "s3Key": "amplify-builds/stripeWebhook-764a4a506d435a772b33-build.zip"
         },
         "platformchesscentreappPostConfirmation": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-7679507537382f464d59-build.zip"
+          "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-2b4d357a33544d786663-build.zip"
         },
         "platformchesscentreappPreTokenGeneration": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/platformchesscentreappPreTokenGeneration-725849694e424b4a2f30-build.zip"
+          "s3Key": "amplify-builds/platformchesscentreappPreTokenGeneration-4e70635a727876413455-build.zip"
         },
         "stripeCustomerPortal": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeCustomerPortal-50674b4f356a70354e64-build.zip"
+          "s3Key": "amplify-builds/stripeCustomerPortal-65794b657357586c4273-build.zip"
         },
         "eventRegister": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/eventRegister-55452f4f566734614374-build.zip"
+          "s3Key": "amplify-builds/eventRegister-6e62476c7145496e6463-build.zip"
         }
       }
     }

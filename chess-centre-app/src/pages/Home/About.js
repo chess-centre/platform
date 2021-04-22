@@ -25,7 +25,7 @@ const About = () => {
               </div>
               <p className="text-xl text-gray-500 text-center sm:text-left">
                 Playing chess together since secondary school Andy &#38; Matt
-                finally decided it was time to put their professional skills to
+                decided now was time to put their professional skills to
                 good use and setup a dedicated centre for this wonderful game.
               </p>
             </div>
@@ -40,20 +40,36 @@ const About = () => {
                     </div>
                     <div className="text-lg text-justify text-gray-500 mb-2">
                       <p className="mb-2">
-                        Matt has competed in a wide range of International
-                        Chess events from the British Championships to the
-                        European Club Cup. He has also proudly represented
-                        Yorkshire on board one, winning three county Open
-                        Championships.
+                        Matt has competed in Chess events all across the World,
+                        taking a year out of professional working life to
+                        compete in competitions far and wide. Matt has won
+                        numerous UK Open Congresses and is extremely proud to
+                        have represented Yorkshire on top board, winning three
+                        county championships.
                       </p>
                       <p className="mb-2">
-                        Bringing his technical expertise to the centre, Matt is
-                        focused on modernising the way person discover, sign up
-                        and participate in Chess competitions and events.
+                        When not building our digital Chess Centre experience,
+                        Matt is a Lead Engineer working for a Global Investment
+                        Bank. He enjoys spending time with his Nieces &#38; Nephews and travelling to Las Vegas to play in the
+                        World Series of Poker.
                       </p>
                       <p className="mb-2">
-                        His favourite player is Rashid Nezhmetdinov and he often enjoys playing unsound offbeat chess openings
-                        as a way to induce exciting tactical attacking games of chess.
+                        Matt loves playing offbeat attacking Chess inspired
+                        by his favourite players{" "}
+                        <a
+                          className="text-teal-600 hover:text-teal-700 hover:underline"
+                          href="https://en.wikipedia.org/wiki/Rashid_Nezhmetdinov"
+                        >
+                          Rashid Nezhmetdinov
+                        </a>{" "}
+                        and{" "}
+                        <a
+                          className="text-teal-600 hover:text-teal-700 hover:underline"
+                          href="https://en.wikipedia.org/wiki/Baadur_Jobava"
+                        >
+                          Baadur Jobava
+                        </a>
+                        .
                       </p>
                       <p></p>
                     </div>
@@ -122,7 +138,14 @@ const About = () => {
                         When not coaching Chess, Andy is a Technology lawyer,
                         Junior Football Coach, Dad and keen Labrador walker! His
                         favourite opening is the Sicilian Najdorf, and his
-                        favourite player is Mikhail Tal.
+                        favourite player is{" "}
+                        <a
+                          className="text-teal-600 hover:text-teal-700 hover:underline"
+                          href="https://en.wikipedia.org/wiki/Mikhail_Tal"
+                        >
+                          Mikhail Tal
+                        </a>
+                        .
                       </p>
                     </div>
                     <ul className="flex space-x-5">

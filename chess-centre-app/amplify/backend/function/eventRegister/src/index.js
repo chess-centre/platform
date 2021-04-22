@@ -83,7 +83,7 @@ exports.handler = async (event) => {
         type: { stripePriceId, maxEntries: defaultMaxEntries },
         entries: { items: entries },
       },
-      getMember: { stripeCustomerId, stripeCurrentPeriodEnd },
+      getMember: { stripeCustomerId },
     },
   } = eventData;
 
@@ -103,14 +103,6 @@ exports.handler = async (event) => {
       statusCode: 400,
       headers,
       body: "This member is already registered for this event.",
-    };
-  }
-
-  if (new Date(stripeCurrentPeriodEnd) < new Date()) {
-    return {
-      statusCode: 401,
-      headers,
-      body: "This member does not have a paid membership.",
     };
   }
 
@@ -176,11 +168,15 @@ async function fetchEvent(id, memberId) {
   signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
 
   const data = await new Promise((resolve, reject) => {
-    const httpRequest = https.request({ ...req, host: endpoint }, (result) => {
-      result.on("data", (data) => {
+    const httpRequest = https.request({ ...req, host: endpoint }, (response) => {
+      let data = "";
+      response.on("data", (chunk) => {
+        data += chunk; 
+      });
+      response.on("end", () => {
         resolve(JSON.parse(data.toString()));
       });
-      result.on("error", reject);
+      response.on("error", reject);
     });
 
     httpRequest.write(req.body);

@@ -12,7 +12,7 @@ function formatDate(date) {
 function Card({ event }) {
   return (
     <article
-      className={event.color + " p-6 shadow-2xl flex flex-col rounded-xl border border-light-blue-300"}
+      className={`bg-${event.color}-50 p-6 shadow-2xl flex flex-col rounded-xl border border-light-blue-300`}
     >
       <header>
         <h3 className="h4 font-red-hat-display mb-1">{event.name}</h3>
@@ -63,13 +63,15 @@ function Timeline() {
   const [events, setEvents] = useState([]);
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
   const months = [currentMonth, nextMonth];
+  const now = today.toISOString();
+  const future = today.setDate(today.getDate + 30);
 
   useEffect(() => {
     async function fetchEvents() {
       try {
         setIsLoadingEvent(true);
         // TODO: refine to only retreive next two months:
-        const events = await API.get("public", "/events");
+        const events = await API.get("public", `/events?startDate=${now}&endDate=${future}`);
         setEvents(events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate)));
         setIsLoadingEvent(false);
       } catch (err) {
@@ -87,15 +89,15 @@ function Timeline() {
         <div className="py-12 md:py-10 border-t border-gray-200">
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-10">
-            <h2 className="h2 font-red-hat-display mb-4">Our next Events</h2>
-            <p className="text-xl text-gray-600">See what's coming up</p>
+            <h2 className="h2 font-red-hat-display mb-4">Our Calendar</h2>
+            <p className="text-xl text-gray-600"><i className="fad fa-calendar-alt text-gray-900"></i>  See what's coming up</p>
           </div>
 
           {/* Section content */}
           <div>
             <div className="flex items-start">
               {/* Timeline buttons */}
-              { !isLoadingEvents ? (<div className="relative mr-4 sm:mr-12 lg:mr-24">
+              { !isLoadingEvents ? (<div className="relative mr-4 sm:mr-12 lg:mr-22">
                 
                 <div
                   className="absolute inset-0 my-6 ml-16 pointer-events-none -z-1"
@@ -138,7 +140,7 @@ function Timeline() {
                           selectedMonth !== month && "hidden"
                         }`}
                       >
-                        <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4">
                           {events
                             .filter(
                               (d) => new Date(d.startDate).getMonth() === month
@@ -152,8 +154,9 @@ function Timeline() {
                   })}
                 </>
               ) : (
-                <div className="grid m-auto">
-                  <div className="text-9xl text-gray-900"><i className="fak fa-chess-centre animate-spin-slow"></i></div>
+                <div className="m-auto text-center">
+                  <div className="text-teal-500 mb-2"><i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i></div>
+                  <div className="italic text-gray-500">fetching events...</div>
                 </div>
               )}
             </div>

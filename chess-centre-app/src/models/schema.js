@@ -134,67 +134,38 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "timeControl": {
+                    "name": "timeControl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "eventType": {
+                    "name": "eventType",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "defaultPrice": {
+                    "name": "defaultPrice",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "canRegister": {
+                    "name": "canRegister",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
             "pluralName": "EventTypes",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "ECFPlayer": {
-            "name": "ECFPlayer",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "ecfId": {
-                    "name": "ecfId",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "club": {
-                    "name": "club",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "currentRating": {
-                    "name": "currentRating",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "ECFPlayers",
             "attributes": [
                 {
                     "type": "model",
@@ -658,6 +629,17 @@ export const schema = {
                     "properties": {}
                 },
                 {
+                    "type": "key",
+                    "properties": {
+                        "name": "eventsByStartDate",
+                        "fields": [
+                            "startDate",
+                            "name"
+                        ],
+                        "queryField": "eventsByStartDate"
+                    }
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -688,5 +670,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "53512c7dbdcb11154b857db0cf8c9241"
+    "version": "2a5317e53c5d0998f4e33fe8f24b9232"
 };

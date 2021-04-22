@@ -133,7 +133,7 @@ const { resultBySeed, roundByRound } = resultCheck(players);
 
 const Standings = () => {
   return (<div>
-    <h2 className="mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">Standings</h2>
+    <h2 className="mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">Standings <span className="text-orange-500 text-sm">SAMPLE ONLY</span></h2>
     <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
       <thead className="bg-gray-50 dark:bg-gray-800">
         <tr>
@@ -185,7 +185,7 @@ const Standings = () => {
 const CrossTable = () => {
   return (
     <div>
-      <h2 className="mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">Crosstable</h2>
+      <h2 className="mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">Crosstable <span className="text-orange-500 text-sm">SAMPLE ONLY</span></h2>
       <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 table-auto border-gray-300 dark:border-gray-700 border shadow">
         <thead className="bg-gray-50 dark:bg-gray-800">
           <tr>
@@ -349,7 +349,7 @@ function AllPlayAll() {
 
       </section>
       <section className="relative mb-10">
-        <h2 className="mb-2 mt-5 px-4 text-2xl font-semibold text-gray-700 dark:text-gray-200">Pairings</h2>
+        <h2 className="mb-2 mt-5 px-4 text-2xl font-semibold text-gray-700 dark:text-gray-200">Pairings <span className="text-orange-500 text-sm">SAMPLE ONLY</span></h2>
         <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
 
           {SixPlayerPairings.map((pairings, key) => {
