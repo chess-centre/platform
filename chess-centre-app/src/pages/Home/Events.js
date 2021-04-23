@@ -36,7 +36,7 @@ function setIcon(type) {
 export default function Events() {
   const today = new Date();
   const now = today.toISOString();
-  const future = today.setDate(today.getDate + 100);
+  const future = today.setDate(today.getDate + 70);
   const [events, setEvents] = useState([]);
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
   const [selectedEventType, setSelectedEventType] = useState("all");
@@ -54,6 +54,7 @@ export default function Events() {
         setEvents(
           events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
         );
+        console.log(events);
         setIsLoadingEvent(false);
       } catch (err) {
         console.log(err);
@@ -62,6 +63,7 @@ export default function Events() {
       }
     }
     fetchEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -80,13 +82,13 @@ export default function Events() {
                 Join us
               </p>
               <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-                Register your account to sign up for any of our events!
+                Create your account to sign up for any of our upcoming events*
               </p>
             </div>
           </div>
         </div>
         <div className="container m-auto">
-          <div className=" pr-4 pl-4 sm:flex sm:flex-col sm:align-center">
+          <div className="pr-4 pl-4 sm:flex sm:flex-col sm:align-center">
             <div className="relative self-center mt-6 bg-gray-100 rounded-lg p-0.5 flex sm:mt-8">
               {selectableEventTypes.map((type, key) => {
                 return (
@@ -107,7 +109,8 @@ export default function Events() {
               })}
             </div>
           </div>
-          <div className={isLoadingEvents ? "m-auto" : "ml-5 mt-10 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4 mb-10"}>
+          <div className="flex">
+          <div className={isLoadingEvents ? "m-auto" : "m-auto mt-6 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4 mb-10"}>
             {!isLoadingEvents ? (
               events
                 .filter((event) =>
@@ -144,6 +147,7 @@ export default function Events() {
                           defaultPrice={type.defaultPrice}
                           type={type.eventType}
                           name={name}
+                          url={type.url}
                           description={description}
                           details={[
                             {
@@ -167,11 +171,12 @@ export default function Events() {
                             {
                               icon: "fad fa-user-friends",
                               ariaName: "Entries",
-                              information: `${entryCount}`,
+                              information: `${entryCount} ${entryCount === 1 ? "entry" : "entries"}`,
                               show: !!entryCount,
-                            },
+                            }
                           ]}
                         />
+
                       </div>
                     );
                   }
@@ -184,6 +189,7 @@ export default function Events() {
                 <div className="italic text-gray-500">fetching events...</div>
               </div>
             )}
+          </div>
           </div>
         </div>
         <NewsLetter />

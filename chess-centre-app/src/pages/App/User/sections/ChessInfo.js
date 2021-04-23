@@ -6,7 +6,6 @@ import {
 } from "../../../../api/profile/chess";
 
 function ProfileInfo({ id, username, about, fideId, ecfId }) {
-  const [newUsername, setUsername] = useState(username);
   const [newAbout, setAboutMe] = useState(about);
 
   // Fetches data from the "ECFPlayer" & "FidePlayer" dataStores and matches it to the users ID provided:
@@ -39,7 +38,6 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
   const handleSave = async () => {
     if (hasChanged()) {
       const data = {
-        newUsername,
         fideId: fideIdValue.current.value
           ? Number(fideIdValue.current.value)
           : null,
