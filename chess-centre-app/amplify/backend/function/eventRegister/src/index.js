@@ -107,7 +107,7 @@ exports.handler = async (event) => {
   }
 
   if(!stripeCustomerId) {
-    console.log("stripeCustomerId does not exist for this user.")
+    console.log("stripeCustomerId does not exist for this user.");
   }
 
   // See https://stripe.com/docs/api/checkout/sessions/create
@@ -129,7 +129,7 @@ exports.handler = async (event) => {
       success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: cancelUrl,
       client_reference_id: `${memberId}#${eventId}`,
-      customer: stripeCustomerId,
+      customer: stripeCustomerId || undefined,
     });
 
     console.log("stripe session ============");

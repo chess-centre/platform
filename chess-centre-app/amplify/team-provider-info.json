@@ -42,7 +42,7 @@
         },
         "eventRegister": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/eventRegister-37456c57667543707a57-build.zip"
+          "s3Key": "amplify-builds/eventRegister-7850546a3456484b3555-build.zip"
         }
       }
     }

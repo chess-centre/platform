@@ -161,7 +161,7 @@ export default function Events() {
                             {
                               icon: "fad fa-chess-clock",
                               ariaName: "Time Control",
-                              information: "90 min",
+                              information: `${type.timeControl}`,
                               show: !!type.timeControl,
                             },
                             {
