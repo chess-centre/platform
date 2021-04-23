@@ -2,16 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function EventCard({ id, icon, color, name, description, defaultPrice, details, url }) {
+  console.log("EVENT COLOR", color);
   return (
     <div className={`m-2 rounded-lg shadow-lg divide-y divide-gray-100 max-w-xs bg-white`}>
       <div className="p-6 px-10">
         <h2 className="text-lg leading-6 font-medium text-gray-900">
-          <span className={`text-${color}-500 text-4xl`}>
+          <span className={`text-${color}-800 text-4xl`}>
             <i className={`fad ${icon}`}></i>{" "}
           </span>
           <span className="text-2xl -mt-2 text-center">{name}</span>
         </h2>
-        <p className={`text-${color}-500 mt-4 text-sm text-center`}>
+        <p className={`text-${color}-800 mt-4 text-sm text-center`}>
           { description }
         </p>
         <p className="mt-5 text-center">

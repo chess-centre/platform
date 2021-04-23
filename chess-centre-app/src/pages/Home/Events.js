@@ -101,7 +101,7 @@ export default function Events() {
                         ? "bg-white border-gray-200 text-teal-500"
                         : ""
                     } relative w-1/2 rounded-md shadow-sm py-2 text-sm font-medium text-gray-700 
-                    whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8`}
+                    whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-teal-500 focus:z-10 sm:w-auto sm:px-8`}
                   >
                     {`${type.charAt(0).toUpperCase()}${type.slice(1)}`}
                   </button>
@@ -110,7 +110,7 @@ export default function Events() {
             </div>
           </div>
           <div className="flex">
-          <div className={isLoadingEvents ? "m-auto" : "m-auto mt-6 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-4 mb-10"}>
+          <div className={isLoadingEvents ? "m-auto" : "m-auto mt-6 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-3  mb-10"}>
             {!isLoadingEvents ? (
               events
                 .filter((event) =>
@@ -132,6 +132,7 @@ export default function Events() {
                       startDate,
                       endDate,
                       type,
+                      color,
                       entryCount,
                     },
                     key
@@ -142,7 +143,7 @@ export default function Events() {
                           key={key}
                           id={id}
                           icon={setIcon(type.eventType)}
-                          color={type.color}
+                          color={color || type.color}
                           defaultPrice={type.defaultPrice}
                           type={type.eventType}
                           name={name}
