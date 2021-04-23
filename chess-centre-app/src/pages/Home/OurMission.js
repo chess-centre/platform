@@ -143,7 +143,7 @@ function OurMission() {
               <div className="lg:grid lg:grid-cols-1 lg:gap-6">
                 <div className="object-center mt-10 sm:-mt-10">
                 <Link
-                  to="/membership"
+                  to="/register"
                   className="sm:float-right flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
                 >
                   Join us
