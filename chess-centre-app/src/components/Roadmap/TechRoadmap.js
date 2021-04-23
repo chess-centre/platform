@@ -86,14 +86,14 @@ export const TechRoadmap = () => {
         <div className="flex items-center mb-1">
             <div className="bg-teal-500 rounded-full h-4 w-4"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-yellow-200 text-black p-1 rounded  leading-none">
-                Soon
+              <span className="mr-2 bg-blue-200 text-black p-1 rounded  leading-none">
+                Discuss
               </span>
               <span className="font-thin">v1.3.0</span>
             </div>
           </div>
           <div className="ml-12">
-            <ul className="list-disc ml-5">
+            <ul className="ml-1">
               <li> Have your say 
                 <a className="text-pink-600 hover:underline" href="https://github.com/chess-centre/platform/discussions"> here</a>{" "}💡
               </li>

@@ -20,7 +20,7 @@ function MembershipCard({
   const { loading } = useAuthState();
 
   const checkout = async () => {
-    // Need a loading state here
+    // TODO: need to split out loading states as this dispatch will set loading on ALL buttons :-)
     await subscribe(dispatch, plan, stripe);
   };
 

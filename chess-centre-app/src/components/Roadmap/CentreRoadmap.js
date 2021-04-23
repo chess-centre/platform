@@ -16,14 +16,14 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
             <div className="bg-orange-brand rounded-full h-4 w-4 z-10"></div>
             <div className="flex-1 ml-4 font-medium">
-              Grand Openning
+              Grand openning
             </div>
           </div>
           <div className="ml-12">
             <p>May - launch parties and more 🎉</p>
             <ul className="list-disc ml-5">
-              <li>Junior Club begins</li>
-              <li>Team Challenges started</li>
+              <li>Junior club begins</li>
+              <li>Team challenges start</li>
             </ul>
           </div>
         </li>
@@ -38,9 +38,9 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>First Congress</li>
-              <li>First Rapidplay</li>
-              <li>First Official League Matches</li>
+              <li>First congress - <span className="text-teal-600 text-sm">July</span></li>
+              <li>First rapidplay - <span className="text-teal-600 text-sm">July</span></li>
+              <li>First official league matches</li>
             </ul>
           </div>
         </li>
@@ -55,8 +55,8 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>Alcohol License approved 🍺</li>
-              <li>First Live Game Broadcast 📺</li>
+              <li>Alcohol license approval 🍺</li>
+              <li>First live game broadcast 📺</li>
             </ul>
           </div>
         </li>

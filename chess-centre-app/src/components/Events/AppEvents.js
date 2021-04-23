@@ -1,9 +1,9 @@
 import API from "@aws-amplify/api";
-import { Button } from "@windmill/react-ui";
 import React, { useState, useEffect } from "react";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
+import Register from "./Register";
 
 const listEvents = /* GraphQL */ `
   query ListEvents(
@@ -66,11 +66,11 @@ function formatDate(date) {
 
 function UpComingEvents() {
   const stripe = useStripe();
-
   const { user } = useAuthState();
-
   const { addToast } = useToasts();
   const [events, setEvents] = useState([]);
+  const [isLoadingEvents, setIsLoadingEvent] = useState(false);
+
 
   useEffect(() => {
     function alreadyRegistered(event) {
@@ -88,7 +88,7 @@ function UpComingEvents() {
 
     async function fetchEvents() {
       try {
-        //const hasMembership = await isPaidMember(user);
+        setIsLoadingEvent(true);
         const {
           data: {
             listEvents: { items: events },
@@ -107,11 +107,12 @@ function UpComingEvents() {
           allowedToRegister: !alreadyRegistered(event) && !isFull(event),
         }));
         setEvents(mapped);
+        setIsLoadingEvent(false);
       } catch (err) {
+        setIsLoadingEvent(false);
         console.error(err);
       }
     }
-
     fetchEvents();
   }, [user]);
 
@@ -137,7 +138,7 @@ function UpComingEvents() {
 
   return (
     <>
-      {events.map(
+      {!isLoadingEvents ? events.map(
         (
           {
             id,
@@ -159,7 +160,7 @@ function UpComingEvents() {
             <section key={index} className="relative">
               <div className="m-2 bg-white dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden">
                 <div className="px-4 sm:px-4 space-y-2 pb-4">
-                  <div class="flex">
+                  <div className="flex">
                     <div className="w-2/3">
                       <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
                         {name || type.name}{" "}
@@ -174,21 +175,12 @@ function UpComingEvents() {
                     </div>
                     <div className="w-1/3">
                       <div className="text-right">
-                        {allowedToRegister && (
-                          <Button
-                            className="text-right"
-                            onClick={() => register(id)}
-                          >
-                            Register
-                          </Button>
-                        )}
+                        {allowedToRegister && (<Register id={id} register={register} />)}
                       </div>
                     </div>
-
-                    
                   </div>
                   <div>
-                    <div class="w-full">
+                    <div className="w-full">
                     <p className="text-sm text-gray-900 dark:text-white">
                         {description || type.description}
                       </p>
@@ -277,6 +269,11 @@ function UpComingEvents() {
             </section>
           );
         }
+      ) : (
+          <div className="">
+            <div className="text-teal-500 mb-2"><i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i></div>
+            <div className="italic text-gray-500">fetching events...</div>
+          </div>
       )}
     </>
   );

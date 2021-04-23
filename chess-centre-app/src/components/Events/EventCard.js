@@ -9,13 +9,13 @@ export default function EventCard({ id, icon, color, name, description, defaultP
           <span className={`text-${color}-500 text-4xl`}>
             <i className={`fad ${icon}`}></i>{" "}
           </span>
-          <span className="text-2xl -mt-2">{name}</span>
+          <span className="text-2xl -mt-2 text-center">{name}</span>
         </h2>
         <p className={`text-${color}-500 mt-4 text-sm text-center`}>
           { description }
         </p>
         <p className="mt-5 text-center">
-          <span className="text-5xl font-extrabold text-gray-700 mr-1">£{defaultPrice}</span>
+          <span className="text-5xl font-extrabold text-gray-900 mr-1">£{defaultPrice}</span>
           <span className="text-base font-medium text-gray-500">entry fee</span>
         </p>
         <a

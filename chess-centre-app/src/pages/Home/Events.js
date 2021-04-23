@@ -25,7 +25,7 @@ function setIcon(type) {
     case "congress":
       return "fa-chess-king-alt";
     case "rapidplay":
-      return "fa-chess-queen-alt";
+      return "fa-chess-knight-alt";
     case "junior":
       return "fa-chess-rook-alt";
     default:
@@ -82,7 +82,7 @@ export default function Events() {
                 Join us
               </p>
               <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-                Create your account to sign up for any of our upcoming events*
+                Create your account to sign up for any of our upcoming events
               </p>
             </div>
           </div>
@@ -131,7 +131,6 @@ export default function Events() {
                       rounds,
                       startDate,
                       endDate,
-                      color,
                       type,
                       entryCount,
                     },
@@ -143,7 +142,7 @@ export default function Events() {
                           key={key}
                           id={id}
                           icon={setIcon(type.eventType)}
-                          color={color}
+                          color={type.color}
                           defaultPrice={type.defaultPrice}
                           type={type.eventType}
                           name={name}
