@@ -38,11 +38,11 @@
         },
         "stripeCustomerPortal": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeCustomerPortal-65794b657357586c4273-build.zip"
+          "s3Key": "amplify-builds/stripeCustomerPortal-34783153726e37753050-build.zip"
         },
         "eventRegister": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/eventRegister-6e62476c7145496e6463-build.zip"
+          "s3Key": "amplify-builds/eventRegister-37456c57667543707a57-build.zip"
         }
       }
     }

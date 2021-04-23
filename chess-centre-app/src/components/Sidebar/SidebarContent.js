@@ -28,7 +28,7 @@ function SidebarContent() {
   return (
     <div className="py-4 text-gray-500 dark:text-gray-400">
       <NavLink
-        to="/"
+        to="/app/dashboard"
         className="text-lg font-bold text-gray-800 dark:text-gray-500 hover:text-gray-500"
       >
         <img
@@ -53,12 +53,12 @@ function SidebarContent() {
               <NavLink
                 exact
                 to={route.path}
-                className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                activeClassName="text-gray-800 dark:text-gray-100"
+                className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-teal-800 dark:hover:text-gray-200"
+                activeClassName="text-teal-500 dark:text-gray-100"
               >
                 <Route path={route.path} exact={route.exact}>
                   <span
-                    className="absolute inset-y-0 left-0 w-1 bg-teal-600 rounded-tr-lg rounded-br-lg"
+                    className="absolute inset-y-0 left-0 w-2 bg-teal-600 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"
                   ></span>
                 </Route>
