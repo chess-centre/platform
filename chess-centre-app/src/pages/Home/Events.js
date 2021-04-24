@@ -54,7 +54,6 @@ export default function Events() {
         setEvents(
           events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
         );
-        console.log(events);
         setIsLoadingEvent(false);
       } catch (err) {
         console.log(err);

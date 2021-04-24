@@ -3,9 +3,6 @@ import React from "react";
 // MOVE TO DATABASE:
 const pageData = {
   id: 1,
-  events: {
-    total: 0,
-  },
   games: {
     total: 0,
   },
@@ -15,8 +12,10 @@ const pageData = {
   },
 };
 
-function Stats() {
-  const { events, games, rating } = pageData;
+function Stats(props) {
+
+  const { entries } = props;
+  const { games, rating } = pageData;
 
   return (
     <div>
@@ -34,7 +33,7 @@ function Stats() {
           </div>
           <div className="ml-16 pb-6 flex items-baseline sm:pb-7">
             <p className="text-2xl font-semibold text-gray-900 dark:text-white">
-              {events.total}
+              {entries}
             </p>
             <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-4 sm:px-6  border-t border-gray-50 dark:border-gray-700">
             </div>

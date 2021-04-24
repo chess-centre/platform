@@ -17,7 +17,7 @@ export default function Register(props) {
         {isLoadingEvents ? (
           <div>
             <i className="fas fa-spinner-third animate-spin"></i>
-            <span className="ml-2">Redirecting</span>
+            <span className="ml-2 text-xs sm:text-sm">Redirecting</span>
           </div>
         ) : (
           "Register"

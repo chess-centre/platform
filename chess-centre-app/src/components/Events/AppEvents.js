@@ -74,6 +74,7 @@ function UpComingEvents() {
 
   useEffect(() => {
     function alreadyRegistered(event) {
+      
       return !!event.entries.items.find(
         (e) => e.memberId === user.attributes.sub
       );
@@ -94,7 +95,6 @@ function UpComingEvents() {
             listEvents: { items: events },
           },
         } = await API.graphql({ query: listEvents });
-
         const sorted = events
         // TODO: move to graphQL query:
         .filter(e => !!e.type.canRegister)
@@ -106,6 +106,7 @@ function UpComingEvents() {
           ...event,
           allowedToRegister: !alreadyRegistered(event) && !isFull(event),
         }));
+
         setEvents(mapped);
         setIsLoadingEvent(false);
       } catch (err) {

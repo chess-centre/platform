@@ -122,7 +122,6 @@ function Profile() {
       const { data: {
         getMember: member
       }} = await API.graphql({ query: getMember, authMode: 'AWS_IAM', variables: { id: user.username } });
-      console.log('member', member)
       setMember(member);
     };
 
@@ -132,6 +131,8 @@ function Profile() {
         body: {
           returnUrl,
         },
+      }).catch(e => {
+        return {};
       });
 
       setCustomerPortalUrl(url);
@@ -155,7 +156,7 @@ function Profile() {
           >
             <span className="text-center inline-block align-middle p-3">
               
-              <span className="truncate text-sm inline-block align-middle fa-2x font-medium"><i class="fas fa-user-circle mr-2 text-teal-500 dark:text-teal-400"></i> Account</span>
+              <span className="truncate text-sm inline-block align-middle fa-2x font-medium"><i className="fas fa-user-circle mr-2 text-teal-500 dark:text-teal-400"></i> Account</span>
             </span>
           </Link>
 
@@ -167,7 +168,7 @@ function Profile() {
                 "
             >
               <span className="text-gray-500 inline-block align-middle p-3">
-                <span className="truncate text-sm inline-block align-middle fa-2x font-medium"><i class="text-teal-500 fas fa-credit-card mr-2"></i> Subscription</span>
+                <span className="truncate text-sm inline-block align-middle fa-2x font-medium"><i className="text-teal-500 fas fa-credit-card mr-2"></i> Subscription</span>
               </span>
             </a>
           )}

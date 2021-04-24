@@ -40,13 +40,13 @@ const routes = [
     isPrivate: false,
   },
   {
-    path: "/events/junior-congress/:id",
-    component: lazy(() => import("../pages/Events/Junior")),
+    path: "/events/junior-club/:id",
+    component: lazy(() => import("../pages/Events/JuniorClub")),
     isPrivate: false
   },
   {
     path: "/events/junior-rapidplay/:id",
-    component: lazy(() => import("../pages/Events/Junior")),
+    component: lazy(() => import("../pages/Events/JuniorRapidplay")),
     isPrivate: false
   },
   {

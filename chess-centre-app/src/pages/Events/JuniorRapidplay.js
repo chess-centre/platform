@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
-export default function RapidplayEvent() {
+export default function JuniorRapidplayEvent() {
   const { id } = useParams();
 
   return (
@@ -19,7 +19,7 @@ export default function RapidplayEvent() {
               No time to waste
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Rapidplay
+              Junior Rapidplay
             </p>
           </div>
           <div className="relative z-10 text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
