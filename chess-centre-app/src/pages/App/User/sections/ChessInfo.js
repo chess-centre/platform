@@ -1,58 +1,166 @@
-import React, { useState, useRef } from "react";
+import { DataStore } from "@aws-amplify/datastore";
+import { Member } from "../../../../models";
+import { API, Auth } from "aws-amplify";
+import React, { useState, useEffect } from "react";
 import { Input, Textarea } from "@windmill/react-ui";
 import { useToasts } from "react-toast-notifications";
-import {
-  updateChessInfo,
-} from "../../../../api/profile/chess";
 
-function ProfileInfo({ id, username, about, fideId, ecfId }) {
-  const [newAbout, setAboutMe] = useState(about);
+const getMember = /* GraphQL */ `
+  query GetMember($id: ID!) {
+    getMember(id: $id) {
+      id
+      about
+      fideId
+      ecfId
+      username
+      name
+      email
+      eventsByEmail
+      promoByEmail
+      eventsByText
+      promoByText
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      stripeCustomerId
+      stripeCurrentPeriodEnd
+      stripePriceId
+      stripeProductId
+      entries {
+        items {
+          id
+          eventId
+          memberId
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          member {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            eventsByEmail
+            promoByEmail
+            eventsByText
+            promoByText
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              timeControl
+              eventType
+              defaultPrice
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripePriceId
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        nextToken
+        startedAt
+      }
+    }
+  }
+`;
 
-  // Fetches data from the "ECFPlayer" & "FidePlayer" dataStores and matches it to the users ID provided:
-  const [ecfRatingId, setECFRatingId] = useState({});
-  const [fideRatingId, setFideRatingId] = useState({});
-
-  // Input values:
-  const fideIdValue = useRef(fideId);
-  const ecfIdValue = useRef(ecfId);
+export default function ChessInfo() {
+  const [memberId, setMemberId] = useState("");
+  const [newAbout, setAboutMe] = useState("");
+  const [newECFId, setNewECFId] = useState("");
+  const [newFIDEId, setNewFIDEId] = useState("");
   const { addToast } = useToasts();
 
-  const hasChanged = () => {
-    // basic check to see if we actually need to do anything:
-    let changed = false;
-    if (newAbout !== about) {
-      //console.log('about', newAbout, about)
-      changed = true;
-    }
-    if (ecfRatingId.ecfId !== ecfId) {
-      //console.log('ecfId', ecfRating, ecfId)
-      changed = true;
-    }
-    if (fideRatingId.fideId !== fideId) {
-      //console.log('fideId', fideRating, fideId)
-      changed = true;
-    }
-    return changed;
-  };
-
   const handleSave = async () => {
-    if (hasChanged()) {
-      const data = {
-        fideId: fideIdValue.current.value
-          ? Number(fideIdValue.current.value)
-          : null,
-        ecfId: ecfIdValue.current.value,
-        newAbout,
-      };
-      await updateChessInfo(id, data);
-      addToast("Updates - saved!", {
+    try {
+      const original = await DataStore.query(Member, memberId);
+      await DataStore.save(
+        Member.copyOf(original, (updated) => {
+          updated.ecfId = newECFId;
+          updated.fideId = newFIDEId ? Number(newFIDEId) : undefined;
+          updated.about = newAbout;
+        })
+      );
+      addToast("Profile. Saved!", {
         appearance: "success",
+        autoDismiss: true
+      });
+    } catch (error) {
+      addToast("Oops! Something went wrong.", {
+        appearance: "error",
         autoDismiss: true,
       });
-    } else {
-      console.log("Nothing to do here.");
     }
   };
+
+  useEffect(() => {
+    const fetchMember = async () => {
+      const {
+        attributes: { sub },
+      } = await Auth.currentAuthenticatedUser();
+      const {
+        data: {
+          getMember: { about, ecfId, fideId },
+        },
+      } = await API.graphql({
+        query: getMember,
+        authMode: "AWS_IAM",
+        variables: { id: sub },
+      });
+
+      setMemberId(sub);
+      setAboutMe(about || "");
+      setNewFIDEId(fideId || "");
+      setNewECFId(ecfId || "");
+    };
+    fetchMember();
+  }, []);
 
   return (
     <div>
@@ -81,7 +189,7 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
                   name="about"
                   rows="4"
                   onChange={(e) => setAboutMe(e.target.value)}
-                  defaultValue={about}
+                  defaultValue={newAbout}
                   className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-400 focus:border-teal-400 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
                   placeholder="Example: My favourite opening is the Sicilian."
                 ></Textarea>
@@ -108,20 +216,19 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <i class="fad fa-question-circle ml-1 text-teal-600 hover:text-teal-700"></i>
+                      <i className="fad fa-question-circle ml-1 text-teal-600 hover:text-teal-700"></i>
                     </a>
                   </div>
                 </label>
 
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <Input
-                    onChange={(e) => setECFRatingId(e.target.value)}
-                    ref={ecfIdValue}
+                    onChange={(e) => setNewECFId(e.target.value)}
                     type="text"
                     name="ecf_ref"
                     id="ecf_ref"
                     autoComplete="off"
-                    defaultValue={ecfId}
+                    defaultValue={newECFId}
                     className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-400 focus:border-teal-400 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
                   />
                 </div>
@@ -142,19 +249,18 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <i class="fad fa-question-circle ml-1 text-teal-600 hover:text-teal-700"></i>
+                      <i className="fad fa-question-circle ml-1 text-teal-600 hover:text-teal-700"></i>
                     </a>
                   </div>
                 </label>
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <Input
-                    onChange={(e) => setFideRatingId(e.target.value)}
-                    ref={fideIdValue}
+                    onChange={(e) => setNewFIDEId(e.target.value)}
                     type="text"
                     name="fide_ref"
                     id="fide_ref"
                     autoComplete="off"
-                    defaultValue={fideId}
+                    defaultValue={newFIDEId}
                     className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-400 focus:border-teal-400 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
                   />
                 </div>
@@ -174,5 +280,3 @@ function ProfileInfo({ id, username, about, fideId, ecfId }) {
     </div>
   );
 }
-
-export default ProfileInfo;

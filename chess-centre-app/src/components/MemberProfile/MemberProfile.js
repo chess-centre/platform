@@ -2,15 +2,15 @@ import React, { useEffect, useState, lazy } from "react";
 import { useParams, Redirect } from "react-router-dom";
 import PGNViewer from "../ChessBoard/ChessBoard";
 import { games } from "../../api/mock.games";
-import { getMemberDataByUsername } from "../../api/members";
+
 
 const Page404 = lazy(() => import("../../pages/Error/404"));
 
 function MemberProfile() {
   const { username } = useParams();
-  const [member, setMember] = useState({});
   const [memberGames, setMemberGames] = useState([]);
   const [selectedGame, setSelectedGame] = useState(0);
+  const member = {};
 
   const profileGames = games.find((m) => m.username === username);
 
@@ -29,13 +29,6 @@ function MemberProfile() {
       setMemberGames(() => profileGames);
     }, 100);
 
-    const getMemberData = async () => {
-      if (username) {
-        const m = await getMemberDataByUsername(username);
-        setMember(m);
-      }
-    };
-    getMemberData();
   }, [profileGames, username]);
 
   return (

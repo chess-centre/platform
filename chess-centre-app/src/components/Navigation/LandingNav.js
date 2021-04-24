@@ -131,7 +131,7 @@ const LandingNav = (props) => {
           "absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
         }
       >
-        <div className="rounded-lg shadow-md slide">
+        <div className="rounded-lg shadow-lg slide">
           <div
             className="rounded-lg bg-white shadow-xs overflow-hidden"
             role="menu"
@@ -140,7 +140,7 @@ const LandingNav = (props) => {
           >
             <div className="px-5 pt-4 flex items-center justify-between">
               <img
-                className={"object-centre h-8 w-auto"}
+                className={"object-centre m-auto h-7 w-auto"}
                 src={LogoWithName}
                 alt="Logo"
               />
@@ -167,7 +167,7 @@ const LandingNav = (props) => {
                 </button>
               </div>
             </div>
-            <div className="px-2 pt-2 pb-3">
+            <div className="px-2 pt-2 pb-1">
               {headings.map(({ url, title }, index) => {
                 return (
                   <Link
@@ -190,7 +190,7 @@ const LandingNav = (props) => {
               {user ? (
                 <>
                 <Link
-                  className={`block w-full px-5 py-3 text-center font-medium text-teal-500 bg-gray-50 hover:bg-gray-100 hover:text-teal-700 border-gray-100 border-2
+                  className={`block w-full px-5 py-2 text-center font-medium text-teal-500 bg-gray-50 hover:bg-gray-100 hover:text-teal-700 border-gray-100 border-2
                   focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out`}
                   role="menuitem"
                   to="/app"
@@ -199,7 +199,7 @@ const LandingNav = (props) => {
                 </Link>
                 <button
                   onClick={signOut}
-                  className={`block w-full px-5 py-3 text-center font-medium text-gray-900 bg-gray-200 hover:bg-gray-100 border-gray-300 border-b-2
+                  className={`block w-full z-20 px-5 py-2 text-center font-medium text-gray-900 bg-white hover:bg-gray-100 border-gray-300 border-b-2
                    hover:text-teal-700 focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out`}
                   role="menuitem"
                   to="/app"

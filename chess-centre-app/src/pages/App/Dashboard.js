@@ -1,4 +1,6 @@
-import React from "react";
+import API from "@aws-amplify/api";
+import { getMember } from "../../graphql/queries";
+import React, { useEffect, useState } from "react";
 import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
 import { Line, Bar } from "react-chartjs-2";
@@ -9,8 +11,26 @@ import {
   RatingProgressChart,
   barLegends,
 } from "../../api/mock.dashboard";
+import { useAuthState } from "../../context/Auth";
 
 export default function Dashboard() {
+
+
+  const { user } = useAuthState();
+  const [member, setMember] = useState();
+
+  useEffect(() => {
+    async function fetchMember() {
+      const { data: {
+        getMember: 
+          member
+      }} = await API.graphql({ query: getMember, variables: { id: user.attributes.sub }});
+      setMember(member);
+    }
+    fetchMember();
+
+  }, [user]);
+
 
   return (
     <>
@@ -23,11 +43,11 @@ export default function Dashboard() {
             Overview
           </h3>
           <p className="ml-2 mt-1 text-sm text-gray-500 truncate dark:text-gray-400">
-            here is where we'll provide insights to your past events
+            here is where we'll provide insights to your past events 
           </p>
         </div>
       </div>
-      <Stats />
+      <Stats entries={member?.entries?.items?.length || 0} />
       <div className="grid gap-6 mb-8 md:grid-cols-2 mt-6">
         <ChartCard title="Rating">
           <Line {...RatingProgressChart([],[])} />

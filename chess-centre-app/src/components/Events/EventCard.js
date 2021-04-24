@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function EventCard({ id, icon, color, name, description, defaultPrice, details, url }) {
-  console.log("EVENT COLOR", color);
   return (
     <div className={`m-2 rounded-lg shadow-lg divide-y divide-gray-100 max-w-xs bg-white`}>
       <div className="p-6 px-10">

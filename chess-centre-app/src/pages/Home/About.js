@@ -79,7 +79,7 @@ const About = () => {
                           className="text-gray-400 hover:text-blue-800 fa-2x"
                         >
                           <span className="sr-only">LinkedIn</span>
-                          <i class="fab fa-linkedin"></i>
+                          <i className="fab fa-linkedin"></i>
                         </a>
                       </li>
                       <li>
@@ -88,7 +88,7 @@ const About = () => {
                           className="text-gray-400 hover:text-gray-900 fa-2x"
                         >
                           <span className="sr-only">GitHub</span>
-                          <i class="fab fa-github"></i>
+                          <i className="fab fa-github"></i>
                         </a>
                       </li>
                     </ul>
@@ -131,7 +131,7 @@ const About = () => {
                           className="text-gray-400 hover:text-blue-800 fa-2x"
                         >
                           <span className="sr-only">LinkedIn</span>
-                          <i class="fab fa-linkedin"></i>
+                          <i className="fab fa-linkedin"></i>
                         </a>
                       </li>
                     </ul>

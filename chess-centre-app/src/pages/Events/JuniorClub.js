@@ -2,7 +2,7 @@ import React from "react";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
-function JuniorEvent() {
+export default function JuniorClubEvent() {
   return (
     <div>
       <div className="relative bg-gray-50 overflow-hidden">
@@ -48,5 +48,3 @@ function JuniorEvent() {
     </div>
   );
 }
-
-export default JuniorEvent;
