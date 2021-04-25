@@ -78,7 +78,7 @@ function Events() {
   return (
     <>
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i class="fad fa-calendar-edit text-teal-600"></i> Events
+        <i className="fad fa-calendar-edit text-teal-600"></i> Events
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">

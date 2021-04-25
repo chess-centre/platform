@@ -35,7 +35,7 @@ export default function Dashboard() {
   return (
     <>
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i class="fad fa-chart-network text-teal-600"></i> Dashboard
+        <i className="fad fa-chart-network text-teal-600"></i> Dashboard
       </h1>
       <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">

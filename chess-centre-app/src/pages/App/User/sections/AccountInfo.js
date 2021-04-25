@@ -99,7 +99,7 @@ function AccountInfo() {
           </div>
           {user.email_verified ? (
             <div className="col-span-2 sm:col-span-3">
-              <div className="mt-8 flex align-middle">
+              <div className="mt-8 flex">
                 <span className="h-6 flex items-center sm:h-7 mr-1">
                   <svg
                     className="flex-shrink-0 h-5 w-5 text-teal-500"
@@ -113,8 +113,8 @@ function AccountInfo() {
                     />
                   </svg>
                 </span>
-                <span className="flex text-gray-500 dark:text-gray-400 -mt-1 sm:mt-1 text-xs sm:text-sm font-medium">
-                  Email Verified
+                <span className="text-gray-500 mt-1 sm:flex dark:text-gray-400 text-xs sm:text-sm font-medium">
+                  Verified
                 </span>
               </div>
             </div>

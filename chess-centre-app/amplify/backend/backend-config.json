@@ -91,6 +91,20 @@
           ]
         }
       ]
+    },
+    "chessplayers": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "ecfPlayer",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "function": {
@@ -176,6 +190,11 @@
           ]
         }
       ]
+    },
+    "ecfPlayer": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "storage": {}
