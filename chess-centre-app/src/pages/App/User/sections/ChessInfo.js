@@ -110,55 +110,102 @@ const getMember = /* GraphQL */ `
   }
 `;
 
-const ECFProfileCard = ({ full_name, club_name, category, member_no, due_date }) => {
-
+const ECFProfileCard = ({
+  full_name,
+  club_name,
+  category,
+  member_no,
+  due_date,
+}) => {
   return (
-    <div className="bg-white shadow overflow-hidden sm:rounded-lg mt-4">
-    <div className="px-4 py-5 sm:px-6">
-      <h3 className="text-lg leading-6 font-medium text-gray-900">ECF Profile</h3>
-      <p className="mt-1 max-w-2xl text-sm text-gray-500">Retrieved from the English Chess Federation</p>
-    </div>
-    <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
-      <dl className="sm:divide-y sm:divide-gray-200">
-        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt className="text-sm font-medium text-gray-500">Full name</dt>
-          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{full_name}</dd>
-        </div>
-        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt className="text-sm font-medium text-gray-500">Member No.</dt>
-          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{member_no}</dd>
-        </div>
-        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt className="text-sm font-medium text-gray-500">Category</dt>
-          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{category}</dd>
-        </div>
-        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt className="text-sm font-medium text-gray-500">Club</dt>
-          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{ club_name }</dd>
-        </div>
-        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt className="text-sm font-medium text-gray-500">Membership Due Date</dt>
-          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{ due_date }</dd>
-        </div>
-        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <button className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-xs sm:text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">Is this you?</button>
-        </div>
-      </dl>
-    </div>
+    <div className="bg-white shadow-md overflow-hidden rounded-lg mt-4">
+      <div className="px-4 py-5 sm:px-6">
+        <h3 className="text-lg leading-6 font-medium text-gray-900">
+          Profile
+        </h3>
+        <p className="mt-1 max-w-2xl text-sm text-gray-500">
+          English Chess Federation info
+        </p>
+      </div>
+      <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
+        <dl className="sm:divide-y sm:divide-gray-200">
+          <div className="py-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">Full name</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {full_name}
+            </dd>
+          </div>
 
-  </div>
-  )
-}
+          <div className="py-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className="text-sm font-medium text-gray-500">Member No.</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {member_no ? (
+                member_no
+              ) : (
+                <div>
+                  <span className="text-red-900 text-xs">No Membership</span>{" "}
+                  <div>
+                  <a
+                    className="text-teal-600 hover:text-teal-700 hover:underline"
+                    href="https://www.englishchess.org.uk/ecf-membership-rates-and-joining-details/"
+                  >
+                    join here
+                  </a>
+                  </div>
+                </div>
+              )}
+            </dd>
+          </div>
 
-const LoadingCard = () => {
-  return (<div className="text-center mt-6">
-  <div className="text-teal-500 mb-2">
-    <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
-  </div>
-  <div className="italic text-gray-500">fetching your info...</div>
-</div>)
+          {category ? (
+            <div className="py-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Category</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {category}
+              </dd>
+            </div>
+          ) : null}
+
+          {club_name ? (
+            <div className="py-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Club</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {club_name}
+              </dd>
+            </div>
+          ) : null}
+
+          {due_date ? (
+            <div className="py-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">
+                Membership Due Date
+              </dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {due_date}
+              </dd>
+            </div>
+          ) : null}
+          <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <button className="bg-teal-600  border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-xs sm:text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+              Yep, that's me!
+            </button>
+          </div>
+        </dl>
+      </div>
+    </div>
+  );
 };
 
+const LoadingCard = () => {
+  return (
+    <div className="text-center mt-6">
+      <div className="text-teal-500 mb-2">
+        <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
+      </div>
+      <div className="italic text-gray-500">fetching your info...</div>
+    </div>
+  );
+};
 
 export default function ChessInfo() {
   const [memberId, setMemberId] = useState("");
@@ -193,7 +240,7 @@ export default function ChessInfo() {
 
   const fetchECFData = async (id) => {
     setNewECFId(id);
-    if(id.toString().length === 6) {
+    if (id.toString().length === 6) {
       setIsSearchingECF(true);
       const data = await getECFData(id);
       setECFData(data);
@@ -296,9 +343,11 @@ export default function ChessInfo() {
                 </div>
               </div>
               <div>
-                { 
-                  isSearchingECF ? <LoadingCard /> : !isSearchingECF && !!ecfData ? (<ECFProfileCard { ...ecfData } />): null
-                }
+                {isSearchingECF ? (
+                  <LoadingCard />
+                ) : !isSearchingECF && !!ecfData ? (
+                  <ECFProfileCard {...ecfData} />
+                ) : null}
               </div>
             </div>
 
