@@ -23,7 +23,7 @@ function CongressEvent() {
             </p>
           </div>
           <div className="relative z-10 text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
-            <p className="text-lg text-gray-500 text-justify">
+            <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
               The Chess Centre’s “Mini-Congresses” have been tailored
               specifically for our venue to provide a sophisticated and
               digitally supported congress tournament experience for our members
