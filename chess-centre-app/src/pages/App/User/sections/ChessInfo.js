@@ -1,6 +1,6 @@
-import { DataStore } from "@aws-amplify/datastore";
+import { API, Auth, DataStore } from "aws-amplify";
 import { Member } from "../../../../models";
-import { API, Auth } from "aws-amplify";
+import { getECFData } from "../../../../api/profile/chess";
 import React, { useState, useEffect } from "react";
 import { Input, Textarea } from "@windmill/react-ui";
 import { useToasts } from "react-toast-notifications";
@@ -110,11 +110,63 @@ const getMember = /* GraphQL */ `
   }
 `;
 
+const ECFProfileCard = ({ full_name, club_name, category, member_no, due_date }) => {
+
+  return (
+    <div className="bg-white shadow overflow-hidden sm:rounded-lg mt-4">
+    <div className="px-4 py-5 sm:px-6">
+      <h3 className="text-lg leading-6 font-medium text-gray-900">ECF Profile</h3>
+      <p className="mt-1 max-w-2xl text-sm text-gray-500">Retrieved from the English Chess Federation</p>
+    </div>
+    <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
+      <dl className="sm:divide-y sm:divide-gray-200">
+        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt className="text-sm font-medium text-gray-500">Full name</dt>
+          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{full_name}</dd>
+        </div>
+        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt className="text-sm font-medium text-gray-500">Member No.</dt>
+          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{member_no}</dd>
+        </div>
+        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt className="text-sm font-medium text-gray-500">Category</dt>
+          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{category}</dd>
+        </div>
+        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt className="text-sm font-medium text-gray-500">Club</dt>
+          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{ club_name }</dd>
+        </div>
+        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt className="text-sm font-medium text-gray-500">Membership Due Date</dt>
+          <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{ due_date }</dd>
+        </div>
+        <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <button className="bg-teal-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-xs sm:text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">Is this you?</button>
+        </div>
+      </dl>
+    </div>
+
+  </div>
+  )
+}
+
+const LoadingCard = () => {
+  return (<div className="text-center mt-6">
+  <div className="text-teal-500 mb-2">
+    <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
+  </div>
+  <div className="italic text-gray-500">fetching your info...</div>
+</div>)
+};
+
+
 export default function ChessInfo() {
   const [memberId, setMemberId] = useState("");
   const [newAbout, setAboutMe] = useState("");
   const [newECFId, setNewECFId] = useState("");
   const [newFIDEId, setNewFIDEId] = useState("");
+  const [isSearchingECF, setIsSearchingECF] = useState(false);
+  const [ecfData, setECFData] = useState("");
   const { addToast } = useToasts();
 
   const handleSave = async () => {
@@ -129,13 +181,23 @@ export default function ChessInfo() {
       );
       addToast("Profile. Saved!", {
         appearance: "success",
-        autoDismiss: true
+        autoDismiss: true,
       });
     } catch (error) {
       addToast("Oops! Something went wrong.", {
         appearance: "error",
         autoDismiss: true,
       });
+    }
+  };
+
+  const fetchECFData = async (id) => {
+    setNewECFId(id);
+    if(id.toString().length === 6) {
+      setIsSearchingECF(true);
+      const data = await getECFData(id);
+      setECFData(data);
+      setIsSearchingECF(false);
     }
   };
 
@@ -223,7 +285,7 @@ export default function ChessInfo() {
 
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <Input
-                    onChange={(e) => setNewECFId(e.target.value)}
+                    onChange={(e) => fetchECFData(e.target.value)}
                     type="text"
                     name="ecf_ref"
                     id="ecf_ref"
@@ -232,6 +294,11 @@ export default function ChessInfo() {
                     className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-400 focus:border-teal-400 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
                   />
                 </div>
+              </div>
+              <div>
+                { 
+                  isSearchingECF ? <LoadingCard /> : !isSearchingECF && !!ecfData ? (<ECFProfileCard { ...ecfData } />): null
+                }
               </div>
             </div>
 

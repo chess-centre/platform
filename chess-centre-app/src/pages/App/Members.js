@@ -68,8 +68,8 @@ function Members() {
                   </li>
                 </ul>
                 <div className="text-center fa-3x mt-2">
-                  <i class="fad fa-user-hard-hat text-pink-800 mr-2"></i>
-                  <i class="fad fa-shovel text-purple-800"></i>
+                  <i className="fad fa-user-hard-hat text-pink-800 mr-2"></i>
+                  <i className="fad fa-shovel text-purple-800"></i>
                 </div>
               </div>
               <div className="pt-4 text-base leading-6 sm:text-lg sm:leading-7 mt-3">

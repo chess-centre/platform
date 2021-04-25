@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
-
 import { ChessInfo, AccountInfo } from "./sections";
 import { useAuthState } from "../../../context/Auth";
 
@@ -132,7 +131,6 @@ function Profile() {
       }).catch(e => {
         return {};
       });
-
       setCustomerPortalUrl(url);
     };
 
