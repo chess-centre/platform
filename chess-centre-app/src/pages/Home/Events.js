@@ -41,7 +41,7 @@ export default function Events() {
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
   const [selectedEventType, setSelectedEventType] = useState("all");
 
-  const selectableEventTypes = ["all", "congress", "rapidplay", "junior"];
+  const selectableEventTypes = ["all", "congress", "rapidplay", "junior-rapidplay"];
 
   useEffect(() => {
     async function fetchEvents() {
