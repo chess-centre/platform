@@ -8,10 +8,10 @@ function Members() {
         <div className="relative px-4 ml-2 mr-2 py-10 bg-white shadow-lg rounded-lg sm:p-20">
           <div className="max-w-md mx-auto">
             <div>
-              <img alt="Logo" src={Logo} className="h-7 sm:h-8" />
+              <img alt="Logo" src={Logo} className="h-7 sm:h-8 m-auto mb-2" />
             </div>
             <div className="divide-y divide-gray-200">
-              <div className="sm:py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+              <div className="sm:py-2 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <h1 className="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">COMING SOON!</h1>
                 <h4 className="text-center text-orange-500">Members</h4>
                 <p>
@@ -67,6 +67,10 @@ function Members() {
                     <p className="ml-2">Play through games played by our members!</p>
                   </li>
                 </ul>
+                <div className="text-center fa-3x mt-2">
+                  <i class="fad fa-user-hard-hat text-pink-800 mr-2"></i>
+                  <i class="fad fa-shovel text-purple-800"></i>
+                </div>
               </div>
               <div className="pt-4 text-base leading-6 sm:text-lg sm:leading-7 mt-3">
                 <p className="font-bold">Write code? 🐵</p><p>Checkout the source code for this site and get involved. 

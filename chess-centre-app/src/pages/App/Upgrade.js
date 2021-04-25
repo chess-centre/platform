@@ -7,8 +7,13 @@ function Upgrade() {
   return (
     <>
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        Upgrade: Paid Membership
+        Upgrade
       </h1>
+      <div className="pb-5 border-b border-gray-200">
+        <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
+          <p className="ml-2 mt-1 text-sm text-gray-500 dark:text-gray-300 truncate">Ready to join our community?</p>
+        </div>
+      </div>
       <main className="mt-5">
         <div className="relative">
           <div className="absolute inset-0 h-3/4"></div>

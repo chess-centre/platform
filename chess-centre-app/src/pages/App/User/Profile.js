@@ -110,8 +110,6 @@ const getMember = /* GraphQL */ `
   }
 `;
 
-
-
 function Profile() {
   const { user } = useAuthState();
   const [member, setMember] = useState({});
