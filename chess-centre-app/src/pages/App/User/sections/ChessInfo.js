@@ -171,7 +171,7 @@ export default function ChessInfo() {
               Profile
             </h3>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-300">
-              Tell us a little more about you! Providing any of your
+              Tell us a little more about you and your Chess background
             </p>
           </div>
 
