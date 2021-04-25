@@ -20,7 +20,7 @@ function Header() {
     logout(dispatch);
   }
   return (
-    <header className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800">
+    <header className="z-40 py-4 bg-white border-b dark:bg-gray-800">
       <div className="container flex items-center justify-between h-full px-6 mx-auto text-teal-600 dark:text-teal-300">
         {/* <!-- Mobile hamburger --> */}
         <button
@@ -31,7 +31,9 @@ function Header() {
           { isSidebarOpen ? <span><i className="fas fa-times"></i></span> : <MenuIcon className="w-6 h-6" aria-hidden="true" /> }
         </button>
         {/* <!-- Search input --> */}
-        <div className="flex justify-center flex-1 lg:mr-32"></div>
+        <div className="relative">
+          <div className="absolute inset-y-0 right-0"></div>
+        </div>
         <ul className="flex items-center flex-shrink-0 space-x-6">
           {/* <!-- Profile menu --> */}
           <li className="relative">

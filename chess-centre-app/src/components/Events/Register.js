@@ -4,7 +4,7 @@ import React, { useState } from "react";
 export default function Register(props) {
   const { register, id } = props;
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
-
+  const [x,y,z] = ["n ","Sig","up"];
   const handleRegister = async (id) => {
     setIsLoadingEvent(true);
     await register(id);
@@ -20,7 +20,7 @@ export default function Register(props) {
             <span className="ml-2 text-xs sm:text-sm">Redirecting</span>
           </div>
         ) : (
-          "Register"
+          `${y}${x}${z}` 
         )}
       </Button>
     </>

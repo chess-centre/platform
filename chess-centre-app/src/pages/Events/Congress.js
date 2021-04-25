@@ -12,7 +12,7 @@ function CongressEvent() {
         <LandingNav current="events" />
       </div>
 
-      <div className="py-16 bg-gray-50 overflow-hidden">
+      <div className="py-10 bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
             <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
@@ -70,10 +70,13 @@ function CongressEvent() {
                   <li>Entries are limited to 12 players.</li>
                 </ul>
               </div>
+              <div className="text-sm text-left mt-6 hidden sm:block">
+                <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
+              </div>
             </div>
             <div className="mt-12 relative text-base max-w-prose mx-auto lg:mt-0 lg:max-w-none">
               <svg
-                className="absolute top-0 right-0 -mt-20 -mr-20 lg:top-auto lg:right-auto lg:bottom-1/2 lg:left-1/2 lg:mt-0 lg:mr-0 xl:top-0 xl:right-0 xl:-mt-20 xl:-mr-20"
+                className="hidden sm:block absolute top-0 right-0 -mt-20 -mr-20 lg:top-auto lg:right-auto lg:bottom-1/2 lg:left-1/2 lg:mt-0 lg:mr-0 xl:top-0 xl:right-0 xl:-mt-20 xl:-mr-20"
                 width={404}
                 height={384}
                 fill="none"
@@ -111,71 +114,71 @@ function CongressEvent() {
                     <h2 className="text-center font-bold mb-4 tracking-tight text-gray-900">
                       Rounds
                     </h2>
-                    <table className="min-w-full divide-y divide-gray-200">
+                    <table className="m-auto min-w-full divide-y divide-gray-200">
                       <tbody className="bg-white divide-y divide-gray-200">
                         <tr>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             Round 1
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             Saturday
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             10:00 - 12:00
                           </td>
                         </tr>
                         <tr>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             Round 2
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             Saturday
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             12:30 - 14:30
                           </td>
                         </tr>
                         <tr>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             Round 3
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             Saturday
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             15:00 - 17:00
                           </td>
                         </tr>
                         <tr>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             Round 4
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             Sunday
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             10:00 - 12:00
                           </td>
                         </tr>
                         <tr>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             Round 5
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             Sunday
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             12:30 - 14:30
                           </td>
                         </tr>
                         <tr>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             Prize Ceremony
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             Sunday
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             14:30
                           </td>
                         </tr>
@@ -194,6 +197,9 @@ function CongressEvent() {
                   </div>
                 </div>
                 <div className="relative flex items-center sm:items-start bg-teal-700 rounded-b-lg not-italic py-5 px-6 sm:py-5 sm:pl-12 sm:pr-10"></div>
+              </div>
+              <div className="text-sm text-center mt-6 sm:hidden">
+                <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
               </div>
             </div>
           </div>
