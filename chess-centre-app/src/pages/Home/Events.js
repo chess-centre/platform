@@ -72,7 +72,7 @@ export default function Events() {
           <LandingNav current="events" />
         </div>
         <div className="bg-white">
-          <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto py-16 px-4 sm:py-28 sm:px-6 lg:px-8">
             <div className="text-center">
               <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
                 Events
@@ -81,7 +81,7 @@ export default function Events() {
                 Join us
               </p>
               <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-                Create your account to sign up for any of our upcoming events
+                Simply create your account to sign up for one of our events.
               </p>
             </div>
           </div>
@@ -102,14 +102,14 @@ export default function Events() {
                     } relative w-1/2 rounded-md shadow-sm py-2 text-sm font-medium text-gray-700 
                     whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-teal-500 focus:z-10 sm:w-auto sm:px-8`}
                   >
-                    {`${type.charAt(0).toUpperCase()}${type.slice(1)}`}
+                    {`${type.charAt(0).toUpperCase()}${type.slice(1).replace("-rapidplay", "")}`}
                   </button>
                 );
               })}
             </div>
           </div>
           <div className="flex">
-          <div className={isLoadingEvents ? "m-auto" : "m-auto mt-6 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-3  mb-10"}>
+          <div className={isLoadingEvents ? "m-auto" : "m-auto mt-6 space-y-4 sm:mt-10 sm:space-y-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-3 mb-8"}>
             {!isLoadingEvents ? (
               events
                 .filter((event) =>
