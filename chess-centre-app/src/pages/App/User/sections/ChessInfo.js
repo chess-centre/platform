@@ -231,8 +231,8 @@ export default function ChessInfo() {
   const [newAbout, setAboutMe] = useState("");
   const [newECFId, setNewECFId] = useState("");
   const [newFIDEId, setNewFIDEId] = useState("");
-  const [isSearchingECF, setIsSearchingECF] = useState(false);
   const [ecfData, setECFData] = useState("");
+  const [isSearchingECF, setIsSearchingECF] = useState(false);
   const [showFoundFide, setFoundFide] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const { addToast } = useToasts();
@@ -248,7 +248,7 @@ export default function ChessInfo() {
           updated.ecfRating = ecfData?.original_rating;
         })
       );
-      addToast("Profile. Saved!", {
+      addToast(`Profile. Saved!`, {
         appearance: "success",
         autoDismiss: true,
       });
@@ -261,23 +261,34 @@ export default function ChessInfo() {
   };
 
   const fetchECFData = async (id) => {
-    setNewECFId(id);
-    if (id.toString().length === 6) {
+    const searchId = id.toString();
+    setNewECFId(searchId);
+    if (searchId.length === 6 || searchId.lengh === 7) {
+      const toSearchId = searchId.slice(0, 6); // a user may think their id contains an additional character 225527 || 225527D
       setIsSearchingECF(true);
-      const { info, rating } = await getECFData(id);
-      const r = rating ? JSON.parse(rating) : "";
-      const i = info ? JSON.parse(info) : "";
+      const { info, rating } = await getECFData(toSearchId);
+      const ratingJSON = rating ? JSON.parse(rating) : "";
+      const infoJSON = info ? JSON.parse(info) : "";
 
-      if (i && i.FIDE_no) {
-        setNewFIDEId(i.FIDE_no);
+      if ((infoJSON && infoJSON.FIDE_no) && (newFIDEId && newFIDEId.length !== 6)) {
+        setNewFIDEId(infoJSON.FIDE_no);
         setFoundFide(true);
       }
-
-      setECFData({ ...i, ...r });
+      setECFData({ ...infoJSON, ...ratingJSON});
       setIsSearchingECF(false);
+    } else if (searchId.length === 0) {
+      setECFData("");
     }
+    console.log(newECFId, newFIDEId, ecfData);
   };
 
+  const fetchFIDEData = async (id) => {
+    setNewFIDEId(id);
+    if(id.length !== 6) {
+      setFoundFide(false)
+    }
+  }
+ 
   const confirmQuery = () => {
     setIsConfirmed(true);
   };
@@ -416,7 +427,7 @@ export default function ChessInfo() {
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <Input
                     disabled={isConfirmed && showFoundFide}
-                    onChange={(e) => setNewFIDEId(e.target.value)}
+                    onChange={(e) => fetchFIDEData(e.target.value)}
                     type="text"
                     name="fide_ref"
                     id="fide_ref"
