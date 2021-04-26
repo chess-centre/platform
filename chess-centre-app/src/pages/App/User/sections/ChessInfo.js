@@ -113,18 +113,28 @@ const getMember = /* GraphQL */ `
 const ECFProfileCard = ({
   full_name,
   club_name,
-  category,
   member_no,
   due_date,
+  original_rating,
+  confirmQuery,
+  undoConfirm,
 }) => {
+  const confirmECFInfo = () => {
+    confirmQuery();
+  };
+
+  const handleUndo = () => {
+    undoConfirm();
+  };
+
   return (
     <div className="bg-white shadow-md overflow-hidden rounded-lg mt-4">
       <div className="px-4 py-5 sm:px-6">
         <h3 className="text-lg leading-6 font-medium text-gray-900">
-          Profile
+          ECF profile
         </h3>
         <p className="mt-1 max-w-2xl text-sm text-gray-500">
-          English Chess Federation info
+          Provided by the English Chess Federation
         </p>
       </div>
       <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
@@ -145,26 +155,17 @@ const ECFProfileCard = ({
                 <div>
                   <span className="text-red-900 text-xs">No Membership</span>{" "}
                   <div>
-                  <a
-                    className="text-teal-600 hover:text-teal-700 hover:underline"
-                    href="https://www.englishchess.org.uk/ecf-membership-rates-and-joining-details/"
-                  >
-                    join here
-                  </a>
+                    <a
+                      className="text-teal-600 hover:text-teal-700 hover:underline"
+                      href="https://www.englishchess.org.uk/ecf-membership-rates-and-joining-details/"
+                    >
+                      join here
+                    </a>
                   </div>
                 </div>
               )}
             </dd>
           </div>
-
-          {category ? (
-            <div className="py-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt className="text-sm font-medium text-gray-500">Category</dt>
-              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                {category}
-              </dd>
-            </div>
-          ) : null}
 
           {club_name ? (
             <div className="py-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -185,10 +186,28 @@ const ECFProfileCard = ({
               </dd>
             </div>
           ) : null}
-          <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-            <button className="bg-teal-600  border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-xs sm:text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+
+          {original_rating ? (
+            <div className="py-2 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Rating</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                {original_rating}
+              </dd>
+            </div>
+          ) : null}
+          <div className="py-4 sm:py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6 text-center">
+            <button
+              onClick={confirmECFInfo}
+              className="bg-teal-600  border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-xs sm:text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            >
               Yep, that's me!
             </button>
+            <div
+              className="mt-4 sm:mt-0 text-xs text-gray-600 cursor-pointer"
+              onClick={handleUndo}
+            >
+              undo
+            </div>
           </div>
         </dl>
       </div>
@@ -212,8 +231,10 @@ export default function ChessInfo() {
   const [newAbout, setAboutMe] = useState("");
   const [newECFId, setNewECFId] = useState("");
   const [newFIDEId, setNewFIDEId] = useState("");
-  const [isSearchingECF, setIsSearchingECF] = useState(false);
   const [ecfData, setECFData] = useState("");
+  const [isSearchingECF, setIsSearchingECF] = useState(false);
+  const [showFoundFide, setFoundFide] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
   const { addToast } = useToasts();
 
   const handleSave = async () => {
@@ -224,9 +245,10 @@ export default function ChessInfo() {
           updated.ecfId = newECFId;
           updated.fideId = newFIDEId ? Number(newFIDEId) : undefined;
           updated.about = newAbout;
+          updated.ecfRating = ecfData?.original_rating;
         })
       );
-      addToast("Profile. Saved!", {
+      addToast(`Profile. Saved!`, {
         appearance: "success",
         autoDismiss: true,
       });
@@ -239,13 +261,41 @@ export default function ChessInfo() {
   };
 
   const fetchECFData = async (id) => {
-    setNewECFId(id);
-    if (id.toString().length === 6) {
+    const searchId = id.toString();
+    setNewECFId(searchId);
+    if (searchId.length === 6 || searchId.lengh === 7) {
+      const toSearchId = searchId.slice(0, 6); // a user may think their id contains an additional character 225527 || 225527D
       setIsSearchingECF(true);
-      const data = await getECFData(id);
-      setECFData(data);
+      const { info, rating } = await getECFData(toSearchId);
+      const ratingJSON = rating ? JSON.parse(rating) : "";
+      const infoJSON = info ? JSON.parse(info) : "";
+
+      if ((infoJSON && infoJSON.FIDE_no) && (newFIDEId && newFIDEId.length !== 6)) {
+        setNewFIDEId(infoJSON.FIDE_no);
+        setFoundFide(true);
+      }
+      setECFData({ ...infoJSON, ...ratingJSON});
       setIsSearchingECF(false);
+    } else if (searchId.length === 0) {
+      setECFData("");
     }
+    console.log(newECFId, newFIDEId, ecfData);
+  };
+
+  const fetchFIDEData = async (id) => {
+    setNewFIDEId(id);
+    if(id.length !== 6) {
+      setFoundFide(false)
+    }
+  }
+ 
+  const confirmQuery = () => {
+    setIsConfirmed(true);
+  };
+
+  const undoConfirm = () => {
+    setIsConfirmed(false);
+    setFoundFide(false);
   };
 
   useEffect(() => {
@@ -332,6 +382,7 @@ export default function ChessInfo() {
 
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <Input
+                    disabled={isConfirmed}
                     onChange={(e) => fetchECFData(e.target.value)}
                     type="text"
                     name="ecf_ref"
@@ -346,7 +397,11 @@ export default function ChessInfo() {
                 {isSearchingECF ? (
                   <LoadingCard />
                 ) : !isSearchingECF && !!ecfData ? (
-                  <ECFProfileCard {...ecfData} />
+                  <ECFProfileCard
+                    {...ecfData}
+                    confirmQuery={confirmQuery}
+                    undoConfirm={undoConfirm}
+                  />
                 ) : null}
               </div>
             </div>
@@ -371,7 +426,8 @@ export default function ChessInfo() {
                 </label>
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <Input
-                    onChange={(e) => setNewFIDEId(e.target.value)}
+                    disabled={isConfirmed && showFoundFide}
+                    onChange={(e) => fetchFIDEData(e.target.value)}
                     type="text"
                     name="fide_ref"
                     id="fide_ref"
@@ -380,6 +436,11 @@ export default function ChessInfo() {
                     className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-400 focus:border-teal-400 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
                   />
                 </div>
+                {showFoundFide ? (
+                  <p className="mt-2 ml-1 text-xs text-orange-700 dark:text-gray-300">
+                    <i className="fad fa-gift"></i> We've populated your FIDE id from the ECF data
+                  </p>
+                ) : null}
               </div>
             </div>
           </div>

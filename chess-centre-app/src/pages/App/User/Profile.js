@@ -113,12 +113,17 @@ function Profile() {
   const { user } = useAuthState();
   const [member, setMember] = useState({});
   const [customerPortalUrl, setCustomerPortalUrl] = useState();
+  const [isLoadingProfile, setIsLoadingProfile] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
-      const { data: {
-        getMember: member
-      }} = await API.graphql({ query: getMember, authMode: 'AWS_IAM', variables: { id: user.username } });
+      const {
+        data: { getMember: member },
+      } = await API.graphql({
+        query: getMember,
+        authMode: "AWS_IAM",
+        variables: { id: user.username },
+      });
       setMember(member);
     };
 
@@ -128,14 +133,20 @@ function Profile() {
         body: {
           returnUrl,
         },
-      }).catch(e => {
+      }).catch((e) => {
         return {};
       });
       setCustomerPortalUrl(url);
     };
 
-    getUser();
-    getCustomerPortal();
+    const getProfileData = async () => {
+      setIsLoadingProfile(true);
+      await getUser();
+      await getCustomerPortal();
+      setIsLoadingProfile(false);
+    };
+
+    getProfileData();
   }, [user]);
 
   return (
@@ -150,10 +161,17 @@ function Profile() {
             `}
             aria-current="page"
           >
-            <span className="text-center inline-block align-middle p-3">
-              
-              <span className="truncate text-sm inline-block align-middle fa-2x font-medium"><i className="fas fa-user-circle mr-2 text-teal-500 dark:text-teal-400"></i> Account</span>
-            </span>
+            <div className="flex text-center p-3">
+              <div className="text-sm inline-block font-medium">
+                <i className="fas fa-1x fa-user-circle mr-2 text-teal-500 dark:text-teal-400"></i>{" "}
+                <span className="">Account</span>
+              </div>
+              {isLoadingProfile ? (
+                <div className="text-teal-500 ml-2 -mb-2">
+                  <i className="fal fa-spinner-third fa-spin fa-fw"></i>
+                </div>
+              ) : null}
+            </div>
           </Link>
 
           {customerPortalUrl && (
@@ -163,8 +181,13 @@ function Profile() {
               bg-gray-50 hover:shadow hover:bg-white group rounded-md flex items-center
                 "
             >
-              <span className="text-gray-500 inline-block align-middle p-3">
-                <span className="truncate text-sm inline-block align-middle fa-2x font-medium"><i className="text-teal-500 fas fa-credit-card mr-2"></i> Subscription</span>
+              <span className="text-gray-500 inline-block align-middle p-2">
+                <span className="truncate text-sm inline-block align-middle font-medium">
+                  <i className="text-teal-500 fa-1x fas fa-credit-card mr-2"></i>{" "}
+                  <span className="inline-block align-baseline">
+                    Subscription
+                  </span>
+                </span>
               </span>
             </a>
           )}

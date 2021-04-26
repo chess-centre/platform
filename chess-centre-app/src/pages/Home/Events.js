@@ -41,7 +41,12 @@ export default function Events() {
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
   const [selectedEventType, setSelectedEventType] = useState("all");
 
-  const selectableEventTypes = ["all", "congress", "rapidplay", "junior-rapidplay"];
+  const selectableEventTypes = [
+    "all",
+    "congress",
+    "rapidplay",
+    "junior-rapidplay",
+  ];
 
   useEffect(() => {
     async function fetchEvents() {
@@ -102,93 +107,105 @@ export default function Events() {
                     } relative w-1/2 rounded-md shadow-sm py-2 text-sm font-medium text-gray-700 
                     whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-teal-500 focus:z-10 sm:w-auto sm:px-8`}
                   >
-                    {`${type.charAt(0).toUpperCase()}${type.slice(1).replace("-rapidplay", "")}`}
+                    {`${type.charAt(0).toUpperCase()}${type
+                      .slice(1)
+                      .replace("-rapidplay", "")}`}
                   </button>
                 );
               })}
             </div>
           </div>
           <div className="flex">
-          <div className={isLoadingEvents ? "m-auto" : "m-auto mt-6 space-y-4 sm:mt-10 sm:space-y-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-3 mb-8"}>
-            {!isLoadingEvents ? (
-              events
-                .filter((event) =>
-                  selectedEventType === "all"
-                    ? // we don't want all other event types, just these from the clickable buttons (above)
-                      selectableEventTypes.some(
-                        (e) => e === event.type.eventType
-                      )
-                    : // we return a specific type:
-                      event.type.eventType === selectedEventType
-                )
-                .map(
-                  (
-                    {
-                      id,
-                      name,
-                      description,
-                      rounds,
-                      startDate,
-                      endDate,
-                      type,
-                      color,
-                      entryCount,
-                    },
-                    key
-                  ) => {
-                    return (
-                      <div className="">
-                        <EventCard
-                          key={key}
-                          id={id}
-                          icon={setIcon(type.eventType)}
-                          color={color || type.color}
-                          defaultPrice={type.defaultPrice}
-                          type={type.eventType}
-                          name={name}
-                          url={type.url}
-                          description={description}
-                          details={[
-                            {
-                              icon: "fad fa-calendar-alt",
-                              ariaName: "Date / Time",
-                              information: `${formatDate(startDate, endDate)}`,
-                              show: !!startDate,
-                            },
-                            {
-                              icon: "fad fa-flag",
-                              ariaName: "Number of Rounds",
-                              information: `${rounds} rounds`,
-                              show: !!rounds,
-                            },
-                            {
-                              icon: "fad fa-chess-clock",
-                              ariaName: "Time Control",
-                              information: `${type.timeControl}`,
-                              show: !!type.timeControl,
-                            },
-                            {
-                              icon: "fad fa-user-friends",
-                              ariaName: "Entries",
-                              information: `${entryCount} ${entryCount === 1 ? "entry" : "entries"}`,
-                              show: !!entryCount,
-                            }
-                          ]}
-                        />
-
-                      </div>
-                    );
-                  }
-                )
-            ) : (
-              <div className="m-auto text-center mt-10 mb-10">
-                <div className="text-teal-500 mb-2">
-                  <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
+            <div
+              className={
+                isLoadingEvents
+                  ? "m-auto"
+                  : "m-auto mt-6 space-y-4 sm:mt-10 sm:space-y-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-3 mb-8"
+              }
+            >
+              {!isLoadingEvents ? (
+                events
+                  .filter((event) =>
+                    selectedEventType === "all"
+                      ? // we don't want all other event types, just these from the clickable buttons (above)
+                        selectableEventTypes.some(
+                          (e) => e === event.type.eventType
+                        )
+                      : // we return a specific type:
+                        event.type.eventType === selectedEventType
+                  )
+                  .map(
+                    (
+                      {
+                        id,
+                        name,
+                        description,
+                        rounds,
+                        startDate,
+                        endDate,
+                        type,
+                        color,
+                        entryCount,
+                      },
+                      key
+                    ) => {
+                      return (
+                        <div className="">
+                          <EventCard
+                            key={key}
+                            id={id}
+                            icon={setIcon(type.eventType)}
+                            color={color || type.color}
+                            defaultPrice={type.defaultPrice}
+                            type={type.eventType}
+                            name={name}
+                            url={type.url}
+                            description={description}
+                            details={[
+                              {
+                                icon: "fad fa-calendar-alt",
+                                ariaName: "Date / Time",
+                                information: `${formatDate(
+                                  startDate,
+                                  endDate
+                                )}`,
+                                show: !!startDate,
+                              },
+                              {
+                                icon: "fad fa-flag",
+                                ariaName: "Number of Rounds",
+                                information: `${rounds} rounds`,
+                                show: !!rounds,
+                              },
+                              {
+                                icon: "fad fa-chess-clock",
+                                ariaName: "Time Control",
+                                information: `${type.timeControl}`,
+                                show: !!type.timeControl,
+                              },
+                              {
+                                icon: "fad fa-user-friends",
+                                ariaName: "Entries",
+                                information: `${entryCount} ${
+                                  entryCount === 1 ? "entry" : "entries"
+                                }`,
+                                show: !!entryCount,
+                              },
+                            ]}
+                          />
+                        </div>
+                      );
+                    }
+                  )
+              ) : (
+                <div className="m-auto text-center mt-10 mb-10">
+                  <div className="text-teal-500 mb-2">
+                    <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
+                  </div>
+                  <div className="italic text-gray-500">fetching events...</div>
                 </div>
-                <div className="italic text-gray-500">fetching events...</div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
           </div>
         </div>
         <NewsLetter />

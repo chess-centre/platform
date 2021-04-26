@@ -44,7 +44,7 @@ export default function Dashboard() {
           </p>
         </div>
       </div>
-      <Stats entries={member?.entries?.items?.length || 0} />
+      <Stats entries={member?.entries?.items?.length || 0} rating={member?.ecfRating || 0}/>
       <div className="grid gap-6 mb-8 md:grid-cols-2 mt-6">
         <ChartCard title="Rating">
           <Line {...RatingProgressChart([],[])} />

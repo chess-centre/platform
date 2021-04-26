@@ -1,21 +1,10 @@
 import React from "react";
 
-// MOVE TO DATABASE:
-const pageData = {
-  id: 1,
-  games: {
-    total: 0,
-  },
-  rating: {
-    current: 0,
-    previous: 2417,
-  },
-};
+
 
 function Stats(props) {
 
-  const { entries } = props;
-  const { games, rating } = pageData;
+  const { entries, rating } = props;
 
   return (
     <div>
@@ -53,7 +42,7 @@ function Stats(props) {
           </div>
           <div className="sm:ml-16 flex items-baseline pb-7 sm:pb-0">
             <p className="text-2xl font-semibold text-gray-900 dark:text-white m-auto sm:m-0">
-              {games.total}
+              {0}
             </p>
             <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-50 dark:border-gray-700">
             </div>
@@ -73,7 +62,7 @@ function Stats(props) {
           </div>
           <div className="sm:ml-16 flex items-baseline pb-7 sm:pb-0">
             <p className="text-2xl font-semibold text-gray-900 dark:text-white m-auto sm:m-0">
-              {rating.current}
+              {rating}
             </p>
             <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-10 border-t border-gray-50 dark:border-gray-700">
             </div>
