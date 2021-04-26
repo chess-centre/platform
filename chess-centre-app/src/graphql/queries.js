@@ -328,6 +328,7 @@ export const getMember = /* GraphQL */ `
       about
       fideId
       ecfId
+      ecfRating
       username
       name
       email
