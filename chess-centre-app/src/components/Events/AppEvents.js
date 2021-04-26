@@ -42,6 +42,7 @@ const listEvents = /* GraphQL */ `
               about
               fideId
               ecfId
+              ecfRating
               username
               name
             }
@@ -52,111 +53,6 @@ const listEvents = /* GraphQL */ `
       }
       nextToken
       startedAt
-    }
-  }
-`;
-
-const getMember = /* GraphQL */ `
-  query GetMember($id: ID!) {
-    getMember(id: $id) {
-      id
-      about
-      fideId
-      ecfId
-      username
-      name
-      email
-      eventsByEmail
-      promoByEmail
-      eventsByText
-      promoByText
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      stripeCustomerId
-      stripeCurrentPeriodEnd
-      stripePriceId
-      stripeProductId
-      entries {
-        items {
-          id
-          eventId
-          memberId
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          member {
-            id
-            about
-            fideId
-            ecfId
-            username
-            name
-            email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            stripeCustomerId
-            stripeCurrentPeriodEnd
-            stripePriceId
-            stripeProductId
-            entries {
-              nextToken
-              startedAt
-            }
-          }
-          event {
-            id
-            name
-            description
-            rounds
-            time
-            startDate
-            endDate
-            maxEntries
-            entryCount
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            type {
-              id
-              name
-              description
-              url
-              color
-              time
-              maxEntries
-              timeControl
-              eventType
-              defaultPrice
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              stripePriceId
-            }
-            entries {
-              nextToken
-              startedAt
-            }
-          }
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
@@ -190,18 +86,6 @@ function UpComingEvents() {
         (event.maxEntries || event.type.maxEntries)
       );
     }
-
-    // eslint-disable-next-line no-unused-vars
-    const fetchMember = async () => {
-      const {
-        data: { getMember: member },
-      } = await API.graphql({
-        query: getMember,
-        authMode: "AWS_IAM",
-        variables: { id: user.username },
-      });
-      setMember(member);
-    };
 
     async function fetchEvents() {
       try {
@@ -375,7 +259,7 @@ function UpComingEvents() {
                                   {member?.name}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                  {member?.currentRating}
+                                  {member?.ecfRating}
                                 </td>
                               </tr>
                             );

@@ -35,7 +35,7 @@ function Members() {
           <div className="block sm:hidden bg-white shadow overflow-auto p-2">
             <PGNViewer layout={"top"}>{games[0].pgn}</PGNViewer>
             <div
-              className="text-teal-600 text-xs text-center"
+              className="text-teal-600 text-xs text-center cursor-pointer"
               onClick={() => setShowSneakPeak(false)}
             >
               hide
@@ -117,7 +117,7 @@ function Members() {
                   </ul>
                   <div className="text-center">
                     <span
-                      className="text-teal-600 text-xs"
+                      className="text-teal-600 text-xs cursor-pointer"
                       onClick={() => setShowSneakPeak(true)}
                     >
                       sneak peek?

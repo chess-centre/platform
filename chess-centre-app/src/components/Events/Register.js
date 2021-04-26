@@ -4,7 +4,6 @@ import React, { useState } from "react";
 export default function Register(props) {
   const { register, id } = props;
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
-  const [x,y,z] = ["n ","Sig","up"];
   const handleRegister = async (id) => {
     setIsLoadingEvent(true);
     await register(id);
@@ -15,12 +14,12 @@ export default function Register(props) {
     <>
       <Button className="text-right" onClick={() => handleRegister(id)}>
         {isLoadingEvents ? (
-          <div>
+          <div className="flex">
             <i className="fas fa-spinner-third animate-spin"></i>
-            <span className="ml-2 text-xs sm:text-sm">Redirecting</span>
+            <span className="ml-2 text-xs sm:text-sm">Loading</span>
           </div>
         ) : (
-          `${y}${x}${z}` 
+          `Sign up` 
         )}
       </Button>
     </>

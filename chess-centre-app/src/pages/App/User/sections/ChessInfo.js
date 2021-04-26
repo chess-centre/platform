@@ -238,14 +238,17 @@ export default function ChessInfo() {
   const { addToast } = useToasts();
 
   const handleSave = async () => {
+
     try {
+      const { original_rating } = ecfData;
       const original = await DataStore.query(Member, memberId);
+      
       await DataStore.save(
         Member.copyOf(original, (updated) => {
           updated.ecfId = newECFId;
           updated.fideId = newFIDEId ? Number(newFIDEId) : undefined;
           updated.about = newAbout;
-          updated.ecfRating = ecfData?.original_rating;
+          updated.ecfRating = original_rating ? original_rating.toString() : undefined
         })
       );
       addToast(`Profile. Saved!`, {
@@ -263,14 +266,14 @@ export default function ChessInfo() {
   const fetchECFData = async (id) => {
     const searchId = id.toString();
     setNewECFId(searchId);
-    if (searchId.length === 6 || searchId.lengh === 7) {
+    if (searchId.length === 6 || searchId.length === 7) {
       const toSearchId = searchId.slice(0, 6); // a user may think their id contains an additional character 225527 || 225527D
       setIsSearchingECF(true);
       const { info, rating } = await getECFData(toSearchId);
       const ratingJSON = rating ? JSON.parse(rating) : "";
       const infoJSON = info ? JSON.parse(info) : "";
 
-      if ((infoJSON && infoJSON.FIDE_no) && (newFIDEId && newFIDEId.length !== 6)) {
+      if ((infoJSON && infoJSON.FIDE_no)) {
         setNewFIDEId(infoJSON.FIDE_no);
         setFoundFide(true);
       }
@@ -279,7 +282,6 @@ export default function ChessInfo() {
     } else if (searchId.length === 0) {
       setECFData("");
     }
-    console.log(newECFId, newFIDEId, ecfData);
   };
 
   const fetchFIDEData = async (id) => {

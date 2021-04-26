@@ -57,6 +57,7 @@ export declare class Member {
   readonly stripeCurrentPeriodEnd?: number;
   readonly stripePriceId?: string;
   readonly stripeProductId?: string;
+  readonly ecfRating?: string;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
 }
