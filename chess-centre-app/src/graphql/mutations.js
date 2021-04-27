@@ -207,6 +207,7 @@ export const createMember = /* GraphQL */ `
       promoByEmail
       eventsByText
       promoByText
+      ecfRating
       _version
       _deleted
       _lastChangedAt
@@ -238,6 +239,7 @@ export const createMember = /* GraphQL */ `
             promoByEmail
             eventsByText
             promoByText
+            ecfRating
             _version
             _deleted
             _lastChangedAt
@@ -315,6 +317,7 @@ export const updateMember = /* GraphQL */ `
       promoByEmail
       eventsByText
       promoByText
+      ecfRating
       _version
       _deleted
       _lastChangedAt
@@ -346,6 +349,7 @@ export const updateMember = /* GraphQL */ `
             promoByEmail
             eventsByText
             promoByText
+            ecfRating
             _version
             _deleted
             _lastChangedAt
@@ -423,6 +427,7 @@ export const deleteMember = /* GraphQL */ `
       promoByEmail
       eventsByText
       promoByText
+      ecfRating
       _version
       _deleted
       _lastChangedAt
@@ -454,6 +459,7 @@ export const deleteMember = /* GraphQL */ `
             promoByEmail
             eventsByText
             promoByText
+            ecfRating
             _version
             _deleted
             _lastChangedAt
@@ -575,6 +581,7 @@ export const createEvent = /* GraphQL */ `
             promoByEmail
             eventsByText
             promoByText
+            ecfRating
             _version
             _deleted
             _lastChangedAt
@@ -696,6 +703,7 @@ export const updateEvent = /* GraphQL */ `
             promoByEmail
             eventsByText
             promoByText
+            ecfRating
             _version
             _deleted
             _lastChangedAt
@@ -817,6 +825,7 @@ export const deleteEvent = /* GraphQL */ `
             promoByEmail
             eventsByText
             promoByText
+            ecfRating
             _version
             _deleted
             _lastChangedAt
@@ -903,6 +912,7 @@ export const createEntry = /* GraphQL */ `
         promoByEmail
         eventsByText
         promoByText
+        ecfRating
         _version
         _deleted
         _lastChangedAt
@@ -934,6 +944,7 @@ export const createEntry = /* GraphQL */ `
               promoByEmail
               eventsByText
               promoByText
+              ecfRating
               _version
               _deleted
               _lastChangedAt
@@ -1021,6 +1032,7 @@ export const createEntry = /* GraphQL */ `
               promoByEmail
               eventsByText
               promoByText
+              ecfRating
               _version
               _deleted
               _lastChangedAt
@@ -1081,6 +1093,7 @@ export const updateEntry = /* GraphQL */ `
         promoByEmail
         eventsByText
         promoByText
+        ecfRating
         _version
         _deleted
         _lastChangedAt
@@ -1112,6 +1125,7 @@ export const updateEntry = /* GraphQL */ `
               promoByEmail
               eventsByText
               promoByText
+              ecfRating
               _version
               _deleted
               _lastChangedAt
@@ -1199,6 +1213,7 @@ export const updateEntry = /* GraphQL */ `
               promoByEmail
               eventsByText
               promoByText
+              ecfRating
               _version
               _deleted
               _lastChangedAt
@@ -1259,6 +1274,7 @@ export const deleteEntry = /* GraphQL */ `
         promoByEmail
         eventsByText
         promoByText
+        ecfRating
         _version
         _deleted
         _lastChangedAt
@@ -1290,6 +1306,7 @@ export const deleteEntry = /* GraphQL */ `
               promoByEmail
               eventsByText
               promoByText
+              ecfRating
               _version
               _deleted
               _lastChangedAt
@@ -1377,6 +1394,7 @@ export const deleteEntry = /* GraphQL */ `
               promoByEmail
               eventsByText
               promoByText
+              ecfRating
               _version
               _deleted
               _lastChangedAt

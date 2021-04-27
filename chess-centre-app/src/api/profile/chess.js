@@ -13,10 +13,7 @@ export const getFideData = async (id) => {
 };
 
 export const getECFData = async (id) => {
-  console.log(id);
   const response = await API.get("chessplayers",`/ecf/${id}`);
-
-  console.log(response);
   return response;
 };
 

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const EventHeader = ({ type, icon, name, description }) => {
-  console.log()
   // Because Tailwind doesn't accept concatenated strings, to achieve dynamic class names, we need to do this:
   if (type === "junior-rapidplay") {
     return (

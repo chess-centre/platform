@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
 import { useAuthState, useAuthDispatch, logout } from "../../context/Auth";
 import LogoWithName from "../../assets/img/logo-light-theme.png";
@@ -12,6 +12,7 @@ const headings = [
 
 const LandingNav = (props) => {
   const { current } = props;
+  const history = useHistory();
   const { user } = useAuthState();
   const dispatch = useAuthDispatch();
   const [isExpanded, toggleExpansion] = React.useState(true);
@@ -21,7 +22,10 @@ const LandingNav = (props) => {
   const selectableMenuMobile =
     "text-gray-700 hover:text-teal-900 hover:bg-orange-50";
 
-  const signOut = () => logout(dispatch);
+  const signOut = () => { 
+    logout(dispatch);
+    history.push("/");
+  };
 
   return (
     <div>

@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
+import RoundTimes from "../../components/PlayingTimes/Rounds";
 
 function CongressEvent() {
   const { id } = useParams();
@@ -108,96 +109,7 @@ function CongressEvent() {
                   fill="url(#bedc54bc-7371-44a2-a2bc-dc68d819ae60)"
                 />
               </svg>
-              <div className="relative bg-white rounded-lg shadow-lg">
-                <div className="rounded-t-lg px-2 py-2 sm:px-10 sm:pt-8">
-                  <div className="relative text-lg text-gray-700">
-                    <h2 className="text-center font-bold mb-4 tracking-tight text-gray-900">
-                      Rounds
-                    </h2>
-                    <table className="m-auto min-w-full divide-y divide-gray-200">
-                      <tbody className="bg-white divide-y divide-gray-200">
-                        <tr>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            Round 1
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Saturday
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            10:00 - 12:00
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            Round 2
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Saturday
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            12:30 - 14:30
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            Round 3
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Saturday
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            15:00 - 17:00
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            Round 4
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Sunday
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            10:00 - 12:00
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            Round 5
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Sunday
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            12:30 - 14:30
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            Prize Ceremony
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Sunday
-                          </td>
-                          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            14:30
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <div className="flex text-base max-w-prose mb-2 mt-2">
-                      <div className="rounded-md shadow mx-auto">
-                        <Link
-                          to={`/register?eventId=${id}`}
-                          className="w-full flex items-center justify-center px-12 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700"
-                        >
-                          Join Event
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="relative flex items-center sm:items-start bg-teal-700 rounded-b-lg not-italic py-5 px-6 sm:py-5 sm:pl-12 sm:pr-10"></div>
-              </div>
+              <RoundTimes eventId={id} eventType="weekend-congress" />
               <div className="text-sm text-center mt-6 sm:hidden">
                 <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
               </div>
