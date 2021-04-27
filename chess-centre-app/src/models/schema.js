@@ -374,6 +374,13 @@ export const schema = {
                     "type": "ID",
                     "isRequired": false,
                     "attributes": []
+                },
+                "ecfRating": {
+                    "name": "ecfRating",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -670,5 +677,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "2a5317e53c5d0998f4e33fe8f24b9232"
+    "version": "39ba1ba9a4ba8c68b3ba3936dacda0d2"
 };

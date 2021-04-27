@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useStripe } from "@stripe/react-stripe-js";
-import { subscribe, useAuthDispatch, useAuthState } from "../../context/Auth";
+import { subscribe, useAuthDispatch } from "../../context/Auth";
 import { Button } from "@windmill/react-ui";
-import Loading from "../../assets/img/loading.svg";
+
+const RedirectButton = (props) => {
+  const { checkout, text, colour } = props;
+  const [isRedirecting, setIsRedirecting] = useState(false);
+
+  const handleClick = async () => {
+    setIsRedirecting(true);
+    await checkout();
+    setIsRedirecting(false);
+  };
+
+  return (
+    <Button className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${colour}
+    transition duration-500 ease-in-out shadow-lg
+    `} onClick={handleClick}>
+      {isRedirecting ? (
+        <div>
+          <i className="fas fa-spinner-third animate-spin"></i>
+          <span className="ml-2 text-xs sm:text-sm">Redirecting</span>
+        </div>
+      ) : (
+        text
+      )}
+    </Button>
+  );
+};
 
 function MembershipCard({
   direct,
@@ -17,10 +42,9 @@ function MembershipCard({
 }) {
   const stripe = useStripe();
   const dispatch = useAuthDispatch();
-  const { loading } = useAuthState();
 
   const checkout = async () => {
-    // Need a loading state here
+    // TODO: need to split out loading states as this dispatch will set loading on ALL buttons :-)
     await subscribe(dispatch, plan, stripe);
   };
 
@@ -58,22 +82,7 @@ function MembershipCard({
           ))}
         </ul>
         {direct ? (
-          <Button
-            className={`flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white ${buttonColour}
-            transition duration-500 ease-in-out shadow-lg
-            `}
-            aria-describedby="tier-standard"
-            onClick={checkout}
-          >
-            {loading ? (
-              <>
-                <img alt="Loading" className="h-5 w-5 mr-1" src={Loading} />
-                <span className="text-sm"> Redirecting...</span>
-              </>
-            ) : (
-              "Upgrade"
-            )}
-          </Button>
+          <RedirectButton checkout={checkout} text={"Upgrade"} colour={buttonColour} />
         ) : (
           <div className="rounded-md shadow">
             <Link

@@ -4,7 +4,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/PlayingTimes/Rounds";
 
-export default function RapidplayEvent() {
+export default function JuniorRapidplayEvent() {
   const { id } = useParams();
 
   return (
@@ -17,16 +17,17 @@ export default function RapidplayEvent() {
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
             <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
-              No time to waste
+              <i className="fad fa-bolt"></i> Step it up 
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Rapidplay
+              Junior Rapidplay
             </p>
           </div>
           <div className="relative z-10 text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
               Want to test yourself, but don’t have time for a full weekend
-              tournament? Then look no further, as our 1 day, 5 round Rapidplay tournaments are ideal for new and returning players who
+              tournament? Then look no further, as our 1 day, 5 round Rapid
+              Play tournaments are ideal for new and returning players who
               want to “scratch their competitive itch”, but in a more
               condensed and faster format of the game.
             </p>
@@ -41,15 +42,12 @@ export default function RapidplayEvent() {
                   and challenging test of their skills across all rounds of the
                   competitions.
                 </p>
-
                 <p>
                   Though a little “less serious” by nature than congress events,
                   our Open Rapid Play Tournaments are nonetheless fully ECF Rapidplay events, and as such are competitive in nature. So if you
                   like the idea of a quick fire day of competitive Chess in Ilkley
                   then try one of our Rapidplay events.
                 </p>
-
-
                 <h3>Event Information</h3>
                 <p>
                   Players will be placed in a group of 6, based on rating, and
@@ -61,6 +59,7 @@ export default function RapidplayEvent() {
                   <li>All games will be ECF standard play graded.</li>
                   <li>Entries are limited to 12 players.</li>
                 </ul>
+
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>

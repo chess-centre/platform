@@ -59,6 +59,7 @@ exports.handler = async (event) => {
 
   const { stripeCustomerId } = member;
   if (!stripeCustomerId) {
+    console.log("This isn't a paid memeber account.");
     return {
       statusCode: 400,
       headers,

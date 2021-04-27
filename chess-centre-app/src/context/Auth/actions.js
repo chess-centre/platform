@@ -16,33 +16,6 @@ export async function loginUser(dispatch, Email, Password) {
   return;
 }
 
-export async function updateUserAttributes(firstName, lastName) {
-  console.log(firstName, lastName)
-  const user = await Auth.currentAuthenticatedUser({
-    bypassCache: true,
-  });
-
-  Auth.updateUserAttributes(user, {
-    given_name: firstName,
-    family_name: lastName,
-  })
-    .then(async (u) => {
-      // TODO: tidy up this repeative logic / move to central call to update local storage:
-      // const updatedUser = await Auth.currentAuthenticatedUser({
-      //   bypassCache: true,
-      // });
-      const updatedUser = await Auth.currentUserPoolUser()
-      console.log(u, updatedUser);
-      localStorage.removeItem("currentUser");
-      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
-      return u;
-    })
-    .catch((e) => {
-      console.log("error", e.message);
-      return e.message;
-    });
-}
-
 export async function userPasswordForgot(dispatch, email) {
   try {
     dispatch({ type: "REQUEST_LOGIN" });

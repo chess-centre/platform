@@ -63,14 +63,14 @@ function Timeline() {
   const [events, setEvents] = useState([]);
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
   const months = [currentMonth, nextMonth];
-  const now = today.toISOString();
-  const future = today.setDate(today.getDate + 30);
+
 
   useEffect(() => {
     async function fetchEvents() {
+      const now = today.toISOString();
+      const future = today.setDate(today.getDate + 30);
       try {
         setIsLoadingEvent(true);
-        // TODO: refine to only retreive next two months:
         const events = await API.get("public", `/events?startDate=${now}&endDate=${future}`);
         setEvents(events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate)));
         setIsLoadingEvent(false);
@@ -81,6 +81,7 @@ function Timeline() {
       }
     }
     fetchEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -105,11 +106,11 @@ function Timeline() {
                 >
                   <div className="absolute inset-0 w-0.5 h-full bg-gray-300"></div>
                 </div>
-                { months.map((month, i) => {
-                  const isEven = i % 2 === 0;
+                { months.map((month, key) => {
+                  const isEven = key % 2 === 0;
                   return (
                     <button
-                      key={i}
+                      key={key}
                       className="flex items-center justify-between font-medium text-gray-500 w-20 py-3 pr-2 text-left"
                       onClick={() => setSelectedMonth(month)}
                     >
@@ -143,10 +144,10 @@ function Timeline() {
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4">
                           {events
                             .filter(
-                              (d) => new Date(d.startDate).getMonth() === month
+                              (data) => new Date(data.startDate).getMonth() === month
                             )
-                            .map((d, index) => (
-                              <Card key={index} event={d} />
+                            .map((data, key) => (
+                              <Card key={key} event={data} />
                             ))}
                         </div>
                       </div>

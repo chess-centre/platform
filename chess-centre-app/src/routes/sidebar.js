@@ -10,11 +10,6 @@ const routes = [
     name: "Events",
   },
   {
-    path: "/app/results",
-    icon: "ChartBarIcon",
-    name: "Results",
-  },
-  {
     path: "/app/members",
     icon: "UsersIcon",
     name: "Members",

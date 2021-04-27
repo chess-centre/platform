@@ -1,3 +1,4 @@
+import { API } from "aws-amplify";
 import { DataStore } from "@aws-amplify/datastore";
 import { FidePlayer, Member } from "../../models";
 
@@ -12,13 +13,8 @@ export const getFideData = async (id) => {
 };
 
 export const getECFData = async (id) => {
-  const response = await fetch(`https://www.ecfrating.org.uk/v2/new/api.php?v2/players/code/${id}`).catch(e => {
-    return {};
-  });
-  if(response.ok) {
-    return await response.json();
-  }
-  return {};
+  const response = await API.get("chessplayers",`/ecf/${id}`);
+  return response;
 };
 
 export const getMember = async (user) => {
