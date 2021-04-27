@@ -73,6 +73,8 @@ exports.handler = async (event) => {
     .slice(-1);
   const { eventId, successUrl, cancelUrl } = JSON.parse(body);
 
+  console.log(`eventId: ${eventId}, memberId: ${memberId}`);
+  
   const eventData = await fetchEvent(eventId, memberId);
   console.log(JSON.stringify(eventData));
 
