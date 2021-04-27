@@ -30,7 +30,6 @@ function Login(props) {
       if (parsed.plan) {
         await subscribe(dispatch, parsed.plan, stripe);
       } else if (parsed.eventId) {
-        console.log("EVENT", parsed.eventId);
         props.history.push(`/app/events?eventId=${parsed.eventId}`);
       } else {
         props.history.push("/app");
