@@ -12,7 +12,7 @@ export default function Register(props) {
 
   return (
     <>
-      <Button className="text-right" onClick={() => handleRegister(id)}>
+      <Button className="text-right text-xs" onClick={() => handleRegister(id)}>
         {isLoadingEvents ? (
           <div className="flex">
             <i className="fas fa-spinner-third animate-spin"></i>

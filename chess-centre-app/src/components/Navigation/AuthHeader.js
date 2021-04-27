@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { SidebarContext } from "../../context/SidebarContext";
 import {
   MenuIcon,
@@ -10,6 +11,7 @@ import { logout, useAuthDispatch } from "../../context/Auth";
 
 function Header() {
   const dispatch = useAuthDispatch();
+  const history = useHistory();
   const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
@@ -18,6 +20,7 @@ function Header() {
   }
   function signOut() {
     logout(dispatch);
+    history.push("/");
   }
   return (
     <header className="z-40 py-4 bg-white border-b dark:bg-gray-800">

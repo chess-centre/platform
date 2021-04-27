@@ -4,6 +4,7 @@ import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
 import Register from "./Register";
+import RoundTimesModal from "../Modal/RoundTimesModal";
 
 const listEvents = /* GraphQL */ `
   query ListEvents(
@@ -26,9 +27,11 @@ const listEvents = /* GraphQL */ `
           id
           name
           description
+          defaultPrice
           url
           color
           time
+          eventType
           maxEntries
           canRegister
         }
@@ -70,8 +73,7 @@ function UpComingEvents() {
   const { user } = useAuthState();
   const { addToast } = useToasts();
   const [events, setEvents] = useState([]);
-  // eslint-disable-next-line no-unused-vars
-  const [member, setMember] = useState({});
+  const [modalState, setModalState] = useState({});
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
 
   useEffect(() => {
@@ -104,6 +106,7 @@ function UpComingEvents() {
           ...event,
           allowedToRegister: !alreadyRegistered(event) && !isFull(event),
         }));
+
         setEvents(mapped);
         setIsLoadingEvent(false);
       } catch (err) {
@@ -112,8 +115,21 @@ function UpComingEvents() {
       }
     }
     fetchEvents();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
+  const closeModal = () => {
+    setModalState((s) => ({ ...s, open: false }));
+  };
+
+  const showModal = (eventId, eventType) => {
+    setModalState({
+      eventId,
+      eventType: `weekend-${eventType}`,
+      open: true,
+    });
+  };
 
   const register = async (eventId) => {
     const redirectTo = `${window.location.origin}/app/events`;
@@ -159,10 +175,10 @@ function UpComingEvents() {
             return (
               <section key={index} className="relative">
                 <div className="m-2 bg-white dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden">
-                  <div className="px-4 sm:px-4 space-y-2 pb-4">
-                    <div className="flex">
-                      <div className="w-2/3">
-                        <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+                  <div className="px-4 sm:px-4 space-y-2 pb-2">
+                    <div className="grid grid-cols-3 ">
+                      <div className="col-span-2">
+                        <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1">
                           {name || type.name}{" "}
                         </h2>
                         <p className="text-sm text-gray-700 dark:text-gray-500">
@@ -171,19 +187,26 @@ function UpComingEvents() {
                             maxEntries || type.maxEntries
                           }`}
                         </p>
+                        {type.defaultPrice && allowedToRegister && (
+                          <p className="text-sm text-gray-700 mr-2">
+                            <span className="inline">
+                              Entry Fee: £{type.defaultPrice}
+                            </span>{" "}
+                          </p>
+                        )}
                       </div>
-                      <div className="w-1/3">
+                      <div className="flex-initial flex-nowrap">
                         <div className="text-right">
                           {allowedToRegister && (
                             <Register id={id} register={register} />
                           )}
                         </div>
                       </div>
-                    </div>
-                    <div>
-                      <div className="w-full">
-                        <p className="text-sm text-gray-900 dark:text-white">
-                          {description || type.description}
+                      <div className="col-span-3">
+                      <p className="text-sm text-gray-700 mr-2">
+                          <span className="inline">
+                            {description || type.description}
+                          </span>{" "}
                         </p>
                       </div>
                     </div>
@@ -196,25 +219,28 @@ function UpComingEvents() {
                           }`}
                         </span>{" "}
                       </p>
-                      {(time || type.time) && (
+                      {rounds && (
                         <p className="sm:inline text-xs text-teal-700 mr-2 mb-2">
+                          <i className="fad fa-flag mr-1"></i>
+                          <span className="inline">{rounds} rounds</span>{" "}
+                        </p>
+                      )}
+                      {(time || type.time) && (
+                        <p
+                          className="sm:inline text-xs text-teal-700 cursor-pointer mr-2 mb-2"
+                          onClick={() => showModal(id, type.eventType)}
+                        >
                           <i className="fad fa-clock mr-1"></i>
                           <span className="inline">
                             {time || type.time}
                           </span>{" "}
                         </p>
                       )}
-                      {rounds && (
-                        <p className="sm:inline text-xs text-teal-700">
-                          <i className="fad fa-flag mr-1"></i>
-                          <span className="inline">{rounds} rounds</span>{" "}
-                        </p>
-                      )}
                     </div>
                   </div>
                   <div className="w-full bg-white">
                     {entries?.items.length > 0 && (
-                      <table className="table-auto m-auto border border-gray-100 mb-4 mt-5">
+                      <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2">
                         <thead className="bg-gray-100 dark:bg-gray-800 border-b-2">
                           <tr>
                             <th
@@ -239,7 +265,9 @@ function UpComingEvents() {
                           </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
-                          {entries?.items.map(({ member, memberId }, i) => {
+                          {entries?.items
+                          .sort((a, b) => Number(b.member.ecfRating) -  Number(a.member.ecfRating))
+                          .map(({ member, memberId }, i) => {
                             const isEven = i % 2 === 0;
                             return (
                               <tr
@@ -281,6 +309,7 @@ function UpComingEvents() {
           <div className="italic text-gray-500">fetching events...</div>
         </div>
       )}
+      <RoundTimesModal {...modalState} closeModal={closeModal} />
     </>
   );
 }

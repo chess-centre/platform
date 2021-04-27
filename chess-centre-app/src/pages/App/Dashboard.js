@@ -26,7 +26,6 @@ export default function Dashboard() {
           member
       }} = await API.graphql({ query: getMember, variables: { id: user.attributes.sub }});
       setMember(member);
-      console.log(member);
     }
     fetchMember();
 
