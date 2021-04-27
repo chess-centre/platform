@@ -117,7 +117,7 @@ function Login(props) {
               `/register/confirm/${email}${props.location.search}`
             );
             setIsSpecialLoading(false);
-          }, 3000);
+          }, 1000);
         } // if there's no response, the action dispatched a contextual error already
       } catch (error) {
         dispatch({ type: "LOGIN_ERROR", error });

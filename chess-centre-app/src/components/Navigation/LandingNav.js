@@ -140,7 +140,7 @@ const LandingNav = (props) => {
       <div
         className={
           (isExpanded ? "hidden " : "") +
-          "absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+          "absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-10"
         }
       >
         <div className="rounded-lg shadow-lg slide">

@@ -19,7 +19,7 @@ function Membership() {
                 Join our community
               </p>
               <div className="pt-4">
-                <i class="fad fa-users-crown fa-4x text-white -z-0"></i>
+                <i class="fad fa-users-crown fa-4x text-white"></i>
               </div>
               <p className="text-xl text-gray-300">
                 Learning, playing and discovering what makes this game so
@@ -32,7 +32,7 @@ function Membership() {
         <div className="mt-8 pb-12 bg-gray-50 sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-10">
           <div className="relative">
             <div className="absolute inset-0 h-3/4 bg-teal-700"></div>
-            <div className="relative z-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-md mx-auto space-y-4 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0">
                 {data.map((membership, key) => {
                   return <MembershipCard key={key} {...membership} />;
@@ -44,7 +44,7 @@ function Membership() {
             <div className="max-w-md mx-auto lg:max-w-5xl">
               <div className="rounded-lg bg-gray-100 px-6 py-8 sm:p-6 lg:flex lg:items-center border border-light-blue-300 shadow">
                 <div className="flex-1">
-                  <div className="text-md font-normal text-gray-600">
+                  <div className="text-center sm:text-left text-md font-normal text-gray-600">
                     Got an amazing idea to help grow our community and bring
                     Chess to a greater audience?
                   </div>

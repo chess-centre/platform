@@ -28,8 +28,9 @@ function Login(props) {
       const { search } = props.location;
       const parsed = queryString.parse(search);
       if (parsed.plan) {
-        // We'll want to add a loading state here
         await subscribe(dispatch, parsed.plan, stripe);
+      } else if (parsed.eventId) {
+        props.history.push(`/app/events?eventId=${parsed.eventId}`);
       } else {
         props.history.push("/app");
       }

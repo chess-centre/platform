@@ -1,5 +1,7 @@
 import API from "@aws-amplify/api";
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
@@ -69,6 +71,9 @@ function formatDate(date) {
 }
 
 function UpComingEvents() {
+  
+  const { search } = useLocation();
+  const { eventId } = queryString.parse(search);
   const stripe = useStripe();
   const { user } = useAuthState();
   const { addToast } = useToasts();
@@ -174,7 +179,13 @@ function UpComingEvents() {
           ) => {
             return (
               <section key={index} className="relative">
-                <div className="m-2 bg-white dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden">
+                <div
+                  className={
+                    id === eventId
+                      ? "m-2 bg-pink-100 dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden"
+                      : "m-2 bg-white dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden"
+                  }
+                >
                   <div className="px-4 sm:px-4 space-y-2 pb-2">
                     <div className="grid grid-cols-3 ">
                       <div className="col-span-2">
@@ -203,7 +214,7 @@ function UpComingEvents() {
                         </div>
                       </div>
                       <div className="col-span-3">
-                      <p className="text-sm text-gray-700 mr-2">
+                        <p className="text-sm text-gray-700 mr-2">
                           <span className="inline">
                             {description || type.description}
                           </span>{" "}
@@ -266,32 +277,36 @@ function UpComingEvents() {
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
                           {entries?.items
-                          .sort((a, b) => Number(b.member.ecfRating) -  Number(a.member.ecfRating))
-                          .map(({ member, memberId }, i) => {
-                            const isEven = i % 2 === 0;
-                            return (
-                              <tr
-                                key={i}
-                                className={
-                                  memberId === user.attributes.sub
-                                    ? "bg-yellow-50"
-                                    : isEven
-                                    ? "bg-gray-50"
-                                    : ""
-                                }
-                              >
-                                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 text-center">
-                                  {i + 1}
-                                </td>
-                                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
-                                  {member?.name}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                  {member?.ecfRating}
-                                </td>
-                              </tr>
-                            );
-                          })}
+                            .sort(
+                              (a, b) =>
+                                Number(b.member.ecfRating) -
+                                Number(a.member.ecfRating)
+                            )
+                            .map(({ member, memberId }, i) => {
+                              const isEven = i % 2 === 0;
+                              return (
+                                <tr
+                                  key={i}
+                                  className={
+                                    memberId === user.attributes.sub
+                                      ? "bg-yellow-50"
+                                      : isEven
+                                      ? "bg-gray-50"
+                                      : ""
+                                  }
+                                >
+                                  <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 text-center">
+                                    {i + 1}
+                                  </td>
+                                  <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    {member?.name}
+                                  </td>
+                                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    {member?.ecfRating}
+                                  </td>
+                                </tr>
+                              );
+                            })}
                         </tbody>
                       </table>
                     )}
