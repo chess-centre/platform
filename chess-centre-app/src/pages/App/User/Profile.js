@@ -167,8 +167,8 @@ function Profile() {
                 <span className="">Account</span>
               </div>
               {isLoadingProfile ? (
-                <div className="text-teal-500 ml-2 -mb-2">
-                  <i className="fal fa-spinner-third fa-spin fa-fw"></i>
+                <div className="text-teal-500 ml-2 text-sm inline-block">
+                  <i className="fal fa-spinner-third fa-spin fa-fw"></i> <span className="ml-2 text-xs text-gray-600">fetching details...</span>
                 </div>
               ) : null}
             </div>
