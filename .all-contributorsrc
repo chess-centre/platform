@@ -1,0 +1,63 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "matt-d-webb",
+      "name": "Matt D. Webb",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36933715?v=4",
+      "profile": "https://chesscentre.online",
+      "contributions": [
+        "code",
+        "test",
+        "doc",
+        "business"
+      ]
+    },
+    {
+      "login": "jbeasley123",
+      "name": "jbeasley123",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13149185?v=4",
+      "profile": "https://github.com/jbeasley123",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "AndyW359",
+      "name": "AndyW359",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71315264?v=4",
+      "profile": "https://github.com/AndyW359",
+      "contributions": [
+        "content"
+      ]
+    },
+    {
+      "login": "CatVarley",
+      "name": "Cat Varley",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16880382?v=4",
+      "profile": "https://github.com/CatVarley",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "adamelmore",
+      "name": "Adam Elmore",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2363879?v=4",
+      "profile": "https://elmore.dev",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "platform",
+  "projectOwner": "chess-centre",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

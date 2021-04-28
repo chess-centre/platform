@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <!--
-      
-      #####                                  #####                                    
-      #       #    # ######  ####   ####     #     # ###### #    # ##### #####  ###### 
-      #       #    # #      #      #         #       #      ##   #   #   #    # #      
-      #       ###### #####   ####   ####     #       #####  # #  #   #   #    # #####  
-      #       #    # #           #      #    #       #      #  # #   #   #####  #      
-      #       #    # #      #    # #    #    #     # #      #   ##   #   #   #  #      
-      #####   #    # ######  ####   ####      #####  ###### #    #   #   #    # ###### 
+      #####                                  #####
+      #       #    # ######  ####   ####     #     # ###### #    # ##### #####  ######
+      #       #    # #      #      #         #       #      ##   #   #   #    # #
+      #       ###### #####   ####   ####     #       #####  # #  #   #   #    # #####
+      #       #    # #           #      #    #       #      #  # #   #   #####  #
+      #       #    # #      #    # #    #    #     # #      #   ##   #   #   #  #
+      #####   #    # ######  ####   ####      #####  ###### #    #   #   #    # ######
 
       ❤️ You've come this far! Why not look a little further...
-      
-      ALL our code is completely open-source, feel free to check it out 
+
+      ALL our code is completely open-source, feel free to check it out
 
       🚀 GitHub: https://github.com/chess-centre/platform
-      
-      ✔️ Tips on contributing? 
+
+      ✔️ Tips on contributing?
 
       See: https://github.com/chess-centre/welcome
 
       Want to speak to us about a feature?
 
-      💬 Discord: https://discord.me/chesscentre
+      💬 Discuss: https://github.com/chess-centre/platform/discussions/categories/ideas
 
-          > Tech Channels - API / APP / Support 
-
-      🐣 Found our Easter Eggs? Contact Us! 
+      🐣 Found our Easter Eggs? Contact Us!
 
     -->
   <head>
@@ -35,17 +32,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="The Chess Centre" />
-    <link rel="apple-touch-icon" sizes="192x192" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="icon" sizes="192x192" href="%PUBLIC_URL%/logo192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="white" />
+    <meta name="apple-mobile-web-app-title" content="The Chess Centre" />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="%PUBLIC_URL%/logo192.png"
+    />
+    <link rel="icon" sizes="192x192" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
+    <link
+      rel="apple-touch-startup-image"
+      href="splash-screen/tCC_splash_640x1136.png"
+      media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="splash-screen/tCC_splash_750x1294.png"
+      media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="splash-screen/tCC_splash_1242x2148.png"
+      media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="splash-screen/tCC_splash_1125x2436.png"
+      media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="splash-screen/tCC_splash_1536x2048.png"
+      media="(min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="splash-screen/tCC_splash_1668x2224.png"
+      media="(min-device-width: 834px) and (max-device-width: 834px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+    <link
+      rel="apple-touch-startup-image"
+      href="splash-screen/tCC_splash_2048x2732.png"
+      media="(min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait)"
+    />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+    <script src="https://kit.fontawesome.com/3af9f0f4d1.js" crossorigin="anonymous"></script>
+
     <title>The Chess Centre</title>
   </head>
   <body class="antialiased">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
+  <script>
+    var spread_shop_config = {
+      shopName: "the-chess-centre",
+      locale: "en_GB",
+      prefix: "https://shop.spreadshirt.co.uk",
+      baseId: "myShop",
+    };
+  </script>
+  <script src="https://f.convertkit.com/ckjs/ck.5.js"></script>
 </html>

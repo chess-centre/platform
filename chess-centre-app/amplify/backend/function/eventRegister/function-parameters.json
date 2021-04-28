@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "api": {
+      "platformchesscentreapp": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

@@ -1,0 +1,72 @@
+type Plan @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "key", fields: ["key"]) {
+  id: ID!
+  key: String!
+  stripePriceId: String!
+  stripeProductId: String!
+}
+
+type EventType @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  name: String!
+  description: String
+  url: String
+  color: String
+  time: String
+  maxEntries: Int
+  stripePriceId: String @auth(rules: [{allow: private, operations: [read]}])
+  timeControl: String
+  eventType: String
+  defaultPrice: String
+  canRegister: Boolean
+}
+
+type FidePlayer @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  fideId: Int
+  federation: String
+  title: String
+  currentRating: Int
+}
+
+type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: groups, groups: ["Member"], operations: [read]}]) @key(name: "stripe", fields: ["stripeCustomerId"]) {
+  id: ID!
+  about: String
+  fideId: Int
+  ecfId: String
+  username: String
+  name: String
+  email: String
+  eventsByEmail: Boolean
+  promoByEmail: Boolean
+  eventsByText: Boolean
+  promoByText: Boolean
+  entries: [Entry!] @connection(keyName: "byMember", fields: ["id"])
+  stripeCustomerId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
+  stripeCurrentPeriodEnd: Float @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
+  stripePriceId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
+  stripeProductId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
+  ecfRating: String
+}
+
+type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "eventsByStartDate", fields: ["startDate", "name"], queryField: "eventsByStartDate") {
+  id: ID!
+  name: String
+  description: String
+  rounds: Int
+  time: String
+  type: EventType! @connection
+  startDate: AWSDate!
+  endDate: AWSDate
+  entries: [Entry!] @connection(keyName: "byEvent", fields: ["id"])
+  maxEntries: Int
+  entryCount: Int
+}
+
+type Entry @model @auth(rules: [{allow: groups, groups: ["Member"]}, {allow: private, provider: iam}]) @key(name: "byEvent", fields: ["eventId"]) @key(name: "byMember", fields: ["memberId"]) {
+  id: ID!
+  eventId: ID!
+  memberId: ID!
+  event: Event @connection(fields: ["eventId"])
+  member: Member @connection(fields: ["memberId"])
+}
+ 

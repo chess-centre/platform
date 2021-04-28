@@ -1,107 +1,197 @@
-import React from 'react';
-import Logo  from "../../assets/img/logo.svg";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
+import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
+import NewsLetter from "../../components/NewsLetter/NewsLetter";
+import EventCard from "../../components/Events/EventCard";
+import { API } from "aws-amplify";
+import prettyDate from "../../utils/DateFormating";
 
-function Events() {
-  return (
-    <>
-      <div class="py-12 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-centre lg:text-center">
-              <a href="/" aria-label="Home">
-                <img className="h-20 sm:h-10" src={Logo} alt="Logo" />
-              </a>
-            <h2 class="text-base text-teal-600 font-semibold tracking-wide uppercase"><a href="/">Events</a></h2>
-            <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Coming soon
-            </p>
-            <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-              Chess can be played in all kinds of ways, from long play 😴 to bullet 🔥 and from two players 🤼 to four 😲! 
-            The important thing is to have fun and to enjoy the challenge.</p>
-          </div>
-
-          <div class="mt-10">
-            <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-              <div class="flex">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white">
-                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <dt class="text-lg leading-6 font-medium text-gray-900">
-                    Bob Burns
-                  </dt>
-                  <dd class="mt-2 text-base text-gray-500">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
-                </dd>
-                </div>
-              </div>
-
-              <div class="flex">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white">
-
-              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <dt class="text-lg leading-6 font-medium text-gray-900">
-                    Club Nights
-                  </dt>
-                  <dd class="mt-2 text-base text-gray-500">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
-            </dd>
-                </div>
-              </div>
-
-              <div class="flex">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white">
-              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <dt class="text-lg leading-6 font-medium text-gray-900">
-                    Rapid Plays
-                  </dt>
-                  <dd class="mt-2 text-base text-gray-500">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
-                </dd>
-                </div>
-              </div>
-
-              <div class="flex">
-                <div class="flex-shrink-0">
-                  <div class="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white">
-
-              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="ml-4">
-                  <dt class="text-lg leading-6 font-medium text-gray-900">
-                    Training Nights
-                  </dt>
-                  <dd class="mt-2 text-base text-gray-500">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
-                  </dd>
-                </div>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </div>
-      <FooterLanding></FooterLanding>
-    </>
-  )
+function setIcon(type) {
+  switch (type) {
+    case "congress":
+      return "fa-chess-king-alt";
+    case "rapidplay":
+      return "fa-chess-knight-alt";
+    case "junior":
+      return "fa-chess-rook-alt";
+    default:
+      return "fa-chess-bishop-alt";
+  }
 }
 
-export default Events
+function useEvents() {
+  const today = new Date();
+  const now = today.toISOString();
+  const future = today.setDate(today.getDate + 70);
+  return useQuery("eventData", async () => {
+    const events = await API.get(
+      "public",
+      `/events?startDate=${now}&endDate=${future}`
+    );
+    return events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+  });
+}
+
+export default function Events() {
+  const [selectedEventType, setSelectedEventType] = useState("all");
+  const selectableEventTypes = [
+    "all",
+    "congress",
+    "rapidplay",
+    "junior-rapidplay",
+  ];
+  const { isLoading, error, data } = useEvents();
+
+  return (
+    <div>
+      <div className="relative bg-gray-50 overflow-hidden">
+        <div className="relative pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-2 xl:pb-6">
+          <LandingNav current="events" />
+        </div>
+        <div className="bg-white">
+          <div className="max-w-7xl mx-auto py-16 px-4 sm:py-28 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
+                Events
+              </h2>
+              <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                Join us
+              </p>
+              <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
+                Simply create your account to sign up for one of our events.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="container m-auto">
+          <div className="pr-4 pl-4 sm:flex sm:flex-col sm:align-center">
+            <div className="relative self-center mt-6 bg-gray-100 rounded-lg p-0.5 flex sm:mt-8">
+              {selectableEventTypes.map((type, key) => {
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setSelectedEventType(type)}
+                    type="button"
+                    className={`${
+                      type === selectedEventType
+                        ? "bg-white border-gray-200 text-teal-500"
+                        : ""
+                    } relative w-1/2 rounded-md shadow-sm py-2 text-sm font-medium text-gray-700 
+                    whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-teal-500 focus:z-10 sm:w-auto sm:px-8`}
+                  >
+                    {`${type.charAt(0).toUpperCase()}${type
+                      .slice(1)
+                      .replace("-rapidplay", "")}`}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div className="flex">
+            {" "}
+            {!error ? (
+              <div
+                className={
+                  isLoading
+                    ? "m-auto"
+                    : "m-auto mt-6 space-y-4 sm:mt-10 sm:space-y-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-3 mb-8"
+                }
+              >
+                {!isLoading ? (
+                  data
+                    .filter((event) =>
+                      selectedEventType === "all"
+                        ? // we don't want all other event types, just these from the clickable buttons (above)
+                          selectableEventTypes.some(
+                            (e) => e === event.type.eventType
+                          )
+                        : // we return a specific type:
+                          event.type.eventType === selectedEventType
+                    )
+                    .map(
+                      (
+                        {
+                          id,
+                          name,
+                          description,
+                          rounds,
+                          startDate,
+                          endDate,
+                          type,
+                          color,
+                          entryCount,
+                        },
+                        key
+                      ) => {
+                        return (
+                          <div className="">
+                            <EventCard
+                              key={key}
+                              id={id}
+                              icon={setIcon(type.eventType)}
+                              color={color || type.color}
+                              defaultPrice={type.defaultPrice}
+                              type={type.eventType}
+                              name={name}
+                              url={type.url}
+                              description={description}
+                              details={[
+                                {
+                                  icon: "fad fa-calendar-alt",
+                                  ariaName: "Date / Time",
+                                  information: prettyDate(startDate, endDate),
+                                  show: !!startDate,
+                                },
+                                {
+                                  icon: "fad fa-flag",
+                                  ariaName: "Number of Rounds",
+                                  information: `${rounds} rounds`,
+                                  show: !!rounds,
+                                },
+                                {
+                                  icon: "fad fa-chess-clock",
+                                  ariaName: "Time Control",
+                                  information: `${type.timeControl}`,
+                                  show: !!type.timeControl,
+                                },
+                                {
+                                  icon: "fad fa-user-friends",
+                                  ariaName: "Entries",
+                                  information: `${entryCount} ${
+                                    entryCount === 1 ? "entry" : "entries"
+                                  }`,
+                                  show: !!entryCount,
+                                },
+                              ]}
+                            />
+                          </div>
+                        );
+                      }
+                    )
+                ) : (
+                  <div className="m-auto text-center mt-10 mb-10">
+                    <div className="text-teal-500 mb-2">
+                      <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
+                    </div>
+                    <div className="italic text-gray-500">
+                      fetching events...
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="m-auto text-center mt-10 mb-10">
+                <div className="italic text-red-700">
+                  Error fetching events.
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <NewsLetter />
+      </div>
+      <FooterLanding />
+    </div>
+  );
+}

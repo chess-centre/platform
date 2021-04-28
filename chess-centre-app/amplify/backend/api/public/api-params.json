@@ -1,0 +1,133 @@
+{
+    "paths": [
+        {
+            "name": "/events",
+            "lambdaFunction": "getEvents",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/events"
+        },
+        {
+            "name": "/checkout",
+            "lambdaFunction": "stripeCheckout",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/checkout"
+        },
+        {
+            "name": "/stripe/webhook",
+            "lambdaFunction": "stripeWebhook",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/stripe/webhook"
+        },
+        {
+            "name": "/customer-portal",
+            "lambdaFunction": "stripeCustomerPortal",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/customer-portal"
+        },
+        {
+            "name": "/event/register",
+            "lambdaFunction": "eventRegister",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/event/register"
+        }
+    ],
+    "resourceName": "public",
+    "apiName": "public",
+    "functionArns": [
+        {
+            "lambdaFunction": "getEvents"
+        },
+        {
+            "lambdaFunction": "stripeCheckout"
+        },
+        {
+            "lambdaFunction": "stripeWebhook"
+        },
+        {
+            "lambdaFunction": "stripeCustomerPortal"
+        },
+        {
+            "lambdaFunction": "eventRegister"
+        }
+    ],
+    "privacy": {
+        "auth": 3,
+        "unauth": 0,
+        "authRoleName": "amplify-platformchesscentrea-dev-45655-authRole",
+        "unAuthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "getEvents",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "stripeCheckout",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "stripeWebhook",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "stripeCustomerPortal",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "eventRegister",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "a14adc3d"
+}

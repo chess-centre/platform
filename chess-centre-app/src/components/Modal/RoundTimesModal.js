@@ -1,0 +1,28 @@
+import React from "react";
+import {
+  Modal,
+  ModalBody,
+  ModalFooter,
+  Button,
+} from "@windmill/react-ui";
+import RoundTimes from "../PlayingTimes/Rounds";
+
+export default function RoundTimesModal(props) {
+
+  const { eventId, eventType, open, closeModal } = props;
+
+  return (
+    <>
+      <Modal isOpen={open} onClose={() => closeModal()} >
+        <ModalBody> 
+            <RoundTimes eventId={eventId} eventType={eventType} removeStyles={true} />
+          </ModalBody >
+        <ModalFooter>
+          <Button className="w-full sm:w-auto" onClick={closeModal}>
+            Close
+          </Button>
+        </ModalFooter>
+      </Modal>
+    </>
+  );
+};

@@ -1,39 +1,120 @@
-import { lazy } from 'react'
-
-// use lazy for better code splitting, a.k.a. load faster
-const Dashboard = lazy(() => import('../pages/Dashboard/Dashboard'))
-const Events = lazy(() => import('../pages/Dashboard/Events'))
-const Results = lazy(() => import('../pages/Dashboard/Results'))
-const Members = lazy(() => import('../pages/Dashboard/Members'))
-const Profile = lazy(() => import('../pages/User/Profile'))
-const Settings = lazy(() => import('../pages/User/Settings'))
-
+import { lazy } from "react";
 
 const routes = [
   {
-    path: '/dashboard',
-    component: Dashboard
+    path: "/",
+    component: lazy(() => import("../pages/Home/Home")),
+    isPrivate: false,
+    exact: true,
   },
   {
-    path: '/events',
-    component: Events
+    path: "/shop",
+    component: lazy(() => import("../pages/Shop/Shop")),
+    isPrivate: false,
   },
   {
-    path: '/results',
-    component: Results
-  }, 
-  {
-    path: '/members',
-    component: Members
+    path: "/login",
+    component: lazy(() => import("../pages/Auth/Login")),
+    isPrivate: false,
   },
   {
-    path: '/profile',
-    component: Profile
+    path: "/register",
+    component: lazy(() => import("../pages/Auth/CreateAccount")),
+    exact: true,
+    isPrivate: false,
   },
   {
-    path: '/settings',
-    component: Settings
-  }
-]
+    path: "/register/confirm/:email",
+    component: lazy(() => import("../pages/Auth/ConfirmEmail")),
+    exact: true,
+    isPrivate: false,
+  },
+  {
+    path: "/forgot-password",
+    component: lazy(() => import("../pages/Auth/ForgotPassword")),
+    isPrivate: false,
+  },
+  {
+    path: "/our-mission",
+    component: lazy(() => import("../pages/Home/OurMission")),
+    isPrivate: false,
+  },
+  {
+    path: "/events/club",
+    component: lazy(() => import("../pages/Events/ClubNight")),
+    isPrivate: false,
+    exact: false
+  },
+  {
+    path: "/events/match",
+    component: lazy(() => import("../pages/Events/MatchNight")),
+    isPrivate: false,
+    exact: false
+  },
+  {
+    path: "/events/junior-club/:id",
+    component: lazy(() => import("../pages/Events/JuniorClub")),
+    isPrivate: false
+  },
+  {
+    path: "/events/junior-rapidplay/:id",
+    component: lazy(() => import("../pages/Events/JuniorRapidplay")),
+    isPrivate: false
+  },
+  {
+    path: "/events/congress/:id",
+    component: lazy(() => import("../pages/Events/Congress")),
+    isPrivate: false
+  },
+  {
+    path: "/events/rapidplay/:id",
+    component: lazy(() => import("../pages/Events/Rapidplay")),
+    isPrivate: false
+  },
+  {
+    path: "/events",
+    component: lazy(() => import("../pages/Home/Events")),
+    isPrivate: false,
+  },
+  {
+    path: "/membership",
+    component: lazy(() => import("../pages/Home/Membership")),
+    isPrivate: false,
+  },
+  {
+    path: "/about",
+    component: lazy(() => import("../pages/Home/About")),
+    isPrivate: false,
+  },
+  {
+    path: "/code-of-conduct",
+    component: lazy(() => import("../pages/Home/CodeOfConduct")),
+    isPrivate: false,
+  },
+  {
+    path: "/roadmap",
+    component: lazy(() => import("../components/Roadmap")),
+    isPrivate: false,
+  },
+  // Authenticated Routes (see `src/containers/Layout` for nested routes)
+  {
+    path: "/app",
+    component: lazy(() => import("../containers/Layout")),
+    isPrivate: true,
+  },
+  {
+    path: "/internal/live",
+    component: lazy(() => import("../pages/Broadcast/Internal")),
+    exact: true,
+    isPrivate: true,
+    isAdmin: true
+  },
+  {
+    path: "/broadcast/live",
+    component: lazy(() => import("../pages/Broadcast/Live")),
+    exact: true,
+    isPrivate: true,
+  },
+];
 
-export default routes
+export default routes;

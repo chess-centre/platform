@@ -1,19 +1,89 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-chesscentreapp-dev-204000-authRole",
-      "UnauthRoleArn": "arn:aws:iam::089308357993:role/amplify-chesscentreapp-dev-204000-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::089308357993:role/amplify-chesscentreapp-dev-204000-authRole",
+      "AuthRoleName": "amplify-platformchesscentrea-dev-45655-authRole",
+      "UnauthRoleArn": "arn:aws:iam::089308357993:role/amplify-platformchesscentrea-dev-45655-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::089308357993:role/amplify-platformchesscentrea-dev-45655-authRole",
       "Region": "eu-west-1",
-      "DeploymentBucketName": "amplify-chesscentreapp-dev-204000-deployment",
-      "UnauthRoleName": "amplify-chesscentreapp-dev-204000-unauthRole",
-      "StackName": "amplify-chesscentreapp-dev-204000",
-      "StackId": "arn:aws:cloudformation:eu-west-1:089308357993:stack/amplify-chesscentreapp-dev-204000/9f70e8e0-8117-11eb-a3be-0a6ae1197ba5",
-      "AmplifyAppId": "d3qblzy5sygnwb"
+      "DeploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+      "UnauthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole",
+      "StackName": "amplify-platformchesscentrea-dev-45655",
+      "StackId": "arn:aws:cloudformation:eu-west-1:089308357993:stack/amplify-platformchesscentrea-dev-45655/80140260-8258-11eb-b760-0a09f476c48f",
+      "AmplifyAppId": "dmw9mluzv0ulb"
     },
     "categories": {
       "auth": {
-        "chesscentreappd43b41f8": {}
+        "platformchesscentreapp": {}
+      },
+      "function": {
+        "getEvents": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/getEvents-79757a31303238566947-build.zip"
+        },
+        "stripeCheckout": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/stripeCheckout-595750672b6734744c2b-build.zip"
+        },
+        "stripeWebhook": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/stripeWebhook-764a4a506d435a772b33-build.zip"
+        },
+        "platformchesscentreappPostConfirmation": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-2b4d357a33544d786663-build.zip"
+        },
+        "platformchesscentreappPreTokenGeneration": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/platformchesscentreappPreTokenGeneration-4e70635a727876413455-build.zip"
+        },
+        "stripeCustomerPortal": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/stripeCustomerPortal-34783153726e37753050-build.zip"
+        },
+        "eventRegister": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/eventRegister-746d6d3052537a746162-build.zip"
+        },
+        "ecfPlayer": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/ecfPlayer-73526678364b73417038-build.zip"
+        }
+      }
+    }
+  },
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify0f443b412ea14-staging-154920-authRole",
+      "UnauthRoleArn": "arn:aws:iam::089308357993:role/amplify-amplify0f443b412ea14-staging-154920-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::089308357993:role/amplify-amplify0f443b412ea14-staging-154920-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+      "UnauthRoleName": "amplify-amplify0f443b412ea14-staging-154920-unauthRole",
+      "StackName": "amplify-amplify0f443b412ea14-staging-154920",
+      "StackId": "arn:aws:cloudformation:eu-west-1:089308357993:stack/amplify-amplify0f443b412ea14-staging-154920/036e9550-80ef-11eb-a15c-02641e61c977",
+      "AmplifyAppId": "dmw9mluzv0ulb"
+    },
+    "categories": {
+      "auth": {
+        "platformchesscentreapp": {}
+      }
+    }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-platformchesscentrea-prod-44508-authRole",
+      "UnauthRoleArn": "arn:aws:iam::089308357993:role/amplify-platformchesscentrea-prod-44508-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::089308357993:role/amplify-platformchesscentrea-prod-44508-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
+      "UnauthRoleName": "amplify-platformchesscentrea-prod-44508-unauthRole",
+      "StackName": "amplify-platformchesscentrea-prod-44508",
+      "StackId": "arn:aws:cloudformation:eu-west-1:089308357993:stack/amplify-platformchesscentrea-prod-44508/dac1bba0-8256-11eb-a530-0acd9480bd5b",
+      "AmplifyAppId": "dmw9mluzv0ulb"
+    },
+    "categories": {
+      "auth": {
+        "platformchesscentreapp": {}
       }
     }
   }

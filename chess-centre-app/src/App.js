@@ -1,95 +1,47 @@
 import React, { lazy } from "react";
-import {
-  BrowserRouter as Router,
-  Switch
-} from "react-router-dom";
-import AccessibleNavigationAnnouncer from "./components/AccessibleNavigationAnnouncer";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ToastProvider } from "react-toast-notifications";
 import { AuthProvider } from "./context/Auth";
-import AppRoutes from "./components/AppRoute";
+import AppRoutes from "./components/Navigation/AppRoute";
+import routes from "./routes";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
-const Layout = lazy(() => import("./containers/Layout"));
-const Login = lazy(() => import("./pages/Auth/Login"));
-const Home = lazy(() => import("./pages/Home/LandingPage"));
-const CreateAccount = lazy(() => import("./pages/Auth/CreateAccount"));
-const ForgotPassword = lazy(() => import("./pages/Auth/ForgotPassword"));
-const ConfirmEmail = lazy(() => import("./pages/Auth/ConfirmEmail"));
-const Events = lazy(() => import('./pages/Home/Events'));
-const OurMission = lazy(() => import('./pages/Home/OurMission'));
-const Membership = lazy(() => import('./pages/Home/Membership'));
-const About = lazy(() => import('./pages/Home/About'));
-const routes = [
-  {
-    path: "/",
-    component: Home,
-    isPrivate: false,
-    exact:true
-  },
-  {
-    path: "/login",
-    component: Login,
-    isPrivate: false,
-  },
-  {
-    path: "/register",
-    component: CreateAccount,
-    isPrivate: false,
-  },
-  {
-    path: "/register/confirm",
-    component: ConfirmEmail,
-    isPrivate: false,
-  },
-  {
-    path: "/forgot-password",
-    component: ForgotPassword,
-    isPrivate: false,
-  },
-  {
-    path: "/our-mission",
-    component: OurMission,
-    isPrivate: false,
-  },
-  {
-    path: "/events",
-    component: Events,
-    isPrivate: false,
-  },
-  {
-    path: "/membership",
-    component: Membership,
-    isPrivate: false,
-  },
-  {
-    path: "/about",
-    component: About,
-    isPrivate: false,
-  },
-  {
-    path: "/app",
-    component: Layout,
-    isPrivate: true,
-  }
-];
- 
+const queryClient = new QueryClient();
+const STRIPE_KEY =
+  process.env.STRIPE_KEY ||
+  "pk_test_51ISWSYHSMP8H4TL9aCSlDl8OLfmuBAfUnkOCCENqvHSYzONYxSyMURq2YhnXVZHoyg8X8S7x3dDE4pfpGs03MeLb00E9DOqtMY";
+console.log(process.env.STRIPE_KEY, STRIPE_KEY);
+const stripePromise = loadStripe(STRIPE_KEY);
+
+const Page404 = lazy(() => import("./pages/Error/404"));
+
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <AccessibleNavigationAnnouncer />
-        <Switch>
-          {routes.map((route, index) => (
-            <AppRoutes
-              key={route.path + index}
-              path={route.path}
-              component={route.component}
-              isPrivate={route.isPrivate}
-              exact={route.exact}
-            />
-          ))}
-        </Switch>
-      </Router>
-    </AuthProvider>
-  )
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Elements stripe={stripePromise}>
+          <ToastProvider>
+            <Router>
+              <Switch>
+                {routes.map((route, index) => (
+                  <AppRoutes
+                    key={route.path + index}
+                    path={route.path}
+                    component={route.component}
+                    isPrivate={route.isPrivate}
+                    exact={route.exact}
+                  />
+                ))}
+                <Route component={Page404} />
+              </Switch>
+            </Router>
+          </ToastProvider>
+        </Elements>
+      </AuthProvider>
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;

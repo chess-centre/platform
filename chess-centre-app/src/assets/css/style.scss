@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Inter:wght@400;500;600;700;800;900&display=fallback");
+
+@tailwind base;
+@tailwind components;
+
+// Additional styles
+@import "additional-styles/utility-patterns.scss";
+@import "additional-styles/range-slider.scss";
+@import "additional-styles/toggle-switch.scss";
+@import "additional-styles/theme.scss";
+@import "additional-styles/chessboard.scss";
+
+@tailwind utilities;
+
+// Additional Tailwind directives: https://tailwindcss.com/docs/functions-and-directives/#responsive
+@responsive {
+  .rtl {
+    direction: rtl;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// See Alpine.js: https://github.com/alpinejs/alpine#x-cloak
+[x-cloak] {
+  display: none;
+}
+
+// AOS styles
+$aos-distance: 16px;
+@import "node_modules/aos/src/sass/aos.scss";
+
+
+::selection {
+  background-color: rgba(255, 132, 39, 0.1) !important;
+}
