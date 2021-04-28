@@ -49,11 +49,11 @@ function CongressEvent() {
                   5 standard play rounds being played from Saturday morning to
                   Sunday afternoon. Though the games are quicker than many
                   congress tournaments, they are still within the parameters of
-                  ECF standard play events and thus are fully graded.
+                  ECF standard play events and thus are fully rated.
                 </p>
 
                 <p>
-                  The “all-play-all” format of players competing in graded
+                  The “all-play-all” format of players competing in rated
                   groups of 6 also ensures that players know they will receive a
                   competitive and challenging test of their skills across all
                   rounds of the competitions. There’s no where to hide in our
@@ -67,7 +67,7 @@ function CongressEvent() {
                 </p>
                 <ul>
                   <li>60 mins per player on the clock</li>
-                  <li>All games will be ECF standard play graded.</li>
+                  <li>All games will be ECF standard play rated.</li>
                   <li>Entries are limited to 12 players.</li>
                 </ul>
               </div>

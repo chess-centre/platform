@@ -1,25 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
 import EventCard from "../../components/Events/EventCard";
 import { API } from "aws-amplify";
 import prettyDate from "../../utils/DateFormating";
-
-function formatDate(startDate, endDate) {
-  const d = (date) =>
-    new Date(date).toLocaleDateString("en-GB", {
-      weekday: "short",
-      day: "numeric",
-      month: "long",
-    });
-
-  if (!endDate) {
-    return `${d(startDate)}`;
-  } else {
-    return `${d(startDate)} - ${d(endDate)}`;
-  }
-}
 
 function setIcon(type) {
   switch (type) {
@@ -34,42 +20,28 @@ function setIcon(type) {
   }
 }
 
-export default function Events() {
+function useEvents() {
   const today = new Date();
   const now = today.toISOString();
   const future = today.setDate(today.getDate + 70);
-  const [events, setEvents] = useState([]);
-  const [isLoadingEvents, setIsLoadingEvent] = useState(false);
-  const [selectedEventType, setSelectedEventType] = useState("all");
+  return useQuery("eventData", async () => {
+    const events = await API.get(
+      "public",
+      `/events?startDate=${now}&endDate=${future}`
+    );
+    return events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+  });
+}
 
+export default function Events() {
+  const [selectedEventType, setSelectedEventType] = useState("all");
   const selectableEventTypes = [
     "all",
     "congress",
     "rapidplay",
     "junior-rapidplay",
   ];
-
-  useEffect(() => {
-    async function fetchEvents() {
-      try {
-        setIsLoadingEvent(true);
-        const events = await API.get(
-          "public",
-          `/events?startDate=${now}&endDate=${future}`
-        );
-        setEvents(
-          events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate))
-        );
-        setIsLoadingEvent(false);
-      } catch (err) {
-        console.log(err);
-        console.log("error fetching events");
-        setIsLoadingEvent(false);
-      }
-    }
-    fetchEvents();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { isLoading, error, data } = useEvents();
 
   return (
     <div>
@@ -117,93 +89,104 @@ export default function Events() {
             </div>
           </div>
           <div className="flex">
-            <div
-              className={
-                isLoadingEvents
-                  ? "m-auto"
-                  : "m-auto mt-6 space-y-4 sm:mt-10 sm:space-y-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-3 mb-8"
-              }
-            >
-              {!isLoadingEvents ? (
-                events
-                  .filter((event) =>
-                    selectedEventType === "all"
-                      ? // we don't want all other event types, just these from the clickable buttons (above)
-                        selectableEventTypes.some(
-                          (e) => e === event.type.eventType
-                        )
-                      : // we return a specific type:
-                        event.type.eventType === selectedEventType
-                  )
-                  .map(
-                    (
-                      {
-                        id,
-                        name,
-                        description,
-                        rounds,
-                        startDate,
-                        endDate,
-                        type,
-                        color,
-                        entryCount,
-                      },
-                      key
-                    ) => {
-                      return (
-                        <div className="">
-                          <EventCard
-                            key={key}
-                            id={id}
-                            icon={setIcon(type.eventType)}
-                            color={color || type.color}
-                            defaultPrice={type.defaultPrice}
-                            type={type.eventType}
-                            name={name}
-                            url={type.url}
-                            description={description}
-                            details={[
-                              {
-                                icon: "fad fa-calendar-alt",
-                                ariaName: "Date / Time",
-                                information: prettyDate(startDate, endDate),
-                                show: !!startDate,
-                              },
-                              {
-                                icon: "fad fa-flag",
-                                ariaName: "Number of Rounds",
-                                information: `${rounds} rounds`,
-                                show: !!rounds,
-                              },
-                              {
-                                icon: "fad fa-chess-clock",
-                                ariaName: "Time Control",
-                                information: `${type.timeControl}`,
-                                show: !!type.timeControl,
-                              },
-                              {
-                                icon: "fad fa-user-friends",
-                                ariaName: "Entries",
-                                information: `${entryCount} ${
-                                  entryCount === 1 ? "entry" : "entries"
-                                }`,
-                                show: !!entryCount,
-                              },
-                            ]}
-                          />
-                        </div>
-                      );
-                    }
-                  )
-              ) : (
-                <div className="m-auto text-center mt-10 mb-10">
-                  <div className="text-teal-500 mb-2">
-                    <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
+            {" "}
+            {!error ? (
+              <div
+                className={
+                  isLoading
+                    ? "m-auto"
+                    : "m-auto mt-6 space-y-4 sm:mt-10 sm:space-y-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-3 mb-8"
+                }
+              >
+                {!isLoading ? (
+                  data
+                    .filter((event) =>
+                      selectedEventType === "all"
+                        ? // we don't want all other event types, just these from the clickable buttons (above)
+                          selectableEventTypes.some(
+                            (e) => e === event.type.eventType
+                          )
+                        : // we return a specific type:
+                          event.type.eventType === selectedEventType
+                    )
+                    .map(
+                      (
+                        {
+                          id,
+                          name,
+                          description,
+                          rounds,
+                          startDate,
+                          endDate,
+                          type,
+                          color,
+                          entryCount,
+                        },
+                        key
+                      ) => {
+                        return (
+                          <div className="">
+                            <EventCard
+                              key={key}
+                              id={id}
+                              icon={setIcon(type.eventType)}
+                              color={color || type.color}
+                              defaultPrice={type.defaultPrice}
+                              type={type.eventType}
+                              name={name}
+                              url={type.url}
+                              description={description}
+                              details={[
+                                {
+                                  icon: "fad fa-calendar-alt",
+                                  ariaName: "Date / Time",
+                                  information: prettyDate(startDate, endDate),
+                                  show: !!startDate,
+                                },
+                                {
+                                  icon: "fad fa-flag",
+                                  ariaName: "Number of Rounds",
+                                  information: `${rounds} rounds`,
+                                  show: !!rounds,
+                                },
+                                {
+                                  icon: "fad fa-chess-clock",
+                                  ariaName: "Time Control",
+                                  information: `${type.timeControl}`,
+                                  show: !!type.timeControl,
+                                },
+                                {
+                                  icon: "fad fa-user-friends",
+                                  ariaName: "Entries",
+                                  information: `${entryCount} ${
+                                    entryCount === 1 ? "entry" : "entries"
+                                  }`,
+                                  show: !!entryCount,
+                                },
+                              ]}
+                            />
+                          </div>
+                        );
+                      }
+                    )
+                ) : (
+                  <div className="m-auto text-center mt-10 mb-10">
+                    <div className="text-teal-500 mb-2">
+                      <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
+                    </div>
+                    <div className="italic text-gray-500">
+                      fetching events...
+                    </div>
                   </div>
-                  <div className="italic text-gray-500">fetching events...</div>
+                )}
+              </div>
+            ) : (
+              <div className="m-auto text-center mt-10 mb-10">
+                <div className="italic text-red-700">
+                  Error fetching events.
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
         <NewsLetter />

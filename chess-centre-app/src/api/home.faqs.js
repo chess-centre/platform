@@ -13,7 +13,7 @@ export const faqs = [
       question: "Can I just turn up to for a casual game?",
       answer:
         `Absolutely! We will be running all kinds of events but our 
-        <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="/events/club-night">Thursday Club Night</a> 
+        <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="/events/club">Thursday Club Night</a> 
          will be the best time to just come down, have a drink and see what is going on. There is no charge or expectation to sign-up for your first few visits`,
     },
     {

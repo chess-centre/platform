@@ -15,7 +15,10 @@ function DownloadPWA() {
                 <img
                   className="object-cover lg:h-full lg:w-full"
                   src={mobileApp}
-                  alt=""
+                  alt="Mobile App"
+                  width="384"
+                  height="432"
+                  layout="responsive"
                 />
               </div>
             </div>
