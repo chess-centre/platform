@@ -1,4 +1,4 @@
-import mobileApp from "../../assets/img/mobile-app.jpg";
+import mobileApp from "../../assets/img/mobile-app.png";
 
 function DownloadPWA() {
   return (
@@ -15,7 +15,10 @@ function DownloadPWA() {
                 <img
                   className="object-cover lg:h-full lg:w-full"
                   src={mobileApp}
-                  alt=""
+                  alt="Mobile App"
+                  width="384"
+                  height="432"
+                  layout="responsive"
                 />
               </div>
             </div>
