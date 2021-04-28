@@ -19,7 +19,7 @@ function Membership() {
                 Join our community
               </p>
               <div className="pt-4">
-                <i class="fad fa-users-crown fa-4x text-white"></i>
+                <i className="fad fa-users-crown fa-4x text-white"></i>
               </div>
               <p className="text-xl text-gray-300">
                 Learning, playing and discovering what makes this game so

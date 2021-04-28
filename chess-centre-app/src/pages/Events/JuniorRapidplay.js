@@ -37,7 +37,7 @@ export default function JuniorRapidplayEvent() {
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                 <p>
                   Our Open Rapidplay Tournaments also tend to follow our favored
-                  “all-play-all” format of players competing in graded groups of
+                  “all-play-all” format of players competing in rated groups of
                   six, to ensure that players know they will receive a competitive
                   and challenging test of their skills across all rounds of the
                   competitions.
@@ -56,7 +56,7 @@ export default function JuniorRapidplayEvent() {
                 </p>
                 <ul>
                   <li>25 mins per player on the clock</li>
-                  <li>All games will be ECF standard play graded.</li>
+                  <li>All games will be ECF standard play rated.</li>
                   <li>Entries are limited to 12 players.</li>
                 </ul>
 
