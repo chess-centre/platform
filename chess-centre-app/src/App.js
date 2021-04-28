@@ -6,12 +6,8 @@ import AppRoutes from "./components/Navigation/AppRoute";
 import routes from "./routes";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-
-// This is the publishable key, so it's ok to include directly.
-// Will need to dynamically pass this once we have a production key.
-const stripePromise = loadStripe(
-  "pk_test_51ISWSYHSMP8H4TL9aCSlDl8OLfmuBAfUnkOCCENqvHSYzONYxSyMURq2YhnXVZHoyg8X8S7x3dDE4pfpGs03MeLb00E9DOqtMY"
-);
+const STRIPE_KEY =  process.env.STRIPE_KEY || "pk_test_51ISWSYHSMP8H4TL9aCSlDl8OLfmuBAfUnkOCCENqvHSYzONYxSyMURq2YhnXVZHoyg8X8S7x3dDE4pfpGs03MeLb00E9DOqtMY";
+const stripePromise = loadStripe(STRIPE_KEY);
 
 const Page404 = lazy(() => import("./pages/Error/404"));
 
