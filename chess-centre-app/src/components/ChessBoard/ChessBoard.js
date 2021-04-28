@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from "react";
 import Children from "react-children-utilities";
 import * as uuid from "uuid";
 import { pgnView } from "@mliebelt/pgn-viewer";
+import "../../assets/css/additional-styles/chessboard.scss";
 
 function PGNViewer(props) {
   const { layout, size }  = props;

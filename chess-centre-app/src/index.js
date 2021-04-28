@@ -6,7 +6,7 @@ import { SidebarProvider } from "./context/SidebarContext";
 import ThemedSuspense from "./components/ThemedSuspense";
 import { Windmill } from "@windmill/react-ui";
 import Theme from "./theme.js";
-import * as serviceWorker from "./serviceWorker";
+//import * as serviceWorker from "./serviceWorker";
 
 // if (process.env.NODE_ENV !== "production") {
 //   const axe = require("react-axe")
@@ -27,4 +27,5 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+//navigator.serviceWorker.register("/service-worker.js");
+//serviceWorker.register();
