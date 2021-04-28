@@ -1,4 +1,4 @@
-import mobileApp from "../../assets/img/mobile-app.jpg";
+import mobileApp from "../../assets/img/mobile-app.png";
 
 function DownloadPWA() {
   return (

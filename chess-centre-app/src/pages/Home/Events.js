@@ -4,6 +4,7 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
 import EventCard from "../../components/Events/EventCard";
 import { API } from "aws-amplify";
+import prettyDate from "../../utils/DateFormating";
 
 function formatDate(startDate, endDate) {
   const d = (date) =>
@@ -165,10 +166,7 @@ export default function Events() {
                               {
                                 icon: "fad fa-calendar-alt",
                                 ariaName: "Date / Time",
-                                information: `${formatDate(
-                                  startDate,
-                                  endDate
-                                )}`,
+                                information: prettyDate(startDate, endDate),
                                 show: !!startDate,
                               },
                               {

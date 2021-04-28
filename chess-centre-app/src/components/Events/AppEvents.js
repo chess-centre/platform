@@ -7,6 +7,7 @@ import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
 import Register from "./Register";
 import RoundTimesModal from "../Modal/RoundTimesModal";
+import prettyDate from "../../utils/DateFormating";
 
 const listEvents = /* GraphQL */ `
   query ListEvents(
@@ -62,16 +63,7 @@ const listEvents = /* GraphQL */ `
   }
 `;
 
-function formatDate(date) {
-  return new Date(date).toLocaleDateString("en-GB", {
-    weekday: "short",
-    day: "numeric",
-    month: "long",
-  });
-}
-
-function UpComingEvents() {
-  
+export default function UpComingEvents() {
   const { search } = useLocation();
   const { eventId } = queryString.parse(search);
   const stripe = useStripe();
@@ -181,9 +173,7 @@ function UpComingEvents() {
               <section key={index} className="relative">
                 <div
                   className={
-                    id === eventId
-                      ? "m-2 bg-pink-100 dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden"
-                      : "m-2 bg-white dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden"
+                    "m-2 bg-white dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden"
                   }
                 >
                   <div className="px-4 sm:px-4 space-y-2 pb-2">
@@ -191,6 +181,11 @@ function UpComingEvents() {
                       <div className="col-span-2">
                         <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1">
                           {name || type.name}{" "}
+                          {eventId === id ? (
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                              Selected
+                            </span>
+                          ) : null}
                         </h2>
                         <p className="text-sm text-gray-700 dark:text-gray-500">
                           Entries:{" "}
@@ -224,11 +219,7 @@ function UpComingEvents() {
                     <div>
                       <p className="sm:inline text-xs text-teal-700 mr-2 mb-2">
                         <i className="fad fa-calendar-alt mr-1"></i>
-                        <span>
-                          {`${formatDate(startDate)}${
-                            endDate ? ` - ${formatDate(endDate)}` : ""
-                          }`}
-                        </span>{" "}
+                        <span>{prettyDate(startDate, endDate)}</span>{" "}
                       </p>
                       {rounds && (
                         <p className="sm:inline text-xs text-teal-700 mr-2 mb-2">
@@ -249,7 +240,7 @@ function UpComingEvents() {
                       )}
                     </div>
                   </div>
-                  <div className="w-full bg-white">
+                  <div className={"w-full bg-white"}>
                     {entries?.items.length > 0 && (
                       <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2">
                         <thead className="bg-gray-100 dark:bg-gray-800 border-b-2">
@@ -301,7 +292,7 @@ function UpComingEvents() {
                                   <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
                                     {member?.name}
                                   </td>
-                                  <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                  <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 text-center">
                                     {member?.ecfRating}
                                   </td>
                                 </tr>
@@ -328,5 +319,3 @@ function UpComingEvents() {
     </>
   );
 }
-
-export default UpComingEvents;
