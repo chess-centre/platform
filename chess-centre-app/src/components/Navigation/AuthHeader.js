@@ -7,9 +7,12 @@ import {
   OutlineLogoutIcon,
 } from "../../icons";
 import { Dropdown, DropdownItem } from "@windmill/react-ui";
-import { logout, useAuthDispatch } from "../../context/Auth";
+import { logout, useAuthDispatch, useAuthState } from "../../context/Auth";
 
 function Header() {
+  const { user: {attributes: {
+    given_name
+  } } } = useAuthState();
   const dispatch = useAuthDispatch();
   const history = useHistory();
   const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext);
@@ -40,6 +43,7 @@ function Header() {
         <ul className="flex items-center flex-shrink-0 space-x-6">
           {/* <!-- Profile menu --> */}
           <li className="relative">
+            { given_name && (<span className="mr-2 text-xs text-gray-900">Welcome, {given_name}</span>) }
             <button
               className="rounded-full focus:shadow-outline-teal focus:outline-none"
               onClick={handleProfileClick}
