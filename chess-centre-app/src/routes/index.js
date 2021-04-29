@@ -8,11 +8,6 @@ const routes = [
     exact: true,
   },
   {
-    path: "/shop",
-    component: lazy(() => import("../pages/Shop/Shop")),
-    isPrivate: false,
-  },
-  {
     path: "/login",
     component: lazy(() => import("../pages/Auth/Login")),
     isPrivate: false,
