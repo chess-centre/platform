@@ -162,10 +162,10 @@ export default function UpComingEvents() {
                   entryCount,
                   rounds,
                 },
-                index
+                key
               ) => {
                 return (
-                  <section key={index} className="relative">
+                  <section key={key} className="relative">
                     <div
                       className={
                         "m-2 bg-white dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden"
@@ -239,8 +239,8 @@ export default function UpComingEvents() {
                       </div>
                       <div className={"w-full bg-white"}>
                         {entries?.items.length > 0 && (
-                          <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2">
-                            <thead className="bg-gray-100 dark:bg-gray-800 border-b-2">
+                          <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2 rounded">
+                            <thead className="bg-gray-100 dark:bg-gray-800 border-b-2 rounded-lg">
                               <tr>
                                 <th
                                   scope="col"
@@ -270,11 +270,11 @@ export default function UpComingEvents() {
                                     Number(b.member.ecfRating) -
                                     Number(a.member.ecfRating)
                                 )
-                                .map(({ member, memberId }, i) => {
-                                  const isEven = i % 2 === 0;
+                                .map(({ member, memberId }, key) => {
+                                  const isEven = key % 2 === 0;
                                   return (
                                     <tr
-                                      key={i}
+                                      key={key}
                                       className={
                                         memberId === user.attributes.sub
                                           ? "bg-yellow-50"
@@ -284,7 +284,7 @@ export default function UpComingEvents() {
                                       }
                                     >
                                       <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 text-center">
-                                        {i + 1}
+                                        {key + 1}
                                       </td>
                                       <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
                                         {member?.name}

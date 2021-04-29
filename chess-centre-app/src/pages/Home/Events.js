@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
@@ -59,7 +60,17 @@ export default function Events() {
                 Join us
               </p>
               <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-                Simply create your account to sign up for one of our events.
+                Our official events open for registration.
+              </p>
+              <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
+                Simply create your{" "}
+                <Link
+                  className="text-teal-500 hover:text-teal-700 no-underline"
+                  to="/register"
+                >
+                  free account
+                </Link>{" "}
+                to sign up.
               </p>
             </div>
           </div>

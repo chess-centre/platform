@@ -119,6 +119,7 @@ const ECFProfileCard = ({
   confirmQuery,
   undoConfirm,
 }) => {
+
   const confirmECFInfo = () => {
     confirmQuery();
   };
@@ -195,20 +196,6 @@ const ECFProfileCard = ({
               </dd>
             </div>
           ) : null}
-          <div className="py-4 sm:py-5 sm:grid sm:grid-cols-1 sm:gap-4 sm:px-6 text-center">
-            <button
-              onClick={confirmECFInfo}
-              className="bg-teal-600  border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-xs sm:text-sm font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-            >
-              Yep, that's me!
-            </button>
-            <div
-              className="mt-4 sm:mt-0 text-xs text-gray-600 cursor-pointer"
-              onClick={handleUndo}
-            >
-              undo
-            </div>
-          </div>
         </dl>
       </div>
     </div>
@@ -226,7 +213,8 @@ const LoadingCard = () => {
   );
 };
 
-export default function ChessInfo() {
+export default function ChessInfo(props) {
+  const { isLoading } = props;
   const [memberId, setMemberId] = useState("");
   const [newAbout, setAboutMe] = useState("");
   const [newECFId, setNewECFId] = useState("");
@@ -256,7 +244,7 @@ export default function ChessInfo() {
         autoDismiss: true,
       });
     } catch (error) {
-      addToast("Oops! Something went wrong.", {
+      addToast("Oops! Something went wrong. Try again.", {
         appearance: "error",
         autoDismiss: true,
       });
@@ -349,6 +337,7 @@ export default function ChessInfo() {
                   id="about"
                   name="about"
                   rows="4"
+                  disabled={isLoading}
                   onChange={(e) => setAboutMe(e.target.value)}
                   defaultValue={newAbout}
                   className="text-xs sm:text-sm mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-teal-400 focus:border-teal-400 dark:text-gray-400 dark:border-gray-700 dark:bg-gray-900"
@@ -384,7 +373,7 @@ export default function ChessInfo() {
 
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <Input
-                    disabled={isConfirmed}
+                    disabled={isConfirmed || isLoading}
                     onChange={(e) => fetchECFData(e.target.value)}
                     type="text"
                     name="ecf_ref"
@@ -428,7 +417,7 @@ export default function ChessInfo() {
                 </label>
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <Input
-                    disabled={isConfirmed && showFoundFide}
+                    disabled={(isConfirmed && showFoundFide) || isLoading}
                     onChange={(e) => fetchFIDEData(e.target.value)}
                     type="text"
                     name="fide_ref"
