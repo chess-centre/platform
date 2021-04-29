@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
-import RoundTimes from "../../components/PlayingTimes/Rounds";
+import RoundTimes from "../../components/RoundTimes/Rounds";
 
 export default function JuniorRapidplayEvent() {
   const { id } = useParams();

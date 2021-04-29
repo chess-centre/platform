@@ -10,9 +10,8 @@ import { Elements } from "@stripe/react-stripe-js";
 
 const queryClient = new QueryClient();
 const STRIPE_KEY =
-  process.env.STRIPE_KEY ||
+  process.env.REACT_APP_STRIPE_KEY ||
   "pk_test_51ISWSYHSMP8H4TL9aCSlDl8OLfmuBAfUnkOCCENqvHSYzONYxSyMURq2YhnXVZHoyg8X8S7x3dDE4pfpGs03MeLb00E9DOqtMY";
-console.log(process.env.STRIPE_KEY, STRIPE_KEY);
 const stripePromise = loadStripe(STRIPE_KEY);
 
 const Page404 = lazy(() => import("./pages/Error/404"));

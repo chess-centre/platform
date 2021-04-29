@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
 import { ChessInfo, AccountInfo } from "./sections";
-import { useAuthState } from "../../../context/Auth";
+import { useAuthState, isPaidMember } from "../../../context/Auth";
 
 const getMember = /* GraphQL */ `
   query GetMember($id: ID!) {
@@ -114,19 +114,9 @@ function Profile() {
   const [member, setMember] = useState({});
   const [customerPortalUrl, setCustomerPortalUrl] = useState();
   const [isLoadingProfile, setIsLoadingProfile] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
 
   useEffect(() => {
-    const getUser = async () => {
-      const {
-        data: { getMember: member },
-      } = await API.graphql({
-        query: getMember,
-        authMode: "AWS_IAM",
-        variables: { id: user.username },
-      });
-      setMember(member);
-    };
-
     const getCustomerPortal = async () => {
       const returnUrl = `${window.location.origin}/app/profile`;
       const { url } = await API.post("public", "/customer-portal", {
@@ -139,10 +129,27 @@ function Profile() {
       setCustomerPortalUrl(url);
     };
 
+    const getUser = async () => {
+      const {
+        data: { getMember: member },
+      } = await API.graphql({
+        query: getMember,
+        authMode: "AWS_IAM",
+        variables: { id: user.username },
+      });
+      setMember(member);
+    };
+
+    const getMemberStatus = async () => {
+      const membershipStatus = await isPaidMember();
+      setIsPaid(membershipStatus);
+    };
+
     const getProfileData = async () => {
       setIsLoadingProfile(true);
       await getUser();
-      await getCustomerPortal();
+      await getCustomerPortal(); 
+      await getMemberStatus();
       setIsLoadingProfile(false);
     };
 
@@ -161,14 +168,28 @@ function Profile() {
             `}
             aria-current="page"
           >
-            <div className="flex text-center p-3">
+            <div className="flex text-center pt-3 pl-3 pr-3 pb-3">
               <div className="text-sm inline-block font-medium">
                 <i className="fas fa-1x fa-user-circle mr-2 text-teal-500 dark:text-teal-400"></i>{" "}
-                <span className="">Account</span>
+                <span className="">
+                  Account
+                  {isPaid ? (
+                    <div className="inline-flex align-top top-2">
+                      <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
+                        Premium
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </span>
               </div>
               {isLoadingProfile ? (
                 <div className="text-teal-500 ml-2 text-sm inline-block">
-                  <i className="fal fa-spinner-third fa-spin fa-fw"></i> <span className="ml-2 text-xs text-gray-600">fetching details...</span>
+                  <i className="fal fa-spinner-third fa-spin fa-fw"></i>{" "}
+                  <span className="ml-2 text-xs text-gray-600">
+                    fetching details...
+                  </span>
                 </div>
               ) : null}
             </div>
@@ -194,7 +215,7 @@ function Profile() {
         </nav>
       </aside>
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-        <ChessInfo {...member} />
+        <ChessInfo {...member} isLoading={isLoadingProfile} />
         <AccountInfo {...member} />
       </div>
     </div>

@@ -19,7 +19,7 @@ function Card({ event }) {
               {prettyDate(event.startDate, event.endDate)}
             </span>{" "}
           </p>
-          {event.time && (
+          {event.time && event.time !== "various" && (
             <p className="sm:inline text-sm text-teal-700">
               <i className="fad fa-clock mr-1"></i>
               <span className="inline">{event.time}</span>{" "}
@@ -28,7 +28,7 @@ function Card({ event }) {
           {event.rounds && (
             <p className="sm:inline text-sm text-teal-700">
               <i className="fad fa-flag mr-1"></i>
-              <span className="inline">{event.rounds}</span>{" "}
+              <span className="inline">{event.rounds} rounds</span>{" "}
             </p>
           )}
         </div>

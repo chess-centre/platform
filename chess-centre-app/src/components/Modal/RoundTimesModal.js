@@ -5,7 +5,7 @@ import {
   ModalFooter,
   Button,
 } from "@windmill/react-ui";
-import RoundTimes from "../PlayingTimes/Rounds";
+import RoundTimes from "../RoundTimes/Rounds";
 
 export default function RoundTimesModal(props) {
 

@@ -108,16 +108,17 @@ const data = [
 ];
 
 export default function Rounds(props) {
-  const { eventId, eventType, removeStyles } = props;
+  const { eventId, eventType, removeStyles, date } = props;
   const event = data.find(({ type }) => type === eventType);
 
   return (
     <div className={ removeStyles ? "" : "relative bg-white rounded-lg shadow-lg" }>
-      <div className="rounded-t-lg px-2 py-2 sm:px-10 sm:pt-8">
+      <div className="rounded-t-lg px-6 py-2 sm:pt-8">
         <div className="relative text-lg text-gray-700">
           <h2 className="text-center font-bold mb-4 tracking-tight text-gray-900 mt-3 sm:mt-0">
             Rounds
           </h2>
+          <h3 className="text-center font-bold mb-4 tracking-tight text-gray-900 mt-3 sm:mt-0">{date}</h3>
           <table className="m-auto min-w-full divide-y divide-gray-200">
             <tbody className="bg-white divide-y divide-gray-200">
               {event &&
