@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, ModalBody, ModalFooter, Button } from "@windmill/react-ui";
-import PrettyDate from "../../utils/DateFormating";
+import { prettyDate } from "../../utils/DateFormating";
 
 export default function EventDetailsModal(props) {
   const { entries, closeModal, open } = props;
@@ -45,7 +45,7 @@ export default function EventDetailsModal(props) {
                     {event.rounds}
                   </td>
                   <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-500 text-left">
-                    {PrettyDate(event.startDate)}
+                    {prettyDate(event.startDate)}
                   </td>
                 </tr>
               ))}
