@@ -8,7 +8,7 @@ import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
 import Register from "./Register";
 import RoundTimesModal from "../Modal/RoundTimesModal";
-import prettyDate from "../../utils/DateFormating";
+import { prettyDate } from "../../utils/DateFormating";
 
 const listEvents = /* GraphQL */ `
   query ListEvents(

@@ -6,7 +6,7 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
 import EventCard from "../../components/Events/EventCard";
 import { API } from "aws-amplify";
-import prettyDate from "../../utils/DateFormating";
+import { prettyDate } from "../../utils/DateFormating";
 
 function setIcon(type) {
   switch (type) {
