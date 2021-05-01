@@ -36,7 +36,6 @@ function GridCard({ event }) {
       <div
         className={classNames(
           `bg-${event.color}-900`,
-          `border-${event.color}-900`,
           "absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
         )}
       ></div>
@@ -193,7 +192,6 @@ function ListCard({ event }) {
           <div
             className={classNames(
               `bg-${event.color}-900`,
-              `border-${event.color}-50`,
               "absolute bottom-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-b-lg"
             )}
           ></div>
@@ -225,7 +223,6 @@ function ListCard({ event }) {
         <div
           className={classNames(
             `bg-${event.color}-900`,
-            `border-${event.color}-900`,
             "absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"
           )}
         ></div>
