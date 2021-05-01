@@ -30,7 +30,7 @@ function MobileSidebar() {
           leaveFrom="opacity-100"
           leaveTo="opacity-0 transform -translate-x-20"
         >
-          <aside className="fixed inset-y-0 z-50 flex-shrink-0 w-64 mt-16 overflow-hidden bg-white dark:bg-gray-800 lg:hidden">
+          <aside className="fixed inset-y-0 z-40 flex-shrink-0 w-64 mt-16 overflow-hidden bg-white dark:bg-gray-800 lg:hidden">
             <SidebarContent />
           </aside>
 

@@ -8,7 +8,8 @@ import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
 import Register from "./Register";
 import RoundTimesModal from "../Modal/RoundTimesModal";
-import prettyDate from "../../utils/DateFormating";
+import { prettyDate } from "../../utils/DateFormating";
+import { classNames, bgColor900, bgColor700 } from "../../utils/Classes";
 
 const listEvents = /* GraphQL */ `
   query ListEvents(
@@ -97,7 +98,7 @@ function useEvents() {
   });
 }
 
-export default function UpComingEvents() {
+export default function AppEvents() {
   const { user } = useAuthState();
   const { search } = useLocation();
   const { eventId } = queryString.parse(search);
@@ -165,13 +166,21 @@ export default function UpComingEvents() {
                 key
               ) => {
                 return (
-                  <section key={key} className="relative">
+                  <section key={key} className="relative sm:mr-3 mb-3">
                     <div
-                      className={
-                        "m-2 bg-white dark:bg-gray-800 pt-4 shadow rounded-md overflow-hidden"
-                      }
-                    >
-                      <div className="px-4 sm:px-4 space-y-2 pb-2">
+                      className={classNames(
+                        bgColor900(type.color),
+                        "absolute left-0 z-10 inset-y-0 py-1 px-0.5 border-l text-xs rounded-l-sm"
+                      )}
+                    ></div>
+                    <div
+                      className={classNames(
+                        bgColor700(type.color),
+                        "absolute left-0 inset-y-0 px-1 py-1 sm:px-1 border-l text-xs rounded-l-sm"
+                      )}
+                    ></div>
+                    <div className="bg-white dark:bg-gray-800 pt-4 shadow rounded-sm overflow-hidden h-full">
+                      <div className="px-9 sm:px-9 space-y-2 pb-2">
                         <div className="grid grid-cols-3 ">
                           <div className="col-span-2">
                             <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1">

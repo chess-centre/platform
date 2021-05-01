@@ -29,7 +29,7 @@ export const faqs = [
         and we'll do our best to re-work our event.`,
     },
     {
-      question: "Can I pay my Mmembership annually?",
+      question: "Can I pay my Membership annually?",
       answer: `Sure! This functionality is not yet available via our app but talk to us when you are next in the club and we will process this request for you.`
     },
     {

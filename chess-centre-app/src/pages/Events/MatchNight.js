@@ -91,7 +91,7 @@ export default function MatchNight() {
                   .
                 </p>
               </div>
-              <div className="mt-5 prose prose-indigo text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
+              <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                 <p>
                   Each Match Night will be listed and detailed within our app so
                   you can see our fixtures are up coming and what are the
@@ -103,6 +103,11 @@ export default function MatchNight() {
                   <li>Team Cup competitions</li>
                   <li>Individual events</li>
                 </ul>
+                <div className="text-sm text-left mt-6 hidden sm:block">
+                  <Link className="text-teal-600 hover:text-teal-500 " to="/">
+                    <i className="fad fa-long-arrow-alt-left"></i> back
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="text-sm text-center mt-6 sm:hidden">
