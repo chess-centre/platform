@@ -26,6 +26,26 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+function bgColor900(color) {
+  switch (color) {
+    case "blue":
+      return "bg-blue-900";
+    case "orange":
+      return "bg-orange-900";
+    case "teal":
+      return "bg-teal-900";
+    case "pink":
+      return "bg-pink-900";
+    case "green":
+      return "bg-green-900";
+    case "yellow":
+      return "bg-yellow-900";
+    default:
+      return "bg-teal-800";
+  }
+};
+
+
 function GridCard({ event }) {
   return (
     <article
@@ -173,6 +193,7 @@ function GridCalendar({ isLoading, error, data }) {
   );
 }
 
+
 function ListCard({ event }) {
   return (
     <li key={event.id} className="col-span-1 flex mb-3 sm:ml-28">
@@ -191,7 +212,7 @@ function ListCard({ event }) {
           </p>
           <div
             className={classNames(
-              `bg-${event.color}-900`,
+              bgColor900(event.color),
               "absolute bottom-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-b-lg"
             )}
           ></div>
@@ -202,7 +223,9 @@ function ListCard({ event }) {
           <p className="sm:text-2xl sm:font-medium font-bold text-lg">
             {event.name}
           </p>
-          <p className="mr-1 mb-1 text-gray-900 font-thin truncate">{event.description}</p>
+          <p className="mr-1 mb-1 text-gray-900 font-thin truncate">
+            {event.description}
+          </p>
           <div className="text-gray-600 flex-grow">
             <div>
               {event.time && (
@@ -222,7 +245,7 @@ function ListCard({ event }) {
         </div>
         <div
           className={classNames(
-            `bg-${event.color}-900`,
+            bgColor900(event.color),
             "absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"
           )}
         ></div>
