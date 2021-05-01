@@ -1,18 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { classNames, bgColor900 } from "../../utils/Classes";
 
+// TODO: refractor - SOON!
 const EventHeader = ({ type, icon, name, description }) => {
   // Because Tailwind doesn't accept concatenated strings, to achieve dynamic class names, we need to do this:
   if (type === "junior-rapidplay") {
     return (
       <>
         <h2 className="text-lg leading-6 font-medium text-gray-900 text-center">
-          <span className={`text-green-800 text-4xl`}>
+          <span className={`text-green-900 text-4xl`}>
             <i className={`fad ${icon}`}></i>{" "}
           </span>
           <span className="text-2xl -mt-2 text-center">{name}</span>
         </h2>
-        <p className={`text-green-800 mt-4 text-sm text-center`}>
+        <p className={`text-gray-500 mt-4 text-sm text-center`}>
           {description}
         </p>
       </>
@@ -22,12 +24,12 @@ const EventHeader = ({ type, icon, name, description }) => {
     return (
       <>
         <h2 className="text-lg leading-6 font-medium text-gray-900 text-center">
-          <span className={`text-orange-800 text-4xl`}>
+          <span className={`text-orange-900 text-4xl`}>
             <i className={`fad ${icon}`}></i>{" "}
           </span>
           <span className="text-2xl -mt-2 text-center">{name}</span>
         </h2>
-        <p className={`text-orange-800 mt-4 text-sm text-center`}>
+        <p className={`text-gray-500 mt-4 text-sm text-center`}>
           {description}
         </p>
       </>
@@ -37,12 +39,12 @@ const EventHeader = ({ type, icon, name, description }) => {
     return (
       <>
         <h2 className="text-lg leading-6 font-medium text-gray-900 text-center">
-          <span className={`text-blue-800 text-4xl`}>
+          <span className={`text-blue-900 text-4xl`}>
             <i className={`fad ${icon}`}></i>{" "}
           </span>
           <span className="text-2xl -mt-2 text-center">{name}</span>
         </h2>
-        <p className={`text-blue-800 mt-4 text-sm text-center`}>
+        <p className={`text-gray-500 mt-4 text-sm text-center`}>
           {description}
         </p>
       </>
@@ -56,7 +58,7 @@ const EventHeader = ({ type, icon, name, description }) => {
         </span>
         <span className="text-2xl -mt-2 text-center">{name}</span>
       </h2>
-      <p className={`text-gray-800 mt-4 text-sm text-center`}>{description}</p>
+      <p className={`text-gray-500 mt-4 text-sm text-center`}>{description}</p>
     </>
   );
 };
@@ -69,12 +71,19 @@ export default function EventCard({
   defaultPrice,
   details,
   type,
+  color,
   url,
 }) {
   return (
     <div
-      className={`m-2 rounded-lg shadow-lg divide-y divide-gray-100 max-w-xs bg-white`}
+      className={`relative m-2 rounded-lg shadow-lg divide-y divide-gray-100 max-w-xs bg-white`}
     >
+      <div
+        className={classNames(
+          bgColor900(color),
+          "absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
+        )}
+      ></div>
       <div className="p-6 px-10">
         <EventHeader icon={icon} name={name} description={description} type={type}  />
         <p className="mt-5 text-center">

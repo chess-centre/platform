@@ -5,6 +5,8 @@ import * as Icons from "../../icons";
 import SidebarSubmenu from "./SidebarSubmenu";
 import ImageLight from "../../assets/img/logo-light-theme-small.png";
 import { isPaidMember } from "../../context/Auth";
+import SupportContactModal from "../Modal/SupportContactModal";
+
 const version = process.env.REACT_APP_VERSION || "0.0.0";
 
 function Icon({ icon, ...props }) {
@@ -14,6 +16,15 @@ function Icon({ icon, ...props }) {
 
 function SidebarContent() {
   const [needsUpgrade, setNeedsUpgrade] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  }
 
   async function checkMemberStatus() {
     const isPaid = await isPaidMember();
@@ -74,9 +85,17 @@ function SidebarContent() {
           Upgrade Membership
         </Link>
       )}
-      <div className="absolute bottom-1 px-6 my-6 text-xs hover:underline">
-        <Link to="/roadmap">{`v${version}`}</Link>
+      <div className="absolute grid grid-cols-2 bottom-1 pl-8 my-6 text-sm">
+        <div 
+          onClick={openModal}
+          className="text-right hover:text-teal-600 ml-2 mr-8 cursor-pointer">
+          <i className="fas fa-user-headset"></i> <span className="text-xs">support</span>
+        </div>
+        <div className="text-center hover:text-teal-500">
+          <Link to="/roadmap">{`v${version}`}</Link>
+        </div>
       </div>
+      <SupportContactModal open={isModalOpen} closeModal={closeModal} />
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
   getMonth,
   getDayStr,
 } from "../../utils/DateFormating";
+import { classNames, bgColor900 } from "../../utils/Classes";
 
 function useEvents() {
   return useQuery("eventData", async () => {
@@ -28,30 +29,7 @@ function useEvents() {
       return new Date(a.startDate) - new Date(b.startDate);
     });
   });
-}
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-function bgColor900(color) {
-  switch (color) {
-    case "blue":
-      return "bg-blue-900";
-    case "orange":
-      return "bg-orange-900";
-    case "teal":
-      return "bg-teal-900";
-    case "pink":
-      return "bg-pink-900";
-    case "green":
-      return "bg-green-900";
-    case "yellow":
-      return "bg-yellow-900";
-    default:
-      return "bg-teal-800";
-  }
-}
+};
 
 function GridCard({ event }) {
   return (
@@ -110,14 +88,7 @@ function GridCard({ event }) {
   );
 }
 
-function GridCalendar({ isLoading, error, data }) {
-  const today = new Date();
-  const currentMonth = today.getMonth();
-  const nextMonth = currentMonth + 1;
-  const nextNextMonth = nextMonth + 1;
-  const months = [currentMonth, nextMonth, nextNextMonth];
-  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
-
+function GridCalendar({ isLoading, error, data, months, selected, setSelectedMonth }) {
   return (
     <div>
       {!error ? (
@@ -146,7 +117,7 @@ function GridCalendar({ isLoading, error, data }) {
                     </span>
                     <span
                       className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full ${
-                        selectedMonth === month &&
+                        selected === month &&
                         (isEven ? "bg-teal-brand " : "bg-orange-brand ")
                       }`}
                     ></span>
@@ -165,7 +136,7 @@ function GridCalendar({ isLoading, error, data }) {
                   <div
                     key={i}
                     className={`flex-grow ${
-                      selectedMonth !== month && "hidden"
+                      selected !== month && "hidden"
                     }`}
                   >
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4">
@@ -412,12 +383,21 @@ export default function Calendar() {
             </div>
           </div>
           {calenderView === "grid" ? (
-            <GridCalendar isLoading={isLoading} error={error} data={data} />
+            <GridCalendar 
+              isLoading={isLoading} 
+              error={error} 
+              data={data}
+              months={months}
+              setSelectedMonth={setSelectedMonth}
+              selected={selectedMonth}
+               />
           ) : (
             <ListCalendar
               isLoading={isLoading}
               error={error}
               data={data}
+              months={months}
+              setSelectedMonth={setSelectedMonth}
               selected={selectedMonth}
             />
           )}
