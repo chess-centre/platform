@@ -116,17 +116,17 @@ const ECFProfileCard = ({
   member_no,
   due_date,
   original_rating,
-  confirmQuery,
-  undoConfirm,
+  // confirmQuery,
+  // undoConfirm,
 }) => {
 
-  const confirmECFInfo = () => {
-    confirmQuery();
-  };
+  // const confirmECFInfo = () => {
+  //   confirmQuery();
+  // };
 
-  const handleUndo = () => {
-    undoConfirm();
-  };
+  // const handleUndo = () => {
+  //   undoConfirm();
+  // };
 
   return (
     <div className="bg-white shadow-md overflow-hidden rounded-lg mt-4">

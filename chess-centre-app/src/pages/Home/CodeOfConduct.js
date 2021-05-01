@@ -42,7 +42,7 @@ function CodeOfConduct() {
               </p>
             </div>
             <div className="mt-12 lg:mt-0 lg:col-span-2">
-              <div className="prose prose-indigo prose-lg text-gray-500 lg:max-w-none">
+              <div className="prose prose-teal prose-lg text-gray-500 lg:max-w-none">
                 <ol>
                   <li>
                     Act with respect towards opponents, fellow members,
