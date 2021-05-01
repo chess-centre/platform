@@ -80,7 +80,7 @@ export default function ClubNight() {
                   This is a social event and an opportunity to grab a few drinks, play some games or learn a new variant or two.
                 </p>
               </div>
-              <div className="mt-5 prose prose-indigo text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
+              <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                 <p>
                   We plan to run a few bespoke events during our club nights but primarily these will be left up to members to decide what takes their fancy on the night.
                 </p>

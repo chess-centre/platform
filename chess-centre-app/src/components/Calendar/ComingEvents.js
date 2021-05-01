@@ -13,12 +13,20 @@ function useEvents() {
   return useQuery("eventData", async () => {
     const today = new Date();
     const now = today.toISOString();
-    const future = today.setDate(today.getDate + 30);
+    const future = new Date(today.getDay(), today.getMonth() + 2, 0);
     const events = await API.get(
       "public",
       `/events?startDate=${now}&endDate=${future}`
     );
-    return events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+    return events.sort((a, b) => {
+      // // we want to sort by time field also.
+      // const aTime = Number(a.time.split(":")[0]) || 0;
+      // const bTime = Number(b.time.split(":")[0]) || 0;
+      // const aValue = new Date(a.startDate) //.setHours(aTime);
+      // const bValue = new Date(b.startDate) //.setHours(bTime);
+
+      return new Date(a.startDate) - new Date(b.startDate);
+    });
   });
 }
 
@@ -43,26 +51,25 @@ function bgColor900(color) {
     default:
       return "bg-teal-800";
   }
-};
-
+}
 
 function GridCard({ event }) {
   return (
-    <article
+    <div
       className={
-        "relative pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border border-light-blue-300"
+        "relative pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
       }
     >
       <div
         className={classNames(
-          `bg-${event.color}-900`,
+          bgColor900(event.color),
           "absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
         )}
       ></div>
       <header>
         <h3 className="h4 font-red-hat-display mb-1">{event.name}</h3>
       </header>
-      <div className="text-gray-600 flex-grow">
+      <div className="text-gray-600 flex-grow mb-5">
         <div>
           <p className="sm:inline mr-1 text-sm text-teal-700">
             <i className="fad fa-calendar-alt mr-1"></i>
@@ -83,32 +90,32 @@ function GridCard({ event }) {
             </p>
           )}
         </div>
-        <p className="mr-1 text-gray-900 font-thin">{event.description}</p>
+        <p className="text-gray-900 font-thin text-base">{event.description}</p>
       </div>
-      {event.url && (
-        <div className="text-right">
-          <a
-            className="inline-flex items-center font-medium text-teal-500 hover:underline mt-2"
-            href={`${event.url}/${event.id}`}
-          >
-            <div className="text-sm">
-              <span>
-                <i className="fas fa-info"></i>
-              </span>{" "}
-              More Info
+      <div
+        className={"absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"}
+      >
+        {event.url && (
+          <div className="text-center align-middle">
+            <div className="text-x text-teal-500 hover:underline cursor-pointer">
+              <a
+                className="inline-flex items-center text-teal-500 "
+                href={`${event.url}/${event.id}`}
+              >More Info</a>
             </div>
-          </a>
-        </div>
-      )}
-    </article>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
 function GridCalendar({ isLoading, error, data }) {
   const today = new Date();
-  const currentMonth = today.getUTCMonth() + 1;
+  const currentMonth = today.getMonth();
   const nextMonth = currentMonth + 1;
-  const months = [currentMonth, nextMonth];
+  const nextNextMonth = nextMonth + 1;
+  const months = [currentMonth, nextMonth, nextNextMonth];
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
 
   return (
@@ -193,7 +200,6 @@ function GridCalendar({ isLoading, error, data }) {
   );
 }
 
-
 function ListCard({ event }) {
   return (
     <li key={event.id} className="col-span-1 flex mb-3 sm:ml-28">
@@ -267,7 +273,7 @@ function ListCard({ event }) {
   );
 }
 
-function ListCalendar({ isLoading, error, data }) {
+function ListCalendar({ isLoading, error, data, selected }) {
   return (
     <>
       {!error ? (
@@ -275,13 +281,17 @@ function ListCalendar({ isLoading, error, data }) {
           {!isLoading ? (
             <>
               <ul>
-                {data.map((d, key) => {
-                  return (
-                    <>
-                      <ListCard key={key} event={d} />
-                    </>
-                  );
-                })}
+                {data
+                  .filter(
+                    (data) => new Date(data.startDate).getMonth() === selected
+                  )
+                  .map((d, key) => {
+                    return (
+                      <>
+                        <ListCard key={key} event={d} />
+                      </>
+                    );
+                  })}
               </ul>
             </>
           ) : (
@@ -306,6 +316,13 @@ export default function Calendar() {
   const [calenderView, setCalenderView] = useState("grid");
   const { isLoading, error, data } = useEvents();
 
+  const today = new Date();
+  const currentMonth = today.getMonth();
+  const nextMonth = currentMonth + 1;
+  const nextNextMonth = nextMonth + 1;
+  const months = [currentMonth, nextMonth, nextNextMonth];
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
+
   const handleViewSwitch = (view) => {
     setCalenderView(view);
   };
@@ -317,18 +334,66 @@ export default function Calendar() {
           {/* Section header */}
           <div className="mx-auto text-center pb-4 md:pb-8">
             <h2 className="h2 font-red-hat-display mb-4">Our Calendar</h2>
-            <div className="grid grid-col-1 sm:grid-cols-4 gap-0">
+            <div className="relative grid grid-cols-4 gap-0 mb-10">
               <div></div>
-              <div className="sm:col-span-2 text-xl sm:mt-6 text-gray-600 text-center">
-                <i className="fad fa-calendar-alt text-gray-900"></i> See what's
-                coming up
+              <div className="col-span-4 text-base sm:text-xl sm:mt-2 text-gray-600 text-center mb-10 sm:mb-0">
+                <span className="text-teal-700"><i className="fad fa-calendar-alt"></i></span> Coming up next 
               </div>
-              <div className="text-center mt-10 sm:mt-6 sm:text-right">
+              {calenderView === "list" ? (
+                <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex shadow-sm rounded-md m-auto -mb-1">
+                  <div className="inline-flex shadow-sm rounded-md m-auto">
+                    <span className="relative z-0 inline-flex shadow-sm rounded-md">
+                      <button
+                        onClick={() => setSelectedMonth(months[0])}
+                        type="button"
+                        className={`${selectedMonth === months[0] ? "text-teal-600 font-medium" : "text-gray-700" } relative inline-flex items-center px-4 py-2 
+                        rounded-l-md border border-gray-300 bg-white text-xs  hover:bg-gray-50 
+                        focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
+                      >
+                        {new Date(2000, months[0], 1).toLocaleString(
+                          "default",
+                          {
+                            month: "long",
+                          }
+                        )}
+                      </button>
+                      <button
+                        onClick={() => setSelectedMonth(months[1])}
+                        type="button"
+                        className={`${selectedMonth === months[1] ? "text-orange-600 font-medium" : "text-gray-700" } -ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-xs
+                         hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
+                      >
+                        {new Date(2000, months[1], 1).toLocaleString(
+                          "default",
+                          {
+                            month: "long",
+                          }
+                        )}
+                      </button>
+                      <button
+                        onClick={() => setSelectedMonth(months[2])}
+                        type="button"
+                        className={`${selectedMonth === months[2] ? "text-teal-600 font-medium" : "text-gray-700" } -ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 
+                        bg-white text-xs hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
+                      >
+                        {new Date(2000, months[2], 1).toLocaleString(
+                          "default",
+                          {
+                            month: "long",
+                          }
+                        )}
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              ) : null}
+              <div className="absolute right-0 top-16 sm:top-8 text-center sm:mt-6 sm:text-right">
                 <span className="relative z-0 inline-flex shadow-sm rounded-md">
                   <button
                     onClick={() => handleViewSwitch("list")}
                     type="button"
-                    className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
+                    className={`${calenderView === "list" ? "text-teal-600 font-bold" : "font-medium text-gray-500"} relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm 
+                     hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                   >
                     <span className="sr-only">List</span>
                     <i className="fas fa-list"></i>
@@ -336,7 +401,8 @@ export default function Calendar() {
                   <button
                     onClick={() => handleViewSwitch("grid")}
                     type="button"
-                    className="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
+                    className={`${calenderView === "grid" ? "text-teal-600 font-bold" : "font-medium text-gray-500"} -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm 
+                      hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                   >
                     <span className="sr-only">Grid</span>
                     <i className="fas fa-th"></i>
@@ -348,7 +414,12 @@ export default function Calendar() {
           {calenderView === "grid" ? (
             <GridCalendar isLoading={isLoading} error={error} data={data} />
           ) : (
-            <ListCalendar isLoading={isLoading} error={error} data={data} />
+            <ListCalendar
+              isLoading={isLoading}
+              error={error}
+              data={data}
+              selected={selectedMonth}
+            />
           )}
         </div>
       </div>
