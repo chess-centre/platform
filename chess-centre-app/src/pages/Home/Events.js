@@ -51,6 +51,75 @@ export default function Events() {
           <LandingNav current="events" />
         </div>
         <div className="bg-white">
+        <div className="relative">
+          <svg
+            className="hidden xl:block absolute top-0 right-0 md:-mr-32 2xl:-mr-4"
+            width="500"
+            height="300"
+            fill="none"
+            viewBox="0 0 500 300"
+            aria-hidden="true"
+          >
+            <defs>
+              <pattern
+                id="95e8f2de-6d30-4b7e-8159-f791729db21b"
+                x="0"
+                y="0"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+              >
+                <rect
+                  x="0"
+                  y="0"
+                  width="4"
+                  height="4"
+                  className="text-gray-100"
+                  fill="currentColor"
+                />
+              </pattern>
+            </defs>
+            <rect
+              width="500"
+              height="300"
+              fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
+            />
+          </svg>
+
+          <svg
+            className="hidden md:block absolute top-32 left-0 md:-ml-32 2xl:-ml-4"
+            width="500"
+            height="600"
+            fill="none"
+            viewBox="0 0 500 600"
+            aria-hidden="true"
+          >
+            <defs>
+              <pattern
+                id="95e8f2de-6d30-4b7e-8159-f791729db21b"
+                x="0"
+                y="0"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+              >
+                <rect
+                  x="0"
+                  y="0"
+                  width="4"
+                  height="4"
+                  className="text-gray-100"
+                  fill="currentColor"
+                />
+              </pattern>
+            </defs>
+            <rect
+              width="500"
+              height="600"
+              fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
+            />
+          </svg>
+        </div>
           <div className="max-w-7xl mx-auto py-16 px-4 sm:py-28 sm:px-6 lg:px-8">
             <div className="text-center">
               <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
@@ -60,21 +129,22 @@ export default function Events() {
                 Join us
               </p>
               <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-                Our official events open for registration.
+                Our official events now open for registration.
               </p>
               <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-                Simply create your{" "}
+                Create your{" "}
                 <Link
                   className="text-teal-500 hover:text-teal-700 no-underline"
                   to="/register"
                 >
                   free account
                 </Link>{" "}
-                to sign up.
+                today to sign up!
               </p>
             </div>
           </div>
         </div>
+
         <div className="container m-auto">
           <div className="pr-4 pl-4 sm:flex sm:flex-col sm:align-center">
             <div className="relative self-center mt-6 bg-gray-100 rounded-lg p-0.5 flex sm:mt-8">

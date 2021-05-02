@@ -1,13 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { SidebarContext } from "../../context/SidebarContext";
 import {
   MenuIcon,
-  OutlinePersonIcon,
-  OutlineLogoutIcon,
 } from "../../icons";
-import { Dropdown, DropdownItem } from "@windmill/react-ui";
 import { logout, useAuthDispatch, useAuthState } from "../../context/Auth";
+import ProfileDropDown from "./ProfileDropDown";
 
 function Header() {
   const { user: {attributes: {
@@ -16,15 +14,12 @@ function Header() {
   const dispatch = useAuthDispatch();
   const history = useHistory();
   const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext);
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
-  function handleProfileClick() {
-    setIsProfileMenuOpen(true);
-  }
-  function signOut() {
+  const signOut = () => {
     logout(dispatch);
     history.push("/");
-  }
+  };
+
   return (
     <header className="z-40 py-4 bg-white border-b dark:bg-gray-800">
       <div className="container flex items-center justify-between h-full px-6 mx-auto text-teal-600 dark:text-teal-300">
@@ -40,47 +35,14 @@ function Header() {
         <div className="relative">
           <div className="absolute inset-y-0 right-0"></div>
         </div>
-        <ul className="flex items-center flex-shrink-0 space-x-6">
+        
+        <ul className="flex items-center flex-shrink-0 space-x-4">
           {/* <!-- Profile menu --> */}
+          <li className="relative mb-1">
+            { given_name && (<span className="text-xs sm:text-sm text-gray-900 pb-2">Welcome, {given_name}</span>) }
+          </li>
           <li className="relative">
-            { given_name && (<span className="mr-2 text-xs text-gray-900">Welcome, {given_name}</span>) }
-            <button
-              className="rounded-full focus:shadow-outline-teal focus:outline-none"
-              onClick={handleProfileClick}
-              aria-label="Account"
-              aria-haspopup="true"
-            >
-              <span className="inline-block align-middle bg-gray-100 rounded-full border-teal-600 border overflow-hidden h-8 w-8">
-                <svg
-                  className="h-full w-full text-gray-300 "
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              </span>
-            </button>
-            <Dropdown
-              align="right"
-              isOpen={isProfileMenuOpen}
-              onClose={() => setIsProfileMenuOpen(false)}
-            >
-              <DropdownItem tag="a" href="/app/profile">
-                <OutlinePersonIcon
-                  className="w-4 h-4 mr-3"
-                  aria-hidden="true"
-                />
-                Profile
-              </DropdownItem>
-
-              <DropdownItem onClick={signOut}>
-                <OutlineLogoutIcon
-                  className="w-4 h-4 mr-3"
-                  aria-hidden="true"
-                />
-                Log out
-              </DropdownItem>
-            </Dropdown>
+            <ProfileDropDown signOut={signOut} />
           </li>
         </ul>
       </div>
