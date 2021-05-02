@@ -153,7 +153,10 @@ function Profile() {
       setIsLoadingProfile(false);
     };
 
-    getProfileData();
+    getProfileData().catch(e => {
+      console.log(e);
+      setIsLoadingProfile(false);
+    });
   }, [user]);
 
   return (

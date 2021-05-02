@@ -24,6 +24,7 @@ const { print } = graphql;
 
 exports.handler = async (event) => {
   console.log(JSON.stringify(event));
+  console.log(process.env.STRIPE_API_KEY);
 
   const { body, headers } = event;
 

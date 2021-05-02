@@ -197,5 +197,11 @@
       "service": "Lambda"
     }
   },
-  "storage": {}
+  "storage": {},
+  "analytics": {
+    "platformchesscentreaKinesis": {
+      "service": "Kinesis",
+      "providerPlugin": "awscloudformation"
+    }
+  }
 }
