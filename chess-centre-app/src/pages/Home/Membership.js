@@ -10,7 +10,6 @@ function Membership() {
       <div className="relative bg-gray-50 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
         <LandingNav current="membership" />
       </div>
-
       <div className="bg-teal-700">
         <div className="pt-12 sm:pt-16 lg:pt-10">
           <div className="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -25,9 +24,77 @@ function Membership() {
                 Learning, playing and discovering what makes this game so
                 amazing!
               </p>
-
             </div>
           </div>
+        </div>
+        <div className="relative">
+          <svg
+            className="hidden xl:block z-10 absolute -top-0 right-0 md:-mr-32 2xl:-mr-4"
+            width="500"
+            height="700"
+            fill="none"
+            viewBox="0 0 500 700"
+            aria-hidden="true"
+          >
+            <defs>
+              <pattern
+                id="95e8f2de-6d30-4b7e-8159-f791729db21b"
+                x="0"
+                y="0"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+              >
+                <rect
+                  x="0"
+                  y="0"
+                  width="4"
+                  height="4"
+                  className="text-teal-600"
+                  fill="currentColor"
+                />
+              </pattern>
+            </defs>
+            <rect
+              width="500"
+              height="700"
+              fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
+            />
+          </svg>
+
+          <svg
+            className="hidden md:block z-10 absolute -top-52 left-0 md:-ml-32 2xl:-ml-4"
+            width="500"
+            height="500"
+            fill="none"
+            viewBox="0 0 500 500"
+            aria-hidden="true"
+          >
+            <defs>
+              <pattern
+                id="95e8f2de-6d30-4b7e-8159-f791729db21b"
+                x="0"
+                y="0"
+                width="20"
+                height="20"
+                patternUnits="userSpaceOnUse"
+              >
+                <rect
+                  x="0"
+                  y="0"
+                  width="4"
+                  height="4"
+                  className="text-teal-600"
+                  fill="currentColor"
+                />
+              </pattern>
+            </defs>
+            <rect
+              width="500"
+              height="500"
+              fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
+            />
+          </svg>
         </div>
         <div className="mt-8 pb-12 bg-gray-50 sm:mt-12 sm:pb-16 lg:mt-16 lg:pb-10">
           <div className="relative">
@@ -35,7 +102,11 @@ function Membership() {
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-md mx-auto space-y-4 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0">
                 {data.map((membership, key) => {
-                  return <MembershipCard key={key} {...membership} />;
+                  return (
+                    <div className="z-20">
+                      <MembershipCard key={key} {...membership} />
+                    </div>
+                  );
                 })}
               </div>
             </div>
