@@ -1,5 +1,5 @@
 import API from "@aws-amplify/api";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import queryString from "query-string";
 import { useQuery } from "react-query";
@@ -10,6 +10,7 @@ import Register from "./Register";
 import RoundTimesModal from "../Modal/RoundTimesModal";
 import { prettyDate } from "../../utils/DateFormating";
 import { classNames, bgColor900, bgColor700 } from "../../utils/Classes";
+import PaymentCompleteModal from "../../components/Modal/PaymentCompleteModal";
 
 const listEvents = /* GraphQL */ `
   query ListEvents(
@@ -103,10 +104,10 @@ export default function AppEvents() {
   const { search } = useLocation();
   const { eventId } = queryString.parse(search);
   const stripe = useStripe();
-
   const { addToast } = useToasts();
 
   const [modalState, setModalState] = useState({});
+  const [paymentSuccesseful, setPaymentSuccessful] = useState(false);
 
   const { isLoading, error, data } = useEvents();
 
@@ -134,6 +135,7 @@ export default function AppEvents() {
       });
 
       await stripe.redirectToCheckout({ sessionId });
+      setPaymentSuccessful(true);
     } catch (error) {
       addToast(error.message, {
         appearance: "error",
@@ -141,6 +143,15 @@ export default function AppEvents() {
       });
     }
   };
+
+  useEffect(() => {
+    if (eventId) {
+      // TODO: check if its an actual event (race condition):
+      //if(data && eventId === data.find(e => e.id === eventId)) {
+      register(eventId);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [eventId]);
 
   return (
     <>
@@ -180,7 +191,7 @@ export default function AppEvents() {
                       )}
                     ></div>
                     <div className="bg-white dark:bg-gray-800 pt-4 shadow rounded-sm overflow-hidden h-full">
-                      <div className="px-9 sm:px-9 space-y-2 pb-2">
+                      <div className="pl-9 pr-4 sm:pl-9 space-y-2 pb-2">
                         <div className="grid grid-cols-3 ">
                           <div className="col-span-2">
                             <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1">
@@ -309,6 +320,7 @@ export default function AppEvents() {
                         )}
                       </div>
                     </div>
+                    
                   </section>
                 );
               }
@@ -327,6 +339,7 @@ export default function AppEvents() {
           <div className="italic text-red-700">Error fetching events.</div>
         </div>
       )}
+      <PaymentCompleteModal open={paymentSuccesseful} setOpen={setPaymentSuccessful} />
       <RoundTimesModal {...modalState} closeModal={closeModal} />
     </>
   );

@@ -115,7 +115,7 @@ function Members() {
                       </p>
                     </li>
                   </ul>
-                  <div className="text-center">
+                  <div className="hidden text-center">
                     <span
                       className="text-teal-600 text-xs cursor-pointer"
                       onClick={() => setShowSneakPeak(true)}
