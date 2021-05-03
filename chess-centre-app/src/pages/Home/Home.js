@@ -97,7 +97,7 @@ const Home = () => {
                 </span>
               </h2>
               <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-              <span className="font-light">Welcome to</span>
+                <span className="font-light">Welcome to</span>
                 <br className="xl:hidden" />
                 <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400">
                   {" "}
@@ -106,7 +106,8 @@ const Home = () => {
               </h2>
 
               <p className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                It's time things changed around here. <br className="md:hidden" /> Brace yourselves!{" "}
+                It's time things changed around here.{" "}
+                <br className="md:hidden" /> Brace yourselves!{" "}
                 <span role="img">🚀</span>
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
@@ -131,6 +132,21 @@ const Home = () => {
           </main>
         </div>
       </div>
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="pt-4 pb-0 sm:py-10">
+          <div className="aspect-w-16 aspect-h-9 rounded-lg">
+            <iframe
+              className=""
+              src={`https://www.youtube.com/watch?v=wofz0k6FCMU`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
+            />
+          </div>
+        </div>
+      </div>
+
       <ComingEvents />
       <FAQs />
       <FindUs />
