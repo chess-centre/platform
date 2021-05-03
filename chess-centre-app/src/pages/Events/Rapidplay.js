@@ -23,7 +23,7 @@ export default function RapidplayEvent() {
               Rapidplay
             </p>
           </div>
-          <div className="relative z-10 text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
+          <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
               Want to test yourself, but don’t have time for a full weekend
               tournament? Then look no further, as our 1 day, 5 round Rapidplay tournaments are ideal for new and returning players who
@@ -32,7 +32,7 @@ export default function RapidplayEvent() {
             </p>
           </div>
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
-            <div className="relative z-10">
+            <div className="relative">
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                 <p>
                   Our Open Rapidplay Tournaments also tend to follow our favored

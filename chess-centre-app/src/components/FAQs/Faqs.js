@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { faqs } from "../../api/home.faqs";
 
 export default function FAQs() {
@@ -23,6 +24,7 @@ export default function FAQs() {
               );
             })}
           </dl>
+          <div className="text-center text-teal-600 hover:text-teal-800"><Link to="/faqs">more</Link></div>
         </div>
       </div>
     </div>
