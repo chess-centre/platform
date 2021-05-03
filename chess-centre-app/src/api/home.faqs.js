@@ -35,14 +35,13 @@ export const faqs = [
     question: `Do you offer any discounts?`,
     answer: `To provide the absolute best value whilst ensuring your whole experience 
         is a great one we continually review our offering and pricing. This means we offer special discounts to students, senior citizens and family memberships.
-        Being part of The Chess Centre is a badge of honour, you are part of a community who supports the growth of chess. 
-        <br />So, trust us, every penny that comes in is going on this fantastic mission for you and everyone!`,
+        Being part of The Chess Centre is a badge of honour, you are part of a community who supports the growth of chess.`,
   },
   {
     question: `Can I cancel my membership anytime?`,
     answer: `Of course! We have no contract or painful 30-day notice periods. 
-      We want you to really enjoy being part of The Chess Centre and what we represent. 
-      You can cancel your recurring membership from your profile under "Subscription" anytime you wish, your membership will be valid until the next payment cicle. And you are always welcome back, anytime!`,
+      We want you to enjoy being part of our community and what we represent. 
+      You can cancel your membership from your profile under "Subscription" anytime you wish, your membership will be valid until the next payment cicle. And, you are always welcome back, anytime!`,
   },
   {
     question: `How can I find my live games or results?`,
@@ -76,7 +75,9 @@ export const faqs = [
   {
     question: `How long are games?`,
     answer: `This depends on the event to what time control is used. This can range and be different across leagues, individual competitions and event types like congresses or rapidplays.
-        Each event will specify the time control for the games. Our standard congresses for example has a limit of <span class="text-teal-500 font-bold">60 minutes</span> on the clock <span class="text-teal-500 font-bold">per player</span>. Our rapidplays conversly are 25 minutes on the clock per player.
+        Each event will specify the time control for the games. Our standard congresses for example has a limit of 
+        <span class="text-teal-500 font-bold">60 minutes</span> on the clock per player. 
+        Our rapidplays conversly are <span class="text-teal-500 font-bold">25 minutes</span> on the clock per player.
       `,
   },
   {
