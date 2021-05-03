@@ -43,12 +43,12 @@ function SidebarContent() {
       >
         <img
           aria-hidden="true"
-          className="object-scale-down h-7 w-full inline-block"
+          className="object-contain mt-4 h-7 px-4 inline-block"
           src={ImageLight}
           alt="Logo"
         />
       </NavLink>
-      <ul className="mt-6">
+      <ul className="mt-4">
         {routes.map((route) =>
           route.routes ? (
             <SidebarSubmenu route={route} key={route.name} />

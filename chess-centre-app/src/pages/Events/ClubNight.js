@@ -65,9 +65,9 @@ export default function ClubNight() {
                     <img
                       className="rounded-lg shadow-lg object-cover object-center"
                       src={ClubNightImage}
-                      alt="Girl playing chess"
-                      width={300}
-                      height={700}
+                      alt="Drinks"
+                      width={400}
+                      height={800}
                     />
                   </div>
                 </figure>
@@ -75,9 +75,9 @@ export default function ClubNight() {
             </div>
             <div className="mt-8 lg:mt-0">
               <div className="text-base max-w-prose mx-auto lg:max-w-none">
-                <p className="text-lg text-gray-500">
-                  Our Thursday club nights are when we welcome new guests, existing members and have a few adhoc games and analyse some of our previous games.
-                  This is a social event and an opportunity to grab a few drinks, play some games or learn a new variant or two.
+                <p className="text-lg text-gray-500 text-justify">
+                  Our Thursday club nights are when we welcome new guests, existing members and get together for a few adhoc games, analyse some games or kearning some endings!
+                  This is a social event and thus, an opportunity to grab a few drinks, play some games or learn a new variant or two.
                 </p>
               </div>
               <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
