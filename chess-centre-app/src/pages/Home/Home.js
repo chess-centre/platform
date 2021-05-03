@@ -137,7 +137,7 @@ const Home = () => {
           <div className="aspect-w-16 aspect-h-9 rounded-lg">
             <iframe
               className=""
-              src={`https://www.youtube.com/watch?v=wofz0k6FCMU`}
+              src={`https://www.youtube.com/embed/wofz0k6FCMU`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
