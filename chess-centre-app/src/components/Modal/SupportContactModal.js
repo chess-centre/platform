@@ -16,24 +16,17 @@ export default function SupportContactModal(props) {
         <ModalBody>
           <div className="pt-6">
             <div className="flow-root bg-gray-50 rounded-lg px-5 pb-8">
-              <div className="-mt-10">
-                <div>
-                  <span className="inline-flex items-center justify-center p-2 bg-teal-600 rounded-md shadow-lg">
-                    <span className="text-white text-lg">
-                      <i className="fas fa-user-headset"></i>
-                    </span>
-                  </span>
-                </div>
-                <h3 className="mt-6 text-lg font-medium text-gray-900 tracking-tight">
-                  Support
+              <div className="relative">
+                <h3 className="mt-2 text-lg font-medium text-gray-900 tracking-tight">
+                  <span className="text-teal-600"><i className="fas fa-user-headset"></i></span> Support
                 </h3>
                 <p className="mt-3 text-sm text-gray-500">
-                  Unfortunately, we don't have any official around the clock support (<span className="italic">as
-                  everyone is a volunteer </span>❤️)
+                  Unfortunately, we don't have any official support team (<span className="italic">as
+                  everyone is a volunteer </span>❤️).
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
                   We will however try to respond and resolve your issues as
-                  quickly as possible!
+                  quickly as possible.
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
                   <i className="fad fa-credit-card"></i> <br />

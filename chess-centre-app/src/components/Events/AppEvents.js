@@ -67,6 +67,8 @@ const listEvents = /* GraphQL */ `
 `;
 
 function useEvents() {
+
+
   const { user } = useAuthState();
 
   function alreadyRegistered(event) {
@@ -102,7 +104,8 @@ function useEvents() {
 export default function AppEvents() {
   const { user } = useAuthState();
   const { search } = useLocation();
-  const { eventId } = queryString.parse(search);
+  console.log(queryString.parse(search));
+  const { eventId, session_id, event_payment_success } = queryString.parse(search);
   const stripe = useStripe();
   const { addToast } = useToasts();
 
@@ -135,7 +138,6 @@ export default function AppEvents() {
       });
 
       await stripe.redirectToCheckout({ sessionId });
-      setPaymentSuccessful(true);
     } catch (error) {
       addToast(error.message, {
         appearance: "error",
@@ -149,7 +151,12 @@ export default function AppEvents() {
       // TODO: check if its an actual event (race condition):
       //if(data && eventId === data.find(e => e.id === eventId)) {
       register(eventId);
-    }
+    };
+
+    if(event_payment_success && session_id) {
+      setPaymentSuccessful(true);
+    };
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);
 

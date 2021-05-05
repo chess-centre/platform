@@ -119,14 +119,6 @@ const Home = () => {
                     Join Now
                   </Link>
                 </div>
-                <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                  <Link
-                    to="/our-mission"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none focus:border-teal-300 focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
-                  >
-                    More Info
-                  </Link>
-                </div>
               </div>
             </div>
           </main>
@@ -137,7 +129,7 @@ const Home = () => {
           <div className="aspect-w-16 aspect-h-9 rounded-lg">
             <iframe
               className=""
-              src={`https://www.youtube.com/watch?v=wofz0k6FCMU`}
+              src={`https://www.youtube.com/embed/wofz0k6FCMU`}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
