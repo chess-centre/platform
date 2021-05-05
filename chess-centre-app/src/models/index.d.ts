@@ -20,6 +20,7 @@ export declare class EventType {
   readonly url?: string;
   readonly color?: string;
   readonly time?: string;
+  readonly arrivalTime?: string;
   readonly maxEntries?: number;
   readonly stripePriceId?: string;
   readonly timeControl?: string;

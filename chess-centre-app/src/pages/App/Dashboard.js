@@ -62,7 +62,7 @@ export default function Dashboard() {
       />
       <div className="grid gap-6 mb-8 md:grid-cols-2 mt-6">
         <ChartCard title="Rating">
-          <Line {...RatingProgressChart([], [])} />
+          <Line {...RatingProgressChart([member?.ecfRating || 0], [])} />
           <ChartLegend legends={lineLegends} />
         </ChartCard>
 

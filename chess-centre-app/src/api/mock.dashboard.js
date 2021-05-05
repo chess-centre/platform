@@ -1,10 +1,10 @@
 export const lineLegends = [
-  { title: "Long Play", color: "bg-teal-brand" },
+  { title: "Standard", color: "bg-teal-brand" },
   { title: "Rapid", color: "bg-orange-brand" },
 ];
 
 export const barLegends = [
-  { title: "Long Play", color: "bg-teal-brand" },
+  { title: "Standard", color: "bg-teal-brand" },
   { title: "Rapid", color: "bg-orange-brand" },
 ];
 
@@ -13,7 +13,7 @@ export const RatingProgressChart = (longPlayRatings, rapidplayRatings) => ({
     labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
     datasets: [
       {
-        label: "Long Play",
+        label: "Standard",
         backgroundColor: "#0694a2",
         borderColor: "#0694a2",
         data: [...longPlayRatings],
@@ -65,7 +65,7 @@ export const GamesChart = ( longPlayGamesCount, rapidplayGamesCount) => ({
     labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"],
     datasets: [
       {
-        label: "Long Play",
+        label: "Standard",
         backgroundColor: "#0694a2",
         borderWidth: 1,
         data: [...longPlayGamesCount],

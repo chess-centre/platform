@@ -23,7 +23,7 @@ function CongressEvent() {
               Congresses
             </p>
           </div>
-          <div className="relative z-10 text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
+          <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
               The Chess Centre’s “Mini-Congresses” have been tailored
               specifically for our venue to provide a sophisticated and
@@ -34,7 +34,7 @@ function CongressEvent() {
             </p>
           </div>
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
-            <div className="relative z-10">
+            <div className="relative">
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                 <p>
                   When competitors visit our Chess Centre for the first time to

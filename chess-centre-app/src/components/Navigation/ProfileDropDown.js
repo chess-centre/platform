@@ -38,7 +38,7 @@ export default function ProfileDropDown(props) {
           >
             <Menu.Items
               static
-              className="origin-top-right absolute right-0 mt-2 w-32 sm:w-44 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none"
+              className="origin-top-right absolute right-0 mt-2 w-32 sm:w-44 rounded-md shadow-lg bg-white border border-teal-500 ring-black ring-opacity-100 divide-y divide-gray-100 focus:outline-none"
             >
               <div className="py-1">
                 <Menu.Item>
