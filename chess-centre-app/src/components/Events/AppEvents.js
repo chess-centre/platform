@@ -120,7 +120,7 @@ export default function AppEvents() {
   const showModal = (eventId, eventType) => {
     setModalState({
       eventId,
-      eventType: `weekend-${eventType}`,
+      eventType,
       open: true,
     });
   };

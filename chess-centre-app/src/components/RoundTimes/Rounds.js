@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // Could be CMS controlled:
 const data = [
   {
-    type: "weekend-congress",
+    type: "congress",
     rounds: [
       {
         round: 1,
@@ -38,7 +38,7 @@ const data = [
     },
   },
   {
-    type: "weekend-rapidplay",
+    type: "rapidplay",
     rounds: [
       {
         round: 1,
@@ -72,7 +72,7 @@ const data = [
     },
   },
   {
-    type: "weekend-junior-rapidplay",
+    type: "junior-rapidplay",
     rounds: [
       {
         round: 1,
