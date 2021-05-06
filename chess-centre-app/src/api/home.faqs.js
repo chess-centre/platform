@@ -64,7 +64,7 @@ export const faqs = [
     question: `Can I cancel my membership anytime?`,
     answer: `Of course! We have no contract or painful 30-day notice periods. 
       We want you to enjoy being part of our community and what we represent. 
-      You can cancel your membership from your profile under "Subscription" anytime you wish, your membership will be valid until the next payment cicle. And, you are always welcome back, anytime!`,
+      You can cancel your membership from your profile under "Subscription" anytime you wish, your membership will be valid until the next payment cycle. And, you are always welcome back, anytime!`,
     tags: ["membership"],
   },
   {
@@ -117,7 +117,7 @@ export const faqs = [
   },
   {
     question: `Does your venue provide disabled access?`,
-    answer: `We regrettable cannot offer wheelchair access to our patrons. Our premises is based on the first floor with only acess by stairs. We apologise to those who this impacts.`,
+    answer: `We regrettably cannot offer wheelchair access to our patrons. Our premises is based on the first floor with only acess by stairs. We apologise to those who this impacts.`,
     tags: ["general"],
   },
   {

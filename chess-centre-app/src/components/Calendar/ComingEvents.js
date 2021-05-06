@@ -19,17 +19,9 @@ function useEvents() {
       "public",
       `/events?startDate=${now}&endDate=${future}`
     );
-    return events.sort((a, b) => {
-      // // we want to sort by time field also.
-      // const aTime = Number(a.time.split(":")[0]) || 0;
-      // const bTime = Number(b.time.split(":")[0]) || 0;
-      // const aValue = new Date(a.startDate) //.setHours(aTime);
-      // const bValue = new Date(b.startDate) //.setHours(bTime);
-
-      return new Date(a.startDate) - new Date(b.startDate);
-    });
+    return events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
   });
-};
+}
 
 function GridCard({ event }) {
   return (
@@ -71,7 +63,9 @@ function GridCard({ event }) {
         <p className="text-gray-900 font-thin text-base">{event.description}</p>
       </div>
       <div
-        className={"absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"}
+        className={
+          "absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"
+        }
       >
         {event.url && (
           <div className="text-center align-middle">
@@ -79,7 +73,9 @@ function GridCard({ event }) {
               <a
                 className="inline-flex items-center text-teal-500 "
                 href={`${event.url}/${event.id}`}
-              >More Info</a>
+              >
+                More Info
+              </a>
             </div>
           </div>
         )}
@@ -88,7 +84,14 @@ function GridCard({ event }) {
   );
 }
 
-function GridCalendar({ isLoading, error, data, months, selected, setSelectedMonth }) {
+function GridCalendar({
+  isLoading,
+  error,
+  data,
+  months,
+  selected,
+  setSelectedMonth,
+}) {
   return (
     <div>
       {!error ? (
@@ -135,9 +138,7 @@ function GridCalendar({ isLoading, error, data, months, selected, setSelectedMon
                 return (
                   <div
                     key={i}
-                    className={`flex-grow ${
-                      selected !== month && "hidden"
-                    }`}
+                    className={`flex-grow ${selected !== month && "hidden"}`}
                   >
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4">
                       {data
@@ -174,19 +175,36 @@ function GridCalendar({ isLoading, error, data, months, selected, setSelectedMon
 function ListCard({ event }) {
   return (
     <li key={event.id} className="col-span-1 flex mb-3 sm:ml-28">
-      <div className="relative min-w-16 text-center sm:text-left bg-white px-4 sm:pb-3 sm:pt-2 sm:px-6 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg">
+      <div className={event.endDate && (event.startDate !== event.endDate) ? 
+        `relative min-w-16 text-center sm:text-left bg-white px-1 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg` :
+        `relative min-w-16 text-center sm:text-left bg-white px-4 sm:pb-3 sm:pt-2 sm:px-6 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
+        }>
         <div>
-          <p className="text-xs font-base sm:text-lg text-gray-900 mt-2 sm:mt-0">
+          <p className="text-xs font-base sm:text-lg text-gray-900 mt-2 sm:mt-0 text-center">
             {getMonth(event.startDate)}
           </p>
         </div>
         <div className="items-baseline pb-4 sm:pb-0 sm:text-center">
-          <p className="font-semibold text-2xl sm:text-3xl text-gray-900 m-auto sm:m-0 cursor-pointer">
-            {getDay(event.startDate)}
-          </p>
-          <p className="font-thin text-xs sm:text-sm text-gray-900 m-auto mb-0 cursor-pointer">
-            {getDayStr(event.startDate)}
-          </p>
+          {event.endDate && (event.startDate !== event.endDate) ? (
+            <>
+              <p className="font-semibold text-lg sm:text-lg text-gray-900 m-auto sm:m-0 cursor-pointer">
+                {`${getDay(event.startDate)}-${getDay(event.endDate)}`}
+              </p>
+              <p className="font-thin text-xs sm:text-sm text-gray-900 m-auto mb-1 cursor-pointer">
+                {`${getDayStr(event.startDate)} & ${getDayStr(event.endDate)}`}
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="font-semibold text-2xl sm:text-3xl text-gray-900 m-auto sm:m-0 cursor-pointer">
+                {getDay(event.startDate)}
+              </p>
+              <p className="font-thin text-xs sm:text-sm text-gray-900 m-auto mb-0 cursor-pointer">
+                {getDayStr(event.startDate)}
+              </p>
+            </>
+          )}
+
           <div
             className={classNames(
               bgColor900(event.color),
@@ -308,7 +326,10 @@ export default function Calendar() {
             <div className="relative grid grid-cols-4 gap-0 mb-10">
               <div></div>
               <div className="col-span-4 text-base sm:text-xl sm:mt-2 text-gray-600 text-center mb-10 sm:mb-0">
-                <span className="text-teal-700"><i className="fad fa-calendar-alt"></i></span> Coming up next 
+                <span className="text-teal-700">
+                  <i className="fad fa-calendar-alt"></i>
+                </span>{" "}
+                Coming up next
               </div>
               {calenderView === "list" ? (
                 <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex shadow-sm rounded-md m-auto -mb-1">
@@ -317,7 +338,11 @@ export default function Calendar() {
                       <button
                         onClick={() => setSelectedMonth(months[0])}
                         type="button"
-                        className={`${selectedMonth === months[0] ? "text-teal-600 font-medium" : "text-gray-700" } relative inline-flex items-center px-4 py-2 
+                        className={`${
+                          selectedMonth === months[0]
+                            ? "text-teal-600 font-medium"
+                            : "text-gray-700"
+                        } relative inline-flex items-center px-4 py-2 
                         rounded-l-md border border-gray-300 bg-white text-xs  hover:bg-gray-50 
                         focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                       >
@@ -331,7 +356,11 @@ export default function Calendar() {
                       <button
                         onClick={() => setSelectedMonth(months[1])}
                         type="button"
-                        className={`${selectedMonth === months[1] ? "text-orange-600 font-medium" : "text-gray-700" } -ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-xs
+                        className={`${
+                          selectedMonth === months[1]
+                            ? "text-orange-600 font-medium"
+                            : "text-gray-700"
+                        } -ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-xs
                          hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                       >
                         {new Date(2000, months[1], 1).toLocaleString(
@@ -344,7 +373,11 @@ export default function Calendar() {
                       <button
                         onClick={() => setSelectedMonth(months[2])}
                         type="button"
-                        className={`${selectedMonth === months[2] ? "text-teal-600 font-medium" : "text-gray-700" } -ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 
+                        className={`${
+                          selectedMonth === months[2]
+                            ? "text-teal-600 font-medium"
+                            : "text-gray-700"
+                        } -ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 
                         bg-white text-xs hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                       >
                         {new Date(2000, months[2], 1).toLocaleString(
@@ -363,7 +396,11 @@ export default function Calendar() {
                   <button
                     onClick={() => handleViewSwitch("list")}
                     type="button"
-                    className={`${calenderView === "list" ? "text-teal-600 font-bold" : "font-medium text-gray-500"} relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm 
+                    className={`${
+                      calenderView === "list"
+                        ? "text-teal-600 font-bold"
+                        : "font-medium text-gray-500"
+                    } relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm 
                      hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                   >
                     <span className="sr-only">List</span>
@@ -372,7 +409,11 @@ export default function Calendar() {
                   <button
                     onClick={() => handleViewSwitch("grid")}
                     type="button"
-                    className={`${calenderView === "grid" ? "text-teal-600 font-bold" : "font-medium text-gray-500"} -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm 
+                    className={`${
+                      calenderView === "grid"
+                        ? "text-teal-600 font-bold"
+                        : "font-medium text-gray-500"
+                    } -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm 
                       hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                   >
                     <span className="sr-only">Grid</span>
@@ -383,14 +424,14 @@ export default function Calendar() {
             </div>
           </div>
           {calenderView === "grid" ? (
-            <GridCalendar 
-              isLoading={isLoading} 
-              error={error} 
+            <GridCalendar
+              isLoading={isLoading}
+              error={error}
               data={data}
               months={months}
               setSelectedMonth={setSelectedMonth}
               selected={selectedMonth}
-               />
+            />
           ) : (
             <ListCalendar
               isLoading={isLoading}

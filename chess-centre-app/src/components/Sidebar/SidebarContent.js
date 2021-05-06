@@ -92,7 +92,7 @@ function SidebarContent() {
           <i className="fas fa-user-headset"></i> <span className="text-xs">support</span>
         </div>
         <div className="text-center hover:text-teal-500">
-          <Link to="/roadmap">{`v${version}`}</Link>
+          <Link to="/app/roadmap">{`v${version}`}</Link>
         </div>
       </div>
       <SupportContactModal open={isModalOpen} closeModal={closeModal} />

@@ -67,8 +67,6 @@ const listEvents = /* GraphQL */ `
 `;
 
 function useEvents() {
-
-
   const { user } = useAuthState();
 
   function alreadyRegistered(event) {
@@ -104,7 +102,9 @@ function useEvents() {
 export default function AppEvents() {
   const { user } = useAuthState();
   const { search } = useLocation();
-  const { eventId, session_id, event_payment_success } = queryString.parse(search);
+  const { eventId, session_id, event_payment_success } = queryString.parse(
+    search
+  );
   const stripe = useStripe();
   const { addToast } = useToasts();
 
@@ -134,26 +134,29 @@ export default function AppEvents() {
           successUrl: redirectTo,
           cancelUrl: redirectTo,
         },
-      })
+      });
 
-        await stripe.redirectToCheckout({ sessionId })
+      await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
       console.log(error.message);
-      addToast("Oops. This event is either full or you have already registered.", {
-        appearance: "error",
-        autoDismiss: true,
-      });
+      addToast(
+        "Oops. This event is either full or you have already registered.",
+        {
+          appearance: "error",
+          autoDismiss: true,
+        }
+      );
     }
   };
 
   useEffect(() => {
     if (eventId) {
       register(eventId);
-    };
-    if(event_payment_success && session_id) {
+    }
+    if (event_payment_success && session_id) {
       setPaymentSuccessful(true);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);
 
   return (
@@ -240,7 +243,10 @@ export default function AppEvents() {
                             <span>{prettyDate(startDate, endDate)}</span>{" "}
                           </p>
                           {rounds && (
-                            <p className="sm:inline text-xs text-teal-700 mr-2 mb-2">
+                            <p
+                              className="sm:inline text-xs text-teal-700 cursor-pointer mr-2 mb-2"
+                              onClick={() => showModal(id, type.eventType)}
+                            >
                               <i className="fad fa-flag mr-1"></i>
                               <span className="inline">
                                 {rounds} rounds
@@ -323,7 +329,6 @@ export default function AppEvents() {
                         )}
                       </div>
                     </div>
-                    
                   </section>
                 );
               }
@@ -342,7 +347,10 @@ export default function AppEvents() {
           <div className="italic text-red-700">Error fetching events.</div>
         </div>
       )}
-      <PaymentCompleteModal open={paymentSuccesseful} setOpen={setPaymentSuccessful} />
+      <PaymentCompleteModal
+        open={paymentSuccesseful}
+        setOpen={setPaymentSuccessful}
+      />
       <RoundTimesModal {...modalState} closeModal={closeModal} />
     </>
   );

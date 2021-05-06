@@ -71,6 +71,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
+              <li>Purchasable Chess supplies</li>
               <li>FIDE rated events</li>
               <li>New event types</li>
             </ul>
