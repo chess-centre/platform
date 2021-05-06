@@ -20,7 +20,6 @@ export declare class EventType {
   readonly url?: string;
   readonly color?: string;
   readonly time?: string;
-  readonly arrivalTime?: string;
   readonly maxEntries?: number;
   readonly stripePriceId?: string;
   readonly timeControl?: string;
@@ -59,7 +58,6 @@ export declare class Member {
   readonly stripePriceId?: string;
   readonly stripeProductId?: string;
   readonly ecfRating?: string;
-  readonly membershipType?: string;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
 }
