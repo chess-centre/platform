@@ -24,7 +24,7 @@ export default function FAQs() {
               );
             })}
           </dl>
-          <div className="text-center text-teal-600 hover:text-teal-800"><Link to="/faqs">more</Link></div>
+          <div className="mt-4 text-center text-teal-600 hover:text-teal-800 hover:underline"><Link to="/faqs">more</Link></div>
         </div>
       </div>
     </div>

@@ -1,45 +1,95 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { SearchIcon } from "@heroicons/react/solid";
 import { faqs } from "../../api/home.faqs";
 
-
-function QuestionsAndAnswer({ faqs }) {
-
-    return faqs
-      .map((faq) => {
-        return (
-          <div key={faq.id}>
-            <dt className="text-lg leading-6 font-medium text-gray-900">
-              <span
-                dangerouslySetInnerHTML={{ __html: faq.question }}
-              ></span>
-            </dt>
-            <dd className="mt-2 text-justify text-base text-gray-500">
-              <span
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              ></span>
-            </dd>
-          </div>
-        );
-      });
+function QuestionsAndAnswer({ faqs, setSelectedTags }) {
+  return faqs.map((faq, key) => {
+    return (
+      <div key={key}>
+        <dt className="text-lg leading-6 font-medium text-gray-900">
+          <span dangerouslySetInnerHTML={{ __html: faq.question }}></span>
+        </dt>
+        <dd className="mt-2 text-justify text-base text-gray-500 mb-1">
+          <span dangerouslySetInnerHTML={{ __html: faq.answer }}></span>
+        </dd>
+        <div className="text-right">
+          {faq.tags ? (
+            <span className="text-xs text-gray-500">category: </span>
+          ) : (
+            ""
+          )}
+          {faq.tags &&
+            faq.tags.map((tag, key) => {
+              return (
+                <span
+                  key={key}
+                  onClick={() => setSelectedTags(tag)}
+                  className="inline-flex items-center px-2 py-0.5 mr-1 rounded text-xs font-medium bg-teal-100 text-teal-800 cursor-pointer"
+                >
+                  {tag}
+                </span>
+              );
+            })}
+        </div>
+      </div>
+    );
+  });
 }
 
-
 export default function FAQs() {
-  const [filteredQuestionsCount, setfilteredQuestionsCount] = useState(faqs.length);
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredQuestionsCount, setfilteredQuestionsCount] = useState(
+    faqs.length
+  );
   const [filteredResult, setFilteredResults] = useState(faqs);
   let totalQuestions = faqs.length;
 
-
-  const handleSearchInput = (searchTerm) => {
-
-    const filtered = faqs.filter(({ question }) => question.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()))
-    setfilteredQuestionsCount(filtered.length);
-    setFilteredResults(filtered);
+  const handleSearchInput = (search) => {
+    setSearchTerm(search);
   };
 
+  const handleSelectedTags = (tag) => {
+    if (!selectedTags.includes(tag)) {
+      setSelectedTags((oldTags) => [...oldTags, tag]);
+    }
+  };
+
+  const handleRemoveTags = (tag) => {
+    const newArr = selectedTags.filter((t) => t !== tag);
+    setSelectedTags(newArr);
+  };
+
+  useEffect(() => {
+    const filterResultList = () => {
+      let filtered = [];
+
+      if (selectedTags.length > 0) {
+        // must be a more efficient way to achieve this "selectable" tag search
+        filtered = [
+          ...faqs.filter(({ tags }) => {
+            // BUG: multiple tags in the same question are not queriable:
+            const t = tags || [];
+            return t.every((tag) => selectedTags.includes(tag));
+          }),
+        ].filter(({ question }) =>
+          question.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+        );
+      } else {
+        filtered = faqs.filter(({ question }) =>
+          question.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+        );
+      }
+      setfilteredQuestionsCount(filtered.length);
+      setFilteredResults(filtered);
+    };
+
+    console.log(selectedTags, searchTerm);
+
+    filterResultList();
+  }, [selectedTags, searchTerm]);
 
   return (
     <div>
@@ -151,6 +201,37 @@ export default function FAQs() {
                     </div>
                   </div>
                 </div>
+                <div className="inline-block mt-2">
+                  {selectedTags &&
+                    selectedTags.map((tag, key) => {
+                      return (
+                        <span
+                          key={key}
+                          onClick={() => handleRemoveTags(tag)}
+                          className="inline-flex items-center py-0.5 pl-2 pr-0.5 mr-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700"
+                        >
+                          {tag}
+                          <button
+                            type="button"
+                            className="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-yellow-400 hover:bg-yellow-200 hover:text-yellow-500 focus:outline-none focus:bg-yellow-500 focus:text-white"
+                          >
+                            <svg
+                              className="h-2 w-2"
+                              stroke="currentColor"
+                              fill="none"
+                              viewBox="0 0 8 8"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeWidth="1.5"
+                                d="M1 1l6 6m0-6L1 7"
+                              />
+                            </svg>
+                          </button>
+                        </span>
+                      );
+                    })}
+                </div>
               </div>
             </div>
           </div>
@@ -158,17 +239,20 @@ export default function FAQs() {
         <div className="container m-auto">
           <div className="max-w-7xl mx-auto py-10 px-4 sm:py-10 sm:px-16 lg:px-16">
             <div className="">
-              {
-                filteredQuestionsCount === totalQuestions ? "" : (
-             
-              <h3 className="text-center mb-6">
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-teal-100 text-teal-800">
-                 Results {filteredQuestionsCount} / {totalQuestions}
-                </span>
-              </h3>)
-               }
+              {filteredQuestionsCount === totalQuestions ? (
+                ""
+              ) : (
+                <h3 className="text-center mb-6">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-teal-100 text-teal-800">
+                    Results {filteredQuestionsCount} / {totalQuestions}
+                  </span>
+                </h3>
+              )}
               <dl className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-x-8 md:gap-y-6 lg:grid-cols-3">
-                <QuestionsAndAnswer faqs={filteredResult} />
+                <QuestionsAndAnswer
+                  faqs={filteredResult}
+                  setSelectedTags={handleSelectedTags}
+                />
               </dl>
             </div>
           </div>

@@ -104,7 +104,6 @@ function useEvents() {
 export default function AppEvents() {
   const { user } = useAuthState();
   const { search } = useLocation();
-  console.log(queryString.parse(search));
   const { eventId, session_id, event_payment_success } = queryString.parse(search);
   const stripe = useStripe();
   const { addToast } = useToasts();
@@ -127,19 +126,20 @@ export default function AppEvents() {
   };
 
   const register = async (eventId) => {
-    const redirectTo = `${window.location.origin}/app/events`;
     try {
+      const redirectTo = `${window.location.origin}/app/events`;
       const { sessionId } = await API.post("public", "/event/register", {
         body: {
           eventId,
           successUrl: redirectTo,
           cancelUrl: redirectTo,
         },
-      });
+      })
 
-      await stripe.redirectToCheckout({ sessionId });
+        await stripe.redirectToCheckout({ sessionId })
     } catch (error) {
-      addToast(error.message, {
+      console.log(error.message);
+      addToast("Oops. This event is either full or you have already registered.", {
         appearance: "error",
         autoDismiss: true,
       });
@@ -148,15 +148,11 @@ export default function AppEvents() {
 
   useEffect(() => {
     if (eventId) {
-      // TODO: check if its an actual event (race condition):
-      //if(data && eventId === data.find(e => e.id === eventId)) {
       register(eventId);
     };
-
     if(event_payment_success && session_id) {
       setPaymentSuccessful(true);
     };
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId]);
 

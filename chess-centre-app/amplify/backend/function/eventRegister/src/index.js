@@ -106,19 +106,21 @@ exports.handler = async (event) => {
   const actualMaxEntries = maxEntries || defaultMaxEntries;
   const entryCount = entries.length;
   if (entryCount >= actualMaxEntries) {
+    console.log("This event is full");
     return {
       statusCode: 400,
       headers,
-      body: "This event is full.",
+      body:  JSON.stringify("This event is full."),
     };
   }
 
   const existingEntry = entries.find((e) => e.memberId === memberId);
   if (existingEntry) {
+    console.log("This member is already registered for this event.");
     return {
       statusCode: 400,
       headers,
-      body: "This member is already registered for this event.",
+      body: JSON.stringify("This member is already registered for this event."),
     };
   }
 
@@ -203,7 +205,7 @@ async function sendRegisteredEventEmail({ email, time, name, eventName, eventTyp
       BccAddresses: [
         "The Chess Centre <support@chesscentre.online>"
       ],
-      ToAddresses: ["matt@chesscentre.online"],
+      ToAddresses: [email],
     },
     Message: {
       Subject: { Data: `${eventName} | Entry Confirmed` },
