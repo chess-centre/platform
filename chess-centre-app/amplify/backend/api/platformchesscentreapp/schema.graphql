@@ -46,6 +46,7 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   stripePriceId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   stripeProductId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   ecfRating: String
+  membershipTyp: String
 }
 
 type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "eventsByStartDate", fields: ["startDate", "name"], queryField: "eventsByStartDate") {
