@@ -11,6 +11,7 @@ import RoundTimesModal from "../Modal/RoundTimesModal";
 import { prettyDate } from "../../utils/DateFormating";
 import { classNames, bgColor900, bgColor700 } from "../../utils/Classes";
 import PaymentCompleteModal from "../../components/Modal/PaymentCompleteModal";
+import EventDetailsSlideOut from "../../components/SlideOut/EventDetailsSlideOut";
 
 const listEvents = /* GraphQL */ `
   query ListEvents(
@@ -107,7 +108,10 @@ export default function AppEvents() {
   );
   const stripe = useStripe();
   const { addToast } = useToasts();
-
+  const [isSlideOutOpen, setIsSlideOutOpen] = useState({
+    open: false,
+    eventDetails: {},
+  });
   const [modalState, setModalState] = useState({});
   const [paymentSuccesseful, setPaymentSuccessful] = useState(false);
 
@@ -187,20 +191,22 @@ export default function AppEvents() {
                     <div
                       className={classNames(
                         bgColor900(type.color),
-                        "absolute left-0 z-10 inset-y-0 py-1 px-0.5 border-l text-xs rounded-l-sm"
+                        "absolute left-0 z-10 inset-y-0 py-1 px-1.5 border-l text-xs rounded-l-lg"
                       )}
                     ></div>
                     <div
                       className={classNames(
-                        bgColor700(type.color),
-                        "absolute left-0 inset-y-0 px-1 py-1 sm:px-1 border-l text-xs rounded-l-sm"
+                        "bg-gray-200",
+                        "absolute left-3 z-10 inset-y-0 py-1 px-0.5 border-l text-xs"
                       )}
                     ></div>
                     <div className="bg-white dark:bg-gray-800 pt-4 shadow rounded-sm overflow-hidden h-full">
                       <div className="pl-9 pr-4 sm:pl-9 space-y-2 pb-2">
                         <div className="grid grid-cols-3 ">
                           <div className="col-span-2">
-                            <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1">
+                            <h2
+                              className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1"
+                            >
                               {name || type.name}{" "}
                               {eventId === id ? (
                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
@@ -264,6 +270,30 @@ export default function AppEvents() {
                               </span>{" "}
                             </p>
                           )}
+                            <p
+                              className="sm:inline text-xs text-teal-700 cursor-pointer mr-2 mb-2"
+                              onClick={() =>
+                                setIsSlideOutOpen({ open: true, eventDetails: {
+                                  id,
+                                  name,
+                                  description,
+                                  entries,
+                                  type,
+                                  startDate,
+                                  endDate,
+                                  time,
+                                  allowedToRegister,
+                                  maxEntries,
+                                  entryCount,
+                                  rounds,
+                                }})
+                              }
+                            >
+                              <i className="fas fa-info mr-1"></i>
+                              <span className="inline">
+                                More info
+                              </span>{" "}
+                            </p>
                         </div>
                       </div>
                       <div className={"w-full bg-white"}>
@@ -351,6 +381,10 @@ export default function AppEvents() {
         open={paymentSuccesseful}
         setOpen={setPaymentSuccessful}
       />
+      <EventDetailsSlideOut
+        isSlideOutOpen={isSlideOutOpen}
+        setIsSlideOutOpen={setIsSlideOutOpen}
+      ></EventDetailsSlideOut>
       <RoundTimesModal {...modalState} closeModal={closeModal} />
     </>
   );
