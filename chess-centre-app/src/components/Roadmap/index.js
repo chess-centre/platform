@@ -30,7 +30,7 @@ const Roadmap = () => {
           </div>
         </div>
         <div className="sm:mt-12 max-w-7xl mx-auto px-4 sm:px-8 lg:px-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 mt-4 ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 mt-10">
             <div>
               <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
                 The Centre

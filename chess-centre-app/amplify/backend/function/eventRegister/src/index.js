@@ -8,10 +8,11 @@ Amplify Params - DO NOT EDIT */
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 const https = require("https");
 const AWS = require("aws-sdk");
+const region = process.env.REGION;
+const SES = new AWS.SES({ region: region });
 const urlParse = require("url").URL;
 const appsyncUrl =
   process.env.API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIENDPOINTOUTPUT;
-const region = process.env.REGION;
 const endpoint = new urlParse(appsyncUrl).hostname.toString();
 const gql = require("graphql-tag");
 const graphql = require("graphql");
@@ -24,8 +25,11 @@ const getEvent = gql`
       maxEntries
       type {
         id
+        name
         maxEntries
         stripePriceId
+        eventType
+        time
       }
       endDate
       startDate
@@ -39,11 +43,15 @@ const getEvent = gql`
     }
     getMember(id: $memberId) {
       id
+      name
+      email
       stripeCustomerId
       stripeCurrentPeriodEnd
     }
   }
 `;
+
+
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
@@ -83,29 +91,36 @@ exports.handler = async (event) => {
     data: {
       getEvent: {
         maxEntries,
-        type: { stripePriceId, maxEntries: defaultMaxEntries },
+        startDate,
+        type: {
+          time
+        },
+        eventType,
+        type: { stripePriceId, maxEntries: defaultMaxEntries, name: eventName },
         entries: { items: entries },
       },
-      getMember: { stripeCustomerId },
+      getMember: { stripeCustomerId, email, name },
     },
   } = eventData;
 
   const actualMaxEntries = maxEntries || defaultMaxEntries;
   const entryCount = entries.length;
   if (entryCount >= actualMaxEntries) {
+    console.log("This event is full");
     return {
       statusCode: 400,
       headers,
-      body: "This event is full.",
+      body:  JSON.stringify("This event is full."),
     };
   }
 
   const existingEntry = entries.find((e) => e.memberId === memberId);
   if (existingEntry) {
+    console.log("This member is already registered for this event.");
     return {
       statusCode: 400,
       headers,
-      body: "This member is already registered for this event.",
+      body: JSON.stringify("This member is already registered for this event."),
     };
   }
 
@@ -129,14 +144,33 @@ exports.handler = async (event) => {
       // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
       // the actual Session ID is returned in the query parameter when your customer
       // is redirected to the success page.
-      success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}&event_payment_success=true`,
       cancel_url: cancelUrl,
       client_reference_id: `${memberId}#${eventId}`,
       customer: stripeCustomerId || undefined,
     });
 
-    console.log("stripe session ============");
+    console.log("stripe session:");
     console.log(session);
+
+    console.log("Sending registered email", email);
+
+    const params = {
+      eventId,
+      email,
+      time,
+      name,
+      eventName,
+      startDate,
+      eventType
+    };
+
+    const emailData = await sendRegisteredEventEmail(params).catch(e => {
+      console.log("sendRegisteredEventEmail error");
+      console.log(e);
+    });
+
+    console.log(emailData);
 
     return {
       statusCode: 200,
@@ -155,6 +189,47 @@ exports.handler = async (event) => {
     };
   }
 };
+
+function formatDate(date) {
+  return new Date(date).toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+}
+
+async function sendRegisteredEventEmail({ email, time, name, eventName, eventType, eventId, startDate }) {
+  const params = {
+    Source: "The Chess Centre <support@chesscentre.online>",
+    Destination: {
+      BccAddresses: [
+        "The Chess Centre <support@chesscentre.online>"
+      ],
+      ToAddresses: [email],
+    },
+    Message: {
+      Subject: { Data: `${eventName} | Entry Confirmed` },
+      Body: {
+        Text: { Data: `Hi ${name},\r\n Thank you for registering for our ${eventName} on ${startDate}.` },
+        Html: { Data: `<h2 style="color: #047481">♟️ The Chess Centre</h2>
+        <p>Hello ${name} 👋</p>
+        <p>Thank you for registering for our <strong>${eventName}</strong>.</p> 
+        <p>The key details for this event:</p>
+        <p>📅 Date: ${formatDate(startDate)}</p>
+        ${time ? `<p>⌚ Arrival Time:" ${time}</p>` : ""}
+        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
+        <p>More details can be found here:
+          <a href="https://www.chesscentre.online/${eventType}/${eventId}">chesscentre.online/${eventType}</a>
+        </p>
+        <p>If you have any questions or need to withdraw your entry, please email us at: info@chesscentre.online</p>
+        <p>We look forward to seeing you soon! 🚀</p>
+        `
+      }
+      }
+    }
+  };
+  return SES.sendEmail(params).promise();
+}
 
 async function fetchEvent(id, memberId) {
   const req = new AWS.HttpRequest(appsyncUrl, region);

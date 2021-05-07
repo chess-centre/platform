@@ -28,16 +28,20 @@ const routes = [
     component: lazy(() => import("../pages/App/Upgrade")),
   },
   {
-    path: "/non-members/:memberId",
-    component: lazy(() =>
-      import("../components/MemberProfile/NonMemberProfile")
-    ),
+    path: "/roadmap",
+    component: lazy(() => import("../pages/App/Roadmap")),
   },
-  // this is auto-generated with given_name-family_name but can be set by the user: app/profile
-  {
-    path: "/members/:username",
-    component: lazy(() => import("../components/MemberProfile/MemberProfile")),
-  },
+  // {
+  //   path: "/non-members/:memberId",
+  //   component: lazy(() =>
+  //     import("../components/MemberProfile/NonMemberProfile")
+  //   ),
+  // },
+  // // this is auto-generated with given_name-family_name but can be set by the user: app/profile
+  // {
+  //   path: "/members/:username",
+  //   component: lazy(() => import("../components/MemberProfile/MemberProfile")),
+  // },
   {
     path: "/profile",
     component: lazy(() => import("../pages/App/User/Profile")),

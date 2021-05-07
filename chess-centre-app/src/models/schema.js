@@ -381,6 +381,13 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "membershipTyp": {
+                    "name": "membershipTyp",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -677,5 +684,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "39ba1ba9a4ba8c68b3ba3936dacda0d2"
+    "version": "c93a6c76cfc27d378610129b1f080fdd"
 };

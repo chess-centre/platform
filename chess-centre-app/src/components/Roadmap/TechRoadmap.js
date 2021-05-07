@@ -93,7 +93,10 @@ export const TechRoadmap = () => {
             </div>
           </div>
           <div className="ml-12">
-            <ul className="ml-1">
+            <ul className="list-disc ml-5">
+            <li>Junior - lesson resources</li>
+            </ul>
+            <ul className="ml-1">   
               <li> Have your say 
                 <a className="text-pink-600 hover:underline" href="https://github.com/chess-centre/platform/discussions"> here</a>{" "}💡
               </li>

@@ -12,30 +12,6 @@ const LandingFooter = () => {
         >
           <div className="px-5 py-2">
             <Link
-              to="/events"
-              className="text-xs sm:text-base text-gray-500 hover:text-teal-brand"
-            >
-              Events
-            </Link>
-          </div>
-          <div className="px-5 py-2">
-            <Link
-              to="/membership"
-              className="text-xs sm:text-base text-gray-500 hover:text-teal-brand"
-            >
-              Membership
-            </Link>
-          </div>
-          <div className="px-5 py-2">
-            <Link
-              to="/our-mission"
-              className="text-xs sm:text-base text-gray-500 hover:text-teal-brand"
-            >
-              Our Mission
-            </Link>
-          </div>
-          <div className="px-5 py-2">
-            <Link
               to="/about"
               className="text-xs sm:text-base text-gray-500 hover:text-teal-brand"
             >

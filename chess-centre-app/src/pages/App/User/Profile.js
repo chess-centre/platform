@@ -147,6 +147,7 @@ function Profile() {
 
     const getProfileData = async () => {
       setIsLoadingProfile(true);
+      // odd results when using Promise.all()
       await getUser();
       await getCustomerPortal(); 
       await getMemberStatus();

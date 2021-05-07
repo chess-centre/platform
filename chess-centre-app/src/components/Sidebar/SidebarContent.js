@@ -43,12 +43,12 @@ function SidebarContent() {
       >
         <img
           aria-hidden="true"
-          className="object-scale-down h-7 w-full inline-block"
+          className="object-contain mt-4 sm:mt-2 h-7 px-6 inline-block"
           src={ImageLight}
           alt="Logo"
         />
       </NavLink>
-      <ul className="mt-6">
+      <ul className="mt-4 sm:mt-6">
         {routes.map((route) =>
           route.routes ? (
             <SidebarSubmenu route={route} key={route.name} />
@@ -92,7 +92,7 @@ function SidebarContent() {
           <i className="fas fa-user-headset"></i> <span className="text-xs">support</span>
         </div>
         <div className="text-center hover:text-teal-500">
-          <Link to="/roadmap">{`v${version}`}</Link>
+          <Link to="/app/roadmap">{`v${version}`}</Link>
         </div>
       </div>
       <SupportContactModal open={isModalOpen} closeModal={closeModal} />

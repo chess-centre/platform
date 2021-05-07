@@ -97,7 +97,7 @@ const Home = () => {
                 </span>
               </h2>
               <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-              <span className="font-light">Welcome to</span>
+                <span className="font-light">Welcome to</span>
                 <br className="xl:hidden" />
                 <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400">
                   {" "}
@@ -106,7 +106,8 @@ const Home = () => {
               </h2>
 
               <p className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                It's time things changed around here. <br className="md:hidden" /> Brace yourselves!{" "}
+                It's time things changed around here.{" "}
+                <br className="md:hidden" /> Brace yourselves!{" "}
                 <span role="img">🚀</span>
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
@@ -118,19 +119,25 @@ const Home = () => {
                     Join Now
                   </Link>
                 </div>
-                <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                  <Link
-                    to="/our-mission"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none focus:border-teal-300 focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
-                  >
-                    More Info
-                  </Link>
-                </div>
               </div>
             </div>
           </main>
         </div>
       </div>
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-28">
+        <div className="pt-4 pb-0 sm:py-10">
+          <div className="aspect-w-16 aspect-h-9 rounded-lg">
+            <iframe
+              src={`https://www.youtube.com/embed/wofz0k6FCMU`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
+            />
+          </div>
+        </div>
+      </div>
+
       <ComingEvents />
       <FAQs />
       <FindUs />

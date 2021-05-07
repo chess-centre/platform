@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import EventDetailsModal from "../Modal/EventDetailsModal";
 
-
 function Stats(props) {
-
   const { entries, rating } = props;
   const [modalState, setModalState] = useState({});
 
@@ -17,7 +15,6 @@ function Stats(props) {
       open: true,
     });
   };
-
 
   return (
     <div>
@@ -36,12 +33,20 @@ function Stats(props) {
             </p>
           </div>
           <div className="sm:ml-16 flex items-baseline pb-7 sm:pb-0">
-            <p onClick={showModal}
-            className="text-2xl font-semibold text-gray-900 dark:text-white m-auto sm:m-0 cursor-pointer">
-              {entries?.length || 0}
-            </p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6  border-t border-gray-50 dark:border-gray-700">
-            </div>
+            {entries.length > 0 ? (
+              <p
+                onClick={showModal}
+                className="text-2xl font-semibold text-gray-900 dark:text-white m-auto sm:m-0 cursor-pointer"
+              >
+                {entries.length}
+              </p>
+            ) : (
+              <p className="text-2xl font-semibold text-gray-900 dark:text-white m-auto sm:m-0">
+                0
+              </p>
+            )}
+
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6  border-t border-gray-50 dark:border-gray-700"></div>
           </div>
         </div>
 
@@ -60,8 +65,7 @@ function Stats(props) {
             <p className="text-2xl font-semibold text-gray-900 dark:text-white m-auto sm:m-0">
               {0}
             </p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-50 dark:border-gray-700">
-            </div>
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-50 dark:border-gray-700"></div>
           </div>
         </div>
 
@@ -69,7 +73,7 @@ function Stats(props) {
           <div>
             <div className="sm:absolute p-2">
               <span className="text-teal-500 text-3xl">
-              <i className="fad fa-chart-line"></i>
+                <i className="fad fa-chart-line"></i>
               </span>
             </div>
             <p className="sm:ml-16 text-sm font-medium text-gray-500 dark:text-gray-300 truncate">
@@ -80,12 +84,10 @@ function Stats(props) {
             <p className="text-2xl font-semibold text-gray-900 dark:text-white m-auto sm:m-0">
               {rating}
             </p>
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-10 border-t border-gray-50 dark:border-gray-700">
-            </div>
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-10 border-t border-gray-50 dark:border-gray-700"></div>
           </div>
         </div>
       </dl>
-      
     </div>
   );
 }

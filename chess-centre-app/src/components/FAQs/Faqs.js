@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { faqs } from "../../api/home.faqs";
 
 export default function FAQs() {
   return (
     <div className="bg-gray-50">
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:py-16 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto pt-16 pb-10 px-4 sm:py-16 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-extrabold text-gray-900 text-center">
           Frequently asked questions
         </h2>
@@ -23,8 +24,22 @@ export default function FAQs() {
               );
             })}
           </dl>
+
+          <div className="relative mt-8 mx-10 sm:mx-36">
+            <div
+              className="absolute inset-0 flex items-center"
+              aria-hidden="true"
+            >
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center">
+              <span className="px-2 bg-gray-50 text-sm text-teal-500 font-semibold hover:text-teal-700 hover:underline">
+              <Link to="/faqs">more</Link>
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-};
+}

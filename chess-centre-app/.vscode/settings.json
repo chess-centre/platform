@@ -1,6 +1,5 @@
 {
   "files.exclude": {
-    "amplify/.config": true,
     "amplify/**/*-parameters.json": true,
     "amplify/**/amplify.state": true,
     "amplify/**/transform.conf.json": true,
