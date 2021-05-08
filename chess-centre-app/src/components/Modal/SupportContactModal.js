@@ -59,8 +59,8 @@ export default function SupportContactModal(props) {
                   .
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
-                  Unfortunately, we don't have an official support team - as
-                  everyone is a volunteer ❤️ Please bear with us as we try to get to the bottom of any issues some may require specific skill sets.
+                  Unfortunately, we have no official support team - as
+                  everyone is a volunteer ❤️ so, please bear with us!
                 </p>
               </div>
             </div>
