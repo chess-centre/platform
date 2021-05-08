@@ -102,7 +102,7 @@ function Login(props) {
                         className="h-5 w-5 mr-3"
                         src={Loading}
                       />{" "}
-                      <span className="inline-block align-middle text-sm">
+                      <span className="inline-block align-middle text-sm font-thin">
                         Preparing ...
                       </span>
                     </div>

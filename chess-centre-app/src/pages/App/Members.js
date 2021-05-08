@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Logo from "../../assets/img/logo.svg";
 import PGNViewer from "../../components/ChessBoard/ChessBoard";
-import { games } from "../../api/mock.games";
+import { games } from "../../mock/mock.games";
 
 function Members() {
   const [showSneakPeek, setShowSneakPeak] = useState(false);

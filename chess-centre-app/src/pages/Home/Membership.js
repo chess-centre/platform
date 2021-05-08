@@ -2,7 +2,7 @@ import React from "react";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import MembershipCard from "../../components/Membership/MembershipCard";
-import data from "../../api/membership-info";
+import { Memberships } from "../../api/data.memberships";
 
 function Membership() {
   return (
@@ -101,7 +101,7 @@ function Membership() {
             <div className="absolute inset-0 h-3/4 bg-teal-700"></div>
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="max-w-md mx-auto space-y-4 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0">
-                {data.map((membership, key) => {
+                {Memberships.map((membership, key) => {
                   return (
                     <div className="z-20">
                       <MembershipCard key={key} {...membership} />
@@ -111,11 +111,27 @@ function Membership() {
               </div>
             </div>
           </div>
-          <div className="mt-6 relative max-w-7xl mx-auto px-2 sm:px-6 lg:px-4 lg:mt-6">
+          <div className="mt-6 relative max-w-7xl mx-auto px-2 sm:px-6 lg:px-6 lg:mt-6">
             <div className="max-w-md mx-auto lg:max-w-5xl">
-              <div className="rounded-lg bg-gray-100 px-6 py-8 sm:p-6 lg:flex lg:items-center border border-light-blue-300 shadow">
+              <div className="rounded-lg bg-yellow-50 px-6 py-2 lg:flex lg:items-center border border-light-blue-300 shadow mb-4 sm:mr-16 sm:ml-16">
                 <div className="flex-1">
-                  <div className="text-center sm:text-left text-md font-normal text-gray-600">
+                  <div className="text-center text-sm font-normal text-gray-600">
+                    <p><span className="font-medium">Still deciding? </span>Pay us a visit, see what we've got to offer!</p>
+                    <p>There is no charge for your first few visits and no obligation to sign-up.</p>
+                    <p className="inline-block text-lg">
+                      <span className="text-red-600 mr-1"><i className="fak fa-chess-centre"></i></span>
+                      <span className="text-orange-500 mr-1"><i className="fak fa-chess-centre"></i></span>
+                      <span className="text-yellow-300 mr-1"><i className="fak fa-chess-centre"></i></span>
+                      <span className="text-green-600 mr-1"><i className="fak fa-chess-centre"></i></span>
+                      <span className="text-blue-600 mr-1"><i className="fak fa-chess-centre"></i></span>
+                      <span className="text-purple-700 mr-1"><i className="fak fa-chess-centre"></i></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="rounded-lg bg-gray-100 px-6 py-4 lg:flex lg:items-center border border-light-blue-300 shadow sm:mr-16 sm:ml-16">
+                <div className="flex-1">
+                  <div className="text-center text-md font-normal text-gray-600">
                     Got an amazing idea to help grow our community and bring
                     Chess to a greater audience?
                   </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { SearchIcon } from "@heroicons/react/solid";
-import { faqs } from "../../api/home.faqs";
+import { faqs } from "../../api/data.faqs";
 
 function QuestionsAndAnswers({ faqs, setSelectedTags }) {
   return faqs.map((faq, key) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { faqs } from "../../api/home.faqs";
+import { faqs } from "../../api/data.faqs";
 
 export default function FAQs() {
   return (
