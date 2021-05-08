@@ -48,7 +48,7 @@ function SidebarContent() {
           alt="Logo"
         />
       </NavLink>
-      <ul className="mt-4 sm:mt-6">
+      <ul className="mt-6 sm:mt-8">
         {routes.map((route) =>
           route.routes ? (
             <SidebarSubmenu route={route} key={route.name} />

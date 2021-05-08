@@ -1,5 +1,5 @@
 import React from "react";
-import { Members } from "../../../api/mock.members";
+import { Members } from "../../../mock/mock.members";
 
 const SixPlayerPairings = [
   {

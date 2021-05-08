@@ -9,7 +9,7 @@ import { useAuthState } from "../../context/Auth";
 import Register from "./Register";
 import RoundTimesModal from "../Modal/RoundTimesModal";
 import { prettyDate } from "../../utils/DateFormating";
-import { classNames, bgColor900, bgColor700 } from "../../utils/Classes";
+import { classNames, bgColor900 } from "../../utils/Classes";
 import PaymentCompleteModal from "../../components/Modal/PaymentCompleteModal";
 import EventDetailsSlideOut from "../../components/SlideOut/EventDetailsSlideOut";
 
@@ -108,19 +108,16 @@ export default function AppEvents() {
   );
   const stripe = useStripe();
   const { addToast } = useToasts();
-  const [isSlideOutOpen, setIsSlideOutOpen] = useState({
+  const [slideState, setIsSlideOutOpen] = useState({
     open: false,
     eventDetails: {},
   });
   const [modalState, setModalState] = useState({});
   const [paymentSuccesseful, setPaymentSuccessful] = useState(false);
-
   const { isLoading, error, data } = useEvents();
-
   const closeModal = () => {
     setModalState((s) => ({ ...s, open: false }));
   };
-
   const showModal = (eventId, eventType) => {
     setModalState({
       eventId,
@@ -187,11 +184,11 @@ export default function AppEvents() {
                 key
               ) => {
                 return (
-                  <section key={key} className="relative sm:mr-3 mb-3">
+                  <section key={key} className="relative sm:mr-3 mb-3 rounded-lg border">
                     <div
                       className={classNames(
                         bgColor900(type.color),
-                        "absolute left-0 z-10 inset-y-0 py-1 px-1.5 border-l text-xs rounded-l-lg"
+                        "absolute left-0 z-10 inset-y-0 py-1 px-1.5 text-xs rounded-l-lg"
                       )}
                     ></div>
                     <div
@@ -200,9 +197,9 @@ export default function AppEvents() {
                         "absolute left-3 z-10 inset-y-0 py-1 px-0.5 border-l text-xs"
                       )}
                     ></div>
-                    <div className="bg-white dark:bg-gray-800 pt-4 shadow rounded-sm overflow-hidden h-full">
+                    <div className="bg-white dark:bg-gray-800 pt-4 shadow rounded-lg overflow-hidden h-full">
                       <div className="pl-9 pr-4 sm:pl-9 space-y-2 pb-2">
-                        <div className="grid grid-cols-3 ">
+                        <div className="grid grid-cols-3">
                           <div className="col-span-2">
                             <h2
                               className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1"
@@ -244,34 +241,34 @@ export default function AppEvents() {
                           </div>
                         </div>
                         <div>
-                          <p className="sm:inline text-xs text-teal-700 mr-2 mb-2">
+                          <p className="sm:inline text-xs text-gray-900-700 mr-2 mb-2">
                             <i className="fad fa-calendar-alt mr-1"></i>
-                            <span>{prettyDate(startDate, endDate)}</span>{" "}
+                            <span className="text-teal-700">{prettyDate(startDate, endDate)}</span>{" "}
                           </p>
                           {rounds && (
                             <p
-                              className="sm:inline text-xs text-teal-700 cursor-pointer mr-2 mb-2"
+                              className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
                               onClick={() => showModal(id, type.eventType)}
                             >
                               <i className="fad fa-flag mr-1"></i>
-                              <span className="inline">
+                              <span className="inline text-teal-700">
                                 {rounds} rounds
                               </span>{" "}
                             </p>
                           )}
                           {(time || type.time) && (
                             <p
-                              className="sm:inline text-xs text-teal-700 cursor-pointer mr-2 mb-2"
+                              className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
                               onClick={() => showModal(id, type.eventType)}
                             >
                               <i className="fad fa-clock mr-1"></i>
-                              <span className="inline">
+                              <span className="inline text-teal-700">
                                 {time || type.time}
                               </span>{" "}
                             </p>
                           )}
                             <p
-                              className="sm:inline text-xs text-teal-700 cursor-pointer mr-2 mb-2"
+                              className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
                               onClick={() =>
                                 setIsSlideOutOpen({ open: true, eventDetails: {
                                   id,
@@ -290,74 +287,13 @@ export default function AppEvents() {
                               }
                             >
                               <i className="fas fa-info mr-1"></i>
-                              <span className="inline">
+                              <span className="inline text-teal-700">
                                 More info
                               </span>{" "}
                             </p>
                         </div>
                       </div>
-                      <div className={"w-full bg-white"}>
-                        {entries?.items.length > 0 && (
-                          <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2 rounded">
-                            <thead className="bg-gray-100 dark:bg-gray-800 border-b-2 rounded-lg">
-                              <tr>
-                                <th
-                                  scope="col"
-                                  className="px-2 sm:px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                                >
-                                  Seed
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="px-2 sm:px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                                >
-                                  Name
-                                </th>
 
-                                <th
-                                  scope="col"
-                                  className="relative px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                                >
-                                  Rating
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
-                              {entries?.items
-                                .sort(
-                                  (a, b) =>
-                                    Number(b.member.ecfRating) -
-                                    Number(a.member.ecfRating)
-                                )
-                                .map(({ member, memberId }, key) => {
-                                  const isEven = key % 2 === 0;
-                                  return (
-                                    <tr
-                                      key={key}
-                                      className={
-                                        memberId === user.attributes.sub
-                                          ? "bg-yellow-50"
-                                          : isEven
-                                          ? "bg-gray-50"
-                                          : ""
-                                      }
-                                    >
-                                      <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 text-center">
-                                        {key + 1}
-                                      </td>
-                                      <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
-                                        {member?.name}
-                                      </td>
-                                      <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 text-center">
-                                        {member?.ecfRating}
-                                      </td>
-                                    </tr>
-                                  );
-                                })}
-                            </tbody>
-                          </table>
-                        )}
-                      </div>
                     </div>
                   </section>
                 );
@@ -382,8 +318,9 @@ export default function AppEvents() {
         setOpen={setPaymentSuccessful}
       />
       <EventDetailsSlideOut
-        isSlideOutOpen={isSlideOutOpen}
+        slideState={slideState}
         setIsSlideOutOpen={setIsSlideOutOpen}
+        user={user}
       ></EventDetailsSlideOut>
       <RoundTimesModal {...modalState} closeModal={closeModal} />
     </>
