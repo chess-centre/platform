@@ -19,6 +19,7 @@ const getMember = /* GraphQL */ `
       promoByEmail
       eventsByText
       promoByText
+      ecfRating
       _version
       _deleted
       _lastChangedAt
@@ -50,6 +51,7 @@ const getMember = /* GraphQL */ `
             promoByEmail
             eventsByText
             promoByText
+            ecfRating
             _version
             _deleted
             _lastChangedAt
@@ -90,6 +92,7 @@ const getMember = /* GraphQL */ `
               timeControl
               eventType
               defaultPrice
+              canRegister
               _version
               _deleted
               _lastChangedAt
@@ -115,18 +118,8 @@ const ECFProfileCard = ({
   club_name,
   member_no,
   due_date,
-  original_rating,
-  // confirmQuery,
-  // undoConfirm,
+  original_rating
 }) => {
-
-  // const confirmECFInfo = () => {
-  //   confirmQuery();
-  // };
-
-  // const handleUndo = () => {
-  //   undoConfirm();
-  // };
 
   return (
     <div className="bg-white shadow-md overflow-hidden rounded-lg mt-4">
@@ -244,6 +237,7 @@ export default function ChessInfo(props) {
         autoDismiss: true,
       });
     } catch (error) {
+      console.log(error);
       addToast("Oops! Something went wrong. Try again.", {
         appearance: "error",
         autoDismiss: true,
