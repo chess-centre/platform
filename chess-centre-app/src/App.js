@@ -13,10 +13,12 @@ const queryClient = new QueryClient();
 const STRIPE_KEY =
   process.env.REACT_APP_STRIPE_KEY ||
   "pk_test_51ISWSYHSMP8H4TL9aCSlDl8OLfmuBAfUnkOCCENqvHSYzONYxSyMURq2YhnXVZHoyg8X8S7x3dDE4pfpGs03MeLb00E9DOqtMY";
+console.log(STRIPE_KEY);
 const stripePromise = loadStripe(STRIPE_KEY);
 const Page404 = lazy(() => import("./pages/Error/404"));
 
 if (process.env.NODE_ENV === "production") {
+  console.log("Initialising GA");
   const trackingId = "UA-194757154-1";
   ReactGA.initialize(trackingId);
 }
