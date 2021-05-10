@@ -41,6 +41,7 @@ const listEvents = /* GraphQL */ `
           eventType
           maxEntries
           canRegister
+          timeControl
         }
         entries {
           items {
@@ -184,7 +185,10 @@ export default function AppEvents() {
                 key
               ) => {
                 return (
-                  <section key={key} className="relative sm:mr-3 mb-3 rounded-lg border">
+                  <section
+                    key={key}
+                    className="relative sm:mr-3 mb-3 rounded-lg border"
+                  >
                     <div
                       className={classNames(
                         bgColor900(type.color),
@@ -201,9 +205,7 @@ export default function AppEvents() {
                       <div className="pl-9 pr-4 sm:pl-9 space-y-2 pb-2">
                         <div className="grid grid-cols-3">
                           <div className="col-span-2">
-                            <h2
-                              className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1"
-                            >
+                            <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1">
                               {name || type.name}{" "}
                               {eventId === id ? (
                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
@@ -217,18 +219,28 @@ export default function AppEvents() {
                                 maxEntries || type.maxEntries
                               }`}
                             </p>
-                            {type.defaultPrice && allowedToRegister && (
+                            {type.defaultPrice && allowedToRegister ? (
                               <p className="text-sm text-gray-700 mr-2">
                                 <span className="inline">
                                   Entry Fee: £{type.defaultPrice}
                                 </span>{" "}
                               </p>
-                            )}
+                            ) : <p className="text-sm text-gray-700 mr-2">
+                            <span className="inline">
+                              Entry Fee: <span className="text-teal-500 text-xs">PAID</span>
+                            </span>{" "}
+                          </p>}
                           </div>
                           <div className="flex-initial flex-nowrap">
                             <div className="text-right">
-                              {allowedToRegister && (
+                              {allowedToRegister ? (
                                 <Register id={id} register={register} />
+                              ) : (
+                                <p className="text-sm text-gray-700 mr-2">
+                                  <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                    Entered
+                                  </span>{" "}
+                                </p>
                               )}
                             </div>
                           </div>
@@ -243,7 +255,9 @@ export default function AppEvents() {
                         <div>
                           <p className="sm:inline text-xs text-gray-900-700 mr-2 mb-2">
                             <i className="fad fa-calendar-alt mr-1"></i>
-                            <span className="text-teal-700">{prettyDate(startDate, endDate)}</span>{" "}
+                            <span className="text-teal-700">
+                              {prettyDate(startDate, endDate)}
+                            </span>{" "}
                           </p>
                           {rounds && (
                             <p
@@ -267,10 +281,12 @@ export default function AppEvents() {
                               </span>{" "}
                             </p>
                           )}
-                            <p
-                              className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
-                              onClick={() =>
-                                setIsSlideOutOpen({ open: true, eventDetails: {
+                          <p
+                            className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
+                            onClick={() =>
+                              setIsSlideOutOpen({
+                                open: true,
+                                eventDetails: {
                                   id,
                                   name,
                                   description,
@@ -283,17 +299,17 @@ export default function AppEvents() {
                                   maxEntries,
                                   entryCount,
                                   rounds,
-                                }})
-                              }
-                            >
-                              <i className="fas fa-info mr-1"></i>
-                              <span className="inline text-teal-700">
-                                More info
-                              </span>{" "}
-                            </p>
+                                },
+                              })
+                            }
+                          >
+                            <i className="fas fa-info mr-1"></i>
+                            <span className="inline text-teal-700">
+                              More info
+                            </span>{" "}
+                          </p>
                         </div>
                       </div>
-
                     </div>
                   </section>
                 );

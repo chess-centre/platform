@@ -237,7 +237,6 @@ export default function ChessInfo(props) {
         autoDismiss: true,
       });
     } catch (error) {
-      console.log(error);
       addToast("Oops! Something went wrong. Try again.", {
         appearance: "error",
         autoDismiss: true,
