@@ -109,7 +109,7 @@ function CongressEvent() {
                   fill="url(#bedc54bc-7371-44a2-a2bc-dc68d819ae60)"
                 />
               </svg>
-              <RoundTimes eventId={id} eventType="weekend-congress" />
+              <RoundTimes eventId={id} eventType="congress" />
               <div className="text-sm text-center mt-6 sm:hidden">
                 <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
               </div>

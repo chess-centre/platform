@@ -10,7 +10,7 @@ import {
   GamesChart,
   RatingProgressChart,
   barLegends,
-} from "../../api/mock.dashboard";
+} from "../../api/data.dashboard";
 import { useAuthState, isPaidMember } from "../../context/Auth";
 
 export default function Dashboard() {

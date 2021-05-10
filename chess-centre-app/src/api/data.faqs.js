@@ -1,25 +1,24 @@
 export const faqs = [
   {
     question: `Do you teach beginners?`,
-    answer: `Yes. Absolutely! We welcome anyone to come visit us on our <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="/events/club">Thursday Club Night</a> , here we can show you the basics and go from there!`,
+    answer: `Yes, absolutely! We welcome anyone to come visit us on our <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="/events/club">Thursday club night</a>, here we can show you the basics and go from there!`,
     tags: ["beginners"],
   },
   {
     question: `Do I need a chess rating to participate in an event?`,
     answer: `No. Anyone can register to play in our events, we try to skill match players so the games are hard fought and competitive. 
-    Most of our events will be ECF rated so you will get one once you begin playing.`,
+    Most of our events will be ECF rated so once you've played a few official games you'll get a rating.`,
     tags: ["rating"],
   },
   {
     question: `Do I need to be a member to join an event?`,
-    answer: `No. Most of our events will be published to our memberships first, 
-    as we have limited numbers this means some events will likely be full before they are offered to non-members.`,
+    answer: `No. Most of our events will be published to our members first. As we have limited numbers this means some events will likely be full before they are offered to non-members.`,
     tags: ["membership"],
   },
   {
     question: `Can I just turn up to for a casual game?`,
     answer: `Absolutely! We will be running all kinds of events but our 
-        <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="/events/club">Thursday Club Night</a> 
+        <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="/events/club">Thursday club night</a> 
          will be the best time to just come down, have a drink and see what is going on. There is no charge or expectation to sign-up for your first few visits`,
     tags: ["rating"],
   },
@@ -37,34 +36,34 @@ export const faqs = [
   },
   {
     question: `Can I pay my membership annually?`,
-    answer: `Sure! This functionality is not yet available via our website but talk to us when you're next in the club and we will process this request for you.`,
+    answer: `Sure! This functionality is not yet available via our website but talk to us when you are next in the club and we will process this for you.`,
     tags: ["membership"],
   },
   {
     question: `Do you offer any discounts?`,
     answer: `To provide the absolute best value whilst ensuring your whole experience 
         is a great one we continually review our offering and pricing. This means we offer special discounts to students, senior citizens and family memberships.
-        Being part of The Chess Centre is a badge of honour, you are part of a community who supports the growth of chess.`,
+        Being part of The Chess Centre is about being part of a wider community who supports the growth of Chess.`,
     tags: ["membership"],
   },
   {
     question: `Do I need to sign up before coming down to the Junior Club?`,
     answer: `We encourage you to drop us an <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="mailto:info@chesscentre.online">email</a> before hand as our classes fill up fast!
-     The first few sessions are completely free with no obligation to sign. Come down, see what we have to offer and take it from there.
+     The first few sessions are completely free with no obligation to sign up. Come down, see what we have to offer and take it from there.
     `,
     tags: ["juniors"],
   },
   {
     question: `How can I improve my game outside of The Chess Centre`,
-    answer: `There are many fantastic resources on the web which can help players improve. We are planning to collate some recommended sites and learning materials to support our own
+    answer: `There are many fantastic resources on the web which can help players improve. We are planning to collate some recommended online sites and learning materials to support our own
     teaching and coaching efforts. Coming soon!`,
     tags: ["juniors"],
   },
   {
     question: `Can I cancel my membership anytime?`,
     answer: `Of course! We have no contract or painful 30-day notice periods. 
-      We want you to enjoy being part of our community and what we represent. 
-      You can cancel your membership from your profile under "Subscription" anytime you wish, your membership will be valid until the next payment cycle. And, you are always welcome back, anytime!`,
+      We want you to love being part of our community and what we represent. 
+      You can cancel your membership from your profile under "Subscription" anytime you wish, your membership will be valid until your next payment period. And, you are always welcome back!`,
     tags: ["membership"],
   },
   {
@@ -79,6 +78,16 @@ export const faqs = [
     tags: ["general"],
   },
   {
+    question: `Is there nearby parking?`,
+    answer: `Yes. There are a number of large car parks within a few minutes walk of us. Some will require you to pay, this depends on when you are visiting the club.`,
+    tags: ["general"],
+  },
+  {
+    question: `Is there nearby train station?`,
+    answer: `Yes. The central Ilkley train station is only 2 minutes walk from us with regular Trains to Bradford & Leeds.`,
+    tags: ["general"],
+  },
+  {
     question: `Do I need to be a member to play?`,
     answer: `No. We accept one-off entries into our events. However, to join The Chess Centre and participate in team events, individual competitions and other unique events. 
     These are for our subscribed members.`,
@@ -86,7 +95,7 @@ export const faqs = [
   },
 
   {
-    question: `How old are Juniors?`,
+    question: `How old are "Juniors"?`,
     answer: `Under 16 from September 2021.`,
     tags: ["juniors"],
   },
@@ -116,6 +125,11 @@ export const faqs = [
     tags: ["games"],
   },
   {
+    question: `Do you offer private 1-2-1 Chess coaching?`,
+    answer: `Yes. We do treat each enquiry individually depending on your requirements and availablity. Please speak to us in the club or <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="mailto:info@chesscentre.online">send us a message</a>.`,
+    tags: ["coaching"],
+  },
+  {
     question: `Does your venue provide disabled access?`,
     answer: `We regrettably cannot offer wheelchair access to our patrons. Our premises is based on the first floor with only acess by stairs. We apologise to those who this impacts.`,
     tags: ["general"],
@@ -126,8 +140,9 @@ export const faqs = [
     tags: ["membership"],
   },
   {
-    question: `How do I find what time each round is for an event?`,
-    answer: `Look out for the <i class="text-teal-500 fa fa-flag"></i> icon, click on this to reveal the details of the round times or see the "more info" link via the main events page.`,
+    question: `How do I find what time each round starts for an event?`,
+    answer: `Look out for the <i class="text-teal-500 fa fa-flag"></i> icon, click on this to reveal the details of the round times or see the 
+    <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="/events">"more info"</a> link via the main events page.`,
     tags: ["events"],
-  },
+  }
 ];

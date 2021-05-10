@@ -21,11 +21,7 @@ export default function SupportContactModal(props) {
                   <span className="text-teal-600"><i className="fas fa-user-headset"></i></span> Support
                 </h3>
                 <p className="mt-3 text-sm text-gray-500">
-                  Unfortunately, we don't have any official support team (<span className="italic">as
-                  everyone is a volunteer </span>❤️).
-                </p>
-                <p className="mt-3 text-sm text-gray-500">
-                  We will however try to respond and resolve your issues as
+                  We aim to respond and resolve your issues as
                   quickly as possible.
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
@@ -52,7 +48,7 @@ export default function SupportContactModal(props) {
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
                   <i className="fad fa-ambulance"></i> <br />
-                  Finally, if you are really struggling and need assistance,
+                  If you are really struggling and need assistance,
                   please don't hesitate to{" "}
                   <a
                     className="font-semibold text-teal-500 hover:text-teal-700"
@@ -61,6 +57,10 @@ export default function SupportContactModal(props) {
                     contact us
                   </a>
                   .
+                </p>
+                <p className="mt-3 text-sm text-gray-500">
+                  Unfortunately, we have no official support team - as
+                  everyone is a volunteer ❤️ so, please bear with us!
                 </p>
               </div>
             </div>

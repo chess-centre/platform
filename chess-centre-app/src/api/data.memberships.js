@@ -1,4 +1,4 @@
-const data = [
+export const Memberships = [
   {
     title: "Adult",
     price: "£20",
@@ -78,5 +78,3 @@ const data = [
     plan: "family",
   },
 ];
-
-export default data;

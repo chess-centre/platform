@@ -11,7 +11,7 @@ const About = () => {
         <div className="relative bg-gray-50 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
           <LandingNav />
         </div>
-        <div className="mx-auto py-4 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-12">
+        <div className="mx-auto py-6 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-12">
           <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl mb-6 text-center">
             About us
           </h2>
@@ -24,8 +24,8 @@ const About = () => {
               />
             </div>
           </div>
-          <div className="space-y-12 lg:grid lg:grid-cols-1 lg:gap-8 lg:space-y-0 mb-6">
-            <p className="text-xl text-gray-500 text-center sm:px-32">
+          <div className="space-y-12 lg:grid lg:grid-cols-1 lg:gap-8 lg:space-y-0 mb-8">
+            <p className="text-xl text-gray-500 text-center sm:px-52">
               Playing chess together since secondary school Matt &#38; Andy
               decided now was time to put their professional skills to good use
               and setup a dedicated centre for this wonderful game.
