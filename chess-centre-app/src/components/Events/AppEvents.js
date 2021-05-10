@@ -299,7 +299,7 @@ export default function AppEvents() {
                                   maxEntries,
                                   entryCount,
                                   rounds,
-                                },
+                                }
                               })
                             }
                           >

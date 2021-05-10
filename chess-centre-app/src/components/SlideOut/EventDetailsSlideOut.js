@@ -84,15 +84,6 @@ export default function EventDetailsSlideOut(props) {
                                 </h3>
                               </div>
                             </div>
-                            <div className="mt-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
-                              <button
-                                autoFocus
-                                type="button"
-                                className="flex-shrink-0 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 sm:flex-1"
-                              >
-                                Sign up
-                              </button>
-                            </div>
                           </div>
                         </div>
                       </div>
