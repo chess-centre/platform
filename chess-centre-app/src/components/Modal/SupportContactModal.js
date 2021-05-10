@@ -28,9 +28,9 @@ export default function SupportContactModal(props) {
                   <i className="fad fa-credit-card"></i> <br />
                   If your issue is regarding{" "}
                   <span className="font-semibold">
-                    payments &#38; membership
+                    paid membership
                   </span>
-                  , these can mostly be resolved via the "subsciption" tab under
+                  , this can mostly be resolved via the "subscription" tab under
                   your <Link className="font-semibold text-teal-500 hover:text-teal-700" to="profile">profile</Link>.
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
