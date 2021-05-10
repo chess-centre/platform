@@ -21,7 +21,7 @@ function useEvents() {
     );
     return events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
   });
-}
+};
 
 function GridCard({ event }) {
   return (
@@ -301,9 +301,13 @@ function ListCalendar({ isLoading, error, data, selected }) {
   );
 }
 
+
+
 export default function Calendar() {
   const [calenderView, setCalenderView] = useState("list");
   const { isLoading, error, data } = useEvents();
+
+
 
   const today = new Date();
   const currentMonth = today.getMonth();
