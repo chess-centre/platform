@@ -104,16 +104,21 @@ export async function subscribe(dispatch, plan, stripe) {
     attributes: { email },
   } = await Auth.currentAuthenticatedUser();
   const redirectTo = `${window.location.origin}/app/dashboard`;
-  const { sessionId } = await API.post("public", "/checkout", {
-    body: {
-      plan,
-      successUrl: redirectTo,
-      cancelUrl: redirectTo,
-      email,
-    },
-  });
 
-  await stripe.redirectToCheckout({ sessionId });
+  try {
+    const { sessionId } = await API.post("public", "/checkout", {
+      body: {
+        plan,
+        successUrl: redirectTo,
+        cancelUrl: redirectTo,
+        email,
+      },
+    });
+    await stripe.redirectToCheckout({ sessionId });
+  } catch (error) {
+    dispatch({ type: "STOP_LOADING"});
+    throw new Error("Unable to subscribe.");
+  }
   dispatch({ type: "STOP_LOADING"});
 }
 

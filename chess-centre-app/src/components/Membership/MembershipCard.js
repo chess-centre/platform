@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useStripe } from "@stripe/react-stripe-js";
+import { useToasts } from "react-toast-notifications";
 import { subscribe, useAuthDispatch } from "../../context/Auth";
 import { Button } from "@windmill/react-ui";
 
@@ -42,10 +43,21 @@ function MembershipCard({
 }) {
   const stripe = useStripe();
   const dispatch = useAuthDispatch();
-
+  const { addToast } = useToasts();
   const checkout = async () => {
     // TODO: need to split out loading states as this dispatch will set loading on ALL buttons :-)
-    await subscribe(dispatch, plan, stripe);
+    try {
+      await subscribe(dispatch, plan, stripe);
+    } catch (error) {
+      console.log(error.message);
+      addToast(
+        "Oops. Looks like there is an issue subscribing.",
+        {
+          appearance: "error",
+          autoDismiss: true,
+        }
+      );
+    }
   };
 
   return (
