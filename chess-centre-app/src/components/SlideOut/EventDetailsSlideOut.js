@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import PlayingRoom from "../../assets/img/the-centre.png";
 import { prettyDate } from "../../utils/DateFormating";
-import { classNames, bgColor900, borderColor900 } from "../../utils/Classes";
+import { classNames, borderColor900 } from "../../utils/Classes";
 
 export default function EventDetailsSlideOut(props) {
   const { slideState, user, setIsSlideOutOpen } = props;
@@ -75,19 +75,14 @@ export default function EventDetailsSlideOut(props) {
                             />
                           </div>
                         </div>
-                        <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6">
+                        <div className="mt-4 px-4 sm:flex sm:items-end sm:px-6">
                           <div className="sm:flex-1">
                             <div>
                               <div className="flex items-center">
-                                <h3 className="font-bold text-xl text-gray-900 sm:text-2xl">
-                                  {eventDetails.name}
+                                <h3 className="font-bold text-xl text-gray-900 sm:text-2xl text-center">
+                                  {eventDetails.name || eventDetails.type?.name}
                                 </h3>
                               </div>
-                              <p className="text-sm text-gray-500">
-                                {eventDetails.description
-                                  ? eventDetails.description
-                                  : eventDetails.type?.description}
-                              </p>
                             </div>
                             <div className="mt-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
                               <button
@@ -129,7 +124,7 @@ export default function EventDetailsSlideOut(props) {
                             Time Control
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                            {eventDetails.time}
+                            {eventDetails.type?.timeControl}
                           </dd>
                         </div>
                         <div>

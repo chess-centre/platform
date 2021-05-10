@@ -101,7 +101,8 @@ exports.handler = async (event) => {
       ...i,
       name: i.name || i.type.name,
       description: i.description || i.type.description,
-      time: i.time || i.type.timeControl,
+      time: i.time || i.type.time,
+      maxEntries: i.maxEntries || i.type.maxEntries,
       color: i.type.color,
       url: i.type.url,
     }));

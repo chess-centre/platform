@@ -39,10 +39,10 @@ export default function EventDetailsModal(props) {
                   className={key % 2 === 0 ? "bg-white" : "bg-gray-50"}
                 >
                   <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {event.name}
+                    {event.name || event.type?.name}
                   </td>
                   <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-                    {event.rounds}
+                    {event.rounds || event.type?.rounds}
                   </td>
                   <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-500 text-left">
                     {prettyDate(event.startDate)}

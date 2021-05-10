@@ -86,8 +86,6 @@ export default function FAQs() {
       setFilteredResults(filtered);
     };
 
-    console.log(selectedTags, searchTerm);
-
     filterResultList();
   }, [selectedTags, searchTerm]);
 
