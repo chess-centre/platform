@@ -191,7 +191,7 @@ function Profile() {
               {isLoadingProfile ? (
                 <div className="text-teal-500 ml-2 text-sm inline-block">
                   <i className="fal fa-spinner-third fa-spin fa-fw"></i>{" "}
-                  <span className="ml-2 text-xs text-gray-600">
+                  <span className="sm:hidden ml-2 text-xs text-gray-600">
                     fetching details...
                   </span>
                 </div>

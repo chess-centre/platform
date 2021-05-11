@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 import Image from "../../assets/img/chess-players.jpg";
 import { Label, Input, Button } from "@windmill/react-ui";
 import {
@@ -10,6 +11,7 @@ import {
 } from "../../context/Auth";
 
 function ForgotPassword(props) {
+  const { addToast } = useToasts();
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
@@ -52,8 +54,19 @@ function ForgotPassword(props) {
   }
 
   async function resendCode() {
-    // visual indicator that this succeeded?
-    await userPasswordForgot(dispatch, email);
+    if(!email) {
+      addToast(`Email not present, please go back to add email`, {
+        appearance: "error",
+        autoDismiss: true,
+      });
+      return;
+    } else {
+      await userPasswordForgot(dispatch, email);
+      addToast(`Activation code resent to ${email}`, {
+        appearance: "success",
+        autoDismiss: true,
+      });
+    }
   }
 
   return (
@@ -87,17 +100,14 @@ function ForgotPassword(props) {
               ) : (
                 <>
                   <Label>
-                    <span>Code</span>
-                    <div className="flex space-x-3 mt-1">
+                    <span>Code <span className="text-xs">(send to your email)</span></span>
+                    <div className="flex space-x-3 mt-1 mb-3">
                       <Input
                         disabled={loading}
                         onChange={(e) => setCode(e.target.value)}
                         type="text"
                         placeholder="000000"
                       />
-                      <Button disabled={loading} onClick={resendCode}>
-                        Resend
-                      </Button>
                     </div>
                   </Label>
                   <Label>
@@ -135,12 +145,22 @@ function ForgotPassword(props) {
               <hr className="my-4" />
               <p className="mt-1">
                 <Link
+                  className="text-sm font-medium text-teal-600 dark:text-gray-400 hover:underline"
+                  disabled={loading}
+                  onClick={resendCode}
+                >
+                  Resend
+                </Link>
+              </p>
+              <p className="mt-1">
+                <Link
                   className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"
                   to="/"
                 >
                   Home
                 </Link>
               </p>
+
             </div>
           </main>
         </div>

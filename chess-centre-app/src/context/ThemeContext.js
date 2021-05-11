@@ -25,17 +25,11 @@ function usePrevious(theme) {
  * @return {array} getter and setter for user preferred theme
  */
 function useStorageTheme(key) {
-  // const userPreference =
-  //   !!window.matchMedia &&
-  //   window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const [theme, setTheme] = useState('light'
-    // use stored theme; fallback to user preference
-    //localStorage.getItem(key) // || userPreference
-  );
+  const [theme, setTheme] = useState('light');
 
   // update stored theme
   useEffect(() => {
+    console.log("WTF!");
     localStorage.setItem(key, theme);
   }, [theme, key]);
 
@@ -52,12 +46,13 @@ export const ThemeProvider = ({ children }) => {
   // update root element class on theme change
   const oldTheme = usePrevious(theme);
   useLayoutEffect(() => {
+    console.log("TESTING!");
     document.documentElement.classList.remove(`theme-${oldTheme}`);
     document.documentElement.classList.add(`theme-${theme}`);
   }, [theme, oldTheme]);
 
   function toggleTheme() {
-    if (theme === "light") setTheme("dark");
+    if (theme === "light") setTheme("light");
     else setTheme("light");
   }
 

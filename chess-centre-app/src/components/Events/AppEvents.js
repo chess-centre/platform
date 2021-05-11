@@ -252,15 +252,15 @@ export default function AppEvents() {
                             </p>
                           </div>
                         </div>
-                        <div>
-                          <p className="sm:inline text-xs text-gray-900-700 mr-2 mb-2">
+                        <div className="flex flex-wrap">
+                          <div className="sm:inline text-xs text-gray-900-700 mr-2 mb-2">
                             <i className="fad fa-calendar-alt mr-1"></i>
                             <span className="text-teal-700">
                               {prettyDate(startDate, endDate)}
                             </span>{" "}
-                          </p>
+                          </div>
                           {rounds && (
-                            <p
+                            <div
                               className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
                               onClick={() => showModal(id, type.eventType)}
                             >
@@ -268,10 +268,10 @@ export default function AppEvents() {
                               <span className="inline text-teal-700">
                                 {rounds} rounds
                               </span>{" "}
-                            </p>
+                            </div>
                           )}
                           {(time || type.time) && (
-                            <p
+                            <div
                               className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
                               onClick={() => showModal(id, type.eventType)}
                             >
@@ -279,10 +279,10 @@ export default function AppEvents() {
                               <span className="inline text-teal-700">
                                 {time || type.time}
                               </span>{" "}
-                            </p>
+                            </div>
                           )}
-                          <p
-                            className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
+                          <div
+                            className="sm:inline  text-xs text-gray-900 cursor-pointer mr-2 mb-2"
                             onClick={() =>
                               setIsSlideOutOpen({
                                 open: true,
@@ -307,7 +307,7 @@ export default function AppEvents() {
                             <span className="inline text-teal-700">
                               More info
                             </span>{" "}
-                          </p>
+                          </div>
                         </div>
                       </div>
                     </div>

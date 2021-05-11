@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { API } from "aws-amplify";
@@ -275,11 +275,7 @@ function ListCalendar({ isLoading, error, data, selected }) {
                     (data) => new Date(data.startDate).getMonth() === selected
                   )
                   .map((d, key) => {
-                    return (
-                      <>
-                        <ListCard key={key} event={d} />
-                      </>
-                    );
+                    return (<ListCard key={key} event={d} />);
                   })}
               </ul>
             </>
@@ -301,13 +297,9 @@ function ListCalendar({ isLoading, error, data, selected }) {
   );
 }
 
-
-
 export default function Calendar() {
   const [calenderView, setCalenderView] = useState("list");
   const { isLoading, error, data } = useEvents();
-
-
 
   const today = new Date();
   const currentMonth = today.getMonth();
@@ -319,6 +311,12 @@ export default function Calendar() {
   const handleViewSwitch = (view) => {
     setCalenderView(view);
   };
+
+  useEffect(() => {
+    if(window.innerWidth > 600) {
+      setCalenderView("grid");
+    }
+  }, [calenderView])
 
   return (
     <section>
