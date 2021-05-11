@@ -113,12 +113,12 @@ function Membership() {
           </div>
           <div className="mt-6 relative max-w-7xl mx-auto px-2 sm:px-6 lg:px-6 lg:mt-6">
             <div className="max-w-md mx-auto lg:max-w-5xl">
-              <div className="rounded-lg bg-yellow-50 px-6 py-2 lg:flex lg:items-center border border-light-blue-300 shadow mb-4 sm:mr-16 sm:ml-16">
+              <div className="rounded-lg bg-white px-6 py-2 lg:flex lg:items-center border border-light-blue-300 shadow mb-4 sm:mr-16 sm:ml-16">
                 <div className="flex-1">
-                  <div className="text-center text-sm font-normal text-gray-600">
-                    <p><span className="font-medium">Still deciding? </span>Pay us a visit, see what we've got to offer!</p>
+                  <div className="text-center text-sm font-normal text-gray-600 space-y-2">
+                    <p><span className="font-medium">Still deciding? </span>Pay us a visit, see what we've got to offer.</p>
                     <p>There is no charge for your first few visits and no obligation to sign-up.</p>
-                    <p className="inline-block text-lg">
+                    <p className="inline-block text-2xl">
                       <span className="text-red-600 mr-1"><i className="fak fa-chess-centre"></i></span>
                       <span className="text-orange-500 mr-1"><i className="fak fa-chess-centre"></i></span>
                       <span className="text-yellow-300 mr-1"><i className="fak fa-chess-centre"></i></span>

@@ -292,7 +292,7 @@ export default function BobBurns() {
                 <h3>Previous winners</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 mt-4">
-                <div className="gap-4 mr-2">
+                <div className="mb-5 sm:mb-0 gap-4 mr-2">
                   <PreviousWinnersTable
                     data={previousWinners.slice(0, previousWinners.length / 2)}
                   />
