@@ -19,10 +19,27 @@
       "sizes": "512x512"
     }
   ],
+  "categories": ["chess", "board games", "mind sports"],
   "start_url": "./",
   "scope": ".",
   "orientation": "portrait",
   "display": "standalone",
   "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "shortcuts": [
+    {
+      "name": "Events",
+      "short_name": "Events",
+      "description": "View our upcoming list of Chess events",
+      "url": "/events",
+      "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots" : [
+    {
+      "src": "home-screen.webp",
+      "sizes": "1280x720",
+      "type": "image/webp"
+    }
+  ]
 }
