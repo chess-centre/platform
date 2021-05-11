@@ -17,7 +17,7 @@ export default function JuniorRapidplayEvent() {
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
             <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
-              <i className="fad fa-bolt"></i> Step it up 
+              <i className="fad fa-bolt"></i> Step it up
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               Junior Rapidplay
@@ -25,28 +25,25 @@ export default function JuniorRapidplayEvent() {
           </div>
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-              Want to test yourself, but don’t have time for a full weekend
-              tournament? Then look no further, as our 1 day, 5 round Rapid
-              Play tournaments are ideal for new and returning players who
-              want to “scratch their competitive itch”, but in a more
-              condensed and faster format of the game.
+              Wanting to play in your first junior tournament, or test yourself
+              against other junior players? Then our Junior Rapidplay Events are
+              perfect for you. These events see you play 5 games against other
+              junior players, and are open to players aged 6 - 16 years of age.
             </p>
           </div>
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             <div className="relative">
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                 <p>
-                  Our Open Rapidplay Tournaments also tend to follow our favored
-                  “all-play-all” format of players competing in rated groups of
-                  six, to ensure that players know they will receive a competitive
-                  and challenging test of their skills across all rounds of the
-                  competitions.
+                  Supervised by our junior coaches, these events are great for
+                  players wanting to familiarise themselves with competitive
+                  chess tournaments in a smaller environment.
                 </p>
                 <p>
-                  Though a little “less serious” by nature than congress events,
-                  our Open Rapid Play Tournaments are nonetheless fully ECF Rapidplay events, and as such are competitive in nature. So if you
-                  like the idea of a quick fire day of competitive Chess in Ilkley
-                  then try one of our Rapidplay events.
+                  Trophies and awards are given to divisional winners in these
+                  events, and our coaches will work with all junior players
+                  taking part to provide guidance, direction and feedback where
+                  needed.
                 </p>
                 <h3>Event Information</h3>
                 <p>
@@ -57,12 +54,15 @@ export default function JuniorRapidplayEvent() {
                 <ul>
                   <li>25 mins per player on the clock</li>
                   <li>All games will be ECF standard play rated.</li>
-                  <li>Entries are limited to 12 players.</li>
                 </ul>
-
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">
-                <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
+                <Link
+                  className="text-teal-600 hover:text-teal-500"
+                  to="/events"
+                >
+                  <i className="fad fa-long-arrow-alt-left"></i> back
+                </Link>
               </div>
             </div>
             <div className="mt-12 relative text-base max-w-prose mx-auto lg:mt-0 lg:max-w-none">
@@ -101,7 +101,12 @@ export default function JuniorRapidplayEvent() {
               </svg>
               <RoundTimes eventId={id} eventType="rapidplay" />
               <div className="text-sm text-center mt-6 sm:hidden">
-                <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
+                <Link
+                  className="text-teal-600 hover:text-teal-500"
+                  to="/events"
+                >
+                  <i className="fad fa-long-arrow-alt-left"></i> back
+                </Link>
               </div>
             </div>
           </div>
@@ -110,4 +115,4 @@ export default function JuniorRapidplayEvent() {
       <FooterLanding />
     </div>
   );
-};
+}

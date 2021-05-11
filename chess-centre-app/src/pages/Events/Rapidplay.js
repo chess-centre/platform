@@ -26,9 +26,10 @@ export default function RapidplayEvent() {
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
               Want to test yourself, but don’t have time for a full weekend
-              tournament? Then look no further, as our 1 day, 5 round Rapidplay tournaments are ideal for new and returning players who
-              want to “scratch their competitive itch”, but in a more
-              condensed and faster format of the game.
+              tournament? Then look no further, as our 1 day, 5 round Rapidplay
+              tournaments are ideal for new and returning players who want to
+              “scratch their competitive itch”, but in a more condensed and
+              faster format of the game.
             </p>
           </div>
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
@@ -37,18 +38,18 @@ export default function RapidplayEvent() {
                 <p>
                   Our Open Rapidplay Tournaments also tend to follow our favored
                   “all-play-all” format of players competing in rated groups of
-                  six, to ensure that players know they will receive a competitive
-                  and challenging test of their skills across all rounds of the
-                  competitions.
+                  six, to ensure that players know they will receive a
+                  competitive and challenging test of their skills across all
+                  rounds of the competitions.
                 </p>
 
                 <p>
                   Though a little “less serious” by nature than congress events,
-                  our Open Rapid Play Tournaments are nonetheless fully ECF Rapidplay events, and as such are competitive in nature. So if you
-                  like the idea of a quick fire day of competitive Chess in Ilkley
-                  then try one of our Rapidplay events.
+                  our Open Rapidplay Tournaments are nonetheless fully ECF
+                  Rapidplay events, and as such are competitive in nature. So if
+                  you like the idea of a quick fire day of competitive Chess in
+                  Ilkley then try one of our Rapidplay events.
                 </p>
-
 
                 <h3>Event Information</h3>
                 <p>
@@ -63,7 +64,12 @@ export default function RapidplayEvent() {
                 </ul>
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">
-                <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
+                <Link
+                  className="text-teal-600 hover:text-teal-500"
+                  to="/events"
+                >
+                  <i className="fad fa-long-arrow-alt-left"></i> back
+                </Link>
               </div>
             </div>
             <div className="mt-12 relative text-base max-w-prose mx-auto lg:mt-0 lg:max-w-none">
@@ -102,7 +108,12 @@ export default function RapidplayEvent() {
               </svg>
               <RoundTimes eventId={id} eventType="rapidplay" />
               <div className="text-sm text-center mt-6 sm:hidden">
-                <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
+                <Link
+                  className="text-teal-600 hover:text-teal-500"
+                  to="/events"
+                >
+                  <i className="fad fa-long-arrow-alt-left"></i> back
+                </Link>
               </div>
             </div>
           </div>
@@ -111,4 +122,4 @@ export default function RapidplayEvent() {
       <FooterLanding />
     </div>
   );
-};
+}

@@ -9,15 +9,17 @@ Amplify Params - DO NOT EDIT */
 
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 const AWS = require("aws-sdk");
+const region = process.env.REGION;
+const SES = new AWS.SES({ region: region });
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const memberTable = process.env.API_PLATFORMCHESSCENTREAPP_MEMBERTABLE_NAME;
-
 const https = require("https");
 const urlParse = require("url").URL;
 const appsyncUrl =
   process.env.API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIENDPOINTOUTPUT;
-const region = process.env.REGION;
+
 const endpoint = new urlParse(appsyncUrl).hostname.toString();
+
 const gql = require("graphql-tag");
 const graphql = require("graphql");
 const { print } = graphql;
@@ -71,6 +73,15 @@ exports.handler = async (event) => {
       }
       break;
     case "customer.subscription.created":
+      try {
+        const memberInfo = await handleCustomerSubscriptionEvent(data);
+        if(memberInfo) {
+          await sendMembershipEmail(memberInfo));
+        }
+      } catch (error) {
+        console.error(error);
+      }
+      break;
     case "customer.subscription.updated":
       try {
         await handleCustomerSubscriptionEvent(data);
@@ -240,6 +251,7 @@ async function handleCustomerSubscriptionEvent(data) {
   };
 
   await dynamodb.update(updateParams).promise();
+  return member;
 }
 
 async function executeGraphql(query, variables) {
@@ -275,3 +287,33 @@ async function executeGraphql(query, variables) {
 
   return data;
 }
+
+
+async function sendMembershipEmail({ email, name }) {
+  const params = {
+    Source: "The Chess Centre <support@chesscentre.online>",
+    Destination: {
+      BccAddresses: [
+        "The Chess Centre <support@chesscentre.online>"
+      ],
+      ToAddresses: [email],
+    },
+    Message: {
+      Subject: { Data: `The Chess Centre | Membership Confirmed` },
+      Body: {
+        Text: { Data: `Hi ${name},\r\n Thank you for joining The Chess Centre! More information to come.` },
+        Html: { Data: `<h2 style="color: #047481">♟️ The Chess Centre</h2>
+        <p>Hello ${name} 👋</p>
+        <p>This email is to confirm your membership sign up.</p> 
+        <p>Thank you for joining for our fantastic chess community ❤️.</p> 
+        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
+        <p>If you have any questions please don't hesitate to email us at: info@chesscentre.online</p>
+        <p>We look forward to seeing you soon! 🚀</p>
+        `
+      }
+      }
+    }
+  };
+  return SES.sendEmail(params).promise();
+}
+
