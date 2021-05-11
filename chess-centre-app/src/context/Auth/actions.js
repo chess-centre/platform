@@ -162,8 +162,8 @@ export async function isJuniorMember() {
       p.stripeProductId("eq", stripeProductId)
     );
     if (!plan) return false;
-    if (plan[0].key === "junior") return true;
-    
+    if (plan[0].key === "junior" || plan[0].key === "family") return true;
+
     return false;
 
   } catch (error) {

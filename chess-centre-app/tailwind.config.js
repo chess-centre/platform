@@ -5,7 +5,7 @@ module.exports = windmill({
     ringColor: false
   },
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  darkMode: "class",
+  darkMode: false,
   theme: {
     extend: {
       boxShadow: {
