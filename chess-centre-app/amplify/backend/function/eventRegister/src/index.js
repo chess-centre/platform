@@ -92,11 +92,7 @@ exports.handler = async (event) => {
       getEvent: {
         maxEntries,
         startDate,
-        type: {
-          time
-        },
-        eventType,
-        type: { stripePriceId, maxEntries: defaultMaxEntries, name: eventName },
+        type: { stripePriceId, maxEntries: defaultMaxEntries, name: eventName, time, eventType },
         entries: { items: entries },
       },
       getMember: { stripeCustomerId, email, name },
@@ -150,9 +146,7 @@ exports.handler = async (event) => {
       customer: stripeCustomerId || undefined,
     });
 
-    console.log("stripe session:");
-    console.log(session);
-
+    console.log('Session', session);
     console.log("Sending registered email", email);
 
     const params = {
@@ -169,8 +163,7 @@ exports.handler = async (event) => {
       console.log("sendRegisteredEventEmail error");
       console.log(e);
     });
-
-    console.log(emailData);
+    console.log('emailData', emailData);
 
     return {
       statusCode: 200,
