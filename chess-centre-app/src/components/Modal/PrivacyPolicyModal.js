@@ -28,7 +28,7 @@ function PrivacyPolicyModal() {
       <Modal isOpen={isModalOpen} onClose={() => closeModal(false)}>
         <ModalHeader>Privacy Policy</ModalHeader>
         <ModalBody>
-          <iframe title="The Chess Centre | Privacy Policy" width="100%" src="/privacy-policy.html" />
+          <iframe title="The Chess Centre | Privacy Policy" width="100%" src="/privacy-policy.html" sandbox="" />
         </ModalBody>
         <ModalFooter>
           <Button className="w-full sm:w-auto" onClick={() => closeModal(true)}>
