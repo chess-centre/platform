@@ -24,6 +24,10 @@ const routes = [
     component: lazy(() => import("../pages/App/Members")),
   },
   {
+    path: "/juniors",
+    component: lazy(() => import("../pages/App/Juniors")),
+  },
+  {
     path: "/upgrade",
     component: lazy(() => import("../pages/App/Upgrade")),
   },

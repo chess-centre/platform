@@ -1,4 +1,5 @@
 import Amplify, { Auth, API, DataStore } from "aws-amplify";
+import { Plan, Member } from "../../models";
 import AWS_AUTH from "../../aws-exports";
 Amplify.configure(AWS_AUTH);
 
@@ -99,7 +100,7 @@ export async function logout(dispatch) {
 }
 
 export async function subscribe(dispatch, plan, stripe) {
-  dispatch({ type: "LOADING"});
+  dispatch({ type: "LOADING" });
   const {
     attributes: { email },
   } = await Auth.currentAuthenticatedUser();
@@ -116,10 +117,10 @@ export async function subscribe(dispatch, plan, stripe) {
     });
     await stripe.redirectToCheckout({ sessionId });
   } catch (error) {
-    dispatch({ type: "STOP_LOADING"});
+    dispatch({ type: "STOP_LOADING" });
     throw new Error("Unable to subscribe.");
   }
-  dispatch({ type: "STOP_LOADING"});
+  dispatch({ type: "STOP_LOADING" });
 }
 
 export async function isPaidMember(existing) {
@@ -142,4 +143,31 @@ export async function isPaidMember(existing) {
   user = await Auth.currentAuthenticatedUser({ bypassCache: true });
   groups = getGroups(user);
   return (groups && groups.includes("Member")) || false;
+}
+
+export async function isJuniorMember() {
+  try {
+    const user = await Auth.currentAuthenticatedUser();
+    if (!user) return false;
+
+    const member = await DataStore.query(Member, (m) =>
+      m.id("eq", user.attributes.sub)
+    );
+
+    if (!member || member.length === 0) return false;
+
+    const { stripeProductId } = member[0];
+    if (!stripeProductId) return false;
+    const plan = await DataStore.query(Plan, (p) =>
+      p.stripeProductId("eq", stripeProductId)
+    );
+    if (!plan) return false;
+    if (plan[0].key === "junior") return true;
+    
+    return false;
+
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 }

@@ -4,7 +4,7 @@ import { NavLink, Route, Link } from "react-router-dom";
 import * as Icons from "../../icons";
 import SidebarSubmenu from "./SidebarSubmenu";
 import ImageLight from "../../assets/img/logo-light-theme-small.png";
-import { isPaidMember } from "../../context/Auth";
+import { isPaidMember, isJuniorMember } from "../../context/Auth";
 import SupportContactModal from "../Modal/SupportContactModal";
 
 const version = process.env.REACT_APP_VERSION || "0.0.0";
@@ -17,6 +17,7 @@ function Icon({ icon, ...props }) {
 function SidebarContent() {
   const [needsUpgrade, setNeedsUpgrade] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isJunior, setIsJunior] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -24,15 +25,22 @@ function SidebarContent() {
 
   const openModal = () => {
     setIsModalOpen(true);
-  }
+  };
 
   async function checkMemberStatus() {
     const isPaid = await isPaidMember();
     setNeedsUpgrade(!isPaid);
   }
 
+  async function checkPlanStatus() {
+    const isJunior = await isJuniorMember();
+    console.log("isJunior", isJunior)
+    setIsJunior(isJunior);
+  }
+
   useEffect(() => {
     checkMemberStatus();
+    checkPlanStatus();
   }, []);
 
   return (
@@ -76,6 +84,31 @@ function SidebarContent() {
             </li>
           )
         )}
+
+        {isJunior && (
+          <li className="relative px-6 py-3" key={10000}>
+            <NavLink
+              exact
+              to={"/app/juniors"}
+              className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-teal-800 dark:hover:text-gray-200"
+              activeClassName="text-teal-500 dark:text-gray-100"
+            >
+              <Route path={"/app/juniors"} exact={true}>
+                <span
+                  className="absolute inset-y-0 left-0 w-2 bg-teal-600 rounded-tr-lg rounded-br-lg"
+                  aria-hidden="true"
+                ></span>
+              </Route>
+              <Icon
+                  className="w-5 h-5"
+                  aria-hidden="true"
+                  icon={"HeartIcon"}
+                />
+              <span className="ml-4">Parents</span>
+            </NavLink>
+          </li>
+
+        )}
       </ul>
       {needsUpgrade && (
         <Link
@@ -86,10 +119,12 @@ function SidebarContent() {
         </Link>
       )}
       <div className="absolute grid grid-cols-2 bottom-1 pl-8 my-6 text-sm">
-        <div 
+        <div
           onClick={openModal}
-          className="text-right hover:text-teal-600 ml-2 mr-8 cursor-pointer">
-          <i className="fas fa-user-headset"></i> <span className="text-xs">support</span>
+          className="text-right hover:text-teal-600 ml-2 mr-8 cursor-pointer"
+        >
+          <i className="fas fa-user-headset"></i>{" "}
+          <span className="text-xs">support</span>
         </div>
         <div className="text-center hover:text-teal-500">
           <Link to="/app/roadmap">{`v${version}`}</Link>
