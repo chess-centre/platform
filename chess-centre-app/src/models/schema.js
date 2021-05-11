@@ -382,8 +382,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "membershipTyp": {
-                    "name": "membershipTyp",
+                "membershipType": {
+                    "name": "membershipType",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -684,5 +684,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "c93a6c76cfc27d378610129b1f080fdd"
+    "version": "84d03f3ac251a5d7aa1a978903653eaa"
 };
