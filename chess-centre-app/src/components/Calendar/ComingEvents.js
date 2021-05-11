@@ -297,8 +297,6 @@ function ListCalendar({ isLoading, error, data, selected }) {
   );
 }
 
-
-
 export default function Calendar() {
   const [calenderView, setCalenderView] = useState("list");
   const { isLoading, error, data } = useEvents();

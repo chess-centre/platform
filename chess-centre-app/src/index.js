@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === "production") {
   console.log("Initialising GA");
   const trackingId = "UA-194757154-1";
   ReactGA.initialize(trackingId);
+  ReactGA.pageview(window.location.pathname + window.location.search);
 }
 
 ReactDOM.render(
