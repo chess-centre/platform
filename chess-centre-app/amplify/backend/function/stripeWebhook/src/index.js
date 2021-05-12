@@ -73,15 +73,6 @@ exports.handler = async (event) => {
       }
       break;
     case "customer.subscription.created":
-      try {
-        const memberInfo = await handleCustomerSubscriptionEvent(data);
-        if(memberInfo) {
-          await sendMembershipEmail(memberInfo);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-      break;
     case "customer.subscription.updated":
       try {
         await handleCustomerSubscriptionEvent(data);
@@ -122,6 +113,27 @@ async function handleCheckoutSessionCompleted(data) {
 }
 
 async function handleCheckoutSessionCompletedSubscription(id, customer) {
+
+  const [memberId,] = id.split("#");
+
+  const getMember = gql`
+    query getMember($memberId: ID!) {
+      getMember(id: $memberId) {
+        id
+        name
+        email
+      }
+    }
+  `;
+
+  const {
+    data: {
+      getMember: { email, name },
+    },
+  } = await executeGraphql(getMember, {
+    memberId
+  });
+
   // Go ahead and set this since we know they should be considered
   // a paid member; we'll get a more specific date from subsequent
   // webhook events.
@@ -140,20 +152,46 @@ async function handleCheckoutSessionCompletedSubscription(id, customer) {
   };
 
   await dynamodb.update(updateParams).promise();
+
+  const emailParams = {
+    name,
+    email
+  }
+  await sendMembershipEmail(emailParams);
 }
 
 async function handleCheckoutSessionCompletedPayment(id) {
   const [memberId, eventId] = id.split("#");
 
   const getEvent = gql`
-    query getEvent($eventId: ID!) {
+    query getEvent($eventId: ID!, $memberId: ID!) {
       getEvent(id: $eventId) {
-        entries {
-          items {
-            id
-          }
+        id
+        maxEntries
+        arrivalTime
+        type {
+          id
+          name
+          maxEntries
+          stripePriceId
+          eventType
+          time
         }
+        endDate
+        startDate
+          entries {
+            items {
+              id
+            }
+          }
         _version
+      }
+      getMember(id: $memberId) {
+        id
+        name
+        email
+        stripeCustomerId
+        stripeCurrentPeriodEnd
       }
     }
   `;
@@ -161,12 +199,17 @@ async function handleCheckoutSessionCompletedPayment(id) {
   const {
     data: {
       getEvent: {
+        startDate,
+        arrivalTime,
+        type: { name: eventName, eventType },
         entries: { items: entries },
         _version,
       },
+      getMember: { email, name },
     },
   } = await executeGraphql(getEvent, {
     eventId,
+    memberId
   });
 
   console.log(entries);
@@ -198,6 +241,22 @@ async function handleCheckoutSessionCompletedPayment(id) {
     _version,
   });
   console.log(JSON.stringify(data));
+
+  const params = {
+    eventId,
+    email,
+    arrivalTime,
+    name,
+    eventName,
+    startDate,
+    eventType
+  };
+
+  const emailData = await sendRegisteredEventEmail(params).catch(e => {
+    console.log("sendRegisteredEventEmail error");
+    console.log(e);
+  });
+  console.log('emailData', emailData);
 }
 
 async function handleCustomerSubscriptionEvent(data) {
@@ -251,7 +310,6 @@ async function handleCustomerSubscriptionEvent(data) {
   };
 
   await dynamodb.update(updateParams).promise();
-  return member;
 }
 
 async function executeGraphql(query, variables) {
@@ -288,8 +346,8 @@ async function executeGraphql(query, variables) {
   return data;
 }
 
-
 async function sendMembershipEmail({ email, name }) {
+  console.log("Sending membership email to:", name, email);
   const params = {
     Source: "The Chess Centre <support@chesscentre.online>",
     Destination: {
@@ -317,3 +375,46 @@ async function sendMembershipEmail({ email, name }) {
   return SES.sendEmail(params).promise();
 }
 
+function formatDate(date) {
+  return new Date(date).toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+}
+
+async function sendRegisteredEventEmail({ email, name, eventName, eventType, eventId, startDate, arrivalTime }) {
+  console.log("Sending registration email to:", name, email, eventName);
+  const params = {
+    Source: "The Chess Centre <support@chesscentre.online>",
+    Destination: {
+      BccAddresses: [
+        "The Chess Centre <support@chesscentre.online>"
+      ],
+      ToAddresses: [email],
+    },
+    Message: {
+      Subject: { Data: `${eventName} | Entry Confirmed` },
+      Body: {
+        Text: { Data: `Hi ${name},\r\n Thank you for registering for our ${eventName} on ${startDate}.` },
+        Html: { Data: `<h2 style="color: #047481">♟️ The Chess Centre</h2>
+        <p>Hello ${name} 👋</p>
+        <p>Thank you for registering for our <strong>${eventName}</strong>.</p> 
+        <p>The key details for this event:</p>
+        <p>📅 Date: ${formatDate(startDate)}</p>
+        ${arrivalTime ? `<p>⌚ Arrival Time: ${arrivalTime}</p>` : ""}
+        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
+        <p>More details can be found here:
+          <a href="https://www.chesscentre.online/${eventType}/${eventId}">chesscentre.online/${eventType}</a>
+        </p>
+        <p>If you have any questions or need to withdraw your entry, please email us at: info@chesscentre.online</p>
+        <p>We look forward to seeing you soon! 🚀</p>
+        <p></p>
+        <p style="color: #9da4a5;font-size:8px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
+        `
+      }
+      }
+    }
+  };
+  return SES.sendEmail(params).promise();
+}

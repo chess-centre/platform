@@ -255,6 +255,7 @@ export const syncMembers = /* GraphQL */ `
         eventsByText
         promoByText
         ecfRating
+        membershipType
         _version
         _deleted
         _lastChangedAt
@@ -287,6 +288,7 @@ export const syncMembers = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -338,6 +340,7 @@ export const getMember = /* GraphQL */ `
       eventsByText
       promoByText
       ecfRating
+      membershipType
       _version
       _deleted
       _lastChangedAt
@@ -370,6 +373,7 @@ export const getMember = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -450,6 +454,7 @@ export const listMembers = /* GraphQL */ `
         eventsByText
         promoByText
         ecfRating
+        membershipType
         _version
         _deleted
         _lastChangedAt
@@ -482,6 +487,7 @@ export const listMembers = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -582,6 +588,7 @@ export const listEvents = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -677,6 +684,7 @@ export const getEvent = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -811,6 +819,7 @@ export const eventsByStartDate = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -917,6 +926,7 @@ export const syncEvents = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -977,6 +987,7 @@ export const getEntry = /* GraphQL */ `
         eventsByText
         promoByText
         ecfRating
+        membershipType
         _version
         _deleted
         _lastChangedAt
@@ -1009,6 +1020,7 @@ export const getEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1097,6 +1109,7 @@ export const getEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1160,6 +1173,7 @@ export const listEntrys = /* GraphQL */ `
           eventsByText
           promoByText
           ecfRating
+          membershipType
           _version
           _deleted
           _lastChangedAt
@@ -1274,6 +1288,7 @@ export const syncEntries = /* GraphQL */ `
           eventsByText
           promoByText
           ecfRating
+          membershipType
           _version
           _deleted
           _lastChangedAt
