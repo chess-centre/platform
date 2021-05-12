@@ -24,6 +24,39 @@ const gql = require("graphql-tag");
 const graphql = require("graphql");
 const { print } = graphql;
 
+const getEvent = gql`
+  query getEvent($id: ID!, $memberId: ID!) {
+    getEvent(id: $id) {
+      id
+      maxEntries
+      type {
+        id
+        name
+        maxEntries
+        stripePriceId
+        eventType
+        time
+      }
+      endDate
+      startDate
+      entries {
+        items {
+          id
+          eventId
+          memberId
+        }
+      }
+    }
+    getMember(id: $memberId) {
+      id
+      name
+      email
+      stripeCustomerId
+      stripeCurrentPeriodEnd
+    }
+  }
+`;
+
 exports.handler = async (event) => {
   console.log(JSON.stringify(event));
   console.log(process.env.STRIPE_API_KEY);
@@ -162,39 +195,9 @@ async function handleCheckoutSessionCompletedSubscription(id, customer) {
 
 async function handleCheckoutSessionCompletedPayment(id) {
   const [memberId, eventId] = id.split("#");
-
-  const getEvent = gql`
-    query getEvent($eventId: ID!, $memberId: ID!) {
-      getEvent(id: $eventId) {
-        id
-        maxEntries
-        arrivalTime
-        type {
-          id
-          name
-          maxEntries
-          stripePriceId
-          eventType
-          time
-        }
-        endDate
-        startDate
-          entries {
-            items {
-              id
-            }
-          }
-        _version
-      }
-      getMember(id: $memberId) {
-        id
-        name
-        email
-        stripeCustomerId
-        stripeCurrentPeriodEnd
-      }
-    }
-  `;
+  
+  console.log("memberId", memberId);
+  console.log("eventId", eventId);
 
   const {
     data: {
@@ -207,10 +210,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
       },
       getMember: { email, name },
     },
-  } = await executeGraphql(getEvent, {
-    eventId,
-    memberId
-  });
+  } = await fetchEvent(eventId, memberId);
 
   console.log(entries);
 
@@ -418,3 +418,45 @@ async function sendRegisteredEventEmail({ email, name, eventName, eventType, eve
   };
   return SES.sendEmail(params).promise();
 }
+
+async function fetchEvent(id, memberId) {
+  const req = new AWS.HttpRequest(appsyncUrl, region);
+
+  const variables = {
+    id,
+    memberId,
+  };
+
+  req.method = "POST";
+  req.path = "/graphql";
+  req.headers.host = endpoint;
+  req.headers["Content-Type"] = "application/json";
+  req.body = JSON.stringify({
+    query: print(getEvent),
+    operationName: "getEvent",
+    variables,
+  });
+
+  const signer = new AWS.Signers.V4(req, "appsync", true);
+  signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate());
+
+  const data = await new Promise((resolve, reject) => {
+    const httpRequest = https.request({ ...req, host: endpoint }, (response) => {
+      let data = "";
+      response.on("data", (chunk) => {
+        data += chunk; 
+      });
+      response.on("end", () => {
+        resolve(JSON.parse(data.toString()));
+      });
+      response.on("error", reject);
+    });
+
+    httpRequest.write(req.body);
+    httpRequest.end();
+  });
+
+  console.log(JSON.stringify(data));
+  return data;
+}
+
