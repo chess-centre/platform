@@ -2,7 +2,7 @@ import React from "react";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import LandingNav from "../../components/Navigation/LandingNav";
 import Volunteers from "../../components/Volunteers";
-import MattAndyImage from "../../assets/img/matt-andy.jpg";
+import MattAndyImage from "../../assets/img/matt-andy.png";
 
 const About = () => {
   return (
