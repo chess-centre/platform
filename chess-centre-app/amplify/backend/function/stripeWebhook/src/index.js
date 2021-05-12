@@ -76,7 +76,7 @@ exports.handler = async (event) => {
       try {
         const memberInfo = await handleCustomerSubscriptionEvent(data);
         if(memberInfo) {
-          await sendMembershipEmail(memberInfo));
+          await sendMembershipEmail(memberInfo);
         }
       } catch (error) {
         console.error(error);

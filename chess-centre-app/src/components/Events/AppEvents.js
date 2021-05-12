@@ -270,17 +270,6 @@ export default function AppEvents() {
                               </span>{" "}
                             </div>
                           )}
-                          {(time || type.time) && (
-                            <div
-                              className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
-                              onClick={() => showModal(id, type.eventType)}
-                            >
-                              <i className="fad fa-clock mr-1"></i>
-                              <span className="inline text-teal-700">
-                                {time || type.time}
-                              </span>{" "}
-                            </div>
-                          )}
                           <div
                             className="sm:inline  text-xs text-gray-900 cursor-pointer mr-2 mb-2"
                             onClick={() =>
