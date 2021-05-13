@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, ModalBody, ModalFooter, Button } from "@windmill/react-ui";
+import { Modal, ModalBody, ModalHeader, ModalFooter, Button } from "@windmill/react-ui";
 import { prettyDate } from "../../utils/DateFormating";
 
 export default function EventDetailsModal(props) {
@@ -8,7 +8,11 @@ export default function EventDetailsModal(props) {
   return (
     <>
       <Modal isOpen={open} onClose={() => closeModal()}>
+        <ModalHeader className="-mt-2">
+          My upcoming events
+        </ModalHeader>
         <ModalBody>
+          
           <table className="mt-2 m-auto divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
@@ -54,7 +58,7 @@ export default function EventDetailsModal(props) {
         </ModalBody>
         <ModalFooter>
           <div className="text-center sm:text-left"><i className="fal fa-construction text-orange-500"></i> <span className="text-xs">We're working hard to improve this section!</span></div>
-          <Button className="w-full sm:w-auto" onClick={closeModal}>
+          <Button className="w-full sm:w-auto mb-2" onClick={closeModal}>
             Close
           </Button>
         </ModalFooter>

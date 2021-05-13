@@ -208,6 +208,7 @@ export const createMember = /* GraphQL */ `
       eventsByText
       promoByText
       ecfRating
+      membershipType
       _version
       _deleted
       _lastChangedAt
@@ -240,6 +241,7 @@ export const createMember = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -318,6 +320,7 @@ export const updateMember = /* GraphQL */ `
       eventsByText
       promoByText
       ecfRating
+      membershipType
       _version
       _deleted
       _lastChangedAt
@@ -350,6 +353,7 @@ export const updateMember = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -428,6 +432,7 @@ export const deleteMember = /* GraphQL */ `
       eventsByText
       promoByText
       ecfRating
+      membershipType
       _version
       _deleted
       _lastChangedAt
@@ -460,6 +465,7 @@ export const deleteMember = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -582,6 +588,7 @@ export const createEvent = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -704,6 +711,7 @@ export const updateEvent = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -826,6 +834,7 @@ export const deleteEvent = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -913,6 +922,7 @@ export const createEntry = /* GraphQL */ `
         eventsByText
         promoByText
         ecfRating
+        membershipType
         _version
         _deleted
         _lastChangedAt
@@ -945,6 +955,7 @@ export const createEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1033,6 +1044,7 @@ export const createEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1094,6 +1106,7 @@ export const updateEntry = /* GraphQL */ `
         eventsByText
         promoByText
         ecfRating
+        membershipType
         _version
         _deleted
         _lastChangedAt
@@ -1126,6 +1139,7 @@ export const updateEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1214,6 +1228,7 @@ export const updateEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1275,6 +1290,7 @@ export const deleteEntry = /* GraphQL */ `
         eventsByText
         promoByText
         ecfRating
+        membershipType
         _version
         _deleted
         _lastChangedAt
@@ -1307,6 +1323,7 @@ export const deleteEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1395,6 +1412,7 @@ export const deleteEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt

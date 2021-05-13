@@ -6,7 +6,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import ComingEvents from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
-import DownloadPWA from "../../components/PWA/Download";
+import DownloadPWA from "../../components/Quote/PWA";
 
 const Home = () => {
   const { user } = useAuthState();

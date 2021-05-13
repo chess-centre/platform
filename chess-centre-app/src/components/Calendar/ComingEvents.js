@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { API } from "aws-amplify";
@@ -298,7 +298,8 @@ function ListCalendar({ isLoading, error, data, selected }) {
 }
 
 export default function Calendar() {
-  const [calenderView, setCalenderView] = useState("list");
+  const defaultView = window.innerWidth > 600 ? "grid" : "list";
+  const [calenderView, setCalenderView] = useState(defaultView);
   const { isLoading, error, data } = useEvents();
 
   const today = new Date();
@@ -311,12 +312,6 @@ export default function Calendar() {
   const handleViewSwitch = (view) => {
     setCalenderView(view);
   };
-
-  useEffect(() => {
-    if(window.innerWidth > 600) {
-      setCalenderView("grid");
-    }
-  }, [calenderView])
 
   return (
     <section>

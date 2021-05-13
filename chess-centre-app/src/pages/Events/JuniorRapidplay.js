@@ -46,14 +46,10 @@ export default function JuniorRapidplayEvent() {
                   needed.
                 </p>
                 <h3>Event Information</h3>
-                <p>
-                  Players will be placed in a group of 6, based on rating, and
-                  will play all others within their group during the 5 rounds of
-                  the tournament.
-                </p>
                 <ul>
+                  <li>5 Rounds</li>
                   <li>25 mins per player on the clock</li>
-                  <li>All games will be ECF standard play rated.</li>
+                  <li>All games will be ECF rapidplay rated.</li>
                 </ul>
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">

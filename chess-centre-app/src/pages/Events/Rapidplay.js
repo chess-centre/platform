@@ -58,9 +58,10 @@ export default function RapidplayEvent() {
                   the tournament.
                 </p>
                 <ul>
+                  <li>5 Rounds</li>
                   <li>25 mins per player on the clock</li>
-                  <li>All games will be ECF standard play rated.</li>
-                  <li>Entries are limited to 12 players.</li>
+                  <li>All games will be ECF rapidplay rated.</li>
+                  <li>Entries are currently limited to 18 players.</li>
                 </ul>
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">

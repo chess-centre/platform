@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
@@ -35,13 +35,16 @@ function useEvents() {
 }
 
 export default function Events() {
-  const [selectedEventType, setSelectedEventType] = useState("all");
   const selectableEventTypes = [
     "all",
     "congress",
     "rapidplay",
     "junior-rapidplay",
   ];
+  const location = useLocation();
+  const [,,eventType] = location.pathname.split("/");
+  const defaultSelectedEventType = eventType && selectableEventTypes.includes(eventType) ? eventType : "all";
+  const [selectedEventType, setSelectedEventType] = useState(defaultSelectedEventType);
   const { isLoading, error, data } = useEvents();
 
   return (

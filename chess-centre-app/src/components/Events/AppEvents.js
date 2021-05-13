@@ -142,7 +142,7 @@ export default function AppEvents() {
     } catch (error) {
       console.log(error.message);
       addToast(
-        "Oops. This event is either full or you have already registered.",
+        "Oops. Seems something isn't working on our end.",
         {
           appearance: "error",
           autoDismiss: true,
@@ -152,10 +152,10 @@ export default function AppEvents() {
   };
 
   useEffect(() => {
-    if (eventId) {
+    if (eventId /* user has logged in via register button */) {
       register(eventId);
     }
-    if (event_payment_success && session_id) {
+    if (event_payment_success && session_id /* user has completed a payment */) {
       setPaymentSuccessful(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -267,17 +267,6 @@ export default function AppEvents() {
                               <i className="fad fa-flag mr-1"></i>
                               <span className="inline text-teal-700">
                                 {rounds} rounds
-                              </span>{" "}
-                            </div>
-                          )}
-                          {(time || type.time) && (
-                            <div
-                              className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
-                              onClick={() => showModal(id, type.eventType)}
-                            >
-                              <i className="fad fa-clock mr-1"></i>
-                              <span className="inline text-teal-700">
-                                {time || type.time}
                               </span>{" "}
                             </div>
                           )}

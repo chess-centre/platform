@@ -77,7 +77,7 @@ export default function MatchNight() {
               <div className="text-base max-w-prose mx-auto lg:max-w-none">
                 <p className="text-lg text-gray-500">
                   These dates are reserved for our Chess Centre members, here we
-                  participate in team events and competitions. These are either
+                  participate in team events and competitions such as local, county and national leagues. These are either
                   internally hosted or events being run as part of the wider
                   Chess community such as the{" "}
                   <a
@@ -87,19 +87,37 @@ export default function MatchNight() {
                     href="https://www.bradfordchess.co.uk/"
                   >
                     BDCA Bradford Chess League
+                  </a>,
+                  the{" "}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-teal-500 hover:text-teal-700 no-underline"
+                    href="https://mannchess.org.uk/YCA.htm"
+                  >
+                    YCA Yorkshire Leagues
+                  </a>
+                  {" "} or the {" "}
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-teal-500 hover:text-teal-700 no-underline"
+                    href="https://www.4ncl.co.uk/"
+                  >
+                    4NCL
                   </a>
                   .
                 </p>
               </div>
               <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                 <p>
-                  Each Match Night will be listed and detailed within our app so
-                  you can see our fixtures are up coming and what are the
-                  various events we are involved in.
+                  Each upcoming matches will be listed and detailed within our website and visible when logged in. Here
+                  you can find fixtures, results and individual scores of previous matches.
                 </p>
                 <p>The types of events we'll participate in:</p>
                 <ul>
                   <li>Team league matches</li>
+                  <li>Team challenge matches</li>
                   <li>Team Cup competitions</li>
                   <li>Individual events</li>
                 </ul>

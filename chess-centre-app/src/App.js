@@ -28,14 +28,15 @@ const stripePromise = loadStripe(STRIPE_KEY);
 const Page404 = lazy(() => import("./pages/Error/404"));
 
 export default function App() {
-
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    if (process.env.NODE_ENV === "production") {
+      ReactGA.pageview(window.location.pathname + window.location.search);
+    }
   }, []);
 
   return (
-      <AuthProvider>
-        <Elements stripe={stripePromise}>
+    <AuthProvider>
+      <Elements stripe={stripePromise}>
         <QueryClientProvider client={queryClient}>
           <ToastProvider>
             <Router>
@@ -53,8 +54,8 @@ export default function App() {
               </Switch>
             </Router>
           </ToastProvider>
-          </QueryClientProvider>
-        </Elements>
-      </AuthProvider>
+        </QueryClientProvider>
+      </Elements>
+    </AuthProvider>
   );
-};
+}

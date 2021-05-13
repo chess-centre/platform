@@ -178,6 +178,7 @@ export const onCreateMember = /* GraphQL */ `
       eventsByText
       promoByText
       ecfRating
+      membershipType
       _version
       _deleted
       _lastChangedAt
@@ -210,6 +211,7 @@ export const onCreateMember = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -285,6 +287,7 @@ export const onUpdateMember = /* GraphQL */ `
       eventsByText
       promoByText
       ecfRating
+      membershipType
       _version
       _deleted
       _lastChangedAt
@@ -317,6 +320,7 @@ export const onUpdateMember = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -392,6 +396,7 @@ export const onDeleteMember = /* GraphQL */ `
       eventsByText
       promoByText
       ecfRating
+      membershipType
       _version
       _deleted
       _lastChangedAt
@@ -424,6 +429,7 @@ export const onDeleteMember = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -543,6 +549,7 @@ export const onCreateEvent = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -662,6 +669,7 @@ export const onUpdateEvent = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -781,6 +789,7 @@ export const onDeleteEvent = /* GraphQL */ `
             eventsByText
             promoByText
             ecfRating
+            membershipType
             _version
             _deleted
             _lastChangedAt
@@ -865,6 +874,7 @@ export const onCreateEntry = /* GraphQL */ `
         eventsByText
         promoByText
         ecfRating
+        membershipType
         _version
         _deleted
         _lastChangedAt
@@ -897,6 +907,7 @@ export const onCreateEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -985,6 +996,7 @@ export const onCreateEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1043,6 +1055,7 @@ export const onUpdateEntry = /* GraphQL */ `
         eventsByText
         promoByText
         ecfRating
+        membershipType
         _version
         _deleted
         _lastChangedAt
@@ -1075,6 +1088,7 @@ export const onUpdateEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1163,6 +1177,7 @@ export const onUpdateEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1221,6 +1236,7 @@ export const onDeleteEntry = /* GraphQL */ `
         eventsByText
         promoByText
         ecfRating
+        membershipType
         _version
         _deleted
         _lastChangedAt
@@ -1253,6 +1269,7 @@ export const onDeleteEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt
@@ -1341,6 +1358,7 @@ export const onDeleteEntry = /* GraphQL */ `
               eventsByText
               promoByText
               ecfRating
+              membershipType
               _version
               _deleted
               _lastChangedAt

@@ -33,8 +33,10 @@ import { ReactComponent as UserIcon } from "./user.svg";
 import { ReactComponent as ClockIcon } from "./clock.svg";
 import { ReactComponent as InfoIcon } from "./info.svg";
 import { ReactComponent as ClickIcon } from "./click.svg";
+import { ReactComponent as AcademicIcon } from "./academic.svg";
 
 export {
+  AcademicIcon,
   ButtonsIcon,
   CardsIcon,
   ChartsIcon,

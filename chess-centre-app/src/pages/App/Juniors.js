@@ -1,36 +1,49 @@
 import React, { useEffect } from "react";
-import { XIcon, GlobeIcon } from '@heroicons/react/outline'
+import { GlobeIcon } from '@heroicons/react/outline'
 
 const usefulLinks = [
   {
+    name: "ECF",
+    description: "The English Chess Federation website for UK wide events and information.",
+    url: "https://www.englishchess.org.uk/",
+    displayUrl: "englishchess.org.uk"
+  },
+  {
+    name: "FIDE",
+    description: "The Internation Chess Federation, news, rating and events.",
+    url: "https://www.fide.com/",
+    displayUrl: "fide.come"
+  },
+  {
     name: "Chess.com",
-    description: "A fantastic resource for playing, learning and training.",
-    url: "https://chess.com"
-  }
+    description: "A fantastic resource for playing, learning and training online.",
+    url: "https://chess.com",
+    displayUrl: "chess.com"
+  },
+  {
+    name: "Chessable",
+    description: "Great articles, video courses and more.",
+    url: "https://www.chessable.com/blog/",
+    displayUrl: "chessable.com"
+  },
 ]
 
 function Banner() {
   return (
-    <div className="absolute inset-x-0 pb-2 sm:pb-5">
-    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-      <div className="p-2 rounded-lg bg-teal-600 shadow-lg sm:p-3">
+    <div className="mx-auto w-full pb-2 sm:pb-5">
+    <div className="max-w-7xl px-2">
+      <div className="p-2 rounded-lg bg-teal-500 shadow-lg sm:p-3">
         <div className="flex items-center justify-between flex-wrap">
           <div className="w-0 flex-1 flex items-center">
-            <span className="flex p-2 rounded-lg bg-teal-800">
+            <span className="flex p-2 rounded-lg bg-teal-600">
               <GlobeIcon className="h-6 w-6 text-white" aria-hidden="true" />
             </span>
-            <p className="ml-3 font-medium text-white truncate">
-              <span className="">We have a long road ahead but rest assured we are working on it!</span>
+            <p className="hidden sm:block ml-3 sm:font-medium text-white text-sm truncate">
+              <span className="">We are planning to share lots of exciting resources here so come back soon!</span>
             </p>
-          </div>
-          <div className="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
-            <button
-              type="button"
-              className="-mr-1 flex p-2 rounded-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-white"
-            >
-              <span className="sr-only">Dismiss</span>
-              <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
-            </button>
+            <p className="block sm:hidden ml-3 sm:font-medium text-white text-sm truncate">
+              <span className="">👋 Check back here soon!</span>
+            </p>
           </div>
         </div>
       </div>
@@ -41,8 +54,8 @@ function Banner() {
 
 function UsefulLinksTable() {
   return (
-    <div className="flex flex-col">
-    <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div className="mx-auto w-full">
+    <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 px-2">
       <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
@@ -56,7 +69,7 @@ function UsefulLinksTable() {
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="hidden sm:block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Description
                 </th>
@@ -69,11 +82,11 @@ function UsefulLinksTable() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {usefulLinks.map(({ name, description, url}, key) => (
+              {usefulLinks.map(({ name, description, url, displayUrl}, key) => (
                 <tr key={key}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{description}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{url}</td>
+                  <td className="hidden sm:block px-6 py-4 whitespace-nowrap text-sm text-gray-500">{description}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><a className="text-teal-500 hover:text-teal-700 hover:underline" target="_blank" rel="noreferrer" alt="Chess Site" href={url}>{displayUrl}</a></td>
                 </tr>
               ))}
             </tbody>
@@ -107,9 +120,12 @@ export default function Juniors() {
           </p>
         </div>
       </div>
-      <div className="relative grid gap-6 mb-8 md:grid-cols-2 mt-6">
+      <div className="relative grid mb-8 md:grid-cols-1 mt-6">
         <Banner />
-        <UsefulLinksTable />
+        <div className="mt-4">
+          <h3 className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400 mb-4">Useful links to other great chess sites</h3>
+          <UsefulLinksTable />
+        </div> 
       </div>
     </>
   );

@@ -18,11 +18,11 @@ export default function Rounds(props) {
           <table className="m-auto min-w-full divide-y divide-gray-200">
             <tbody className="bg-white divide-y divide-gray-200">
               {event &&
-                event.rounds.map(({ round, time, day }) => {
+                event.rounds.map(({ round, time, day }, key) => {
                   return (
-                    <tr key={round}>
+                    <tr key={key}>
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        Round {round.round}
+                        Round {round}
                       </td>
                       <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {day}

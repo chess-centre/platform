@@ -102,9 +102,9 @@ function SidebarContent() {
               <Icon
                   className="w-5 h-5"
                   aria-hidden="true"
-                  icon={"HeartIcon"}
+                  icon={"AcademicIcon"}
                 />
-              <span className="ml-4">Parents</span>
+              <span className="ml-4">Juniors</span>
             </NavLink>
           </li>
 

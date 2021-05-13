@@ -154,8 +154,8 @@ function Profile() {
       setIsLoadingProfile(false);
     };
 
-    getProfileData().catch(e => {
-      console.log(e);
+    getProfileData().catch(error => {
+      console.log(error);
       setIsLoadingProfile(false);
     });
   }, [user]);
