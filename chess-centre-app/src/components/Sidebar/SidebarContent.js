@@ -85,7 +85,7 @@ function SidebarContent() {
           )
         )}
 
-        {isJunior || true && (
+        {isJunior && (
           <li className="relative px-6 py-3" key={10000}>
             <NavLink
               exact

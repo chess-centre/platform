@@ -54,8 +54,8 @@ function ForgotPassword(props) {
   }
 
   async function resendCode() {
-    if(!email) {
-      addToast(`Email not present, please go back to add email`, {
+    if (!email) {
+      addToast(`Email not present, please ensure you have provided it.`, {
         appearance: "error",
         autoDismiss: true,
       });
@@ -100,7 +100,9 @@ function ForgotPassword(props) {
               ) : (
                 <>
                   <Label>
-                    <span>Code <span className="text-xs">(send to your email)</span></span>
+                    <span>
+                      Code <span className="text-xs">(send to your email)</span>
+                    </span>
                     <div className="flex space-x-3 mt-1 mb-3">
                       <Input
                         disabled={loading}
@@ -143,15 +145,17 @@ function ForgotPassword(props) {
               </div>
 
               <hr className="my-4" />
-              <p className="mt-1">
-                <Link
-                  className="text-sm font-medium text-teal-600 dark:text-gray-400 hover:underline"
-                  disabled={loading}
-                  onClick={resendCode}
-                >
-                  Resend
-                </Link>
-              </p>
+              {forget && (
+                <p className="mt-1">
+                  <Link
+                    className="text-sm font-medium text-teal-600 dark:text-gray-400 hover:underline"
+                    disabled={loading}
+                    onClick={resendCode}
+                  >
+                    Resend
+                  </Link>
+                </p>
+              )}
               <p className="mt-1">
                 <Link
                   className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"
@@ -160,7 +164,6 @@ function ForgotPassword(props) {
                   Home
                 </Link>
               </p>
-
             </div>
           </main>
         </div>

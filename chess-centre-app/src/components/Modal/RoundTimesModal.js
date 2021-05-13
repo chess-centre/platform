@@ -18,7 +18,7 @@ export default function RoundTimesModal(props) {
             <RoundTimes eventId={eventId} eventType={eventType} removeStyles={true} />
           </ModalBody >
         <ModalFooter>
-          <Button className="w-full sm:w-auto" onClick={closeModal}>
+          <Button className="w-full sm:w-auto mb-2" onClick={closeModal}>
             Close
           </Button>
         </ModalFooter>

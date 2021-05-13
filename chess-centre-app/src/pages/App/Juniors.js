@@ -4,7 +4,7 @@ import { GlobeIcon } from '@heroicons/react/outline'
 const usefulLinks = [
   {
     name: "ECF",
-    description: "The English Chess Federation website for UK wide events and informatuon.",
+    description: "The English Chess Federation website for UK wide events and information.",
     url: "https://www.englishchess.org.uk/",
     displayUrl: "englishchess.org.uk"
   },
