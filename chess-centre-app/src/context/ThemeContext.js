@@ -29,7 +29,6 @@ function useStorageTheme(key) {
 
   // update stored theme
   useEffect(() => {
-    console.log("WTF!");
     localStorage.setItem(key, theme);
   }, [theme, key]);
 
@@ -46,7 +45,6 @@ export const ThemeProvider = ({ children }) => {
   // update root element class on theme change
   const oldTheme = usePrevious(theme);
   useLayoutEffect(() => {
-    console.log("TESTING!");
     document.documentElement.classList.remove(`theme-${oldTheme}`);
     document.documentElement.classList.add(`theme-${theme}`);
   }, [theme, oldTheme]);

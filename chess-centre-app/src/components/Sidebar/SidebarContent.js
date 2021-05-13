@@ -34,7 +34,6 @@ function SidebarContent() {
 
   async function checkPlanStatus() {
     const isJunior = await isJuniorMember();
-    console.log("isJunior", isJunior)
     setIsJunior(isJunior);
   }
 
