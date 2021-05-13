@@ -1,7 +1,10 @@
 export const faqs = [
   {
     question: `Do you teach beginners?`,
-    answer: `Yes, absolutely! We welcome anyone to come visit us on our <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="/events/club">Thursday club night</a>, here we can show you the basics and go from there!`,
+    answer: `Yes, absolutely! We welcome anyone to come visit us on our 
+    <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="/events/club">Thursday club night</a>, 
+    here we can show you the basics and go from there! Alternatively, we also have our 
+    <a class="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" href="/events/junior-club">Junior Club</a> for children aged 6 - 16.`,
     tags: ["beginners"],
   },
   {

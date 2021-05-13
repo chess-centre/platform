@@ -47,7 +47,7 @@ const routes = [
     exact: false
   },
   {
-    path: "/events/junior-club/:id",
+    path: "/events/junior-club",
     component: lazy(() => import("../pages/Events/JuniorClub")),
     isPrivate: false
   },

@@ -76,18 +76,19 @@ export default function ClubNight() {
             <div className="mt-8 lg:mt-0">
               <div className="text-base max-w-prose mx-auto lg:max-w-none">
                 <p className="text-lg text-gray-500 text-justify">
-                  Our Thursday club nights are when we welcome new guests, existing members and get together for a few adhoc games, analyse some games or learning some endings!
-                  This is a social event and thus, an opportunity to grab a few drinks, play some games or learn a new variant or two.
+                  Our Thursday club nights are when we welcome new guests, existing members and get together for a few adhoc games, maybe some analysis or endgame studies (if that's your thing)!
+                  This is a social event and thus, an opportunity to grab a few drinks, play some games and catch up with your team mates.
                 </p>
               </div>
               <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                 <p>
-                  We plan to run a few bespoke events during our club nights but primarily these will be left up to members to decide what takes their fancy on the night.
+                  We plan to run a few bespoke themed events during our club nights but primarily these will be left up to members to decide what takes their fancy to keep it fresh and interesting.
                 </p>
                 <p>Possible bespoke events:</p>
                 <ul>
                   <li>Four Player Chess</li>
                   <li>Doubles Chess</li>
+                  <li>Themed Opening Nights</li>
                   <li>Blitz Chess (3min / 5min)</li>
                 </ul>
               </div>

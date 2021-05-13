@@ -46,6 +46,7 @@ const getEvent = gql`
           memberId
         }
       }
+      _version
     }
     getMember(id: $memberId) {
       id
@@ -363,10 +364,11 @@ async function sendMembershipEmail({ email, name }) {
         Html: { Data: `<h2 style="color: #047481">♟️ The Chess Centre</h2>
         <p>Hello ${name} 👋</p>
         <p>This email is to confirm your membership sign up.</p> 
-        <p>Thank you for joining for our fantastic chess community ❤️.</p> 
+        <p>Thank you for joining our fantastic chess community ❤️</p> 
         <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
         <p>If you have any questions please don't hesitate to email us at: info@chesscentre.online</p>
         <p>We look forward to seeing you soon! 🚀</p>
+        <p style="color: #9da4a5;font-size:10px;">ps. Memberships can be cancelled at anytime, no questions asked. If you have any problems just pop us a quick email and we'll gladly assist.</p>
         `
       }
       }
@@ -410,7 +412,7 @@ async function sendRegisteredEventEmail({ email, name, eventName, eventType, eve
         <p>If you have any questions or need to withdraw your entry, please email us at: info@chesscentre.online</p>
         <p>We look forward to seeing you soon! 🚀</p>
         <p></p>
-        <p style="color: #9da4a5;font-size:8px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
+        <p style="color: #9da4a5;font-size:10px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
         `
       }
       }

@@ -38,8 +38,11 @@ function Banner() {
             <span className="flex p-2 rounded-lg bg-teal-600">
               <GlobeIcon className="h-6 w-6 text-white" aria-hidden="true" />
             </span>
-            <p className="ml-3 font-medium text-white truncate">
-              <span className="">Welcome 👋 We are planning to share lots of exciting resources here so come back soon!</span>
+            <p className="hidden sm:block ml-3 sm:font-medium text-white text-sm truncate">
+              <span className="">We are planning to share lots of exciting resources here so come back soon!</span>
+            </p>
+            <p className="block sm:hidden ml-3 sm:font-medium text-white text-sm truncate">
+              <span className="">👋 Check back here soon!</span>
             </p>
           </div>
         </div>
@@ -66,7 +69,7 @@ function UsefulLinksTable() {
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="hidden sm:block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Description
                 </th>
@@ -82,7 +85,7 @@ function UsefulLinksTable() {
               {usefulLinks.map(({ name, description, url, displayUrl}, key) => (
                 <tr key={key}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{description}</td>
+                  <td className="hidden sm:block px-6 py-4 whitespace-nowrap text-sm text-gray-500">{description}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><a className="text-teal-500 hover:text-teal-700 hover:underline" target="_blank" rel="noreferrer" alt="Chess Site" href={url}>{displayUrl}</a></td>
                 </tr>
               ))}
@@ -119,8 +122,10 @@ export default function Juniors() {
       </div>
       <div className="relative grid mb-8 md:grid-cols-1 mt-6">
         <Banner />
-        <h3 className="px-2 h4 font-red-hat-display mb-4">Quick resources</h3>
-        <UsefulLinksTable />
+        <div className="mt-4">
+          <h3 className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400 mb-4">Useful links to other great chess sites</h3>
+          <UsefulLinksTable />
+        </div> 
       </div>
     </>
   );
