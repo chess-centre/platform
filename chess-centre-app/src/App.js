@@ -2,7 +2,6 @@ import React, { lazy, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastProvider } from "react-toast-notifications";
-import { Auth } from "aws-amplify";
 import { AuthProvider } from "./context/Auth";
 import AppRoutes from "./components/Navigation/AppRoute";
 import routes from "./routes";
@@ -11,13 +10,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import ReactGA from "react-ga";
 
 if (process.env.NODE_ENV === "production") {
-  const { id } = Auth.currentUserInfo();
   const trackingId = "UA-194757154-1";
-  ReactGA.initialize(trackingId, {
-    gaOptions: {
-      userId: id,
-    },
-  });
+  ReactGA.initialize(trackingId);
 }
 
 const queryClient = new QueryClient();
@@ -35,9 +29,9 @@ export default function App() {
   }, []);
 
   return (
-    <AuthProvider>
-      <Elements stripe={stripePromise}>
-        <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Elements stripe={stripePromise}>
           <ToastProvider>
             <Router>
               <Switch>
@@ -54,8 +48,8 @@ export default function App() {
               </Switch>
             </Router>
           </ToastProvider>
-        </QueryClientProvider>
-      </Elements>
-    </AuthProvider>
+        </Elements>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
