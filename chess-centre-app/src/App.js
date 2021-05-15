@@ -11,6 +11,7 @@ import ReactGA from "react-ga";
 
 if (process.env.NODE_ENV === "production") {
   const trackingId = "UA-194757154-1";
+  // Google Analytics:
   ReactGA.initialize(trackingId);
 }
 
