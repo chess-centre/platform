@@ -72,13 +72,11 @@ exports.handler = async (event) => {
     // Retrieve the event by verifying the signature using the raw body and secret.
     let event;
     const signature = headers["Stripe-Signature"];
-    console.log(signature)
 
     try {
       event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
     } catch (err) {
       console.log(`⚠️  Webhook signature verification failed.`);
-      console.log(err);
       return {
         statusCode: 401,
         body: "Webhook signature verification failed.",
