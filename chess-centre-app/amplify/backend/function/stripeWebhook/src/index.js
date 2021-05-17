@@ -72,13 +72,11 @@ exports.handler = async (event) => {
     // Retrieve the event by verifying the signature using the raw body and secret.
     let event;
     const signature = headers["Stripe-Signature"];
-    console.log(signature)
 
     try {
       event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
     } catch (err) {
       console.log(`⚠️  Webhook signature verification failed.`);
-      console.log(err);
       return {
         statusCode: 401,
         body: "Webhook signature verification failed.",
@@ -409,7 +407,7 @@ async function sendRegisteredEventEmail({ email, name, eventName, eventType, eve
         ${arrivalTime ? `<p>⌚ Arrival Time: ${arrivalTime}</p>` : ""}
         <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
         <p>More details can be found here:
-          <a href="https://www.chesscentre.online/${eventType}/${eventId}">chesscentre.online/${eventType}</a>
+          <a href="https://www.chesscentre.online/events/${eventType}/${eventId}">chesscentre.online/${eventType}</a>
         </p>
         <p>If you have any questions or need to withdraw your entry, please email us at: info@chesscentre.online</p>
         <p>We look forward to seeing you soon! 🚀</p>

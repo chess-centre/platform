@@ -1,3 +1,4 @@
+import { Auth } from "aws-amplify";
 import { Button } from "@windmill/react-ui";
 import React, { useState } from "react";
 
@@ -6,6 +7,7 @@ export default function Register(props) {
   const [isLoadingEvents, setIsLoadingEvent] = useState(false);
   const handleRegister = async (id) => {
     setIsLoadingEvent(true);
+    await Auth.currentUserCredentials();
     await register(id);
     setIsLoadingEvent(false);
   };
