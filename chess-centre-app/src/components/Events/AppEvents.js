@@ -1,4 +1,5 @@
 import API from "@aws-amplify/api";
+import { Auth } from "aws-amplify";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import queryString from "query-string";
@@ -83,6 +84,9 @@ function useEvents() {
   }
 
   return useQuery("eventData", async () => {
+
+    await Auth.currentUserCredentials();
+
     const {
       data: {
         listEvents: { items: events },

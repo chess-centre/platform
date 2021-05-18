@@ -28,7 +28,16 @@
   margin-right: auto !important;
 }
 
-div.buttons > i.pgnvbutton:hover {
+.pgnvjs.layout-top .buttons {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 5px !important;
+}
+
+
+i.pgnvbutton:hover,
+svg.pgnvbutton:hover {
   background-color: rgb(3, 84, 94) !important;
   border-radius: 6px !important;
   border: 0 !important;
@@ -47,7 +56,9 @@ div.buttons > i.pgnvbutton:hover {
   cursor: pointer !important;
 }
 
-div.buttons > i.pgnvbutton {
+i.pgnvbutton,
+svg.pgnvbutton {
+  cursor: pointer !important;
   color: #fff !important;
   border-radius: 6px !important;
   border: 0 !important;
@@ -57,6 +68,7 @@ div.buttons > i.pgnvbutton {
   padding-left: 1rem !important;
   padding-right: 1rem !important;
 }
+
 
 .blackHeader,
 .whiteHeader {
@@ -70,4 +82,9 @@ div.buttons > i.pgnvbutton {
 
 .result {
   font-weight: 500 !important;
+}
+
+.layout-top {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
