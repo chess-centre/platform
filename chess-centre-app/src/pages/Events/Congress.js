@@ -1,11 +1,37 @@
-import React from "react";
+import API from "@aws-amplify/api";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
+import { getEvent } from "../../graphql/queries";
+import { prettyDate } from "../../utils/DateFormating";
 
 function CongressEvent() {
   const { id } = useParams();
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [defaultPrice, setDefaultPrice] = useState();
+
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      const {
+        data: { getEvent: {
+          startDate,
+          endDate,
+          type: {
+            defaultPrice
+          }
+        }},
+      } = await API.graphql({ query: getEvent, variables: { id } });
+      setStartDate(startDate);
+      setEndDate(endDate);
+      setDefaultPrice(defaultPrice);
+    }
+    fetchEvent();
+
+  }, [id, startDate, defaultPrice]);
 
   return (
     <div>
@@ -17,10 +43,13 @@ function CongressEvent() {
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
             <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
-              Take your game to the next level?
+                <i class="fad fa-rocket-launch"></i> Take it to the next level?
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               Congresses
+            </p>
+            <p className="mt-2 text-2xl leading-8 font-extrabold tracking-tight text-gray-500 sm:text-2xl">
+              {startDate && prettyDate(startDate, endDate)}
             </p>
           </div>
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
@@ -66,10 +95,24 @@ function CongressEvent() {
                   the tournament.
                 </p>
                 <ul>
+                  <li>5 Rounds</li>
                   <li>60 mins per player on the clock</li>
                   <li>All games will be ECF standard play rated.</li>
                   <li>Entries are currently limited to 18 players.</li>
+                  {defaultPrice && (
+                    <li>Entry fee £{defaultPrice}</li>
+                  )}
                 </ul>
+                <p>
+                  <span className="text-teal-500">
+                    <i className="fad fa-mug-tea"></i>{" "}
+                    <i class="fad fa-cookie-bite"></i>
+                  </span>{" "}
+                </p>
+                <p>
+                  Our venue will be open from 9:30am both mornings serving hot &#38; cold
+                  drinks along with snacks.
+                </p>
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
