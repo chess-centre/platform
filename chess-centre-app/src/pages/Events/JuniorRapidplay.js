@@ -1,11 +1,35 @@
-import React from "react";
+import API from "@aws-amplify/api";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
+import { getEvent } from "../../graphql/queries";
+import { prettyLongDate } from "../../utils/DateFormating";
+
 
 export default function JuniorRapidplayEvent() {
   const { id } = useParams();
+  const [startDate, setStartDate] = useState();
+  const [defaultPrice, setDefaultPrice] = useState();
+
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      const {
+        data: { getEvent: {
+          startDate,
+          type: {
+            defaultPrice
+          }
+        }},
+      } = await API.graphql({ query: getEvent, variables: { id } });
+      setStartDate(startDate);
+      setDefaultPrice(defaultPrice);
+    }
+    fetchEvent();
+
+  }, [id, startDate, defaultPrice]);
 
   return (
     <div>
@@ -21,6 +45,9 @@ export default function JuniorRapidplayEvent() {
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               Junior Rapidplay
+            </p>
+            <p className="mt-2 text-2xl leading-8 font-extrabold tracking-tight text-gray-500 sm:text-2xl">
+              {startDate && prettyLongDate(startDate)}
             </p>
           </div>
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
@@ -50,7 +77,20 @@ export default function JuniorRapidplayEvent() {
                   <li>5 Rounds</li>
                   <li>25 mins per player on the clock</li>
                   <li>All games will be ECF rapidplay rated.</li>
+                  {defaultPrice && (
+                    <li>Entry fee £{defaultPrice}</li>
+                  )}
                 </ul>
+                <p>
+                  <span className="text-teal-500">
+                    <i className="fad fa-mug-tea"></i>{" "}
+                    <i class="fad fa-cookie-bite"></i>
+                  </span>{" "}
+                </p>
+                <p>
+                  Our venue will be open from 9:30am serving hot &#38; cold
+                  drinks along with snacks.
+                </p>
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <Link
