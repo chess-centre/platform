@@ -22,7 +22,10 @@ export default function RapidplayEvent() {
             defaultPrice
           }
         }},
-      } = await API.graphql({ query: getEvent, variables: { id } });
+      } = await API.graphql({ query: getEvent, variables: { id } })
+      .catch(e => {
+        console.log(e);
+      });
       setStartDate(startDate);
       setDefaultPrice(defaultPrice);
     }

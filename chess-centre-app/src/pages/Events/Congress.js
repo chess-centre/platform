@@ -24,7 +24,10 @@ function CongressEvent() {
             defaultPrice
           }
         }},
-      } = await API.graphql({ query: getEvent, variables: { id } });
+      } = await API.graphql({ query: getEvent, variables: { id } })
+      .catch(e => {
+        console.log(e);
+      });
       setStartDate(startDate);
       setEndDate(endDate);
       setDefaultPrice(defaultPrice);
