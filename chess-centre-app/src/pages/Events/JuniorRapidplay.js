@@ -7,30 +7,26 @@ import RoundTimes from "../../components/RoundTimes/Rounds";
 import { getEvent } from "../../graphql/queries";
 import { prettyLongDate } from "../../utils/DateFormating";
 
-
 export default function JuniorRapidplayEvent() {
   const { id } = useParams();
   const [startDate, setStartDate] = useState();
   const [defaultPrice, setDefaultPrice] = useState();
 
-
   useEffect(() => {
     const fetchEvent = async () => {
       const {
-        data: { getEvent: {
-          startDate,
-          type: {
-            defaultPrice
-          }
-        }},
-      } = await API.graphql({ query: getEvent, variables: { id } }).catch(e => {
-        console.log(e);
-      });
+        data: {
+          getEvent: { startDate, type: { defaultPrice } = {} } = {},
+        } = {},
+      } = await API.graphql({ query: getEvent, variables: { id } }).catch(
+        (e) => {
+          console.log('Error fetching event.', id);
+        }
+      );
       setStartDate(startDate);
       setDefaultPrice(defaultPrice);
-    }
+    };
     fetchEvent();
-
   }, [id, startDate, defaultPrice]);
 
   return (
@@ -79,9 +75,7 @@ export default function JuniorRapidplayEvent() {
                   <li>5 Rounds</li>
                   <li>25 mins per player on the clock</li>
                   <li>All games will be ECF rapidplay rated.</li>
-                  {defaultPrice && (
-                    <li>Entry fee £{defaultPrice}</li>
-                  )}
+                  {defaultPrice && <li>Entry fee £{defaultPrice}</li>}
                 </ul>
                 <p>
                   <span className="text-teal-500">

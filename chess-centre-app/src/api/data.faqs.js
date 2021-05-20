@@ -104,7 +104,9 @@ export const faqs = [
   },
   {
     question: `Can I join a team?`,
-    answer: `Yes. We would be delighted for you to join one of our teams, to do so you would be required to sign up as a subscribed member.`,
+    answer: `Yes. We would be delighted for you to join one of our teams, to do so you would be required to sign up as a subscribed member. 
+    Not only that, we are also in close contact with many other club captains around the Bradford & Leeds area so, should there a more convenient venue for you to join a league team, 
+    we will happily put you in touch with that club.`,
     tags: ["membership"],
   },
   {

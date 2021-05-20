@@ -12,25 +12,19 @@ export default function RapidplayEvent() {
   const [startDate, setStartDate] = useState();
   const [defaultPrice, setDefaultPrice] = useState();
 
-
   useEffect(() => {
     const fetchEvent = async () => {
       const {
-        data: { getEvent: {
-          startDate,
-          type: {
-            defaultPrice
-          }
-        }},
-      } = await API.graphql({ query: getEvent, variables: { id } })
-      .catch(e => {
-        console.log(e);
-      });
+        data: { getEvent: { startDate, type: { defaultPrice } = {} } = {} },
+      } = await API.graphql({ query: getEvent, variables: { id } }).catch(
+        (e) => {
+          console.log(e);
+        }
+      );
       setStartDate(startDate);
       setDefaultPrice(defaultPrice);
-    }
+    };
     fetchEvent();
-
   }, [id, startDate, defaultPrice]);
 
   return (
@@ -43,7 +37,10 @@ export default function RapidplayEvent() {
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
             <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
-              <span className="text-teal-500"><i className="fad fa-stopwatch"></i></span> No time to waste
+              <span className="text-teal-500">
+                <i className="fad fa-stopwatch"></i>
+              </span>{" "}
+              No time to waste
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               Rapidplay
@@ -91,9 +88,7 @@ export default function RapidplayEvent() {
                   <li>25 mins per player on the clock</li>
                   <li>All games will be ECF rapidplay rated.</li>
                   <li>Entries are currently limited to 18 players.</li>
-                  {defaultPrice && (
-                    <li>Entry fee £{defaultPrice}</li>
-                  )}
+                  {defaultPrice && <li>Entry fee £{defaultPrice}</li>}
                 </ul>
                 <p>
                   <span className="text-teal-500">

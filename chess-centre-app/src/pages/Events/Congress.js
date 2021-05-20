@@ -13,27 +13,22 @@ function CongressEvent() {
   const [endDate, setEndDate] = useState();
   const [defaultPrice, setDefaultPrice] = useState();
 
-
   useEffect(() => {
     const fetchEvent = async () => {
       const {
-        data: { getEvent: {
-          startDate,
-          endDate,
-          type: {
-            defaultPrice
-          }
-        }},
-      } = await API.graphql({ query: getEvent, variables: { id } })
-      .catch(e => {
-        console.log(e);
-      });
+        data: {
+          getEvent: { startDate, endDate, type: { defaultPrice } = {} } = {},
+        } = {},
+      } = await API.graphql({ query: getEvent, variables: { id } }).catch(
+        (e) => {
+          console.log('Error fetching event.', id);
+        }
+      );
       setStartDate(startDate);
       setEndDate(endDate);
       setDefaultPrice(defaultPrice);
-    }
+    };
     fetchEvent();
-
   }, [id, startDate, defaultPrice]);
 
   return (
@@ -46,7 +41,7 @@ function CongressEvent() {
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
             <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
-                <i class="fad fa-rocket-launch"></i> Take it to the next level?
+              <i class="fad fa-rocket-launch"></i> Take it to the next level?
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               Congresses
@@ -85,8 +80,8 @@ function CongressEvent() {
                 </p>
 
                 <p>
-                  The “all-play-all” format of players competing in rated
-                  groups of 6 also ensures that players know they will receive a
+                  The “all-play-all” format of players competing in rated groups
+                  of 6 also ensures that players know they will receive a
                   competitive and challenging test of their skills across all
                   rounds of the competitions. There’s no where to hide in our
                   “Mini-Congresses”.
@@ -102,9 +97,7 @@ function CongressEvent() {
                   <li>60 mins per player on the clock</li>
                   <li>All games will be ECF standard play rated.</li>
                   <li>Entries are currently limited to 18 players.</li>
-                  {defaultPrice && (
-                    <li>Entry fee £{defaultPrice}</li>
-                  )}
+                  {defaultPrice && <li>Entry fee £{defaultPrice}</li>}
                 </ul>
                 <p>
                   <span className="text-teal-500">
@@ -113,12 +106,17 @@ function CongressEvent() {
                   </span>{" "}
                 </p>
                 <p>
-                  Our venue will be open from 9:30am both mornings serving hot &#38; cold
-                  drinks along with snacks.
+                  Our venue will be open from 9:30am both mornings serving hot
+                  &#38; cold drinks along with snacks.
                 </p>
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">
-                <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
+                <Link
+                  className="text-teal-600 hover:text-teal-500"
+                  to="/events"
+                >
+                  <i className="fad fa-long-arrow-alt-left"></i> back
+                </Link>
               </div>
             </div>
             <div className="mt-12 relative text-base max-w-prose mx-auto lg:mt-0 lg:max-w-none">
@@ -157,7 +155,12 @@ function CongressEvent() {
               </svg>
               <RoundTimes eventId={id} eventType="congress" />
               <div className="text-sm text-center mt-6 sm:hidden">
-                <Link className="text-teal-600 hover:text-teal-500" to="/events"><i className="fad fa-long-arrow-alt-left"></i> back</Link>
+                <Link
+                  className="text-teal-600 hover:text-teal-500"
+                  to="/events"
+                >
+                  <i className="fad fa-long-arrow-alt-left"></i> back
+                </Link>
               </div>
             </div>
           </div>
