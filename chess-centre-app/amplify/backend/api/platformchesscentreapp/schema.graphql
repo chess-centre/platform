@@ -28,7 +28,7 @@ type FidePlayer @model @auth(rules: [{allow: private}]) {
   currentRating: Int
 }
 
-type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: groups, groups: ["Member"], operations: [read]}]) @key(name: "stripe", fields: ["stripeCustomerId"]) {
+type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: private, operations: [read]}]) @key(name: "stripe", fields: ["stripeCustomerId"]) {
   id: ID!
   about: String
   fideId: Int
@@ -63,11 +63,10 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   entryCount: Int
 }
 
-type Entry @model @auth(rules: [{allow: groups, groups: ["Member"]}, {allow: private, provider: iam}]) @key(name: "byEvent", fields: ["eventId"]) @key(name: "byMember", fields: ["memberId"]) {
+type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "byEvent", fields: ["eventId"]) @key(name: "byMember", fields: ["memberId"]) {
   id: ID!
   eventId: ID!
   memberId: ID!
   event: Event @connection(fields: ["eventId"])
   member: Member @connection(fields: ["memberId"])
 }
- 
