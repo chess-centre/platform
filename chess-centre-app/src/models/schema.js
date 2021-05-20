@@ -431,12 +431,7 @@ export const schema = {
                                 "identityClaim": "cognito:username"
                             },
                             {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "Member"
-                                ],
+                                "allow": "private",
                                 "operations": [
                                     "read"
                                 ]
@@ -513,12 +508,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "groupClaim": "cognito:groups",
-                                "provider": "userPools",
-                                "allow": "groups",
-                                "groups": [
-                                    "Member"
-                                ],
+                                "allow": "private",
                                 "operations": [
                                     "create",
                                     "update",
