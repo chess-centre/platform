@@ -164,8 +164,8 @@ export const onDeleteFidePlayer = /* GraphQL */ `
   }
 `;
 export const onCreateMember = /* GraphQL */ `
-  subscription OnCreateMember($id: String) {
-    onCreateMember(id: $id) {
+  subscription OnCreateMember {
+    onCreateMember {
       id
       about
       fideId
@@ -273,8 +273,8 @@ export const onCreateMember = /* GraphQL */ `
   }
 `;
 export const onUpdateMember = /* GraphQL */ `
-  subscription OnUpdateMember($id: String) {
-    onUpdateMember(id: $id) {
+  subscription OnUpdateMember {
+    onUpdateMember {
       id
       about
       fideId
@@ -382,8 +382,8 @@ export const onUpdateMember = /* GraphQL */ `
   }
 `;
 export const onDeleteMember = /* GraphQL */ `
-  subscription OnDeleteMember($id: String) {
-    onDeleteMember(id: $id) {
+  subscription OnDeleteMember {
+    onDeleteMember {
       id
       about
       fideId
