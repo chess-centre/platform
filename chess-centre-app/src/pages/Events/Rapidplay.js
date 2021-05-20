@@ -15,10 +15,12 @@ export default function RapidplayEvent() {
   useEffect(() => {
     const fetchEvent = async () => {
       const {
-        data: { getEvent: { startDate, type: { defaultPrice } = {} } = {} },
+        data: {
+          getEvent: { startDate, type: { defaultPrice } = {} } = {},
+        } = {},
       } = await API.graphql({ query: getEvent, variables: { id } }).catch(
         (e) => {
-          console.log(e);
+          console.log("Error fetching event.", id);
         }
       );
       setStartDate(startDate);

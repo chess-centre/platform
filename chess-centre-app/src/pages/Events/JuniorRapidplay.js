@@ -20,7 +20,7 @@ export default function JuniorRapidplayEvent() {
         } = {},
       } = await API.graphql({ query: getEvent, variables: { id } }).catch(
         (e) => {
-          console.log('Error fetching event.', id);
+          console.log("Error fetching event.", id);
         }
       );
       setStartDate(startDate);
