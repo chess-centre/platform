@@ -1,5 +1,76 @@
 export const schema = {
     "models": {
+        "EventPairings": {
+            "name": "EventPairings",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "eventName": {
+                    "name": "eventName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "round": {
+                    "name": "round",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "pairing": {
+                    "name": "pairing",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "result": {
+                    "name": "result",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "complete": {
+                    "name": "complete",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "EventPairings",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Plan": {
             "name": "Plan",
             "fields": {
@@ -674,5 +745,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "84d03f3ac251a5d7aa1a978903653eaa"
+    "version": "cc2bbcab20b7452c1247926c87a3177f"
 };
