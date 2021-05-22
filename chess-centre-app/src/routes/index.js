@@ -118,7 +118,7 @@ const routes = [
     path: "/broadcast/live",
     component: lazy(() => import("../pages/Broadcast/Live")),
     exact: true,
-    isPrivate: true,
+    isPrivate: false,
   },
 ];
 
