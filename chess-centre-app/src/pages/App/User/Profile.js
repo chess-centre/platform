@@ -220,7 +220,7 @@ function Profile() {
       </aside>
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
         <ChessInfo {...member} isLoading={isLoadingProfile} />
-        <AccountInfo {...member} />
+        <AccountInfo name={member.name} />
       </div>
     </div>
   );

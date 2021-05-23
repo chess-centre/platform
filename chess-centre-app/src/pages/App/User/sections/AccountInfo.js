@@ -5,28 +5,27 @@ const FIRST_NAME = "first_name";
 const LAST_NAME = "last_name";
 const EMAIL_ADDRESS = "email_address";
 
-function AccountInfo() {
+function AccountInfo(props) {
   const [user, setUser] = useState({
     email: "",
     email_verified: false,
     given_name: "",
     family_name: ""
   });
-
   useEffect(() => {
-    const fetchMember = async () => {
+    const fetchCognitoUser = async () => {
       const {
         attributes: {
           email,
-          email_verified,
-          given_name,
-          family_name
+          email_verified
         }
       } = await Auth.currentAuthenticatedUser();
+      const given_name = props.name?.split(" ")[0];
+      const family_name = props.name?.split(" ")[1];
       setUser({ email, email_verified, given_name, family_name});
     };
-    fetchMember();
-  }, []);
+    fetchCognitoUser();
+  }, [props]);
 
   return (
     <div className="shadow rounded-lg overflow-hidden">

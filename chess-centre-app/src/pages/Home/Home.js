@@ -9,6 +9,7 @@ import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
 
 const Home = () => {
+  const showLiveGames = false; // make config driven
   const { user } = useAuthState();
 
   return (
@@ -124,7 +125,8 @@ const Home = () => {
                 </div>
 
               </div>
-              <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+              {
+                showLiveGames && (<div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className="rounded-md shadow">
                   <Link
                     to="/broadcast/live"
@@ -141,7 +143,9 @@ const Home = () => {
 
                   </Link>
                 </div>
-              </div>
+              </div>)
+              }
+
             </div>
           </main>
         </div>

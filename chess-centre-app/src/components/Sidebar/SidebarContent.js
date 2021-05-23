@@ -15,6 +15,7 @@ function Icon({ icon, ...props }) {
 }
 
 function SidebarContent() {
+  const showLiveGames = false;
   const [needsUpgrade, setNeedsUpgrade] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isJunior, setIsJunior] = useState(false);
@@ -106,7 +107,6 @@ function SidebarContent() {
               <span className="ml-4">Juniors</span>
             </NavLink>
           </li>
-
         )}
       </ul>
       {needsUpgrade && (
@@ -117,18 +117,19 @@ function SidebarContent() {
           Upgrade Membership
         </Link>
       )}
-      <Link
-        to="/broadcast/live"
-        className={`
+      {showLiveGames && (
+        <Link
+          to="/broadcast/live"
+          className={`
         align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-teal-600 border border-transparent active:bg-teal-600 hover:bg-teal-700 focus:shadow-outline-teal ml-5 mt-3`}
-      >
-        <span class="flex relative h-3 w-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
-        </span>{" "}
-        <span className="ml-2">Live Games</span>
-
-      </Link>
+        >
+          <span class="flex relative h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
+          </span>{" "}
+          <span className="ml-2">Live Games</span>
+        </Link>
+      )}
       <div className="absolute grid grid-cols-2 bottom-1 pl-8 my-6 text-sm">
         <div
           onClick={openModal}
