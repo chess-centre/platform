@@ -1,13 +1,28 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
-import PlayingRoom from "../../assets/img/the-centre.png";
+import JuniorRapidPlay from "../../assets/img/junior-rapidplay.jpg";
+import OpenRapidPlay from "../../assets/img/open-rapidplay.jpg";
+import OpenCongress from "../../assets/img/open-congress.jpg";
 import { prettyDate } from "../../utils/DateFormating";
 import { classNames, borderColor900 } from "../../utils/Classes";
 
 export default function EventDetailsSlideOut(props) {
   const { slideState, user, setIsSlideOutOpen } = props;
   const { open, eventDetails } = slideState;
+
+  function selectImage(type) {
+      switch (type) {
+        case "congress":
+          return OpenCongress;
+        case "rapidplay":
+          return OpenRapidPlay;
+        case "junior-rapidplay":
+          return JuniorRapidPlay
+        default:
+          return OpenCongress;
+      }
+  }
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -66,11 +81,11 @@ export default function EventDetailsSlideOut(props) {
                   <div>
                     <div className="pb-1 sm:pb-6">
                       <div>
-                        <div className="relative h-40 sm:h-52">
+                        <div className="relative h-96">
                           <div className="">
                             <img
                               className={classNames(borderColor900(eventDetails.type?.color),`absolute h-full w-full object-cover rounded-lg border-4`)}
-                              src={PlayingRoom}
+                              src={selectImage(eventDetails.type?.eventType)}
                               alt="Playing Hall"
                             />
                           </div>
