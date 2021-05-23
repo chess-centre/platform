@@ -25,9 +25,9 @@ export const CongressEntries = [
   },
   {
     id: 4,
-    name: "Gawain Ako",
+    name: "Andrew Wainwright",
     ratingInfo: {
-      rating: 1907,
+      rating: 2013,
     },
   },
   {
@@ -73,28 +73,28 @@ const SwissPairings = [
   {
     round: 2,
     pairings: [
-      [6, 4],
-      [5, 3],
-      [1, 2],
-      [3, 6],
+      [4, 1],
+      [2, 3],
+      [5, 8],
+      [7, 6],
     ],
   },
   {
     round: 3,
     pairings: [
-      [2, 6],
-      [3, 1],
-      [4, 5],
-      [3, 6],
+      [1, 2],
+      [3, 5],
+      [8, 4],
+      [6, 7],
     ],
   },
   {
     round: 4,
     pairings: [
-      [6, 5],
-      [1, 4],
-      [2, 3],
-      [3, 6],
+      [3, 1],
+      [2, 8],
+      [5, 6],
+      [7, 4],
     ],
   },
   {
@@ -111,19 +111,15 @@ const SwissPairings = [
 const results = [
   {
     round: 1,
-    pairResults: [[], [], [], []],
+    pairResults: [[1,0], [0,1], [1,0], [0,1]],
   },
   {
     round: 2,
-    pairResults: [[], [], [], []],
-  },
-  {
-    round: 2,
-    pairResults: [[], [], [], []],
+    pairResults: [[0,1], [1,0], [1,0], [0,1]],
   },
   {
     round: 3,
-    pairResults: [[], [], [], []],
+    pairResults: [[1,0], [1,0], [0,1], [1,0]],
   },
   {
     round: 4,
@@ -132,7 +128,7 @@ const results = [
   {
     round: 5,
     pairResults: [[], [], [], []],
-  },
+  }
 ];
 
 const players = [
@@ -327,37 +323,37 @@ const Internal = (props) => {
 
   return (
     <div className="grid grid-rows-4 grid-flow-col gap-4 px-10 py-10 h-screen">
-      <div className="row-span-4 col-span-4 bg-gray-100 rounded-lg shadow-xs overflow-hidden">
+      <div className="row-span-4 col-span-11 bg-gray-100 rounded-lg shadow-xs overflow-hidden">
         <div>
           <div className="aspect-w-16 aspect-h-11">
             <iframe
               title="Live Games"
               frameBorder="0"
               allowFullScreen
-              src={url ? url : "http://localhost:1982/liveviewer/index.html"}
+              src={url ? url : "http://192.168.1.248:1982/liveviewer/index.html"}
             />
           </div>
         </div>
       </div>
-      <div className="col-span-1 row-span-3 bg-gray-100 rounded-lg shadow-xs p-8">
+      <div className="col-span-1 row-span-4 bg-gray-100 rounded-lg shadow-xs p-8">
         <div className="mb-4">
           <CurrentStandings></CurrentStandings>
         </div>
         <div>
           <PairsTable
-            format={SwissPairings[0]}
+            format={SwissPairings[3]}
             players={players}
             results={results}
           />
         </div>
       </div>
-      <div className="flex row-span-1 col-span-1 bg-gray-100 rounded-lg shadow-xs overflow-hidden p-2">
+      {/* <div className="flex row-span-1 col-span-1 bg-gray-100 rounded-lg shadow-xs overflow-hidden p-2">
         <img
           className="object-center w-64 mx-auto self-center"
           src={QR}
           alt="QR Code"
         />
-      </div>
+      </div> */}
     </div>
   );
 };
