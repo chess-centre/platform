@@ -14,17 +14,25 @@ export default function RapidplayEvent() {
 
   useEffect(() => {
     const fetchEvent = async () => {
-      const {
-        data: {
-          getEvent: { startDate, type: { defaultPrice } = {} } = {},
-        } = {},
-      } = await API.graphql({ query: getEvent, variables: { id } }).catch(
+      const response = await API.graphql({ query: getEvent, variables: { id } }).catch(
         (e) => {
           console.log("Error fetching event.", id);
+          console.log(e.response);
         }
       );
-      setStartDate(startDate);
-      setDefaultPrice(defaultPrice);
+
+      if(response && response.data) {
+        const {
+          data: {
+            getEvent: { startDate, type: { 
+              defaultPrice,
+            } = {} } = {},
+          } = {},
+        } = response;
+
+        setStartDate(startDate);
+        setDefaultPrice(defaultPrice);
+      }
     };
     fetchEvent();
   }, [id, startDate, defaultPrice]);
@@ -95,7 +103,7 @@ export default function RapidplayEvent() {
                 <p>
                   <span className="text-teal-500">
                     <i className="fad fa-mug-tea"></i>{" "}
-                    <i class="fad fa-cookie-bite"></i>
+                    <i className="fad fa-cookie-bite"></i>
                   </span>{" "}
                 </p>
                 <p>

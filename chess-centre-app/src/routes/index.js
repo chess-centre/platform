@@ -111,7 +111,7 @@ const routes = [
     path: "/internal/live",
     component: lazy(() => import("../pages/Broadcast/Internal")),
     exact: true,
-    isPrivate: true,
+    isPrivate: false,
     isAdmin: true
   },
   {

@@ -4,6 +4,17 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class EventPairings {
+  readonly id: string;
+  readonly eventName?: string;
+  readonly round?: string;
+  readonly pairing?: string;
+  readonly result?: string;
+  readonly complete?: boolean;
+  constructor(init: ModelInit<EventPairings>);
+  static copyOf(source: EventPairings, mutator: (draft: MutableModel<EventPairings>) => MutableModel<EventPairings> | void): EventPairings;
+}
+
 export declare class Plan {
   readonly id: string;
   readonly key: string;

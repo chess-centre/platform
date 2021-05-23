@@ -14,21 +14,29 @@ function CongressEvent() {
   const [defaultPrice, setDefaultPrice] = useState();
 
   useEffect(() => {
-    const fetchEvent = async () => {
-      const {
-        data: {
-          getEvent: { startDate, endDate, type: { defaultPrice } = {} } = {},
-        } = {},
-      } = await API.graphql({ query: getEvent, variables: { id } }).catch(
-        (e) => {
-          console.log("Error fetching event.", id);
+    try {
+      const fetchEvent = async () => {
+        const response = await API.graphql({ query: getEvent, variables: { id } }).catch(
+          (e) => {
+            console.log("Error fetching event.", id);
+            console.log(e.response);
+          }
+        );
+        if(response && response.data) {
+          const {
+            data: {
+              getEvent: { startDate, endDate, type: { defaultPrice } = {} } = {},
+            } = {},
+          } = response;
+          setStartDate(startDate);
+          setEndDate(endDate);
+          setDefaultPrice(defaultPrice);   
         }
-      );
-      setStartDate(startDate);
-      setEndDate(endDate);
-      setDefaultPrice(defaultPrice);
-    };
-    fetchEvent();
+      };  
+      fetchEvent();
+    } catch (error) {
+      console.log(error)
+    }
   }, [id, startDate, defaultPrice]);
 
   return (
@@ -41,7 +49,7 @@ function CongressEvent() {
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
             <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
-              <i class="fad fa-rocket-launch"></i> Take it to the next level?
+              <i className="fad fa-rocket-launch"></i> Take it to the next level?
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               Congresses
@@ -102,7 +110,7 @@ function CongressEvent() {
                 <p>
                   <span className="text-teal-500">
                     <i className="fad fa-mug-tea"></i>{" "}
-                    <i class="fad fa-cookie-bite"></i>
+                    <i className="fad fa-cookie-bite"></i>
                   </span>{" "}
                 </p>
                 <p>

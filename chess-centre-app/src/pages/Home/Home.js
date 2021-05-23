@@ -109,6 +109,9 @@ const Home = () => {
                 It's time things changed around here.{" "}
                 <br className="md:hidden" /> Brace yourselves!{" "}
                 <span role="img">🚀</span>
+                <div>
+                </div>
+
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className={user ? "hidden" : "rounded-md shadow"}>
@@ -117,6 +120,25 @@ const Home = () => {
                     className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
                   >
                     Join Now
+                  </Link>
+                </div>
+
+              </div>
+              <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+                <div className="rounded-md shadow">
+                  <Link
+                    to="/broadcast/live"
+                    className={`
+                    w-full flex items-center justify-center 
+                    px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
+                    focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10`}
+                  >
+                    <span class="flex relative h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
+                    </span>{" "}
+                    <span className="ml-2">Live Games</span>
+
                   </Link>
                 </div>
               </div>
@@ -137,6 +159,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+
 
       <ComingEvents />
       <FAQs />

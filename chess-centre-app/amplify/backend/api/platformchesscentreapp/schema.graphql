@@ -1,3 +1,12 @@
+type EventPairings @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  eventName: String
+  round: String
+  pairing: String
+  result: String
+  complete: Boolean
+}
+
 type Plan @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "key", fields: ["key"]) {
   id: ID!
   key: String!
@@ -70,3 +79,4 @@ type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   event: Event @connection(fields: ["eventId"])
   member: Member @connection(fields: ["memberId"])
 }
+ 
