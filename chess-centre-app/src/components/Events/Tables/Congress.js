@@ -248,7 +248,7 @@ const Standings = () => {
             .map((data, key) => {
               return (
                 <tr key={key} className="bg-white dark:bg-gray-800">
-                  <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
+                  <td className="px-2 pl-2 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
                     {data.name}{" "}
                     <span className="font-thin">
                       ({data.rating ? data.rating : "unrated"})
@@ -309,11 +309,11 @@ const PairsTable = ({ format, players, results }) => {
         <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
           <tr className="bg-white dark:bg-gray-800">
             {/* using colSpan=3 here means the header VS doesn't align center with the Round */}
-            <td className="px-4 sm:px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300"></td>
+            <td className="px-2 sm:px-6 py-3"></td>
             <td className="px-4 sm:px-6 py-1 text-center text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-300">
               Round {round}
             </td>
-            <td className="px-4 sm:px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300"></td>
+            <td className="px-2"></td>
           </tr>
           {pairings.map((p, key) => {
             const [white, black] = results.find(
@@ -323,8 +323,8 @@ const PairsTable = ({ format, players, results }) => {
             const blackPlayer = players.find((player) => player.seed === p[1]);
             return (
               <tr key={key} className="bg-white dark:bg-gray-800">
-                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {whitePlayer.name}{" "}
+                <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {whitePlayer.name}{" "}<br />
                   <span className="font-thin">
                     (
                     {whitePlayer.ratingInfo.rating
@@ -333,15 +333,15 @@ const PairsTable = ({ format, players, results }) => {
                     )
                   </span>
                 </td>
-                <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300 border-l-2 border-r-2 border-gray-100 dark:border-gray-700">
+                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300 border-l-2 border-r-2 border-gray-100 dark:border-gray-700">
                   {white || black
                     ? `${white === 0.5 ? "½" : white} - ${
                         black === 0.5 ? "½" : black
                       }`
                     : "? - ?"}
                 </td>
-                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {blackPlayer.name}{" "}
+                <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {blackPlayer.name}{" "}<br />
                   <span className="font-thin">
                     (
                     {blackPlayer.ratingInfo.rating
@@ -387,7 +387,7 @@ function Congress() {
             </ul>
           </div>
         </div>
-        <div className="px-4 mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 overflow-x-auto">
+        <div className="px-2 mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 overflow-x-auto">
           <div className="">
             <h3 className="mb-2 text-1xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
               Final Standings
@@ -395,9 +395,9 @@ function Congress() {
             <Standings></Standings>
           </div>
           <div className="text-center mt-4 sm:mt-10">
-            <div className="aspect-w-3 aspect-h-2">
+            <div className="aspect-w-3 aspect-h-2 ml-2">
               <img
-                className="object-cover shadow-lg rounded-lg"
+                className="object-cover shadow-lg rounded-lg object-center m-auto"
                 src={DaveGary}
                 alt=""
               />
@@ -407,15 +407,15 @@ function Congress() {
             </p>
           </div>
           <div className="text-center mt-4 sm:mt-10">
-            <div className="aspect-w-3 aspect-h-2 mb-2 m-auto">
+            <div className="aspect-w-3 aspect-h-2 ml-2">
               <img
-                className="object-cover shadow-lg rounded-lg"
+                className="object-cover shadow-lg rounded-lg object-center m-auto"
                 src={Winner}
                 alt=""
               />
             </div>
             <p className="ml-2 mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Our Winner, Peter Shaw (left)
+              Our Winner <br /> Peter Shaw (left)
             </p>
           </div>
         </div>
@@ -425,7 +425,7 @@ function Congress() {
         <h3 className="mb-2 mt-5 px-4 text-1xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
           Individual Pairings
         </h3>
-        <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="sm:px-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {SwissPairings.map((pairings, key) => {
             return (
               <div key={key}>
