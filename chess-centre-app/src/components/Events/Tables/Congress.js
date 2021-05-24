@@ -28,7 +28,7 @@ export const CongressEntries = [
     id: 4,
     name: "Gawain Ako",
     ratingInfo: {
-      rating: 2013,
+      rating: 1907,
     },
   },
   {
@@ -59,6 +59,13 @@ export const CongressEntries = [
       rating: undefined,
     },
   },
+  {
+    id: 9,
+    name: "Andrew Wainwright",
+    ratingInfo: {
+      rating: 2013,
+    },
+  },
 ];
 
 const SwissPairings = [
@@ -68,13 +75,13 @@ const SwissPairings = [
       [1, 5],
       [6, 2],
       [3, 7],
-      [8, 4],
+      [8, 9],
     ],
   },
   {
     round: 2,
     pairings: [
-      [4, 1],
+      [9, 1],
       [2, 3],
       [5, 8],
       [7, 6],
@@ -85,7 +92,7 @@ const SwissPairings = [
     pairings: [
       [1, 2],
       [3, 5],
-      [6, 4],
+      [6, 9],
       [8, 7],
     ],
   },
@@ -158,7 +165,7 @@ const results = [
 ];
 
 const players = [
-  ...CongressEntries.slice(0, 8).map((m, i) => {
+  ...CongressEntries.slice(0, 9).map((m, i) => {
     m.seed = i + 1;
     return m;
   }),
@@ -251,9 +258,9 @@ const Standings = () => {
                     <div className="flex">
                       {data.rounds.map((r) =>
                         r ? (
-                          <div className="px-2">{r === 0.5 ? "½" : r}</div>
+                          <div className="px-1">{r === 0.5 ? "½" : r}</div>
                         ) : r === 0 ? (
-                          <div className="px-2">{r}</div>
+                          <div className="px-1">{r}</div>
                         ) : (
                           ""
                         )
