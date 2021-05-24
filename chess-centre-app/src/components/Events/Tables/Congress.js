@@ -1,6 +1,6 @@
 import React from "react";
 import Winner from "../../../assets/img/pete-shaw-winner.jpg";
-import DaveGary from "../../../assets/img/dave-barlow-vs-gary-corcoran.jpeg";
+import DaveGary from "../../../assets/img/dave-barlow-vs-gary-corcoran.jpg";
 
 export const CongressEntries = [
   {
@@ -229,7 +229,7 @@ const Standings = () => {
             </th>
             <th
               scope="col"
-              className="relative px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="relative px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
               Total
             </th>
@@ -260,7 +260,7 @@ const Standings = () => {
                       )}
                     </div>
                   </td>
-                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300">
+                  <td className="px-2 sm:px-2 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300">
                     {data.total}
                   </td>
                 </tr>
