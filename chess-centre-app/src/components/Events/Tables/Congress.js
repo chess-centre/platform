@@ -357,14 +357,14 @@ function Congress() {
     <>
       <section className="flex flex-wrap overflow-hidden">
         <div>
-          <h2 className="mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
-            May Open Congress
+          <h2 className="ml-4 mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
+            May Open Congress 2021
           </h2>
-          <p className="ml-4 mt-4 text-sm text-gray-500 dark:text-gray-400">
+          <p className="ml-4 mt-4 text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
             Thank you to all who attended our event, below you will find
             individual results and standings.
           </p>
-          <p className="ml-4 mt-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="ml-4 mt-4 text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
             <ul>
               <li>PGN Games: coming</li>
               <li>
@@ -378,12 +378,12 @@ function Congress() {
                 )
               </li>
             </ul>
-          </p>
+          </div>
         </div>
         <div className="px-4 mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 overflow-x-auto">
           <div className="">
-            <h3 className="mb-2 text-1xl font-semibold text-gray-700 dark:text-gray-200">
-              Standings
+            <h3 className="mb-2 text-1xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
+              Final Standings
             </h3>
             <Standings></Standings>
           </div>
@@ -395,8 +395,8 @@ function Congress() {
                 alt=""
               />
             </div>
-            <p className="ml-2 mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Round 2 David Barlow (white) vs Gary Corcoran (black)
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 flex-wrap">
+              Round 2 <br />David Barlow (white) vs Gary Corcoran (black)
             </p>
           </div>
           <div className="text-center mt-4 sm:mt-10">
@@ -415,7 +415,7 @@ function Congress() {
         <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
       </section>
       <section className="relative mb-10">
-        <h3 className="mb-2 mt-5 px-4 text-1xl font-semibold text-gray-700 dark:text-gray-200">
+        <h3 className="mb-2 mt-5 px-4 text-1xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
           Individual Pairings
         </h3>
         <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
