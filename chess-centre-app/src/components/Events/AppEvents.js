@@ -71,6 +71,7 @@ const listEvents = /* GraphQL */ `
 
 function useEvents() {
   const { user } = useAuthState();
+  const today = new Date();
 
   function alreadyRegistered(event) {
     return !!event.entries.items.find(
@@ -84,14 +85,14 @@ function useEvents() {
   }
 
   return useQuery("eventData", async () => {
-
-    await Auth.currentUserCredentials();
-
     const {
       data: {
         listEvents: { items: events },
       },
-    } = await API.graphql({ query: listEvents });
+    } = await API.graphql({
+      query: listEvents,
+      variables: { filter: { startDate: { gt: today } } },
+    });
 
     const sorted = events
       // TODO: move to graphQL query:
@@ -145,13 +146,10 @@ export default function AppEvents() {
       await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
       console.log(error.message);
-      addToast(
-        "Oops. Seems something isn't working on our end.",
-        {
-          appearance: "error",
-          autoDismiss: true,
-        }
-      );
+      addToast("Oops. Seems something isn't working on our end.", {
+        appearance: "error",
+        autoDismiss: true,
+      });
     }
   };
 
@@ -159,7 +157,10 @@ export default function AppEvents() {
     if (eventId /* user has logged in via register button */) {
       register(eventId);
     }
-    if (event_payment_success && session_id /* user has completed a payment */) {
+    if (
+      event_payment_success &&
+      session_id /* user has completed a payment */
+    ) {
       setPaymentSuccessful(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -229,11 +230,16 @@ export default function AppEvents() {
                                   Entry Fee: £{type.defaultPrice}
                                 </span>{" "}
                               </p>
-                            ) : <p className="text-sm text-gray-700 mr-2">
-                            <span className="inline">
-                              Entry Fee: <span className="text-teal-500 text-xs">PAID</span>
-                            </span>{" "}
-                          </p>}
+                            ) : (
+                              <p className="text-sm text-gray-700 mr-2">
+                                <span className="inline">
+                                  Entry Fee:{" "}
+                                  <span className="text-teal-500 text-xs">
+                                    PAID
+                                  </span>
+                                </span>{" "}
+                              </p>
+                            )}
                           </div>
                           <div className="flex-initial flex-nowrap">
                             <div className="text-right">
@@ -292,7 +298,7 @@ export default function AppEvents() {
                                   maxEntries,
                                   entryCount,
                                   rounds,
-                                }
+                                },
                               })
                             }
                           >
