@@ -4,15 +4,27 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-export declare class EventPairings {
+export declare class Game {
+  readonly id: string;
+  readonly pgn?: string;
+  readonly memberID?: string;
+  readonly eventID?: string;
+  readonly Opponent?: string;
+  readonly Colour?: string;
+  readonly Result?: string;
+  constructor(init: ModelInit<Game>);
+  static copyOf(source: Game, mutator: (draft: MutableModel<Game>) => MutableModel<Game> | void): Game;
+}
+
+export declare class EventPairing {
   readonly id: string;
   readonly eventName?: string;
   readonly round?: string;
   readonly pairing?: string;
   readonly result?: string;
   readonly complete?: boolean;
-  constructor(init: ModelInit<EventPairings>);
-  static copyOf(source: EventPairings, mutator: (draft: MutableModel<EventPairings>) => MutableModel<EventPairings> | void): EventPairings;
+  constructor(init: ModelInit<EventPairing>);
+  static copyOf(source: EventPairing, mutator: (draft: MutableModel<EventPairing>) => MutableModel<EventPairing> | void): EventPairing;
 }
 
 export declare class Plan {
@@ -70,6 +82,7 @@ export declare class Member {
   readonly stripeProductId?: string;
   readonly ecfRating?: string;
   readonly membershipType?: string;
+  readonly Games?: (Game | null)[];
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
 }
@@ -94,6 +107,7 @@ export declare class Event {
   readonly entries?: Entry[];
   readonly maxEntries?: number;
   readonly entryCount?: number;
+  readonly Games?: (Game | null)[];
   constructor(init: ModelInit<Event>);
   static copyOf(source: Event, mutator: (draft: MutableModel<Event>) => MutableModel<Event> | void): Event;
 }

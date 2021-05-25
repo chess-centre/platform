@@ -1,4 +1,14 @@
-type EventPairings @model @auth(rules: [{allow: private}]) {
+type Game @model @key(name: "byMember", fields: ["memberID"]) @key(name: "byEvent", fields: ["eventID"]) @auth(rules: [{allow: private}]) {
+  id: ID!
+  pgn: String
+  memberID: ID
+  eventID: ID
+  Opponent: String
+  Colour: String
+  Result: String
+}
+
+type EventPairing @model @auth(rules: [{allow: private}]) {
   id: ID!
   eventName: String
   round: String
@@ -56,6 +66,7 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   stripeProductId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   ecfRating: String
   membershipType: String
+  Games: [Game] @connection(keyName: "byMember", fields: ["id"])
 }
 
 type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "eventsByStartDate", fields: ["startDate", "name"], queryField: "eventsByStartDate") {
@@ -70,6 +81,7 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   entries: [Entry!] @connection(keyName: "byEvent", fields: ["id"])
   maxEntries: Int
   entryCount: Int
+  Games: [Game] @connection(keyName: "byEvent", fields: ["id"])
 }
 
 type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "byEvent", fields: ["eventId"]) @key(name: "byMember", fields: ["memberId"]) {

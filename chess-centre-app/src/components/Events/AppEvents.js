@@ -1,5 +1,4 @@
 import API from "@aws-amplify/api";
-import { Auth } from "aws-amplify";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import queryString from "query-string";

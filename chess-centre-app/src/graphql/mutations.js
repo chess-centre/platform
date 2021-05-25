@@ -1,6 +1,129 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createGame = /* GraphQL */ `
+  mutation CreateGame(
+    $input: CreateGameInput!
+    $condition: ModelGameConditionInput
+  ) {
+    createGame(input: $input, condition: $condition) {
+      id
+      pgn
+      memberID
+      eventID
+      Opponent
+      Colour
+      Result
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateGame = /* GraphQL */ `
+  mutation UpdateGame(
+    $input: UpdateGameInput!
+    $condition: ModelGameConditionInput
+  ) {
+    updateGame(input: $input, condition: $condition) {
+      id
+      pgn
+      memberID
+      eventID
+      Opponent
+      Colour
+      Result
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteGame = /* GraphQL */ `
+  mutation DeleteGame(
+    $input: DeleteGameInput!
+    $condition: ModelGameConditionInput
+  ) {
+    deleteGame(input: $input, condition: $condition) {
+      id
+      pgn
+      memberID
+      eventID
+      Opponent
+      Colour
+      Result
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createEventPairing = /* GraphQL */ `
+  mutation CreateEventPairing(
+    $input: CreateEventPairingInput!
+    $condition: ModelEventPairingConditionInput
+  ) {
+    createEventPairing(input: $input, condition: $condition) {
+      id
+      eventName
+      round
+      pairing
+      result
+      complete
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateEventPairing = /* GraphQL */ `
+  mutation UpdateEventPairing(
+    $input: UpdateEventPairingInput!
+    $condition: ModelEventPairingConditionInput
+  ) {
+    updateEventPairing(input: $input, condition: $condition) {
+      id
+      eventName
+      round
+      pairing
+      result
+      complete
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteEventPairing = /* GraphQL */ `
+  mutation DeleteEventPairing(
+    $input: DeleteEventPairingInput!
+    $condition: ModelEventPairingConditionInput
+  ) {
+    deleteEventPairing(input: $input, condition: $condition) {
+      id
+      eventName
+      round
+      pairing
+      result
+      complete
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createPlan = /* GraphQL */ `
   mutation CreatePlan(
     $input: CreatePlanInput!
@@ -68,6 +191,7 @@ export const createEventType = /* GraphQL */ `
       color
       time
       maxEntries
+      stripePriceId
       timeControl
       eventType
       defaultPrice
@@ -77,7 +201,6 @@ export const createEventType = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      stripePriceId
     }
   }
 `;
@@ -94,6 +217,7 @@ export const updateEventType = /* GraphQL */ `
       color
       time
       maxEntries
+      stripePriceId
       timeControl
       eventType
       defaultPrice
@@ -103,7 +227,6 @@ export const updateEventType = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      stripePriceId
     }
   }
 `;
@@ -120,6 +243,7 @@ export const deleteEventType = /* GraphQL */ `
       color
       time
       maxEntries
+      stripePriceId
       timeControl
       eventType
       defaultPrice
@@ -129,7 +253,6 @@ export const deleteEventType = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      stripePriceId
     }
   }
 `;
@@ -214,6 +337,24 @@ export const createMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      Games {
+        items {
+          id
+          pgn
+          memberID
+          eventID
+          Opponent
+          Colour
+          Result
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       stripeCustomerId
       stripeCurrentPeriodEnd
       stripePriceId
@@ -247,6 +388,10 @@ export const createMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -271,6 +416,10 @@ export const createMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             type {
               id
               name
@@ -279,6 +428,7 @@ export const createMember = /* GraphQL */ `
               color
               time
               maxEntries
+              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -288,7 +438,6 @@ export const createMember = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
-              stripePriceId
             }
             entries {
               nextToken
@@ -326,6 +475,24 @@ export const updateMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      Games {
+        items {
+          id
+          pgn
+          memberID
+          eventID
+          Opponent
+          Colour
+          Result
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       stripeCustomerId
       stripeCurrentPeriodEnd
       stripePriceId
@@ -359,6 +526,10 @@ export const updateMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -383,6 +554,10 @@ export const updateMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             type {
               id
               name
@@ -391,6 +566,7 @@ export const updateMember = /* GraphQL */ `
               color
               time
               maxEntries
+              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -400,7 +576,6 @@ export const updateMember = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
-              stripePriceId
             }
             entries {
               nextToken
@@ -438,6 +613,24 @@ export const deleteMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      Games {
+        items {
+          id
+          pgn
+          memberID
+          eventID
+          Opponent
+          Colour
+          Result
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       stripeCustomerId
       stripeCurrentPeriodEnd
       stripePriceId
@@ -471,6 +664,10 @@ export const deleteMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -495,6 +692,10 @@ export const deleteMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             type {
               id
               name
@@ -503,6 +704,7 @@ export const deleteMember = /* GraphQL */ `
               color
               time
               maxEntries
+              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -512,7 +714,6 @@ export const deleteMember = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
-              stripePriceId
             }
             entries {
               nextToken
@@ -546,6 +747,24 @@ export const createEvent = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      Games {
+        items {
+          id
+          pgn
+          memberID
+          eventID
+          Opponent
+          Colour
+          Result
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       type {
         id
         name
@@ -554,6 +773,7 @@ export const createEvent = /* GraphQL */ `
         color
         time
         maxEntries
+        stripePriceId
         timeControl
         eventType
         defaultPrice
@@ -563,7 +783,6 @@ export const createEvent = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        stripePriceId
       }
       entries {
         items {
@@ -594,6 +813,10 @@ export const createEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -618,6 +841,10 @@ export const createEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             type {
               id
               name
@@ -626,6 +853,7 @@ export const createEvent = /* GraphQL */ `
               color
               time
               maxEntries
+              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -635,7 +863,6 @@ export const createEvent = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
-              stripePriceId
             }
             entries {
               nextToken
@@ -669,6 +896,24 @@ export const updateEvent = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      Games {
+        items {
+          id
+          pgn
+          memberID
+          eventID
+          Opponent
+          Colour
+          Result
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       type {
         id
         name
@@ -677,6 +922,7 @@ export const updateEvent = /* GraphQL */ `
         color
         time
         maxEntries
+        stripePriceId
         timeControl
         eventType
         defaultPrice
@@ -686,7 +932,6 @@ export const updateEvent = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        stripePriceId
       }
       entries {
         items {
@@ -717,6 +962,10 @@ export const updateEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -741,6 +990,10 @@ export const updateEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             type {
               id
               name
@@ -749,6 +1002,7 @@ export const updateEvent = /* GraphQL */ `
               color
               time
               maxEntries
+              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -758,7 +1012,6 @@ export const updateEvent = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
-              stripePriceId
             }
             entries {
               nextToken
@@ -792,6 +1045,24 @@ export const deleteEvent = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      Games {
+        items {
+          id
+          pgn
+          memberID
+          eventID
+          Opponent
+          Colour
+          Result
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       type {
         id
         name
@@ -800,6 +1071,7 @@ export const deleteEvent = /* GraphQL */ `
         color
         time
         maxEntries
+        stripePriceId
         timeControl
         eventType
         defaultPrice
@@ -809,7 +1081,6 @@ export const deleteEvent = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        stripePriceId
       }
       entries {
         items {
@@ -840,6 +1111,10 @@ export const deleteEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -864,6 +1139,10 @@ export const deleteEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             type {
               id
               name
@@ -872,6 +1151,7 @@ export const deleteEvent = /* GraphQL */ `
               color
               time
               maxEntries
+              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -881,7 +1161,6 @@ export const deleteEvent = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
-              stripePriceId
             }
             entries {
               nextToken
@@ -928,6 +1207,24 @@ export const createEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            Opponent
+            Colour
+            Result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -1002,6 +1299,24 @@ export const createEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            Opponent
+            Colour
+            Result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         type {
           id
           name
@@ -1010,6 +1325,7 @@ export const createEntry = /* GraphQL */ `
           color
           time
           maxEntries
+          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -1019,7 +1335,6 @@ export const createEntry = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
-          stripePriceId
         }
         entries {
           items {
@@ -1112,6 +1427,24 @@ export const updateEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            Opponent
+            Colour
+            Result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -1186,6 +1519,24 @@ export const updateEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            Opponent
+            Colour
+            Result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         type {
           id
           name
@@ -1194,6 +1545,7 @@ export const updateEntry = /* GraphQL */ `
           color
           time
           maxEntries
+          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -1203,7 +1555,6 @@ export const updateEntry = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
-          stripePriceId
         }
         entries {
           items {
@@ -1296,6 +1647,24 @@ export const deleteEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            Opponent
+            Colour
+            Result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -1370,6 +1739,24 @@ export const deleteEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            Opponent
+            Colour
+            Result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         type {
           id
           name
@@ -1378,6 +1765,7 @@ export const deleteEntry = /* GraphQL */ `
           color
           time
           maxEntries
+          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -1387,7 +1775,6 @@ export const deleteEntry = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
-          stripePriceId
         }
         entries {
           items {
