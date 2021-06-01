@@ -20,9 +20,9 @@ function AccountInfo(props) {
           email_verified
         }
       } = await Auth.currentAuthenticatedUser();
-      const given_name = props.name?.split(" ")[0];
-      const family_name = props.name?.split(" ")[1];
-      setUser({ email, email_verified, given_name, family_name});
+      const given_name = props.name?.split(" ")[0] || "";
+      const family_name = props.name?.split(" ")[1] || "";
+      setUser(s => ({ ...s, email, email_verified, given_name, family_name}));
     };
     fetchCognitoUser();
   }, [props]);

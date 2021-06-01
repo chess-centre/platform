@@ -14,10 +14,6 @@ const getMember = /* GraphQL */ `
       username
       name
       email
-      eventsByEmail
-      promoByEmail
-      eventsByText
-      promoByText
       _version
       _deleted
       _lastChangedAt
@@ -45,10 +41,6 @@ const getMember = /* GraphQL */ `
             username
             name
             email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
             _version
             _deleted
             _lastChangedAt

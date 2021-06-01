@@ -31,22 +31,22 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "Opponent": {
-                    "name": "Opponent",
+                "opponent": {
+                    "name": "opponent",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "Colour": {
-                    "name": "Colour",
+                "colour": {
+                    "name": "colour",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "Result": {
-                    "name": "Result",
+                "result": {
+                    "name": "result",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -77,77 +77,6 @@ export const schema = {
                             "eventID"
                         ]
                     }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "EventPairing": {
-            "name": "EventPairing",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "eventName": {
-                    "name": "eventName",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "round": {
-                    "name": "round",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "pairing": {
-                    "name": "pairing",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "result": {
-                    "name": "result",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "complete": {
-                    "name": "complete",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "EventPairings",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
                 },
                 {
                     "type": "auth",
@@ -356,70 +285,6 @@ export const schema = {
                 }
             ]
         },
-        "FidePlayer": {
-            "name": "FidePlayer",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "fideId": {
-                    "name": "fideId",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "federation": {
-                    "name": "federation",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "title": {
-                    "name": "title",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "currentRating": {
-                    "name": "currentRating",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "FidePlayers",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "Member": {
             "name": "Member",
             "fields": {
@@ -469,34 +334,6 @@ export const schema = {
                     "name": "email",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "eventsByEmail": {
-                    "name": "eventsByEmail",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "promoByEmail": {
-                    "name": "promoByEmail",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "eventsByText": {
-                    "name": "eventsByText",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "promoByText": {
-                    "name": "promoByText",
-                    "isArray": false,
-                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -569,6 +406,20 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "memberID"
                     }
+                },
+                "gameInfo": {
+                    "name": "gameInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "ratingInfo": {
+                    "name": "ratingInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -869,5 +720,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "5f77f306ef4652723931eb865750d5cd"
+    "version": "eae0a57eff1d3ad2409b477fc4656031"
 };

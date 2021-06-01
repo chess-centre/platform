@@ -9,22 +9,11 @@ export declare class Game {
   readonly pgn?: string;
   readonly memberID?: string;
   readonly eventID?: string;
-  readonly Opponent?: string;
-  readonly Colour?: string;
-  readonly Result?: string;
+  readonly opponent?: string;
+  readonly colour?: string;
+  readonly result?: string;
   constructor(init: ModelInit<Game>);
   static copyOf(source: Game, mutator: (draft: MutableModel<Game>) => MutableModel<Game> | void): Game;
-}
-
-export declare class EventPairing {
-  readonly id: string;
-  readonly eventName?: string;
-  readonly round?: string;
-  readonly pairing?: string;
-  readonly result?: string;
-  readonly complete?: boolean;
-  constructor(init: ModelInit<EventPairing>);
-  static copyOf(source: EventPairing, mutator: (draft: MutableModel<EventPairing>) => MutableModel<EventPairing> | void): EventPairing;
 }
 
 export declare class Plan {
@@ -53,16 +42,6 @@ export declare class EventType {
   static copyOf(source: EventType, mutator: (draft: MutableModel<EventType>) => MutableModel<EventType> | void): EventType;
 }
 
-export declare class FidePlayer {
-  readonly id: string;
-  readonly fideId?: number;
-  readonly federation?: string;
-  readonly title?: string;
-  readonly currentRating?: number;
-  constructor(init: ModelInit<FidePlayer>);
-  static copyOf(source: FidePlayer, mutator: (draft: MutableModel<FidePlayer>) => MutableModel<FidePlayer> | void): FidePlayer;
-}
-
 export declare class Member {
   readonly id: string;
   readonly about?: string;
@@ -71,10 +50,6 @@ export declare class Member {
   readonly username?: string;
   readonly name?: string;
   readonly email?: string;
-  readonly eventsByEmail?: boolean;
-  readonly promoByEmail?: boolean;
-  readonly eventsByText?: boolean;
-  readonly promoByText?: boolean;
   readonly entries?: Entry[];
   readonly stripeCustomerId?: string;
   readonly stripeCurrentPeriodEnd?: number;
@@ -83,6 +58,8 @@ export declare class Member {
   readonly ecfRating?: string;
   readonly membershipType?: string;
   readonly Games?: (Game | null)[];
+  readonly gameInfo?: string;
+  readonly ratingInfo?: string;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
 }
