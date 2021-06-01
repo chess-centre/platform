@@ -8,8 +8,8 @@ export const CentreRoadmap = () => {
         style={{ left: "7.5px" }}
       ></div>
       <div
-        className="border-r-2 border-teal-500 absolute h-full top-2"
-        style={{ left: "7.5px" }}
+        className="border-r-2 border-teal-500 absolute top-32"
+        style={{ left: "7.5px", height: "330px" }}
       ></div>
       <ul className="list-none m-0 p-0">
         <li className="mb-2">
@@ -20,10 +20,11 @@ export const CentreRoadmap = () => {
             </div>
           </div>
           <div className="ml-12">
-            <p>May - launch parties and more 🎉</p>
+            <p>May - pre launch events 🎉</p>
             <ul className="list-disc ml-5">
               <li>Junior club begins</li>
-              <li>Team challenges start</li>
+              <li>Team challenges initiated</li>
+              <li>Social club opens</li>
             </ul>
           </div>
         </li>
@@ -38,8 +39,8 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>First congress - <span className="text-teal-600 text-sm">July</span></li>
-              <li>First rapidplay - <span className="text-teal-600 text-sm">July</span></li>
+              <li>First all-play-all congress - <span className="text-teal-600 text-sm">June</span></li>
+              <li>First rapidplay - <span className="text-teal-600 text-sm">June</span></li>
               <li>First official league matches</li>
             </ul>
           </div>

@@ -13,7 +13,9 @@ import { classNames, bgColor900 } from "../../utils/Classes";
 function useEvents() {
   return useQuery("eventData", async () => {
     const today = new Date();
-    const now = today.toISOString();
+    today.setDate(today.getDate() - 1);
+    const now = (today).toISOString();
+    
     const future = new Date(today.getDay(), today.getMonth() + 2, 0);
     const events = await API.get(
       "public",
@@ -106,7 +108,9 @@ function GridCalendar({
                 <div className="absolute inset-0 w-0.5 h-full bg-gray-300"></div>
               </div>
               {months.map((month, key) => {
+                
                 const isEven = key % 2 === 0;
+
                 return (
                   <button
                     key={key}
@@ -302,6 +306,9 @@ export default function Calendar() {
   const [calenderView, setCalenderView] = useState(defaultView);
   const { isLoading, error, data } = useEvents();
 
+  console.log(data);
+
+
   const today = new Date();
   const currentMonth = today.getMonth();
   const nextMonth = currentMonth + 1;
@@ -332,6 +339,7 @@ export default function Calendar() {
                 <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex shadow-sm rounded-md m-auto -mb-1">
                   <div className="inline-flex shadow-sm rounded-md m-auto">
                     <span className="relative z-0 inline-flex shadow-sm rounded-md">
+
                       <button
                         onClick={() => setSelectedMonth(months[0])}
                         type="button"

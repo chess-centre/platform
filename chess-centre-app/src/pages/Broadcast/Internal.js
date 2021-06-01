@@ -1,5 +1,4 @@
 import React from "react";
-import QR from "../../assets/img/QR-live-games.png";
 
 export const CongressEntries = [
   {
