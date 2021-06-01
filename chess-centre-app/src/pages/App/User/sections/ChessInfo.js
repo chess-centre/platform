@@ -1,5 +1,5 @@
-import { API, Auth, DataStore } from "aws-amplify";
-import { Member } from "../../../../models";
+import { API, Auth } from "aws-amplify";
+import * as mutations from "../../../../graphql/mutations";
 import { getECFData } from "../../../../api/profile/chess";
 import React, { useState, useEffect } from "react";
 import { Input, Textarea } from "@windmill/react-ui";
@@ -222,21 +222,20 @@ export default function ChessInfo(props) {
 
     try {
       const { original_rating } = ecfData;
-      const original = await DataStore.query(Member, memberId);
-      
-      await DataStore.save(
-        Member.copyOf(original, (updated) => {
-          updated.ecfId = newECFId;
-          updated.fideId = newFIDEId ? Number(newFIDEId) : undefined;
-          updated.about = newAbout;
-          updated.ecfRating = original_rating ? original_rating.toString() : undefined
-        })
-      );
+      const member = {
+        id: memberId,
+        ecfId: newECFId,
+        fideId: newFIDEId ? Number(newFIDEId) : undefined,
+        ecfRating: original_rating ? original_rating : undefined
+      };
+      console.log(member);
+      await API.graphql({ query: mutations.updateMember, variables: { input: member } });
       addToast(`Profile. Saved!`, {
         appearance: "success",
         autoDismiss: true,
       });
     } catch (error) {
+      console.log(error);
       addToast("Oops! Something went wrong. Try again.", {
         appearance: "error",
         autoDismiss: true,
@@ -258,7 +257,7 @@ export default function ChessInfo(props) {
         setNewFIDEId(infoJSON.FIDE_no);
         setFoundFide(true);
       }
-      setECFData({ ...infoJSON, ...ratingJSON});
+      setECFData({ ...infoJSON, ...ratingJSON });
       setIsSearchingECF(false);
     } else if (searchId.length === 0) {
       setECFData("");
@@ -267,11 +266,11 @@ export default function ChessInfo(props) {
 
   const fetchFIDEData = async (id) => {
     setNewFIDEId(id);
-    if(id.length !== 6) {
+    if (id.length !== 6) {
       setFoundFide(false)
     }
   }
- 
+
   const confirmQuery = () => {
     setIsConfirmed(true);
   };
