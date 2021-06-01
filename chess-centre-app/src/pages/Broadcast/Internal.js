@@ -1,4 +1,6 @@
 import React from "react";
+import Top from "./TopSection";
+import Bottom from "./BottomSection";
 
 export const CongressEntries = [
   {
@@ -317,42 +319,17 @@ const PairsTable = ({ format, players, results }) => {
     2) the current table / standings for the event
     3) relevant QR code for smartphones to pull up the games on their phone
 */
-const Internal = (props) => {
-  const { url } = props;
 
+const Internal = () => {
   return (
-    <div className="grid grid-rows-4 grid-flow-col gap-4 px-10 py-10 h-screen">
-      <div className="row-span-4 col-span-11 bg-gray-100 rounded-lg shadow-xs overflow-hidden">
-        <div>
-          <div className="aspect-w-16 aspect-h-11">
-            <iframe
-              title="Live Games"
-              frameBorder="0"
-              allowFullScreen
-              src={url ? url : "http://192.168.1.248:1982/liveviewer/index.html"}
-            />
-          </div>
-        </div>
+    <div className="grid grid-cols-2 h-screen">
+      <div>
+        <Top />
       </div>
-      <div className="col-span-1 row-span-4 bg-gray-100 rounded-lg shadow-xs p-8">
-        <div className="mb-4">
-          <CurrentStandings></CurrentStandings>
-        </div>
-        <div>
-          <PairsTable
-            format={SwissPairings[3]}
-            players={players}
-            results={results}
-          />
-        </div>
+      <div>
+        <Bottom />
       </div>
-      {/* <div className="flex row-span-1 col-span-1 bg-gray-100 rounded-lg shadow-xs overflow-hidden p-2">
-        <img
-          className="object-center w-64 mx-auto self-center"
-          src={QR}
-          alt="QR Code"
-        />
-      </div> */}
+      
     </div>
   );
 };
