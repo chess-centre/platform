@@ -15,10 +15,6 @@ const getMember = /* GraphQL */ `
       username
       name
       email
-      eventsByEmail
-      promoByEmail
-      eventsByText
-      promoByText
       ecfRating
       _version
       _deleted
@@ -47,10 +43,6 @@ const getMember = /* GraphQL */ `
             username
             name
             email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
             ecfRating
             _version
             _deleted
