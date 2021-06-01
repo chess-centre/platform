@@ -1,5 +1,5 @@
 import React from "react";
-import Congress from "../../components/Events/Tables/Congress";
+import MayCongress from "../../components/Events/Tables/MayCongress";
 
 function Results() {
   return (
@@ -18,7 +18,7 @@ function Results() {
         </div>
       </div>
       <div className="mt-6">
-        <Congress />
+        <MayCongress />
       </div>
     </div>
   );
