@@ -11,9 +11,9 @@ export const createGame = /* GraphQL */ `
       pgn
       memberID
       eventID
-      Opponent
-      Colour
-      Result
+      opponent
+      colour
+      result
       _version
       _deleted
       _lastChangedAt
@@ -32,9 +32,9 @@ export const updateGame = /* GraphQL */ `
       pgn
       memberID
       eventID
-      Opponent
-      Colour
-      Result
+      opponent
+      colour
+      result
       _version
       _deleted
       _lastChangedAt
@@ -53,69 +53,9 @@ export const deleteGame = /* GraphQL */ `
       pgn
       memberID
       eventID
-      Opponent
-      Colour
-      Result
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createEventPairing = /* GraphQL */ `
-  mutation CreateEventPairing(
-    $input: CreateEventPairingInput!
-    $condition: ModelEventPairingConditionInput
-  ) {
-    createEventPairing(input: $input, condition: $condition) {
-      id
-      eventName
-      round
-      pairing
+      opponent
+      colour
       result
-      complete
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateEventPairing = /* GraphQL */ `
-  mutation UpdateEventPairing(
-    $input: UpdateEventPairingInput!
-    $condition: ModelEventPairingConditionInput
-  ) {
-    updateEventPairing(input: $input, condition: $condition) {
-      id
-      eventName
-      round
-      pairing
-      result
-      complete
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteEventPairing = /* GraphQL */ `
-  mutation DeleteEventPairing(
-    $input: DeleteEventPairingInput!
-    $condition: ModelEventPairingConditionInput
-  ) {
-    deleteEventPairing(input: $input, condition: $condition) {
-      id
-      eventName
-      round
-      pairing
-      result
-      complete
       _version
       _deleted
       _lastChangedAt
@@ -256,63 +196,6 @@ export const deleteEventType = /* GraphQL */ `
     }
   }
 `;
-export const createFidePlayer = /* GraphQL */ `
-  mutation CreateFidePlayer(
-    $input: CreateFidePlayerInput!
-    $condition: ModelFidePlayerConditionInput
-  ) {
-    createFidePlayer(input: $input, condition: $condition) {
-      id
-      fideId
-      federation
-      title
-      currentRating
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateFidePlayer = /* GraphQL */ `
-  mutation UpdateFidePlayer(
-    $input: UpdateFidePlayerInput!
-    $condition: ModelFidePlayerConditionInput
-  ) {
-    updateFidePlayer(input: $input, condition: $condition) {
-      id
-      fideId
-      federation
-      title
-      currentRating
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteFidePlayer = /* GraphQL */ `
-  mutation DeleteFidePlayer(
-    $input: DeleteFidePlayerInput!
-    $condition: ModelFidePlayerConditionInput
-  ) {
-    deleteFidePlayer(input: $input, condition: $condition) {
-      id
-      fideId
-      federation
-      title
-      currentRating
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createMember = /* GraphQL */ `
   mutation CreateMember(
     $input: CreateMemberInput!
@@ -326,12 +209,10 @@ export const createMember = /* GraphQL */ `
       username
       name
       email
-      eventsByEmail
-      promoByEmail
-      eventsByText
-      promoByText
       ecfRating
       membershipType
+      gameInfo
+      ratingInfo
       _version
       _deleted
       _lastChangedAt
@@ -343,9 +224,9 @@ export const createMember = /* GraphQL */ `
           pgn
           memberID
           eventID
-          Opponent
-          Colour
-          Result
+          opponent
+          colour
+          result
           _version
           _deleted
           _lastChangedAt
@@ -377,12 +258,10 @@ export const createMember = /* GraphQL */ `
             username
             name
             email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
             ecfRating
             membershipType
+            gameInfo
+            ratingInfo
             _version
             _deleted
             _lastChangedAt
@@ -464,12 +343,10 @@ export const updateMember = /* GraphQL */ `
       username
       name
       email
-      eventsByEmail
-      promoByEmail
-      eventsByText
-      promoByText
       ecfRating
       membershipType
+      gameInfo
+      ratingInfo
       _version
       _deleted
       _lastChangedAt
@@ -481,9 +358,9 @@ export const updateMember = /* GraphQL */ `
           pgn
           memberID
           eventID
-          Opponent
-          Colour
-          Result
+          opponent
+          colour
+          result
           _version
           _deleted
           _lastChangedAt
@@ -515,12 +392,10 @@ export const updateMember = /* GraphQL */ `
             username
             name
             email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
             ecfRating
             membershipType
+            gameInfo
+            ratingInfo
             _version
             _deleted
             _lastChangedAt
@@ -602,12 +477,10 @@ export const deleteMember = /* GraphQL */ `
       username
       name
       email
-      eventsByEmail
-      promoByEmail
-      eventsByText
-      promoByText
       ecfRating
       membershipType
+      gameInfo
+      ratingInfo
       _version
       _deleted
       _lastChangedAt
@@ -619,9 +492,9 @@ export const deleteMember = /* GraphQL */ `
           pgn
           memberID
           eventID
-          Opponent
-          Colour
-          Result
+          opponent
+          colour
+          result
           _version
           _deleted
           _lastChangedAt
@@ -653,12 +526,10 @@ export const deleteMember = /* GraphQL */ `
             username
             name
             email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
             ecfRating
             membershipType
+            gameInfo
+            ratingInfo
             _version
             _deleted
             _lastChangedAt
@@ -753,9 +624,9 @@ export const createEvent = /* GraphQL */ `
           pgn
           memberID
           eventID
-          Opponent
-          Colour
-          Result
+          opponent
+          colour
+          result
           _version
           _deleted
           _lastChangedAt
@@ -802,12 +673,10 @@ export const createEvent = /* GraphQL */ `
             username
             name
             email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
             ecfRating
             membershipType
+            gameInfo
+            ratingInfo
             _version
             _deleted
             _lastChangedAt
@@ -902,9 +771,9 @@ export const updateEvent = /* GraphQL */ `
           pgn
           memberID
           eventID
-          Opponent
-          Colour
-          Result
+          opponent
+          colour
+          result
           _version
           _deleted
           _lastChangedAt
@@ -951,12 +820,10 @@ export const updateEvent = /* GraphQL */ `
             username
             name
             email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
             ecfRating
             membershipType
+            gameInfo
+            ratingInfo
             _version
             _deleted
             _lastChangedAt
@@ -1051,9 +918,9 @@ export const deleteEvent = /* GraphQL */ `
           pgn
           memberID
           eventID
-          Opponent
-          Colour
-          Result
+          opponent
+          colour
+          result
           _version
           _deleted
           _lastChangedAt
@@ -1100,12 +967,10 @@ export const deleteEvent = /* GraphQL */ `
             username
             name
             email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
             ecfRating
             membershipType
+            gameInfo
+            ratingInfo
             _version
             _deleted
             _lastChangedAt
@@ -1196,12 +1061,10 @@ export const createEntry = /* GraphQL */ `
         username
         name
         email
-        eventsByEmail
-        promoByEmail
-        eventsByText
-        promoByText
         ecfRating
         membershipType
+        gameInfo
+        ratingInfo
         _version
         _deleted
         _lastChangedAt
@@ -1213,9 +1076,9 @@ export const createEntry = /* GraphQL */ `
             pgn
             memberID
             eventID
-            Opponent
-            Colour
-            Result
+            opponent
+            colour
+            result
             _version
             _deleted
             _lastChangedAt
@@ -1247,12 +1110,10 @@ export const createEntry = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -1305,9 +1166,9 @@ export const createEntry = /* GraphQL */ `
             pgn
             memberID
             eventID
-            Opponent
-            Colour
-            Result
+            opponent
+            colour
+            result
             _version
             _deleted
             _lastChangedAt
@@ -1354,12 +1215,10 @@ export const createEntry = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -1416,12 +1275,10 @@ export const updateEntry = /* GraphQL */ `
         username
         name
         email
-        eventsByEmail
-        promoByEmail
-        eventsByText
-        promoByText
         ecfRating
         membershipType
+        gameInfo
+        ratingInfo
         _version
         _deleted
         _lastChangedAt
@@ -1433,9 +1290,9 @@ export const updateEntry = /* GraphQL */ `
             pgn
             memberID
             eventID
-            Opponent
-            Colour
-            Result
+            opponent
+            colour
+            result
             _version
             _deleted
             _lastChangedAt
@@ -1467,12 +1324,10 @@ export const updateEntry = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -1525,9 +1380,9 @@ export const updateEntry = /* GraphQL */ `
             pgn
             memberID
             eventID
-            Opponent
-            Colour
-            Result
+            opponent
+            colour
+            result
             _version
             _deleted
             _lastChangedAt
@@ -1574,12 +1429,10 @@ export const updateEntry = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -1636,12 +1489,10 @@ export const deleteEntry = /* GraphQL */ `
         username
         name
         email
-        eventsByEmail
-        promoByEmail
-        eventsByText
-        promoByText
         ecfRating
         membershipType
+        gameInfo
+        ratingInfo
         _version
         _deleted
         _lastChangedAt
@@ -1653,9 +1504,9 @@ export const deleteEntry = /* GraphQL */ `
             pgn
             memberID
             eventID
-            Opponent
-            Colour
-            Result
+            opponent
+            colour
+            result
             _version
             _deleted
             _lastChangedAt
@@ -1687,12 +1538,10 @@ export const deleteEntry = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -1745,9 +1594,9 @@ export const deleteEntry = /* GraphQL */ `
             pgn
             memberID
             eventID
-            Opponent
-            Colour
-            Result
+            opponent
+            colour
+            result
             _version
             _deleted
             _lastChangedAt
@@ -1794,12 +1643,10 @@ export const deleteEntry = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
