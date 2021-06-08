@@ -359,7 +359,7 @@ const PairsTable = ({ format, players, results }) => {
   );
 };
 
-function Congress() {
+function MayCongress() {
   return (
     <>
       <section className="flex flex-wrap overflow-hidden">
@@ -443,4 +443,4 @@ function Congress() {
   );
 }
 
-export default Congress;
+export default MayCongress;
