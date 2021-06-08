@@ -1,117 +1,89 @@
 import React from "react";
-import Winner from "../../../assets/img/pete-shaw-winner.jpg";
-import DaveGary from "../../../assets/img/dave-barlow-vs-gary-corcoran.jpg";
 
 export const CongressEntries = [
   {
     id: 1,
     name: "Peter Shaw",
     ratingInfo: {
-      rating: 2172,
+      rating: 2268,
     },
   },
   {
     id: 2,
-    name: "David Barlow",
+    name: "Chris Bak",
     ratingInfo: {
-      rating: 2005,
+      rating: 2163,
     },
   },
   {
     id: 3,
-    name: "Gary Corcoran",
+    name: "David Barlow",
     ratingInfo: {
-      rating: 1878,
+      rating: 1908,
     },
   },
   {
     id: 4,
-    name: "Gawain Ako",
+    name: "Chris Wright",
     ratingInfo: {
-      rating: 1907,
+      rating: 2028,
     },
   },
   {
     id: 5,
-    name: "Max Shaw",
+    name: "Sam Davies",
     ratingInfo: {
-      rating: undefined,
+      rating: 1960,
     },
   },
   {
     id: 6,
-    name: "Jacob Smith",
+    name: "Martin Gawne",
     ratingInfo: {
-      rating: undefined,
-    },
-  },
-  {
-    id: 7,
-    name: "Bob Gaunt",
-    ratingInfo: {
-      rating: undefined,
-    },
-  },
-  {
-    id: 8,
-    name: "Steven Law",
-    ratingInfo: {
-      rating: undefined,
-    },
-  },
-  {
-    id: 9,
-    name: "Andrew Wainwright",
-    ratingInfo: {
-      rating: 2013,
+      rating: 1690,
     },
   },
 ];
 
-const SwissPairings = [
+const SixPlayerPairings = [
   {
     round: 1,
     pairings: [
-      [1, 5],
-      [6, 2],
-      [3, 7],
-      [8, 9],
+      [1, 6],
+      [2, 5],
+      [3, 4],
     ],
   },
   {
     round: 2,
     pairings: [
-      [9, 1],
-      [2, 3],
-      [5, 8],
-      [7, 6],
+      [6, 4],
+      [5, 3],
+      [1, 2],
     ],
   },
   {
     round: 3,
     pairings: [
-      [1, 2],
-      [3, 5],
-      [6, 9],
-      [8, 7],
+      [2, 6],
+      [3, 1],
+      [4, 5],
     ],
   },
   {
     round: 4,
     pairings: [
-      [3, 1],
-      [2, 8],
-      [5, 6],
-      [7, 4],
+      [6, 5],
+      [1, 4],
+      [2, 3],
     ],
   },
   {
     round: 5,
     pairings: [
-      [1, 6],
+      [3, 6],
       [4, 2],
-      [3, 8],
-      [5, 7],
+      [5, 1],
     ],
   },
 ];
@@ -121,27 +93,24 @@ const results = [
     round: 1,
     pairResults: [
       [1, 0],
-      [0, 1],
       [1, 0],
-      [0, 1],
+      [1, 0],
     ],
   },
   {
     round: 2,
     pairResults: [
-      [0, 1],
       [1, 0],
+      [0.5, 0.5],
       [1, 0],
-      [0, 1],
     ],
   },
   {
     round: 3,
     pairResults: [
-      [1, 0],
-      [1, 0],
       [0, 1],
-      [1, 0],
+      [0, 1],
+      [0, 1],
     ],
   },
   {
@@ -149,23 +118,21 @@ const results = [
     pairResults: [
       [0, 1],
       [1, 0],
-      [0.5, 0.5],
-      [0, 1],
+      [1, 0],
     ],
   },
   {
     round: 5,
     pairResults: [
       [1, 0],
+      [1, 0],
       [0.5, 0.5],
-      [1, 0],
-      [1, 0],
     ],
   },
 ];
 
 const players = [
-  ...CongressEntries.slice(0, 9).map((m, i) => {
+  ...CongressEntries.slice(0, 6).map((m, i) => {
     m.seed = i + 1;
     return m;
   }),
@@ -173,7 +140,7 @@ const players = [
 
 const resultCheck = () => {
   const resultBySeed = [];
-  SwissPairings.forEach(({ round, pairings }) => {
+  SixPlayerPairings.forEach(({ round, pairings }) => {
     const pairingResults = results.find((r) => r.round === round).pairResults;
     pairings.forEach((board, index) => {
       const whitePlayer = board[0];
@@ -216,9 +183,12 @@ const resultCheck = () => {
 
 const { roundByRound } = resultCheck(players);
 
-const Standings = () => {
+export const Standings = () => {
   return (
     <div>
+      <h2 className="mb-2 text-1xl text-center sm:text-left font-semibold text-gray-700 dark:text-gray-200">
+        Division 1
+      </h2>
       <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
         <thead className="bg-gray-50 dark:bg-gray-800">
           <tr>
@@ -230,13 +200,13 @@ const Standings = () => {
             </th>
             <th
               scope="col"
-              className="px-1 sm:px-1 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
-              Rounds
+              Round by Round
             </th>
             <th
               scope="col"
-              className="relative px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="relative px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
               Total
             </th>
@@ -248,26 +218,26 @@ const Standings = () => {
             .map((data, key) => {
               return (
                 <tr key={key} className="bg-white dark:bg-gray-800">
-                  <td className="px-2 pl-2 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
+                  <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
                     {data.name}{" "}
                     <span className="font-thin">
                       ({data.rating ? data.rating : "unrated"})
                     </span>
                   </td>
-                  <td className="px-1 sm:px-1 py-4 whitespace-nowrap font-medium text-sm text-gray-700 dark:text-gray-300">
+                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-xs text-gray-700 dark:text-gray-300">
                     <div className="flex">
                       {data.rounds.map((r) =>
                         r ? (
-                          <div className="px-1">{r === 0.5 ? "½" : r}</div>
+                          <div className="px-2">{r === 0.5 ? "½" : r}</div>
                         ) : r === 0 ? (
-                          <div className="px-1">{r}</div>
+                          <div className="px-2">{r}</div>
                         ) : (
                           ""
                         )
                       )}
                     </div>
                   </td>
-                  <td className="px-2 sm:px-2 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300">
+                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-xs text-gray-500 dark:text-gray-300">
                     {data.total}
                   </td>
                 </tr>
@@ -324,7 +294,7 @@ const PairsTable = ({ format, players, results }) => {
             return (
               <tr key={key} className="bg-white dark:bg-gray-800">
                 <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {whitePlayer.name}{" "}<br />
+                  {whitePlayer.name} <br />
                   <span className="font-thin">
                     (
                     {whitePlayer.ratingInfo.rating
@@ -341,7 +311,7 @@ const PairsTable = ({ format, players, results }) => {
                     : "? - ?"}
                 </td>
                 <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {blackPlayer.name}{" "}<br />
+                  {blackPlayer.name} <br />
                   <span className="font-thin">
                     (
                     {blackPlayer.ratingInfo.rating
@@ -359,33 +329,17 @@ const PairsTable = ({ format, players, results }) => {
   );
 };
 
-function Congress() {
+export default function MayRapidplay() {
   return (
     <>
       <section className="flex flex-wrap overflow-hidden">
         <div>
           <h2 className="ml-4 mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
-            May Open Congress 2021
+            May Rapidplay 2021
           </h2>
           <p className="ml-4 mt-4 text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
-            Thank you to all who attended our event, below you will find
-            individual results and standings.
+            Individual results and standings.
           </p>
-          <div className="ml-4 mt-4 text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
-            <ul>
-              <li>PGN Games: coming</li>
-              <li>
-                ECF results: <span className="font-semibold">submitted</span> (
-                <a
-                  className="text-teal-600 hover:text-teal-700"
-                  href="https://ecflms.org.uk/lms/node/67636/swtable"
-                >
-                  details here
-                </a>
-                )
-              </li>
-            </ul>
-          </div>
         </div>
         <div className="px-2 mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 overflow-x-auto">
           <div className="">
@@ -393,30 +347,6 @@ function Congress() {
               Final Standings
             </h3>
             <Standings></Standings>
-          </div>
-          <div className="text-center mt-4 sm:mt-10">
-            <div className="aspect-w-3 aspect-h-2 ml-2">
-              <img
-                className="object-cover shadow-lg rounded-lg object-center m-auto"
-                src={DaveGary}
-                alt=""
-              />
-            </div>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 flex-wrap">
-              Round 2 <br />David Barlow (white) vs Gary Corcoran (black)
-            </p>
-          </div>
-          <div className="text-center mt-4 sm:mt-10">
-            <div className="aspect-w-3 aspect-h-2 ml-2">
-              <img
-                className="object-cover shadow-lg rounded-lg object-center m-auto"
-                src={Winner}
-                alt=""
-              />
-            </div>
-            <p className="ml-2 mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Our Winner <br /> Peter Shaw (left)
-            </p>
           </div>
         </div>
         <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
@@ -426,7 +356,7 @@ function Congress() {
           Individual Pairings
         </h3>
         <div className="sm:px-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {SwissPairings.map((pairings, key) => {
+          {SixPlayerPairings.map((pairings, key) => {
             return (
               <div key={key}>
                 <PairsTable
@@ -442,5 +372,3 @@ function Congress() {
     </>
   );
 }
-
-export default Congress;

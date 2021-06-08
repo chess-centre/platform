@@ -292,15 +292,8 @@ export const PairsTable = ({ format, players, results }) => {
     );
 };
 
-/* 
- * This view pulls in three key components:
-    1) the local iframe for internal DGT boards
-    2) the current table / standings for the event
-    3) relevant QR code for smartphones to pull up the games on their phone
-*/
-export const Internal = (props) => {
-    const { url } = props;
-
+export const Internal = () => {
+    
     return (
         <div className="grid gap-4 px-2 py-2 h-screen">
             <div className="col-span-2 bg-gray-100 rounded-lg shadow-xs p-8">
