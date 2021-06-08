@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "EventPairings": {
-            "name": "EventPairings",
+        "Game": {
+            "name": "Game",
             "fields": {
                 "id": {
                     "name": "id",
@@ -10,22 +10,36 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "eventName": {
-                    "name": "eventName",
+                "pgn": {
+                    "name": "pgn",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "round": {
-                    "name": "round",
+                "memberID": {
+                    "name": "memberID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "eventID": {
+                    "name": "eventID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "opponent": {
+                    "name": "opponent",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "pairing": {
-                    "name": "pairing",
+                "colour": {
+                    "name": "colour",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -37,21 +51,32 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
-                },
-                "complete": {
-                    "name": "complete",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "EventPairings",
+            "pluralName": "Games",
             "attributes": [
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byMember",
+                        "fields": [
+                            "memberID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byEvent",
+                        "fields": [
+                            "eventID"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -260,70 +285,6 @@ export const schema = {
                 }
             ]
         },
-        "FidePlayer": {
-            "name": "FidePlayer",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "fideId": {
-                    "name": "fideId",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "federation": {
-                    "name": "federation",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "title": {
-                    "name": "title",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "currentRating": {
-                    "name": "currentRating",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "FidePlayers",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "Member": {
             "name": "Member",
             "fields": {
@@ -373,34 +334,6 @@ export const schema = {
                     "name": "email",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "eventsByEmail": {
-                    "name": "eventsByEmail",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "promoByEmail": {
-                    "name": "promoByEmail",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "eventsByText": {
-                    "name": "eventsByText",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "promoByText": {
-                    "name": "promoByText",
-                    "isArray": false,
-                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -457,6 +390,34 @@ export const schema = {
                     "name": "membershipType",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Games": {
+                    "name": "Games",
+                    "isArray": true,
+                    "type": {
+                        "model": "Game"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "memberID"
+                    }
+                },
+                "gameInfo": {
+                    "name": "gameInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "ratingInfo": {
+                    "name": "ratingInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -694,6 +655,20 @@ export const schema = {
                     "type": "Int",
                     "isRequired": false,
                     "attributes": []
+                },
+                "Games": {
+                    "name": "Games",
+                    "isArray": true,
+                    "type": {
+                        "model": "Game"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "eventID"
+                    }
                 }
             },
             "syncable": true,
@@ -745,5 +720,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "cc2bbcab20b7452c1247926c87a3177f"
+    "version": "eae0a57eff1d3ad2409b477fc4656031"
 };

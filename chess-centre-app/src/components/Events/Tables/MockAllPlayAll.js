@@ -47,27 +47,15 @@ const SixPlayerPairings = [
 const results = [
   {
     round: 1,
-    pairResults: [
-      [1, 0],
-      [0.5, 0.5],
-      [0, 1],
-    ],
+    pairResults: [[], [], []],
   },
   {
     round: 2,
-    pairResults: [
-      [0, 1],
-      [0.5, 0.5],
-      [0, 1],
-    ],
+    pairResults: [[], [], []],
   },
   {
     round: 2,
-    pairResults: [
-      [1, 0],
-      [0.5, 0.5],
-      [0, 1],
-    ],
+    pairResults: [[], [], []],
   },
   {
     round: 3,
@@ -75,7 +63,7 @@ const results = [
   },
   {
     round: 4,
-    pairResults: [[], [0, 1], []],
+    pairResults: [[], [], []],
   },
   {
     round: 5,
@@ -83,10 +71,12 @@ const results = [
   },
 ];
 
-const players = [...Members.slice(0, 6).map((m, i) => {
-  m.seed = i + 1;
-  return m;
-})];
+const players = [
+  ...Members.slice(0, 6).map((m, i) => {
+    m.seed = i + 1;
+    return m;
+  }),
+];
 
 const resultCheck = () => {
   const resultBySeed = [];
@@ -118,7 +108,7 @@ const resultCheck = () => {
       player[seed] = {
         rounds: [result],
         total: result || 0,
-        name: players.find(p => p.seed === seed).name
+        name: players.find((p) => p.seed === seed).name,
       };
     } else {
       player[seed].rounds.push(result);
@@ -132,60 +122,74 @@ const resultCheck = () => {
 const { resultBySeed, roundByRound } = resultCheck(players);
 
 const Standings = () => {
-  return (<div>
-    <h2 className="mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">Standings <span className="text-orange-500 text-sm">SAMPLE ONLY</span></h2>
-    <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
-      <thead className="bg-gray-50 dark:bg-gray-800">
-        <tr>
-          <th
-            scope="col"
-            className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-          >
-            Player
-          </th>
-          <th
-            scope="col"
-            className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-          >
-            Rounds
-          </th>
-          <th
-            scope="col"
-            className="relative px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-          >
-            Total
-          </th>
-        </tr>
-      </thead>
-      <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
-        {
-          Object.values(roundByRound).sort((a, b) => Number(b.total) - Number(a.total)).map((data, key) => {
-            return (
-              <tr key={key} className="bg-white dark:bg-gray-800">
-                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
-                  {data.name}
-                </td>
-                <td className="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-sm text-gray-700 dark:text-gray-300">
-                  <div className="flex">
-                    {data.rounds.map(r => r ? <div className="px-2">{r === 0.5 ? "½" : r}</div> : r === 0 ? <div className="px-2">{r}</div> : '')}
-                  </div>
-                </td>
-                <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300">
-                  {data.total}
-                </td>
-              </tr>
-            )
-          })
-        }
-      </tbody>
-    </table>
-  </div>)
-}
+  return (
+    <div>
+      <h2 className="mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Standings <span className="text-orange-500 text-sm">SAMPLE ONLY</span>
+      </h2>
+      <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
+        <thead className="bg-gray-50 dark:bg-gray-800">
+          <tr>
+            <th
+              scope="col"
+              className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+            >
+              Player
+            </th>
+            <th
+              scope="col"
+              className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+            >
+              Rounds
+            </th>
+            <th
+              scope="col"
+              className="relative px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+            >
+              Total
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
+          {Object.values(roundByRound)
+            .sort((a, b) => Number(b.total) - Number(a.total))
+            .map((data, key) => {
+              return (
+                <tr key={key} className="bg-white dark:bg-gray-800">
+                  <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
+                    {data.name}
+                  </td>
+                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-sm text-gray-700 dark:text-gray-300">
+                    <div className="flex">
+                      {data.rounds.map((r) =>
+                        r ? (
+                          <div className="px-2">{r === 0.5 ? "½" : r}</div>
+                        ) : r === 0 ? (
+                          <div className="px-2">{r}</div>
+                        ) : (
+                          ""
+                        )
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300">
+                    {data.total}
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 const CrossTable = () => {
   return (
     <div>
-      <h2 className="mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">Crosstable <span className="text-orange-500 text-sm">SAMPLE ONLY</span></h2>
+      <h2 className="mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Crosstable <span className="text-orange-500 text-sm">SAMPLE ONLY</span>
+      </h2>
       <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 table-auto border-gray-300 dark:border-gray-700 border shadow">
         <thead className="bg-gray-50 dark:bg-gray-800">
           <tr>
@@ -249,9 +253,19 @@ const CrossTable = () => {
                   return (
                     <td
                       key={index}
-                      className={isSelf ? "px-6 bg-gray-100 dark:text-gray-300 dark:bg-gray-700 py-4 whitespace-nowrap text-center text-sm font-normal" : "px-6 py-4 whitespace-nowrap dark:text-gray-300 text-center text-sm font-normal"}
+                      className={
+                        isSelf
+                          ? "px-6 bg-gray-100 dark:text-gray-300 dark:bg-gray-700 py-4 whitespace-nowrap text-center text-sm font-normal"
+                          : "px-6 py-4 whitespace-nowrap dark:text-gray-300 text-center text-sm font-normal"
+                      }
                     >
-                      {isSelf ? "x" : result ? result.result === 0.5 ? "½" : result.result : ""}
+                      {isSelf
+                        ? "x"
+                        : result
+                        ? result.result === 0.5
+                          ? "½"
+                          : result.result
+                        : ""}
                     </td>
                   );
                 })}
@@ -263,7 +277,6 @@ const CrossTable = () => {
           })}
         </tbody>
       </table>
-
     </div>
   );
 };
@@ -315,8 +328,9 @@ const PairsTable = ({ format, players, results }) => {
                 </td>
                 <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300 border-l-2 border-r-2 border-gray-100 dark:border-gray-700">
                   {white || black
-                    ? `${white === 0.5 ? "½" : white} - ${black === 0.5 ? "½" : black
-                    }`
+                    ? `${white === 0.5 ? "½" : white} - ${
+                        black === 0.5 ? "½" : black
+                      }`
                     : "? - ?"}
                 </td>
                 <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -337,21 +351,19 @@ function AllPlayAll() {
       <section className="flex flex-wrap overflow-hidden">
         <div className="px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-x-auto">
           <div className="">
-            <Standings></Standings> 
+            <Standings></Standings>
           </div>
           <div>
             <CrossTable players={players} results={results}></CrossTable>
           </div>
         </div>
-        <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          
-        </div>
-
+        <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
       </section>
       <section className="relative mb-10">
-        <h2 className="mb-2 mt-5 px-4 text-2xl font-semibold text-gray-700 dark:text-gray-200">Pairings <span className="text-orange-500 text-sm">SAMPLE ONLY</span></h2>
+        <h2 className="mb-2 mt-5 px-4 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+          Pairings <span className="text-orange-500 text-sm">SAMPLE ONLY</span>
+        </h2>
         <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
-
           {SixPlayerPairings.map((pairings, key) => {
             return (
               <div key={key}>

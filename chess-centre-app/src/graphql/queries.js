@@ -1,6 +1,82 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getGame = /* GraphQL */ `
+  query GetGame($id: ID!) {
+    getGame(id: $id) {
+      id
+      pgn
+      memberID
+      eventID
+      opponent
+      colour
+      result
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listGames = /* GraphQL */ `
+  query ListGames(
+    $filter: ModelGameFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listGames(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        pgn
+        memberID
+        eventID
+        opponent
+        colour
+        result
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncGames = /* GraphQL */ `
+  query SyncGames(
+    $filter: ModelGameFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncGames(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        pgn
+        memberID
+        eventID
+        opponent
+        colour
+        result
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getPlan = /* GraphQL */ `
   query GetPlan($id: ID!) {
     getPlan(id: $id) {
@@ -68,6 +144,60 @@ export const syncPlans = /* GraphQL */ `
     }
   }
 `;
+export const getEventType = /* GraphQL */ `
+  query GetEventType($id: ID!) {
+    getEventType(id: $id) {
+      id
+      name
+      description
+      url
+      color
+      time
+      maxEntries
+      stripePriceId
+      timeControl
+      eventType
+      defaultPrice
+      canRegister
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listEventTypes = /* GraphQL */ `
+  query ListEventTypes(
+    $filter: ModelEventTypeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEventTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        url
+        color
+        time
+        maxEntries
+        stripePriceId
+        timeControl
+        eventType
+        defaultPrice
+        canRegister
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const syncEventTypes = /* GraphQL */ `
   query SyncEventTypes(
     $filter: ModelEventTypeFilterInput
@@ -89,135 +219,11 @@ export const syncEventTypes = /* GraphQL */ `
         color
         time
         maxEntries
+        stripePriceId
         timeControl
         eventType
         defaultPrice
         canRegister
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        stripePriceId
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getEventType = /* GraphQL */ `
-  query GetEventType($id: ID!) {
-    getEventType(id: $id) {
-      id
-      name
-      description
-      url
-      color
-      time
-      maxEntries
-      timeControl
-      eventType
-      defaultPrice
-      canRegister
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      stripePriceId
-    }
-  }
-`;
-export const listEventTypes = /* GraphQL */ `
-  query ListEventTypes(
-    $filter: ModelEventTypeFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEventTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        description
-        url
-        color
-        time
-        maxEntries
-        timeControl
-        eventType
-        defaultPrice
-        canRegister
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        stripePriceId
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getFidePlayer = /* GraphQL */ `
-  query GetFidePlayer($id: ID!) {
-    getFidePlayer(id: $id) {
-      id
-      fideId
-      federation
-      title
-      currentRating
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listFidePlayers = /* GraphQL */ `
-  query ListFidePlayers(
-    $filter: ModelFidePlayerFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listFidePlayers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        fideId
-        federation
-        title
-        currentRating
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncFidePlayers = /* GraphQL */ `
-  query SyncFidePlayers(
-    $filter: ModelFidePlayerFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncFidePlayers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        fideId
-        federation
-        title
-        currentRating
         _version
         _deleted
         _lastChangedAt
@@ -250,17 +256,33 @@ export const syncMembers = /* GraphQL */ `
         username
         name
         email
-        eventsByEmail
-        promoByEmail
-        eventsByText
-        promoByText
         ecfRating
         membershipType
+        gameInfo
+        ratingInfo
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            opponent
+            colour
+            result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -283,12 +305,10 @@ export const syncMembers = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -335,17 +355,33 @@ export const getMember = /* GraphQL */ `
       username
       name
       email
-      eventsByEmail
-      promoByEmail
-      eventsByText
-      promoByText
       ecfRating
       membershipType
+      gameInfo
+      ratingInfo
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      Games {
+        items {
+          id
+          pgn
+          memberID
+          eventID
+          opponent
+          colour
+          result
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       stripeCustomerId
       stripeCurrentPeriodEnd
       stripePriceId
@@ -368,17 +404,19 @@ export const getMember = /* GraphQL */ `
             username
             name
             email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
             ecfRating
             membershipType
+            gameInfo
+            ratingInfo
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -403,6 +441,10 @@ export const getMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             type {
               id
               name
@@ -411,6 +453,7 @@ export const getMember = /* GraphQL */ `
               color
               time
               maxEntries
+              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -420,7 +463,6 @@ export const getMember = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
-              stripePriceId
             }
             entries {
               nextToken
@@ -449,17 +491,33 @@ export const listMembers = /* GraphQL */ `
         username
         name
         email
-        eventsByEmail
-        promoByEmail
-        eventsByText
-        promoByText
         ecfRating
         membershipType
+        gameInfo
+        ratingInfo
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            opponent
+            colour
+            result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -482,113 +540,10 @@ export const listMembers = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              stripeCustomerId
-              stripeCurrentPeriodEnd
-              stripePriceId
-              stripeProductId
-            }
-            event {
-              id
-              name
-              description
-              rounds
-              time
-              startDate
-              endDate
-              maxEntries
-              entryCount
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-          startedAt
-        }
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const listEvents = /* GraphQL */ `
-  query ListEvents(
-    $filter: ModelEventFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        description
-        rounds
-        time
-        startDate
-        endDate
-        maxEntries
-        entryCount
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        type {
-          id
-          name
-          description
-          url
-          color
-          time
-          maxEntries
-          timeControl
-          eventType
-          defaultPrice
-          canRegister
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          stripePriceId
-        }
-        entries {
-          items {
-            id
-            eventId
-            memberId
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            member {
-              id
-              about
-              fideId
-              ecfId
-              username
-              name
-              email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
-              ecfRating
-              membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -642,6 +597,24 @@ export const getEvent = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      Games {
+        items {
+          id
+          pgn
+          memberID
+          eventID
+          opponent
+          colour
+          result
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       type {
         id
         name
@@ -650,6 +623,7 @@ export const getEvent = /* GraphQL */ `
         color
         time
         maxEntries
+        stripePriceId
         timeControl
         eventType
         defaultPrice
@@ -659,7 +633,6 @@ export const getEvent = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        stripePriceId
       }
       entries {
         items {
@@ -679,17 +652,19 @@ export const getEvent = /* GraphQL */ `
             username
             name
             email
-            eventsByEmail
-            promoByEmail
-            eventsByText
-            promoByText
             ecfRating
             membershipType
+            gameInfo
+            ratingInfo
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -714,6 +689,10 @@ export const getEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
             type {
               id
               name
@@ -722,6 +701,7 @@ export const getEvent = /* GraphQL */ `
               color
               time
               maxEntries
+              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -731,7 +711,6 @@ export const getEvent = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
-              stripePriceId
             }
             entries {
               nextToken
@@ -742,6 +721,123 @@ export const getEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
+    }
+  }
+`;
+export const listEvents = /* GraphQL */ `
+  query ListEvents(
+    $filter: ModelEventFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            opponent
+            colour
+            result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -777,6 +873,24 @@ export const eventsByStartDate = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            opponent
+            colour
+            result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         type {
           id
           name
@@ -785,6 +899,7 @@ export const eventsByStartDate = /* GraphQL */ `
           color
           time
           maxEntries
+          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -794,7 +909,6 @@ export const eventsByStartDate = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
-          stripePriceId
         }
         entries {
           items {
@@ -814,12 +928,10 @@ export const eventsByStartDate = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -884,6 +996,24 @@ export const syncEvents = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            opponent
+            colour
+            result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         type {
           id
           name
@@ -892,6 +1022,7 @@ export const syncEvents = /* GraphQL */ `
           color
           time
           maxEntries
+          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -901,7 +1032,6 @@ export const syncEvents = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
-          stripePriceId
         }
         entries {
           items {
@@ -921,12 +1051,10 @@ export const syncEvents = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -982,17 +1110,33 @@ export const getEntry = /* GraphQL */ `
         username
         name
         email
-        eventsByEmail
-        promoByEmail
-        eventsByText
-        promoByText
         ecfRating
         membershipType
+        gameInfo
+        ratingInfo
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            opponent
+            colour
+            result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -1015,12 +1159,10 @@ export const getEntry = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -1067,6 +1209,24 @@ export const getEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        Games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            opponent
+            colour
+            result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         type {
           id
           name
@@ -1075,6 +1235,7 @@ export const getEntry = /* GraphQL */ `
           color
           time
           maxEntries
+          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -1084,7 +1245,6 @@ export const getEntry = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
-          stripePriceId
         }
         entries {
           items {
@@ -1104,12 +1264,10 @@ export const getEntry = /* GraphQL */ `
               username
               name
               email
-              eventsByEmail
-              promoByEmail
-              eventsByText
-              promoByText
               ecfRating
               membershipType
+              gameInfo
+              ratingInfo
               _version
               _deleted
               _lastChangedAt
@@ -1168,17 +1326,33 @@ export const listEntrys = /* GraphQL */ `
           username
           name
           email
-          eventsByEmail
-          promoByEmail
-          eventsByText
-          promoByText
           ecfRating
           membershipType
+          gameInfo
+          ratingInfo
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          Games {
+            items {
+              id
+              pgn
+              memberID
+              eventID
+              opponent
+              colour
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           stripeCustomerId
           stripeCurrentPeriodEnd
           stripePriceId
@@ -1213,6 +1387,24 @@ export const listEntrys = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          Games {
+            items {
+              id
+              pgn
+              memberID
+              eventID
+              opponent
+              colour
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           type {
             id
             name
@@ -1221,6 +1413,7 @@ export const listEntrys = /* GraphQL */ `
             color
             time
             maxEntries
+            stripePriceId
             timeControl
             eventType
             defaultPrice
@@ -1230,7 +1423,6 @@ export const listEntrys = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            stripePriceId
           }
           entries {
             items {
@@ -1283,17 +1475,33 @@ export const syncEntries = /* GraphQL */ `
           username
           name
           email
-          eventsByEmail
-          promoByEmail
-          eventsByText
-          promoByText
           ecfRating
           membershipType
+          gameInfo
+          ratingInfo
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          Games {
+            items {
+              id
+              pgn
+              memberID
+              eventID
+              opponent
+              colour
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           stripeCustomerId
           stripeCurrentPeriodEnd
           stripePriceId
@@ -1328,6 +1536,24 @@ export const syncEntries = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          Games {
+            items {
+              id
+              pgn
+              memberID
+              eventID
+              opponent
+              colour
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           type {
             id
             name
@@ -1336,6 +1562,7 @@ export const syncEntries = /* GraphQL */ `
             color
             time
             maxEntries
+            stripePriceId
             timeControl
             eventType
             defaultPrice
@@ -1345,7 +1572,6 @@ export const syncEntries = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            stripePriceId
           }
           entries {
             items {

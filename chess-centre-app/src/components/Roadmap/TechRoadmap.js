@@ -19,8 +19,8 @@ export const TechRoadmap = () => {
         style={{ left: "7.5px" }}
       ></div>
       <div
-        className="border-r-2 border-teal-500 absolute h-full top-2"
-        style={{ left: "7.5px" }}
+        className="border-r-2 border-teal-500 absolute top-28"
+        style={{ left: "7.5px", height: "330px" }}
       ></div>
       <ul className="list-none m-0 p-0">
         <li className="mb-2">
@@ -41,9 +41,6 @@ export const TechRoadmap = () => {
                 >
                   github repos
                 </a>
-              </li>
-              <li>
-                <a href="https://github.com/chess-centre/platform#contributors-" className="text-teal-800 hover:underline">new volunteers</a> - <span className="text-xs text-gray-500">amazing people giving up their free time to support us</span>
               </li>
             </ul>
           </div>

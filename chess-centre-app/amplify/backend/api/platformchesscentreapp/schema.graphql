@@ -1,10 +1,11 @@
-type EventPairings @model @auth(rules: [{allow: private}]) {
+type Game @model @key(name: "byMember", fields: ["memberID"]) @key(name: "byEvent", fields: ["eventID"]) @auth(rules: [{allow: private}]) {
   id: ID!
-  eventName: String
-  round: String
-  pairing: String
+  pgn: String
+  memberID: ID
+  eventID: ID
+  opponent: String
+  colour: String
   result: String
-  complete: Boolean
 }
 
 type Plan @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "key", fields: ["key"]) {
@@ -29,14 +30,6 @@ type EventType @model @auth(rules: [{allow: private}]) {
   canRegister: Boolean
 }
 
-type FidePlayer @model @auth(rules: [{allow: private}]) {
-  id: ID!
-  fideId: Int
-  federation: String
-  title: String
-  currentRating: Int
-}
-
 type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: private, operations: [read]}]) @key(name: "stripe", fields: ["stripeCustomerId"]) {
   id: ID!
   about: String
@@ -45,10 +38,6 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   username: String
   name: String
   email: String
-  eventsByEmail: Boolean
-  promoByEmail: Boolean
-  eventsByText: Boolean
-  promoByText: Boolean
   entries: [Entry!] @connection(keyName: "byMember", fields: ["id"])
   stripeCustomerId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   stripeCurrentPeriodEnd: Float @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
@@ -56,6 +45,9 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   stripeProductId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   ecfRating: String
   membershipType: String
+  Games: [Game] @connection(keyName: "byMember", fields: ["id"])
+  gameInfo: AWSJSON
+  ratingInfo: AWSJSON
 }
 
 type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "eventsByStartDate", fields: ["startDate", "name"], queryField: "eventsByStartDate") {
@@ -70,6 +62,7 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   entries: [Entry!] @connection(keyName: "byEvent", fields: ["id"])
   maxEntries: Int
   entryCount: Int
+  Games: [Game] @connection(keyName: "byEvent", fields: ["id"])
 }
 
 type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "byEvent", fields: ["eventId"]) @key(name: "byMember", fields: ["memberId"]) {

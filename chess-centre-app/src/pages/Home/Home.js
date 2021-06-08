@@ -110,9 +110,7 @@ const Home = () => {
                 It's time things changed around here.{" "}
                 <br className="md:hidden" /> Brace yourselves!{" "}
                 <span role="img">🚀</span>
-                <div>
-                </div>
-
+                <div></div>
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className={user ? "hidden" : "rounded-md shadow"}>
@@ -123,35 +121,34 @@ const Home = () => {
                     Join Now
                   </Link>
                 </div>
-
               </div>
-              {
-                showLiveGames && (<div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-                <div className="rounded-md shadow">
-                  <Link
-                    to="/broadcast/live"
-                    className={`
+              {showLiveGames && (
+                <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+                  <div className="rounded-md shadow">
+                    <Link
+                      to="/broadcast/live"
+                      className={`
                     w-full flex items-center justify-center 
                     px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
                     focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10`}
-                  >
-                    <span class="flex relative h-3 w-3">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
-                    </span>{" "}
-                    <span className="ml-2">Live Games</span>
-
-                  </Link>
+                    >
+                      <span class="flex relative h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
+                      </span>{" "}
+                      <span className="ml-2">Live Games</span>
+                    </Link>
+                  </div>
                 </div>
-              </div>)
-              }
-
+              )}
             </div>
           </main>
         </div>
       </div>
       <div className="relative max-w-6xl mx-auto px-4 sm:px-28">
+        
         <div className="pt-4 pb-0 sm:py-10">
+
           <div className="aspect-w-16 aspect-h-9">
             <iframe
               src={`https://www.youtube.com/embed/FYG4Envbzro`}
@@ -163,7 +160,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
 
       <ComingEvents />
       <FAQs />
