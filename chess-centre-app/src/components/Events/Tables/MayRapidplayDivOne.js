@@ -3,44 +3,44 @@ import React from "react";
 export const CongressEntries = [
   {
     id: 1,
-    name: "Gary Corcoran",
+    name: "Peter Shaw",
     ratingInfo: {
-      rating: 1668,
+      rating: 2268,
     },
   },
   {
     id: 2,
-    name: "Jael De Sousa Muachikape",
+    name: "Chris Bak",
     ratingInfo: {
-      rating: 1608,
+      rating: 2163,
     },
   },
   {
     id: 3,
-    name: "John Holiday",
+    name: "David Barlow",
     ratingInfo: {
-      rating: 1645,
+      rating: 1908,
     },
   },
   {
     id: 4,
-    name: "Max Shaw",
+    name: "Chris Wright",
     ratingInfo: {
-      rating: undefined,
+      rating: 2028,
     },
   },
   {
     id: 5,
-    name: "Steven Law",
+    name: "Sam Davies",
     ratingInfo: {
-      rating: undefined,
+      rating: 1960,
     },
   },
   {
     id: 6,
-    name: "Ellis Howard",
+    name: "Martin Gawne",
     ratingInfo: {
-      rating: undefined,
+      rating: 1690,
     },
   },
 ];
@@ -94,19 +94,11 @@ const results = [
     pairResults: [
       [1, 0],
       [1, 0],
-      [0, 1],
+      [1, 0],
     ],
   },
   {
     round: 2,
-    pairResults: [
-      [0, 1],
-      [0, 1],
-      [0, 1],
-    ],
-  },
-  {
-    round: 3,
     pairResults: [
       [1, 0],
       [0.5, 0.5],
@@ -114,9 +106,17 @@ const results = [
     ],
   },
   {
+    round: 3,
+    pairResults: [
+      [0, 1],
+      [0, 1],
+      [0, 1],
+    ],
+  },
+  {
     round: 4,
     pairResults: [
-      [1, 0],
+      [0, 1],
       [1, 0],
       [1, 0],
     ],
@@ -125,8 +125,8 @@ const results = [
     round: 5,
     pairResults: [
       [1, 0],
-      [0, 1],
-      [0, 1],
+      [1, 0],
+      [0.5, 0.5],
     ],
   },
 ];
@@ -183,33 +183,30 @@ const resultCheck = () => {
 
 const { roundByRound } = resultCheck(players);
 
-export const CurrentStandings = () => {
+export const Standings = () => {
   return (
     <div>
-      <h1 className="mb-2 text-2xl font-semibold text-center text-gray-700 dark:text-gray-200">
-        Division 2
-      </h1>
-      <h2 className="mb-2 text-1xl font-semibold text-center text-gray-700 dark:text-gray-200">
-        Overall Standings
+      <h2 className="mb-2 text-1xl text-center sm:text-left font-semibold text-gray-700 dark:text-gray-200">
+        Division 1
       </h2>
       <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
         <thead className="bg-gray-50 dark:bg-gray-800">
           <tr>
             <th
               scope="col"
-              className="px-4 sm:px-6 py-3 text-left text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
               Player
             </th>
             <th
               scope="col"
-              className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
               Round by Round
             </th>
             <th
               scope="col"
-              className="relative px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="relative px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
               Total
             </th>
@@ -221,13 +218,13 @@ export const CurrentStandings = () => {
             .map((data, key) => {
               return (
                 <tr key={key} className="bg-white dark:bg-gray-800">
-                  <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-md font-medium text-gray-900 dark:text-gray-300">
+                  <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
                     {data.name}{" "}
                     <span className="font-thin">
                       ({data.rating ? data.rating : "unrated"})
                     </span>
                   </td>
-                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-md text-gray-700 dark:text-gray-300">
+                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-xs text-gray-700 dark:text-gray-300">
                     <div className="flex">
                       {data.rounds.map((r) =>
                         r ? (
@@ -240,7 +237,7 @@ export const CurrentStandings = () => {
                       )}
                     </div>
                   </td>
-                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-md text-gray-500 dark:text-gray-300">
+                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-xs text-gray-500 dark:text-gray-300">
                     {data.total}
                   </td>
                 </tr>
@@ -252,7 +249,7 @@ export const CurrentStandings = () => {
   );
 };
 
-export const PairsTable = ({ format, players, results }) => {
+const PairsTable = ({ format, players, results }) => {
   const { round, pairings } = format;
   return (
     <div>
@@ -261,19 +258,19 @@ export const PairsTable = ({ format, players, results }) => {
           <tr>
             <th
               scope="col"
-              className="px-2 sm:px-4 py-2 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="px-2 sm:px-4 py-2 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
               White
             </th>
             <th
               scope="col"
-              className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
               Vs
             </th>
             <th
               scope="col"
-              className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
               Black
             </th>
@@ -282,11 +279,11 @@ export const PairsTable = ({ format, players, results }) => {
         <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
           <tr className="bg-white dark:bg-gray-800">
             {/* using colSpan=3 here means the header VS doesn't align center with the Round */}
-            <td className="px-4 sm:px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300"></td>
-            <td className="px-4 sm:px-6 py-1 text-center text-xs font-medium text-gray-900 dark:text-gray-300">
+            <td className="px-2 sm:px-6 py-3"></td>
+            <td className="px-4 sm:px-6 py-1 text-center text-xs sm:text-sm font-medium text-gray-900 dark:text-gray-300">
               Round {round}
             </td>
-            <td className="px-4 sm:px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300"></td>
+            <td className="px-2"></td>
           </tr>
           {pairings.map((p, key) => {
             const [white, black] = results.find(
@@ -296,8 +293,8 @@ export const PairsTable = ({ format, players, results }) => {
             const blackPlayer = players.find((player) => player.seed === p[1]);
             return (
               <tr key={key} className="bg-white dark:bg-gray-800">
-                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700 dark:text-gray-300">
-                  {whitePlayer.name}{" "}
+                <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {whitePlayer.name} <br />
                   <span className="font-thin">
                     (
                     {whitePlayer.ratingInfo.rating
@@ -306,15 +303,15 @@ export const PairsTable = ({ format, players, results }) => {
                     )
                   </span>
                 </td>
-                <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-md text-gray-500 dark:text-gray-300 border-l-2 border-r-2 border-gray-100 dark:border-gray-700">
+                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-gray-300 border-l-2 border-r-2 border-gray-100 dark:border-gray-700">
                   {white || black
                     ? `${white === 0.5 ? "½" : white} - ${
                         black === 0.5 ? "½" : black
                       }`
                     : "? - ?"}
                 </td>
-                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700 dark:text-gray-300">
-                  {blackPlayer.name}{" "}
+                <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {blackPlayer.name} <br />
                   <span className="font-thin">
                     (
                     {blackPlayer.ratingInfo.rating
@@ -334,33 +331,44 @@ export const PairsTable = ({ format, players, results }) => {
 
 export default function MayRapidplay() {
   return (
-    <div className="grid gap-4 px-2 py-2 h-screen">
-      <div className="col-span-2 bg-gray-100 rounded-lg shadow-xs p-8">
-        <div className="mb-4">
-          <CurrentStandings></CurrentStandings>
-        </div>
-        <div className="mb-4">
-          <h2 className="mb-2 text-1xl font-semibold text-center text-gray-700 dark:text-gray-200">
-            Previous Round
-          </h2>
-          <PairsTable
-            format={SixPlayerPairings[3]}
-            players={players}
-            results={results}
-          />
-        </div>
+    <>
+      <section className="flex flex-wrap overflow-hidden">
         <div>
-          <h2 className="mb-2 text-1xl font-semibold text-center text-gray-700 dark:text-gray-200">
-            Current Round
+          <h2 className="ml-4 mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
+            May Rapidplay 2021
           </h2>
-          <PairsTable
-            format={SixPlayerPairings[4]}
-            players={players}
-            results={results}
-          />
+          <p className="ml-4 mt-4 text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
+            Individual results and standings.
+          </p>
         </div>
-      </div>
-    </div>
+        <div className="px-2 mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4 overflow-x-auto">
+          <div className="">
+            <h3 className="mb-2 text-1xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
+              Final Standings
+            </h3>
+            <Standings></Standings>
+          </div>
+        </div>
+        <div className="px-4 grid grid-cols-1 sm:grid-cols-3 gap-4"></div>
+      </section>
+      <section className="relative mb-10">
+        <h3 className="mb-2 mt-5 px-4 text-1xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
+          Individual Pairings
+        </h3>
+        <div className="sm:px-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {SixPlayerPairings.map((pairings, key) => {
+            return (
+              <div key={key}>
+                <PairsTable
+                  format={pairings}
+                  players={players}
+                  results={results}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    </>
   );
-};
-
+}
