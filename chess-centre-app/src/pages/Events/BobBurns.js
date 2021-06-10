@@ -119,6 +119,84 @@ const previousWinners = [
   },
 ];
 
+const entries = [
+  {
+    name: "Matthew D Webb",
+    rating: "2553**",
+  },
+  {
+    name: "Peter Shaw",
+    rating: "2188",
+  },
+  {
+    name: "David Barlow",
+    rating: "2005",
+  },
+  {
+    name: "Gawain Ako",
+    rating: "1942",
+  },
+  {
+    name: "Gary Corcoran",
+    rating: "1875",
+  },
+  {
+    name: "John Holliday",
+    rating: "1713",
+  },
+  {
+    name: "Steve Harrington",
+    rating: "1621",
+  },
+];
+
+const EntriesTable = ({ data }) => {
+  return (
+    <table className="min-w-full divide-y divide-gray-200">
+      <thead className="bg-gray-50">
+        <tr>
+          <th
+            scope="col"
+            className="px-6 py-2 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+          >
+            Seed
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-2 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+          >
+            Name
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Rating
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map(({ name, rating }, seedIdx) => (
+          <tr
+            key={seedIdx}
+            className={seedIdx % 2 === 0 ? "bg-white" : "bg-gray-50"}
+          >
+            <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+              {seedIdx + 1}
+            </td>
+            <td className="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+              {name}
+            </td>
+            <td className="px-6 py-2 whitespace-nowrap text-sm text-gray-500">
+              {rating}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
+
 const PreviousWinnersTable = ({ data }) => {
   return (
     <table className="min-w-full divide-y divide-gray-200">
@@ -236,9 +314,10 @@ export default function BobBurns() {
                   >
                     BDCA
                   </a>{" "}
-                  has kindly allowed us to host this years annual <span className="font-medium">Bob Burns</span>{" "}
-                  summer tournament which will take place in our dedicated Chess
-                  Centre in Ilkely.
+                  has kindly allowed us to host this years annual{" "}
+                  <span className="font-medium">Bob Burns</span> summer
+                  tournament which will take place in our dedicated Chess Centre
+                  in Ilkely.
                 </p>
               </div>
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1 grid grid-cols-1 sm:grid-cols-2">
@@ -276,19 +355,66 @@ export default function BobBurns() {
                       £5 entry fee*
                     </p>
                   </div>
+                  <div className="text-xs text-gray-500 italic mt-4 ml-2">
+                    * The BDCA have subsidised this event to provide you with
+                    50% off from the initial £10 entry fee.
+                  </div>
                 </div>
                 <div>
                   <h3>Dates</h3>
                   <div className="ml-4">
-                    <p><span className="text-teal-500 font-medium">Round 1.</span> Tues, 22nd June</p>
-                    <p><span className="text-teal-500 font-medium">Round 2.</span> Tues, 6th July</p>
-                    <p><span className="text-teal-500 font-medium">Round 3.</span> Tues, 20th July</p>
-                    <p><span className="text-teal-500 font-medium">Round 4.</span> Tues, 3rd August</p>
-                    <p><span className="text-teal-500 font-medium">Round 5.</span> Tues, 17th August</p>
+                    <p>
+                      <span className="text-teal-500 font-medium">
+                        Round 1.
+                      </span>{" "}
+                      Tues, 29th June
+                    </p>
+                    <p>
+                      <span className="text-teal-500 font-medium">
+                        Round 2.
+                      </span>{" "}
+                      Tues, 6th July
+                    </p>
+                    <p>
+                      <span className="text-teal-500 font-medium">
+                        Round 3.
+                      </span>{" "}
+                      Tues, 20th July
+                    </p>
+                    <p>
+                      <span className="text-teal-500 font-medium">
+                        Round 4.
+                      </span>{" "}
+                      Tues, 3rd August
+                    </p>
+                    <p>
+                      <span className="text-teal-500 font-medium">
+                        Round 5.
+                      </span>{" "}
+                      Tues, 17th August
+                    </p>
                   </div>
                 </div>
               </div>
-              <div className="mt-2 prose prose-teal text-gray-500">
+              <div className="my-4">
+                  <a
+                    href="mailto:info@chesscentre.online?subject=BDCA | Bob Burns Entry Request&body=Name:%0D%0A%0D%0AECF rating (if known):%0D%0A%0D%0A"
+                    className={`w-full flex items-center justify-center px-8 py-3 
+                    border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-700 no-underline
+                     
+                     `}
+                  >
+                    Enter now
+                  </a>
+                </div>
+              <div className="prose prose-teal text-gray-500 mx-auto">
+                <h3>Current entries</h3>
+                <EntriesTable data={entries} />
+                <span className="text-xs italic">
+                  ** Estimated rating based on previous ECF grade conversion
+                </span>
+              </div>
+              <div className="mt-6 prose prose-teal text-gray-500">
                 <h3>Previous winners</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 mt-4">
@@ -306,7 +432,6 @@ export default function BobBurns() {
                   />
                 </div>
               </div>
-              <div className="text-xs text-gray-500 italic mt-4 ml-2">* The BDCA have subsidised this event to provide you with 50% off from the initial £10 entry fee.</div>
             </div>
             <div className="text-sm text-center mt-6 sm:hidden">
               <Link className="text-teal-600 hover:text-teal-500" to="/">
