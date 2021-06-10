@@ -72,6 +72,11 @@ const routes = [
     isPrivate: false
   },
   {
+    path: "/events/bdca/bob-burns",
+    component: lazy(() => import("../pages/Events/BobBurns")),
+    isPrivate: false
+  },
+  {
     path: "/events",
     component: lazy(() => import("../pages/Home/Events")),
     isPrivate: false,
