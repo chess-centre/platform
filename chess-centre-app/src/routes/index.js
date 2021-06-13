@@ -120,6 +120,13 @@ const routes = [
     isAdmin: true
   },
   {
+    path: "/internal/match",
+    component: lazy(() => import("../pages/Broadcast/InternalChallenge")),
+    exact: true,
+    isPrivate: false,
+    isAdmin: true
+  },
+  {
     path: "/broadcast/live",
     component: lazy(() => import("../pages/Broadcast/Live")),
     exact: true,
