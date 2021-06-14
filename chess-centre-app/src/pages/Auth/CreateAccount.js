@@ -9,9 +9,11 @@ import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal.js";
 import ValidateEmail from "../../utils/ValidateEmail";
 import Loading from "../../assets/img/loading.svg";
 import SpecialLoading from "../../assets/img/special-loading.gif";
+import JuniorMemberSignUpModal from "../../components/Modal/JuniorMemberSignUpModal";
 
 function Login(props) {
   const [isSpecialLoading, setIsSpecialLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
@@ -40,6 +42,14 @@ function Login(props) {
   }, [email, firstName, isChecked, password, rePassword, surname]);
 
   const { loading, errorMessage } = useAuthState();
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  }
 
   const setPrivacyPolicyStatus = (checked) => {
     checked
@@ -161,9 +171,10 @@ function Login(props) {
                   />
                 )}
               </Link>
-              <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                Create account
+              <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-200">
+                Register
               </h1>
+              <div className="mb-4 text-right text-xs font-semibold text-gray-700 dark:text-gray-200">Signing up a junior member? <span className="text-teal-600 dark:text-teal-400 hover:underline" onClick={openModal}>Help</span></div>
               <Label>
                 <span>First Name</span>
                 <Input
@@ -281,6 +292,7 @@ function Login(props) {
                 </Link>
               </p>
             </div>
+            <JuniorMemberSignUpModal open={isModalOpen} closeModal={closeModal} />
           </main>
         </div>
       </div>
