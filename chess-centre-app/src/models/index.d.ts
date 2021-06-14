@@ -4,6 +4,16 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class Result {
+  readonly id: string;
+  readonly pairings?: string;
+  readonly results?: string;
+  readonly players?: string;
+  readonly eventID?: string;
+  constructor(init: ModelInit<Result>);
+  static copyOf(source: Result, mutator: (draft: MutableModel<Result>) => MutableModel<Result> | void): Result;
+}
+
 export declare class Game {
   readonly id: string;
   readonly pgn?: string;
@@ -84,7 +94,10 @@ export declare class Event {
   readonly entries?: Entry[];
   readonly maxEntries?: number;
   readonly entryCount?: number;
-  readonly Games?: (Game | null)[];
+  readonly games?: (Game | null)[];
+  readonly complete?: boolean;
+  readonly cancelled?: boolean;
+  readonly results?: (Result | null)[];
   constructor(init: ModelInit<Event>);
   static copyOf(source: Event, mutator: (draft: MutableModel<Event>) => MutableModel<Event> | void): Event;
 }

@@ -1,3 +1,11 @@
+type Result @model @auth(rules: [{allow: private}]) @key(name: "byEvent", fields: ["eventID"]) {
+  id: ID!
+  pairings: AWSJSON
+  results: AWSJSON
+  players: AWSJSON
+  eventID: ID
+}
+
 type Game @model @key(name: "byMember", fields: ["memberID"]) @key(name: "byEvent", fields: ["eventID"]) @auth(rules: [{allow: private}]) {
   id: ID!
   pgn: String
@@ -62,7 +70,10 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   entries: [Entry!] @connection(keyName: "byEvent", fields: ["id"])
   maxEntries: Int
   entryCount: Int
-  Games: [Game] @connection(keyName: "byEvent", fields: ["id"])
+  games: [Game] @connection(keyName: "byEvent", fields: ["id"])
+  complete: Boolean
+  cancelled: Boolean
+  results: [Result] @connection(keyName: "byEvent", fields: ["id"])
 }
 
 type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "byEvent", fields: ["eventId"]) @key(name: "byMember", fields: ["memberId"]) {
