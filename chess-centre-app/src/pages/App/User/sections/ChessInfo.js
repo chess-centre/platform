@@ -77,7 +77,7 @@ export default function ChessInfo() {
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
                     className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
-                focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-70`}
+                focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                     disabled
                     value={newECFId}
                     type="text"
@@ -110,7 +110,7 @@ export default function ChessInfo() {
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
                     className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
-                focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-70`}
+                focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                     disabled
                     value={newFIDEId}
                     type="text"
@@ -125,7 +125,6 @@ export default function ChessInfo() {
         </div>
 
         <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 sm:text-right text-xs sm:px-6 border-t border-gray-50 dark:border-gray-700 italic text-center">
-          {newECFId ? (
             <span>
               These fields will be automatically populated once you have an
               official rating with the{" "}
@@ -138,9 +137,6 @@ export default function ChessInfo() {
                 English Chess Federation.
               </a>
             </span>
-          ) : (
-            ""
-          )}
         </div>
       </div>
     </div>

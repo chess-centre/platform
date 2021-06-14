@@ -19,8 +19,8 @@ export const TechRoadmap = () => {
         style={{ left: "7.5px" }}
       ></div>
       <div
-        className="border-r-2 border-teal-500 absolute top-28"
-        style={{ left: "7.5px", height: "330px" }}
+        className="border-r-2 border-teal-500 absolute h-full top-2"
+        style={{ left: "7.5px" }}
       ></div>
       <ul className="list-none m-0 p-0">
         <li className="mb-2">
