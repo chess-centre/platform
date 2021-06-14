@@ -1,5 +1,78 @@
 export const schema = {
     "models": {
+        "Result": {
+            "name": "Result",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "pairings": {
+                    "name": "pairings",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "results": {
+                    "name": "results",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "players": {
+                    "name": "players",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "eventID": {
+                    "name": "eventID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Results",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byEvent",
+                        "fields": [
+                            "eventID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Game": {
             "name": "Game",
             "fields": {
@@ -656,11 +729,39 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "Games": {
-                    "name": "Games",
+                "games": {
+                    "name": "games",
                     "isArray": true,
                     "type": {
                         "model": "Game"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "eventID"
+                    }
+                },
+                "complete": {
+                    "name": "complete",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "cancelled": {
+                    "name": "cancelled",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "results": {
+                    "name": "results",
+                    "isArray": true,
+                    "type": {
+                        "model": "Result"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -720,5 +821,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "eae0a57eff1d3ad2409b477fc4656031"
+    "version": "44d75794992fa12a90dcec4e1c61859f"
 };
