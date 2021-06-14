@@ -12,11 +12,11 @@ const getMember = /* GraphQL */ `
       name
       email
       ecfRating
+    }
   }
 `;
 
 export default function ChessInfo() {
-
   const [newECFId, setNewECFId] = useState("");
   const [newFIDEId, setNewFIDEId] = useState("");
 
@@ -119,12 +119,6 @@ export default function ChessInfo() {
                     autoComplete="off"
                   />
                 </div>
-                {showFoundFide ? (
-                  <p className="mt-2 ml-1 text-xs text-orange-700 dark:text-gray-300">
-                    <i className="fad fa-gift"></i> We've populated your FIDE id
-                    from the ECF data
-                  </p>
-                ) : null}
               </div>
             </div>
           </div>
@@ -133,8 +127,8 @@ export default function ChessInfo() {
         <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 sm:text-right text-xs sm:px-6 border-t border-gray-50 dark:border-gray-700 italic text-center">
           {newECFId ? (
             <span>
-              These fields will be automatically populated once you have an official rating
-              with the{" "}
+              These fields will be automatically populated once you have an
+              official rating with the{" "}
               <a
                 className="text-teal-600 hover:text-teal-500"
                 href="https://www.englishchess.org.uk/"
