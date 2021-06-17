@@ -67,7 +67,7 @@ export declare class Member {
   readonly stripeProductId?: string;
   readonly ecfRating?: string;
   readonly membershipType?: string;
-  readonly Games?: (Game | null)[];
+  readonly games?: (Game | null)[];
   readonly gameInfo?: string;
   readonly ratingInfo?: string;
   constructor(init: ModelInit<Member>);

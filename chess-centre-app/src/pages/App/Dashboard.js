@@ -1,5 +1,4 @@
 import API from "@aws-amplify/api";
-import { getMember } from "../../graphql/queries";
 import React, { useEffect, useState } from "react";
 import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
@@ -12,6 +11,116 @@ import {
   barLegends,
 } from "../../api/data.dashboard";
 import { useAuthState, isPaidMember } from "../../context/Auth";
+
+export const getMember = /* GraphQL */ `
+  query GetMember($id: ID!) {
+    getMember(id: $id) {
+      id
+      about
+      fideId
+      ecfId
+      username
+      name
+      email
+      ecfRating
+      membershipType
+      gameInfo
+      ratingInfo
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      entries {
+        items {
+          id
+          eventId
+          memberId
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          member {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            ecfRating
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            Games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        nextToken
+        startedAt
+      }
+    }
+  }
+`;
 
 export default function Dashboard() {
   const [isPaid, setIsPaid] = useState(false);

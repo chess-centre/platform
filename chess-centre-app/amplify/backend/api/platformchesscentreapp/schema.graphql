@@ -53,7 +53,7 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   stripeProductId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   ecfRating: String
   membershipType: String
-  Games: [Game] @connection(keyName: "byMember", fields: ["id"])
+  games: [Game] @connection(keyName: "byMember", fields: ["id"])
   gameInfo: AWSJSON
   ratingInfo: AWSJSON
 }
