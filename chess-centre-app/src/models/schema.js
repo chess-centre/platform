@@ -466,8 +466,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "Games": {
-                    "name": "Games",
+                "games": {
+                    "name": "games",
                     "isArray": true,
                     "type": {
                         "model": "Game"
@@ -821,5 +821,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "44d75794992fa12a90dcec4e1c61859f"
+    "version": "2a31acf35795377788069a1e4bfb5f6f"
 };

@@ -13,7 +13,7 @@ import { classNames, bgColor900 } from "../../utils/Classes";
 import PaymentCompleteModal from "../../components/Modal/PaymentCompleteModal";
 import EventDetailsSlideOut from "../../components/SlideOut/EventDetailsSlideOut";
 
-const listEvents = /* GraphQL */ `
+export const listEvents = /* GraphQL */ `
   query ListEvents(
     $filter: ModelEventFilterInput
     $limit: Int
@@ -30,32 +30,91 @@ const listEvents = /* GraphQL */ `
         endDate
         maxEntries
         entryCount
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        games {
+          items {
+            id
+            pgn
+            memberID
+            eventID
+            opponent
+            colour
+            result
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
         type {
           id
           name
           description
-          defaultPrice
           url
           color
           time
-          eventType
           maxEntries
-          canRegister
+          stripePriceId
           timeControl
+          eventType
+          defaultPrice
+          canRegister
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
         }
         entries {
           items {
             id
             eventId
             memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
             member {
               id
               about
               fideId
               ecfId
-              ecfRating
               username
               name
+              email
+              ecfRating
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
             }
           }
           nextToken
@@ -101,6 +160,8 @@ function useEvents() {
     return sorted.map((event) => ({
       ...event,
       allowedToRegister: !alreadyRegistered(event) && !isFull(event),
+      full: isFull(event),
+      registered: alreadyRegistered(event)
     }));
   });
 }
@@ -182,6 +243,8 @@ export default function AppEvents() {
                   endDate,
                   time,
                   allowedToRegister,
+                  full,
+                  registered,
                   maxEntries,
                   entryCount,
                   rounds,
@@ -223,7 +286,10 @@ export default function AppEvents() {
                                 maxEntries || type.maxEntries
                               }`}
                             </p>
-                            {type.defaultPrice && allowedToRegister ? (
+                            { 
+                              
+                            }
+                            {type.defaultPrice && !registered && !full ? (
                               <p className="text-sm text-gray-700 mr-2">
                                 <span className="inline">
                                   Entry Fee: £{type.defaultPrice}
@@ -234,7 +300,7 @@ export default function AppEvents() {
                                 <span className="inline">
                                   Entry Fee:{" "}
                                   <span className="text-teal-500 text-xs">
-                                    PAID
+                                    { registered? "PAID" : full ? "Closed" : "" }
                                   </span>
                                 </span>{" "}
                               </p>
@@ -247,7 +313,7 @@ export default function AppEvents() {
                               ) : (
                                 <p className="text-sm text-gray-700 mr-2">
                                   <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                                    Entered
+                                    { registered ? "Entered" : (full ? "Full" : "") }
                                   </span>{" "}
                                 </p>
                               )}
