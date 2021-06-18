@@ -1,9 +1,7 @@
 import React from "react";
 import Bottom from "./BottomSection";
-import QR from "../../assets/img/QR-live-games.png";
 
-const Internal = (props) => {
-  const { url } = props;
+const Internal = () => {
   return (
 
     <div className="grid grid-rows-4 grid-flow-col gap-4 px-10 py-10 h-screen">
@@ -14,7 +12,7 @@ const Internal = (props) => {
               title="Live Games"
               frameBorder="0"
               allowFullScreen
-              src={url ? url : "http://192.168.1.248:1982/liveviewer/index.html"}
+              src={"http://192.168.1.248:1982/liveviewer/index.html"}
             />
           </div>
         </div>
@@ -28,13 +26,6 @@ const Internal = (props) => {
           <Bottom />
         </div>
       </div>
-      {/* <div className="flex row-span-1 col-span-1 bg-gray-100 rounded-lg shadow-xs overflow-hidden p-2">
-        <img
-          className="object-center w-40 mx-auto self-center"
-          src={QR}
-          alt="QR Code"
-        />
-      </div> */}
     </div>
   );
 };

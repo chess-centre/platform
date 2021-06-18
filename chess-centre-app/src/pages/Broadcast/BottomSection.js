@@ -143,9 +143,7 @@ const players = [
     }),
 ];
 
-const resultCheck = (players, r) => {
-
-    const results = resultsFallback;
+const resultCheck = (players, results) => {
 
     const resultBySeed = [];
     SixPlayerPairings.forEach(({ round, pairings }) => {
