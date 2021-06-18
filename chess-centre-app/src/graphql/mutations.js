@@ -1,6 +1,63 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createResult = /* GraphQL */ `
+  mutation CreateResult(
+    $input: CreateResultInput!
+    $condition: ModelResultConditionInput
+  ) {
+    createResult(input: $input, condition: $condition) {
+      id
+      pairings
+      results
+      players
+      eventID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateResult = /* GraphQL */ `
+  mutation UpdateResult(
+    $input: UpdateResultInput!
+    $condition: ModelResultConditionInput
+  ) {
+    updateResult(input: $input, condition: $condition) {
+      id
+      pairings
+      results
+      players
+      eventID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteResult = /* GraphQL */ `
+  mutation DeleteResult(
+    $input: DeleteResultInput!
+    $condition: ModelResultConditionInput
+  ) {
+    deleteResult(input: $input, condition: $condition) {
+      id
+      pairings
+      results
+      players
+      eventID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createGame = /* GraphQL */ `
   mutation CreateGame(
     $input: CreateGameInput!
@@ -218,7 +275,7 @@ export const createMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      games {
         items {
           id
           pgn
@@ -267,7 +324,7 @@ export const createMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -290,12 +347,18 @@ export const createMember = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -352,7 +415,7 @@ export const updateMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      games {
         items {
           id
           pgn
@@ -401,7 +464,7 @@ export const updateMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -424,12 +487,18 @@ export const updateMember = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -486,7 +555,7 @@ export const deleteMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      games {
         items {
           id
           pgn
@@ -535,7 +604,7 @@ export const deleteMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -558,12 +627,18 @@ export const deleteMember = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -613,12 +688,30 @@ export const createEvent = /* GraphQL */ `
       endDate
       maxEntries
       entryCount
+      complete
+      cancelled
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      results {
+        items {
+          id
+          pairings
+          results
+          players
+          eventID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
+      games {
         items {
           id
           pgn
@@ -682,7 +775,7 @@ export const createEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -705,12 +798,18 @@ export const createEvent = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -760,12 +859,30 @@ export const updateEvent = /* GraphQL */ `
       endDate
       maxEntries
       entryCount
+      complete
+      cancelled
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      results {
+        items {
+          id
+          pairings
+          results
+          players
+          eventID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
+      games {
         items {
           id
           pgn
@@ -829,7 +946,7 @@ export const updateEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -852,12 +969,18 @@ export const updateEvent = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -907,12 +1030,30 @@ export const deleteEvent = /* GraphQL */ `
       endDate
       maxEntries
       entryCount
+      complete
+      cancelled
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      results {
+        items {
+          id
+          pairings
+          results
+          players
+          eventID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
+      games {
         items {
           id
           pgn
@@ -976,7 +1117,7 @@ export const deleteEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -999,12 +1140,18 @@ export const deleteEvent = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -1070,7 +1217,7 @@ export const createEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        games {
           items {
             id
             pgn
@@ -1134,6 +1281,8 @@ export const createEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
@@ -1155,12 +1304,30 @@ export const createEntry = /* GraphQL */ `
         endDate
         maxEntries
         entryCount
+        complete
+        cancelled
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        results {
+          items {
+            id
+            pairings
+            results
+            players
+            eventID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        games {
           items {
             id
             pgn
@@ -1239,6 +1406,8 @@ export const createEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
@@ -1284,7 +1453,7 @@ export const updateEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        games {
           items {
             id
             pgn
@@ -1348,6 +1517,8 @@ export const updateEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
@@ -1369,12 +1540,30 @@ export const updateEntry = /* GraphQL */ `
         endDate
         maxEntries
         entryCount
+        complete
+        cancelled
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        results {
+          items {
+            id
+            pairings
+            results
+            players
+            eventID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        games {
           items {
             id
             pgn
@@ -1453,6 +1642,8 @@ export const updateEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
@@ -1498,7 +1689,7 @@ export const deleteEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        games {
           items {
             id
             pgn
@@ -1562,6 +1753,8 @@ export const deleteEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
@@ -1583,12 +1776,30 @@ export const deleteEntry = /* GraphQL */ `
         endDate
         maxEntries
         entryCount
+        complete
+        cancelled
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        results {
+          items {
+            id
+            pairings
+            results
+            players
+            eventID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        games {
           items {
             id
             pgn
@@ -1667,6 +1878,8 @@ export const deleteEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt

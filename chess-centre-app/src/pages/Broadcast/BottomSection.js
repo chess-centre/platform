@@ -1,49 +1,74 @@
 import React from "react";
+import API from "@aws-amplify/api";
+
+export const listResults = /* GraphQL */ `
+  query ListResults(
+    $filter: ModelResultFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listResults(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        pairings
+        results
+        players
+        eventID
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 
 export const CongressEntries = [
     {
         id: 1,
-        name: "Gary Corcoran",
+        name: "Tim Hilton",
         ratingInfo: {
-            rating: 1668,
+            rating: 2005
         },
     },
     {
         id: 2,
-        name: "Jael De Sousa Muachikape",
+        name: "Arron Barker",
         ratingInfo: {
-            rating: 1608,
+            rating: 1953,
         },
     },
     {
         id: 3,
-        name: "John Holiday",
+        name: "Sam Davies",
         ratingInfo: {
-            rating: 1645,
+            rating: 1908,
         },
     },
     {
         id: 4,
         name: "Max Shaw",
         ratingInfo: {
-            rating: undefined,
+            rating: 1796,
         },
     },
     {
         id: 5,
-        name: "Steven Law",
+        name: "Jacob Smith",
         ratingInfo: {
-            rating: undefined,
+            rating: 1791,
         },
     },
     {
         id: 6,
-        name: "Ellis Howard",
+        name: "Luke Gostelow",
         ratingInfo: {
             rating: undefined,
         },
     }];
-
 
 const SixPlayerPairings = [
     {
@@ -88,26 +113,26 @@ const SixPlayerPairings = [
     },
 ];
 
-const results = [
+const resultsFallback = [
     {
-        round: 1,
-        pairResults: [[1,0], [1,0], [0,1]],
+        "round": 1,
+        "pairResults": [[], [], []]
     },
     {
-        round: 2,
-        pairResults: [[0,1], [0,1], [0,1]],
+        "round": 2,
+        "pairResults": [[], [], []]
     },
     {
-        round: 3,
-        pairResults: [[1,0], [0.5, 0.5], [1,0]],
+        "round": 3,
+        "pairResults": [[], [], []]
     },
     {
-        round: 4,
-        pairResults: [[1,0], [1,0], [1,0]],
+        "round": 4,
+        "pairResults": [[], [], []]
     },
     {
-        round: 5,
-        pairResults: [[1,0], [0,1], [0,1]],
+        "round": 5,
+        "pairResults": [[], [], []]
     }
 ];
 
@@ -118,7 +143,10 @@ const players = [
     }),
 ];
 
-const resultCheck = () => {
+const resultCheck = (players, r) => {
+
+    const results = resultsFallback;
+
     const resultBySeed = [];
     SixPlayerPairings.forEach(({ round, pairings }) => {
         const pairingResults = results.find((r) => r.round === round).pairResults;
@@ -161,15 +189,15 @@ const resultCheck = () => {
     return { resultBySeed, roundByRound };
 };
 
-const { roundByRound } = resultCheck(players);
 
-export const CurrentStandings = () => {
+
+export const CurrentStandings = ({ results } ) => {
+
+    const { roundByRound } = resultCheck(players, results);
+
     return (
         <div>
-            <h1 className="mb-2 text-2xl font-semibold text-center text-gray-700 dark:text-gray-200">
-            Division 2
-      </h1>
-      <h2 className="mb-2 text-1xl font-semibold text-center text-gray-700 dark:text-gray-200">Overall Standings</h2>
+            <h2 className="mb-2 text-1xl font-semibold text-center text-gray-700 dark:text-gray-200">Overall Standings</h2>
             <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
                 <thead className="bg-gray-50 dark:bg-gray-800">
                     <tr>
@@ -239,19 +267,19 @@ export const PairsTable = ({ format, players, results }) => {
                             className="px-2 sm:px-4 py-2 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                         >
                             White
-            </th>
+                        </th>
                         <th
                             scope="col"
                             className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                         >
                             Vs
-            </th>
+                        </th>
                         <th
                             scope="col"
                             className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                         >
                             Black
-            </th>
+                        </th>
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
@@ -293,29 +321,80 @@ export const PairsTable = ({ format, players, results }) => {
 };
 
 export const Internal = () => {
+
+    const [resultDetails, setResultDetails] = React.useState(resultsFallback);
+    const [isLoading, setIsLoading] = React.useState(false);
+
+    React.useEffect(() => {
+        setIsLoading(true);
+        const fetchResults = async () => {
+            const { data: {
+                listResults: { items: results },
+            },
+            } = await API.graphql({
+                query: listResults
+            });
+            const parsedResult = JSON.parse(results[0].results)
+            setResultDetails(parsedResult);
+        };
+        fetchResults();
+        setIsLoading(false);
+    }, []);
+
     return (
         <div className="grid gap-4 px-2 py-2 h-screen">
-            <div className="col-span-2 bg-gray-100 rounded-lg shadow-xs p-8">
-                <div className="mb-4">
-                    <CurrentStandings></CurrentStandings>
+            { isLoading ? "Loading..." : (
+
+
+                <div className="col-span-2 bg-gray-100 rounded-lg shadow-xs">
+                    <div className="mb-4">
+                        <CurrentStandings results={resultDetails}></CurrentStandings>
+                    </div>
+                    <div className="mb-2">
+                        <div className="grid grid-cols-2 gap-2">
+                            <div>
+                                <div className="pb-2">
+                                    <PairsTable
+                                        format={SixPlayerPairings[0]}
+                                        players={players}
+                                        results={resultDetails}
+                                    />
+                                </div>
+                                <div className="pb-2">
+                                    <PairsTable
+                                        format={SixPlayerPairings[1]}
+                                        players={players}
+                                        results={resultDetails}
+                                    />
+                                </div>
+                                <div className="pb-2">
+                                    <PairsTable
+                                        format={SixPlayerPairings[2]}
+                                        players={players}
+                                        results={resultDetails}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <div className="pb-2">
+                                    <PairsTable
+                                        format={SixPlayerPairings[3]}
+                                        players={players}
+                                        results={resultDetails}
+                                    />
+                                </div>
+                                <div className="pb-2">
+                                    <PairsTable
+                                        format={SixPlayerPairings[4]}
+                                        players={players}
+                                        results={resultDetails}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="mb-4">
-                <h2 className="mb-2 text-1xl font-semibold text-center text-gray-700 dark:text-gray-200">Previous Round</h2> 
-                    <PairsTable
-                        format={SixPlayerPairings[3]}
-                        players={players}
-                        results={results}
-                    />
-                </div>
-                <div>
-                <h2 className="mb-2 text-1xl font-semibold text-center text-gray-700 dark:text-gray-200">Current Round</h2> 
-                    <PairsTable
-                        format={SixPlayerPairings[4]}
-                        players={players}
-                        results={results}
-                    />
-                </div>
-            </div>
+            )}
         </div>
     );
 };
