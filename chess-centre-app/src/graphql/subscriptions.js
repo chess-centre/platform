@@ -1,6 +1,54 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateResult = /* GraphQL */ `
+  subscription OnCreateResult {
+    onCreateResult {
+      id
+      pairings
+      results
+      players
+      eventID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateResult = /* GraphQL */ `
+  subscription OnUpdateResult {
+    onUpdateResult {
+      id
+      pairings
+      results
+      players
+      eventID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteResult = /* GraphQL */ `
+  subscription OnDeleteResult {
+    onDeleteResult {
+      id
+      pairings
+      results
+      players
+      eventID
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateGame = /* GraphQL */ `
   subscription OnCreateGame {
     onCreateGame {
@@ -188,7 +236,7 @@ export const onCreateMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      games {
         items {
           id
           pgn
@@ -237,7 +285,7 @@ export const onCreateMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -260,12 +308,18 @@ export const onCreateMember = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -319,7 +373,7 @@ export const onUpdateMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      games {
         items {
           id
           pgn
@@ -368,7 +422,7 @@ export const onUpdateMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -391,12 +445,18 @@ export const onUpdateMember = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -450,7 +510,7 @@ export const onDeleteMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      games {
         items {
           id
           pgn
@@ -499,7 +559,7 @@ export const onDeleteMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -522,12 +582,18 @@ export const onDeleteMember = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -574,12 +640,30 @@ export const onCreateEvent = /* GraphQL */ `
       endDate
       maxEntries
       entryCount
+      complete
+      cancelled
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      results {
+        items {
+          id
+          pairings
+          results
+          players
+          eventID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
+      games {
         items {
           id
           pgn
@@ -643,7 +727,7 @@ export const onCreateEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -666,12 +750,18 @@ export const onCreateEvent = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -718,12 +808,30 @@ export const onUpdateEvent = /* GraphQL */ `
       endDate
       maxEntries
       entryCount
+      complete
+      cancelled
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      results {
+        items {
+          id
+          pairings
+          results
+          players
+          eventID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
+      games {
         items {
           id
           pgn
@@ -787,7 +895,7 @@ export const onUpdateEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -810,12 +918,18 @@ export const onUpdateEvent = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -862,12 +976,30 @@ export const onDeleteEvent = /* GraphQL */ `
       endDate
       maxEntries
       entryCount
+      complete
+      cancelled
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
-      Games {
+      results {
+        items {
+          id
+          pairings
+          results
+          players
+          eventID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
+      games {
         items {
           id
           pgn
@@ -931,7 +1063,7 @@ export const onDeleteEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            games {
               nextToken
               startedAt
             }
@@ -954,12 +1086,18 @@ export const onDeleteEvent = /* GraphQL */ `
             endDate
             maxEntries
             entryCount
+            complete
+            cancelled
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
+            results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -1022,7 +1160,7 @@ export const onCreateEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        games {
           items {
             id
             pgn
@@ -1086,6 +1224,8 @@ export const onCreateEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
@@ -1107,12 +1247,30 @@ export const onCreateEntry = /* GraphQL */ `
         endDate
         maxEntries
         entryCount
+        complete
+        cancelled
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        results {
+          items {
+            id
+            pairings
+            results
+            players
+            eventID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        games {
           items {
             id
             pgn
@@ -1191,6 +1349,8 @@ export const onCreateEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
@@ -1233,7 +1393,7 @@ export const onUpdateEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        games {
           items {
             id
             pgn
@@ -1297,6 +1457,8 @@ export const onUpdateEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
@@ -1318,12 +1480,30 @@ export const onUpdateEntry = /* GraphQL */ `
         endDate
         maxEntries
         entryCount
+        complete
+        cancelled
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        results {
+          items {
+            id
+            pairings
+            results
+            players
+            eventID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        games {
           items {
             id
             pgn
@@ -1402,6 +1582,8 @@ export const onUpdateEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
@@ -1444,7 +1626,7 @@ export const onDeleteEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        games {
           items {
             id
             pgn
@@ -1508,6 +1690,8 @@ export const onDeleteEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
@@ -1529,12 +1713,30 @@ export const onDeleteEntry = /* GraphQL */ `
         endDate
         maxEntries
         entryCount
+        complete
+        cancelled
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
-        Games {
+        results {
+          items {
+            id
+            pairings
+            results
+            players
+            eventID
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        games {
           items {
             id
             pgn
@@ -1613,6 +1815,8 @@ export const onDeleteEntry = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
+              complete
+              cancelled
               _version
               _deleted
               _lastChangedAt
