@@ -12,7 +12,7 @@ const Internal = () => {
               title="Live Games"
               frameBorder="0"
               allowFullScreen
-              src={"http://192.168.1.248:1982/liveviewer/index.html"}
+              src={"https://192.168.1.248:1982/liveviewer/index.html"}
             />
           </div>
         </div>
@@ -22,7 +22,7 @@ const Internal = () => {
           <h2 className="text-2xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
             <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400">The Chess Centre</span>
           </h2>
-          <h1 className="text-2xl tracking-tight leading-10 font-extrabold text-gray-900">July Congress</h1>
+          <h1 className="text-2xl tracking-tight leading-10 font-extrabold text-gray-900">June Congress</h1>
           <Bottom />
         </div>
       </div>
