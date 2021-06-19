@@ -9,7 +9,7 @@ import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
 
 const Home = () => {
-  const showLiveGames = false; // make config driven
+  const showLiveGames = true; // make config driven
   const { user } = useAuthState();
 
   return (

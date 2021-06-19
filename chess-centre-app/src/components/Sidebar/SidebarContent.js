@@ -15,7 +15,7 @@ function Icon({ icon, ...props }) {
 }
 
 function SidebarContent() {
-  const showLiveGames = false;
+  const showLiveGames = true;
   const [needsUpgrade, setNeedsUpgrade] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isJunior, setIsJunior] = useState(false);
