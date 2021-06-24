@@ -17,8 +17,6 @@ export declare class Result {
 export declare class Game {
   readonly id: string;
   readonly pgn?: string;
-  readonly memberID?: string;
-  readonly eventID?: string;
   readonly opponent?: string;
   readonly colour?: string;
   readonly result?: string;
@@ -67,7 +65,6 @@ export declare class Member {
   readonly stripeProductId?: string;
   readonly ecfRating?: string;
   readonly membershipType?: string;
-  readonly games?: (Game | null)[];
   readonly gameInfo?: string;
   readonly ratingInfo?: string;
   constructor(init: ModelInit<Member>);
@@ -94,7 +91,6 @@ export declare class Event {
   readonly entries?: Entry[];
   readonly maxEntries?: number;
   readonly entryCount?: number;
-  readonly games?: (Game | null)[];
   readonly complete?: boolean;
   readonly cancelled?: boolean;
   readonly results?: (Result | null)[];

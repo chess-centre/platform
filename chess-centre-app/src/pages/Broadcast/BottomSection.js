@@ -27,374 +27,375 @@ export const listResults = /* GraphQL */ `
 `;
 
 export const CongressEntries = [
-    {
-        id: 1,
-        name: "Tim Hilton",
-        ratingInfo: {
-            rating: 2005
-        },
-    },
-    {
-        id: 2,
-        name: "Arron Barker",
-        ratingInfo: {
-            rating: 1953,
-        },
-    },
-    {
-        id: 3,
-        name: "Sam Davies",
-        ratingInfo: {
-            rating: 1908,
-        },
-    },
-    {
-        id: 4,
-        name: "Max Shaw",
-        ratingInfo: {
-            rating: 1796,
-        },
-    },
-    {
-        id: 5,
-        name: "Jacob Smith",
-        ratingInfo: {
-            rating: 1791,
-        },
-    },
-    {
-        id: 6,
-        name: "Luke Gostelow",
-        ratingInfo: {
-            rating: undefined,
-        },
-    }];
+  {
+    id: 1,
+    name: "Tim Hilton",
+    rating: 2005,
+  },
+  {
+    id: 2,
+    name: "Arron Barker",
+
+    rating: 1953,
+  },
+  {
+    id: 3,
+    name: "Sam Davies",
+
+    rating: 1908,
+  },
+  {
+    id: 4,
+    name: "Max Shaw",
+
+    rating: 1796,
+  },
+  {
+    id: 5,
+    name: "Jacob Smith",
+
+    rating: 1791,
+  },
+  {
+    id: 6,
+    name: "Luke Gostelow",
+    rating: "",
+  }
+];
 
 const SixPlayerPairings = [
-    {
-        round: 1,
-        pairings: [
-            [1, 6],
-            [2, 5],
-            [3, 4],
-        ],
-    },
-    {
-        round: 2,
-        pairings: [
-            [6, 4],
-            [5, 3],
-            [1, 2],
-        ],
-    },
-    {
-        round: 3,
-        pairings: [
-            [2, 6],
-            [3, 1],
-            [4, 5],
-        ],
-    },
-    {
-        round: 4,
-        pairings: [
-            [6, 5],
-            [1, 4],
-            [2, 3],
-        ],
-    },
-    {
-        round: 5,
-        pairings: [
-            [3, 6],
-            [4, 2],
-            [5, 1],
-        ],
-    },
+  {
+    round: 1,
+    pairings: [
+      [1, 6],
+      [2, 5],
+      [3, 4],
+    ],
+  },
+  {
+    round: 2,
+    pairings: [
+      [6, 4],
+      [5, 3],
+      [1, 2],
+    ],
+  },
+  {
+    round: 3,
+    pairings: [
+      [2, 6],
+      [3, 1],
+      [4, 5],
+    ],
+  },
+  {
+    round: 4,
+    pairings: [
+      [6, 5],
+      [1, 4],
+      [2, 3],
+    ],
+  },
+  {
+    round: 5,
+    pairings: [
+      [3, 6],
+      [4, 2],
+      [5, 1],
+    ],
+  },
 ];
 
 const resultsFallback = [
-    {
-        "round": 1,
-        "pairResults": [[], [], []]
-    },
-    {
-        "round": 2,
-        "pairResults": [[], [], []]
-    },
-    {
-        "round": 3,
-        "pairResults": [[], [], []]
-    },
-    {
-        "round": 4,
-        "pairResults": [[], [], []]
-    },
-    {
-        "round": 5,
-        "pairResults": [[], [], []]
-    }
+  {
+    round: 1,
+    pairResults: [[], [], []],
+  },
+  {
+    round: 2,
+    pairResults: [[], [], []],
+  },
+  {
+    round: 3,
+    pairResults: [[], [], []],
+  },
+  {
+    round: 4,
+    pairResults: [[], [], []],
+  },
+  {
+    round: 5,
+    pairResults: [[], [], []],
+  },
 ];
 
 const players = [
-    ...CongressEntries.slice(0, 6).map((m, i) => {
-        m.seed = i + 1;
-        return m;
-    }),
+  ...CongressEntries.slice(0, 6).map((m, i) => {
+    m.seed = i + 1;
+    return m;
+  }),
 ];
 
 const resultCheck = (players, results) => {
-
-    const resultBySeed = [];
-    SixPlayerPairings.forEach(({ round, pairings }) => {
-        const pairingResults = results.find((r) => r.round === round).pairResults;
-        pairings.forEach((board, index) => {
-            const whitePlayer = board[0];
-            const blackPlayer = board[1];
-            const whiteResultOfSeed = pairingResults[index][0];
-            const blackResultOfSeed = pairingResults[index][1];
-            resultBySeed.push(
-                {
-                    seed: whitePlayer,
-                    result: whiteResultOfSeed,
-                    opponent: blackPlayer,
-                    round,
-                },
-                {
-                    seed: blackPlayer,
-                    result: blackResultOfSeed,
-                    opponent: whitePlayer,
-                    round,
-                }
-            );
-        });
-    });
-    const roundByRound = resultBySeed.reduce((player, { seed, result }) => {
-        if (!player[seed]) {
-            const p = players.find((p) => p.seed === seed);
-            player[seed] = {
-                rounds: [result],
-                total: result || 0,
-                name: p.name,
-                rating: p.ratingInfo.rating
-            };
-        } else {
-            player[seed].rounds.push(result);
-            player[seed].total += result || 0;
+  const resultBySeed = [];
+  SixPlayerPairings.forEach(({ round, pairings }) => {
+    const pairingResults = results.find((r) => r.round === round).pairResults;
+    pairings.forEach((board, index) => {
+      const whitePlayer = board[0];
+      const blackPlayer = board[1];
+      const whiteResultOfSeed = pairingResults[index][0];
+      const blackResultOfSeed = pairingResults[index][1];
+      resultBySeed.push(
+        {
+          seed: whitePlayer,
+          result: whiteResultOfSeed,
+          opponent: blackPlayer,
+          round,
+        },
+        {
+          seed: blackPlayer,
+          result: blackResultOfSeed,
+          opponent: whitePlayer,
+          round,
         }
-        return player;
-    }, {});
-    return { resultBySeed, roundByRound };
+      );
+    });
+  });
+  const roundByRound = resultBySeed.reduce((player, { seed, result }) => {
+    if (!player[seed]) {
+      const p = players.find((p) => p.seed === seed);
+      player[seed] = {
+        rounds: [result],
+        total: result || 0,
+        name: p.name,
+        rating: p.rating,
+      };
+    } else {
+      player[seed].rounds.push(result);
+      player[seed].total += result || 0;
+    }
+    return player;
+  }, {});
+  return { resultBySeed, roundByRound };
 };
 
+export const CurrentStandings = ({ results }) => {
+  const { roundByRound } = resultCheck(players, results);
 
-
-export const CurrentStandings = ({ results } ) => {
-
-    const { roundByRound } = resultCheck(players, results);
-
-    return (
-        <div>
-            <h2 className="mb-2 text-1xl font-semibold text-center text-gray-700 dark:text-gray-200">Overall Standings</h2>
-            <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
-                <thead className="bg-gray-50 dark:bg-gray-800">
-                    <tr>
-                        <th
-                            scope="col"
-                            className="px-4 sm:px-6 py-3 text-left text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                        >
-                            Player
+  return (
+    <div>
+      <h2 className="mb-2 text-1xl font-semibold text-center text-gray-700 dark:text-gray-200">
+        Overall Standings
+      </h2>
+      <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
+        <thead className="bg-gray-50 dark:bg-gray-800">
+          <tr>
+            <th
+              scope="col"
+              className="px-4 sm:px-6 py-3 text-left text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+            >
+              Player
             </th>
-                        <th
-                            scope="col"
-                            className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                        >
-                            Round by Round
+            <th
+              scope="col"
+              className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+            >
+              Round by Round
             </th>
-                        <th
-                            scope="col"
-                            className="relative px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                        >
-                            Total
+            <th
+              scope="col"
+              className="relative px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+            >
+              Total
             </th>
-                    </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
-                    {Object.values(roundByRound)
-                        .sort((a, b) => Number(b.total) - Number(a.total))
-                        .map((data, key) => {
-                            return (
-                                <tr key={key} className="bg-white dark:bg-gray-800">
-                                    <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-md font-medium text-gray-900 dark:text-gray-300">
-                                        {data.name} <span className="font-thin">({data.rating ? data.rating : "unrated"})</span>
-                                    </td>
-                                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-md text-gray-700 dark:text-gray-300">
-                                        <div className="flex">
-                                            {data.rounds.map((r) =>
-                                                r ? (
-                                                    <div className="px-2">{r === 0.5 ? "½" : r}</div>
-                                                ) : r === 0 ? (
-                                                    <div className="px-2">{r}</div>
-                                                ) : (
-                                                    ""
-                                                )
-                                            )}
-                                        </div>
-                                    </td>
-                                    <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-md text-gray-500 dark:text-gray-300">
-                                        {data.total}
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                </tbody>
-            </table>
-        </div>
-    );
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
+          {Object.values(roundByRound)
+            .sort((a, b) => Number(b.total) - Number(a.total))
+            .map((data, key) => {
+              return (
+                <tr key={key} className="bg-white dark:bg-gray-800">
+                  <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-md font-medium text-gray-900 dark:text-gray-300">
+                    {data.name}{" "}
+                    <span className="font-thin">
+                      ({data.rating ? data.rating : "unrated"})
+                    </span>
+                  </td>
+                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-md text-gray-700 dark:text-gray-300">
+                    <div className="flex">
+                      {data.rounds.map((r) =>
+                        r ? (
+                          <div className="px-2">{r === 0.5 ? "½" : r}</div>
+                        ) : r === 0 ? (
+                          <div className="px-2">{r}</div>
+                        ) : (
+                          ""
+                        )
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-md text-gray-500 dark:text-gray-300">
+                    {data.total}
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export const PairsTable = ({ format, players, results }) => {
-    const { round, pairings } = format;
-    return (
-        <div>
-            <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 table-auto border-gray-300 dark:border-gray-700 border shadow">
-                <thead className="bg-gray-50 dark:bg-gray-800">
-                    <tr>
-                        <th
-                            scope="col"
-                            className="px-2 sm:px-4 py-2 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                        >
-                            White
-                        </th>
-                        <th
-                            scope="col"
-                            className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                        >
-                            Vs
-                        </th>
-                        <th
-                            scope="col"
-                            className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                        >
-                            Black
-                        </th>
-                    </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
-                    <tr className="bg-white dark:bg-gray-800">
-                        {/* using colSpan=3 here means the header VS doesn't align center with the Round */}
-                        <td className="px-4 sm:px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300"></td>
-                        <td className="px-4 sm:px-6 py-1 text-center text-xs font-medium text-gray-900 dark:text-gray-300">
-                            Round {round}
-                        </td>
-                        <td className="px-4 sm:px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300"></td>
-                    </tr>
-                    {pairings.map((p, key) => {
-                        const [white, black] = results.find(
-                            (r) => r.round === round
-                        ).pairResults[key];
-                        const whitePlayer = players.find((player) => player.seed === p[0]);
-                        const blackPlayer = players.find((player) => player.seed === p[1])
-                        return (
-                            <tr key={key} className="bg-white dark:bg-gray-800">
-                                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700 dark:text-gray-300">
-                                    {whitePlayer.name} <span className="font-thin">({whitePlayer.ratingInfo.rating ? whitePlayer.ratingInfo.rating : "unrated"})</span>
-                                </td>
-                                <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-md text-gray-500 dark:text-gray-300 border-l-2 border-r-2 border-gray-100 dark:border-gray-700">
-                                    {white || black
-                                        ? `${white === 0.5 ? "½" : white} - ${black === 0.5 ? "½" : black
-                                        }`
-                                        : "? - ?"}
-                                </td>
-                                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700 dark:text-gray-300">
-                                    {blackPlayer.name} <span className="font-thin">({blackPlayer.ratingInfo.rating ? blackPlayer.ratingInfo.rating : "unrated"})</span>
-                                </td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
-        </div>
-    );
+  const { round, pairings } = format;
+  return (
+    <div>
+      <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 table-auto border-gray-300 dark:border-gray-700 border shadow">
+        <thead className="bg-gray-50 dark:bg-gray-800">
+          <tr>
+            <th
+              scope="col"
+              className="px-2 sm:px-4 py-2 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+            >
+              White
+            </th>
+            <th
+              scope="col"
+              className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+            >
+              Vs
+            </th>
+            <th
+              scope="col"
+              className="px-4 sm:px-6 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+            >
+              Black
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
+          <tr className="bg-white dark:bg-gray-800">
+            {/* using colSpan=3 here means the header VS doesn't align center with the Round */}
+            <td className="px-4 sm:px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300"></td>
+            <td className="px-4 sm:px-6 py-1 text-center text-xs font-medium text-gray-900 dark:text-gray-300">
+              Round {round}
+            </td>
+            <td className="px-4 sm:px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-gray-300"></td>
+          </tr>
+          {pairings.map((p, key) => {
+            const [white, black] = results.find(
+              (r) => r.round === round
+            ).pairResults[key];
+            const whitePlayer = players.find((player) => player.seed === p[0]);
+            const blackPlayer = players.find((player) => player.seed === p[1]);
+            return (
+              <tr key={key} className="bg-white dark:bg-gray-800">
+                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700 dark:text-gray-300">
+                  {whitePlayer.name}{" "}
+                  <span className="font-thin">
+                    ({whitePlayer.rating ? whitePlayer.rating : "unrated"})
+                  </span>
+                </td>
+                <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-md text-gray-500 dark:text-gray-300 border-l-2 border-r-2 border-gray-100 dark:border-gray-700">
+                  {white || black
+                    ? `${white === 0.5 ? "½" : white} - ${
+                        black === 0.5 ? "½" : black
+                      }`
+                    : "? - ?"}
+                </td>
+                <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700 dark:text-gray-300">
+                  {blackPlayer.name}{" "}
+                  <span className="font-thin">
+                    ({blackPlayer.rating ? blackPlayer.rating : "unrated"})
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export const Internal = () => {
+  const [resultDetails, setResultDetails] = React.useState(resultsFallback);
+  const [isLoading, setIsLoading] = React.useState(false);
 
-    const [resultDetails, setResultDetails] = React.useState(resultsFallback);
-    const [isLoading, setIsLoading] = React.useState(false);
+  React.useEffect(() => {
+    setIsLoading(true);
+    const fetchResults = async () => {
+      const {
+        data: {
+          listResults: { items: results },
+        },
+      } = await API.graphql({
+        query: listResults,
+      });
+      const parsedResult = JSON.parse(results[0].results);
+      setResultDetails(parsedResult);
+    };
+    fetchResults();
+    setIsLoading(false);
+  }, []);
 
-    React.useEffect(() => {
-        setIsLoading(true);
-        const fetchResults = async () => {
-            const { data: {
-                listResults: { items: results },
-            },
-            } = await API.graphql({
-                query: listResults
-            });
-            const parsedResult = JSON.parse(results[0].results)
-            setResultDetails(parsedResult);
-        };
-        fetchResults();
-        setIsLoading(false);
-    }, []);
-
-    return (
-        <div className="grid gap-4 px-2 py-2 h-screen">
-            { isLoading ? "Loading..." : (
-
-
-                <div className="col-span-2 bg-gray-100 rounded-lg shadow-xs">
-                    <div className="mb-4">
-                        <CurrentStandings results={resultDetails}></CurrentStandings>
-                    </div>
-                    <div className="mb-2">
-                        <div className="grid grid-cols-2 gap-2">
-                            <div>
-                                <div className="pb-2">
-                                    <PairsTable
-                                        format={SixPlayerPairings[0]}
-                                        players={players}
-                                        results={resultDetails}
-                                    />
-                                </div>
-                                <div className="pb-2">
-                                    <PairsTable
-                                        format={SixPlayerPairings[1]}
-                                        players={players}
-                                        results={resultDetails}
-                                    />
-                                </div>
-                                <div className="pb-2">
-                                    <PairsTable
-                                        format={SixPlayerPairings[2]}
-                                        players={players}
-                                        results={resultDetails}
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="pb-2">
-                                    <PairsTable
-                                        format={SixPlayerPairings[3]}
-                                        players={players}
-                                        results={resultDetails}
-                                    />
-                                </div>
-                                <div className="pb-2">
-                                    <PairsTable
-                                        format={SixPlayerPairings[4]}
-                                        players={players}
-                                        results={resultDetails}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  return (
+    <div className="grid gap-4 px-2 py-2 h-screen">
+      {isLoading ? (
+        "Loading..."
+      ) : (
+        <div className="col-span-2 bg-gray-100 rounded-lg shadow-xs">
+          <div className="mb-4">
+            <CurrentStandings results={resultDetails}></CurrentStandings>
+          </div>
+          <div className="mb-2">
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <div className="pb-2">
+                  <PairsTable
+                    format={SixPlayerPairings[0]}
+                    players={players}
+                    results={resultDetails}
+                  />
                 </div>
-            )}
+                <div className="pb-2">
+                  <PairsTable
+                    format={SixPlayerPairings[1]}
+                    players={players}
+                    results={resultDetails}
+                  />
+                </div>
+                <div className="pb-2">
+                  <PairsTable
+                    format={SixPlayerPairings[2]}
+                    players={players}
+                    results={resultDetails}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className="pb-2">
+                  <PairsTable
+                    format={SixPlayerPairings[3]}
+                    players={players}
+                    results={resultDetails}
+                  />
+                </div>
+                <div className="pb-2">
+                  <PairsTable
+                    format={SixPlayerPairings[4]}
+                    players={players}
+                    results={resultDetails}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default Internal;

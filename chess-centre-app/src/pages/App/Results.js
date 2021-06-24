@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MayCongress from "../../components/Events/Tables/MayCongress";
 import MayRapidplayDivOne from "../../components/Events/Tables/MayRapidplayDivOne";
 import MayRapidplayDivTwo from "../../components/Events/Tables/MayRapidplayDivTwo";
+import JuneCongress from "../../components/Events/Tables/JuneCongress";
 import Nav from "../../components/Events/Breadcrumb/Nav";
 
 function ListEvents(props) {
@@ -21,6 +22,11 @@ function ListEvents(props) {
       name: "May Rapidplay (Div 2)",
       winner: "Jael Muachikape",
       id: 3,
+    },
+    {
+      name: "June Open Congress",
+      winner: "Tim Hilton",
+      id: 4,
     },
   ];
 
@@ -93,6 +99,8 @@ function Results() {
         return <MayRapidplayDivOne />;
       case 3:
         return <MayRapidplayDivTwo />;
+      case 4:
+        return <JuneCongress />;
       default:
         break;
     }
@@ -100,9 +108,6 @@ function Results() {
 
   return (
     <div className="">
-      <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        Results
-      </h1>
       <div className="my-6 pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
           <h3 className="ml-2 mt-2 text-lg leading-6 font-medium text-gray-900 dark:text-white">

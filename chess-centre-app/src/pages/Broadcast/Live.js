@@ -18,7 +18,6 @@ const Live = () => {
           src={url}
         />
       </div>
-
       <FooterLanding />
     </div>
   );
