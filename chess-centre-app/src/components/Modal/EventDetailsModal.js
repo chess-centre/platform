@@ -9,7 +9,7 @@ export default function EventDetailsModal(props) {
     <>
       <Modal isOpen={open} onClose={() => closeModal()}>
         <ModalHeader className="-mt-2">
-          My upcoming events
+          Events entered
         </ModalHeader>
         <ModalBody>
           

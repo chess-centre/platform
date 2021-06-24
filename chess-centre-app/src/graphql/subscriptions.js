@@ -54,8 +54,6 @@ export const onCreateGame = /* GraphQL */ `
     onCreateGame {
       id
       pgn
-      memberID
-      eventID
       opponent
       colour
       result
@@ -72,8 +70,6 @@ export const onUpdateGame = /* GraphQL */ `
     onUpdateGame {
       id
       pgn
-      memberID
-      eventID
       opponent
       colour
       result
@@ -90,8 +86,6 @@ export const onDeleteGame = /* GraphQL */ `
     onDeleteGame {
       id
       pgn
-      memberID
-      eventID
       opponent
       colour
       result
@@ -236,24 +230,6 @@ export const onCreateMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      games {
-        items {
-          id
-          pgn
-          memberID
-          eventID
-          opponent
-          colour
-          result
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       stripeCustomerId
       stripeCurrentPeriodEnd
       stripePriceId
@@ -285,10 +261,6 @@ export const onCreateMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            games {
-              nextToken
-              startedAt
-            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -316,10 +288,6 @@ export const onCreateMember = /* GraphQL */ `
             createdAt
             updatedAt
             results {
-              nextToken
-              startedAt
-            }
-            games {
               nextToken
               startedAt
             }
@@ -373,24 +341,6 @@ export const onUpdateMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      games {
-        items {
-          id
-          pgn
-          memberID
-          eventID
-          opponent
-          colour
-          result
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       stripeCustomerId
       stripeCurrentPeriodEnd
       stripePriceId
@@ -422,10 +372,6 @@ export const onUpdateMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            games {
-              nextToken
-              startedAt
-            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -453,10 +399,6 @@ export const onUpdateMember = /* GraphQL */ `
             createdAt
             updatedAt
             results {
-              nextToken
-              startedAt
-            }
-            games {
               nextToken
               startedAt
             }
@@ -510,24 +452,6 @@ export const onDeleteMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      games {
-        items {
-          id
-          pgn
-          memberID
-          eventID
-          opponent
-          colour
-          result
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       stripeCustomerId
       stripeCurrentPeriodEnd
       stripePriceId
@@ -559,10 +483,6 @@ export const onDeleteMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            games {
-              nextToken
-              startedAt
-            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -590,10 +510,6 @@ export const onDeleteMember = /* GraphQL */ `
             createdAt
             updatedAt
             results {
-              nextToken
-              startedAt
-            }
-            games {
               nextToken
               startedAt
             }
@@ -663,24 +579,6 @@ export const onCreateEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
-      games {
-        items {
-          id
-          pgn
-          memberID
-          eventID
-          opponent
-          colour
-          result
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       type {
         id
         name
@@ -727,10 +625,6 @@ export const onCreateEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            games {
-              nextToken
-              startedAt
-            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -758,10 +652,6 @@ export const onCreateEvent = /* GraphQL */ `
             createdAt
             updatedAt
             results {
-              nextToken
-              startedAt
-            }
-            games {
               nextToken
               startedAt
             }
@@ -831,24 +721,6 @@ export const onUpdateEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
-      games {
-        items {
-          id
-          pgn
-          memberID
-          eventID
-          opponent
-          colour
-          result
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       type {
         id
         name
@@ -895,10 +767,6 @@ export const onUpdateEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            games {
-              nextToken
-              startedAt
-            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -926,10 +794,6 @@ export const onUpdateEvent = /* GraphQL */ `
             createdAt
             updatedAt
             results {
-              nextToken
-              startedAt
-            }
-            games {
               nextToken
               startedAt
             }
@@ -999,24 +863,6 @@ export const onDeleteEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
-      games {
-        items {
-          id
-          pgn
-          memberID
-          eventID
-          opponent
-          colour
-          result
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       type {
         id
         name
@@ -1063,10 +909,6 @@ export const onDeleteEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            games {
-              nextToken
-              startedAt
-            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -1094,10 +936,6 @@ export const onDeleteEvent = /* GraphQL */ `
             createdAt
             updatedAt
             results {
-              nextToken
-              startedAt
-            }
-            games {
               nextToken
               startedAt
             }
@@ -1160,24 +998,6 @@ export const onCreateEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -1261,24 +1081,6 @@ export const onCreateEntry = /* GraphQL */ `
             results
             players
             eventID
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
             _version
             _deleted
             _lastChangedAt
@@ -1393,24 +1195,6 @@ export const onUpdateEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -1494,24 +1278,6 @@ export const onUpdateEntry = /* GraphQL */ `
             results
             players
             eventID
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
             _version
             _deleted
             _lastChangedAt
@@ -1626,24 +1392,6 @@ export const onDeleteEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -1727,24 +1475,6 @@ export const onDeleteEntry = /* GraphQL */ `
             results
             players
             eventID
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
             _version
             _deleted
             _lastChangedAt

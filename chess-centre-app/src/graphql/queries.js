@@ -76,8 +76,6 @@ export const getGame = /* GraphQL */ `
     getGame(id: $id) {
       id
       pgn
-      memberID
-      eventID
       opponent
       colour
       result
@@ -99,8 +97,6 @@ export const listGames = /* GraphQL */ `
       items {
         id
         pgn
-        memberID
-        eventID
         opponent
         colour
         result
@@ -131,8 +127,6 @@ export const syncGames = /* GraphQL */ `
       items {
         id
         pgn
-        memberID
-        eventID
         opponent
         colour
         result
@@ -335,24 +329,6 @@ export const syncMembers = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -436,24 +412,6 @@ export const getMember = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
-      games {
-        items {
-          id
-          pgn
-          memberID
-          eventID
-          opponent
-          colour
-          result
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       stripeCustomerId
       stripeCurrentPeriodEnd
       stripePriceId
@@ -485,10 +443,6 @@ export const getMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            games {
-              nextToken
-              startedAt
-            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -516,10 +470,6 @@ export const getMember = /* GraphQL */ `
             createdAt
             updatedAt
             results {
-              nextToken
-              startedAt
-            }
-            games {
               nextToken
               startedAt
             }
@@ -578,24 +528,6 @@ export const listMembers = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -695,24 +627,6 @@ export const getEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
-      games {
-        items {
-          id
-          pgn
-          memberID
-          eventID
-          opponent
-          colour
-          result
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       type {
         id
         name
@@ -759,10 +673,6 @@ export const getEvent = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            games {
-              nextToken
-              startedAt
-            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -790,10 +700,6 @@ export const getEvent = /* GraphQL */ `
             createdAt
             updatedAt
             results {
-              nextToken
-              startedAt
-            }
-            games {
               nextToken
               startedAt
             }
@@ -859,24 +765,6 @@ export const listEvents = /* GraphQL */ `
             results
             players
             eventID
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
             _version
             _deleted
             _lastChangedAt
@@ -1015,24 +903,6 @@ export const eventsByStartDate = /* GraphQL */ `
           nextToken
           startedAt
         }
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
         type {
           id
           name
@@ -1158,24 +1028,6 @@ export const syncEvents = /* GraphQL */ `
           nextToken
           startedAt
         }
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
         type {
           id
           name
@@ -1283,24 +1135,6 @@ export const getEntry = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
         stripeCustomerId
         stripeCurrentPeriodEnd
         stripePriceId
@@ -1384,24 +1218,6 @@ export const getEntry = /* GraphQL */ `
             results
             players
             eventID
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
             _version
             _deleted
             _lastChangedAt
@@ -1521,24 +1337,6 @@ export const listEntrys = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
-          games {
-            items {
-              id
-              pgn
-              memberID
-              eventID
-              opponent
-              colour
-              result
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            nextToken
-            startedAt
-          }
           stripeCustomerId
           stripeCurrentPeriodEnd
           stripePriceId
@@ -1582,24 +1380,6 @@ export const listEntrys = /* GraphQL */ `
               results
               players
               eventID
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            nextToken
-            startedAt
-          }
-          games {
-            items {
-              id
-              pgn
-              memberID
-              eventID
-              opponent
-              colour
-              result
               _version
               _deleted
               _lastChangedAt
@@ -1688,24 +1468,6 @@ export const syncEntries = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
-          games {
-            items {
-              id
-              pgn
-              memberID
-              eventID
-              opponent
-              colour
-              result
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            nextToken
-            startedAt
-          }
           stripeCustomerId
           stripeCurrentPeriodEnd
           stripePriceId
@@ -1749,24 +1511,6 @@ export const syncEntries = /* GraphQL */ `
               results
               players
               eventID
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            nextToken
-            startedAt
-          }
-          games {
-            items {
-              id
-              pgn
-              memberID
-              eventID
-              opponent
-              colour
-              result
               _version
               _deleted
               _lastChangedAt

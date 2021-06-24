@@ -12,7 +12,7 @@ import {
 } from "../../api/data.dashboard";
 import { useAuthState, isPaidMember } from "../../context/Auth";
 
-export const getMember = /* GraphQL */ `
+const getMember = /* GraphQL */ `
   query GetMember($id: ID!) {
     getMember(id: $id) {
       id
@@ -58,10 +58,6 @@ export const getMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
-              nextToken
-              startedAt
-            }
             stripeCustomerId
             stripeCurrentPeriodEnd
             stripePriceId
@@ -86,10 +82,6 @@ export const getMember = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
-            Games {
-              nextToken
-              startedAt
-            }
             type {
               id
               name

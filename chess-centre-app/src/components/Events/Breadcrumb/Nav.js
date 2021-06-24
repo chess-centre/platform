@@ -2,7 +2,8 @@ import { HomeIcon } from '@heroicons/react/solid'
 
 const pages = [
   { name: 'Events', href: '#', current: false },
-  { name: 'Recent', href: '#', current: true },
+  { name: 'Recent', href: '#', current: false },
+  { name: 'Results', href: '#', current: true },
 ]
 
 export default function Breadcrumbs() {
@@ -11,6 +12,7 @@ export default function Breadcrumbs() {
       <ol className="bg-white rounded-md shadow px-6 flex space-x-4">
         <li className="flex">
           <div className="flex items-center">
+           {/* // eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a href="#" className="text-gray-400 hover:text-gray-500">
               <HomeIcon className="flex-shrink-0 h-5 w-5" aria-hidden="true" />
               <span className="sr-only">Home</span>

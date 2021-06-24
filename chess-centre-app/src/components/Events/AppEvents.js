@@ -35,24 +35,6 @@ export const listEvents = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
-        games {
-          items {
-            id
-            pgn
-            memberID
-            eventID
-            opponent
-            colour
-            result
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
         type {
           id
           name

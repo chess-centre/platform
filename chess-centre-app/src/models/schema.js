@@ -90,20 +90,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "memberID": {
-                    "name": "memberID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "eventID": {
-                    "name": "eventID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "opponent": {
                     "name": "opponent",
                     "isArray": false,
@@ -132,24 +118,6 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byMember",
-                        "fields": [
-                            "memberID"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byEvent",
-                        "fields": [
-                            "eventID"
-                        ]
-                    }
                 },
                 {
                     "type": "auth",
@@ -466,20 +434,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "games": {
-                    "name": "games",
-                    "isArray": true,
-                    "type": {
-                        "model": "Game"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "memberID"
-                    }
-                },
                 "gameInfo": {
                     "name": "gameInfo",
                     "isArray": false,
@@ -729,20 +683,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "games": {
-                    "name": "games",
-                    "isArray": true,
-                    "type": {
-                        "model": "Game"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "eventID"
-                    }
-                },
                 "complete": {
                     "name": "complete",
                     "isArray": false,
@@ -821,5 +761,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "2a31acf35795377788069a1e4bfb5f6f"
+    "version": "2ec21b964c6fdb81f6c950540a9f0da8"
 };
