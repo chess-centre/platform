@@ -109,7 +109,7 @@ const Home = () => {
               <p className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                 It's time things changed around here.{" "}
                 <span role="img">🚀</span>
-                <div className="mt-2 text-teal-500">Visit our dedicated venue in Ilkley, UK</div>
+                <div className="mt-2 text-teal-500">Visit our dedicated venue in Ilkley</div>
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className={user ? "hidden" : "rounded-md shadow"}>

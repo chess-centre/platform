@@ -10,6 +10,9 @@ export declare class Result {
   readonly results?: string;
   readonly players?: string;
   readonly eventID?: string;
+  readonly name?: string;
+  readonly complete?: boolean;
+  readonly live?: boolean;
   constructor(init: ModelInit<Result>);
   static copyOf(source: Result, mutator: (draft: MutableModel<Result>) => MutableModel<Result> | void): Result;
 }

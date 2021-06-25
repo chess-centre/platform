@@ -1,7 +1,7 @@
 import React from "react";
 import API from "@aws-amplify/api";
 
-export const listResults = /* GraphQL */ `
+const listResults = /* GraphQL */ `
   query ListResults(
     $filter: ModelResultFilterInput
     $limit: Int
@@ -26,119 +26,11 @@ export const listResults = /* GraphQL */ `
   }
 `;
 
-export const CongressEntries = [
-  {
-    id: 1,
-    name: "Tim Hilton",
-    rating: 2005,
-  },
-  {
-    id: 2,
-    name: "Arron Barker",
-
-    rating: 1953,
-  },
-  {
-    id: 3,
-    name: "Sam Davies",
-
-    rating: 1908,
-  },
-  {
-    id: 4,
-    name: "Max Shaw",
-
-    rating: 1796,
-  },
-  {
-    id: 5,
-    name: "Jacob Smith",
-
-    rating: 1791,
-  },
-  {
-    id: 6,
-    name: "Luke Gostelow",
-    rating: "",
-  }
-];
-
-const SixPlayerPairings = [
-  {
-    round: 1,
-    pairings: [
-      [1, 6],
-      [2, 5],
-      [3, 4],
-    ],
-  },
-  {
-    round: 2,
-    pairings: [
-      [6, 4],
-      [5, 3],
-      [1, 2],
-    ],
-  },
-  {
-    round: 3,
-    pairings: [
-      [2, 6],
-      [3, 1],
-      [4, 5],
-    ],
-  },
-  {
-    round: 4,
-    pairings: [
-      [6, 5],
-      [1, 4],
-      [2, 3],
-    ],
-  },
-  {
-    round: 5,
-    pairings: [
-      [3, 6],
-      [4, 2],
-      [5, 1],
-    ],
-  },
-];
-
-const resultsFallback = [
-  {
-    round: 1,
-    pairResults: [[], [], []],
-  },
-  {
-    round: 2,
-    pairResults: [[], [], []],
-  },
-  {
-    round: 3,
-    pairResults: [[], [], []],
-  },
-  {
-    round: 4,
-    pairResults: [[], [], []],
-  },
-  {
-    round: 5,
-    pairResults: [[], [], []],
-  },
-];
-
-const players = [
-  ...CongressEntries.slice(0, 6).map((m, i) => {
-    m.seed = i + 1;
-    return m;
-  }),
-];
-
-const resultCheck = (players, results) => {
+const resultCheck = (pairings, players, results) => {
+  console.log("Result Check");
+  console.log(players);
   const resultBySeed = [];
-  SixPlayerPairings.forEach(({ round, pairings }) => {
+  pairings.forEach(({ round, pairings }) => {
     const pairingResults = results.find((r) => r.round === round).pairResults;
     pairings.forEach((board, index) => {
       const whitePlayer = board[0];
@@ -179,8 +71,8 @@ const resultCheck = (players, results) => {
   return { resultBySeed, roundByRound };
 };
 
-export const CurrentStandings = ({ results }) => {
-  const { roundByRound } = resultCheck(players, results);
+export const CurrentStandings = ({ results, players, pairings }) => {
+  const { roundByRound } = resultCheck(pairings, players, results);
 
   return (
     <div>
@@ -320,7 +212,9 @@ export const PairsTable = ({ format, players, results }) => {
 };
 
 export const Internal = () => {
-  const [resultDetails, setResultDetails] = React.useState(resultsFallback);
+  const [players, setPlayers] = React.useState([]);
+  const [pairings, setPairings] = React.useState([]);
+  const [resultDetails, setResultDetails] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
@@ -333,11 +227,26 @@ export const Internal = () => {
       } = await API.graphql({
         query: listResults,
       });
-      const parsedResult = JSON.parse(results[0].results);
-      setResultDetails(parsedResult);
+      try {
+        const parsedResult = JSON.parse(results[0].results);
+        const parsedPlayer = JSON.parse(results[0].players);
+        const parsedPairings = JSON.parse(results[0].pairings);
+        setResultDetails(parsedResult);
+        setPlayers([
+          ...parsedPlayer.map((m, i) => {
+            m.seed = i + 1;
+            return m;
+          }),
+        ]);
+        setPairings(parsedPairings);
+        console.log("parsedPairings", pairings[0].round);
+      } catch (error) {
+        console.log("Something exploded!", error);
+      }
     };
     fetchResults();
     setIsLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -346,29 +255,41 @@ export const Internal = () => {
         "Loading..."
       ) : (
         <div className="col-span-2 bg-gray-100 rounded-lg shadow-xs">
+          <h1 className="text-2xl tracking-tight leading-10 font-extrabold text-gray-900">
+            June Congress
+          </h1>
           <div className="mb-4">
-            <CurrentStandings results={resultDetails}></CurrentStandings>
+            {Array.isArray(pairings) && pairings.length ? (
+              <CurrentStandings
+                results={resultDetails}
+                players={players}
+                pairings={pairings}
+              ></CurrentStandings>
+            ) : (
+              "Loading"
+            )}
           </div>
           <div className="mb-2">
+          {Array.isArray(pairings) && pairings.length ? (
             <div className="grid grid-cols-2 gap-2">
               <div>
                 <div className="pb-2">
                   <PairsTable
-                    format={SixPlayerPairings[0]}
+                    format={pairings[0]}
                     players={players}
                     results={resultDetails}
                   />
                 </div>
                 <div className="pb-2">
                   <PairsTable
-                    format={SixPlayerPairings[1]}
+                    format={pairings[1]}
                     players={players}
                     results={resultDetails}
                   />
                 </div>
                 <div className="pb-2">
                   <PairsTable
-                    format={SixPlayerPairings[2]}
+                    format={pairings[2]}
                     players={players}
                     results={resultDetails}
                   />
@@ -377,20 +298,23 @@ export const Internal = () => {
               <div>
                 <div className="pb-2">
                   <PairsTable
-                    format={SixPlayerPairings[3]}
+                    format={pairings[3]}
                     players={players}
                     results={resultDetails}
                   />
                 </div>
                 <div className="pb-2">
                   <PairsTable
-                    format={SixPlayerPairings[4]}
+                    format={pairings[4]}
                     players={players}
                     results={resultDetails}
                   />
                 </div>
               </div>
             </div>
+            ) : (
+              "Loading"
+            )}
           </div>
         </div>
       )}

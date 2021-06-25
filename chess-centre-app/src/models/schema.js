@@ -37,6 +37,27 @@ export const schema = {
                     "type": "ID",
                     "isRequired": false,
                     "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "complete": {
+                    "name": "complete",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "live": {
+                    "name": "live",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -761,5 +782,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "2ec21b964c6fdb81f6c950540a9f0da8"
+    "version": "1b349fb979ca53f84af56302b4924bc4"
 };

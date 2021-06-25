@@ -9,6 +9,9 @@ export const onCreateResult = /* GraphQL */ `
       results
       players
       eventID
+      name
+      complete
+      live
       _version
       _deleted
       _lastChangedAt
@@ -25,6 +28,9 @@ export const onUpdateResult = /* GraphQL */ `
       results
       players
       eventID
+      name
+      complete
+      live
       _version
       _deleted
       _lastChangedAt
@@ -41,6 +47,9 @@ export const onDeleteResult = /* GraphQL */ `
       results
       players
       eventID
+      name
+      complete
+      live
       _version
       _deleted
       _lastChangedAt
@@ -570,6 +579,9 @@ export const onCreateEvent = /* GraphQL */ `
           results
           players
           eventID
+          name
+          complete
+          live
           _version
           _deleted
           _lastChangedAt
@@ -712,6 +724,9 @@ export const onUpdateEvent = /* GraphQL */ `
           results
           players
           eventID
+          name
+          complete
+          live
           _version
           _deleted
           _lastChangedAt
@@ -854,6 +869,9 @@ export const onDeleteEvent = /* GraphQL */ `
           results
           players
           eventID
+          name
+          complete
+          live
           _version
           _deleted
           _lastChangedAt
@@ -1081,6 +1099,9 @@ export const onCreateEntry = /* GraphQL */ `
             results
             players
             eventID
+            name
+            complete
+            live
             _version
             _deleted
             _lastChangedAt
@@ -1278,6 +1299,9 @@ export const onUpdateEntry = /* GraphQL */ `
             results
             players
             eventID
+            name
+            complete
+            live
             _version
             _deleted
             _lastChangedAt
@@ -1475,6 +1499,9 @@ export const onDeleteEntry = /* GraphQL */ `
             results
             players
             eventID
+            name
+            complete
+            live
             _version
             _deleted
             _lastChangedAt
