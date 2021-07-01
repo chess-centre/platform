@@ -27,8 +27,7 @@ const listResults = /* GraphQL */ `
 `;
 
 const resultCheck = (pairings, players, results) => {
-  console.log("Result Check");
-  console.log(players);
+
   const resultBySeed = [];
   pairings.forEach(({ round, pairings }) => {
     const pairingResults = results.find((r) => r.round === round).pairResults;
@@ -54,6 +53,7 @@ const resultCheck = (pairings, players, results) => {
     });
   });
   const roundByRound = resultBySeed.reduce((player, { seed, result }) => {
+    console.log("NAME", player.name);
     if (!player[seed]) {
       const p = players.find((p) => p.seed === seed);
       player[seed] = {
@@ -191,9 +191,8 @@ export const PairsTable = ({ format, players, results }) => {
                 </td>
                 <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-md text-gray-500 dark:text-gray-300 border-l-2 border-r-2 border-gray-100 dark:border-gray-700">
                   {white || black
-                    ? `${white === 0.5 ? "½" : white} - ${
-                        black === 0.5 ? "½" : black
-                      }`
+                    ? `${white === 0.5 ? "½" : white} - ${black === 0.5 ? "½" : black
+                    }`
                     : "? - ?"}
                 </td>
                 <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700 dark:text-gray-300">
@@ -211,40 +210,177 @@ export const PairsTable = ({ format, players, results }) => {
   );
 };
 
+const p = [
+  {
+    seed: 1,
+    id: 1,
+    name: "Matthew Webb",
+    rating: 2553
+  },
+  {
+    seed: 2,
+    id: 2,
+    name: "Bernard Chan",
+    rating: 2095
+  },
+  {
+    seed: 3,
+    id: 3,
+    name: "Andrew Wainwright",
+    rating: 2010
+  },
+  {
+    seed: 4,
+    id: 4,
+    name: "Tim Hilton",
+    rating: 2005
+  },
+  {
+    seed: 5,
+    id: 5,
+    name: "Sam Davies",
+    rating: 1960
+  },
+  {
+    seed: 6,
+    id: 6,
+    name: "Gawain Ako",
+    rating: 1942
+  },
+  {
+    seed: 7,
+    id: 7,
+    name: "Kevin Winter",
+    rating: 1788
+  },
+  {
+    seed: 8,
+    id: 8,
+    name: "Martin Gawne",
+    rating: 1690
+  },
+  {
+    seed: 9,
+    id: 9,
+    name: "Gary Corcoran",
+    rating: 1668
+  },
+  {
+    seed: 10,
+    id: 10,
+    name: "Jiping Li",
+    rating: 1580
+  }
+];
+
 export const Internal = () => {
-  const [players, setPlayers] = React.useState([]);
-  const [pairings, setPairings] = React.useState([]);
-  const [resultDetails, setResultDetails] = React.useState([]);
+  const [players, setPlayers] = React.useState(p);
+  const [pairings, setPairings] = React.useState([
+    {
+      round: 1,
+      pairings: [
+        [1,6],
+        [7,2],
+        [3, 8],
+        [9, 4],
+        [5, 10]
+      ],
+    },
+    {
+      round: 2,
+      pairings: [
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+    },
+    {
+      round: 3,
+      pairings: [
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+    },
+    {
+      round: 4,
+      pairings: [
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+    },
+    {
+      round: 5,
+      pairings: [
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+    },
+  ]);
+  const [resultDetails, setResultDetails] = React.useState(
+    [
+      {
+        round: 1,
+        pairResults: [[], [], [], [], []]
+      },
+      {
+        round: 2,
+        pairResults: [[], [], [], [], []]
+      },
+      {
+        round: 3,
+        pairResults: [[], [], [], [], []]
+      },
+      {
+        round: 4,
+        pairResults: [[], [], [], [], []]
+      },
+      {
+        round: 5,
+        pairResults: [[], [], [], [], []]
+      }
+    ]
+  );
   const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
     setIsLoading(true);
-    const fetchResults = async () => {
-      const {
-        data: {
-          listResults: { items: results },
-        },
-      } = await API.graphql({
-        query: listResults,
-      });
-      try {
-        const parsedResult = JSON.parse(results[0].results);
-        const parsedPlayer = JSON.parse(results[0].players);
-        const parsedPairings = JSON.parse(results[0].pairings);
-        setResultDetails(parsedResult);
-        setPlayers([
-          ...parsedPlayer.map((m, i) => {
-            m.seed = i + 1;
-            return m;
-          }),
-        ]);
-        setPairings(parsedPairings);
-        console.log("parsedPairings", pairings[0].round);
-      } catch (error) {
-        console.log("Something exploded!", error);
-      }
-    };
-    fetchResults();
+    // const fetchResults = async () => {
+    //   const {
+    //     data: {
+    //       listResults: { items: results },
+    //     },
+    //   } = await API.graphql({
+    //     query: listResults,
+    //   });
+    //   try {
+    //     const parsedResult = JSON.parse(results[0].results);
+    //     const parsedPlayer = JSON.parse(results[0].players);
+    //     const parsedPairings = JSON.parse(results[0].pairings);
+    //     setResultDetails(parsedResult);
+    //     setPlayers([
+    //       ...parsedPlayer.map((m, i) => {
+    //         m.seed = i + 1;
+    //         return m;
+    //       }),
+    //     ]);
+    //     setPairings(parsedPairings);
+    //     console.log("parsedPairings", pairings[0].round);
+    //   } catch (error) {
+    //     console.log("Something exploded!", error);
+    //   }
+    // };
+    // fetchResults();
     setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -256,7 +392,7 @@ export const Internal = () => {
       ) : (
         <div className="col-span-2 bg-gray-100 rounded-lg shadow-xs">
           <h1 className="text-2xl tracking-tight leading-10 font-extrabold text-gray-900">
-            June Congress
+            June Rapidplay
           </h1>
           <div className="mb-4">
             {Array.isArray(pairings) && pairings.length ? (
@@ -270,48 +406,48 @@ export const Internal = () => {
             )}
           </div>
           <div className="mb-2">
-          {Array.isArray(pairings) && pairings.length ? (
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <div className="pb-2">
-                  <PairsTable
-                    format={pairings[0]}
-                    players={players}
-                    results={resultDetails}
-                  />
+            {Array.isArray(pairings) && pairings.length ? (
+              <div className="grid grid-cols-2 gap-2">
+                {/* <div>
+                  <div className="pb-2">
+                    <PairsTable
+                      format={pairings[0]}
+                      players={players}
+                      results={resultDetails}
+                    />
+                  </div>
+                  <div className="pb-2">
+                    <PairsTable
+                      format={pairings[1]}
+                      players={players}
+                      results={resultDetails}
+                    />
+                  </div>
+                  <div className="pb-2">
+                    <PairsTable
+                      format={pairings[2]}
+                      players={players}
+                      results={resultDetails}
+                    />
+                  </div>
                 </div>
-                <div className="pb-2">
-                  <PairsTable
-                    format={pairings[1]}
-                    players={players}
-                    results={resultDetails}
-                  />
-                </div>
-                <div className="pb-2">
-                  <PairsTable
-                    format={pairings[2]}
-                    players={players}
-                    results={resultDetails}
-                  />
-                </div>
+                <div>
+                  <div className="pb-2">
+                    <PairsTable
+                      format={pairings[3]}
+                      players={players}
+                      results={resultDetails}
+                    />
+                  </div>
+                  <div className="pb-2">
+                    <PairsTable
+                      format={pairings[4]}
+                      players={players}
+                      results={resultDetails}
+                    />
+                  </div>
+                </div> */}
               </div>
-              <div>
-                <div className="pb-2">
-                  <PairsTable
-                    format={pairings[3]}
-                    players={players}
-                    results={resultDetails}
-                  />
-                </div>
-                <div className="pb-2">
-                  <PairsTable
-                    format={pairings[4]}
-                    players={players}
-                    results={resultDetails}
-                  />
-                </div>
-              </div>
-            </div>
             ) : (
               "Loading"
             )}
