@@ -4,6 +4,11 @@ type Result @model @auth(rules: [{allow: private}]) @key(name: "byEvent", fields
   results: AWSJSON
   players: AWSJSON
   eventID: ID
+  name: String
+  complete: Boolean
+  live: Boolean
+  winner: String
+  dgtCloudUrl: String
 }
 
 type Game @model @auth(rules: [{allow: private}]) {

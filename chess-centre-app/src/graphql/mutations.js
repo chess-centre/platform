@@ -12,6 +12,11 @@ export const createResult = /* GraphQL */ `
       results
       players
       eventID
+      name
+      complete
+      live
+      winner
+      dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
@@ -31,6 +36,11 @@ export const updateResult = /* GraphQL */ `
       results
       players
       eventID
+      name
+      complete
+      live
+      winner
+      dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
@@ -50,6 +60,11 @@ export const deleteResult = /* GraphQL */ `
       results
       players
       eventID
+      name
+      complete
+      live
+      winner
+      dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
@@ -618,6 +633,11 @@ export const createEvent = /* GraphQL */ `
           results
           players
           eventID
+          name
+          complete
+          live
+          winner
+          dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
@@ -763,6 +783,11 @@ export const updateEvent = /* GraphQL */ `
           results
           players
           eventID
+          name
+          complete
+          live
+          winner
+          dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
@@ -908,6 +933,11 @@ export const deleteEvent = /* GraphQL */ `
           results
           players
           eventID
+          name
+          complete
+          live
+          winner
+          dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
@@ -1138,6 +1168,11 @@ export const createEntry = /* GraphQL */ `
             results
             players
             eventID
+            name
+            complete
+            live
+            winner
+            dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
@@ -1338,6 +1373,11 @@ export const updateEntry = /* GraphQL */ `
             results
             players
             eventID
+            name
+            complete
+            live
+            winner
+            dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
@@ -1538,6 +1578,11 @@ export const deleteEntry = /* GraphQL */ `
             results
             players
             eventID
+            name
+            complete
+            live
+            winner
+            dgtCloudUrl
             _version
             _deleted
             _lastChangedAt

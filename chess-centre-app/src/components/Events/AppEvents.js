@@ -131,7 +131,7 @@ function useEvents() {
       },
     } = await API.graphql({
       query: listEvents,
-      variables: { filter: { startDate: { gt: today } } },
+      variables: { filter: { startDate: { gt: today } } }
     });
 
     const sorted = events

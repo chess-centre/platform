@@ -112,6 +112,13 @@ const routes = [
     component: lazy(() => import("../containers/Layout")),
     isPrivate: true,
   },
+    {
+    path: "/internal/live/:id",
+    component: lazy(() => import("../pages/Broadcast/Viewer")),
+    exact: true,
+    isPrivate: false,
+    isAdmin: true
+  },
   {
     path: "/internal/live",
     component: lazy(() => import("../pages/Broadcast/Internal")),
@@ -119,6 +126,7 @@ const routes = [
     isPrivate: false,
     isAdmin: true
   },
+
   {
     path: "/internal/match",
     component: lazy(() => import("../pages/Broadcast/InternalChallenge")),
