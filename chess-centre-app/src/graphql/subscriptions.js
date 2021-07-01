@@ -12,6 +12,8 @@ export const onCreateResult = /* GraphQL */ `
       name
       complete
       live
+      winner
+      dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
@@ -31,6 +33,8 @@ export const onUpdateResult = /* GraphQL */ `
       name
       complete
       live
+      winner
+      dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
@@ -50,6 +54,8 @@ export const onDeleteResult = /* GraphQL */ `
       name
       complete
       live
+      winner
+      dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
@@ -582,6 +588,8 @@ export const onCreateEvent = /* GraphQL */ `
           name
           complete
           live
+          winner
+          dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
@@ -727,6 +735,8 @@ export const onUpdateEvent = /* GraphQL */ `
           name
           complete
           live
+          winner
+          dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
@@ -872,6 +882,8 @@ export const onDeleteEvent = /* GraphQL */ `
           name
           complete
           live
+          winner
+          dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
@@ -1102,6 +1114,8 @@ export const onCreateEntry = /* GraphQL */ `
             name
             complete
             live
+            winner
+            dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
@@ -1302,6 +1316,8 @@ export const onUpdateEntry = /* GraphQL */ `
             name
             complete
             live
+            winner
+            dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
@@ -1502,6 +1518,8 @@ export const onDeleteEntry = /* GraphQL */ `
             name
             complete
             live
+            winner
+            dgtCloudUrl
             _version
             _deleted
             _lastChangedAt

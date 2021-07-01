@@ -1,33 +1,7 @@
 import React from "react";
 import API from "@aws-amplify/api";
-import { Link } from "react-router-dom"
-
-export const listResults = /* GraphQL */ `
-  query ListResults(
-    $filter: ModelResultFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listResults(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        live
-        pairings
-        results
-        players
-        eventID
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
+import { Link } from "react-router-dom";
+import { listResults } from "../../graphql/queries";
 
 const List = () => {
   const [liveResults, setLiveResults] = React.useState([]);
@@ -58,7 +32,7 @@ const List = () => {
               scope="col"
               className="px-4 py-3 text-left text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
-              Name
+              Event Name
             </th>
             <th
               scope="col"
@@ -68,27 +42,27 @@ const List = () => {
             </th>
             <th
               scope="col"
-              className="px-4 py-3 text-left text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="px-4 py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
-              Event
+              Players
             </th>
             <th
               scope="col"
-              className="px-4 py-3 text-left text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-            >
-              Player Count
-            </th>
-            <th
-              scope="col"
-              className="relative py-3 text-left text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="relative py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
               Live
             </th>
             <th
               scope="col"
-              className="relative py-3 text-left text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="relative py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
             >
-              Visit
+              <span className="text-teal-700"><i className="fad fa-bullhorn"></i></span>
+            </th>
+            <th
+              scope="col"
+              className="relative py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+            >
+              <span className="text-gray-700"><i className="fad fa-clouds"></i></span>
             </th>
           </tr>
         </thead>
@@ -105,13 +79,10 @@ const List = () => {
                   <td className="px-4 sm:px-4 py-2 whitespace-nowrap text-md font-medium text-gray-900 dark:text-gray-300">
                     {data.id}
                   </td>
-                  <td className="px-4 sm:px-4 py-2 whitespace-nowrap text-md font-medium text-gray-900 dark:text-gray-300">
-                    {data.eventId}
+                  <td className="px-4 sm:px-4 py-2 text-center whitespace-nowrap text-md font-medium text-gray-900 dark:text-gray-300">
+                    {JSON.parse(data.players).length}
                   </td>
-                  <td className="px-4 sm:px-4 py-2 whitespace-nowrap text-md font-medium text-gray-900 dark:text-gray-300">
-                    0
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-left text-md text-gray-500 dark:text-gray-300">
+                  <td className="px-4 py-4 text-center whitespace-nowrap text-md text-gray-500 dark:text-gray-300">
                     {data.live ? (
                       <span className="text-teal-500">
                         <i className="fas fa-broadcast-tower"></i>
@@ -122,12 +93,28 @@ const List = () => {
                   </td>
                   <th
                     scope="col"
-                    className="relative py-3 text-left text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                    className="relative py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                   >
                     <div className="">
-                    <Link to={`/internal/live/${data.id}`}
-                                  className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-                    >View</Link>
+                      <Link
+                        to={`/internal/live/${data.id}`}
+                        className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                      >
+                        Display
+                      </Link>
+                    </div>
+                  </th>
+                  <th
+                    scope="col"
+                    className="relative py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+                  >
+                    <div className="">
+                      <Link
+                        to="/broadcast/live"
+                        className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                      >
+                        Test
+                      </Link>
                     </div>
                   </th>
                 </tr>

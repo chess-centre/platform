@@ -13,6 +13,8 @@ export declare class Result {
   readonly name?: string;
   readonly complete?: boolean;
   readonly live?: boolean;
+  readonly winner?: string;
+  readonly dgtCloudUrl?: string;
   constructor(init: ModelInit<Result>);
   static copyOf(source: Result, mutator: (draft: MutableModel<Result>) => MutableModel<Result> | void): Result;
 }

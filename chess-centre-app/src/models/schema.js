@@ -58,6 +58,20 @@ export const schema = {
                     "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
+                },
+                "winner": {
+                    "name": "winner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "dgtCloudUrl": {
+                    "name": "dgtCloudUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -782,5 +796,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "1b349fb979ca53f84af56302b4924bc4"
+    "version": "8ecdcc0b37178758b72a3e37e146233b"
 };

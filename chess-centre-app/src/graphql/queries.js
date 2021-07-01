@@ -12,6 +12,8 @@ export const getResult = /* GraphQL */ `
       name
       complete
       live
+      winner
+      dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
@@ -36,6 +38,8 @@ export const listResults = /* GraphQL */ `
         name
         complete
         live
+        winner
+        dgtCloudUrl
         _version
         _deleted
         _lastChangedAt
@@ -69,6 +73,8 @@ export const syncResults = /* GraphQL */ `
         name
         complete
         live
+        winner
+        dgtCloudUrl
         _version
         _deleted
         _lastChangedAt
@@ -630,6 +636,8 @@ export const getEvent = /* GraphQL */ `
           name
           complete
           live
+          winner
+          dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
@@ -780,6 +788,8 @@ export const listEvents = /* GraphQL */ `
             name
             complete
             live
+            winner
+            dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
@@ -912,6 +922,8 @@ export const eventsByStartDate = /* GraphQL */ `
             name
             complete
             live
+            winner
+            dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
@@ -1040,6 +1052,8 @@ export const syncEvents = /* GraphQL */ `
             name
             complete
             live
+            winner
+            dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
@@ -1242,6 +1256,8 @@ export const getEntry = /* GraphQL */ `
             name
             complete
             live
+            winner
+            dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
@@ -1407,6 +1423,8 @@ export const listEntrys = /* GraphQL */ `
               name
               complete
               live
+              winner
+              dgtCloudUrl
               _version
               _deleted
               _lastChangedAt
@@ -1541,6 +1559,8 @@ export const syncEntries = /* GraphQL */ `
               name
               complete
               live
+              winner
+              dgtCloudUrl
               _version
               _deleted
               _lastChangedAt
