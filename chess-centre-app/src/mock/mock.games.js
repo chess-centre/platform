@@ -1,4 +1,4 @@
-// TO BE MOVE TO BACKEND
+// TEMP
 export const games = [
   {
     opponent: "Spassky, Boris V",
