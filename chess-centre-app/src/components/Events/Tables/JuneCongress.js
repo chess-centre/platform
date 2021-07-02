@@ -1,6 +1,6 @@
 import React from "react";
-import Winner from "../../../assets/img/june-congress-winner.jpeg";
-import LukeJacob from "../../../assets/img/june-congress-round-4.jpeg";
+import Winner from "../../../assets/img/june-congress-winner.jpg";
+import LukeJacob from "../../../assets/img/june-congress-round-4.jpg";
 
 export const CongressEntries = [
   {

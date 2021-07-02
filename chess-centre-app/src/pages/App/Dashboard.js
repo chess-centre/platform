@@ -4,115 +4,13 @@ import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
 import { Line, Bar } from "react-chartjs-2";
 import ChartLegend from "../../components/Chart/ChartLegend";
+import { getMember } from "../../graphql/queries";
 import {
-  lineLegends,
   GamesChart,
   RatingProgressChart,
-  barLegends,
+  getTotalGameCount
 } from "../../api/data.dashboard";
 import { useAuthState, isPaidMember } from "../../context/Auth";
-
-const getMember = /* GraphQL */ `
-  query GetMember($id: ID!) {
-    getMember(id: $id) {
-      id
-      about
-      fideId
-      ecfId
-      username
-      name
-      email
-      ecfRating
-      membershipType
-      gameInfo
-      ratingInfo
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      entries {
-        items {
-          id
-          eventId
-          memberId
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          member {
-            id
-            about
-            fideId
-            ecfId
-            username
-            name
-            email
-            ecfRating
-            membershipType
-            gameInfo
-            ratingInfo
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            stripeCustomerId
-            stripeCurrentPeriodEnd
-            stripePriceId
-            stripeProductId
-            entries {
-              nextToken
-              startedAt
-            }
-          }
-          event {
-            id
-            name
-            description
-            rounds
-            time
-            startDate
-            endDate
-            maxEntries
-            entryCount
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            type {
-              id
-              name
-              description
-              url
-              color
-              time
-              maxEntries
-              stripePriceId
-              timeControl
-              eventType
-              defaultPrice
-              canRegister
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            entries {
-              nextToken
-              startedAt
-            }
-          }
-        }
-        nextToken
-        startedAt
-      }
-    }
-  }
-`;
 
 export default function Dashboard() {
   const [isPaid, setIsPaid] = useState(false);
@@ -141,9 +39,9 @@ export default function Dashboard() {
         <i className="fad fa-chart-network text-teal-600"></i> Dashboard
         {isPaid ? (
           <div className="inline-flex align-top top-2">
-          <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
-            Premium 
-          </span>
+            <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
+              Premium
+            </span>
           </div>
         ) : (
           ""
@@ -159,17 +57,27 @@ export default function Dashboard() {
       </div>
       <Stats
         entries={member?.entries?.items || 0}
+        gameCount={getTotalGameCount("longPlay", member?.gameInfo)}
         rating={member?.ecfRating || 0}
       />
       <div className="grid gap-6 mb-8 md:grid-cols-2 mt-6">
         <ChartCard title="Rating">
-          <Line {...RatingProgressChart([member?.ecfRating || 0], [])} />
-          <ChartLegend legends={lineLegends} />
+          <Line {...RatingProgressChart(member?.ratingInfo)} />
+          <ChartLegend
+            legends={[
+              { title: "Standard", color: "bg-teal-brand" },
+              { title: "Rapid", color: "bg-orange-brand" },
+            ]}
+          />
         </ChartCard>
-
         <ChartCard title="Games">
-          <Bar {...GamesChart([], [])} />
-          <ChartLegend legends={barLegends} />
+          <Bar {...GamesChart(member?.gameInfo)} />
+          <ChartLegend
+            legends={[
+              { title: "Standard", color: "bg-teal-brand" },
+              { title: "Rapid", color: "bg-orange-brand" },
+            ]}
+          />
         </ChartCard>
       </div>
     </>
