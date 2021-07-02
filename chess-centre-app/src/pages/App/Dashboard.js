@@ -100,10 +100,11 @@ export default function Dashboard() {
         </ChartCard>
       </div>
       <div className="grid gap-6 mb-8 mt-6 relative min-w-0 p-4 bg-white shadow rounded-lg border-gray-100">
-        <div className="">
+        <div className="overflow-x-auto">
           <p className="mb-4 font-semibold text-gray-800 dark:text-gray-300">
             Events
           </p>
+          <div className="overflow-x-auto">
           { upcomingEvents.length > 0 ? (
             <div>
               <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
@@ -248,6 +249,7 @@ export default function Dashboard() {
           ) : (
             ""
           )}
+          </div>
           
           </div>
           <div className="absolute rounded-b-lg bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-100"></div>

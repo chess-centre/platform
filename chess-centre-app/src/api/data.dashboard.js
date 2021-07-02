@@ -8,7 +8,10 @@ export const getTotalGameCount = (type, gameInfo) => {
 
 const getMonthByMonthGameCount = (type, data) => {
   return data.reduce((pre, { games }) => {
-    return [...pre, games[type]];
+    if(games[type]) {
+      return [...pre, games[type]];
+    } else return [...pre, 0]
+    
   }, []);
 };
 
