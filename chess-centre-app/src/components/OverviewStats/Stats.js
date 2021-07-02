@@ -1,25 +1,10 @@
-import React, { useState } from "react";
-import EventDetailsModal from "../Modal/EventDetailsModal";
+import React from "react";
 
 function Stats(props) {
   const { entries, rating, gameCount } = props;
-  const [modalState, setModalState] = useState({});
-
-  const closeModal = () => {
-    setModalState((s) => ({ ...s, open: false }));
-  };
-
-  const showModal = () => {
-    setModalState({
-      entries,
-      open: true,
-    });
-  };
 
   return (
     <div>
-      <EventDetailsModal {...modalState} closeModal={closeModal} />
-
       <dl className="mt-5 grid grid-cols-3 gap-2 sm:gap-4">
         <div className="relative text-center sm:text-left bg-white dark:bg-gray-800 px-4 sm:pb-12 sm:pt-6 sm:px-6 shadow rounded-lg sm:overflow-hidden">
           <div>
@@ -35,8 +20,7 @@ function Stats(props) {
           <div className="sm:ml-16 flex items-baseline pb-7 sm:pb-0">
             {entries.length > 0 ? (
               <p
-                onClick={showModal}
-                className="text-2xl font-semibold text-gray-900 dark:text-white m-auto sm:m-0 cursor-pointer"
+                className="text-2xl font-semibold text-gray-900 dark:text-white m-auto sm:m-0"
               >
                 {entries.length}
               </p>
@@ -46,7 +30,7 @@ function Stats(props) {
               </p>
             )}
 
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6  border-t border-gray-50 dark:border-gray-700"></div>
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6  border-t border-gray-100 dark:border-gray-700"></div>
           </div>
         </div>
 
@@ -66,7 +50,7 @@ function Stats(props) {
               {gameCount ? gameCount : 0 }
             </p>
 
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-50 dark:border-gray-700"></div>
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-100 dark:border-gray-700"></div>
           </div>
         </div>
 
@@ -86,7 +70,7 @@ function Stats(props) {
               {rating}
             </p>
 
-            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-10 border-t border-gray-50 dark:border-gray-700"></div>
+            <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-10 border-t border-gray-100 dark:border-gray-700"></div>
           </div>
         </div>
       </dl>

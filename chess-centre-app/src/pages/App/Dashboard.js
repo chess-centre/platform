@@ -8,15 +8,17 @@ import { getMember } from "../../graphql/queries";
 import {
   GamesChart,
   RatingProgressChart,
-  getTotalGameCount
+  getTotalGameCount,
 } from "../../api/data.dashboard";
+import { prettyDate } from "../../utils/DateFormating";
 import { useAuthState, isPaidMember } from "../../context/Auth";
 
 export default function Dashboard() {
   const [isPaid, setIsPaid] = useState(false);
-
   const { user } = useAuthState();
   const [member, setMember] = useState();
+  const [previousEvents, setPreviousEvents] = useState([]);
+  const [upcomingEvents, setUpComingEvents] = useState([]);
 
   useEffect(() => {
     async function fetchMember() {
@@ -29,9 +31,23 @@ export default function Dashboard() {
       const membershipStatus = await isPaidMember();
       setIsPaid(membershipStatus);
       setMember(member);
+      if (member?.entries?.items) {
+        setEventData(member.entries.items);
+      }
     }
     fetchMember();
   }, [user]);
+
+  const setEventData = (data) => {
+    const past = data.filter(
+      ({ event }) => new Date(event.startDate) < new Date()
+    );
+    const upcoming = data.filter(
+      ({ event }) => new Date(event.startDate) >= new Date()
+    );
+    setPreviousEvents(past);
+    setUpComingEvents(upcoming);
+  };
 
   return (
     <>
@@ -57,7 +73,10 @@ export default function Dashboard() {
       </div>
       <Stats
         entries={member?.entries?.items || 0}
-        gameCount={getTotalGameCount("longPlay", member?.gameInfo)}
+        gameCount={
+          getTotalGameCount("longPlay", member?.gameInfo) +
+          getTotalGameCount("rapidPlay", member?.gameInfo)
+        }
         rating={member?.ecfRating || 0}
       />
       <div className="grid gap-6 mb-8 md:grid-cols-2 mt-6">
@@ -79,6 +98,160 @@ export default function Dashboard() {
             ]}
           />
         </ChartCard>
+      </div>
+      <div className="grid gap-6 mb-8 mt-6 relative min-w-0 p-4 bg-white shadow rounded-lg border-gray-100">
+        <div className="">
+          <p className="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+            Events
+          </p>
+          { upcomingEvents.length > 0 ? (
+            <div>
+              <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
+                Your upcoming events.
+              </p>
+              <table className="mt-2 divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                <tr>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                    >
+                      Name
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                    >
+                      Description
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                    >
+                      Rounds
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                    >
+                      Entries
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                    >
+                      Date
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {upcomingEvents &&
+                    upcomingEvents.map(({ event }, key) => (
+                      <tr
+                        key={key}
+                        className={key % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                      >
+                        <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {event.name || event.type?.name}
+                        </td>
+                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {event.type.description}
+                        </td>
+                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                          {event.rounds || event.type?.rounds}
+                        </td>
+                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                          {event.entryCount}
+                        </td>
+                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
+                          {prettyDate(event.startDate)}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            ""
+          )}
+          <div>
+
+          
+          { previousEvents.length > 0 ? (
+            <div>
+              <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
+                Your previous events you have participated in.
+              </p>
+              <table className="mt-2 divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                    >
+                      Name
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                    >
+                      Description
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                    >
+                      Rounds
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                    >
+                      Entries
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                    >
+                      Date
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {previousEvents.length > 0 &&
+                    previousEvents.map(({ event }, key) => (
+                      <tr
+                        key={key}
+                        className={key % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                      >
+                        <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {event.name || event.type?.name}
+                        </td>
+                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {event.type.description}
+                        </td>
+                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                          {event.rounds || event.type?.rounds}
+                        </td>
+                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                          {event.entryCount}
+                        </td>
+                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
+                          {prettyDate(event.startDate)}
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+              
+            </div>
+          ) : (
+            ""
+          )}
+          
+          </div>
+          <div className="absolute rounded-b-lg bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-100"></div>
+        </div>  
       </div>
     </>
   );
