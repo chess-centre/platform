@@ -1,6 +1,69 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createBroadcast = /* GraphQL */ `
+  mutation CreateBroadcast(
+    $input: CreateBroadcastInput!
+    $condition: ModelBroadcastConditionInput
+  ) {
+    createBroadcast(input: $input, condition: $condition) {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateBroadcast = /* GraphQL */ `
+  mutation UpdateBroadcast(
+    $input: UpdateBroadcastInput!
+    $condition: ModelBroadcastConditionInput
+  ) {
+    updateBroadcast(input: $input, condition: $condition) {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteBroadcast = /* GraphQL */ `
+  mutation DeleteBroadcast(
+    $input: DeleteBroadcastInput!
+    $condition: ModelBroadcastConditionInput
+  ) {
+    deleteBroadcast(input: $input, condition: $condition) {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createResult = /* GraphQL */ `
   mutation CreateResult(
     $input: CreateResultInput!

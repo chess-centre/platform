@@ -1,3 +1,13 @@
+type Broadcast @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  buttonName: String
+  isLive: Boolean
+  description: String
+  name: String
+  pageUrl: String
+  dgtUrl: String
+}
+
 type Result @model @auth(rules: [{allow: private}]) @key(name: "byEvent", fields: ["eventID"]) {
   id: ID!
   pairings: AWSJSON

@@ -4,6 +4,18 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class Broadcast {
+  readonly id: string;
+  readonly buttonName?: string;
+  readonly isLive?: boolean;
+  readonly description?: string;
+  readonly name?: string;
+  readonly pageUrl?: string;
+  readonly dgtUrl?: string;
+  constructor(init: ModelInit<Broadcast>);
+  static copyOf(source: Broadcast, mutator: (draft: MutableModel<Broadcast>) => MutableModel<Broadcast> | void): Broadcast;
+}
+
 export declare class Result {
   readonly id: string;
   readonly pairings?: string;

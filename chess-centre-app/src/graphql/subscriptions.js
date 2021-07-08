@@ -1,6 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateBroadcast = /* GraphQL */ `
+  subscription OnCreateBroadcast {
+    onCreateBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBroadcast = /* GraphQL */ `
+  subscription OnUpdateBroadcast {
+    onUpdateBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBroadcast = /* GraphQL */ `
+  subscription OnDeleteBroadcast {
+    onDeleteBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateResult = /* GraphQL */ `
   subscription OnCreateResult {
     onCreateResult {

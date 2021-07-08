@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import API from "@aws-amplify/api";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { useAuthState } from "../../context/Auth";
 import LandingNav from "../../components/Navigation/LandingNav";
@@ -7,10 +8,41 @@ import ComingEvents from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
+import { listBroadcasts } from "../../graphql/queries";
 
 const Home = () => {
   const showLiveGames = false; // make config driven
   const { user } = useAuthState();
+  const [liveInfo, setLiveInfo] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const fetchBoardcast = async () => {
+      setIsLoading(true);
+      const {
+        data: {
+          listBroadcasts: {
+            items
+          }
+        }
+      } = await API.graphql({ query: listBroadcasts, filter: { isLive: { "eq": true } } })
+      .catch(e => {
+        setIsLoading(false);
+        console.log('Error loading live data', e);
+      });
+      setLiveInfo(items);
+      setIsLoading(false);
+    };
+    try {
+      if(user) {
+        fetchBoardcast();
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.log('Error loading live data', error);
+    }
+  }, []);
+
 
   return (
     <div>
@@ -121,31 +153,48 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-              {showLiveGames && (
-                <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-                  <div className="rounded-md shadow">
-                    <Link
-                      to="/broadcast/live"
-                      className={`
-                    w-full flex items-center justify-center 
-                    px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
-                    focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10`}
-                    >
-                      <span class="flex relative h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
-                      </span>{" "}
-                      <span className="ml-2">Live Games</span>
-                    </Link>
+
+
+              {
+                !isLoading ? (
+                  liveInfo.map(({ buttonName, name }) => {
+                    return (
+                      <div className="mt-2">
+                      <h3 className="text-2xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none">{ name }</h3>
+                      <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center">
+                        <div className="rounded-md shadow">
+                          <Link
+                            to="/broadcast/live"
+                            className={`
+                        w-full flex items-center justify-center 
+                        px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
+                        focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10`}
+                          >
+                            <span class="flex relative h-3 w-3">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
+                            </span>{" "}
+                            <span className="ml-2">{buttonName ? buttonName : "Live Games"}</span>
+                          </Link>
+                        </div>
+                      </div>
+                      </div>
+                    )
+                  })
+
+                ) : (<div className="mt-4">
+                  <div className="text-teal-500 mb-2">
+                    <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
                   </div>
-                </div>
-              )}
+                </div>)
+              }
+
             </div>
           </main>
         </div>
       </div>
       <div className="relative max-w-6xl mx-auto px-4 sm:px-28">
-        
+
         <div className="pt-4 pb-0 sm:py-10">
 
           <div className="aspect-w-16 aspect-h-9">
