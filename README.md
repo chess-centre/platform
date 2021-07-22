@@ -1,7 +1,7 @@
 <p align="center">
   <img src="img/bcc-logo.png" width="150" />
   <h1 align="center"><strong></strong> The Chess Centre | Platform</h1>
-  <h3 align="center">Beta</h3
+  <h3 align="center">v1.0.6</h3
 </p>
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade&style=flat-square)
