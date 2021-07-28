@@ -10,6 +10,7 @@ Amplify Params - DO NOT EDIT */
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 const AWS = require("aws-sdk");
 const region = process.env.REGION;
+const env = process.env.ENV;
 const SES = new AWS.SES({ region: region });
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const memberTable = process.env.API_PLATFORMCHESSCENTREAPP_MEMBERTABLE_NAME;
@@ -44,6 +45,10 @@ const getEvent = gql`
           id
           eventId
           memberId
+          member {
+              name
+              ecfRating
+            }
         }
       }
       _version
@@ -136,17 +141,19 @@ exports.handler = async (event) => {
 
 async function handleCheckoutSessionCompleted(data) {
   const {
-    object: { client_reference_id: id, customer, mode },
+    object: { client_reference_id: id, customer, mode,  amount_total: price, customer_email: stripeEmail },
   } = data;
 
+  console.log("handleCheckoutSessionCompleted", data);
+
   if (mode === "subscription") {
-    await handleCheckoutSessionCompletedSubscription(id, customer);
+    await handleCheckoutSessionCompletedSubscription(id, customer, price, stripeEmail);
   } else if (mode === "payment") {
     await handleCheckoutSessionCompletedPayment(id, customer);
   }
 }
 
-async function handleCheckoutSessionCompletedSubscription(id, customer) {
+async function handleCheckoutSessionCompletedSubscription(id, customer, price, stripeEmail) {
 
   const [memberId,] = id.split("#");
 
@@ -189,9 +196,12 @@ async function handleCheckoutSessionCompletedSubscription(id, customer) {
 
   const emailParams = {
     name,
-    email
+    email,
+    stripeEmail,
+    price
   }
-  await sendMembershipEmail(emailParams);
+  await sendMembershipEmailToMember(emailParams);
+  await sendMembershipEmailInternal(emailParams);
 }
 
 async function handleCheckoutSessionCompletedPayment(id) {
@@ -250,13 +260,15 @@ async function handleCheckoutSessionCompletedPayment(id) {
     name,
     eventName,
     startDate,
-    eventType
+    eventType,
+    entries
   };
 
-  const emailData = await sendRegisteredEventEmail(params).catch(e => {
-    console.log("sendRegisteredEventEmail error");
+  const emailData = await sendRegisteredEventEmailToMember(params).catch(e => {
+    console.log("sendRegisteredEventEmailToMember error");
     console.log(e);
   });
+  await sendRegisteredEventEmailInternal(params);
   console.log('emailData', emailData);
 }
 
@@ -343,17 +355,47 @@ async function executeGraphql(query, variables) {
     httpRequest.write(req.body);
     httpRequest.end();
   });
-
   return data;
 }
 
-async function sendMembershipEmail({ email, name }) {
-  console.log("Sending membership email to:", name, email);
+async function sendMembershipEmailInternal({ email, name, stripeEmail, price }) {
+  console.log("Sending internal membership email to us:", name, email, env);
+
+  const ToAddresses = ["Matt <matt@chesscentre.online>"];
+  
+  if(env.includes("prod")) {
+    ToAddresses.push("Andy <andy@chesscentre.online>")
+  }
+
+  const params = {
+    Source: "The Chess Centre <support@chesscentre.online>",
+    Destination: {
+      ToAddresses
+    },
+    Message: {
+      Subject: { Data: `New Membership Confirmed!` },
+      Body: {
+        Text: { Data: `New Membership for ${name}` },
+        Html: { Data: `<h3 style="color: #047481">♟️ Membership</h2>
+        <p>Name: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Payment Email: ${stripeEmail}</p>
+        <p>Price: £ ${price / 100}</p>
+        `
+      }
+      }
+    }
+  };
+  return SES.sendEmail(params).promise();
+}
+
+async function sendMembershipEmailToMember({ email, name }) {
+  console.log("Sending membership email to new member:", name, email);
   const params = {
     Source: "The Chess Centre <support@chesscentre.online>",
     Destination: {
       BccAddresses: [
-        "The Chess Centre <support@chesscentre.online>"
+        "The Chess Centre <support@chesscentre.online>",
       ],
       ToAddresses: [email],
     },
@@ -385,8 +427,8 @@ function formatDate(date) {
   });
 }
 
-async function sendRegisteredEventEmail({ email, name, eventName, eventType, eventId, startDate, arrivalTime }) {
-  console.log("Sending registration email to:", name, email, eventName);
+async function sendRegisteredEventEmailToMember({ email, name, eventName, eventType, eventId, startDate, arrivalTime }) {
+  console.log("Sending member registration email to:", name, email, eventName);
   const params = {
     Source: "The Chess Centre <support@chesscentre.online>",
     Destination: {
@@ -413,6 +455,51 @@ async function sendRegisteredEventEmail({ email, name, eventName, eventType, eve
         <p>We look forward to seeing you soon! 🚀</p>
         <p></p>
         <p style="color: #9da4a5;font-size:10px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
+        `
+      }
+      }
+    }
+  };
+  return SES.sendEmail(params).promise();
+}
+
+async function sendRegisteredEventEmailInternal({ email, name, eventName, eventType, eventId, startDate, entries }) {
+  console.log("Sending internal registration email to:", name, email, eventName, env);
+
+  const ToAddresses = ["Matt <matt@chesscentre.online>"];
+
+  if(env.includes("prod")) {
+    ToAddresses.push("Andy <andy@chesscentre.online>");
+  }
+
+  const entriesTable = (entries) => {
+    return entries?.sort((a, b) => Number(b.ecfRating) - Number(a.ecfRating))
+    .map(({ member: { name, ecfRating }})  => {
+      return `<li>${name} ${ecfRating ? ecfRating : ""}</li>`
+    }).join("");
+  }
+
+  const params = {
+    Source: "The Chess Centre <support@chesscentre.online>",
+    Destination: {
+      ToAddresses
+    },
+    Message: {
+      Subject: { Data: `New Entry: ${eventName} ${formatDate(startDate)}` },
+      Body: {
+        Text: { Data: `New Entry Confirmed: ${eventName} (${formatDate(startDate)}) | ${name}` },
+        Html: { Data: `<h3 style="color: #047481">♟️ The Chess Centre</h2>
+        <p>Entry Name: ${name}</p>
+        <p>Event: ${eventName}</p>
+        <p>Date: ${formatDate(startDate)}</p>
+        <p>Total Entries: ${entries.length + 1}</p>
+        <p>Entry list:</p>
+        <p>
+          <ol>
+            ${entriesTable(entries)}
+          </ol>
+        </p>
+        <p>Info Check: <a href="https://www.chesscentre.online/events/${eventType}/${eventId}">chesscentre.online/${eventType}</a></p>
         `
       }
       }
