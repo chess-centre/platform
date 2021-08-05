@@ -1,6 +1,82 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getBroadcast = /* GraphQL */ `
+  query GetBroadcast($id: ID!) {
+    getBroadcast(id: $id) {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listBroadcasts = /* GraphQL */ `
+  query ListBroadcasts(
+    $filter: ModelBroadcastFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBroadcasts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        buttonName
+        isLive
+        description
+        name
+        pageUrl
+        dgtUrl
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncBroadcasts = /* GraphQL */ `
+  query SyncBroadcasts(
+    $filter: ModelBroadcastFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncBroadcasts(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        buttonName
+        isLive
+        description
+        name
+        pageUrl
+        dgtUrl
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getResult = /* GraphQL */ `
   query GetResult($id: ID!) {
     getResult(id: $id) {
@@ -223,60 +299,6 @@ export const syncPlans = /* GraphQL */ `
     }
   }
 `;
-export const getEventType = /* GraphQL */ `
-  query GetEventType($id: ID!) {
-    getEventType(id: $id) {
-      id
-      name
-      description
-      url
-      color
-      time
-      maxEntries
-      stripePriceId
-      timeControl
-      eventType
-      defaultPrice
-      canRegister
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listEventTypes = /* GraphQL */ `
-  query ListEventTypes(
-    $filter: ModelEventTypeFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEventTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        description
-        url
-        color
-        time
-        maxEntries
-        stripePriceId
-        timeControl
-        eventType
-        defaultPrice
-        canRegister
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const syncEventTypes = /* GraphQL */ `
   query SyncEventTypes(
     $filter: ModelEventTypeFilterInput
@@ -298,7 +320,6 @@ export const syncEventTypes = /* GraphQL */ `
         color
         time
         maxEntries
-        stripePriceId
         timeControl
         eventType
         defaultPrice
@@ -308,6 +329,61 @@ export const syncEventTypes = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        stripePriceId
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getEventType = /* GraphQL */ `
+  query GetEventType($id: ID!) {
+    getEventType(id: $id) {
+      id
+      name
+      description
+      url
+      color
+      time
+      maxEntries
+      timeControl
+      eventType
+      defaultPrice
+      canRegister
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      stripePriceId
+    }
+  }
+`;
+export const listEventTypes = /* GraphQL */ `
+  query ListEventTypes(
+    $filter: ModelEventTypeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEventTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        url
+        color
+        time
+        maxEntries
+        timeControl
+        eventType
+        defaultPrice
+        canRegister
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        stripePriceId
       }
       nextToken
       startedAt
@@ -392,6 +468,7 @@ export const syncMembers = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -479,6 +556,7 @@ export const getMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -496,7 +574,6 @@ export const getMember = /* GraphQL */ `
               color
               time
               maxEntries
-              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -506,6 +583,7 @@ export const getMember = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              stripePriceId
             }
             entries {
               nextToken
@@ -591,6 +669,7 @@ export const listMembers = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -621,6 +700,7 @@ export const getEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      active
       _version
       _deleted
       _lastChangedAt
@@ -655,7 +735,6 @@ export const getEvent = /* GraphQL */ `
         color
         time
         maxEntries
-        stripePriceId
         timeControl
         eventType
         defaultPrice
@@ -665,6 +744,7 @@ export const getEvent = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        stripePriceId
       }
       entries {
         items {
@@ -714,6 +794,7 @@ export const getEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -731,7 +812,6 @@ export const getEvent = /* GraphQL */ `
               color
               time
               maxEntries
-              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -741,6 +821,7 @@ export const getEvent = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              stripePriceId
             }
             entries {
               nextToken
@@ -773,6 +854,7 @@ export const listEvents = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -807,7 +889,6 @@ export const listEvents = /* GraphQL */ `
           color
           time
           maxEntries
-          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -817,6 +898,7 @@ export const listEvents = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          stripePriceId
         }
         entries {
           items {
@@ -862,6 +944,7 @@ export const listEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -878,18 +961,18 @@ export const listEvents = /* GraphQL */ `
     }
   }
 `;
-export const eventsByStartDate = /* GraphQL */ `
-  query EventsByStartDate(
-    $startDate: AWSDate
-    $name: ModelStringKeyConditionInput
+export const listEventsActive = /* GraphQL */ `
+  query ListEventsActive(
+    $active: String
+    $startDate: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelEventFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    eventsByStartDate(
+    listEventsActive(
+      active: $active
       startDate: $startDate
-      name: $name
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -907,6 +990,7 @@ export const eventsByStartDate = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -941,7 +1025,6 @@ export const eventsByStartDate = /* GraphQL */ `
           color
           time
           maxEntries
-          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -951,6 +1034,7 @@ export const eventsByStartDate = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          stripePriceId
         }
         entries {
           items {
@@ -996,6 +1080,7 @@ export const eventsByStartDate = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1037,6 +1122,7 @@ export const syncEvents = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1071,7 +1157,6 @@ export const syncEvents = /* GraphQL */ `
           color
           time
           maxEntries
-          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -1081,6 +1166,7 @@ export const syncEvents = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          stripePriceId
         }
         entries {
           items {
@@ -1126,6 +1212,7 @@ export const syncEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1218,6 +1305,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1241,6 +1329,7 @@ export const getEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1275,7 +1364,6 @@ export const getEntry = /* GraphQL */ `
           color
           time
           maxEntries
-          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -1285,6 +1373,7 @@ export const getEntry = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          stripePriceId
         }
         entries {
           items {
@@ -1330,6 +1419,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1408,6 +1498,7 @@ export const listEntrys = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          active
           _version
           _deleted
           _lastChangedAt
@@ -1442,7 +1533,6 @@ export const listEntrys = /* GraphQL */ `
             color
             time
             maxEntries
-            stripePriceId
             timeControl
             eventType
             defaultPrice
@@ -1452,6 +1542,7 @@ export const listEntrys = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            stripePriceId
           }
           entries {
             items {
@@ -1544,6 +1635,7 @@ export const syncEntries = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          active
           _version
           _deleted
           _lastChangedAt
@@ -1578,7 +1670,6 @@ export const syncEntries = /* GraphQL */ `
             color
             time
             maxEntries
-            stripePriceId
             timeControl
             eventType
             defaultPrice
@@ -1588,6 +1679,7 @@ export const syncEntries = /* GraphQL */ `
             _lastChangedAt
             createdAt
             updatedAt
+            stripePriceId
           }
           entries {
             items {

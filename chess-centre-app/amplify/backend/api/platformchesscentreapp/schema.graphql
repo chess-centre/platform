@@ -70,7 +70,7 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   ratingInfo: AWSJSON
 }
 
-type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "eventsByStartDate", fields: ["startDate", "name"], queryField: "eventsByStartDate") {
+type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "eventsByActive", fields: ["active", "startDate"], queryField: "listEventsActive") {
   id: ID!
   name: String
   description: String
@@ -84,6 +84,7 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   entryCount: Int
   complete: Boolean
   cancelled: Boolean
+  active: String
   results: [Result] @connection(keyName: "byEvent", fields: ["id"])
 }
 
@@ -94,4 +95,3 @@ type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   event: Event @connection(fields: ["eventId"])
   member: Member @connection(fields: ["memberId"])
 }
- 

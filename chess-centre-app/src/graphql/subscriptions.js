@@ -1,6 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateBroadcast = /* GraphQL */ `
+  subscription OnCreateBroadcast {
+    onCreateBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBroadcast = /* GraphQL */ `
+  subscription OnUpdateBroadcast {
+    onUpdateBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBroadcast = /* GraphQL */ `
+  subscription OnDeleteBroadcast {
+    onDeleteBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateResult = /* GraphQL */ `
   subscription OnCreateResult {
     onCreateResult {
@@ -167,7 +221,6 @@ export const onCreateEventType = /* GraphQL */ `
       color
       time
       maxEntries
-      stripePriceId
       timeControl
       eventType
       defaultPrice
@@ -177,6 +230,7 @@ export const onCreateEventType = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      stripePriceId
     }
   }
 `;
@@ -190,7 +244,6 @@ export const onUpdateEventType = /* GraphQL */ `
       color
       time
       maxEntries
-      stripePriceId
       timeControl
       eventType
       defaultPrice
@@ -200,6 +253,7 @@ export const onUpdateEventType = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      stripePriceId
     }
   }
 `;
@@ -213,7 +267,6 @@ export const onDeleteEventType = /* GraphQL */ `
       color
       time
       maxEntries
-      stripePriceId
       timeControl
       eventType
       defaultPrice
@@ -223,6 +276,7 @@ export const onDeleteEventType = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      stripePriceId
     }
   }
 `;
@@ -297,6 +351,7 @@ export const onCreateMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -314,7 +369,6 @@ export const onCreateMember = /* GraphQL */ `
               color
               time
               maxEntries
-              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -324,6 +378,7 @@ export const onCreateMember = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              stripePriceId
             }
             entries {
               nextToken
@@ -408,6 +463,7 @@ export const onUpdateMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -425,7 +481,6 @@ export const onUpdateMember = /* GraphQL */ `
               color
               time
               maxEntries
-              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -435,6 +490,7 @@ export const onUpdateMember = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              stripePriceId
             }
             entries {
               nextToken
@@ -519,6 +575,7 @@ export const onDeleteMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -536,7 +593,6 @@ export const onDeleteMember = /* GraphQL */ `
               color
               time
               maxEntries
-              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -546,6 +602,7 @@ export const onDeleteMember = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              stripePriceId
             }
             entries {
               nextToken
@@ -573,6 +630,7 @@ export const onCreateEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      active
       _version
       _deleted
       _lastChangedAt
@@ -607,7 +665,6 @@ export const onCreateEvent = /* GraphQL */ `
         color
         time
         maxEntries
-        stripePriceId
         timeControl
         eventType
         defaultPrice
@@ -617,6 +674,7 @@ export const onCreateEvent = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        stripePriceId
       }
       entries {
         items {
@@ -666,6 +724,7 @@ export const onCreateEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -683,7 +742,6 @@ export const onCreateEvent = /* GraphQL */ `
               color
               time
               maxEntries
-              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -693,6 +751,7 @@ export const onCreateEvent = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              stripePriceId
             }
             entries {
               nextToken
@@ -720,6 +779,7 @@ export const onUpdateEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      active
       _version
       _deleted
       _lastChangedAt
@@ -754,7 +814,6 @@ export const onUpdateEvent = /* GraphQL */ `
         color
         time
         maxEntries
-        stripePriceId
         timeControl
         eventType
         defaultPrice
@@ -764,6 +823,7 @@ export const onUpdateEvent = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        stripePriceId
       }
       entries {
         items {
@@ -813,6 +873,7 @@ export const onUpdateEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -830,7 +891,6 @@ export const onUpdateEvent = /* GraphQL */ `
               color
               time
               maxEntries
-              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -840,6 +900,7 @@ export const onUpdateEvent = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              stripePriceId
             }
             entries {
               nextToken
@@ -867,6 +928,7 @@ export const onDeleteEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      active
       _version
       _deleted
       _lastChangedAt
@@ -901,7 +963,6 @@ export const onDeleteEvent = /* GraphQL */ `
         color
         time
         maxEntries
-        stripePriceId
         timeControl
         eventType
         defaultPrice
@@ -911,6 +972,7 @@ export const onDeleteEvent = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        stripePriceId
       }
       entries {
         items {
@@ -960,6 +1022,7 @@ export const onDeleteEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -977,7 +1040,6 @@ export const onDeleteEvent = /* GraphQL */ `
               color
               time
               maxEntries
-              stripePriceId
               timeControl
               eventType
               defaultPrice
@@ -987,6 +1049,7 @@ export const onDeleteEvent = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
+              stripePriceId
             }
             entries {
               nextToken
@@ -1076,6 +1139,7 @@ export const onCreateEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1099,6 +1163,7 @@ export const onCreateEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1133,7 +1198,6 @@ export const onCreateEntry = /* GraphQL */ `
           color
           time
           maxEntries
-          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -1143,6 +1207,7 @@ export const onCreateEntry = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          stripePriceId
         }
         entries {
           items {
@@ -1188,6 +1253,7 @@ export const onCreateEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1278,6 +1344,7 @@ export const onUpdateEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1301,6 +1368,7 @@ export const onUpdateEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1335,7 +1403,6 @@ export const onUpdateEntry = /* GraphQL */ `
           color
           time
           maxEntries
-          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -1345,6 +1412,7 @@ export const onUpdateEntry = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          stripePriceId
         }
         entries {
           items {
@@ -1390,6 +1458,7 @@ export const onUpdateEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1480,6 +1549,7 @@ export const onDeleteEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1503,6 +1573,7 @@ export const onDeleteEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1537,7 +1608,6 @@ export const onDeleteEntry = /* GraphQL */ `
           color
           time
           maxEntries
-          stripePriceId
           timeControl
           eventType
           defaultPrice
@@ -1547,6 +1617,7 @@ export const onDeleteEntry = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          stripePriceId
         }
         entries {
           items {
@@ -1592,6 +1663,7 @@ export const onDeleteEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt

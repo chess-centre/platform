@@ -4,7 +4,7 @@ import { NavLink, Route, Link } from "react-router-dom";
 import * as Icons from "../../icons";
 import SidebarSubmenu from "./SidebarSubmenu";
 import ImageLight from "../../assets/img/logo-light-theme-small.png";
-import { isPaidMember, isJuniorMember } from "../../context/Auth";
+import { isPaidMember } from "../../context/Auth";
 import SupportContactModal from "../Modal/SupportContactModal";
 
 const version = process.env.REACT_APP_VERSION || "0.0.0";
@@ -18,7 +18,6 @@ function SidebarContent() {
   const showLiveGames = false;
   const [needsUpgrade, setNeedsUpgrade] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isJunior, setIsJunior] = useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -33,14 +32,8 @@ function SidebarContent() {
     setNeedsUpgrade(!isPaid);
   }
 
-  async function checkPlanStatus() {
-    const isJunior = await isJuniorMember();
-    setIsJunior(isJunior);
-  }
-
   useEffect(() => {
     checkMemberStatus();
-    checkPlanStatus();
   }, []);
 
   return (
@@ -84,30 +77,27 @@ function SidebarContent() {
             </li>
           )
         )}
-
-        {isJunior && (
-          <li className="relative px-6 py-3" key={10000}>
-            <NavLink
-              exact
-              to={"/app/juniors"}
-              className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-teal-800 dark:hover:text-gray-200"
-              activeClassName="text-teal-500 dark:text-gray-100"
-            >
-              <Route path={"/app/juniors"} exact={true}>
-                <span
-                  className="absolute inset-y-0 left-0 w-2 bg-teal-600 rounded-tr-lg rounded-br-lg"
-                  aria-hidden="true"
-                ></span>
-              </Route>
-              <Icon
-                className="w-5 h-5"
+        <li className="relative px-6 py-3" key={10000}>
+          <NavLink
+            exact
+            to={"/app/juniors"}
+            className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-teal-800 dark:hover:text-gray-200"
+            activeClassName="text-teal-500 dark:text-gray-100"
+          >
+            <Route path={"/app/juniors"} exact={true}>
+              <span
+                className="absolute inset-y-0 left-0 w-2 bg-teal-600 rounded-tr-lg rounded-br-lg"
                 aria-hidden="true"
-                icon={"AcademicIcon"}
-              />
-              <span className="ml-4">Juniors</span>
-            </NavLink>
-          </li>
-        )}
+              ></span>
+            </Route>
+            <Icon
+              className="w-5 h-5"
+              aria-hidden="true"
+              icon={"AcademicIcon"}
+            />
+            <span className="ml-4">Juniors</span>
+          </NavLink>
+        </li>
       </ul>
       {needsUpgrade && (
         <Link

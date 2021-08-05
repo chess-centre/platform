@@ -6,3 +6,10 @@ export const getECFData = async (id) => {
 };
 
 
+export const getPlayerGames = async (id) => {
+  const response = await API.get("chessplayers",`/games/${id}/Standard`);
+  return response;
+};
+
+
+

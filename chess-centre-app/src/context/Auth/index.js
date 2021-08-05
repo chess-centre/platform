@@ -7,7 +7,6 @@ import {
   userPasswordForgotSubmit,
   resendActivationCode,
   isPaidMember,
-  isJuniorMember,
   subscribe,
 } from "./actions";
 import { AuthProvider, useAuthDispatch, useAuthState } from "./context";
@@ -24,6 +23,5 @@ export {
   userPasswordForgotSubmit,
   logout,
   isPaidMember,
-  isJuniorMember,
   subscribe,
 };
