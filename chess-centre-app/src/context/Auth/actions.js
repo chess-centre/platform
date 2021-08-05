@@ -148,29 +148,4 @@ export async function isPaidMember(existing) {
   return (groups && groups.includes("Member")) || false;
 }
 
-export async function isJuniorMember() {
-  try {
-    const user = await Auth.currentAuthenticatedUser();
-    if (!user) return false;
 
-    const member = await DataStore.query(Member, (m) =>
-      m.id("eq", user.attributes.sub)
-    );
-
-    if (!member || member.length === 0) return false;
-
-    const { stripeProductId } = member[0];
-    if (!stripeProductId) return false;
-    const plan = await DataStore.query(Plan, (p) =>
-      p.stripeProductId("eq", stripeProductId)
-    );
-    if (!plan) return false;
-    if (plan[0].key === "junior" || plan[0].key === "family") return true;
-
-    return false;
-
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-}
