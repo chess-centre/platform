@@ -112,9 +112,16 @@ const routes = [
     component: lazy(() => import("../containers/Layout")),
     isPrivate: true,
   },
-    {
+  {
     path: "/internal/live/:id",
     component: lazy(() => import("../pages/Broadcast/Viewer")),
+    exact: true,
+    isPrivate: false,
+    isAdmin: true
+  },
+  {
+    path: "/internal/broadcast",
+    component: lazy(() => import("../pages/Broadcast/Rapidplay")),
     exact: true,
     isPrivate: false,
     isAdmin: true
