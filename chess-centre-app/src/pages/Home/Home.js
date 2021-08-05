@@ -7,19 +7,10 @@ import ComingEvents from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
-import { getPlayerGames } from "../../api/profile/chess";
 
 const Home = () => {
   const showLiveGames = false; // make config driven
   const { user } = useAuthState();
-
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await getPlayerGames(225527);
-      console.log("DATA", data);
-    }
-    fetch();
-  }, [])
 
   return (
     <div>
