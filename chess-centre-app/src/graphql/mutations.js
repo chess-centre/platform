@@ -336,6 +336,7 @@ export const createMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -450,6 +451,7 @@ export const updateMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -564,6 +566,7 @@ export const deleteMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -621,6 +624,7 @@ export const createEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      active
       _version
       _deleted
       _lastChangedAt
@@ -714,6 +718,7 @@ export const createEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -771,6 +776,7 @@ export const updateEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      active
       _version
       _deleted
       _lastChangedAt
@@ -864,6 +870,7 @@ export const updateEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -921,6 +928,7 @@ export const deleteEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      active
       _version
       _deleted
       _lastChangedAt
@@ -1014,6 +1022,7 @@ export const deleteEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -1133,6 +1142,7 @@ export const createEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1156,6 +1166,7 @@ export const createEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1245,6 +1256,7 @@ export const createEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1338,6 +1350,7 @@ export const updateEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1361,6 +1374,7 @@ export const updateEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1450,6 +1464,7 @@ export const updateEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1543,6 +1558,7 @@ export const deleteEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1566,6 +1582,7 @@ export const deleteEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1655,6 +1672,7 @@ export const deleteEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt

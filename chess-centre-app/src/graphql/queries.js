@@ -392,6 +392,7 @@ export const syncMembers = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -479,6 +480,7 @@ export const getMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -591,6 +593,7 @@ export const listMembers = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -621,6 +624,7 @@ export const getEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      active
       _version
       _deleted
       _lastChangedAt
@@ -714,6 +718,7 @@ export const getEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -773,6 +778,7 @@ export const listEvents = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -862,6 +868,7 @@ export const listEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -878,18 +885,19 @@ export const listEvents = /* GraphQL */ `
     }
   }
 `;
-export const eventsByStartDate = /* GraphQL */ `
-  query EventsByStartDate(
-    $startDate: AWSDate
-    $name: ModelStringKeyConditionInput
+
+export const listEventsActive = /* GraphQL */ `
+  query ListEventsActive(
+    $active: String
+    $startDate: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelEventFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    eventsByStartDate(
+    listEventsActive(
+      active: $active
       startDate: $startDate
-      name: $name
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -907,6 +915,7 @@ export const eventsByStartDate = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -996,6 +1005,7 @@ export const eventsByStartDate = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1037,6 +1047,7 @@ export const syncEvents = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1126,6 +1137,7 @@ export const syncEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1218,6 +1230,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1241,6 +1254,7 @@ export const getEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1330,6 +1344,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1408,6 +1423,7 @@ export const listEntrys = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          active
           _version
           _deleted
           _lastChangedAt
@@ -1544,6 +1560,7 @@ export const syncEntries = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          active
           _version
           _deleted
           _lastChangedAt
