@@ -468,6 +468,7 @@ export const syncMembers = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -555,6 +556,7 @@ export const getMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -667,130 +669,7 @@ export const listMembers = /* GraphQL */ `
               entryCount
               complete
               cancelled
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-          startedAt
-        }
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const listEvents = /* GraphQL */ `
-  query ListEvents(
-    $filter: ModelEventFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        description
-        rounds
-        time
-        startDate
-        endDate
-        maxEntries
-        entryCount
-        complete
-        cancelled
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        results {
-          items {
-            id
-            pairings
-            results
-            players
-            eventID
-            name
-            complete
-            live
-            winner
-            dgtCloudUrl
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
-        type {
-          id
-          name
-          description
-          url
-          color
-          time
-          maxEntries
-          timeControl
-          eventType
-          defaultPrice
-          canRegister
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          stripePriceId
-        }
-        entries {
-          items {
-            id
-            eventId
-            memberId
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            member {
-              id
-              about
-              fideId
-              ecfId
-              username
-              name
-              email
-              ecfRating
-              membershipType
-              gameInfo
-              ratingInfo
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              stripeCustomerId
-              stripeCurrentPeriodEnd
-              stripePriceId
-              stripeProductId
-            }
-            event {
-              id
-              name
-              description
-              rounds
-              time
-              startDate
-              endDate
-              maxEntries
-              entryCount
-              complete
-              cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -821,6 +700,7 @@ export const getEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      active
       _version
       _deleted
       _lastChangedAt
@@ -914,6 +794,7 @@ export const getEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            active
             _version
             _deleted
             _lastChangedAt
@@ -954,23 +835,13 @@ export const getEvent = /* GraphQL */ `
     }
   }
 `;
-export const eventsByStartDate = /* GraphQL */ `
-  query EventsByStartDate(
-    $startDate: AWSDate
-    $name: ModelStringKeyConditionInput
-    $sortDirection: ModelSortDirection
+export const listEvents = /* GraphQL */ `
+  query ListEvents(
     $filter: ModelEventFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    eventsByStartDate(
-      startDate: $startDate
-      name: $name
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
+    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
@@ -983,6 +854,7 @@ export const eventsByStartDate = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1072,6 +944,143 @@ export const eventsByStartDate = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const listEventsActive = /* GraphQL */ `
+  query ListEventsActive(
+    $active: String
+    $startDate: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelEventFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEventsActive(
+      active: $active
+      startDate: $startDate
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        active
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        results {
+          items {
+            id
+            pairings
+            results
+            players
+            eventID
+            name
+            complete
+            live
+            winner
+            dgtCloudUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          stripePriceId
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1113,6 +1122,7 @@ export const syncEvents = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1202,6 +1212,7 @@ export const syncEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1294,6 +1305,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1317,6 +1329,7 @@ export const getEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        active
         _version
         _deleted
         _lastChangedAt
@@ -1406,6 +1419,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              active
               _version
               _deleted
               _lastChangedAt
@@ -1484,6 +1498,7 @@ export const listEntrys = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          active
           _version
           _deleted
           _lastChangedAt
@@ -1620,6 +1635,7 @@ export const syncEntries = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          active
           _version
           _deleted
           _lastChangedAt

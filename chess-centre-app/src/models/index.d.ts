@@ -110,6 +110,7 @@ export declare class Event {
   readonly entryCount?: number;
   readonly complete?: boolean;
   readonly cancelled?: boolean;
+  readonly active?: string;
   readonly results?: (Result | null)[];
   constructor(init: ModelInit<Event>);
   static copyOf(source: Event, mutator: (draft: MutableModel<Event>) => MutableModel<Event> | void): Event;

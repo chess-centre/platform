@@ -14,12 +14,22 @@ import PaymentCompleteModal from "../../components/Modal/PaymentCompleteModal";
 import EventDetailsSlideOut from "../../components/SlideOut/EventDetailsSlideOut";
 
 export const listEvents = /* GraphQL */ `
-  query ListEvents(
+  query ListEventsActive(
+    $active: String
+    $startDate: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
     $filter: ModelEventFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listEventsActive(
+      active: $active
+      startDate: $startDate
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         id
         name
@@ -127,11 +137,11 @@ function useEvents() {
   return useQuery("eventData", async () => {
     const {
       data: {
-        listEvents: { items: events },
+        listEventsActive: { items: events },
       },
     } = await API.graphql({
       query: listEvents,
-      variables: { filter: { startDate: { gt: today } } }
+      variables: { active: 'yes', startDate: { gt: today } }
     });
 
     const sorted = events
@@ -268,8 +278,8 @@ export default function AppEvents() {
                                 maxEntries || type.maxEntries
                               }`}
                             </p>
-                            { 
-                              
+                            {
+
                             }
                             {type.defaultPrice && !registered && !full ? (
                               <p className="text-sm text-gray-700 mr-2">

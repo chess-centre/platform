@@ -810,6 +810,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "active": {
+                    "name": "active",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "results": {
                     "name": "results",
                     "isArray": true,
@@ -835,12 +842,12 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "eventsByStartDate",
+                        "name": "eventsByActive",
                         "fields": [
-                            "startDate",
-                            "name"
+                            "active",
+                            "startDate"
                         ],
-                        "queryField": "eventsByStartDate"
+                        "queryField": "listEventsActive"
                     }
                 },
                 {
@@ -874,5 +881,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "0d71177d37b6e7358409895504c703ed"
+    "version": "46ba13eeb61157b30926ce21d843939a"
 };
