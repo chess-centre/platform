@@ -10,7 +10,7 @@ import DownloadPWA from "../../components/Quote/PWA";
 import { getPlayerGames } from "../../api/profile/chess";
 
 const Home = () => {
-  const showLiveGames = false; // make config driven
+  const showLiveGames = true; // make config driven
   const { user } = useAuthState();
 
   useEffect(() => {
