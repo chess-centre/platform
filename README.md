@@ -91,7 +91,7 @@ The project is intended to be as open and transparent as possible. Making it eas
 <details>
 <summary>Overview</summary>
 <p align="center">
-  <img src="img/TheChessCentre.png" />
+  <img src="img/TheChessCentre.jpg" />
 </p>
 </details>
 
