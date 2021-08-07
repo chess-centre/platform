@@ -7,15 +7,27 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade&style=flat-square)
 [![GitHub](https://img.shields.io/github/license/chess-centre/welcome)](https://img.shields.io/github/license/chess-centre/welcome?style=flat-square)
 
-This project contains the source code of our front-end of The Chess Centre application, including steps for configuring the AWS serverless backend.
+This project contains the source code of **The Chess Centre** application, including configuration for deployment to AWS - leveraging serveless functions and out-of-the-box Amplify for syncing the client side APIs with the backend logic (GraphQL -> AppSync -> Lambda -> DynamoDb).
 
 ## Motivation
 
 **The Chess Centre** was born through a love of Chess and the amazing community it has! This platform serves to provide chess players who enjoy playing over-the-board (in person), with modern, accessible features to easily find upcoming events, register and quickly track results of their real games!
 
-To support this goal, a dedicated centre (physical premises) has been set up for players to come and play. Although there is a cost for members to join, **every single penny** will be recycled entirely back into the growth of chess to ensure the beautiful game continues to grow and embrace the new world we live in.
+To support this goal, a dedicated centre (physical premises) has been set up for players to come and play. Although there is a cost for members to join, **every single penny** is recycled entirely back into the growth of chess to ensure the beautiful game continues to grow and embrace the new world we live in.
 
 - website: [chesscentre.online](https:chesscentre.online)
+  
+## Objective
+  
+The project is intended to be as open and transparent as possible, making it easy to reproduce and contribute to. The long term goals include the following technical objectives:
+  
+- Low cost
+    - Infrastructure
+- Scalable
+    - White-label (independent deployments)
+    - Internationalisation
+- Feature rich
+    - Embracing other chess projects / useful public APIs
 
 ### Prerequisites
 
@@ -53,7 +65,7 @@ At this point you now have everything you need, minus the AWS configuration to r
 1. Our current practise is to manually set up AWS IAM users (contact [@matt-d-webb](https://github.com/matt-d-webb) for this), with specific Amplify settings which is used for authentication. Example:
 
 ```js
-const awsmobile = {
+const config = {
   aws_project_region: "eu-west-1",
   aws_cognito_identity_pool_id: "eu-west-1:xxxxx-xxxx-xxxxx-xxxx-xxxx",
   aws_cognito_region: "eu-west-1",
@@ -71,7 +83,7 @@ THEN
 ```bash
 amplify env pull dev
 ```
-
+  
 You will now have a custom development environment!
 
 FINALLY
@@ -80,11 +92,17 @@ FINALLY
 $ yarn start # app runs on port 3000
 ```
 
+### Environments
+  
+| Env  | Chessplayer API | Public API |
+| ------------- | ------------- | ------------- |
+| Develop  | mgsigrqo6  | bd7p7atax7 |
+| Staging  | 21bx1c1zlk  | vrhqu5b9u6  |
+| Production  | ms60qr0ljj  | zkxiggnvb5  |
+
 ## Overview
 
 The front-end app uses `create-react-app` and `tailwindcss`. The backend is entirely serverless using AWS (see Architecture).
-
-The project is intended to be as open and transparent as possible. Making it easy to reproduce and contribute to.
 
 ## Architecture
 
