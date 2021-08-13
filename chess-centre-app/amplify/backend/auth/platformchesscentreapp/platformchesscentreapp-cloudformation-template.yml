@@ -192,7 +192,6 @@ Parameters:
   permissions:
     Type: CommaDelimitedList
       
-            
   authTriggerConnections:
     Type: String
   
@@ -200,6 +199,7 @@ Parameters:
   
   breakCircularDependency:
     Type: String
+            
             
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
