@@ -1,35 +1,61 @@
 {
-    "paths": [
-        {
-            "name": "/ecf/{id}",
-            "lambdaFunction": "ecfPlayer",
-            "privacy": {
-                "open": true
-            },
-            "policyResourceName": "/ecf/*"
-        }
-    ],
-    "resourceName": "chessplayers",
-    "apiName": "chessplayers",
-    "functionArns": [
-        {
-            "lambdaFunction": "ecfPlayer"
-        }
-    ],
-    "privacy": {
-        "auth": 0,
-        "unauth": 0,
-        "authRoleName": "amplify-platformchesscentrea-dev-45655-authRole",
-        "unAuthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole"
+  "paths": [
+    {
+      "name": "/ecf/{id}",
+      "lambdaFunction": "ecfPlayer",
+      "privacy": {
+        "open": true
+      },
+      "policyResourceName": "/ecf/*"
     },
-    "dependsOn": [
-        {
-            "category": "function",
-            "resourceName": "ecfPlayer",
-            "attributes": [
-                "Name",
-                "Arn"
-            ]
-        }
-    ]
+    {
+      "name": "/games/{id}/{type}",
+      "lambdaFunction": "ecfPlayerGames",
+      "privacy": {
+        "private": true,
+        "auth": [
+          "/POST",
+          "/GET",
+          "/PUT",
+          "/PATCH"
+        ]
+      },
+      "policyResourceName": "/games/*/*"
+    }
+  ],
+  "resourceName": "chessplayers",
+  "apiName": "chessplayers",
+  "functionArns": [
+    {
+      "lambdaFunction": "ecfPlayer"
+    },
+    {
+      "lambdaFunction": "ecfPlayerGames"
+    }
+  ],
+  "privacy": {
+    "auth": 1,
+    "unauth": 0,
+    "authRoleName": "amplify-platformchesscentrea-dev-45655-authRole",
+    "unAuthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "ecfPlayer",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    },
+    {
+      "category": "function",
+      "resourceName": "ecfPlayerGames",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ],
+  "uuid": "6b11b3a5"
 }

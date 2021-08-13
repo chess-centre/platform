@@ -1,3 +1,4 @@
+
 AWSTemplateFormatVersion: 2010-09-09
 
 Parameters:
@@ -91,6 +92,10 @@ Parameters:
       
         
   requiredAttributes:
+    Type: CommaDelimitedList
+      
+        
+  aliasAttributes:
     Type: CommaDelimitedList
       
   
@@ -187,6 +192,15 @@ Parameters:
   permissions:
     Type: CommaDelimitedList
       
+            
+  authTriggerConnections:
+    Type: String
+  
+            
+  
+  breakCircularDependency:
+    Type: String
+            
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
   
@@ -247,23 +261,11 @@ Resources:
         
       
       
-      LambdaConfig:
-        
-        
-        
-        
-        
-          PostConfirmation: !Ref functionplatformchesscentreappPostConfirmationArn
-        
-        
-        
-        
-          PreTokenGeneration: !Ref functionplatformchesscentreappPreTokenGenerationArn
-        
-        
       
+      AutoVerifiedAttributes:
       
-      AutoVerifiedAttributes: !Ref autoVerifiedAttributes
+        - email
+      
       
       
       EmailVerificationMessage: !Ref emailVerificationMessage
@@ -279,6 +281,7 @@ Resources:
       
       UsernameAttributes: !Ref usernameAttributes
       
+      
       MfaConfiguration: !Ref mfaConfiguration
       SmsVerificationMessage: !Ref smsVerificationMessage
       SmsAuthenticationMessage: !Ref smsAuthenticationMessage
@@ -286,36 +289,6 @@ Resources:
         SnsCallerArn: !GetAtt SNSRole.Arn
         ExternalId: platfoe3724a3f_role_external_id
     
-  
-  
-  
-  
-  
-  
-  UserPoolPostConfirmationLambdaInvokePermission:
-    Type: "AWS::Lambda::Permission"
-    DependsOn: UserPool
-    Properties:
-      Action: "lambda:invokeFunction"
-      Principal: "cognito-idp.amazonaws.com"
-      FunctionName: !Ref functionplatformchesscentreappPostConfirmationName
-      SourceArn: !GetAtt UserPool.Arn
-  
-  
-  
-  
-  UserPoolPreTokenGenerationLambdaInvokePermission:
-    Type: "AWS::Lambda::Permission"
-    DependsOn: UserPool
-    Properties:
-      Action: "lambda:invokeFunction"
-      Principal: "cognito-idp.amazonaws.com"
-      FunctionName: !Ref functionplatformchesscentreappPreTokenGenerationName
-      SourceArn: !GetAtt UserPool.Arn
-  
-  
-  # Updating lambda role with permissions to Cognito
-  
   
   UserPoolClientWeb:
   # Created provide application access to user pool
@@ -386,7 +359,7 @@ Resources:
             - '};'
       Handler: index.handler
       Runtime: nodejs12.x
-      Timeout: '300'
+      Timeout: 300
       Role: !GetAtt
         - UserPoolClientRole
         - Arn
@@ -498,6 +471,9 @@ Outputs :
   UserPoolId:
     Value: !Ref 'UserPool'
     Description:  Id for the user pool
+  UserPoolArn:
+    Value: !GetAtt UserPool.Arn
+    Description:  Arn for the user pool
   UserPoolName:
     Value: !Ref userPoolName
   AppClientIDWeb:
@@ -509,6 +485,7 @@ Outputs :
   AppClientSecret:
     Value: !GetAtt UserPoolClientInputs.appSecret
     Condition: ShouldOutputAppClientSecrets
+  
   
   
   
