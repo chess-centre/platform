@@ -110,6 +110,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "ecfPlayerGames",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
@@ -199,6 +207,11 @@
       ]
     },
     "ecfPlayer": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "ecfPlayerGames": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
