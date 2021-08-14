@@ -473,7 +473,7 @@ async function sendRegisteredEventEmailInternal({ email, name, eventName, eventT
   }
 
   const entriesTable = (entries) => {
-    return entries?.sort((a, b) => Number(b.ecfRating) - Number(a.ecfRating))
+    return entries?.sort((a, b) => Number(b?.member?.ecfRating) - Number(a?.member?.ecfRating))
     .map(({ member: { name, ecfRating }})  => {
       return `<li>${name} ${ecfRating ? ecfRating : ""}</li>`
     }).join("");
