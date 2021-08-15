@@ -27,7 +27,7 @@ function useEvents() {
 
 function GridComingSoonCard() {
   return (
-    <div
+    <li
       className={
         "relative pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
       }
@@ -53,7 +53,7 @@ function GridComingSoonCard() {
           "absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"
         }
       ></div>
-    </div>
+    </li>
   );
 }
 
@@ -189,9 +189,9 @@ function GridCalendar({
                       {data.filter(
                         (data) => new Date(data.startDate).getMonth() === month
                       ).length === 0 ? (
-                        <>
+                        <ul>
                           <GridComingSoonCard />
-                        </>
+                        </ul>
                       ) : null}
                     </div>
                   </div>
@@ -349,9 +349,9 @@ function ListCalendar({ isLoading, error, data, selected }) {
                 {data.filter(
                   (data) => new Date(data.startDate).getMonth() === selected
                 ).length === 0 ? (
-                  <>
+                  <ul>
                     <ListComingSoonCard />
-                  </>
+                  </ul>
                 ) : null}
               </ul>
             </>
