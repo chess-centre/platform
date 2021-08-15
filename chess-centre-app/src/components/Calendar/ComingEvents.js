@@ -14,8 +14,8 @@ function useEvents() {
   return useQuery("eventData", async () => {
     const today = new Date();
     today.setDate(today.getDate() - 1);
-    const now = today.toISOString();
-
+    const now = (today).toISOString();
+    
     const future = new Date(today.getDay(), today.getMonth() + 2, 0);
     const events = await API.get(
       "public",
@@ -140,6 +140,7 @@ function GridCalendar({
                 <div className="absolute inset-0 w-0.5 h-full bg-gray-300"></div>
               </div>
               {months.map((month, key) => {
+                
                 const isEven = key % 2 === 0;
 
                 return (
@@ -193,6 +194,7 @@ function GridCalendar({
                           <GridComingSoonCard />
                         </ul>
                       ) : null}
+
                     </div>
                   </div>
                 );
@@ -219,20 +221,17 @@ function GridCalendar({
 function ListCard({ event }) {
   return (
     <li key={event.id} className="col-span-1 flex mb-3 sm:ml-28">
-      <div
-        className={
-          event.endDate && event.startDate !== event.endDate
-            ? `relative min-w-16 text-center sm:text-left bg-white px-1 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
-            : `relative min-w-16 text-center sm:text-left bg-white px-4 sm:pb-3 sm:pt-2 sm:px-6 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
-        }
-      >
+      <div className={event.endDate && (event.startDate !== event.endDate) ? 
+        `relative min-w-16 text-center sm:text-left bg-white px-1 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg` :
+        `relative min-w-16 text-center sm:text-left bg-white px-4 sm:pb-3 sm:pt-2 sm:px-6 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
+        }>
         <div>
           <p className="text-xs font-base sm:text-lg text-gray-900 mt-2 sm:mt-0 text-center">
             {getMonth(event.startDate)}
           </p>
         </div>
         <div className="items-baseline pb-4 sm:pb-0 sm:text-center">
-          {event.endDate && event.startDate !== event.endDate ? (
+          {event.endDate && (event.startDate !== event.endDate) ? (
             <>
               <p className="font-semibold text-lg sm:text-lg text-gray-900 m-auto sm:m-0 cursor-pointer">
                 {`${getDay(event.startDate)}-${getDay(event.endDate)}`}
@@ -309,26 +308,6 @@ function ListCard({ event }) {
   );
 }
 
-function ListComingSoonCard() {
-  return (
-    <li className="col-span-1 flex mb-3 sm:ml-28 px-1">
-      <div className="relative flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-md truncate shadow">
-        <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate">
-          <h3 className="font-red-hat-display text-xl mb-1">
-            Coming Soon
-          </h3>
-          <p className="text-gray-900 font-thin text-sm mb-1">
-            Our latest events will be published here soon.{" "}
-          </p>
-        </div>
-        <div className="bg-pink-900 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg">
-            
-        </div>
-      </div>
-    </li>
-  );
-}
-
 function ListCalendar({ isLoading, error, data, selected }) {
   return (
     <>
@@ -342,9 +321,8 @@ function ListCalendar({ isLoading, error, data, selected }) {
                     (data) => new Date(data.startDate).getMonth() === selected
                   )
                   .map((d, key) => {
-                    return <ListCard key={key} event={d} />;
+                    return (<ListCard key={key} event={d} />);
                   })}
-
                 {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                 {data.filter(
                   (data) => new Date(data.startDate).getMonth() === selected
@@ -377,6 +355,10 @@ export default function Calendar() {
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
   const [calenderView, setCalenderView] = useState(defaultView);
   const { isLoading, error, data } = useEvents();
+
+  console.log(data);
+
+
   const today = new Date();
   const currentMonth = today.getMonth();
   const nextMonth = currentMonth + 1;
@@ -407,6 +389,7 @@ export default function Calendar() {
                 <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex shadow-sm rounded-md m-auto -mb-1">
                   <div className="inline-flex shadow-sm rounded-md m-auto">
                     <span className="relative z-0 inline-flex shadow-sm rounded-md">
+
                       <button
                         onClick={() => setSelectedMonth(months[0])}
                         type="button"
