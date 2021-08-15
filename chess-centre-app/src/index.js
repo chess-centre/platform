@@ -19,3 +19,4 @@ ReactDOM.render(
   </SidebarProvider>,
   document.getElementById("root")
 );
+
