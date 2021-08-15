@@ -98,7 +98,7 @@ function ConfirmEmail(props) {
               >
                 {errorMessage}
               </p>
-              <hr className="my-8" />
+              <hr className="my-8 border-gray-200" />
               <p className="mt-4">
                 <Link
                   className="text-sm font-medium text-teal-600 dark:text-teal-400 hover:underline"

@@ -61,7 +61,7 @@ function GridCard({ event }) {
   return (
     <div
       className={
-        "relative pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
+        "relative pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-l border-r border-gray-200"
       }
     >
       <div
@@ -98,7 +98,7 @@ function GridCard({ event }) {
       </div>
       <div
         className={
-          "absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"
+          "absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b border-gray-200 text-xs rounded-b-xl"
         }
       >
         {event.url && (

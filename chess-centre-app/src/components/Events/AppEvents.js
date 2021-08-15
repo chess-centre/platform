@@ -246,7 +246,7 @@ export default function AppEvents() {
                 return (
                   <section
                     key={key}
-                    className="relative sm:mr-3 mb-3 rounded-lg border"
+                    className="relative sm:mr-3 mb-3 rounded-lg"
                   >
                     <div
                       className={classNames(

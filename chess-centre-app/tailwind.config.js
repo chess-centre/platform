@@ -2,7 +2,7 @@ const windmill = require("@windmill/react-ui/config");
 
 module.exports = windmill({
   corePlugins: {
-    ringColor: false
+    ringColor: true,
   },
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false,

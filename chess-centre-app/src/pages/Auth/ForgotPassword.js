@@ -144,7 +144,7 @@ function ForgotPassword(props) {
                 </p>
               </div>
 
-              <hr className="my-4" />
+              <hr className="my-4 border-gray-200" />
               {forget && (
                 <p className="mt-1">
                   <Link

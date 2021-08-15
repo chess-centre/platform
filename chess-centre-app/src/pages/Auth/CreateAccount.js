@@ -273,7 +273,7 @@ function Login(props) {
                 </p>
               </div>
 
-              <hr className="my-8" />
+              <hr className="my-8 border-gray-200" />
 
               <p className="mt-4">
                 <Link

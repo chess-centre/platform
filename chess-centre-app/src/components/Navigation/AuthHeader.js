@@ -21,7 +21,7 @@ function Header() {
   };
 
   return (
-    <header className="z-40 py-4 bg-white border-b dark:bg-gray-800">
+    <header className="z-40 py-4 bg-white border-b border-gray-200 dark:bg-gray-800">
       <div className="container flex items-center justify-between h-full px-6 mx-auto text-teal-600 dark:text-teal-300">
         {/* <!-- Mobile hamburger --> */}
         <button
