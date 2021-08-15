@@ -51,11 +51,8 @@ const resultCheck = (pairings, players, results) => {
 };
 
 export const CurrentStandings = ({ results, players, pairings }) => {
-
-
   const { roundByRound } = resultCheck(pairings, players, results);
  
-
   return (
     <div>
       <h2 className="mb-2 text-1xl font-semibold text-center text-gray-700 dark:text-gray-200">

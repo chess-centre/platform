@@ -7,19 +7,10 @@ import ComingEvents from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
-import { getPlayerGames } from "../../api/profile/chess";
 
 const Home = () => {
   const showLiveGames = false; // make config driven
   const { user } = useAuthState();
-
-  useEffect(() => {
-    const fetch = async () => {
-      const data = await getPlayerGames(225527);
-      console.log("DATA", data);
-    }
-    fetch();
-  }, [])
 
   return (
     <div>
@@ -115,11 +106,11 @@ const Home = () => {
                 </span>
               </h2>
 
-              <p className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+              <div className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                 It's time things changed around here.{" "}
                 <span role="img">🚀</span>
-                <div className="mt-2 text-teal-500">Visit our dedicated venue in Ilkley</div>
-              </p>
+                <p className="mt-2 text-teal-500">Visit our dedicated venue in Ilkley</p>
+              </div>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className={user ? "hidden" : "rounded-md shadow"}>
                   <Link

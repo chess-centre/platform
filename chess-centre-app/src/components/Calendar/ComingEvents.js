@@ -23,7 +23,39 @@ function useEvents() {
     );
     return events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
   });
-};
+}
+
+function GridComingSoonCard() {
+  return (
+    <li
+      className={
+        "relative pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
+      }
+    >
+      <div
+        className={
+          "bg-indigo-700 absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
+        }
+      ></div>
+      <header>
+        <h3 className="h4 font-red-hat-display mb-1 text-center">
+          Coming Soon...
+        </h3>
+      </header>
+      <div className="text-gray-600 flex-grow mb-5">
+        <div></div>
+        <p className="text-gray-900 font-thin text-base text-center">
+          Our latest events will be published here soon. Watch this space.
+        </p>
+      </div>
+      <div
+        className={
+          "absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"
+        }
+      ></div>
+    </li>
+  );
+}
 
 function GridCard({ event }) {
   return (
@@ -153,6 +185,16 @@ function GridCalendar({
                         .map((data, key) => (
                           <GridCard key={key} event={data} />
                         ))}
+
+                      {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
+                      {data.filter(
+                        (data) => new Date(data.startDate).getMonth() === month
+                      ).length === 0 ? (
+                        <ul>
+                          <GridComingSoonCard />
+                        </ul>
+                      ) : null}
+
                     </div>
                   </div>
                 );
@@ -281,6 +323,14 @@ function ListCalendar({ isLoading, error, data, selected }) {
                   .map((d, key) => {
                     return (<ListCard key={key} event={d} />);
                   })}
+                {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
+                {data.filter(
+                  (data) => new Date(data.startDate).getMonth() === selected
+                ).length === 0 ? (
+                  <ul>
+                    <ListComingSoonCard />
+                  </ul>
+                ) : null}
               </ul>
             </>
           ) : (

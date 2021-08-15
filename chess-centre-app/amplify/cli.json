@@ -11,7 +11,8 @@
             "enablexcodeintegration": true
         },
         "auth": {
-            "enablecaseinsensitivity": true
+            "enablecaseinsensitivity": true,
+            "breakcirculardependency": true
         },
         "codegen": {
             "useappsyncmodelgenplugin": true,

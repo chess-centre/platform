@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecfPlayerGames",
+            "ecfRatingScrapper",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecfPlayerGames",
+                  "ecfRatingScrapper",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "platformchesscentreaLambdaRole27ea2d3f",
+            "platformchesscentreaLambdaRole052acf43",
             {
               "Fn::Join": [
                 "",
                 [
-                  "platformchesscentreaLambdaRole27ea2d3f",
+                  "platformchesscentreaLambdaRole052acf43",
                   "-",
                   {
                     "Ref": "env"
