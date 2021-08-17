@@ -83,6 +83,7 @@ export declare class Member {
   readonly ecfRating?: string;
   readonly ecfRapid?: string;
   readonly ecfMembership?: string;
+  readonly estimatedRating?: string;
   readonly club?: string;
   readonly gender?: string;
   readonly membershipType?: string;

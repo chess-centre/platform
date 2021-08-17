@@ -15,7 +15,7 @@ function truncate(str, n){
 function EntriesTable(data) {
   const { user, eventDetails } = data;
   const sub = user.attributes.sub;
-  const isRapid = eventDetails.name.includes("Rapidplay");
+  const isRapid = eventDetails?.name?.includes("Rapidplay");
 
   const tableData = () => {
     /**

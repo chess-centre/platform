@@ -554,6 +554,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "estimatedRating": {
+                    "name": "estimatedRating",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "club": {
                     "name": "club",
                     "isArray": false,
@@ -909,5 +916,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "b3aff22faa73d073d3d17435255b75bd"
+    "version": "773c93e2b1c46429a1fd7305786c8e2b"
 };
