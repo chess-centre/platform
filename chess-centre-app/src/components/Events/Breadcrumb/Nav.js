@@ -2,7 +2,6 @@ import { HomeIcon } from '@heroicons/react/solid'
 
 const pages = [
   { name: 'Events', href: '#', current: false },
-  { name: 'Recent', href: '#', current: false },
   { name: 'Results', href: '#', current: true },
 ]
 
