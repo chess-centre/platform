@@ -414,6 +414,7 @@ export const syncMembers = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        estimatedRating
         club
         gender
         membershipType
@@ -449,6 +450,7 @@ export const syncMembers = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -506,6 +508,7 @@ export const getMember = /* GraphQL */ `
       ecfRating
       ecfRapid
       ecfMembership
+      estimatedRating
       club
       gender
       membershipType
@@ -541,6 +544,7 @@ export const getMember = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            estimatedRating
             club
             gender
             membershipType
@@ -631,6 +635,7 @@ export const listMembers = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        estimatedRating
         club
         gender
         membershipType
@@ -666,6 +671,7 @@ export const listMembers = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -791,6 +797,7 @@ export const getEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            estimatedRating
             club
             gender
             membershipType
@@ -949,6 +956,7 @@ export const listEvents = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -1089,6 +1097,7 @@ export const listEventsActive = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -1225,6 +1234,7 @@ export const syncEvents = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -1291,6 +1301,7 @@ export const getEntry = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        estimatedRating
         club
         gender
         membershipType
@@ -1326,6 +1337,7 @@ export const getEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -1444,6 +1456,7 @@ export const getEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -1513,6 +1526,7 @@ export const listEntrys = /* GraphQL */ `
           ecfRating
           ecfRapid
           ecfMembership
+          estimatedRating
           club
           gender
           membershipType
@@ -1654,6 +1668,7 @@ export const syncEntries = /* GraphQL */ `
           ecfRating
           ecfRapid
           ecfMembership
+          estimatedRating
           club
           gender
           membershipType

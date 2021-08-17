@@ -293,6 +293,7 @@ export const onCreateMember = /* GraphQL */ `
       ecfRating
       ecfRapid
       ecfMembership
+      estimatedRating
       club
       gender
       membershipType
@@ -328,6 +329,7 @@ export const onCreateMember = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            estimatedRating
             club
             gender
             membershipType
@@ -413,6 +415,7 @@ export const onUpdateMember = /* GraphQL */ `
       ecfRating
       ecfRapid
       ecfMembership
+      estimatedRating
       club
       gender
       membershipType
@@ -448,6 +451,7 @@ export const onUpdateMember = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            estimatedRating
             club
             gender
             membershipType
@@ -533,6 +537,7 @@ export const onDeleteMember = /* GraphQL */ `
       ecfRating
       ecfRapid
       ecfMembership
+      estimatedRating
       club
       gender
       membershipType
@@ -568,6 +573,7 @@ export const onDeleteMember = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            estimatedRating
             club
             gender
             membershipType
@@ -721,6 +727,7 @@ export const onCreateEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            estimatedRating
             club
             gender
             membershipType
@@ -874,6 +881,7 @@ export const onUpdateEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            estimatedRating
             club
             gender
             membershipType
@@ -1027,6 +1035,7 @@ export const onDeleteEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            estimatedRating
             club
             gender
             membershipType
@@ -1121,6 +1130,7 @@ export const onCreateEntry = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        estimatedRating
         club
         gender
         membershipType
@@ -1156,6 +1166,7 @@ export const onCreateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -1274,6 +1285,7 @@ export const onCreateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -1338,6 +1350,7 @@ export const onUpdateEntry = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        estimatedRating
         club
         gender
         membershipType
@@ -1373,6 +1386,7 @@ export const onUpdateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -1491,6 +1505,7 @@ export const onUpdateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -1555,6 +1570,7 @@ export const onDeleteEntry = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        estimatedRating
         club
         gender
         membershipType
@@ -1590,6 +1606,7 @@ export const onDeleteEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
@@ -1708,6 +1725,7 @@ export const onDeleteEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              estimatedRating
               club
               gender
               membershipType
