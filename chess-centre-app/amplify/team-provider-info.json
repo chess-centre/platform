@@ -30,7 +30,7 @@
         },
         "platformchesscentreappPostConfirmation": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-585536646630684d7471-build.zip"
+          "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-63306c48694348635136-build.zip"
         },
         "platformchesscentreappPreTokenGeneration": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",

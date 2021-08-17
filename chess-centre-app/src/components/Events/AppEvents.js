@@ -40,9 +40,6 @@ export const listEvents = /* GraphQL */ `
         endDate
         maxEntries
         entryCount
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
         type {
@@ -58,20 +55,12 @@ export const listEvents = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
         }
         entries {
           items {
             id
             eventId
             memberId
-            _version
-            _deleted
-            _lastChangedAt
             createdAt
             updatedAt
             member {
@@ -83,14 +72,11 @@ export const listEvents = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              club
               membershipType
               gameInfo
               ratingInfo
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
             }
             event {
               id
@@ -102,11 +88,6 @@ export const listEvents = /* GraphQL */ `
               endDate
               maxEntries
               entryCount
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
             }
           }
           nextToken

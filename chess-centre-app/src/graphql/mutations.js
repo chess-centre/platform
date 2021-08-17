@@ -1,6 +1,69 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createBroadcast = /* GraphQL */ `
+  mutation CreateBroadcast(
+    $input: CreateBroadcastInput!
+    $condition: ModelBroadcastConditionInput
+  ) {
+    createBroadcast(input: $input, condition: $condition) {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateBroadcast = /* GraphQL */ `
+  mutation UpdateBroadcast(
+    $input: UpdateBroadcastInput!
+    $condition: ModelBroadcastConditionInput
+  ) {
+    updateBroadcast(input: $input, condition: $condition) {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteBroadcast = /* GraphQL */ `
+  mutation DeleteBroadcast(
+    $input: DeleteBroadcastInput!
+    $condition: ModelBroadcastConditionInput
+  ) {
+    deleteBroadcast(input: $input, condition: $condition) {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createResult = /* GraphQL */ `
   mutation CreateResult(
     $input: CreateResultInput!
@@ -276,6 +339,10 @@ export const createMember = /* GraphQL */ `
       name
       email
       ecfRating
+      ecfRapid
+      ecfMembership
+      club
+      gender
       membershipType
       gameInfo
       ratingInfo
@@ -307,6 +374,10 @@ export const createMember = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -391,6 +462,10 @@ export const updateMember = /* GraphQL */ `
       name
       email
       ecfRating
+      ecfRapid
+      ecfMembership
+      club
+      gender
       membershipType
       gameInfo
       ratingInfo
@@ -422,6 +497,10 @@ export const updateMember = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -506,6 +585,10 @@ export const deleteMember = /* GraphQL */ `
       name
       email
       ecfRating
+      ecfRapid
+      ecfMembership
+      club
+      gender
       membershipType
       gameInfo
       ratingInfo
@@ -537,6 +620,10 @@ export const deleteMember = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -689,6 +776,10 @@ export const createEvent = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -841,6 +932,10 @@ export const updateEvent = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -993,6 +1088,10 @@ export const deleteEvent = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -1086,6 +1185,10 @@ export const createEntry = /* GraphQL */ `
         name
         email
         ecfRating
+        ecfRapid
+        ecfMembership
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -1117,6 +1220,10 @@ export const createEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1231,6 +1338,10 @@ export const createEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1294,6 +1405,10 @@ export const updateEntry = /* GraphQL */ `
         name
         email
         ecfRating
+        ecfRapid
+        ecfMembership
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -1325,6 +1440,10 @@ export const updateEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1439,6 +1558,10 @@ export const updateEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1502,6 +1625,10 @@ export const deleteEntry = /* GraphQL */ `
         name
         email
         ecfRating
+        ecfRapid
+        ecfMembership
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -1533,6 +1660,10 @@ export const deleteEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1647,6 +1778,10 @@ export const deleteEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo

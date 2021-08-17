@@ -65,11 +65,15 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   stripePriceId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   stripeProductId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   ecfRating: String
+  ecfRapid: String
+  ecfMembership: String
+  estimatedRating: String
+  club: String
+  gender: String
   membershipType: String
   gameInfo: AWSJSON
   ratingInfo: AWSJSON
 }
-
 
 type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "eventsByActive", fields: ["active", "startDate"], queryField: "listEventsActive") {
   id: ID!

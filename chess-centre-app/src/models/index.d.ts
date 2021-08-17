@@ -81,6 +81,10 @@ export declare class Member {
   readonly stripePriceId?: string;
   readonly stripeProductId?: string;
   readonly ecfRating?: string;
+  readonly ecfRapid?: string;
+  readonly ecfMembership?: string;
+  readonly club?: string;
+  readonly gender?: string;
   readonly membershipType?: string;
   readonly gameInfo?: string;
   readonly ratingInfo?: string;
