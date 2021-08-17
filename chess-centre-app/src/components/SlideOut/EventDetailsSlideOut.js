@@ -2,26 +2,179 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import JuniorRapidPlay from "../../assets/img/junior-rapidplay.jpg";
-import OpenRapidPlay from "../../assets/img/open-rapidplay.jpg";
-import OpenCongress from "../../assets/img/open-congress.jpg";
+import OpenRapidPlay from "../../assets/img/dave-barlow-vs-gary-corcoran.jpg";
+import OpenCongress from "../../assets/img/june-congress-round-4.jpg";
 import { prettyDate } from "../../utils/DateFormating";
 import { classNames, borderColor900 } from "../../utils/Classes";
+
+
+function truncate(str, n){
+  return (str.length > n) ? str.substr(0, n-1) + ' ...' : str;
+};
+
+function EntriesTable(data) {
+  const { user, eventDetails } = data;
+  const sub = user.attributes.sub;
+  const isRapid = eventDetails.name.includes("Rapidplay");
+
+  const tableData = () => {
+    /**
+     * Calculates which rating should be listed dependant upon the data we have on a player.
+     */
+    const getRating = ({ ecfRating, ecfRapid, estimatedRating }) => {
+      if (isRapid) {
+        if (ecfRapid) return { value: ecfRapid, sort: Number(ecfRapid), key: "" };
+        if (ecfRating)
+          return { value: ecfRating, sort: Number(ecfRating), key: "S" };
+        if (estimatedRating)
+          return {
+            value: estimatedRating,
+            sort: Number(estimatedRating),
+            key: "E"
+          };
+        return { value: "unrated", sort: 0, key: "" };
+      } else {
+        if (ecfRating) return { value: ecfRating, sort: Number(ecfRating), key: "" };
+        if (ecfRapid) return { value: ecfRapid, sort: Number(ecfRapid), key: "R" };
+        if (estimatedRating)
+          return {
+            value: estimatedRating,
+            sort: Number(estimatedRating),
+            key: "E"
+          };
+        return { value: "unrated", sort: 0, key: "" };
+      }
+    };
+
+    /**
+     * Returns a clean list of table data which has a pre defined sort integar on the rating object
+     */
+    const data = eventDetails.entries?.items.reduce((list, entry) => {
+      const row = {
+        id: entry.member.id,
+        name: entry.member.name,
+        club: entry.member.club ? truncate(entry.member.club, 18) : "",
+        rating: getRating(entry.member),
+      };
+      list.push(row);
+      return list;
+    }, []);
+    return data;
+  };
+
+  return (
+    <div>
+      <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2 rounded w-full">
+        <thead className="bg-gray-100 border-b-2 rounded-lg">
+          <tr>
+            <th
+              scope="col"
+              className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Seed
+            </th>
+            <th
+              scope="col"
+              className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Name
+            </th>
+            <th
+              scope="col"
+              className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Club
+            </th>
+            <th
+              scope="col"
+              className="relative px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Rating
+            </th>
+            <th
+              scope="col"
+              className="relative px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Alt
+            </th>
+          </tr>
+        </thead>
+        <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
+          {tableData()
+            .sort((a, b) => b.rating.sort - a.rating.sort)
+            .map(({ name, rating, club, id }, key) => {
+              const isEven = key % 2 === 0;
+              return (
+                <tr
+                  key={key}
+                  className={
+                    id === sub ? "bg-yellow-50" : isEven ? "bg-gray-50" : ""
+                  }
+                >
+                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                    {key + 1}
+                  </td>
+                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {name}
+                  </td>
+                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs text-gray-600">
+                    {club}
+                  </td>
+                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                    {rating.value}
+                  </td>
+                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                    {rating.key}
+                  </td>
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+      <div className="text-xs text-gray-400 border border-dashed p-4">
+        <p className="mb-2">
+          The latest ECF ratings are used for all players with a published
+          rating, where a rating is not available their{" "}
+          {isRapid ? "standard long play " : "Rapidplay "}
+          rating is used or an estimate one can be calculated. This will be
+          highlighted in the entry list under alternate (ALT).
+        </p>
+        <p className="mb-2">Key</p>
+        {isRapid ? (
+          <p className="ml-2">
+            <span className="font-bold text-gray-700">S</span> - Latest available
+            standard ECF rating used
+          </p>
+        ) : (
+          <p className="ml-2">
+            <span className="font-bold text-gray-700">R</span> - Latest available
+            rapidplay ECF rating used
+          </p>
+        )}
+        <p className="ml-2">
+          <span className="font-bold text-gray-700">E</span> - An estimated
+          rating is used
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export default function EventDetailsSlideOut(props) {
   const { slideState, user, setIsSlideOutOpen } = props;
   const { open, eventDetails } = slideState;
 
   function selectImage(type) {
-      switch (type) {
-        case "congress":
-          return OpenCongress;
-        case "rapidplay":
-          return OpenRapidPlay;
-        case "junior-rapidplay":
-          return JuniorRapidPlay
-        default:
-          return OpenCongress;
-      }
+    switch (type) {
+      case "congress":
+        return OpenCongress;
+      case "rapidplay":
+        return OpenRapidPlay;
+      case "junior-rapidplay":
+        return JuniorRapidPlay;
+      default:
+        return OpenCongress;
+    }
   }
 
   return (
@@ -54,7 +207,7 @@ export default function EventDetailsSlideOut(props) {
                     <div className="flex items-start justify-between">
                       <h2
                         id="slide-over-heading"
-                        className="text-lg font-medium text-gray-900"
+                        className="text-2xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-3xl sm:leading-none"
                       >
                         Event details
                       </h2>
@@ -77,36 +230,35 @@ export default function EventDetailsSlideOut(props) {
                       </div>
                     </div>
                   </div>
-                  {/* Main */}
                   <div>
                     <div className="pb-1 sm:pb-6">
                       <div>
-                        <div className="relative h-96">
+                        <div className="relative h-52">
                           <div className="">
                             <img
-                              className={classNames(borderColor900(eventDetails.type?.color),`absolute h-full w-full object-cover rounded-lg border-4`)}
+                              className={classNames(
+                                borderColor900(eventDetails.type?.color),
+                                `absolute h-full w-full object-cover border-2`
+                              )}
                               src={selectImage(eventDetails.type?.eventType)}
                               alt="Playing Hall"
                             />
                           </div>
                         </div>
-                        <div className="mt-4 px-4 sm:flex sm:items-end sm:px-6">
-                          <div className="sm:flex-1">
-                            <div>
-                              <div className="flex items-center">
-                                <h3 className="font-bold text-xl text-gray-900 sm:text-2xl text-center">
-                                  {eventDetails.name || eventDetails.type?.name}
-                                </h3>
-                              </div>
-                            </div>
+                        <div className="mt-2 px-4 sm:flex sm:items-end sm:px-6 text-center">
+                          <div className="flex items-center">
+                            <h3 className="font-bold text-xl text-gray-900 sm:text-2xl text-center">
+                              {eventDetails.name || eventDetails.type?.name}
+                            </h3>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div className="px-4 pt-5 pb-5 sm:px-0 sm:pt-0">
+                    <div className="px-4 pt-2 pb-5 sm:px-0 sm:pt-0">
                       <dl className="space-y-4 px-4 sm:px-6 sm:space-y-4">
                         <div>
-                          <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
+                          <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                            <i className="fad fa-info text-teal-500 mr-1"></i>{" "}
                             Description
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
@@ -118,7 +270,8 @@ export default function EventDetailsSlideOut(props) {
                           </dd>
                         </div>
                         <div>
-                          <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
+                          <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                            <i className="fad fa-map-pin text-teal-500 mr-1"></i>{" "}
                             Location
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
@@ -126,7 +279,8 @@ export default function EventDetailsSlideOut(props) {
                           </dd>
                         </div>
                         <div>
-                          <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
+                          <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                            <i className="fad fa-chess-clock text-teal-500 mr-1"></i>{" "}
                             Time Control
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
@@ -134,7 +288,8 @@ export default function EventDetailsSlideOut(props) {
                           </dd>
                         </div>
                         <div>
-                          <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
+                          <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                            <i className="fad fa-calendar-alt text-teal-500 mr-1"></i>{" "}
                             Date
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
@@ -144,76 +299,26 @@ export default function EventDetailsSlideOut(props) {
                             )}
                           </dd>
                         </div>
-                      
-                        <div>
-                          { eventDetails.entries?.items.length > 0 ? (<dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
-                            Entries
-                          </dt>) : ""}
-                          <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                          {eventDetails.entries?.items.length > 0 && (
-                            <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2 rounded">
-                              <thead className="bg-gray-100 dark:bg-gray-800 border-b-2 rounded-lg">
-                                <tr>
-                                  <th
-                                    scope="col"
-                                    className="px-2 sm:px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                                  >
-                                    Seed
-                                  </th>
-                                  <th
-                                    scope="col"
-                                    className="px-2 sm:px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                                  >
-                                    Name
-                                  </th>
 
-                                  <th
-                                    scope="col"
-                                    className="relative px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-                                  >
-                                    Rating
-                                  </th>
-                                </tr>
-                              </thead>
-                              <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
-                                {eventDetails.entries?.items
-                                  .sort(
-                                    (a, b) =>
-                                      Number(b.member.ecfRating) -
-                                      Number(a.member.ecfRating)
-                                  )
-                                  .map(({ member, memberId }, key) => {
-                                    const isEven = key % 2 === 0;
-                                    return (
-                                      <tr
-                                        key={key}
-                                        className={
-                                          memberId === user.attributes.sub
-                                            ? "bg-yellow-50"
-                                            : isEven
-                                            ? "bg-gray-50"
-                                            : ""
-                                        }
-                                      >
-                                        <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 text-center">
-                                          {key + 1}
-                                        </td>
-                                        <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300">
-                                          {member?.name}
-                                        </td>
-                                        <td className="px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 text-center">
-                                          {member?.ecfRating}
-                                        </td>
-                                      </tr>
-                                    );
-                                  })}
-                              </tbody>
-                            </table>
+                        <div>
+                          {eventDetails.entries?.items.length > 0 ? (
+                            <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
+                              Entries
+                            </dt>
+                          ) : (
+                            ""
                           )}
+                          <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                            {eventDetails.entries?.items.length > 0 && (
+                              <EntriesTable
+                                user={user}
+                                eventDetails={eventDetails}
+                              />
+                            )}
                           </dd>
-                          </div>
-                        </dl>
-                      </div>
+                        </div>
+                      </dl>
+                    </div>
                     <div className="px-4 sm:flex sm:items-end sm:px-6 mb-2">
                       <div className="sm:flex-1">
                         <div className="mt-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
@@ -232,9 +337,7 @@ export default function EventDetailsSlideOut(props) {
                         </div>
                       </div>
                     </div>
-                    
-                    </div>
-
+                  </div>
                 </div>
               </div>
             </Transition.Child>

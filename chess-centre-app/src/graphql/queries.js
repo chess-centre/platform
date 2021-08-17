@@ -1,6 +1,82 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getBroadcast = /* GraphQL */ `
+  query GetBroadcast($id: ID!) {
+    getBroadcast(id: $id) {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listBroadcasts = /* GraphQL */ `
+  query ListBroadcasts(
+    $filter: ModelBroadcastFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBroadcasts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        buttonName
+        isLive
+        description
+        name
+        pageUrl
+        dgtUrl
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncBroadcasts = /* GraphQL */ `
+  query SyncBroadcasts(
+    $filter: ModelBroadcastFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncBroadcasts(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        buttonName
+        isLive
+        description
+        name
+        pageUrl
+        dgtUrl
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getResult = /* GraphQL */ `
   query GetResult($id: ID!) {
     getResult(id: $id) {
@@ -336,6 +412,10 @@ export const syncMembers = /* GraphQL */ `
         name
         email
         ecfRating
+        ecfRapid
+        ecfMembership
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -367,6 +447,10 @@ export const syncMembers = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -420,6 +504,10 @@ export const getMember = /* GraphQL */ `
       name
       email
       ecfRating
+      ecfRapid
+      ecfMembership
+      club
+      gender
       membershipType
       gameInfo
       ratingInfo
@@ -451,6 +539,10 @@ export const getMember = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -537,6 +629,10 @@ export const listMembers = /* GraphQL */ `
         name
         email
         ecfRating
+        ecfRapid
+        ecfMembership
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -568,6 +664,10 @@ export const listMembers = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -689,6 +789,10 @@ export const getEvent = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -843,6 +947,10 @@ export const listEvents = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -885,7 +993,6 @@ export const listEvents = /* GraphQL */ `
     }
   }
 `;
-
 export const listEventsActive = /* GraphQL */ `
   query ListEventsActive(
     $active: String
@@ -980,6 +1087,10 @@ export const listEventsActive = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1112,6 +1223,10 @@ export const syncEvents = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1174,6 +1289,10 @@ export const getEntry = /* GraphQL */ `
         name
         email
         ecfRating
+        ecfRapid
+        ecfMembership
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -1205,6 +1324,10 @@ export const getEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1319,6 +1442,10 @@ export const getEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1384,6 +1511,10 @@ export const listEntrys = /* GraphQL */ `
           name
           email
           ecfRating
+          ecfRapid
+          ecfMembership
+          club
+          gender
           membershipType
           gameInfo
           ratingInfo
@@ -1521,6 +1652,10 @@ export const syncEntries = /* GraphQL */ `
           name
           email
           ecfRating
+          ecfRapid
+          ecfMembership
+          club
+          gender
           membershipType
           gameInfo
           ratingInfo
