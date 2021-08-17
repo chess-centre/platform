@@ -540,6 +540,34 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "ecfRapid": {
+                    "name": "ecfRapid",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "ecfMembership": {
+                    "name": "ecfMembership",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "club": {
+                    "name": "club",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "gender": {
+                    "name": "gender",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "membershipType": {
                     "name": "membershipType",
                     "isArray": false,
@@ -881,5 +909,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "46ba13eeb61157b30926ce21d843939a"
+    "version": "b3aff22faa73d073d3d17435255b75bd"
 };

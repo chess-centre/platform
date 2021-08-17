@@ -1,6 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateBroadcast = /* GraphQL */ `
+  subscription OnCreateBroadcast {
+    onCreateBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBroadcast = /* GraphQL */ `
+  subscription OnUpdateBroadcast {
+    onUpdateBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBroadcast = /* GraphQL */ `
+  subscription OnDeleteBroadcast {
+    onDeleteBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateResult = /* GraphQL */ `
   subscription OnCreateResult {
     onCreateResult {
@@ -237,6 +291,10 @@ export const onCreateMember = /* GraphQL */ `
       name
       email
       ecfRating
+      ecfRapid
+      ecfMembership
+      club
+      gender
       membershipType
       gameInfo
       ratingInfo
@@ -268,6 +326,10 @@ export const onCreateMember = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -349,6 +411,10 @@ export const onUpdateMember = /* GraphQL */ `
       name
       email
       ecfRating
+      ecfRapid
+      ecfMembership
+      club
+      gender
       membershipType
       gameInfo
       ratingInfo
@@ -380,6 +446,10 @@ export const onUpdateMember = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -461,6 +531,10 @@ export const onDeleteMember = /* GraphQL */ `
       name
       email
       ecfRating
+      ecfRapid
+      ecfMembership
+      club
+      gender
       membershipType
       gameInfo
       ratingInfo
@@ -492,6 +566,10 @@ export const onDeleteMember = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -641,6 +719,10 @@ export const onCreateEvent = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -790,6 +872,10 @@ export const onUpdateEvent = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -939,6 +1025,10 @@ export const onDeleteEvent = /* GraphQL */ `
             name
             email
             ecfRating
+            ecfRapid
+            ecfMembership
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -1029,6 +1119,10 @@ export const onCreateEntry = /* GraphQL */ `
         name
         email
         ecfRating
+        ecfRapid
+        ecfMembership
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -1060,6 +1154,10 @@ export const onCreateEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1174,6 +1272,10 @@ export const onCreateEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1234,6 +1336,10 @@ export const onUpdateEntry = /* GraphQL */ `
         name
         email
         ecfRating
+        ecfRapid
+        ecfMembership
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -1265,6 +1371,10 @@ export const onUpdateEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1379,6 +1489,10 @@ export const onUpdateEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1439,6 +1553,10 @@ export const onDeleteEntry = /* GraphQL */ `
         name
         email
         ecfRating
+        ecfRapid
+        ecfMembership
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -1470,6 +1588,10 @@ export const onDeleteEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1584,6 +1706,10 @@ export const onDeleteEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
