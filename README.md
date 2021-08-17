@@ -1,13 +1,13 @@
 <p align="center">
   <img src="img/bcc-logo.png" width="150" />
   <h1 align="center"><strong></strong> The Chess Centre | Platform</h1>
-  <h3 align="center">v1.0.8</h3
+  <h3 align="center">v1.0.11</h3
 </p>
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade&style=flat-square)
 [![GitHub](https://img.shields.io/github/license/chess-centre/welcome)](https://img.shields.io/github/license/chess-centre/welcome?style=flat-square)
 
-This project contains the source code of **The Chess Centre** application, including configuration for deployment to AWS - leveraging serveless functions and out-of-the-box Amplify for syncing the client side APIs with the backend logic (GraphQL -> AppSync -> Lambda -> DynamoDb).
+This project contains the source code of **The Chess Centre** application including configuration for deployment to AWS. Using a "serveless" approach with out-of-the-box Amplify for authentication, data modelling we can connect our UI to our backend resources (GraphQL -> AppSync -> Lambda -> DynamoDb).
 
 ## Motivation
 
@@ -39,7 +39,7 @@ The project is intended to be as open and transparent as possible, making it eas
 Using git, clone the project (_or fork it_)
 
 ```bash
-$ git clone git@github.com:chess-centre/platform.git
+$ git clone git@github.com:chess-centre/platform.git 
 ```
 
 IMPORTANT: Change directory to the root of the React app
@@ -108,9 +108,12 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 
 <details>
 <summary>Overview</summary>
+
+<br />
 <p align="center">
   <img src="img/TheChessCentre.jpg" />
 </p>
+
 </details>
 
 ## Contributing
