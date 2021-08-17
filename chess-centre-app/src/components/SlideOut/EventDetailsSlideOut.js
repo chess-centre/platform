@@ -17,6 +17,9 @@ function EntriesTable(data) {
   const sub = user.attributes.sub;
   const isRapid = eventDetails?.name?.includes("Rapidplay");
 
+  console.log("Event type:", isRapid);
+  console.log("Details", eventDetails);
+
   const tableData = () => {
     /**
      * Calculates which rating should be listed dependant upon the data we have on a player.
@@ -81,7 +84,7 @@ function EntriesTable(data) {
             </th>
             <th
               scope="col"
-              className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="hidden sm:block px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
               Club
             </th>
@@ -117,7 +120,7 @@ function EntriesTable(data) {
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {name}
                   </td>
-                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs text-gray-600">
+                  <td className="hidden sm:block px-2 pl-4 py-2 whitespace-nowrap text-xs text-gray-600">
                     {club}
                   </td>
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
@@ -254,8 +257,8 @@ export default function EventDetailsSlideOut(props) {
                         </div>
                       </div>
                     </div>
-                    <div className="px-4 pt-2 pb-5 sm:px-0 sm:pt-0">
-                      <dl className="space-y-4 px-4 sm:px-6 sm:space-y-4">
+                    <div className="px-2 pt-2 pb-5 sm:px-0 sm:pt-0">
+                      <dl className="space-y-4 px-2 sm:px-6 sm:space-y-4">
                         <div>
                           <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
                             <i className="fad fa-info text-teal-500 mr-1"></i>{" "}
