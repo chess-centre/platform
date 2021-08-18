@@ -7,10 +7,9 @@ import OpenCongress from "../../assets/img/june-congress-round-4.jpg";
 import { prettyDate } from "../../utils/DateFormating";
 import { classNames, borderColor900 } from "../../utils/Classes";
 
-
-function truncate(str, n){
-  return (str.length > n) ? str.substr(0, n-1) + ' ...' : str;
-};
+function truncate(str, n) {
+  return str.length > n ? str.substr(0, n - 1) + " ..." : str;
+}
 
 function EntriesTable(data) {
   const { user, eventDetails } = data;
@@ -24,7 +23,7 @@ function EntriesTable(data) {
     /**
      * Calculates which rating should be listed dependant upon the data we have on a player.
      */
-    const getRating = ({ ecfRating, ecfRapid, estimatedRating }) => {
+     const getRating = ({ ecfRating, ecfRapid, estimatedRating }) => {
       if (isRapid) {
         if (ecfRapid) return { value: ecfRapid, sort: Number(ecfRapid), key: "" };
         if (ecfRating)
@@ -57,7 +56,7 @@ function EntriesTable(data) {
         id: entry.member.id,
         name: entry.member.name,
         club: entry.member.club ? truncate(entry.member.club, 18) : "",
-        rating: getRating(entry.member),
+        rating: getRating(entry.member).value === "0" ? getRating({ /* unrated */ }) : getRating(entry.member)
       };
       list.push(row);
       return list;
@@ -78,13 +77,13 @@ function EntriesTable(data) {
             </th>
             <th
               scope="col"
-              className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
               Name
             </th>
             <th
               scope="col"
-              className="hidden sm:block px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="hidden sm:block px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
               Club
             </th>
@@ -126,7 +125,7 @@ function EntriesTable(data) {
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                     {rating.value}
                   </td>
-                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
                     {rating.key}
                   </td>
                 </tr>
@@ -139,24 +138,24 @@ function EntriesTable(data) {
           The latest ECF ratings are used for all players with a published
           rating, where a rating is not available their{" "}
           {isRapid ? "standard long play " : "Rapidplay "}
-          rating is used or an estimate one can be calculated. This will be
-          highlighted in the entry list under alternate (ALT).
+          rating is used or an estimate if possible. This will be highlighted in
+          the entry next to the players name.
         </p>
-        <p className="mb-2">Key</p>
-        {isRapid ? (
+        <p className="mb-2">Alt Key</p>
+        {isRapid || true ? (
           <p className="ml-2">
-            <span className="font-bold text-gray-700">S</span> - Latest available
-            standard ECF rating used
+            <span className="font-bold text-teal-700">S</span> - standard ECF
+            rating used
           </p>
         ) : (
           <p className="ml-2">
-            <span className="font-bold text-gray-700">R</span> - Latest available
-            rapidplay ECF rating used
+            <span className="font-bold text-teal-700">R</span> - rapidplay ECF
+            rating used
           </p>
         )}
         <p className="ml-2">
-          <span className="font-bold text-gray-700">E</span> - An estimated
-          rating is used
+          <span className="font-bold text-teal-700">E</span> - estimated rating
+          is used
         </p>
       </div>
     </div>
@@ -305,8 +304,8 @@ export default function EventDetailsSlideOut(props) {
 
                         <div>
                           {eventDetails.entries?.items.length > 0 ? (
-                            <dt className="text-sm font-medium text-gray-500 sm:w-40 sm:flex-shrink-0">
-                              Entries
+                            <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                              <i className="fad fa-users mr-1"></i> Entries
                             </dt>
                           ) : (
                             ""
