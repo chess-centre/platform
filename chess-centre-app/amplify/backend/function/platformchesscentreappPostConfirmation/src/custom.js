@@ -5,14 +5,13 @@ const memberTable = `Member-${process.env.GRAPHQLID}-${process.env.ENV}`;
 
 exports.handler = async (event, context, callback) => {
 
-  const data = JSON.stringify(event);
-  console.log(data);
+  console.log(JSON.stringify(event));
 
   const {
-    request: {
-      userAttributes: { sub, given_name, family_name, email },
-    },
+    triggerSource,
+    request: { userAttributes },
   } = event;
+  const { sub, given_name, family_name, email } = userAttributes
 
   const name = `${given_name} ${family_name}`;
 
@@ -40,8 +39,8 @@ exports.handler = async (event, context, callback) => {
     const response = await dynamodb.put(params).promise();
     console.log(response);
 
-    if(data.triggerSource === "PostConfirmation_ConfirmSignUp") {
-      await sendNewAccountEmail(data.request.userAttributes);
+    if(triggerSource === "PostConfirmation_ConfirmSignUp") {
+      await sendNewAccountEmail(userAttributes);
       console.log("Email sent.")
     };
   } catch (error) {
