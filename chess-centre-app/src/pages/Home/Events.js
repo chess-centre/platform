@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { useQuery } from "react-query";
 import { Link, useLocation } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
 import EventCard from "../../components/Events/EventCard";
-import { API } from "aws-amplify";
 import { prettyDate } from "../../utils/DateFormating";
+import { useEvents } from "../../api/events";
 
 function setIcon(type) {
   switch (type) {
@@ -19,19 +18,6 @@ function setIcon(type) {
     default:
       return "fa-chess-bishop-alt";
   }
-}
-
-function useEvents() {
-  const today = new Date();
-  const now = today.toISOString();
-  const future = today.setDate(today.getDate + 70);
-  return useQuery("eventData", async () => {
-    const events = await API.get(
-      "public",
-      `/events?startDate=${now}&endDate=${future}`
-    );
-    return events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
-  });
 }
 
 export default function Events() {
@@ -161,7 +147,7 @@ export default function Events() {
                       type === selectedEventType
                         ? "bg-white border-gray-200 text-teal-500"
                         : ""
-                    } relative w-1/2 rounded-md shadow-sm py-2 text-sm font-medium text-gray-700 
+                    } relative w-1/2 rounded-md shadow-sm py-2 text-sm font-medium text-gray-700
                     whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-teal-500 focus:z-10 sm:w-auto sm:px-8`}
                   >
                     {`${type.charAt(0).toUpperCase()}${type

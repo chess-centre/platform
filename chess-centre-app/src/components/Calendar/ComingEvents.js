@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useQuery } from "react-query";
-import { API } from "aws-amplify";
 import {
   prettyDate,
   getDay,
@@ -9,21 +7,7 @@ import {
   getDayStr,
 } from "../../utils/DateFormating";
 import { classNames, bgColor900 } from "../../utils/Classes";
-
-function useEvents() {
-  return useQuery("eventData", async () => {
-    const today = new Date();
-    today.setDate(today.getDate() - 1);
-    const now = today.toISOString();
-
-    const future = new Date(today.getDay(), today.getMonth() + 2, 0);
-    const events = await API.get(
-      "public",
-      `/events?startDate=${now}&endDate=${future}`
-    );
-    return events.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
-  });
-}
+import { useEvents } from "../../api/events";
 
 function GridComingSoonCard() {
   return (
@@ -295,7 +279,7 @@ function ListCard({ event }) {
           <div className="flex-shrink-0 pr-2">
             <Link
               to={`${event.url}/${event.id}`}
-              className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center 
+              className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
             justify-center text-gray-400 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
             >
               <span className="text-teal-500">
@@ -322,7 +306,7 @@ function ListComingSoonCard() {
           </p>
         </div>
         <div className="bg-pink-900 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg">
-            
+
         </div>
       </div>
     </li>
@@ -414,8 +398,8 @@ export default function Calendar() {
                           selectedMonth === months[0]
                             ? "text-teal-600 font-medium"
                             : "text-gray-700"
-                        } relative inline-flex items-center px-4 py-2 
-                        rounded-l-md border border-gray-300 bg-white text-xs  hover:bg-gray-50 
+                        } relative inline-flex items-center px-4 py-2
+                        rounded-l-md border border-gray-300 bg-white text-xs  hover:bg-gray-50
                         focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                       >
                         {new Date(2000, months[0], 1).toLocaleString(
@@ -449,7 +433,7 @@ export default function Calendar() {
                           selectedMonth === months[2]
                             ? "text-teal-600 font-medium"
                             : "text-gray-700"
-                        } -ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 
+                        } -ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300
                         bg-white text-xs hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                       >
                         {new Date(2000, months[2], 1).toLocaleString(
@@ -472,7 +456,7 @@ export default function Calendar() {
                       calenderView === "list"
                         ? "text-teal-600 font-bold"
                         : "font-medium text-gray-500"
-                    } relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm 
+                    } relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm
                      hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                   >
                     <span className="sr-only">List</span>
@@ -485,7 +469,7 @@ export default function Calendar() {
                       calenderView === "grid"
                         ? "text-teal-600 font-bold"
                         : "font-medium text-gray-500"
-                    } -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm 
+                    } -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm
                       hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                   >
                     <span className="sr-only">Grid</span>
