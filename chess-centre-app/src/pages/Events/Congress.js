@@ -16,10 +16,10 @@ function CongressEvent() {
   useEffect(() => {
     try {
       const fetchEvent = async () => {
-        const response = await API.graphql({ query: getEvent, variables: { id } }).catch(
+        const response = await API.graphql({ query: getEvent, variables: { id }, authMode: "AWS_IAM" }).catch(
           (e) => {
             console.log("Error fetching event.", id);
-            console.log(e.response);
+            console.log(e);
           }
         );
         if(response && response.data) {
