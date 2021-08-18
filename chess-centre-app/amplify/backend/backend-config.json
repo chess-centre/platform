@@ -59,14 +59,6 @@
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "getEvents",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
           "resourceName": "stripeCheckout",
           "attributes": [
             "Name",
@@ -123,21 +115,6 @@
     }
   },
   "function": {
-    "getEvents": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "api",
-          "resourceName": "platformchesscentreapp",
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ]
-        }
-      ]
-    },
     "stripeCheckout": {
       "build": true,
       "providerPlugin": "awscloudformation",
