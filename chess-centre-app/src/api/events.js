@@ -11,7 +11,8 @@ export const useEvents = () => {
       },
     } = await API.graphql({
       query: listEventsActive,
-      variables: { active: 'yes', startDate: { gt: today } }
+      variables: { active: 'yes', startDate: { gt: today } },
+      authMode: "AWS_IAM"
     });
 
     const sorted = events
