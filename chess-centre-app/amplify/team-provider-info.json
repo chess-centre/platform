@@ -54,7 +54,7 @@
         },
         "ecfRatingScrapper": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfRatingScrapper-344a52352f4979545079-build.zip"
+          "s3Key": "amplify-builds/ecfRatingScrapper-6a577746745650736347-build.zip"
         }
       }
     }

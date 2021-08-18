@@ -26,6 +26,7 @@ exports.handler = async (event) => {
                 const rapidRating = await fetchRating(m.ecfId, "R");
                 return {
                     id: m.id,
+                    ecfId: m.ecfId,
                     name: m.name,
                     oldRating: m.ecfRating,
                     oldRapid: m.ecfRapid,
@@ -37,10 +38,22 @@ exports.handler = async (event) => {
             return getAllData();
         }));
 
+        let erredChecks = 0;
+        let erredMembers = [];
+
         // Now update all our member records:
         console.log("Updating member records");
         const updates = getAllRatingInfo.map(async member => {
-            console.log(`updated record for ${member.id} ${member.standard.original_rating}`);
+           
+            
+            if(!member.standard.success && !member.rapid.success) {
+                console.log(`${member.name} doesn't have any ratings! Please check ${member.ecfId} for user ${member.id}`);
+                erredChecks += 1;
+                erredMembers.push({ name: member.name, ecfId: member.ecfId });
+                return;
+            }
+            
+            console.log(`Updated record for ${member.name} ${member.id} ${member.standard?.original_rating} ${member.rapid?.original_rating}`);
 
             const params = {
                 TableName: memberTable,
@@ -49,8 +62,8 @@ exports.handler = async (event) => {
                 },
                 UpdateExpression: "set ecfRating=:standard, ecfRapid=:rapid, gender=:gender, fideId=:fide, club=:club, ecfMembership=:membership",
                 ExpressionAttributeValues: {
-                    ":standard": member.standard.original_rating,
-                    ":rapid": member.rapid.original_rating,
+                    ":standard": member.standard?.original_rating | null,
+                    ":rapid": member.rapid?.original_rating | null,
                     ":gender": member.gender,
                     ":club": member.club_name,
                     ":fide": member.FIDE_no,
@@ -64,7 +77,7 @@ exports.handler = async (event) => {
         console.log("Update complete", complete);
 
         // Let us know the changes which were made:
-        await sendRatingUpdateEmail(getAllRatingInfo);
+        await sendRatingUpdateEmail(getAllRatingInfo, erredChecks, erredMembers);
         console.log("Email update sent.");
 
     } catch (error) {
