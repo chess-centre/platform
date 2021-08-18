@@ -16,10 +16,6 @@
         "platformchesscentreapp": {}
       },
       "function": {
-        "getEvents": {
-          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/getEvents-556b6441786e43343575-build.zip"
-        },
         "stripeCheckout": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
           "s3Key": "amplify-builds/stripeCheckout-712f3942654c7a2f7132-build.zip"
