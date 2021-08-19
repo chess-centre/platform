@@ -16,9 +16,6 @@ function EntriesTable(data) {
   const sub = user.attributes.sub;
   const isRapid = eventDetails?.name?.includes("Rapidplay");
 
-  console.log("Event type:", isRapid);
-  console.log("Details", eventDetails);
-
   const tableData = () => {
     /**
      * Calculates which rating should be listed dependant upon the data we have on a player.

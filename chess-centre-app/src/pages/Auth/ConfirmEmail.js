@@ -43,14 +43,12 @@ function ConfirmEmail(props) {
 
   async function resendCode() {
     try {
-      const resent = await resendActivationCode(email);
-      console.log("resent", resent, email);
+      await resendActivationCode(email);
       addToast(`Activation code resent to ${email}`, {
         appearance: "success",
         autoDismiss: true,
       });
     } catch (error) {
-      console.log("error", error, email);
       dispatch({
         type: "ACTIVATION_CODE_ERROR",
         error: error.message,
