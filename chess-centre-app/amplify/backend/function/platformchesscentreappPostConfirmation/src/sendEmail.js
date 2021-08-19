@@ -5,10 +5,14 @@ const SES = new AWS.SES({ region: REGION });
 
 async function sendNewAccountEmail(data) {
 
-  console.log("Checking if player is already ECF member...");
   const name = `${data.given_name} ${data.family_name}`;
-  const potentialPlayers = await fetchPotentialInfo(name).catch(() => ({ success: false }));
-  const table = potentialPlayers.success ? playerTable(potentialPlayers) : null;
+  console.log(`Checking if player is already ECF member. ${name}`);
+  const potentialPlayers = await fetchPotentialInfo(name).catch((error) => {
+    console.log(error);
+    return { success: false };
+  });
+  console.log(potentialPlayers);
+  const table = playerTable(JSON.parse(potentialPlayers));
 
   console.log("Sending new account email");
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
@@ -36,7 +40,6 @@ async function sendNewAccountEmail(data) {
         <p>Name: ${data.given_name} ${data.family_name}</p>
         <p>Email verified: ${data.email_verified}</p>
         <p>Email: ${data.email}</p>
-        <p>Possibly the following player(s)</p>
         <div>
           ${table}
         </div>
@@ -46,9 +49,10 @@ async function sendNewAccountEmail(data) {
     }
   };
   return SES.sendEmail(params).promise();
-};
+}
 
-const playerTable = (players) => {
+const playerTable = ({ success, players }) => {
+  if(!success) return null;
   const rows = players
     .reduce((pre, cur) => {
       const row = `<tr align="left">
@@ -62,6 +66,7 @@ const playerTable = (players) => {
   .join("");
 
   return `
+    <p>Possibly the following player(s)</p>
     <table>
       <tr align="left">
         <th>Code</th>
