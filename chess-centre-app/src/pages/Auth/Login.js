@@ -17,12 +17,14 @@ import { useStripe } from "@stripe/react-stripe-js";
 function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("")
   const stripe = useStripe();
 
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
 
   async function signIn() {
+    setConfirmEmail(email);
     let response = await loginUser(dispatch, email, password);
     if (response) {
       const { search } = props.location;
@@ -36,6 +38,12 @@ function Login(props) {
       }
     } else {
       return;
+    }
+  }
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      signIn();
     }
   }
 
@@ -90,6 +98,7 @@ function Login(props) {
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="***************"
+                  onKeyDown={handleKeyDown}
                 />
               </Label>
 
@@ -121,6 +130,12 @@ function Login(props) {
                   }
                 >
                   {errorMessage}
+                  {
+                  errorMessage === "User is not confirmed." && confirmEmail ? 
+                  <Link
+                  className="text-sm text-teal-600 font-medium hover:underline ml-1"
+                  to={`/register/confirm/${confirmEmail}`}>Please click here to confirm.</Link> : ""
+                }
                 </p>
               </div>
 

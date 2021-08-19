@@ -22,8 +22,6 @@ export default function GamesView() {
       
       setGames(items);
       selectedGame(items[0]?.pgn);
-      console.log(game);
-      console.log(games);
     };
     fetchGames();
   // eslint-disable-next-line react-hooks/exhaustive-deps

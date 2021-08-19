@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { SidebarContext } from "../../context/SidebarContext";
 import {
@@ -8,7 +8,7 @@ import { logout, useAuthDispatch, useAuthState } from "../../context/Auth";
 import ProfileDropDown from "./ProfileDropDown";
 
 function Header() {
-  const { user: {attributes: {
+  const { user: { attributes: {
     given_name
   } } } = useAuthState();
   const dispatch = useAuthDispatch();
@@ -19,6 +19,11 @@ function Header() {
     logout(dispatch);
     history.push("/");
   };
+
+  useEffect(() => {
+    if(!given_name) signOut();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <header className="z-40 py-4 bg-white border-b dark:bg-gray-800">

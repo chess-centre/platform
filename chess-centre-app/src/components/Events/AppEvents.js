@@ -92,7 +92,6 @@ export default function AppEvents() {
 
       await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
-      console.log(error.message);
       addToast("Oops. Seems something isn't working on our end.", {
         appearance: "error",
         autoDismiss: true,
