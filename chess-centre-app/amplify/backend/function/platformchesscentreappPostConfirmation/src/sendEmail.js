@@ -1,8 +1,15 @@
 const AWS = require("aws-sdk");
+const fetchPotentialInfo = require("./ecfPreflightCheck").fetchPotentialInfo;
 const { REGION, ENV } = process.env;
 const SES = new AWS.SES({ region: REGION });
 
 async function sendNewAccountEmail(data) {
+
+  console.log("Checking if player is already ECF member...");
+  const name = `${data.given_name} ${data.family_name}`;
+  const potentialPlayers = await fetchPotentialInfo(name).catch(() => ({ success: false }));
+  const table = potentialPlayers.success ? playerTable(potentialPlayers) : null;
+
   console.log("Sending new account email");
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
 
@@ -12,22 +19,57 @@ async function sendNewAccountEmail(data) {
       ToAddresses
     },
     Message: {
-      Subject: { Data: `${ENV} | New Account Created` },
+      Subject: { Data: `New Account Created | ${ENV}` },
       Body: {
-        Text: { Data: `New Account Created for ${data.given_name} ${data.family_name}` },
+        Text: { Data: `New Account Created for ${name}` },
         Html: { Data: `
+        <style>
+          table, th, td {
+            border: 0.5px solid grey;
+            padding-right: 2px;
+            padding-left: 2px;
+            font-size:xx-small;
+          }
+        </style>
         <h3 style="color: #047481">♟️ The Chess Centre</h3>
         <h4 style="color: #f0802b">New Account Created</h4>
-        <p>ID: ${data.sub}</p>
         <p>Name: ${data.given_name} ${data.family_name}</p>
         <p>Email verified: ${data.email_verified}</p>
         <p>Email: ${data.email}</p>
+        <p>Possibly the following player(s)</p>
+        <div>
+          ${table}
+        </div>
         `
       }
       }
     }
   };
   return SES.sendEmail(params).promise();
-}
+};
+
+const playerTable = (players) => {
+  const rows = players
+    .reduce((pre, cur) => {
+      const row = `<tr align="left">
+      <td>${cur.ECF_code}</td>
+        <td>${cur.full_name}</td>
+        <td>${cur.club_name}</td>
+      </tr>`;
+      pre.push(row);
+      return pre;
+  }, [])
+  .join("");
+
+  return `
+    <table>
+      <tr align="left">
+        <th>Code</th>
+        <th>Name</th>
+        <th>Club</th>
+      </tr>
+      ${ rows }
+    </table>`;
+};
 
 exports.sendNewAccountEmail = sendNewAccountEmail;
