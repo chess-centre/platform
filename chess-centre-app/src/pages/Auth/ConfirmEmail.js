@@ -35,12 +35,27 @@ function ConfirmEmail(props) {
     }
   }
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      resendCode();
+    }
+  }
+
   async function resendCode() {
-    await resendActivationCode(email);
-    addToast(`Activation code resent to ${email}`, {
-      appearance: "success",
-      autoDismiss: true,
-    });
+    try {
+      const resent = await resendActivationCode(email);
+      console.log("resent", resent, email);
+      addToast(`Activation code resent to ${email}`, {
+        appearance: "success",
+        autoDismiss: true,
+      });
+    } catch (error) {
+      console.log("error", error, email);
+      dispatch({
+        type: "ACTIVATION_CODE_ERROR",
+        error: error.message,
+      });      
+    }
   }
 
   return (
@@ -80,6 +95,7 @@ function ConfirmEmail(props) {
                     onChange={(e) => setCode(e.target.value)}
                     type="text"
                     placeholder="000000"
+                    onKeyDown={handleKeyDown}
                   />
                 </div>
               </Label>
@@ -93,20 +109,20 @@ function ConfirmEmail(props) {
               </Button>
               <p
                 className={
-                  errorMessage ? "font-semibold text-red-500" : "hidden"
+                  errorMessage ? "text-red-700 text-sm text-center mt-2" : "hidden"
                 }
               >
                 {errorMessage}
               </p>
               <hr className="my-8" />
-              <p className="mt-4">
-                <Link
-                  className="text-sm font-medium text-teal-600 dark:text-teal-400 hover:underline"
+              <div className="mt-4">
+                <div
+                  className="text-sm font-medium text-teal-600 hover:underline cursor-pointer"
                   onClick={resendCode}
                 >
                   Resend
-                </Link>
-              </p>
+                </div>
+              </div>
               <p className="mt-1">
                 <Link
                   className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"
