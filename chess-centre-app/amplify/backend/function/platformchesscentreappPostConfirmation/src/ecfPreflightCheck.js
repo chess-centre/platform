@@ -28,4 +28,3 @@ const fetchData = (url) => {
       });
   });
 };
-
