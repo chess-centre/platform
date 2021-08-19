@@ -108,10 +108,19 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 
 <details>
 <summary>Overview</summary>
-
 <br />
 <p align="center">
-  <img src="img/TheChessCentre.jpg" />
+  <img src="img/architecture-overview.jpg" />
+</p>
+
+</details>
+
+
+<details>
+<summary>Game Broadcasts</summary>
+<br />
+<p align="center">
+  <img src="img/live-broadcast-overview.jpg" />
 </p>
 
 </details>
