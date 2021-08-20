@@ -1,0 +1,64 @@
+{
+  "typeName": "Member",
+  "fieldName": "games",
+  "arguments": {},
+  "identity": {
+    "accountId": "089308357993",
+    "cognitoIdentityAuthProvider": null,
+    "cognitoIdentityAuthType": null,
+    "cognitoIdentityId": null,
+    "cognitoIdentityPoolId": null,
+    "sourceIp": [
+      "54.240.197.36"
+    ],
+    "userArn": "arn:aws:iam::089308357993:user/adam",
+    "username": "AIDARJSZRMVURDSPKUU53"
+  },
+  "source": {
+    "promoByText": false,
+    "_lastChangedAt": 1629297573196,
+    "__typename": "Member",
+    "createdAt": "2021-08-18T14:39:33.196Z",
+    "promoByEmail": false,
+    "eventsByEmail": false,
+    "name": "Adam Elmore",
+    "eventsByText": false,
+    "id": "59d08306-ac67-4f1d-acc0-8acf1d25e54b",
+    "_version": 1,
+    "email": "adam+augtest@elmore.dev",
+    "updatedAt": "2021-08-18T14:39:33.196Z",
+    "username": "adam-elmore"
+  },
+  "request": {
+    "headers": {
+      "content-encoding": "amz-1.0",
+      "x-forwarded-for": "54.240.197.36, 64.252.133.44",
+      "cloudfront-viewer-country": "IE",
+      "cloudfront-is-tablet-viewer": "false",
+      "x-amzn-requestid": "65b9463a-c412-4bd4-aac8-75abc81a5112",
+      "via": "1.1 2624e42a83112268605736034e2afc15.cloudfront.net (CloudFront)",
+      "cloudfront-forwarded-proto": "https",
+      "content-length": "171",
+      "host": "h5vl356n55ak5g757nl3bzg6d4.appsync-api.eu-west-1.amazonaws.com",
+      "x-forwarded-proto": "https",
+      "user-agent": "aws-internal/3 aws-sdk-java/1.11.1030 Linux/5.4.129-72.229.amzn2int.x86_64 OpenJDK_64-Bit_Server_VM/25.302-b08 java/1.8.0_302 kotlin/1.3.72 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+      "cloudfront-is-mobile-viewer": "false",
+      "accept": "application/json, text/javascript",
+      "x-amz-date": "20210819T151012Z",
+      "cloudfront-is-smarttv-viewer": "false",
+      "amz-sdk-request": "ttl=20210819T151112Z;attempt=1;max=1",
+      "amz-sdk-invocation-id": "f5ea0385-fcbc-ffad-c46c-61ca7146b9e5",
+      "x-amz-security-token": "IQoJb3JpZ2luX2VjEH8aCWV1LXdlc3QtMSJHMEUCIQDfEFWeFp1BTLzQml3V2Fjq/BZLjcH8xYCJ+P2Iz41IvwIgMaNMZRrb3o7VusIvLMRqNnrZA6QaG9+xlSyemRn0jWEqygMIqP//////////ARAAGgwwODkzMDgzNTc5OTMiDP+GZ8AFaZvqgkIvbSqeA697OZkhkjf58OfYdB9Rrcv++8F4WIy/tfDia7ERYWU8gQJPv9Xyf/kbt3YMN9e9d+QJJlzdD0g+ZN7hbscgq22Ivqth39ziGJbewrJk17tTEv8+shL2w8v2E4kHKtS9dgmYfPkKaFADYI9P5b2Nb1ynhIdra367LKAFCsLeTcMou/Xu2Z1Fv2Ln/e+70MwIrU1jJp68eHw2GsClGEj3D1O3mm1sYilncjvh8A5Kt68PWTPVFZe5XEIe+oMG50PH2bv4LPct+V+BU3atLqv8IgrHlbIIxxbQ4qWYpIfZi0HnTyfkVAbr6CwHvxQuh86zS9O33ilS41dDzxDHMiwsb7eJWnT+AUBsN3K1YrgS/+HmxRWDiGNRGj1HqIbk6G3FepBrkCp//iMcwisT2VyGYUw+bu+KV8dLz0FdyhsxqdvouDZlDeCUEhXykPvSAJBFTFILZQHqJ6VptLym5WkDV5u7xZTOv9O/fHlBtvxMZ882ToUeoBLifMF81uhLZ+5JWcsrFwQ38fZP2wtLl4oRDrvd5tZPXF5hhgw2EKLgjjD5t/iIBjq3AmbUH788rzexM0nFSV1NJryJ10f/m0Gz8iOaOTJqewb4Qi2P+IPGa1WQpBmiodrt62fE8GhaXiGheXcGvCyxvDrt1dMyZTCvkAgTKCj0FttPs2ARZW6j/rjLyvDZwrfVaUV2u3S2Aw4ZHn+pzc5R69LHMXNHjzTq7Zn2J8Hq0q7ifCzDZe80ZF53l8cg/hSzg8wjAyJ5s+rrK+VNvkiyA+3YJkWz+drNyTVDm2dX9jQksQh8dOnU+54vrurOw7M8c5EkIUqo+jtN77Yx1AivmltG8lQvOcXf7qdkmxp/2FEsrjYm5NCuHLskmxdOxEMzvXMuli0dkNoRq7tpc2Frch8f2lH3rTX7gTvALYFDdF1IdKP7gPN/eeyrmT+2/d//BPIxn2FkCwXZFP3MNqIr6+kXUUYrQv37",
+      "content-type": "application/json",
+      "x-amz-cf-id": "GqiHBI0DwwBQWy9N3d5Zu4c4y6Mz9tjYVN5bhht_KU-fE1-YycYORg==",
+      "x-amzn-trace-id": "Root=1-611e7454-37327891545dfe3e4ae8d9cc",
+      "authorization": "AWS4-HMAC-SHA256 Credential=ASIARJSZRMVUTJNASMUI/20210819/eu-west-1/appsync/aws4_request, SignedHeaders=accept;content-encoding;content-length;content-type;host;x-amz-date;x-amz-security-token, Signature=524ac7665d357dcf0884420dee17e75fb18bca093a2cad4b8241784768514d1d",
+      "amz-sdk-retry": "0/0/500",
+      "cloudfront-is-desktop-viewer": "true",
+      "x-forwarded-port": "443"
+    }
+  },
+  "prev": {
+    "result": {}
+  }
+}

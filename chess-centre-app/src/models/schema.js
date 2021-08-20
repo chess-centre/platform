@@ -196,31 +196,65 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "pgn": {
-                    "name": "pgn",
+                "round": {
+                    "name": "round",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
-                "opponent": {
-                    "name": "opponent",
+                "event": {
+                    "name": "event",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "model": "Event"
+                    },
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "eventId"
+                    }
                 },
-                "colour": {
-                    "name": "colour",
+                "whiteMember": {
+                    "name": "whiteMember",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "model": "Member"
+                    },
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "whiteMemberId"
+                    }
+                },
+                "blackMember": {
+                    "name": "blackMember",
+                    "isArray": false,
+                    "type": {
+                        "model": "Member"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "blackMemberId"
+                    }
                 },
                 "result": {
                     "name": "result",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "pgn": {
+                    "name": "pgn",
+                    "isArray": false,
+                    "type": {
+                        "nonModel": "S3Object"
+                    },
                     "isRequired": false,
                     "attributes": []
                 }
@@ -231,6 +265,36 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byEvent",
+                        "fields": [
+                            "eventId"
+                        ],
+                        "queryField": "listGamesByEvent"
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byWhite",
+                        "fields": [
+                            "whiteMemberId"
+                        ],
+                        "queryField": "listGamesByWhiteMember"
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byBlack",
+                        "fields": [
+                            "blackMemberId"
+                        ],
+                        "queryField": "listGamesByBlackMember"
+                    }
                 },
                 {
                     "type": "auth",
@@ -244,14 +308,30 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "public",
+                                "provider": "iam",
+                                "operations": [
+                                    "read"
+                                ]
                             }
                         ]
                     }
                 }
             ]
         },
-        "Plan": {
-            "name": "Plan",
+        "Event": {
+            "name": "Event",
             "fields": {
                 "id": {
                     "name": "id",
@@ -260,30 +340,141 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "key": {
-                    "name": "key",
+                "name": {
+                    "name": "name",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "description": {
+                    "name": "description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "rounds": {
+                    "name": "rounds",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "time": {
+                    "name": "time",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "type": {
+                    "name": "type",
+                    "isArray": false,
+                    "type": {
+                        "model": "EventType"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "eventTypeId"
+                    }
+                },
+                "startDate": {
+                    "name": "startDate",
+                    "isArray": false,
+                    "type": "AWSDate",
                     "isRequired": true,
                     "attributes": []
                 },
-                "stripePriceId": {
-                    "name": "stripePriceId",
+                "endDate": {
+                    "name": "endDate",
                     "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
+                    "type": "AWSDate",
+                    "isRequired": false,
                     "attributes": []
                 },
-                "stripeProductId": {
-                    "name": "stripeProductId",
+                "entries": {
+                    "name": "entries",
+                    "isArray": true,
+                    "type": {
+                        "model": "Entry"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "event"
+                    }
+                },
+                "games": {
+                    "name": "games",
+                    "isArray": true,
+                    "type": {
+                        "model": "Game"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "event"
+                    }
+                },
+                "maxEntries": {
+                    "name": "maxEntries",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "entryCount": {
+                    "name": "entryCount",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "complete": {
+                    "name": "complete",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "cancelled": {
+                    "name": "cancelled",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "active": {
+                    "name": "active",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
+                },
+                "results": {
+                    "name": "results",
+                    "isArray": true,
+                    "type": {
+                        "model": "Result"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "eventID"
+                    }
                 }
             },
             "syncable": true,
-            "pluralName": "Plans",
+            "pluralName": "Events",
             "attributes": [
                 {
                     "type": "model",
@@ -292,10 +483,12 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "key",
+                        "name": "eventsByActive",
                         "fields": [
-                            "key"
-                        ]
+                            "active",
+                            "startDate"
+                        ],
+                        "queryField": "listEventsActive"
                     }
                 },
                 {
@@ -318,6 +511,13 @@ export const schema = {
                                     "create",
                                     "update",
                                     "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "public",
+                                "provider": "iam",
+                                "operations": [
                                     "read"
                                 ]
                             }
@@ -427,6 +627,103 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "public",
+                                "provider": "iam",
+                                "operations": [
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Entry": {
+            "name": "Entry",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "event": {
+                    "name": "event",
+                    "isArray": false,
+                    "type": {
+                        "model": "Event"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "eventId"
+                    }
+                },
+                "member": {
+                    "name": "member",
+                    "isArray": false,
+                    "type": {
+                        "model": "Member"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "memberId"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "Entries",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byEvent",
+                        "fields": [
+                            "eventId"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byMember",
+                        "fields": [
+                            "memberId"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "private",
+                                "provider": "iam",
                                 "operations": [
                                     "create",
                                     "update",
@@ -662,8 +959,8 @@ export const schema = {
                 }
             ]
         },
-        "Entry": {
-            "name": "Entry",
+        "Plan": {
+            "name": "Plan",
             "fields": {
                 "id": {
                     "name": "id",
@@ -672,35 +969,30 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "event": {
-                    "name": "event",
+                "key": {
+                    "name": "key",
                     "isArray": false,
-                    "type": {
-                        "model": "Event"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "eventId"
-                    }
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
                 },
-                "member": {
-                    "name": "member",
+                "stripePriceId": {
+                    "name": "stripePriceId",
                     "isArray": false,
-                    "type": {
-                        "model": "Member"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "memberId"
-                    }
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "stripeProductId": {
+                    "name": "stripeProductId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "Entries",
+            "pluralName": "Plans",
             "attributes": [
                 {
                     "type": "model",
@@ -709,18 +1001,9 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byEvent",
+                        "name": "key",
                         "fields": [
-                            "eventId"
-                        ]
-                    }
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byMember",
-                        "fields": [
-                            "memberId"
+                            "key"
                         ]
                     }
                 },
@@ -744,195 +1027,6 @@ export const schema = {
                                     "create",
                                     "update",
                                     "delete",
-                                    "read"
-                                ]
-                            },
-                            {
-                                "allow": "public",
-                                "provider": "iam",
-                                "operations": [
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "Event": {
-            "name": "Event",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "name": {
-                    "name": "name",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "description": {
-                    "name": "description",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "rounds": {
-                    "name": "rounds",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "time": {
-                    "name": "time",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "type": {
-                    "name": "type",
-                    "isArray": false,
-                    "type": {
-                        "model": "EventType"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "eventTypeId"
-                    }
-                },
-                "startDate": {
-                    "name": "startDate",
-                    "isArray": false,
-                    "type": "AWSDate",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "endDate": {
-                    "name": "endDate",
-                    "isArray": false,
-                    "type": "AWSDate",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "entries": {
-                    "name": "entries",
-                    "isArray": true,
-                    "type": {
-                        "model": "Entry"
-                    },
-                    "isRequired": true,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "event"
-                    }
-                },
-                "maxEntries": {
-                    "name": "maxEntries",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "entryCount": {
-                    "name": "entryCount",
-                    "isArray": false,
-                    "type": "Int",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "complete": {
-                    "name": "complete",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "cancelled": {
-                    "name": "cancelled",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "active": {
-                    "name": "active",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "results": {
-                    "name": "results",
-                    "isArray": true,
-                    "type": {
-                        "model": "Result"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": "eventID"
-                    }
-                }
-            },
-            "syncable": true,
-            "pluralName": "Events",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "eventsByActive",
-                        "fields": [
-                            "active",
-                            "startDate"
-                        ],
-                        "queryField": "listEventsActive"
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "private",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            },
-                            {
-                                "allow": "private",
-                                "provider": "iam",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            },
-                            {
-                                "allow": "public",
-                                "provider": "iam",
-                                "operations": [
                                     "read"
                                 ]
                             }
@@ -943,6 +1037,33 @@ export const schema = {
         }
     },
     "enums": {},
-    "nonModels": {},
-    "version": "773c93e2b1c46429a1fd7305786c8e2b"
+    "nonModels": {
+        "S3Object": {
+            "name": "S3Object",
+            "fields": {
+                "bucket": {
+                    "name": "bucket",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "region": {
+                    "name": "region",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "key": {
+                    "name": "key",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        }
+    },
+    "version": "0b8cc06611507c7a117a70b077832f6d"
 };

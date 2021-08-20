@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "storage": {
+      "Game:@model(appsync)": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
