@@ -197,9 +197,28 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "getMemberGames": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "api",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ]
+        }
+      ]
     }
   },
-  "storage": {},
+  "storage": {
+    "pgn": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
+  },
   "analytics": {
     "platformchesscentreaKinesis": {
       "service": "Kinesis",
