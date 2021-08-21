@@ -28,7 +28,6 @@ const resultCheck = (pairings, players, results) => {
       );
     });
   });
-  console.log(resultBySeed)
   const roundByRound = resultBySeed.reduce((player, { seed, result }) => {
     if (!player[seed]) {
       const p = players.find((p) => p.seed === seed);
@@ -234,7 +233,6 @@ export const Internal = () => {
       } catch (error) {
         setIsLoading(false);
         setIsError(true);
-        console.log("Something exploded!", error);
       }
     };
     fetchResults();

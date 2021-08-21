@@ -12,6 +12,7 @@ const getMember = /* GraphQL */ `
       name
       email
       ecfRating
+      ecfRapid
     }
   }
 `;
@@ -19,6 +20,8 @@ const getMember = /* GraphQL */ `
 export default function ChessInfo() {
   const [newECFId, setNewECFId] = useState("");
   const [newFIDEId, setNewFIDEId] = useState("");
+  const [ecfRating, setEcfRating] = useState("");
+  const [ecfRapid, setEcfRapid] = useState("");
 
   useEffect(() => {
     const fetchMember = async () => {
@@ -27,7 +30,7 @@ export default function ChessInfo() {
       } = await Auth.currentAuthenticatedUser();
       const {
         data: {
-          getMember: { ecfId, fideId },
+          getMember: { ecfId, fideId, ecfRating, ecfRapid },
         },
       } = await API.graphql({
         query: getMember,
@@ -36,6 +39,8 @@ export default function ChessInfo() {
       });
       setNewFIDEId(fideId || "");
       setNewECFId(ecfId || "");
+      setEcfRating(ecfRating || "");
+      setEcfRapid(ecfRapid || "");
     };
     fetchMember();
   }, []);
@@ -56,7 +61,7 @@ export default function ChessInfo() {
 
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6 sm:col-span-3 gap-6">
-              <div className="col-span-12 gap-6">
+              <div className="">
                 <label
                   htmlFor="ecf_id"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -77,7 +82,7 @@ export default function ChessInfo() {
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
                     className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
-                focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                     disabled
                     value={newECFId}
                     type="text"
@@ -85,6 +90,32 @@ export default function ChessInfo() {
                     id={"ecf_ref"}
                     autoComplete="off"
                   />
+                </div>
+              </div>
+              <div className="grid grid-cols-6 gap-6">
+                <div className="col-span-3 gap-6 mt-6">
+                  <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <div className="flex">Standard</div>
+                    <input
+                      className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
+                      disabled
+                      value={ecfRating}
+                      type="text"
+                    />
+                  </div>
+                </div>
+                <div className="col-span-3 gap-6 mt-6">
+                  <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <div className="flex">Rapidplay</div>
+                    <input
+                      className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
+                      disabled
+                      value={ecfRapid}
+                      type="text"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -125,18 +156,18 @@ export default function ChessInfo() {
         </div>
 
         <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 sm:text-right text-xs sm:px-6 border-t border-gray-50 dark:border-gray-700 italic text-center">
-            <span>
-              These fields will be automatically populated once you have an
-              official rating with the{" "}
-              <a
-                className="text-teal-600 hover:text-teal-500"
-                href="https://www.englishchess.org.uk/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                English Chess Federation.
-              </a>
-            </span>
+          <span>
+            These fields will be automatically populated once you have an
+            official rating with the{" "}
+            <a
+              className="text-teal-600 hover:text-teal-500"
+              href="https://www.englishchess.org.uk/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              English Chess Federation.
+            </a>
+          </span>
         </div>
       </div>
     </div>

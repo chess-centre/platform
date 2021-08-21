@@ -12,112 +12,7 @@ import { prettyDate } from "../../utils/DateFormating";
 import { classNames, bgColor900 } from "../../utils/Classes";
 import PaymentCompleteModal from "../../components/Modal/PaymentCompleteModal";
 import EventDetailsSlideOut from "../../components/SlideOut/EventDetailsSlideOut";
-
-export const listEvents = /* GraphQL */ `
-  query ListEventsActive(
-    $active: String
-    $startDate: ModelStringKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelEventFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEventsActive(
-      active: $active
-      startDate: $startDate
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        name
-        description
-        rounds
-        time
-        startDate
-        endDate
-        maxEntries
-        entryCount
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        type {
-          id
-          name
-          description
-          url
-          color
-          time
-          maxEntries
-          stripePriceId
-          timeControl
-          eventType
-          defaultPrice
-          canRegister
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        entries {
-          items {
-            id
-            eventId
-            memberId
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            member {
-              id
-              about
-              fideId
-              ecfId
-              username
-              name
-              email
-              ecfRating
-              membershipType
-              gameInfo
-              ratingInfo
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            event {
-              id
-              name
-              description
-              rounds
-              time
-              startDate
-              endDate
-              maxEntries
-              entryCount
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-          }
-          nextToken
-          startedAt
-        }
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
+import { listEventsActive } from "../../graphql/queries";
 
 function useEvents() {
   const { user } = useAuthState();
@@ -140,7 +35,7 @@ function useEvents() {
         listEventsActive: { items: events },
       },
     } = await API.graphql({
-      query: listEvents,
+      query: listEventsActive,
       variables: { active: 'yes', startDate: { gt: today } }
     });
 
@@ -197,7 +92,6 @@ export default function AppEvents() {
 
       await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
-      console.log(error.message);
       addToast("Oops. Seems something isn't working on our end.", {
         appearance: "error",
         autoDismiss: true,

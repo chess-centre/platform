@@ -1,5 +1,4 @@
 import Amplify, { Auth, API, DataStore } from "aws-amplify";
-import { Plan, Member } from "../../models";
 import AWS_AUTH from "../../aws-exports";
 Amplify.configure({
   ...AWS_AUTH,

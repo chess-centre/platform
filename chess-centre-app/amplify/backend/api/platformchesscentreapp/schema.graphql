@@ -21,12 +21,28 @@ type Result @model @auth(rules: [{allow: private}]) @key(name: "byEvent", fields
   dgtCloudUrl: String
 }
 
-type Game @model @auth(rules: [{allow: private}]) {
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+}
+
+type Game
+@model
+@auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}])
+@key(name: "byEvent", fields: ["eventId"], queryField: "listGamesByEvent")
+@key(name: "byWhite", fields: ["whiteMemberId"], queryField: "listGamesByWhiteMember")
+@key(name: "byBlack", fields: ["blackMemberId"], queryField: "listGamesByBlackMember") {
   id: ID!
-  pgn: String
-  opponent: String
-  colour: String
+  eventId: ID!
+  whiteMemberId: ID!
+  blackMemberId: ID!
+  round: Int
+  event: Event @connection(fields: ["eventId"])
+  whiteMember: Member @connection(fields: ["whiteMemberId"])
+  blackMember: Member @connection(fields: ["blackMemberId"])
   result: String
+  pgn: S3Object
 }
 
 type Plan @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "key", fields: ["key"]) {
@@ -36,7 +52,7 @@ type Plan @model @auth(rules: [{allow: private}, {allow: private, provider: iam}
   stripeProductId: String!
 }
 
-type EventType @model @auth(rules: [{allow: private}]) {
+type EventType @model @auth(rules: [{allow: private}, {allow: public, provider: iam, operations: [read]}]) {
   id: ID!
   name: String!
   description: String
@@ -51,7 +67,7 @@ type EventType @model @auth(rules: [{allow: private}]) {
   canRegister: Boolean
 }
 
-type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: private, operations: [read]}]) @key(name: "stripe", fields: ["stripeCustomerId"]) {
+type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: private, operations: [read]}, {allow: public, provider: iam, operations: [read]}]) @key(name: "stripe", fields: ["stripeCustomerId"]) {
   id: ID!
   about: String
   fideId: Int
@@ -60,18 +76,23 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   name: String
   email: String
   entries: [Entry!] @connection(keyName: "byMember", fields: ["id"])
+  games: [Game!] @function(name: "getMemberGames-${env}")
   stripeCustomerId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   stripeCurrentPeriodEnd: Float @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   stripePriceId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   stripeProductId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   ecfRating: String
+  ecfRapid: String
+  ecfMembership: String
+  estimatedRating: String
+  club: String
+  gender: String
   membershipType: String
   gameInfo: AWSJSON
   ratingInfo: AWSJSON
 }
 
-
-type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "eventsByActive", fields: ["active", "startDate"], queryField: "listEventsActive") {
+type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}, {allow: public, provider: iam, operations: [read]}]) @key(name: "eventsByActive", fields: ["active", "startDate"], queryField: "listEventsActive") {
   id: ID!
   name: String
   description: String
@@ -81,6 +102,7 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   startDate: AWSDate!
   endDate: AWSDate
   entries: [Entry!] @connection(keyName: "byEvent", fields: ["id"])
+  games: [Game!] @connection(keyName: "byEvent", fields: ["id"])
   maxEntries: Int
   entryCount: Int
   complete: Boolean
@@ -89,7 +111,7 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   results: [Result] @connection(keyName: "byEvent", fields: ["id"])
 }
 
-type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "byEvent", fields: ["eventId"]) @key(name: "byMember", fields: ["memberId"]) {
+type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam}, {allow: public, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventId"]) @key(name: "byMember", fields: ["memberId"]) {
   id: ID!
   eventId: ID!
   memberId: ID!

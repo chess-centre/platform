@@ -147,7 +147,6 @@ function Profile() {
     };
 
     getProfileData().catch(error => {
-      console.log(error);
       setIsLoadingProfile(false);
     });
   }, [user]);

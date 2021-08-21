@@ -1,6 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateBroadcast = /* GraphQL */ `
+  subscription OnCreateBroadcast {
+    onCreateBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBroadcast = /* GraphQL */ `
+  subscription OnUpdateBroadcast {
+    onUpdateBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBroadcast = /* GraphQL */ `
+  subscription OnDeleteBroadcast {
+    onDeleteBroadcast {
+      id
+      buttonName
+      isLive
+      description
+      name
+      pageUrl
+      dgtUrl
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateResult = /* GraphQL */ `
   subscription OnCreateResult {
     onCreateResult {
@@ -68,15 +122,721 @@ export const onCreateGame = /* GraphQL */ `
   subscription OnCreateGame {
     onCreateGame {
       id
-      pgn
-      opponent
-      colour
+      eventId
+      whiteMemberId
+      blackMemberId
+      round
       result
+      pgn {
+        bucket
+        region
+        key
+      }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      whiteMember {
+        id
+        about
+        fideId
+        ecfId
+        username
+        name
+        email
+        games {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        ecfRating
+        ecfRapid
+        ecfMembership
+        estimatedRating
+        club
+        gender
+        membershipType
+        gameInfo
+        ratingInfo
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        stripeCustomerId
+        stripeCurrentPeriodEnd
+        stripePriceId
+        stripeProductId
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
+      blackMember {
+        id
+        about
+        fideId
+        ecfId
+        username
+        name
+        email
+        games {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        ecfRating
+        ecfRapid
+        ecfMembership
+        estimatedRating
+        club
+        gender
+        membershipType
+        gameInfo
+        ratingInfo
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        stripeCustomerId
+        stripeCurrentPeriodEnd
+        stripePriceId
+        stripeProductId
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
+      event {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        active
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        results {
+          items {
+            id
+            pairings
+            results
+            players
+            eventID
+            name
+            complete
+            live
+            winner
+            dgtCloudUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        games {
+          items {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
     }
   }
 `;
@@ -84,15 +844,721 @@ export const onUpdateGame = /* GraphQL */ `
   subscription OnUpdateGame {
     onUpdateGame {
       id
-      pgn
-      opponent
-      colour
+      eventId
+      whiteMemberId
+      blackMemberId
+      round
       result
+      pgn {
+        bucket
+        region
+        key
+      }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      whiteMember {
+        id
+        about
+        fideId
+        ecfId
+        username
+        name
+        email
+        games {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        ecfRating
+        ecfRapid
+        ecfMembership
+        estimatedRating
+        club
+        gender
+        membershipType
+        gameInfo
+        ratingInfo
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        stripeCustomerId
+        stripeCurrentPeriodEnd
+        stripePriceId
+        stripeProductId
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
+      blackMember {
+        id
+        about
+        fideId
+        ecfId
+        username
+        name
+        email
+        games {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        ecfRating
+        ecfRapid
+        ecfMembership
+        estimatedRating
+        club
+        gender
+        membershipType
+        gameInfo
+        ratingInfo
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        stripeCustomerId
+        stripeCurrentPeriodEnd
+        stripePriceId
+        stripeProductId
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
+      event {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        active
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        results {
+          items {
+            id
+            pairings
+            results
+            players
+            eventID
+            name
+            complete
+            live
+            winner
+            dgtCloudUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        games {
+          items {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
     }
   }
 `;
@@ -100,15 +1566,721 @@ export const onDeleteGame = /* GraphQL */ `
   subscription OnDeleteGame {
     onDeleteGame {
       id
-      pgn
-      opponent
-      colour
+      eventId
+      whiteMemberId
+      blackMemberId
+      round
       result
+      pgn {
+        bucket
+        region
+        key
+      }
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      whiteMember {
+        id
+        about
+        fideId
+        ecfId
+        username
+        name
+        email
+        games {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        ecfRating
+        ecfRapid
+        ecfMembership
+        estimatedRating
+        club
+        gender
+        membershipType
+        gameInfo
+        ratingInfo
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        stripeCustomerId
+        stripeCurrentPeriodEnd
+        stripePriceId
+        stripeProductId
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
+      blackMember {
+        id
+        about
+        fideId
+        ecfId
+        username
+        name
+        email
+        games {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        ecfRating
+        ecfRapid
+        ecfMembership
+        estimatedRating
+        club
+        gender
+        membershipType
+        gameInfo
+        ratingInfo
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        stripeCustomerId
+        stripeCurrentPeriodEnd
+        stripePriceId
+        stripeProductId
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
+      event {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        active
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        results {
+          items {
+            id
+            pairings
+            results
+            players
+            eventID
+            name
+            complete
+            live
+            winner
+            dgtCloudUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+        games {
+          items {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
     }
   }
 `;
@@ -236,7 +2408,384 @@ export const onCreateMember = /* GraphQL */ `
       username
       name
       email
+      games {
+        id
+        eventId
+        whiteMemberId
+        blackMemberId
+        round
+        result
+        pgn {
+          bucket
+          region
+          key
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        whiteMember {
+          id
+          about
+          fideId
+          ecfId
+          username
+          name
+          email
+          games {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          ecfRating
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          gameInfo
+          ratingInfo
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          stripeCustomerId
+          stripeCurrentPeriodEnd
+          stripePriceId
+          stripeProductId
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+        blackMember {
+          id
+          about
+          fideId
+          ecfId
+          username
+          name
+          email
+          games {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          ecfRating
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          gameInfo
+          ratingInfo
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          stripeCustomerId
+          stripeCurrentPeriodEnd
+          stripePriceId
+          stripeProductId
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+        event {
+          id
+          name
+          description
+          rounds
+          time
+          startDate
+          endDate
+          maxEntries
+          entryCount
+          complete
+          cancelled
+          active
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          results {
+            items {
+              id
+              pairings
+              results
+              players
+              eventID
+              name
+              complete
+              live
+              winner
+              dgtCloudUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          games {
+            items {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          type {
+            id
+            name
+            description
+            url
+            color
+            time
+            maxEntries
+            stripePriceId
+            timeControl
+            eventType
+            defaultPrice
+            canRegister
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+      }
       ecfRating
+      ecfRapid
+      ecfMembership
+      estimatedRating
+      club
+      gender
       membershipType
       gameInfo
       ratingInfo
@@ -267,7 +2816,25 @@ export const onCreateMember = /* GraphQL */ `
             username
             name
             email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -304,6 +2871,10 @@ export const onCreateMember = /* GraphQL */ `
             createdAt
             updatedAt
             results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -348,7 +2919,384 @@ export const onUpdateMember = /* GraphQL */ `
       username
       name
       email
+      games {
+        id
+        eventId
+        whiteMemberId
+        blackMemberId
+        round
+        result
+        pgn {
+          bucket
+          region
+          key
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        whiteMember {
+          id
+          about
+          fideId
+          ecfId
+          username
+          name
+          email
+          games {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          ecfRating
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          gameInfo
+          ratingInfo
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          stripeCustomerId
+          stripeCurrentPeriodEnd
+          stripePriceId
+          stripeProductId
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+        blackMember {
+          id
+          about
+          fideId
+          ecfId
+          username
+          name
+          email
+          games {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          ecfRating
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          gameInfo
+          ratingInfo
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          stripeCustomerId
+          stripeCurrentPeriodEnd
+          stripePriceId
+          stripeProductId
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+        event {
+          id
+          name
+          description
+          rounds
+          time
+          startDate
+          endDate
+          maxEntries
+          entryCount
+          complete
+          cancelled
+          active
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          results {
+            items {
+              id
+              pairings
+              results
+              players
+              eventID
+              name
+              complete
+              live
+              winner
+              dgtCloudUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          games {
+            items {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          type {
+            id
+            name
+            description
+            url
+            color
+            time
+            maxEntries
+            stripePriceId
+            timeControl
+            eventType
+            defaultPrice
+            canRegister
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+      }
       ecfRating
+      ecfRapid
+      ecfMembership
+      estimatedRating
+      club
+      gender
       membershipType
       gameInfo
       ratingInfo
@@ -379,7 +3327,25 @@ export const onUpdateMember = /* GraphQL */ `
             username
             name
             email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -416,6 +3382,10 @@ export const onUpdateMember = /* GraphQL */ `
             createdAt
             updatedAt
             results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -460,7 +3430,384 @@ export const onDeleteMember = /* GraphQL */ `
       username
       name
       email
+      games {
+        id
+        eventId
+        whiteMemberId
+        blackMemberId
+        round
+        result
+        pgn {
+          bucket
+          region
+          key
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        whiteMember {
+          id
+          about
+          fideId
+          ecfId
+          username
+          name
+          email
+          games {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          ecfRating
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          gameInfo
+          ratingInfo
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          stripeCustomerId
+          stripeCurrentPeriodEnd
+          stripePriceId
+          stripeProductId
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+        blackMember {
+          id
+          about
+          fideId
+          ecfId
+          username
+          name
+          email
+          games {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          ecfRating
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          gameInfo
+          ratingInfo
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          stripeCustomerId
+          stripeCurrentPeriodEnd
+          stripePriceId
+          stripeProductId
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+        event {
+          id
+          name
+          description
+          rounds
+          time
+          startDate
+          endDate
+          maxEntries
+          entryCount
+          complete
+          cancelled
+          active
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          results {
+            items {
+              id
+              pairings
+              results
+              players
+              eventID
+              name
+              complete
+              live
+              winner
+              dgtCloudUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          games {
+            items {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          type {
+            id
+            name
+            description
+            url
+            color
+            time
+            maxEntries
+            stripePriceId
+            timeControl
+            eventType
+            defaultPrice
+            canRegister
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+      }
       ecfRating
+      ecfRapid
+      ecfMembership
+      estimatedRating
+      club
+      gender
       membershipType
       gameInfo
       ratingInfo
@@ -491,7 +3838,25 @@ export const onDeleteMember = /* GraphQL */ `
             username
             name
             email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -528,6 +3893,10 @@ export const onDeleteMember = /* GraphQL */ `
             createdAt
             updatedAt
             results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -603,6 +3972,166 @@ export const onCreateEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
+      games {
+        items {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        nextToken
+        startedAt
+      }
       type {
         id
         name
@@ -640,7 +4169,25 @@ export const onCreateEvent = /* GraphQL */ `
             username
             name
             email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -677,6 +4224,10 @@ export const onCreateEvent = /* GraphQL */ `
             createdAt
             updatedAt
             results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -752,6 +4303,166 @@ export const onUpdateEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
+      games {
+        items {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        nextToken
+        startedAt
+      }
       type {
         id
         name
@@ -789,7 +4500,25 @@ export const onUpdateEvent = /* GraphQL */ `
             username
             name
             email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -826,6 +4555,10 @@ export const onUpdateEvent = /* GraphQL */ `
             createdAt
             updatedAt
             results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -901,6 +4634,166 @@ export const onDeleteEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
+      games {
+        items {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
+        nextToken
+        startedAt
+      }
       type {
         id
         name
@@ -938,7 +4831,25 @@ export const onDeleteEvent = /* GraphQL */ `
             username
             name
             email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
             membershipType
             gameInfo
             ratingInfo
@@ -975,6 +4886,10 @@ export const onDeleteEvent = /* GraphQL */ `
             createdAt
             updatedAt
             results {
+              nextToken
+              startedAt
+            }
+            games {
               nextToken
               startedAt
             }
@@ -1028,7 +4943,168 @@ export const onCreateEntry = /* GraphQL */ `
         username
         name
         email
+        games {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
         ecfRating
+        ecfRapid
+        ecfMembership
+        estimatedRating
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -1060,6 +5136,11 @@ export const onCreateEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1136,6 +5217,101 @@ export const onCreateEntry = /* GraphQL */ `
           nextToken
           startedAt
         }
+        games {
+          items {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
         type {
           id
           name
@@ -1174,6 +5350,11 @@ export const onCreateEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1233,7 +5414,168 @@ export const onUpdateEntry = /* GraphQL */ `
         username
         name
         email
+        games {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
         ecfRating
+        ecfRapid
+        ecfMembership
+        estimatedRating
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -1265,6 +5607,11 @@ export const onUpdateEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1341,6 +5688,101 @@ export const onUpdateEntry = /* GraphQL */ `
           nextToken
           startedAt
         }
+        games {
+          items {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
         type {
           id
           name
@@ -1379,6 +5821,11 @@ export const onUpdateEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1438,7 +5885,168 @@ export const onDeleteEntry = /* GraphQL */ `
         username
         name
         email
+        games {
+          id
+          eventId
+          whiteMemberId
+          blackMemberId
+          round
+          result
+          pgn {
+            bucket
+            region
+            key
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          whiteMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          blackMember {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
         ecfRating
+        ecfRapid
+        ecfMembership
+        estimatedRating
+        club
+        gender
         membershipType
         gameInfo
         ratingInfo
@@ -1470,6 +6078,11 @@ export const onDeleteEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo
@@ -1546,6 +6159,101 @@ export const onDeleteEntry = /* GraphQL */ `
           nextToken
           startedAt
         }
+        games {
+          items {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
         type {
           id
           name
@@ -1584,6 +6292,11 @@ export const onDeleteEntry = /* GraphQL */ `
               name
               email
               ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
               membershipType
               gameInfo
               ratingInfo

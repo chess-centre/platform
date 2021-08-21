@@ -1,15 +1,17 @@
 const AWS = require("aws-sdk");
+const sendNewAccountEmail = require("./sendEmail").sendNewAccountEmail;
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const memberTable = `Member-${process.env.GRAPHQLID}-${process.env.ENV}`;
 
 exports.handler = async (event, context, callback) => {
+
   console.log(JSON.stringify(event));
 
   const {
-    request: {
-      userAttributes: { sub, given_name, family_name, email },
-    },
+    triggerSource,
+    request: { userAttributes },
   } = event;
+  const { sub, given_name, family_name, email } = userAttributes
 
   const name = `${given_name} ${family_name}`;
 
@@ -33,8 +35,17 @@ exports.handler = async (event, context, callback) => {
     },
   };
 
-  const response = await dynamodb.put(params).promise();
-  console.log(response);
+  try {
+    const response = await dynamodb.put(params).promise();
+    console.log(response);
+
+    if(triggerSource === "PostConfirmation_ConfirmSignUp") {
+      await sendNewAccountEmail(userAttributes);
+      console.log("Email sent.")
+    };
+  } catch (error) {
+    console.log("error", error);
+  }
 
   callback(null, event);
 };

@@ -19,10 +19,6 @@
     "apiplatformchesscentreappGraphQLAPIIdOutput": {
       "Type": "String",
       "Default": "apiplatformchesscentreappGraphQLAPIIdOutput"
-    },
-    "apiplatformchesscentreappGraphQLAPIEndpointOutput": {
-      "Type": "String",
-      "Default": "apiplatformchesscentreappGraphQLAPIEndpointOutput"
     }
   },
   "Conditions": {
@@ -55,12 +51,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "getEvents",
+            "getMemberGames",
             {
               "Fn::Join": [
                 "",
                 [
-                  "getEvents",
+                  "getMemberGames",
                   "-",
                   {
                     "Ref": "env"
@@ -78,11 +74,34 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
+            "API_PLATFORMCHESSCENTREAPP_GAMETABLE_NAME": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${apiplatformchesscentreappGraphQLAPIIdOutput}:GetAtt:GameTable:Name"
+              }
+            },
+            "API_PLATFORMCHESSCENTREAPP_GAMETABLE_ARN": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:aws:dynamodb:",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ":",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":table/",
+                  {
+                    "Fn::ImportValue": {
+                      "Fn::Sub": "${apiplatformchesscentreappGraphQLAPIIdOutput}:GetAtt:GameTable:Name"
+                    }
+                  }
+                ]
+              ]
+            },
             "API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIIDOUTPUT": {
               "Ref": "apiplatformchesscentreappGraphQLAPIIdOutput"
-            },
-            "API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIENDPOINTOUTPUT": {
-              "Ref": "apiplatformchesscentreappGraphQLAPIEndpointOutput"
             }
           }
         },
@@ -94,7 +113,7 @@
         },
         "Runtime": "nodejs14.x",
         "Layers": [],
-        "Timeout": "25"
+        "Timeout": 25
       }
     },
     "LambdaExecutionRole": {
@@ -103,12 +122,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "platformchesscentreaLambdaRole5e21c416",
+            "platformchesscentreaLambdaRolec58ece2e",
             {
               "Fn::Join": [
                 "",
                 [
-                  "platformchesscentreaLambdaRole5e21c416",
+                  "platformchesscentreaLambdaRolec58ece2e",
                   "-",
                   {
                     "Ref": "env"
@@ -197,14 +216,19 @@
             {
               "Effect": "Allow",
               "Action": [
-                "appsync:GraphQL"
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query"
               ],
               "Resource": [
                 {
                   "Fn::Join": [
                     "",
                     [
-                      "arn:aws:appsync:",
+                      "arn:aws:dynamodb:",
                       {
                         "Ref": "AWS::Region"
                       },
@@ -212,11 +236,34 @@
                       {
                         "Ref": "AWS::AccountId"
                       },
-                      ":apis/",
+                      ":table/",
                       {
-                        "Ref": "apiplatformchesscentreappGraphQLAPIIdOutput"
+                        "Fn::ImportValue": {
+                          "Fn::Sub": "${apiplatformchesscentreappGraphQLAPIIdOutput}:GetAtt:GameTable:Name"
+                        }
+                      }
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:dynamodb:",
+                      {
+                        "Ref": "AWS::Region"
                       },
-                      "/types/Query/*"
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":table/",
+                      {
+                        "Fn::ImportValue": {
+                          "Fn::Sub": "${apiplatformchesscentreappGraphQLAPIIdOutput}:GetAtt:GameTable:Name"
+                        }
+                      },
+                      "/index/*"
                     ]
                   ]
                 }
