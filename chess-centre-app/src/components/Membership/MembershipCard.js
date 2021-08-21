@@ -49,7 +49,6 @@ function MembershipCard({
     try {
       await subscribe(dispatch, plan, stripe);
     } catch (error) {
-      console.log(error.message);
       addToast(
         "Oops. Looks like there is an issue subscribing.",
         {

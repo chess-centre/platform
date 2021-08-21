@@ -1,4 +1,5 @@
-import React from "react";
+import { Auth } from 'aws-amplify';
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
 import { useAuthState, useAuthDispatch, logout } from "../../context/Auth";
@@ -11,6 +12,7 @@ const headings = [
 ];
 
 const LandingNav = (props) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { current } = props;
   const history = useHistory();
   const { user } = useAuthState();
@@ -26,6 +28,26 @@ const LandingNav = (props) => {
     logout(dispatch);
     history.push("/");
   };
+
+  useEffect(() => {
+      const getCurrentUser = async () => {
+        try {
+          await Auth.currentAuthenticatedUser();
+        } catch (error) {
+          localStorage.removeItem("currentUser");
+          localStorage.removeItem("token");
+        }
+      }
+      if(user && user.userConfirmed) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+        localStorage.removeItem("currentUser");
+        localStorage.removeItem("token");
+      }
+      getCurrentUser();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -90,7 +112,7 @@ const LandingNav = (props) => {
           </div>
           <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
               <span className="inline-flex rounded-md">
-                {user ? (
+                {isLoggedIn ? (
                   <div className="grid grid-cols-2">
                     <div className="text-teal-brand bg-white hover:text-teal-700 ">
                       <Link
@@ -200,7 +222,7 @@ const LandingNav = (props) => {
               })}
             </div>
             <div>
-              {user ? (
+              {isLoggedIn ? (
                 <>
                   <Link
                     className={`block w-full px-5 py-4 text-center text-sm text-teal-500 bg-gray-50 hover:bg-gray-100 hover:text-teal-700 border-gray-100
