@@ -206,6 +206,8 @@ export default function Events() {
                               name={name}
                               url={type.url}
                               description={description}
+                              isLive={true && (key % 2 === 0)}
+                              isFull={true && (key % 2 !== 0)}
                               details={[
                                 {
                                   icon: "fad fa-calendar-alt",
