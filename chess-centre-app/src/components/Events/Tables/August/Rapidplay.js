@@ -4,23 +4,51 @@ import QR from "../../../../assets/img/QR-live-games.png";
 export const CongressEntries = [
   {
     id: 1,
-    name: "Andrew Wainwright",
-    ratingInfo: {
-      rating: 2010,
-    },
-  },
-  {
-    id: 2,
     name: "Timothy Spanton",
     ratingInfo: {
       rating: 1998,
     },
   },
   {
-    id: 3,
+    id: 2,
     name: "Sam Davies",
     ratingInfo: {
       rating: 1944,
+    },
+  },
+  {
+    id: 3,
+    name: "Joe Varley",
+    ratingInfo: {
+      rating: 1830,
+    },
+  },
+  {
+    id: 4,
+    name: "Kevin Winter",
+    ratingInfo: {
+      rating: 1782,
+    },
+  },
+  {
+    id: 5,
+    name: "Jacob Smith",
+    ratingInfo: {
+      rating: 1577,
+    },
+  },
+  {
+    id: 6,
+    name: "Tom Hobbs",
+    ratingInfo: {
+      rating: 0,
+    },
+  },
+  {
+    id: 7,
+    name: "Andrew Wainwright",
+    ratingInfo: {
+      rating: 2010,
     },
   },
   {
@@ -29,35 +57,7 @@ export const CongressEntries = [
     ratingInfo: {
       rating: 1942,
     },
-  },
-  {
-    id: 5,
-    name: "Joe Varley",
-    ratingInfo: {
-      rating: 1830,
-    },
-  },
-  {
-    id: 6,
-    name: "Kevin Winter",
-    ratingInfo: {
-      rating: 1782,
-    },
-  },
-  {
-    id: 7,
-    name: "Jacob Smith",
-    ratingInfo: {
-      rating: 1577,
-    },
-  },
-  {
-    id: 8,
-    name: "Tom Hobbs",
-    ratingInfo: {
-      rating: 0,
-    },
-  },
+  }
 ];
 
 const SwissPlayerPairings = [
@@ -108,32 +108,74 @@ const SwissPlayerPairings = [
   },
 ];
 
+const SixPlayerPairings = [
+  {
+    round: 1,
+    pairings: [
+      [1, 6],
+      [2, 5],
+      [3, 4],
+    ],
+  },
+  {
+    round: 2,
+    pairings: [
+      [6, 4],
+      [5, 3],
+      [1, 2],
+    ],
+  },
+  {
+    round: 3,
+    pairings: [
+      [2, 6],
+      [3, 1],
+      [4, 5],
+    ],
+  },
+  {
+    round: 4,
+    pairings: [
+      [4, 1],
+      [3, 2],
+      [6, 7],
+      [5, 8]
+    ],
+  },
+  {
+    round: 5,
+    pairings: [
+      [],
+      [],
+      [],
+      [],
+    ],
+  },
+];
+
 const results = [
   {
     round: 1,
     pairResults: [
-      [],
-      [],
-      [],
-      [],
+      [1,0],
+      [1,0],
+      [1,0],
     ],
   },
   {
     round: 2,
     pairResults: [
-      [],
-      [],
-      [],
-      [],
+      [0,1],
+      [0,1],
+      [0.5,0.5],
     ],
   },
   {
     round: 3,
     pairResults: [
-      [],
-      [],
-      [],
-      [],
+      [0,1],
+      [0,1],
+      [1,0],
     ],
   },
   {
@@ -142,7 +184,7 @@ const results = [
       [],
       [],
       [],
-      [],
+      []
     ],
   },
   {
@@ -151,7 +193,7 @@ const results = [
       [],
       [],
       [],
-      [],
+      []
     ],
   },
 ];
@@ -165,7 +207,7 @@ const players = [
 
 const resultCheck = () => {
   const resultBySeed = [];
-  SwissPlayerPairings.forEach(({ round, pairings }) => {
+  SixPlayerPairings.forEach(({ round, pairings }) => {
     const pairingResults = results.find((r) => r.round === round).pairResults;
     pairings.forEach((board, index) => {
       const whitePlayer = board[0];
@@ -213,31 +255,30 @@ const { roundByRound } = resultCheck(players);
 export const Standings = () => {
   return (
     <div>
-      <h2 className="mb-2 text-1xl text-center font-bold">Overall Standings</h2>
       <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
-        <thead className="bg-gray-50 dark:bg-gray-800">
+        <thead className="bg-pink-900">
           <tr>
             <th
               scope="col"
-              className="px-2 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="px-2 py-3 text-left text-xs font-medium text-gray-50 dark:text-gray-300 uppercase tracking-wider"
             >
               Pos.
             </th>
             <th
               scope="col"
-              className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-gray-300 uppercase tracking-wider"
             >
               Player
             </th>
             <th
               scope="col"
-              className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-50 dark:text-gray-300 uppercase tracking-wider"
             >
               Round by Round
             </th>
             <th
               scope="col"
-              className="relative px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
+              className="relative px-6 py-3 text-center text-xs font-medium text-gray-50 dark:text-gray-300 uppercase tracking-wider"
             >
               Total
             </th>
@@ -254,8 +295,8 @@ export const Standings = () => {
                   </td>
                   <td className="px-2 pl-4 text-left sm:px-4 py-2 whitespace-nowrap text-md font-medium text-gray-900 ">
                     {data.name}{" "}
-                    <span className="font-thin">
-                      ({data.rating ? data.rating : "unrated"})
+                    <span className="font-thin text-pink-700">
+                      {data.rating ? data.rating : "unrated"}
                     </span>
                   </td>
                   <td className="px-4 sm:px-6 py-4 whitespace-nowrap font-medium text-sm text-gray-700 ">
@@ -341,11 +382,11 @@ const PairsTable = ({ format, players, results }) => {
                 </td>
                 <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700">
                   {whitePlayer.name ? whitePlayer.name : <span className="text-sx font-normal">TBC</span> } <br />
-                  <span className="font-thin">
+                  <span className="font-thin text-pink-700">
                     {whitePlayer.ratingInfo.rating === "blank"
                       ? ""
                       : whitePlayer.ratingInfo.rating
-                      ? `(${whitePlayer.ratingInfo.rating})`
+                      ? `${whitePlayer.ratingInfo.rating}`
                       : "unrated"}
                   </span>
                 </td>
@@ -358,11 +399,11 @@ const PairsTable = ({ format, players, results }) => {
                 </td>
                 <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700">
                   {blackPlayer.name ? blackPlayer.name : <span className="text-sx font-normal">TBC</span> } <br />
-                  <span className="font-thin">
+                  <span className="font-thin text-pink-700">
                     {blackPlayer.ratingInfo.rating === "blank"
                       ? <span className="text-white">Blank</span>
                       : blackPlayer.ratingInfo.rating
-                      ? `(${blackPlayer.ratingInfo.rating})`
+                      ? `${blackPlayer.ratingInfo.rating}`
                       : "unrated"}
                   </span>
                 </td>
@@ -389,23 +430,23 @@ const mockPlayers = [
 const mockResults = [
   {
     round: 1,
-    pairResults: [[], [], [], []],
+    pairResults: [[], [], []],
   },
   {
     round: 2,
-    pairResults: [[], [], [], []],
+    pairResults: [[], [], []],
   },
   {
     round: 3,
-    pairResults: [[], [], [], []],
+    pairResults: [[], [], []],
   },
   {
     round: 4,
-    pairResults: [[], [], [], []],
+    pairResults: [[], [], []],
   },
   {
     round: 5,
-    pairResults: [[], [], [], []],
+    pairResults: [[], [], []],
   },
 ];
 
@@ -416,13 +457,11 @@ const mockPairings = [
       [1, 1],
       [1, 1],
       [1, 1],
-      [1, 1],
     ],
   },
   {
     round: 2,
     pairings: [
-      [1, 1],
       [1, 1],
       [1, 1],
       [1, 1],
@@ -434,7 +473,6 @@ const mockPairings = [
       [1, 1],
       [1, 1],
       [1, 1],
-      [1, 1],
     ],
   },
   {
@@ -443,13 +481,11 @@ const mockPairings = [
       [1, 1],
       [1, 1],
       [1, 1],
-      [1, 1],
     ],
   },
   {
     round: 5,
     pairings: [
-      [1, 1],
       [1, 1],
       [1, 1],
       [1, 1],
@@ -461,10 +497,13 @@ export default function Rapidplay() {
   return (
     <div>
       <div className="grid grid-rows-3 grid-cols-3 gap-4">
-        <div className="mt-6">
+        <div className="mt-6 col-span-1">
+          <div className="text-centre text-md text-teal-600">
+              Previous Round 
+          </div>
           <div className="mt-2">
             <PairsTable
-              format={SwissPlayerPairings[0]}
+              format={SixPlayerPairings[2]}
               players={players}
               results={results}
             />
@@ -475,26 +514,22 @@ export default function Rapidplay() {
               players={mockPlayers}
               results={mockResults}
             />
+          </div> */}
+        </div>
+        <div className="mt-6 col-span-1">
+        <div className="text-centre text-md text-teal-600">
+              Next Round 
           </div>
           <div className="mt-2">
             <PairsTable
-              format={mockPairings[1]}
-              players={mockPlayers}
-              results={mockResults}
-            />
-          </div> */}
-        </div>
-        <div className="mt-6">
-          <div className="mt-2">
-            <PairsTable
-              format={mockPairings[1]}
-              players={mockPlayers}
-              results={mockResults}
+              format={SixPlayerPairings[3]}
+              players={players}
+              results={results}
             />
           </div>
           {/* <div className="mt-2">
             <PairsTable
-              format={mockPairings[1]}
+              format={mockPairings[3]}
               players={mockPlayers}
               results={mockResults}
             />
@@ -502,8 +537,31 @@ export default function Rapidplay() {
         </div>
 
         <div className="row-span-3">
-          <Standings></Standings>
-          <img className="h-80 mx-auto mt-10 object-center" alt="QR" src={QR} />
+          <div className="mt-6 text-centre text-md text-teal-600">
+              Overall
+          </div>
+          <div className="mt-2">
+            <Standings></Standings>
+          </div>
+          <img className="h-80 mx-auto mt-12 object-center" alt="QR" src={QR} />
+        </div>
+        <div className="mt-2 col-span-2 row-span-3">
+          {/* <iframe width="100%" height="100%" src="http://192.168.1.248:1982/liveviewer/index.html" /> */}
+          <div className="mt-10 text-centre text-3xl ">
+              General info
+          </div>
+          <div className="mt-5 text-centre text-2xl text-teal-600">
+              Round 4 
+          </div>
+          <div className="mt-5 text-centre text-8xl">
+              10:00am
+          </div>
+          <div className="mt-10 text-centre text-2xl text-teal-600">
+              Round 5 
+          </div>
+          <div className="mt-5 text-centre text-8xl">
+              12:30pm
+          </div>
         </div>
       </div>
     </div>
