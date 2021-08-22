@@ -58,7 +58,7 @@ export default function EventCard({
         <p className="mt-5 text-center">
           {
             isLive ?
-              <span className="text-5xl font-extrabold text-red-800 mr-1">
+              <span className="bg-gray-100 px-16 rounded-lg text-5xl font-extrabold text-red-600 mr-1">
                 LIVE
               </span> :
               <>
@@ -69,22 +69,22 @@ export default function EventCard({
               </>
           }
         </p>
-        {
-          isLive && <a href="/broadcast/live" className={`mt-6 
+        {/* {
+          isLive && <a href="/broadcast/live" className={`mt-4 
           w-full flex items-center justify-center 
           py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
           focus:shadow-outline-teal transition duration-150 ease-in-out`}>
-            <span class="flex relative h-2 w-2">
+            <span class="flex relative h-3 w-3">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
             </span>{" "}
             <span className="ml-2">Watch Here</span>
           </a>
-        }
+        } */}
         {
           isFull && !isLive && 
-          <button disabled className=" mt-6 block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900">
-            Event Full
+          <button disabled className="  mt-6 block w-full bg-gray-600 border border-gray-600 rounded-md py-2 text-sm font-semibold text-white text-center">
+            Closed
           </button>
         }
         {
