@@ -191,23 +191,24 @@ export default function Events() {
                           type,
                           color,
                           entryCount,
+                          isLive,
+                          isFull
                         },
                         key
                       ) => {
                         return (
-                          <div className="">
                             <EventCard
                               key={key}
                               id={id}
                               icon={setIcon(type.eventType)}
-                              color={color || type.color}
+                              color={type.color}
                               defaultPrice={type.defaultPrice}
                               type={type.eventType}
                               name={name}
                               url={type.url}
                               description={description}
-                              isLive={true && (key % 2 === 0)}
-                              isFull={true && (key % 2 !== 0)}
+                              isLive={isLive}
+                              isFull={isFull}
                               details={[
                                 {
                                   icon: "fad fa-calendar-alt",
@@ -237,7 +238,6 @@ export default function Events() {
                                 },
                               ]}
                             />
-                          </div>
                         );
                       }
                     )
