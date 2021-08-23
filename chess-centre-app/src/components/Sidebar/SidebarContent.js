@@ -113,9 +113,9 @@ function SidebarContent() {
           className={`
         align-bottom inline-flex items-center justify-center cursor-pointer leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-teal-600 border border-transparent active:bg-teal-600 hover:bg-teal-700 focus:shadow-outline-teal ml-5 mt-3`}
         >
-          <span class="flex relative h-3 w-3">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
+          <span className="flex relative h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
           </span>{" "}
           <span className="ml-2">Live Games</span>
         </Link>

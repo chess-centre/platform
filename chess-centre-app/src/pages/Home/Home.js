@@ -1,5 +1,7 @@
-import React from "react";
+import API from "@aws-amplify/api";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { listEventsActive } from "../../graphql/queries";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { useAuthState } from "../../context/Auth";
 import LandingNav from "../../components/Navigation/LandingNav";
@@ -9,8 +11,35 @@ import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
 
 const Home = () => {
-  const showLiveGames = true; // make config driven
   const { user } = useAuthState();
+  const today = new Date();
+  const [eventInfo, setEventInfo] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      setIsLoading(true);
+      const  { data: { listEventsActive: { items } }} = await API.graphql({
+        query: listEventsActive,
+        variables: { active: "yes", startDate: { gt: today }, filter: { isLive: { eq: true } } },
+        authMode: "AWS_IAM",
+      }).catch((e) => {
+        setIsLoading(false);
+        console.log("Error loading live data", e);
+      });
+      if(items) {
+        setEventInfo(items);
+      }
+      setIsLoading(false);
+    };
+    try {
+      fetchEvents();
+    } catch (error) {
+      setIsLoading(false);
+      console.log("Error loading live data", error);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -107,36 +136,52 @@ const Home = () => {
               </h2>
 
               <div className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                It's time things changed around here.{" "}
-                <span role="img">🚀</span>
-                <p className="mt-2 text-teal-500">Visit our dedicated venue in Ilkley</p>
+                It's time things changed around here. <span role="img">🚀</span>
+                <p className="mt-2 text-teal-500">
+                  Visit our dedicated venue in Ilkley
+                </p>
               </div>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className={user ? "hidden" : "rounded-md shadow"}>
                   <Link
                     to="/register"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
+                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:text-lg md:px-12"
                   >
                     Join Now
                   </Link>
                 </div>
               </div>
-              {showLiveGames && (
-                <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-                  <div className="rounded-md shadow">
-                    <Link
-                      to="/broadcast/live"
-                      className={`
-                    w-full flex items-center justify-center 
-                    px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
-                    focus:shadow-outline-teal transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10`}
-                    >
-                      <span class="flex relative h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
-                      </span>{" "}
-                      <span className="ml-2">Live Games</span>
-                    </Link>
+              {!isLoading ? (
+                eventInfo.map(({ name }) => {
+                  return (
+                    <div className="mt-4">
+                      <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center">
+                        <div className="rounded-md shadow">
+                          <Link
+                            to="/broadcast/live"
+                            className={`
+                            py-3
+                            w-full flex items-center justify-center px-9 border 
+                            border-transparent text-base font-medium rounded-md text-white bg-teal-700 hover:bg-teal-600 
+                            focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out`}
+                          >
+                            <span className="flex relative h-3 w-3">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
+                            </span>{" "}
+                            <span className="ml-2">
+                              Live Games
+                            </span>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="mt-4">
+                  <div className="text-teal-500 mb-2">
+                    <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
                   </div>
                 </div>
               )}
@@ -145,9 +190,7 @@ const Home = () => {
         </div>
       </div>
       <div className="relative max-w-6xl mx-auto px-4 sm:px-28">
-        
         <div className="pt-4 pb-0 sm:py-10">
-
           <div className="aspect-w-16 aspect-h-9">
             <iframe
               src={`https://www.youtube.com/embed/FYG4Envbzro`}

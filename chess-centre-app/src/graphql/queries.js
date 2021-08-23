@@ -306,6 +306,7 @@ export const getGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -412,6 +413,7 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -549,6 +551,7 @@ export const getGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -655,6 +658,7 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -679,6 +683,7 @@ export const getGame = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        isLive
         active
         _version
         _deleted
@@ -790,6 +795,7 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -869,6 +875,7 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -999,6 +1006,7 @@ export const listGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1131,6 +1139,7 @@ export const listGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1184,6 +1193,7 @@ export const listGames = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -1391,6 +1401,7 @@ export const listGamesByEvent = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1523,6 +1534,7 @@ export const listGamesByEvent = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1576,6 +1588,7 @@ export const listGamesByEvent = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -1783,6 +1796,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1915,6 +1929,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1968,6 +1983,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -2175,6 +2191,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -2307,6 +2324,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -2360,6 +2378,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -2565,6 +2584,7 @@ export const syncGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -2697,6 +2717,7 @@ export const syncGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -2750,6 +2771,7 @@ export const syncGames = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -3130,6 +3152,7 @@ export const syncMembers = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -3236,6 +3259,7 @@ export const syncMembers = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -3371,6 +3395,7 @@ export const getMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -3503,12 +3528,17 @@ export const getMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
               _lastChangedAt
               createdAt
               updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
             }
           }
           ecfRating
@@ -3556,6 +3586,7 @@ export const getMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -3719,6 +3750,7 @@ export const getMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -3896,6 +3928,7 @@ export const listMembers = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -4002,6 +4035,7 @@ export const listMembers = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -4033,6 +4067,7 @@ export const getEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      isLive
       active
       _version
       _deleted
@@ -4178,6 +4213,7 @@ export const getEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -4305,6 +4341,7 @@ export const getEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -4369,6 +4406,7 @@ export const listEvents = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        isLive
         active
         _version
         _deleted
@@ -4480,6 +4518,7 @@ export const listEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -4559,6 +4598,7 @@ export const listEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -4605,6 +4645,7 @@ export const listEventsActive = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        isLive
         active
         _version
         _deleted
@@ -4716,6 +4757,7 @@ export const listEventsActive = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -4795,6 +4837,7 @@ export const listEventsActive = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -4837,6 +4880,7 @@ export const syncEvents = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        isLive
         active
         _version
         _deleted
@@ -4948,6 +4992,7 @@ export const syncEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5027,6 +5072,7 @@ export const syncEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5180,6 +5226,7 @@ export const getEntry = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -5286,6 +5333,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5310,6 +5358,7 @@ export const getEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        isLive
         active
         _version
         _deleted
@@ -5421,6 +5470,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5500,6 +5550,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5622,6 +5673,7 @@ export const listEntrys = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5675,6 +5727,7 @@ export const listEntrys = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -5872,6 +5925,7 @@ export const syncEntries = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5925,6 +5979,7 @@ export const syncEntries = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted

@@ -23,7 +23,7 @@ export default function RoundTimesModal(props) {
             <li className="flex items-start col-span-1">
               <div className="flex-shrink-0">
                 <span className="text-green-400">
-                  <i class="fas fa-check-circle"></i>
+                  <i className="fas fa-check-circle"></i>
                 </span>
               </div>
               <p className="ml-3 text-sm text-gray-700">You should create the account in their name*</p>
@@ -31,7 +31,7 @@ export default function RoundTimesModal(props) {
             <li className="flex items-start col-span-1">
               <div className="flex-shrink-0">
                 <span className="text-green-400">
-                  <i class="fas fa-check-circle"></i>
+                  <i className="fas fa-check-circle"></i>
                 </span>
               </div>
               <p className="ml-3 text-sm text-gray-700">You can use your own email or theirs</p>

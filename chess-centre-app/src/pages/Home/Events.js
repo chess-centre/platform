@@ -189,8 +189,9 @@ export default function Events() {
                           startDate,
                           endDate,
                           type,
-                          color,
                           entryCount,
+                          isLive,
+                          isFull
                         },
                         key
                       ) => {
@@ -200,12 +201,14 @@ export default function Events() {
                               key={key}
                               id={id}
                               icon={setIcon(type.eventType)}
-                              color={color || type.color}
+                              color={type.color}
                               defaultPrice={type.defaultPrice}
                               type={type.eventType}
                               name={name}
                               url={type.url}
                               description={description}
+                              isLive={isLive}
+                              isFull={isFull}
                               details={[
                                 {
                                   icon: "fad fa-calendar-alt",
