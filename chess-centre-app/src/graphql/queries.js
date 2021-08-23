@@ -306,10 +306,7 @@ export const getGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
-<<<<<<< HEAD
             isLive
-=======
->>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
