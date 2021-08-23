@@ -16,7 +16,7 @@ import { listEventsActive } from "../../graphql/queries";
 
 function useEvents() {
   const { user } = useAuthState();
-  const today = new Date();
+  const yesterday = new Date(Date.now() - (3600 * 1000 * 24));
 
   function alreadyRegistered(event) {
     return !!event.entries.items.find(
@@ -25,7 +25,7 @@ function useEvents() {
   }
   function isFull(event) {
     return (
-      event.entries.items.length >= (event.maxEntries || event.type.maxEntries)
+      event.entryCount  >= (event.maxEntries || event.type.maxEntries)
     );
   }
 
@@ -36,7 +36,7 @@ function useEvents() {
       },
     } = await API.graphql({
       query: listEventsActive,
-      variables: { active: 'yes', startDate: { gt: today } }
+      variables: { active: 'yes', startDate: { gt: yesterday }} 
     });
 
     const sorted = events
@@ -92,7 +92,11 @@ export default function AppEvents() {
 
       await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
-      addToast("Oops. Seems something isn't working on our end.", {
+      const mailToString = `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0AEvent ID: ${eventId}%0D%0AUser ID: ${user.username}%0D%0AUser: ${user.attributes.given_name} ${user.attributes.family_name}%0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`
+      addToast(<div>Oops, something isn't working on our end.<br />
+        If this persists, please{" "}
+        <a className="font-bold underline" href={mailToString}>contact us</a>
+        {" "}🛠️</div>, {
         appearance: "error",
         autoDismiss: true,
       });
