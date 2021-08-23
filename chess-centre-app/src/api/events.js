@@ -27,6 +27,7 @@ export const useEvents = () => {
       maxEntries: event.maxEntries || event.type.maxEntries,
       color: event.type.color,
       url: event.type.url,
+      isFull: event.entryCount >= (event.maxEntries || event.type.maxEntries)
     }));
   });
 };
