@@ -306,7 +306,10 @@ export const getGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -413,7 +416,10 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -551,7 +557,10 @@ export const getGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -658,7 +667,10 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -683,7 +695,10 @@ export const getGame = /* GraphQL */ `
         entryCount
         complete
         cancelled
+<<<<<<< HEAD
         isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
         active
         _version
         _deleted
@@ -795,7 +810,10 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -875,7 +893,10 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1006,7 +1027,10 @@ export const listGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1139,7 +1163,10 @@ export const listGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1193,7 +1220,10 @@ export const listGames = /* GraphQL */ `
           entryCount
           complete
           cancelled
+<<<<<<< HEAD
           isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
           active
           _version
           _deleted
@@ -1401,7 +1431,10 @@ export const listGamesByEvent = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1534,7 +1567,10 @@ export const listGamesByEvent = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1588,7 +1624,10 @@ export const listGamesByEvent = /* GraphQL */ `
           entryCount
           complete
           cancelled
+<<<<<<< HEAD
           isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
           active
           _version
           _deleted
@@ -1796,7 +1835,10 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1929,7 +1971,10 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1983,7 +2028,10 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+<<<<<<< HEAD
           isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
           active
           _version
           _deleted
@@ -2191,7 +2239,10 @@ export const listGamesByBlackMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -2324,7 +2375,10 @@ export const listGamesByBlackMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -2378,7 +2432,10 @@ export const listGamesByBlackMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+<<<<<<< HEAD
           isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
           active
           _version
           _deleted
@@ -2584,7 +2641,10 @@ export const syncGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -2717,7 +2777,10 @@ export const syncGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -2771,7 +2834,10 @@ export const syncGames = /* GraphQL */ `
           entryCount
           complete
           cancelled
+<<<<<<< HEAD
           isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
           active
           _version
           _deleted
@@ -3152,7 +3218,10 @@ export const syncMembers = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -3528,7 +3597,10 @@ export const getMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+              active
+=======
               active
               _version
               _deleted
@@ -3537,6 +3609,521 @@ export const getMember = /* GraphQL */ `
               updatedAt
             }
           }
+          nextToken
+          startedAt
+        }
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getMember = /* GraphQL */ `
+  query GetMember($id: ID!) {
+    getMember(id: $id) {
+      id
+      about
+      fideId
+      ecfId
+      username
+      name
+      email
+      games {
+        id
+        eventId
+        whiteMemberId
+        blackMemberId
+        round
+        result
+        pgn {
+          bucket
+          region
+          key
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        whiteMember {
+          id
+          about
+          fideId
+          ecfId
+          username
+          name
+          email
+          games {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          ecfRating
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          gameInfo
+          ratingInfo
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          stripeCustomerId
+          stripeCurrentPeriodEnd
+          stripePriceId
+          stripeProductId
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+        blackMember {
+          id
+          about
+          fideId
+          ecfId
+          username
+          name
+          email
+          games {
+            id
+            eventId
+            whiteMemberId
+            blackMemberId
+            round
+            result
+            pgn {
+              bucket
+              region
+              key
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              active
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          ecfRating
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          gameInfo
+          ratingInfo
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          stripeCustomerId
+          stripeCurrentPeriodEnd
+          stripePriceId
+          stripeProductId
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+        event {
+          id
+          name
+          description
+          rounds
+          time
+          startDate
+          endDate
+          maxEntries
+          entryCount
+          complete
+          cancelled
+          active
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          results {
+            items {
+              id
+              pairings
+              results
+              players
+              eventID
+              name
+              complete
+              live
+              winner
+              dgtCloudUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          games {
+            items {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          type {
+            id
+            name
+            description
+            url
+            color
+            time
+            maxEntries
+            stripePriceId
+            timeControl
+            eventType
+            defaultPrice
+            canRegister
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+      }
+      ecfRating
+      ecfRapid
+      ecfMembership
+      estimatedRating
+      club
+      gender
+      membershipType
+      gameInfo
+      ratingInfo
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      stripeCustomerId
+      stripeCurrentPeriodEnd
+      stripePriceId
+      stripeProductId
+      entries {
+        items {
+          id
+          eventId
+          memberId
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          member {
+            id
+            about
+            fideId
+            ecfId
+            username
+            name
+            email
+            games {
+              id
+              eventId
+              whiteMemberId
+              blackMemberId
+              round
+              result
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            membershipType
+            gameInfo
+            ratingInfo
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            stripeCustomerId
+            stripeCurrentPeriodEnd
+            stripePriceId
+            stripeProductId
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            active
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+<<<<<<< HEAD
           ecfRating
           ecfRapid
           ecfMembership
@@ -3785,6 +4372,8 @@ export const getMember = /* GraphQL */ `
               startedAt
             }
           }
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
         }
         nextToken
         startedAt
@@ -4209,7 +4798,10 @@ export const getEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -4514,7 +5106,10 @@ export const listEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -4753,7 +5348,10 @@ export const listEventsActive = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -4988,7 +5586,10 @@ export const syncEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -5222,7 +5823,10 @@ export const getEntry = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -5329,7 +5933,10 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -5354,7 +5961,10 @@ export const getEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+<<<<<<< HEAD
         isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
         active
         _version
         _deleted
@@ -5669,7 +6279,10 @@ export const listEntrys = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -5921,7 +6534,10 @@ export const syncEntries = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted

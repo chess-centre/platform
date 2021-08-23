@@ -393,6 +393,7 @@ export const schema = {
                     "isArray": false,
                     "type": "AWSDate",
                     "isRequired": false,
+<<<<<<< HEAD
                     "attributes": []
                 },
                 "entries": {
@@ -458,6 +459,66 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+=======
+                    "attributes": []
+                },
+                "entries": {
+                    "name": "entries",
+                    "isArray": true,
+                    "type": {
+                        "model": "Entry"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "event"
+                    }
+                },
+                "games": {
+                    "name": "games",
+                    "isArray": true,
+                    "type": {
+                        "model": "Game"
+                    },
+                    "isRequired": true,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "event"
+                    }
+                },
+                "maxEntries": {
+                    "name": "maxEntries",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "entryCount": {
+                    "name": "entryCount",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "complete": {
+                    "name": "complete",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "cancelled": {
+                    "name": "cancelled",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
                 "active": {
                     "name": "active",
                     "isArray": false,
@@ -1072,5 +1133,9 @@ export const schema = {
             }
         }
     },
+<<<<<<< HEAD
     "version": "dbc7ac8fcb80712ae386ab2cd12da676"
+=======
+    "version": "0b8cc06611507c7a117a70b077832f6d"
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
 };

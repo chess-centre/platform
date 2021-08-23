@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "permissions": {
     "storage": {
@@ -7,4 +8,15 @@
     }
   },
   "lambdaLayers": []
+=======
+{
+  "permissions": {
+    "storage": {
+      "Game:@model(appsync)": [
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
 }

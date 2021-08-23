@@ -369,7 +369,10 @@ export const onCreateGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -614,7 +617,10 @@ export const onCreateGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -639,7 +645,10 @@ export const onCreateGame = /* GraphQL */ `
         entryCount
         complete
         cancelled
+<<<<<<< HEAD
         isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
         active
         _version
         _deleted
@@ -751,7 +760,10 @@ export const onCreateGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -831,7 +843,10 @@ export const onCreateGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -991,7 +1006,10 @@ export const onUpdateGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -1098,7 +1116,10 @@ export const onUpdateGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1236,7 +1257,10 @@ export const onUpdateGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -1343,7 +1367,10 @@ export const onUpdateGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1368,7 +1395,10 @@ export const onUpdateGame = /* GraphQL */ `
         entryCount
         complete
         cancelled
+<<<<<<< HEAD
         isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
         active
         _version
         _deleted
@@ -1480,7 +1510,10 @@ export const onUpdateGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1560,7 +1593,10 @@ export const onUpdateGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1720,7 +1756,10 @@ export const onDeleteGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -1827,7 +1866,10 @@ export const onDeleteGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -1965,7 +2007,10 @@ export const onDeleteGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -2072,7 +2117,10 @@ export const onDeleteGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -2097,7 +2145,10 @@ export const onDeleteGame = /* GraphQL */ `
         entryCount
         complete
         cancelled
+<<<<<<< HEAD
         isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
         active
         _version
         _deleted
@@ -2209,7 +2260,10 @@ export const onDeleteGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -2289,7 +2343,10 @@ export const onDeleteGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -2537,7 +2594,10 @@ export const onCreateMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -2670,7 +2730,10 @@ export const onCreateMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -2724,7 +2787,10 @@ export const onCreateMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+<<<<<<< HEAD
           isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
           active
           _version
           _deleted
@@ -2888,7 +2954,10 @@ export const onCreateMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -3052,7 +3121,10 @@ export const onUpdateMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -3185,7 +3257,10 @@ export const onUpdateMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -3239,7 +3314,10 @@ export const onUpdateMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+<<<<<<< HEAD
           isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
           active
           _version
           _deleted
@@ -3403,7 +3481,10 @@ export const onUpdateMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -3567,7 +3648,10 @@ export const onDeleteMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -3700,7 +3784,10 @@ export const onDeleteMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -3754,7 +3841,10 @@ export const onDeleteMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+<<<<<<< HEAD
           isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
           active
           _version
           _deleted
@@ -3918,7 +4008,10 @@ export const onDeleteMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -3978,7 +4071,10 @@ export const onCreateEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+<<<<<<< HEAD
       isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
       active
       _version
       _deleted
@@ -4124,7 +4220,10 @@ export const onCreateEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -4252,7 +4351,10 @@ export const onCreateEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -4312,7 +4414,10 @@ export const onUpdateEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+<<<<<<< HEAD
       isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
       active
       _version
       _deleted
@@ -4458,7 +4563,10 @@ export const onUpdateEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -4586,7 +4694,10 @@ export const onUpdateEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -4646,7 +4757,10 @@ export const onDeleteEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+<<<<<<< HEAD
       isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
       active
       _version
       _deleted
@@ -4792,7 +4906,10 @@ export const onDeleteEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -4920,7 +5037,10 @@ export const onDeleteEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -5102,7 +5222,10 @@ export const onCreateEntry = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -5209,7 +5332,10 @@ export const onCreateEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -5234,7 +5360,10 @@ export const onCreateEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+<<<<<<< HEAD
         isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
         active
         _version
         _deleted
@@ -5346,7 +5475,10 @@ export const onCreateEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -5426,7 +5558,10 @@ export const onCreateEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted
@@ -6054,7 +6189,10 @@ export const onDeleteEntry = /* GraphQL */ `
             entryCount
             complete
             cancelled
+<<<<<<< HEAD
             isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
             active
             _version
             _deleted
@@ -6298,7 +6436,10 @@ export const onDeleteEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+<<<<<<< HEAD
               isLive
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
               active
               _version
               _deleted

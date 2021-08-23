@@ -63,7 +63,10 @@ export declare class Event {
   readonly entryCount?: number;
   readonly complete?: boolean;
   readonly cancelled?: boolean;
+<<<<<<< HEAD
   readonly isLive?: boolean;
+=======
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
   readonly active?: string;
   readonly results?: (Result | null)[];
   constructor(init: ModelInit<Event>);

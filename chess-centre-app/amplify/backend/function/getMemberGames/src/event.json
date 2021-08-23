@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 {
   "key1": "value1",
   "key2": "value2",
   "key3": "value3"
 }
+=======
+{
+  "key1": "value1",
+  "key2": "value2",
+  "key3": "value3"
+}
+>>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
