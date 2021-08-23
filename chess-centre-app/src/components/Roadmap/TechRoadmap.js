@@ -6,7 +6,7 @@ const Issue = ({issue}) => {
       className="text-pink-600 hover:underline"
       href={`https://github.com/chess-centre/platform/issues/${issue}`}
     >
-      {`#${issue}`}
+      {`Ref #${issue}`}
     </a>
   );
 };
@@ -34,14 +34,30 @@ export const TechRoadmap = () => {
             <p>May - platform launch 🥂</p>
             <ul className="list-disc ml-5">
               <li>
-                code available here:{" "}
+                code available here:<br />
                 <a
                   className="text-pink-600 hover:underline"
                   href="https://github.com/chess-centre"
                 >
-                  github repos
+                  GitHub Code repository
                 </a>
               </li>
+            </ul>
+          </div>
+        </li>
+        <li className="mb-2">
+          <div className="flex items-center mb-1">
+          <div className="bg-orange-brand rounded-full h-4 w-4 z-50"></div>
+            <div className="flex-1 ml-4 font-medium">
+            <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+                Complete
+              </span>
+            </div>
+          </div>
+          <div className="ml-12">
+            <ul className="list-disc ml-5">
+              <li>live games ♟️ <br /><Issue issue="99" /></li>
+              <li>Automatic ECF ratings <br /><Issue issue="246" /></li>
             </ul>
           </div>
         </li>
@@ -57,8 +73,9 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>live games ♟️ <Issue issue="99" /></li>
-              <li>dashboard insights <Issue issue="100" /></li>
+              <li>dashboard insights <br /><Issue issue="100" /></li>
+              <li>LiChess integration <br /><Issue issue="282" /></li>
+              <li>Chess.com integration <br /><Issue issue="283" /></li>
             </ul>
           </div>
         </li>
@@ -74,14 +91,14 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>league tables <Issue issue="3" /></li>
-              <li>grand prix <Issue issue="101" /></li>
+              <li>league tables <br /><Issue issue="3" /></li>
+              <li>grand prix <br /><Issue issue="101" /></li>
             </ul>
           </div>
         </li>
         <li className="mb-2">
         <div className="flex items-center mb-1">
-            <div className="bg-teal-500 rounded-full h-4 w-4"></div>
+            <div className="bg-teal-700 rounded-full h-4 w-4 z-10"></div>
             <div className="flex-1 ml-4 font-medium">
               <span className="mr-2 bg-blue-200 text-black p-1 rounded  leading-none">
                 Discuss
