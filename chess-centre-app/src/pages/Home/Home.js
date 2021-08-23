@@ -11,11 +11,6 @@ import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
 
 const Home = () => {
-<<<<<<< HEAD
-
-=======
-  const showLiveGames = true; // make config driven
->>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
   const { user } = useAuthState();
   const today = new Date();
   const [eventInfo, setEventInfo] = useState([]);

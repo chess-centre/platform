@@ -1,14 +1,6 @@
-<<<<<<< HEAD
 {
   "pluginId": "amplify-nodejs-function-runtime-provider",
   "functionRuntime": "nodejs",
   "useLegacyBuild": true,
   "defaultEditorFile": "src/index.js"
-=======
-{
-  "pluginId": "amplify-nodejs-function-runtime-provider",
-  "functionRuntime": "nodejs",
-  "useLegacyBuild": true,
-  "defaultEditorFile": "src/index.js"
->>>>>>> a127af3b37430cc6d54adeedea3f19a11a297167
 }
