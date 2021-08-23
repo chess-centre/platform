@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import FilterMenu from "./FilterMenu";
+import ToggleView from "./ToggleView";
+import TabMonths from "./TabMonths";
 import {
   prettyDate,
   getDay,
@@ -13,7 +16,7 @@ function GridComingSoonCard() {
   return (
     <li
       className={
-        "relative pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
+        "relative -z-1 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
       }
     >
       <div
@@ -45,7 +48,7 @@ function GridCard({ event }) {
   return (
     <div
       className={
-        "relative pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
+        "relative -z-1 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
       }
     >
       <div
@@ -244,7 +247,7 @@ function ListCard({ event }) {
           ></div>
         </div>
       </div>
-      <div className="relative flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+      <div className="relative -z-1 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
         <div className="px-4 sm:px-6 py-2 sm:py-0 text-sm truncate">
           <p className="sm:text-2xl sm:font-medium font-bold text-lg">
             {event.name}
@@ -298,16 +301,12 @@ function ListComingSoonCard() {
     <li className="col-span-1 flex mb-3 sm:ml-28 px-1">
       <div className="relative flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-md truncate shadow">
         <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate">
-          <h3 className="font-red-hat-display text-xl mb-1">
-            Coming Soon
-          </h3>
+          <h3 className="font-red-hat-display text-xl mb-1">Coming Soon</h3>
           <p className="text-gray-900 font-thin text-sm mb-1">
             Our latest events will be published here soon.{" "}
           </p>
         </div>
-        <div className="bg-pink-900 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg">
-
-        </div>
+        <div className="bg-pink-900 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
       </div>
     </li>
   );
@@ -360,6 +359,7 @@ function ListCalendar({ isLoading, error, data, selected }) {
 export default function Calendar() {
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
   const [calenderView, setCalenderView] = useState(defaultView);
+  const [filterApplied, setFilterApplied] = useState(false);
   const { isLoading, error, data } = useEvents();
   const today = new Date();
   const currentMonth = today.getMonth();
@@ -389,92 +389,13 @@ export default function Calendar() {
               </div>
               {calenderView === "list" ? (
                 <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex shadow-sm rounded-md m-auto -mb-1">
-                  <div className="inline-flex shadow-sm rounded-md m-auto">
-                    <span className="relative z-0 inline-flex shadow-sm rounded-md">
-                      <button
-                        onClick={() => setSelectedMonth(months[0])}
-                        type="button"
-                        className={`${
-                          selectedMonth === months[0]
-                            ? "text-teal-600 font-medium"
-                            : "text-gray-700"
-                        } relative inline-flex items-center px-4 py-2
-                        rounded-l-md border border-gray-300 bg-white text-xs  hover:bg-gray-50
-                        focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
-                      >
-                        {new Date(2000, months[0], 1).toLocaleString(
-                          "default",
-                          {
-                            month: "long",
-                          }
-                        )}
-                      </button>
-                      <button
-                        onClick={() => setSelectedMonth(months[1])}
-                        type="button"
-                        className={`${
-                          selectedMonth === months[1]
-                            ? "text-orange-600 font-medium"
-                            : "text-gray-700"
-                        } -ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-xs
-                         hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
-                      >
-                        {new Date(2000, months[1], 1).toLocaleString(
-                          "default",
-                          {
-                            month: "long",
-                          }
-                        )}
-                      </button>
-                      <button
-                        onClick={() => setSelectedMonth(months[2])}
-                        type="button"
-                        className={`${
-                          selectedMonth === months[2]
-                            ? "text-teal-600 font-medium"
-                            : "text-gray-700"
-                        } -ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300
-                        bg-white text-xs hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
-                      >
-                        {new Date(2000, months[2], 1).toLocaleString(
-                          "default",
-                          {
-                            month: "long",
-                          }
-                        )}
-                      </button>
-                    </span>
-                  </div>
+                  <TabMonths selectedMonth={selectedMonth} months={months} setSelectedMonth={setSelectedMonth} />
                 </div>
               ) : null}
               <div className="absolute right-0 top-16 sm:top-8 text-center sm:mt-6 sm:text-right">
                 <span className="relative z-0 inline-flex shadow-sm rounded-md">
-                  <button
-                    onClick={() => handleViewSwitch("list")}
-                    type="button"
-                    className={`${
-                      calenderView === "list"
-                        ? "text-teal-600 font-bold"
-                        : "font-medium text-gray-500"
-                    } relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm
-                     hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
-                  >
-                    <span className="sr-only">List</span>
-                    <i className="fas fa-list"></i>
-                  </button>
-                  <button
-                    onClick={() => handleViewSwitch("grid")}
-                    type="button"
-                    className={`${
-                      calenderView === "grid"
-                        ? "text-teal-600 font-bold"
-                        : "font-medium text-gray-500"
-                    } -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm
-                      hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
-                  >
-                    <span className="sr-only">Grid</span>
-                    <i className="fas fa-th"></i>
-                  </button>
+                  <ToggleView calendarView={calenderView} handleViewSwitch={handleViewSwitch} />
+                  <FilterMenu />
                 </span>
               </div>
             </div>
