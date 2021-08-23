@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { classNames, bgColor900 } from "../../utils/Classes";
 
 const EventHeader = ({ type, icon, name, description }) => {
-  const getColor = type => {
+  const getColor = (type) => {
     switch (type) {
       case "junior-rapidplay":
         return "text-green-900";
@@ -23,10 +23,74 @@ const EventHeader = ({ type, icon, name, description }) => {
         </span>
         <span className="text-2xl -mt-2 text-center">{name}</span>
       </h2>
-      <p className={`text-gray-500 mt-4 text-sm text-center`}>
-        {description}
-      </p>
+      <p className={`text-gray-500 mt-4 text-sm text-center`}>{description}</p>
     </div>
+  );
+};
+
+const EventPrice = ({ isLive, isFull, defaultPrice }) => {
+  return (
+    <div className="mt-5 text-center">
+      {isLive && (
+        <span className="animate-pulsebg-gray-100 px-16 rounded-lg text-5xl font-extrabold text-red-600 mr-1">
+          LIVE
+        </span>
+      )}
+      {isFull && !isLive && (
+        <span className="bg-gray-50 px-16 rounded-lg text-5xl font-extrabold text-gray-300 mr-1">
+          FULL
+        </span>
+      )}
+      {!isLive && !isFull && (
+        <>
+          <span className="text-5xl font-extrabold text-gray-900 mr-1">
+            £{defaultPrice}
+          </span>
+          <span className="text-base font-medium text-gray-500">entry fee</span>
+        </>
+      )}
+    </div>
+  );
+};
+
+const RegisterButton = ({ id, isLive, isFull }) => {
+  return (
+    <>
+      {isLive && (
+        <div>
+          <a
+            href="/broadcast/live"
+            className={`mt-6 
+              w-full flex items-center justify-center 
+              py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
+              focus:shadow-outline-teal transition duration-150 ease-in-out`}
+          >
+            <span className="flex relative h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
+            </span>{" "}
+            <span className="ml-2">Watch Here</span>
+          </a>
+        </div>
+      )}
+
+      {isFull && !isLive && (
+        <button
+          disabled
+          className="  mt-6 block w-full bg-orange-600 border border-orange-600 rounded-md py-2 text-sm font-semibold text-white text-center cursor-not-allowed"
+        >
+          Closed
+        </button>
+      )}
+      {!isLive && !isFull && (
+        <a
+          href={`/register?eventId=${id}`}
+          className="mt-6 block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900"
+        >
+          <span>Register Now</span>
+        </a>
+      )}
+    </>
   );
 };
 
@@ -41,7 +105,7 @@ export default function EventCard({
   color,
   url,
   isLive,
-  isFull
+  isFull,
 }) {
   return (
     <div
@@ -54,47 +118,14 @@ export default function EventCard({
         )}
       ></div>
       <div className="p-6 px-10">
-        <EventHeader icon={icon} name={name} description={description} type={type} />
-        <p className="mt-5 text-center">
-          {
-            isLive ?
-              <span className="bg-gray-100 px-16 rounded-lg text-5xl font-extrabold text-red-600 mr-1">
-                LIVE
-              </span> :
-              <>
-                <span className="text-5xl font-extrabold text-gray-900 mr-1">
-                  £{defaultPrice}
-                </span>
-                <span className="text-base font-medium text-gray-500">entry fee</span>
-              </>
-          }
-        </p>
-        {
-          isLive && <a href="/broadcast/live" className={`mt-4 
-          w-full flex items-center justify-center 
-          py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
-          focus:shadow-outline-teal transition duration-150 ease-in-out`}>
-            <span class="flex relative h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
-            </span>{" "}
-            <span className="ml-2">Watch Here</span>
-          </a>
-        }
-        {
-          isFull && !isLive && 
-          <button disabled className="  mt-6 block w-full bg-gray-600 border border-gray-600 rounded-md py-2 text-sm font-semibold text-white text-center">
-            Closed
-          </button>
-        }
-        {
-          (!isLive && !isFull) && <a
-            href={`/register?eventId=${id}`}
-            className="mt-6 block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900"
-          >
-            <span>Register Now</span>
-          </a>
-        }
+        <EventHeader
+          icon={icon}
+          name={name}
+          description={description}
+          type={type}
+        />
+        <EventPrice defaultPrice={defaultPrice} isFull={isFull} isLive={isLive} />
+        <RegisterButton id={id} isFull={isFull} isLive={isLive} />
       </div>
       <div className="pt-6 pb-8 px-6">
         <h3 className="text-xs font-medium text-teal-700 tracking-wide uppercase">

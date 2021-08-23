@@ -189,7 +189,6 @@ export default function Events() {
                           startDate,
                           endDate,
                           type,
-                          color,
                           entryCount,
                           isLive,
                           isFull
@@ -197,6 +196,7 @@ export default function Events() {
                         key
                       ) => {
                         return (
+                          <div className="">
                             <EventCard
                               key={key}
                               id={id}
@@ -238,6 +238,7 @@ export default function Events() {
                                 },
                               ]}
                             />
+                          </div>
                         );
                       }
                     )
