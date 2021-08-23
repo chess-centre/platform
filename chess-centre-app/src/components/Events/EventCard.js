@@ -69,7 +69,7 @@ export default function EventCard({
               </>
           }
         </p>
-        {/* {
+        {
           isLive && <a href="/broadcast/live" className={`mt-4 
           w-full flex items-center justify-center 
           py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
@@ -80,7 +80,7 @@ export default function EventCard({
             </span>{" "}
             <span className="ml-2">Watch Here</span>
           </a>
-        } */}
+        }
         {
           isFull && !isLive && 
           <button disabled className="  mt-6 block w-full bg-gray-600 border border-gray-600 rounded-md py-2 text-sm font-semibold text-white text-center">
