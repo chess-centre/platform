@@ -5,24 +5,27 @@ const FIRST_NAME = "first_name";
 const LAST_NAME = "last_name";
 const EMAIL_ADDRESS = "email_address";
 
-function AccountInfo(props) {
+export default function AccountProfile(props) {
   const [user, setUser] = useState({
     email: "",
     email_verified: false,
     given_name: "",
-    family_name: ""
+    family_name: "",
   });
   useEffect(() => {
     const fetchCognitoUser = async () => {
       const {
-        attributes: {
-          email,
-          email_verified
-        }
+        attributes: { email, email_verified },
       } = await Auth.currentAuthenticatedUser();
       const given_name = props.name?.split(" ")[0] || "";
       const family_name = props.name?.split(" ")[1] || "";
-      setUser(s => ({ ...s, email, email_verified, given_name, family_name}));
+      setUser((s) => ({
+        ...s,
+        email,
+        email_verified,
+        given_name,
+        family_name,
+      }));
     };
     fetchCognitoUser();
   }, [props]);
@@ -132,5 +135,3 @@ function AccountInfo(props) {
     </div>
   );
 }
-
-export default AccountInfo;
