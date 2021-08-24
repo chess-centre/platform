@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
-import { ChessInfo, AccountInfo } from "./sections";
+import { ChessProfile, AccountProfile, IntegrationProfile } from "./sections";
 import { useAuthState, isPaidMember } from "../../../context/Auth";
+//import { getMember } from "../../../graphql/queries";
 
-const getMember = /* GraphQL */ `
+export const getMember = /* GraphQL */ `
   query GetMember($id: ID!) {
     getMember(id: $id) {
       id
@@ -14,94 +15,26 @@ const getMember = /* GraphQL */ `
       username
       name
       email
-      _version
-      _deleted
-      _lastChangedAt
+      ecfRating
+      ecfRapid
+      ecfMembership
+      estimatedRating
+      club
+      gender
+      membershipType
+      gameInfo
+      ratingInfo
       createdAt
       updatedAt
       stripeCustomerId
       stripeCurrentPeriodEnd
       stripePriceId
       stripeProductId
-      entries {
-        items {
-          id
-          eventId
-          memberId
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          member {
-            id
-            about
-            fideId
-            ecfId
-            username
-            name
-            email
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            stripeCustomerId
-            stripeCurrentPeriodEnd
-            stripePriceId
-            stripeProductId
-            entries {
-              nextToken
-              startedAt
-            }
-          }
-          event {
-            id
-            name
-            description
-            rounds
-            time
-            startDate
-            endDate
-            maxEntries
-            entryCount
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            type {
-              id
-              name
-              description
-              url
-              color
-              time
-              maxEntries
-              timeControl
-              eventType
-              defaultPrice
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              stripePriceId
-            }
-            entries {
-              nextToken
-              startedAt
-            }
-          }
-        }
-        nextToken
-        startedAt
-      }
     }
   }
 `;
 
-function Profile() {
+export default function Profile() {
   const { user } = useAuthState();
   const [member, setMember] = useState({});
   const [customerPortalUrl, setCustomerPortalUrl] = useState();
@@ -141,12 +74,12 @@ function Profile() {
       setIsLoadingProfile(true);
       // odd results when using Promise.all()
       await getUser();
-      await getCustomerPortal(); 
+      await getCustomerPortal();
       await getMemberStatus();
       setIsLoadingProfile(false);
     };
 
-    getProfileData().catch(error => {
+    getProfileData().catch((error) => {
       setIsLoadingProfile(false);
     });
   }, [user]);
@@ -210,11 +143,10 @@ function Profile() {
         </nav>
       </aside>
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-        <ChessInfo {...member} isLoading={isLoadingProfile} />
-        <AccountInfo name={member.name} />
+        <AccountProfile name={member.name} />
+        <ChessProfile {...member} isLoading={isLoadingProfile} />
+        <IntegrationProfile isLoading={isLoadingProfile} />
       </div>
     </div>
   );
 }
-
-export default Profile;
