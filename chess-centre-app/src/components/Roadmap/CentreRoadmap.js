@@ -29,7 +29,7 @@ export const CentreRoadmap = () => {
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
-            <div className="bg-orange-brand rounded-full h-4 w-4 z-50"></div>
+            <div className="bg-orange-brand rounded-full h-4 w-4 z-10"></div>
             <div className="flex-1 ml-4 font-medium">
               <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
                 Complete
@@ -46,7 +46,7 @@ export const CentreRoadmap = () => {
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
-          <div className="bg-orange-brand rounded-full h-4 w-4 z-50"></div>
+          <div className="bg-orange-brand rounded-full h-4 w-4 z-10"></div>
             <div className="flex-1 ml-4 font-medium">
             <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
                 Complete
@@ -71,7 +71,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>First Blizt Event <br /><span className="text-teal-600 text-sm">TBC</span></li>
+              <li>First Blitz Event <br /><span className="text-teal-600 text-sm">TBC</span></li>
               <li>First Junior Training Camp <br /><span className="text-teal-600 text-sm">TBC</span></li>
             </ul>
           </div>
