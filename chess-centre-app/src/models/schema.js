@@ -451,6 +451,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "isLive": {
+                    "name": "isLive",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "active": {
                     "name": "active",
                     "isArray": false,
@@ -899,6 +906,34 @@ export const schema = {
                     "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
+                },
+                "liChessUsername": {
+                    "name": "liChessUsername",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "liChessInfo": {
+                    "name": "liChessInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chesscomUsername": {
+                    "name": "chesscomUsername",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chesscomInfo": {
+                    "name": "chesscomInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -1065,5 +1100,5 @@ export const schema = {
             }
         }
     },
-    "version": "0b8cc06611507c7a117a70b077832f6d"
+    "version": "3cf054d91d6b136cffe5b5a3f9947fcb"
 };

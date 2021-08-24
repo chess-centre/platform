@@ -17,7 +17,7 @@ const getMember = /* GraphQL */ `
   }
 `;
 
-export default function ChessInfo() {
+export default function ChessProfile() {
   const [newECFId, setNewECFId] = useState("");
   const [newFIDEId, setNewFIDEId] = useState("");
   const [ecfRating, setEcfRating] = useState("");

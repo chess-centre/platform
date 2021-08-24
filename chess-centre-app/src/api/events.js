@@ -4,14 +4,14 @@ import { listEventsActive } from "../graphql/queries";
 
 export const useEvents = () => {
   return useQuery("eventData", async () => {
-    const today = new Date();
+    const yesterday = new Date(Date.now() - (3600 * 1000 * 24));
     const {
       data: {
         listEventsActive: { items: events },
       },
     } = await API.graphql({
       query: listEventsActive,
-      variables: { active: "yes", startDate: { gt: today } },
+      variables: { active: "yes", startDate: { gt: yesterday } },
       authMode: "AWS_IAM",
     });
 
@@ -27,6 +27,7 @@ export const useEvents = () => {
       maxEntries: event.maxEntries || event.type.maxEntries,
       color: event.type.color,
       url: event.type.url,
+      isFull: event.entryCount >= (event.maxEntries || event.type.maxEntries)
     }));
   });
 };
