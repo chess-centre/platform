@@ -6,7 +6,6 @@ const { API_CHESSPLAYERS_MEMBERTABLE_NAME } = process.env;
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const memberTable = API_CHESSPLAYERS_MEMBERTABLE_NAME;
 
-
 exports.handler = async (event) => {
 
     const {
@@ -25,11 +24,19 @@ exports.handler = async (event) => {
 
     const { id } = event.pathParameters;
 
+    if (!id) {
+        return {
+          statusCode: 404,
+          body: "Must supply a username.",
+        };
+    }
+
+    const url = `https://api.chess.com/pub/player/${id.toLowerCase()}/stats`;
+
     // Docs: https://www.chess.com/news/view/published-data-api
     const getChesscomInfo = async () => {
         console.log("GET: getChesscomInfo", id);
-        const url = `https://api.chess.com/pub/player/${id}/stats`;
-
+        console.log("URL:", url);
         return new Promise((resolve, reject) => {
             https.get(url, response => {
                 let data = "";
@@ -52,9 +59,9 @@ exports.handler = async (event) => {
 
     console.log(data);
 
-    if(data && data.code) {
-
+    if(data && !data.code === 0) {
         try {
+            console.log("updating db");
             const params = {
                 TableName: memberTable,
                 Key: {
@@ -82,6 +89,7 @@ exports.handler = async (event) => {
             body: JSON.stringify(data),
         };
     } else {
+        console.log("User not found", data);
         return {
             statusCode: 200,
             headers: {

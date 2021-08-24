@@ -1,33 +1,50 @@
 import { API } from "aws-amplify";
 import React, { useState } from "react";
+import { useToasts } from "react-toast-notifications";
 import liChessImage from "../../../../assets/img/lichess.png";
 import chesscomImage from "../../../../assets/img/chesscom.png";
 import { AtSymbolIcon, CursorClickIcon } from "@heroicons/react/solid";
 
 
-export default function IntegrationProfile() {
+export default function IntegrationProfile({ ...member }) {
 
-  const [liChessUsername, setLiChessUsername] = useState("");
-  const [liChessBlitz, setLiChessBlitz] = useState({ rating: undefined });
-  const [liChessBullet, setLiChessBullet] = useState({ rating: undefined });
 
-  const [chesscomUsername, setChessdomUsername] = useState("");
-  const [chesscomBlitz, setChesscomBlitz] = useState({ last: { rating: undefined } });
-  const [chesscomBullet, setChesscomBullet] = useState({ last: { rating: undefined } });
+  const { addToast } = useToasts();
+
+  const [liChessUsername, setLiChessUsername] = useState(
+    member.liChessUsername || ""
+  );
+  const [liChessBlitz, setLiChessBlitz] = useState({
+    rating: undefined
+  });
+  const [liChessBullet, setLiChessBullet] = useState({
+    rating: undefined
+  });
+
+  const [chesscomUsername, setChessdomUsername] = useState(
+    member.chesscomUsername || ""
+  );
+  const [chesscomBlitz, setChesscomBlitz] = useState({
+    last: { rating: undefined },
+  });
+  const [chesscomBullet, setChesscomBullet] = useState({
+    last: { rating: undefined },
+  });
 
   const getLiChessData = async () => {
-    console.log(liChessUsername);
+    if (!liChessUsername) return;
     try {
-      if (!liChessUsername) return;
-      console.log(liChessUsername);
       const response = await API.post("lichess", `/user/${liChessUsername}`);
       if (!response.error) {
-        console.log(response);
         const {
           perfs: { blitz, bullet },
         } = response;
         setLiChessBlitz(blitz);
         setLiChessBullet(bullet);
+        addToast(`Successfully updated your LiChess username!`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -35,15 +52,20 @@ export default function IntegrationProfile() {
   };
 
   const getChesscomData = async () => {
+    if(!chesscomUsername) return;
     try {
       const response = await API.post("chesscom", `/user/${chesscomUsername}`);
       if (response) {
-        console.log(response);
         const { chess_bullet, chess_blitz } = response;
         setChesscomBlitz(chess_blitz);
         setChesscomBullet(chess_bullet);
+        addToast(`Successfully updated your Chess.com username!`, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+      } else {
+        console.log("nothing found!");
       }
-      console.log("nothing found!");
     } catch (error) {
       console.log(error);
     }
@@ -90,6 +112,7 @@ export default function IntegrationProfile() {
                         type="text"
                         name="liChessUsername"
                         id="liChessUsername"
+                        defaultValue={liChessUsername}
                         className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-gray-300"
                         placeholder="DrNy"
                       />
@@ -161,8 +184,8 @@ export default function IntegrationProfile() {
                       <input
                         onChange={(e) => setChessdomUsername(e.target.value)}
                         type="text"
-                        name="liChessUsername"
-                        id="liChessUsername"
+                        name="chesscomUsername"
+                        id="chesscomUsername"
                         className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-gray-300"
                         placeholder="DrNy"
                       />

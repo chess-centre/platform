@@ -30,6 +30,10 @@ export const getMember = /* GraphQL */ `
       stripeCurrentPeriodEnd
       stripePriceId
       stripeProductId
+      liChessUsername
+      liChessInfo
+      chesscomUsername
+      chesscomInfo
     }
   }
 `;
@@ -145,7 +149,7 @@ export default function Profile() {
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
         <AccountProfile name={member.name} />
         <ChessProfile {...member} isLoading={isLoadingProfile} />
-        <IntegrationProfile isLoading={isLoadingProfile} />
+        <IntegrationProfile {...member} isLoading={isLoadingProfile} />
       </div>
     </div>
   );
