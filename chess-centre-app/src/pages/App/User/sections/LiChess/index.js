@@ -4,6 +4,7 @@ import { useToasts } from "react-toast-notifications";
 import liChessImage from "../../../../../assets/img/lichess.png";
 import { AtSymbolIcon } from "@heroicons/react/solid";
 
+
 export default function LiChessFetch({ liChessUsername, liChessInfo }) {
 
     const { addToast } = useToasts();
