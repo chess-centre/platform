@@ -196,7 +196,7 @@ export default function Events() {
                         key
                       ) => {
                         return (
-                          <div className="">
+                          <div key={key}>
                             <EventCard
                               key={key}
                               id={id}

@@ -4,7 +4,6 @@ import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
 import { Line, Bar } from "react-chartjs-2";
 import ChartLegend from "../../components/Chart/ChartLegend";
-import { getMember } from "../../graphql/queries";
 import {
   GamesChart,
   RatingProgressChart,
@@ -12,6 +11,77 @@ import {
 } from "../../api/data.dashboard";
 import { prettyDate } from "../../utils/DateFormating";
 import { useAuthState, isPaidMember } from "../../context/Auth";
+
+export const getMember = /* GraphQL */ `
+  query GetMember($id: ID!) {
+    getMember(id: $id) {
+      id
+      about
+      fideId
+      ecfId
+      username
+      name
+      email
+      ecfRating
+      ecfRapid
+      ecfMembership
+      estimatedRating
+      club
+      gender
+      membershipType
+      gameInfo
+      ratingInfo
+      liChessUsername
+      liChessInfo
+      chesscomUsername
+      chesscomInfo
+      entries {
+        items {
+          id
+          eventId
+          memberId
+          createdAt
+          updatedAt
+          member {
+            id
+            ecfId
+            username
+            name
+            ecfRating
+            ecfRapid
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            isLive
+            active
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              timeControl
+              eventType
+              canRegister
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default function Dashboard() {
   const [isPaid, setIsPaid] = useState(false);
@@ -36,6 +106,7 @@ export default function Dashboard() {
       }
     }
     fetchMember();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const setEventData = (data) => {
@@ -66,6 +137,9 @@ export default function Dashboard() {
       <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
           <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
+            <span className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-teal-100 text-teal-700 top-2">
+              Feature Coming Soon
+            </span>
             Here is where we'll provide insights from your previous games and
             results.
           </p>

@@ -16,9 +16,9 @@ export default function JuniorRapidplayEvent() {
     const fetchEvent = async () => {
       try {
         const response = await API.graphql({ query: getEvent, variables: { id }, authMode: "AWS_IAM" }).catch(
-          (e) => {
+          (error) => {
             console.log("Error fetching event.", id);
-            console.log(e.response);
+            console.log(error.response);
           }
         );
         if(response && response.data) {
