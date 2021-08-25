@@ -103,9 +103,7 @@ export default function Dashboard() {
       setMember(member);
       if (member?.entries?.items) {
         setEventData(member.entries.items);
-        console.log(upcomingEvents)
       }
-    
     }
     fetchMember();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -139,6 +137,9 @@ export default function Dashboard() {
       <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
           <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
+            <span className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-teal-100 text-teal-700 top-2">
+              Feature Coming Soon
+            </span>
             Here is where we'll provide insights from your previous games and
             results.
           </p>

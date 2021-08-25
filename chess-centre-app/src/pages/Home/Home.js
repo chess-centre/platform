@@ -23,9 +23,9 @@ const Home = () => {
         query: listEventsActive,
         variables: { active: "yes", startDate: { gt: today }, filter: { isLive: { eq: true } } },
         authMode: "AWS_IAM",
-      }).catch((e) => {
+      }).catch((error) => {
         setIsLoading(false);
-        console.log("Error loading live data", e);
+        console.log("Error loading live data", error);
       });
       if(items) {
         setEventInfo(items);
