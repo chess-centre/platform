@@ -4,7 +4,6 @@ import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
 import { Line, Bar } from "react-chartjs-2";
 import ChartLegend from "../../components/Chart/ChartLegend";
-import { getMember } from "../../graphql/queries";
 import {
   GamesChart,
   RatingProgressChart,
@@ -12,6 +11,77 @@ import {
 } from "../../api/data.dashboard";
 import { prettyDate } from "../../utils/DateFormating";
 import { useAuthState, isPaidMember } from "../../context/Auth";
+
+export const getMember = /* GraphQL */ `
+  query GetMember($id: ID!) {
+    getMember(id: $id) {
+      id
+      about
+      fideId
+      ecfId
+      username
+      name
+      email
+      ecfRating
+      ecfRapid
+      ecfMembership
+      estimatedRating
+      club
+      gender
+      membershipType
+      gameInfo
+      ratingInfo
+      liChessUsername
+      liChessInfo
+      chesscomUsername
+      chesscomInfo
+      entries {
+        items {
+          id
+          eventId
+          memberId
+          createdAt
+          updatedAt
+          member {
+            id
+            ecfId
+            username
+            name
+            ecfRating
+            ecfRapid
+          }
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            isLive
+            active
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              timeControl
+              eventType
+              canRegister
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default function Dashboard() {
   const [isPaid, setIsPaid] = useState(false);
@@ -33,9 +103,12 @@ export default function Dashboard() {
       setMember(member);
       if (member?.entries?.items) {
         setEventData(member.entries.items);
+        console.log(upcomingEvents)
       }
+    
     }
     fetchMember();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const setEventData = (data) => {
