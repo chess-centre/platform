@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> bdd1292fc106d12e25c5df34871680264e89c484
 const https = require('https');
 const AWS = require("aws-sdk");
 const { API_CHESSPLAYERS_MEMBERTABLE_NAME } = process.env;
@@ -12,8 +17,13 @@ exports.handler = async (event) => {
 
     if (!identity || !identity.cognitoAuthenticationProvider) {
         return {
+<<<<<<< HEAD
             statusCode: 401,
             body: "Unauthorized",
+=======
+          statusCode: 401,
+          body: "Unauthorized",
+>>>>>>> bdd1292fc106d12e25c5df34871680264e89c484
         };
     }
 
@@ -24,10 +34,17 @@ exports.handler = async (event) => {
 
     if (!id) {
         return {
+<<<<<<< HEAD
             statusCode: 404,
             body: "Must supply a username.",
         };
     };
+=======
+          statusCode: 404,
+          body: "Must supply a username.",
+        };
+    }
+>>>>>>> bdd1292fc106d12e25c5df34871680264e89c484
 
     const url = `https://api.chess.com/pub/player/${id.toLowerCase()}/stats`;
 
@@ -55,6 +72,7 @@ exports.handler = async (event) => {
         console.log("error", e);
     });
 
+<<<<<<< HEAD
     let parsedData = null;
 
     try {
@@ -69,6 +87,11 @@ exports.handler = async (event) => {
     }
 
     if (parsedData && (parsedData.chess_rapid || parsedData.chess_blitz)) {
+=======
+    console.log(data);
+
+    if(data && !data.code === 0) {
+>>>>>>> bdd1292fc106d12e25c5df34871680264e89c484
         try {
             console.log("updating db");
             const params = {
@@ -94,16 +117,28 @@ exports.handler = async (event) => {
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
+<<<<<<< HEAD
             },
             body: JSON.stringify(data),
         };
     } else {
+=======
+            }, 
+            body: JSON.stringify(data),
+        };
+    } else {
+        console.log("User not found", data);
+>>>>>>> bdd1292fc106d12e25c5df34871680264e89c484
         return {
             statusCode: 200,
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
+<<<<<<< HEAD
             },
+=======
+            }, 
+>>>>>>> bdd1292fc106d12e25c5df34871680264e89c484
             body: JSON.stringify(data),
         };
     }
