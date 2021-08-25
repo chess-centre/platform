@@ -111,8 +111,8 @@ function Results() {
       <div className="mb-5 pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
           <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
-            <span className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-orange-100 text-orange-700 top-2">
-              <i class="fad fa-construction"></i> Underconstruction
+            <span className="hidden sm:block mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-orange-100 text-orange-700 top-2">
+              <i class="fad fa-construction"></i> Under Construction
             </span>
             A brief summary of our event results.
           </p>
