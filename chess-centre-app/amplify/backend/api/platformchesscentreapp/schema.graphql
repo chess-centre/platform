@@ -70,7 +70,7 @@ type EventType @model @auth(rules: [{allow: private}, {allow: public, provider: 
 type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: private, operations: [read]}, {allow: public, provider: iam, operations: [read]}]) @key(name: "stripe", fields: ["stripeCustomerId"]) {
   id: ID!
   about: String
-  fideId: Int
+  fideId: String
   ecfId: String
   username: String
   name: String
@@ -90,6 +90,10 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   membershipType: String
   gameInfo: AWSJSON
   ratingInfo: AWSJSON
+  liChessUsername: String
+  liChessInfo: AWSJSON
+  chesscomUsername: String
+  chesscomInfo: AWSJSON
 }
 
 type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}, {allow: public, provider: iam, operations: [read]}]) @key(name: "eventsByActive", fields: ["active", "startDate"], queryField: "listEventsActive") {

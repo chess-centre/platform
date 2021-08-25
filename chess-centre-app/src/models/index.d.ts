@@ -98,7 +98,7 @@ export declare class Entry {
 export declare class Member {
   readonly id: string;
   readonly about?: string;
-  readonly fideId?: number;
+  readonly fideId?: string;
   readonly ecfId?: string;
   readonly username?: string;
   readonly name?: string;
@@ -117,6 +117,10 @@ export declare class Member {
   readonly membershipType?: string;
   readonly gameInfo?: string;
   readonly ratingInfo?: string;
+  readonly liChessUsername?: string;
+  readonly liChessInfo?: string;
+  readonly chesscomUsername?: string;
+  readonly chesscomInfo?: string;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
 }

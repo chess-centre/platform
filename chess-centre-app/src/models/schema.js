@@ -770,7 +770,7 @@ export const schema = {
                 "fideId": {
                     "name": "fideId",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -902,6 +902,34 @@ export const schema = {
                 },
                 "ratingInfo": {
                     "name": "ratingInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "liChessUsername": {
+                    "name": "liChessUsername",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "liChessInfo": {
+                    "name": "liChessInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chesscomUsername": {
+                    "name": "chesscomUsername",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chesscomInfo": {
+                    "name": "chesscomInfo",
                     "isArray": false,
                     "type": "AWSJSON",
                     "isRequired": false,
@@ -1072,5 +1100,5 @@ export const schema = {
             }
         }
     },
-    "version": "dbc7ac8fcb80712ae386ab2cd12da676"
+    "version": "23f9a50004e86b304f45fa53c90d6756"
 };
