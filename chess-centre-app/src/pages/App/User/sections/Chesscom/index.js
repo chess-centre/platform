@@ -2,8 +2,7 @@ import { API } from "aws-amplify";
 import React, { useState, useEffect } from "react";
 import { useToasts } from "react-toast-notifications";
 import chesscomImage from "../../../../../assets/img/chesscom.png";
-import { AtSymbolIcon, CursorClickIcon } from "@heroicons/react/solid";
-
+import { AtSymbolIcon } from "@heroicons/react/solid";
 
 export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
 
@@ -21,7 +20,6 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                 const parsed = JSON.parse(chesscomInfo);
                 setBlitz(parsed.chess_blitz.last.rating);
                 setBullet(parsed.chess_bullet.last.rating);
-                console.log(parsed.chess_blitz.last.rating)
             } catch (error) {
                 console.log(error);
             }
@@ -32,11 +30,11 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
         if (!username) return;
         setIsFetching(true);
         try {
-            const response = await API.post("chesscom", `/user/${chesscomUsername}`);
+            const response = await API.post("chesscom", `/user/${username}`);
             if (response) {
                 const { chess_bullet, chess_blitz } = response;
-                setBlitz(chess_blitz);
-                setBullet(chess_bullet);
+                setBlitz(chess_blitz?.last.rating);
+                setBullet(chess_bullet?.last.rating);
                 addToast(`Successfully updated your Chess.com username!`, {
                     appearance: "success",
                     autoDismiss: true,
@@ -78,25 +76,22 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                                 name="chesscomUsername"
                                 id="chesscomUsername"
                                 defaultValue={chesscomUsername}
-                                className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-gray-300"
+                                className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 text-xs sm:text-sm border-gray-300"
                                 placeholder="MagnusCarlsen"
                             />
                         </div>
                         <button
                             onClick={getChesscomData}
                             type="button"
-                            className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
+                            className="-ml-px relative inline-flex items-center space-x-2 px-2 sm:px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
                         >
                             {isFetching ? <div className="flex">
                                 <i className="fas fa-spinner-third animate-spin"></i>
                                 <span className="ml-2 text-xs">Checking...</span>
                             </div> :
                                 <>
-                                    <CursorClickIcon
-                                        className="h-5 w-5 text-gray-400"
-                                        aria-hidden="true"
-                                    />
-                                    <span>Save</span> </>
+                                <i className="text-teal-500 fal fa-sync"></i>
+                                <span>Sync</span> </>
                             }
                         </button>
                     </div>
@@ -107,8 +102,8 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                     <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         <div className="flex">Bullet</div>
                         <input
-                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
+                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 disabled:opacity-60`}
                             disabled
                             value={bullet}
                             type="text"
@@ -116,12 +111,12 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                     </div>
                 </div>
                 <div className="col-span-3 gap-6 mt-6">
-                    <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <div className="block text-sm font-medium text-gray-700">
                         <div className="flex">Blitz</div>
 
                         <input
-                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
+                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 disabled:opacity-60`}
                             disabled
                             value={blitz}
                             type="text"

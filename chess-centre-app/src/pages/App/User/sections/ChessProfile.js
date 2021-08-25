@@ -81,7 +81,7 @@ export default function ChessProfile() {
 
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
-                    className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+                    className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                     disabled
                     value={newECFId}
@@ -97,7 +97,7 @@ export default function ChessProfile() {
                   <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     <div className="flex">Standard</div>
                     <input
-                      className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+                      className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                       disabled
                       value={ecfRating}
@@ -109,7 +109,7 @@ export default function ChessProfile() {
                   <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     <div className="flex">Rapidplay</div>
                     <input
-                      className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+                      className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                       disabled
                       value={ecfRapid}
@@ -140,7 +140,7 @@ export default function ChessProfile() {
                 </label>
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
-                    className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+                    className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
                 focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                     disabled
                     value={newFIDEId}

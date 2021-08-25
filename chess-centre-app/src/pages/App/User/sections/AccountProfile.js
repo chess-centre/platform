@@ -51,7 +51,7 @@ export default function AccountProfile(props) {
               First name
             </label>
             <input
-              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
                 focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-70`}
               disabled
               value={user.given_name}
@@ -76,7 +76,7 @@ export default function AccountProfile(props) {
               name={LAST_NAME}
               id={LAST_NAME}
               autoComplete="off"
-              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
               focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-701`}
             />
           </div>
@@ -95,7 +95,7 @@ export default function AccountProfile(props) {
               name={EMAIL_ADDRESS}
               id={EMAIL_ADDRESS}
               autoComplete="off"
-              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3 text-gray-700 sm:text-gray-500  cursor-not-allowed
+              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500  cursor-not-allowed
               focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-70`}
             />
           </div>

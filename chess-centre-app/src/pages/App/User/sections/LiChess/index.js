@@ -1,35 +1,44 @@
 import { API } from "aws-amplify";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useToasts } from "react-toast-notifications";
 import liChessImage from "../../../../../assets/img/lichess.png";
-import { AtSymbolIcon, CursorClickIcon } from "@heroicons/react/solid";
+import { AtSymbolIcon, CursorClickIcon,  } from "@heroicons/react/solid";
 
-export default function LiChessFetch({ ...member }) {
+export default function LiChessFetch({ liChessUsername, liChessInfo }) {
 
     const { addToast } = useToasts();
     const [isFetching, setIsFetching] = useState(false);
 
-    const [liChessUsername, setLiChessUsername] = useState(
-        member.liChessUsername || ""
-    );
-    const [liChessBlitz, setLiChessBlitz] = useState({
-        rating: undefined
-    });
-    const [liChessBullet, setLiChessBullet] = useState({
-        rating: undefined
-    });
+    const [username, setUsername] = useState("");
+    const [blitz, setBlitz] = useState(0);
+    const [bullet, setBullet] = useState(0);
+
+
+    useEffect(() => {
+        setUsername(liChessUsername || "");
+        if(liChessInfo) {
+            try {
+                const parsed = JSON.parse(liChessInfo);
+                setBlitz(parsed.perfs.blitz?.rating);
+                setBullet(parsed.perfs.bullet?.rating);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+    }, [liChessUsername, liChessInfo])
+
 
     const getLiChessData = async () => {
-        if (!liChessUsername) return;
+        if (!username) return;
         setIsFetching(true);
         try {
-            const response = await API.post("lichess", `/user/${liChessUsername}`);
+            const response = await API.post("lichess", `/user/${username}`);
             if (!response.error) {
                 const {
                     perfs: { blitz, bullet },
                 } = response;
-                setLiChessBlitz(blitz);
-                setLiChessBullet(bullet);
+                setBlitz(blitz?.rating);
+                setBullet(bullet?.rating);
                 addToast(`Successfully updated your LiChess username!`, {
                     appearance: "success",
                     autoDismiss: true,
@@ -66,30 +75,27 @@ export default function LiChessFetch({ ...member }) {
                                 />
                             </div>
                             <input
-                                onChange={(e) => setLiChessUsername(e.target.value)}
+                                onChange={(e) => setUsername(e.target.value)}
                                 type="text"
                                 name="liChessUsername"
                                 id="liChessUsername"
                                 defaultValue={liChessUsername}
-                                className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-gray-300"
+                                className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 text-xs sm:text-sm border-gray-300"
                                 placeholder="DrNykterstein"
                             />
                         </div>
                         <button
                             onClick={getLiChessData}
                             type="button"
-                            className="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
+                            className="-ml-px relative inline-flex items-center space-x-2 px-2 sm:px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
                         >
                             {isFetching ? <div className="flex">
                                 <i className="fas fa-spinner-third animate-spin"></i>
                                 <span className="ml-2 text-xs">Checking...</span>
                             </div> :
                                 <>
-                                    <CursorClickIcon
-                                        className="h-5 w-5 text-gray-400"
-                                        aria-hidden="true"
-                                    />
-                                    <span>Save</span> </>
+                                    <i className="text-teal-500 fal fa-sync"></i>
+                                    <span>Sync</span> </>
                             }
                         </button>
                     </div>
@@ -100,10 +106,10 @@ export default function LiChessFetch({ ...member }) {
                     <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         <div className="flex">Bullet</div>
                         <input
-                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                             disabled
-                            value={liChessBullet.rating}
+                            value={bullet}
                             type="text"
                         />
                     </div>
@@ -112,10 +118,10 @@ export default function LiChessFetch({ ...member }) {
                     <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         <div className="flex">Blitz</div>
                         <input
-                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                             disabled
-                            value={liChessBlitz.rating}
+                            value={blitz}
                             type="text"
                         />
                     </div>
