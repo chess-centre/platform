@@ -60,53 +60,53 @@ export const CongressEntries = [
   }
 ];
 
-const SwissPlayerPairings = [
-  {
-    round: 1,
-    pairings: [
-      [1, 5],
-      [6, 2],
-      [3, 7],
-      [8, 4],
-    ],
-  },
-  {
-    round: 2,
-    pairings: [
-      [4, 1],
-      [2, 3],
-      [5, 8],
-      [7, 6],
-    ],
-  },
-  {
-    round: 3,
-    pairings: [
-      [1, 2],
-      [3, 5],
-      [6, 4],
-      [8, 7],
-    ],
-  },
-  {
-    round: 4,
-    pairings: [
-      [3, 1],
-      [2, 8],
-      [5, 6],
-      [7, 4],
-    ],
-  },
-  {
-    round: 5,
-    pairings: [
-      [1, 6],
-      [4, 2],
-      [3, 8],
-      [5, 7],
-    ],
-  },
-];
+// const SwissPlayerPairings = [
+//   {
+//     round: 1,
+//     pairings: [
+//       [1, 5],
+//       [6, 2],
+//       [3, 7],
+//       [8, 4],
+//     ],
+//   },
+//   {
+//     round: 2,
+//     pairings: [
+//       [4, 1],
+//       [2, 3],
+//       [5, 8],
+//       [7, 6],
+//     ],
+//   },
+//   {
+//     round: 3,
+//     pairings: [
+//       [1, 2],
+//       [3, 5],
+//       [6, 4],
+//       [8, 7],
+//     ],
+//   },
+//   {
+//     round: 4,
+//     pairings: [
+//       [3, 1],
+//       [2, 8],
+//       [5, 6],
+//       [7, 4],
+//     ],
+//   },
+//   {
+//     round: 5,
+//     pairings: [
+//       [1, 6],
+//       [4, 2],
+//       [3, 8],
+//       [5, 7],
+//     ],
+//   },
+// ];
 
 const SixPlayerPairings = [
   {
@@ -416,82 +416,82 @@ const PairsTable = ({ format, players, results }) => {
   );
 };
 
-const mockPlayers = [
-  ...[[], [], [], [], [], [], [], []].map((m, i) => {
-    m.name = "";
-    m.ratingInfo = {
-      rating: "blank",
-    };
-    m.seed = i + 1;
-    return m;
-  }),
-];
+// const mockPlayers = [
+//   ...[[], [], [], [], [], [], [], []].map((m, i) => {
+//     m.name = "";
+//     m.ratingInfo = {
+//       rating: "blank",
+//     };
+//     m.seed = i + 1;
+//     return m;
+//   }),
+// ];
 
-const mockResults = [
-  {
-    round: 1,
-    pairResults: [[], [], []],
-  },
-  {
-    round: 2,
-    pairResults: [[], [], []],
-  },
-  {
-    round: 3,
-    pairResults: [[], [], []],
-  },
-  {
-    round: 4,
-    pairResults: [[], [], []],
-  },
-  {
-    round: 5,
-    pairResults: [[], [], []],
-  },
-];
+// const mockResults = [
+//   {
+//     round: 1,
+//     pairResults: [[], [], []],
+//   },
+//   {
+//     round: 2,
+//     pairResults: [[], [], []],
+//   },
+//   {
+//     round: 3,
+//     pairResults: [[], [], []],
+//   },
+//   {
+//     round: 4,
+//     pairResults: [[], [], []],
+//   },
+//   {
+//     round: 5,
+//     pairResults: [[], [], []],
+//   },
+// ];
 
-const mockPairings = [
-  {
-    round: 1,
-    pairings: [
-      [1, 1],
-      [1, 1],
-      [1, 1],
-    ],
-  },
-  {
-    round: 2,
-    pairings: [
-      [1, 1],
-      [1, 1],
-      [1, 1],
-    ],
-  },
-  {
-    round: 3,
-    pairings: [
-      [1, 1],
-      [1, 1],
-      [1, 1],
-    ],
-  },
-  {
-    round: 4,
-    pairings: [
-      [1, 1],
-      [1, 1],
-      [1, 1],
-    ],
-  },
-  {
-    round: 5,
-    pairings: [
-      [1, 1],
-      [1, 1],
-      [1, 1],
-    ],
-  },
-];
+// const mockPairings = [
+//   {
+//     round: 1,
+//     pairings: [
+//       [1, 1],
+//       [1, 1],
+//       [1, 1],
+//     ],
+//   },
+//   {
+//     round: 2,
+//     pairings: [
+//       [1, 1],
+//       [1, 1],
+//       [1, 1],
+//     ],
+//   },
+//   {
+//     round: 3,
+//     pairings: [
+//       [1, 1],
+//       [1, 1],
+//       [1, 1],
+//     ],
+//   },
+//   {
+//     round: 4,
+//     pairings: [
+//       [1, 1],
+//       [1, 1],
+//       [1, 1],
+//     ],
+//   },
+//   {
+//     round: 5,
+//     pairings: [
+//       [1, 1],
+//       [1, 1],
+//       [1, 1],
+//     ],
+//   },
+// ];
 
 export default function Rapidplay() {
   return (
