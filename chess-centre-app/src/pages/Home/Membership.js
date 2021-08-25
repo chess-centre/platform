@@ -113,36 +113,12 @@ function Membership() {
           </div>
           <div className="mt-6 relative max-w-7xl mx-auto px-2 sm:px-6 lg:px-6 lg:mt-6">
             <div className="max-w-md mx-auto lg:max-w-5xl">
-              <div className="rounded-lg bg-white px-6 py-2 lg:flex lg:items-center border border-light-blue-300 shadow mb-4 sm:mr-16 sm:ml-16">
+              <div className="rounded-lg bg-white px-6 py-2 lg:flex lg:items-center border border-light-blue-300 shadow mb-4 pb-6 sm:mr-16 sm:ml-16">
                 <div className="flex-1">
-                  <div className="text-center text-sm font-normal text-gray-600 space-y-2">
-                    <p><span className="font-medium">Still deciding? </span>Pay us a visit, see what we've got to offer.</p>
-                    <p>There is no charge for your first few visits and no obligation to sign-up.</p>
-                    <p className="inline-block text-2xl">
-                      <span className="text-red-600 mr-1"><i className="fak fa-chess-centre"></i></span>
-                      <span className="text-orange-500 mr-1"><i className="fak fa-chess-centre"></i></span>
-                      <span className="text-yellow-300 mr-1"><i className="fak fa-chess-centre"></i></span>
-                      <span className="text-green-600 mr-1"><i className="fak fa-chess-centre"></i></span>
-                      <span className="text-blue-600 mr-1"><i className="fak fa-chess-centre"></i></span>
-                      <span className="text-purple-700 mr-1"><i className="fak fa-chess-centre"></i></span>
-                    </p>
+                  <div className="text-center text-sm font-normal text-gray-900 space-y-2">
+                    <h2 className="mt-4 text-2xl font-extrabold">Still deciding?</h2>
+                    <p>Come pay us a visit and see what we've got to offer. There is no charge for your first few visits and no obligation to sign-up.</p>
                   </div>
-                </div>
-              </div>
-              <div className="rounded-lg bg-gray-100 px-6 py-4 lg:flex lg:items-center border border-light-blue-300 shadow sm:mr-16 sm:ml-16">
-                <div className="flex-1">
-                  <div className="text-center text-md font-normal text-gray-600">
-                    Got an amazing idea to help grow our community and bring
-                    Chess to a greater audience?
-                  </div>
-                </div>
-                <div className="mt-3 rounded-lh shadow lg:mt-0 lg:ml-10 lg:flex-shrink-0">
-                  <a
-                    href="mailto:info@chesscentre.online"
-                    className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50"
-                  >
-                    <i className="fak fa-chess-centre mr-2"></i>Contact Us
-                  </a>
                 </div>
               </div>
             </div>
