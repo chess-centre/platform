@@ -74,7 +74,7 @@ function EntriesTable(data) {
             </th>
             <th
               scope="col"
-              className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
             >
               Name
             </th>

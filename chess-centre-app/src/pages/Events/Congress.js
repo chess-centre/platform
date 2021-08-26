@@ -9,33 +9,51 @@ import { prettyDate } from "../../utils/DateFormating";
 
 function CongressEvent() {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [defaultPrice, setDefaultPrice] = useState();
+  const [entryCount, setEntryCount] = useState(0);
+  const [isFull, setIsFull] = useState(false);
+  const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
     try {
       const fetchEvent = async () => {
-        const response = await API.graphql({ query: getEvent, variables: { id }, authMode: "AWS_IAM" }).catch(
-          (e) => {
-            console.log("Error fetching event.", id);
-            console.log(e);
-          }
-        );
-        if(response && response.data) {
+        setIsLoading(true);
+        const response = await API.graphql({
+          query: getEvent,
+          variables: { id },
+          authMode: "AWS_IAM",
+        }).catch((e) => {
+          console.log("Error fetching event.", id);
+          console.log(e);
+        });
+        if (response && response.data) {
           const {
             data: {
-              getEvent: { startDate, endDate, type: { defaultPrice } = {} } = {},
+              getEvent: {
+                startDate,
+                endDate,
+                entryCount,
+                isLive,
+                type: { defaultPrice, maxEntries } = {},
+              } = {},
             } = {},
           } = response;
           setStartDate(startDate);
           setEndDate(endDate);
-          setDefaultPrice(defaultPrice);   
+          setDefaultPrice(defaultPrice);
+          setEntryCount(entryCount);
+          setIsFull(entryCount >= maxEntries);
+          setIsLive(isLive);
         }
-      };  
+        setIsLoading(false);
+      };
       fetchEvent();
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      setIsLoading(false);
     }
   }, [id, startDate, defaultPrice]);
 
@@ -49,13 +67,28 @@ function CongressEvent() {
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
             <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
-              <i className="fad fa-rocket-launch"></i> Take it to the next level?
+              <i className="fad fa-rocket-launch"></i> Take it to the next
+              level?
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Congresses
+              Open Congress
+              {!isLoading && isLive && (
+                <div>
+                  <a
+                    href="/broadcast/live"
+                    className={`inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400`}
+                  >
+                    <span className="flex relative h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full rounded-full bg-orange-500 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
+                    </span>{" "}
+                    <span className="ml-2">Watch Here</span>
+                  </a>
+                </div>
+              )}
             </p>
             <p className="mt-2 text-2xl leading-8 font-extrabold tracking-tight text-gray-500 sm:text-2xl">
-              {startDate && prettyDate(startDate, endDate)}
+              {!isLoading && startDate && prettyDate(startDate, endDate)}
             </p>
           </div>
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
@@ -77,7 +110,6 @@ function CongressEvent() {
                   the attention to detail that has been taken in providing
                   comfortable and modern facilities for this format of Chess.
                 </p>
-
                 <p>
                   Designed to accommodate modern working and social patterns,
                   our “Mini-Congresses” take place over a two day weekend, with
@@ -86,7 +118,6 @@ function CongressEvent() {
                   congress tournaments, they are still within the parameters of
                   ECF standard play events and thus are fully rated.
                 </p>
-
                 <p>
                   The “all-play-all” format of players competing in rated groups
                   of 6 also ensures that players know they will receive a
@@ -104,18 +135,42 @@ function CongressEvent() {
                   <li>5 Rounds</li>
                   <li>60 mins per player on the clock</li>
                   <li>All games will be ECF standard play rated.</li>
-                  <li>Entries are currently limited to 18 players.</li>
                   {defaultPrice && <li>Entry fee £{defaultPrice}</li>}
+                  <li>Entries are currently limited to 18 players.</li>
+                </ul>
+              </div>
+              {!isLoading && entryCount && entryCount > 0 && (
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 my-4">
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                      <i className="fal fa-info-circle text-yellow-400 fa-2x"></i>
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm text-yellow-700 sm:mt-2">
+                        There is currently {entryCount}{" "}
+                        {entryCount === 1 ? "entry" : "entries"}.
+                        <br className="block sm:hidden"/>
+                        <Link
+                          to="/login"
+                          className="font-medium underline text-yellow-700 hover:text-yellow-600 sm:ml-2"
+                        >
+                          Login to see the full list
+                        </Link>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+                <h3>Facilities / Refreshments</h3>
+                <ul>
+                  <li>Hot Tea &amp; Coffee</li>
+                  <li>Cold Drinks</li>
+                  <li>Snacks</li>
                 </ul>
                 <p>
-                  <span className="text-teal-500">
-                    <i className="fad fa-mug-tea"></i>{" "}
-                    <i className="fad fa-cookie-bite"></i>
-                  </span>{" "}
-                </p>
-                <p>
-                  Our venue will be open from 9:30am both mornings serving hot
-                  &#38; cold drinks along with snacks.
+                  Our venue will be open from <span className="font-bold">9:30 am</span> each morning.
                 </p>
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">
@@ -161,7 +216,7 @@ function CongressEvent() {
                   fill="url(#bedc54bc-7371-44a2-a2bc-dc68d819ae60)"
                 />
               </svg>
-              <RoundTimes eventId={id} eventType="congress" />
+              <RoundTimes eventId={id} eventType="congress" isFull={isFull} isLive={isLive} />
               <div className="text-sm text-center mt-6 sm:hidden">
                 <Link
                   className="text-teal-600 hover:text-teal-500"
