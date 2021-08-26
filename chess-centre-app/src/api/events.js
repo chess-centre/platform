@@ -1,6 +1,107 @@
 import { API } from "aws-amplify";
 import { useQuery } from "react-query";
-import { listEventsActive } from "../graphql/queries";
+
+export const listEventsActive = /* GraphQL */ `
+  query ListEventsActive(
+    $active: String
+    $startDate: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelEventFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEventsActive(
+      active: $active
+      startDate: $startDate
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        isLive
+        active
+        createdAt
+        updatedAt
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          createdAt
+          updatedAt
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              email
+              ecfRating
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              active
+              createdAt
+              updatedAt
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export const useEvents = () => {
   return useQuery("eventData", async () => {
