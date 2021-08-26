@@ -129,7 +129,7 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 
 <details>
 <summary>Key Details</summary>
-
+<br />
 Taking advantage of the fantastic online chess sites, we pull in live data from the following sources:
 
 <p align="left">
