@@ -4,8 +4,40 @@ import { Link, useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
-import { getEvent } from "../../graphql/queries";
 import { prettyLongDate } from "../../utils/DateFormating";
+
+const getEvent = /* GraphQL */ `
+  query GetEvent($id: ID!) {
+    getEvent(id: $id) {
+      id
+      name
+      description
+      rounds
+      time
+      startDate
+      endDate
+      maxEntries
+      entryCount
+      complete
+      cancelled
+      isLive
+      active
+      type {
+        id
+        name
+        description
+        url
+        color
+        time
+        maxEntries
+        timeControl
+        eventType
+        defaultPrice
+        canRegister
+      }
+    }
+  }
+`;
 
 export default function RapidplayEvent() {
   const { id } = useParams();
