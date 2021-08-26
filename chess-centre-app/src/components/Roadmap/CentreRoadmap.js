@@ -62,7 +62,7 @@ export const CentreRoadmap = () => {
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
-          <div className="bg-teal-500 rounded-full h-4 w-4 z-50"></div>
+          <div className="bg-teal-500 rounded-full h-4 w-4 z-10"></div>
             <div className="flex-1 ml-4 font-medium">
             <span className="mr-2 bg-yellow-200 text-black p-1 rounded  leading-none">
                 Soon
