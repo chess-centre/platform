@@ -31,10 +31,10 @@ export const TechRoadmap = () => {
             </div>
           </div>
           <div className="ml-12">
-            <p>May - platform launch 🥂</p>
+            <p>Platform launch 🥂</p>
             <ul className="list-disc ml-5">
               <li>
-                code available here:<br />
+                Code available here:<br />
                 <a
                   className="text-pink-600 hover:underline"
                   href="https://github.com/chess-centre"
@@ -47,7 +47,7 @@ export const TechRoadmap = () => {
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
-          <div className="bg-orange-brand rounded-full h-4 w-4 z-50"></div>
+          <div className="bg-orange-brand rounded-full h-4 w-4 z-10"></div>
             <div className="flex-1 ml-4 font-medium">
             <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
                 Complete
@@ -56,8 +56,10 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>live games ♟️ <br /><Issue issue="99" /></li>
+              <li>Live games ♟️ <br /><Issue issue="99" /></li>
               <li>Automatic ECF ratings <br /><Issue issue="246" /></li>
+              <li>LiChess integration <br /><Issue issue="282" /></li>
+              <li>Chess.com integration <br /><Issue issue="283" /></li>
             </ul>
           </div>
         </li>
@@ -73,9 +75,8 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>dashboard insights <br /><Issue issue="100" /></li>
-              <li>LiChess integration <br /><Issue issue="282" /></li>
-              <li>Chess.com integration <br /><Issue issue="283" /></li>
+              <li>Dashboard insights <br /><Issue issue="100" /></li>
+              <li>PGN uploads <br /><Issue issue="243" /></li>
             </ul>
           </div>
         </li>
@@ -91,8 +92,8 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>league tables <br /><Issue issue="3" /></li>
-              <li>grand prix <br /><Issue issue="101" /></li>
+              <li>League tables <br /><Issue issue="3" /></li>
+              <li>Grand prix <br /><Issue issue="101" /></li>
             </ul>
           </div>
         </li>
@@ -111,7 +112,7 @@ export const TechRoadmap = () => {
             <li>Junior - lesson resources</li>
             </ul>
             <ul className="ml-1">   
-              <li> Have your say 
+              <li>Have your say 
                 <a className="text-pink-600 hover:underline" href="https://github.com/chess-centre/platform/discussions"> here</a>{" "}💡
               </li>
             </ul>
