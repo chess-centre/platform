@@ -26,7 +26,7 @@ function ListEvents(props) {
       name: "June Open Congress",
       winner: "Tim Hilton",
       id: 4,
-    },
+    }
   ];
 
   const renderEvent = (id) => {
