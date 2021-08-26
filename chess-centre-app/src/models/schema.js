@@ -770,7 +770,7 @@ export const schema = {
                 "fideId": {
                     "name": "fideId",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -1100,5 +1100,5 @@ export const schema = {
             }
         }
     },
-    "version": "3cf054d91d6b136cffe5b5a3f9947fcb"
+    "version": "23f9a50004e86b304f45fa53c90d6756"
 };

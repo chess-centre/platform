@@ -15,9 +15,9 @@ export default function RapidplayEvent() {
   useEffect(() => {
     const fetchEvent = async () => {
       const response = await API.graphql({ query: getEvent, variables: { id }, authMode: "AWS_IAM" }).catch(
-        (e) => {
+        (error) => {
           console.log("Error fetching event.", id);
-          console.log(e.response);
+          console.log(error.response);
         }
       );
 

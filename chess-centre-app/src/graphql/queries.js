@@ -3736,6 +3736,10 @@ export const getMember = /* GraphQL */ `
               createdAt
               updatedAt
             }
+            entries {
+              nextToken
+              startedAt
+            }
           }
           ecfRating
           ecfRapid

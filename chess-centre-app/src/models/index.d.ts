@@ -98,7 +98,7 @@ export declare class Entry {
 export declare class Member {
   readonly id: string;
   readonly about?: string;
-  readonly fideId?: number;
+  readonly fideId?: string;
   readonly ecfId?: string;
   readonly username?: string;
   readonly name?: string;

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { GlobeIcon } from '@heroicons/react/outline'
 
 const usefulLinks = [
   {
@@ -26,38 +25,26 @@ const usefulLinks = [
     url: "https://www.chessable.com/blog/",
     displayUrl: "chessable.com"
   },
+  {
+    name: "Lichess",
+    description: "Free Online playing site, regular tournaments and live streams.",
+    url: "https://lichess.org/",
+    displayUrl: "lichess.org"
+  },
+  {
+    name: "Ginger GM",
+    description: "A wonderful, entertaining and content rich chess site for learning and improving your game.",
+    url: "https://gingergm.com/",
+    displayUrl: "gingergm.com"
+  },
 ]
-
-function Banner() {
-  return (
-    <div className="mx-auto w-full pb-2 sm:pb-5">
-    <div className="max-w-7xl px-2">
-      <div className="p-2 rounded-lg bg-teal-500 shadow-lg sm:p-3">
-        <div className="flex items-center justify-between flex-wrap">
-          <div className="w-0 flex-1 flex items-center">
-            <span className="flex p-2 rounded-lg bg-teal-600">
-              <GlobeIcon className="h-6 w-6 text-white" aria-hidden="true" />
-            </span>
-            <p className="hidden sm:block ml-3 sm:font-medium text-white text-sm truncate">
-              <span className="">We are planning to share lots of exciting resources here so come back soon!</span>
-            </p>
-            <p className="block sm:hidden ml-3 sm:font-medium text-white text-sm truncate">
-              <span className="">👋 Check back here soon!</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  )
-}
 
 function UsefulLinksTable() {
   return (
     <div className="mx-auto w-full">
     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 px-2">
       <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <div className="shadow-lg overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
@@ -77,7 +64,7 @@ function UsefulLinksTable() {
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  Link
+                  Visit
                 </th>
               </tr>
             </thead>
@@ -121,9 +108,8 @@ export default function Juniors() {
         </div>
       </div>
       <div className="relative grid mb-8 md:grid-cols-1 mt-6">
-        <Banner />
         <div className="mt-4">
-          <h3 className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400 mb-4">Useful links to other great chess sites</h3>
+          <h3 className="text-lg font-semibold text-gray-700 ml-4 mt-1 text-center sm:text-left mb-4">Useful links to other great chess sites</h3>
           <UsefulLinksTable />
         </div> 
       </div>

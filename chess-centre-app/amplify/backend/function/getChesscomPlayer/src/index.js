@@ -1,5 +1,3 @@
-
-
 const https = require('https');
 const AWS = require("aws-sdk");
 const { API_CHESSPLAYERS_MEMBERTABLE_NAME } = process.env;
@@ -14,8 +12,8 @@ exports.handler = async (event) => {
 
     if (!identity || !identity.cognitoAuthenticationProvider) {
         return {
-          statusCode: 401,
-          body: "Unauthorized",
+            statusCode: 401,
+            body: "Unauthorized",
         };
     }
 
@@ -26,10 +24,10 @@ exports.handler = async (event) => {
 
     if (!id) {
         return {
-          statusCode: 404,
-          body: "Must supply a username.",
+            statusCode: 404,
+            body: "Must supply a username.",
         };
-    }
+    };
 
     const url = `https://api.chess.com/pub/player/${id.toLowerCase()}/stats`;
 
@@ -57,9 +55,20 @@ exports.handler = async (event) => {
         console.log("error", e);
     });
 
-    console.log(data);
+    let parsedData = null;
 
-    if(data && !data.code === 0) {
+    try {
+        parsedData = JSON.parse(data);
+        console.log("parsed data", parsedData);
+    } catch (error) {
+        console.log(error);
+        return {
+            statusCode: 404,
+            body: "Error parsing response data",
+        };
+    }
+
+    if (parsedData && (parsedData.chess_rapid || parsedData.chess_blitz)) {
         try {
             console.log("updating db");
             const params = {
@@ -85,17 +94,16 @@ exports.handler = async (event) => {
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
-            }, 
+            },
             body: JSON.stringify(data),
         };
     } else {
-        console.log("User not found", data);
         return {
             statusCode: 200,
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
-            }, 
+            },
             body: JSON.stringify(data),
         };
     }
