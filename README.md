@@ -1,7 +1,7 @@
 <p align="center">
   <img src="img/bcc-logo.png" width="150" />
   <h1 align="center"><strong></strong> The Chess Centre | Platform</h1>
-  <h3 align="center">v1.0.11</h3
+  <h3 align="center">v1.0.16</h3
 </p>
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade&style=flat-square)
@@ -122,6 +122,41 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 <p align="center">
   <img src="img/live-broadcast-overview.jpg" />
 </p>
+
+</details>
+
+## Integrations
+
+<details>
+<summary>Key Details</summary>
+
+Taking advantage of the fantastic online chess sites, we pull in live data from the following sources:
+
+<p align="left">
+  <img width="200px" src="chess-centre-app/src/assets/img/chesscom.png" />
+</p>
+
+- Bullet Rating
+- Blitz Rating
+- Profile Image
+- Puzzle Rating
+
+<p align="left">
+  <img width="200px" src="chess-centre-app/src/assets/img/lichess.png" />
+</p>
+
+- Bullet Rating
+- Blitz Rating
+
+<p align="left">
+  <img width="200px" src="chess-centre-app/src/assets/img/ecf.jpeg" />
+</p>
+
+- Standard Rating
+- Rapidplay Rating
+- FIDE ID
+- ECF Membership Status
+- Recent Game History
 
 </details>
 
