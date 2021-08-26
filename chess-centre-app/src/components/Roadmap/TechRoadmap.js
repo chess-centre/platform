@@ -6,7 +6,7 @@ const Issue = ({issue}) => {
       className="text-pink-600 hover:underline"
       href={`https://github.com/chess-centre/platform/issues/${issue}`}
     >
-      {`#${issue}`}
+      {`Ref #${issue}`}
     </a>
   );
 };
@@ -25,23 +25,41 @@ export const TechRoadmap = () => {
       <ul className="list-none m-0 p-0">
         <li className="mb-2">
           <div className="flex items-center mb-1">
-            <div className="bg-orange-brand rounded-full h-4 w-4 z-10"></div>
+            <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
               First Release <span className="font-thin">v1.0.0</span>
             </div>
           </div>
           <div className="ml-12">
-            <p>May - platform launch 🥂</p>
+            <p>Platform launch 🥂</p>
             <ul className="list-disc ml-5">
               <li>
-                code available here:{" "}
+                Code available here:<br />
                 <a
                   className="text-pink-600 hover:underline"
                   href="https://github.com/chess-centre"
                 >
-                  github repos
+                  GitHub Code repository
                 </a>
               </li>
+            </ul>
+          </div>
+        </li>
+        <li className="mb-2">
+          <div className="flex items-center mb-1">
+          <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
+            <div className="flex-1 ml-4 font-medium">
+            <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+                Complete
+              </span>
+            </div>
+          </div>
+          <div className="ml-12">
+            <ul className="list-disc ml-5">
+              <li>Live games ♟️ <br /><Issue issue="99" /></li>
+              <li>Automatic ECF ratings <br /><Issue issue="246" /></li>
+              <li>LiChess integration <br /><Issue issue="282" /></li>
+              <li>Chess.com integration <br /><Issue issue="283" /></li>
             </ul>
           </div>
         </li>
@@ -57,8 +75,8 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>live games ♟️ <Issue issue="99" /></li>
-              <li>dashboard insights <Issue issue="100" /></li>
+              <li>Dashboard insights <br /><Issue issue="100" /></li>
+              <li>PGN uploads <br /><Issue issue="243" /></li>
             </ul>
           </div>
         </li>
@@ -74,14 +92,14 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>league tables <Issue issue="3" /></li>
-              <li>grand prix <Issue issue="101" /></li>
+              <li>League tables <br /><Issue issue="3" /></li>
+              <li>Grand prix <br /><Issue issue="101" /></li>
             </ul>
           </div>
         </li>
         <li className="mb-2">
         <div className="flex items-center mb-1">
-            <div className="bg-teal-500 rounded-full h-4 w-4"></div>
+            <div className="bg-teal-700 rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
               <span className="mr-2 bg-blue-200 text-black p-1 rounded  leading-none">
                 Discuss
@@ -94,7 +112,7 @@ export const TechRoadmap = () => {
             <li>Junior - lesson resources</li>
             </ul>
             <ul className="ml-1">   
-              <li> Have your say 
+              <li>Have your say 
                 <a className="text-pink-600 hover:underline" href="https://github.com/chess-centre/platform/discussions"> here</a>{" "}💡
               </li>
             </ul>

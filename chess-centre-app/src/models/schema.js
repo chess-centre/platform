@@ -451,6 +451,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "isLive": {
+                    "name": "isLive",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "active": {
                     "name": "active",
                     "isArray": false,
@@ -763,7 +770,7 @@ export const schema = {
                 "fideId": {
                     "name": "fideId",
                     "isArray": false,
-                    "type": "Int",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -895,6 +902,34 @@ export const schema = {
                 },
                 "ratingInfo": {
                     "name": "ratingInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "liChessUsername": {
+                    "name": "liChessUsername",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "liChessInfo": {
+                    "name": "liChessInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chesscomUsername": {
+                    "name": "chesscomUsername",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chesscomInfo": {
+                    "name": "chesscomInfo",
                     "isArray": false,
                     "type": "AWSJSON",
                     "isRequired": false,
@@ -1065,5 +1100,5 @@ export const schema = {
             }
         }
     },
-    "version": "0b8cc06611507c7a117a70b077832f6d"
+    "version": "23f9a50004e86b304f45fa53c90d6756"
 };

@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useEvents } from "../../api/events";
 import ClubNightImage from "../../assets/img/club-night.jpg";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
+import { prettyLongDate } from "../../utils/DateFormating";
 
 export default function ClubNight() {
+
+  const { isLoading, error, data } = useEvents();
+  const [clubNightDates, setClubNightDates] = useState([]);
+
+  useEffect(() => {
+    if(data) {
+      const clubNights = data.filter(event => event.type.eventType === "club").splice(0, 3);
+      setClubNightDates(clubNights);
+    }
+  }, [data]);
+
   return (
     <div>
       <div className="relative pt-6 pb-2">
@@ -84,14 +97,25 @@ export default function ClubNight() {
                 <p>
                   We plan to run a few bespoke themed events during our club nights but primarily these will be left up to members to decide what takes their fancy to keep it fresh and interesting.
                 </p>
-                <p>Possible bespoke events:</p>
+                <h4>Types of casual events we host:</h4>
                 <ul>
                   <li>Four Player Chess</li>
                   <li>Doubles Chess</li>
                   <li>Themed Opening Nights</li>
                   <li>Blitz Chess (3min / 5min)</li>
+                  <li>Hand &amp; Brain</li>
                 </ul>
               </div>
+                { !isLoading && !error && clubNightDates.length > 0 && (
+                  <div className="prose prose-teal">
+                    <h4>Upcoming Club Nights</h4>
+                    <ul>
+                      { clubNightDates.map(({ startDate }, key) => {
+                          return <li key={key}>{ prettyLongDate(startDate)}</li>
+                      })}
+                    </ul>
+                  </div>
+                )}
             </div>
             <div className="text-sm text-center mt-6 sm:hidden">
               <Link className="text-teal-600 hover:text-teal-500" to="/">

@@ -1,4 +1,5 @@
-import ChessInfo from "./ChessInfo";
-import AccountInfo from "./AccountInfo";
+import ChessProfile from "./ChessProfile";
+import AccountProfile from "./AccountProfile";
+import IntegrationProfile from "./IntegrationsProfile";
 
-export { ChessInfo, AccountInfo };
+export { ChessProfile, AccountProfile, IntegrationProfile };

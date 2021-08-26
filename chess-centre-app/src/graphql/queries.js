@@ -236,6 +236,10 @@ export const getGame = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -280,6 +284,10 @@ export const getGame = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -306,6 +314,7 @@ export const getGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -354,6 +363,10 @@ export const getGame = /* GraphQL */ `
         membershipType
         gameInfo
         ratingInfo
+        liChessUsername
+        liChessInfo
+        chesscomUsername
+        chesscomInfo
         _version
         _deleted
         _lastChangedAt
@@ -390,6 +403,10 @@ export const getGame = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -412,6 +429,7 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -479,6 +497,10 @@ export const getGame = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -523,6 +545,10 @@ export const getGame = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -549,6 +575,7 @@ export const getGame = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -597,6 +624,10 @@ export const getGame = /* GraphQL */ `
         membershipType
         gameInfo
         ratingInfo
+        liChessUsername
+        liChessInfo
+        chesscomUsername
+        chesscomInfo
         _version
         _deleted
         _lastChangedAt
@@ -633,6 +664,10 @@ export const getGame = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -655,6 +690,7 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -679,6 +715,7 @@ export const getGame = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        isLive
         active
         _version
         _deleted
@@ -741,6 +778,10 @@ export const getGame = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -768,6 +809,10 @@ export const getGame = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -790,6 +835,7 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -847,6 +893,10 @@ export const getGame = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -869,6 +919,7 @@ export const getGame = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -950,6 +1001,10 @@ export const listGames = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -977,6 +1032,10 @@ export const listGames = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -999,6 +1058,7 @@ export const listGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1016,6 +1076,10 @@ export const listGames = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -1082,6 +1146,10 @@ export const listGames = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -1109,6 +1177,10 @@ export const listGames = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -1131,6 +1203,7 @@ export const listGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1148,6 +1221,10 @@ export const listGames = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -1184,6 +1261,7 @@ export const listGames = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -1342,6 +1420,10 @@ export const listGamesByEvent = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -1369,6 +1451,10 @@ export const listGamesByEvent = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -1391,6 +1477,7 @@ export const listGamesByEvent = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1408,6 +1495,10 @@ export const listGamesByEvent = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -1474,6 +1565,10 @@ export const listGamesByEvent = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -1501,6 +1596,10 @@ export const listGamesByEvent = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -1523,6 +1622,7 @@ export const listGamesByEvent = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1540,6 +1640,10 @@ export const listGamesByEvent = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -1576,6 +1680,7 @@ export const listGamesByEvent = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -1734,6 +1839,10 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -1761,6 +1870,10 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -1783,6 +1896,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1800,6 +1914,10 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -1866,6 +1984,10 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -1893,6 +2015,10 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -1915,6 +2041,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -1932,6 +2059,10 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -1968,6 +2099,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -2126,6 +2258,10 @@ export const listGamesByBlackMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -2153,6 +2289,10 @@ export const listGamesByBlackMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -2175,6 +2315,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -2192,6 +2333,10 @@ export const listGamesByBlackMember = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -2258,6 +2403,10 @@ export const listGamesByBlackMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -2285,6 +2434,10 @@ export const listGamesByBlackMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -2307,6 +2460,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -2324,6 +2478,10 @@ export const listGamesByBlackMember = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -2360,6 +2518,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -2516,6 +2675,10 @@ export const syncGames = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -2543,6 +2706,10 @@ export const syncGames = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -2565,6 +2732,7 @@ export const syncGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -2582,6 +2750,10 @@ export const syncGames = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -2648,6 +2820,10 @@ export const syncGames = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -2675,6 +2851,10 @@ export const syncGames = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -2697,6 +2877,7 @@ export const syncGames = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -2714,6 +2895,10 @@ export const syncGames = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -2750,6 +2935,7 @@ export const syncGames = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -3060,6 +3246,10 @@ export const syncMembers = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -3104,6 +3294,10 @@ export const syncMembers = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -3130,6 +3324,7 @@ export const syncMembers = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -3178,6 +3373,10 @@ export const syncMembers = /* GraphQL */ `
         membershipType
         gameInfo
         ratingInfo
+        liChessUsername
+        liChessInfo
+        chesscomUsername
+        chesscomInfo
         _version
         _deleted
         _lastChangedAt
@@ -3214,6 +3413,10 @@ export const syncMembers = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -3236,6 +3439,7 @@ export const syncMembers = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -3322,6 +3526,10 @@ export const getMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -3349,6 +3557,10 @@ export const getMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -3371,6 +3583,7 @@ export const getMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -3388,6 +3601,10 @@ export const getMember = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -3454,6 +3671,10 @@ export const getMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -3481,6 +3702,10 @@ export const getMember = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -3503,12 +3728,17 @@ export const getMember = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
               _lastChangedAt
               createdAt
               updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
             }
           }
           ecfRating
@@ -3520,6 +3750,10 @@ export const getMember = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -3556,6 +3790,7 @@ export const getMember = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -3644,6 +3879,10 @@ export const getMember = /* GraphQL */ `
       membershipType
       gameInfo
       ratingInfo
+      liChessUsername
+      liChessInfo
+      chesscomUsername
+      chesscomInfo
       _version
       _deleted
       _lastChangedAt
@@ -3693,6 +3932,10 @@ export const getMember = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -3719,6 +3962,7 @@ export const getMember = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -3826,6 +4070,10 @@ export const listMembers = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -3870,6 +4118,10 @@ export const listMembers = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -3896,6 +4148,7 @@ export const listMembers = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -3944,6 +4197,10 @@ export const listMembers = /* GraphQL */ `
         membershipType
         gameInfo
         ratingInfo
+        liChessUsername
+        liChessInfo
+        chesscomUsername
+        chesscomInfo
         _version
         _deleted
         _lastChangedAt
@@ -3980,6 +4237,10 @@ export const listMembers = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -4002,6 +4263,7 @@ export const listMembers = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -4033,6 +4295,7 @@ export const getEvent = /* GraphQL */ `
       entryCount
       complete
       cancelled
+      isLive
       active
       _version
       _deleted
@@ -4108,6 +4371,10 @@ export const getEvent = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -4152,6 +4419,10 @@ export const getEvent = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -4178,6 +4449,7 @@ export const getEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -4279,6 +4551,10 @@ export const getEvent = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -4305,6 +4581,7 @@ export const getEvent = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -4369,6 +4646,7 @@ export const listEvents = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        isLive
         active
         _version
         _deleted
@@ -4431,6 +4709,10 @@ export const listEvents = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -4458,6 +4740,10 @@ export const listEvents = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -4480,6 +4766,7 @@ export const listEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -4537,6 +4824,10 @@ export const listEvents = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -4559,6 +4850,7 @@ export const listEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -4605,6 +4897,7 @@ export const listEventsActive = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        isLive
         active
         _version
         _deleted
@@ -4667,6 +4960,10 @@ export const listEventsActive = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -4694,6 +4991,10 @@ export const listEventsActive = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -4716,6 +5017,7 @@ export const listEventsActive = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -4773,6 +5075,10 @@ export const listEventsActive = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -4795,6 +5101,7 @@ export const listEventsActive = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -4837,6 +5144,7 @@ export const syncEvents = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        isLive
         active
         _version
         _deleted
@@ -4899,6 +5207,10 @@ export const syncEvents = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -4926,6 +5238,10 @@ export const syncEvents = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -4948,6 +5264,7 @@ export const syncEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5005,6 +5322,10 @@ export const syncEvents = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -5027,6 +5348,7 @@ export const syncEvents = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5110,6 +5432,10 @@ export const getEntry = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -5154,6 +5480,10 @@ export const getEntry = /* GraphQL */ `
             membershipType
             gameInfo
             ratingInfo
+            liChessUsername
+            liChessInfo
+            chesscomUsername
+            chesscomInfo
             _version
             _deleted
             _lastChangedAt
@@ -5180,6 +5510,7 @@ export const getEntry = /* GraphQL */ `
             entryCount
             complete
             cancelled
+            isLive
             active
             _version
             _deleted
@@ -5228,6 +5559,10 @@ export const getEntry = /* GraphQL */ `
         membershipType
         gameInfo
         ratingInfo
+        liChessUsername
+        liChessInfo
+        chesscomUsername
+        chesscomInfo
         _version
         _deleted
         _lastChangedAt
@@ -5264,6 +5599,10 @@ export const getEntry = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -5286,6 +5625,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5310,6 +5650,7 @@ export const getEntry = /* GraphQL */ `
         entryCount
         complete
         cancelled
+        isLive
         active
         _version
         _deleted
@@ -5372,6 +5713,10 @@ export const getEntry = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -5399,6 +5744,10 @@ export const getEntry = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -5421,6 +5770,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5478,6 +5828,10 @@ export const getEntry = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -5500,6 +5854,7 @@ export const getEntry = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5573,6 +5928,10 @@ export const listEntrys = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -5600,6 +5959,10 @@ export const listEntrys = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -5622,6 +5985,7 @@ export const listEntrys = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5639,6 +6003,10 @@ export const listEntrys = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -5675,6 +6043,7 @@ export const listEntrys = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted
@@ -5823,6 +6192,10 @@ export const syncEntries = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -5850,6 +6223,10 @@ export const syncEntries = /* GraphQL */ `
               membershipType
               gameInfo
               ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
               _version
               _deleted
               _lastChangedAt
@@ -5872,6 +6249,7 @@ export const syncEntries = /* GraphQL */ `
               entryCount
               complete
               cancelled
+              isLive
               active
               _version
               _deleted
@@ -5889,6 +6267,10 @@ export const syncEntries = /* GraphQL */ `
           membershipType
           gameInfo
           ratingInfo
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
           _version
           _deleted
           _lastChangedAt
@@ -5925,6 +6307,7 @@ export const syncEntries = /* GraphQL */ `
           entryCount
           complete
           cancelled
+          isLive
           active
           _version
           _deleted

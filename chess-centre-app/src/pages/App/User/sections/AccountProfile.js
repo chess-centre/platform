@@ -5,24 +5,27 @@ const FIRST_NAME = "first_name";
 const LAST_NAME = "last_name";
 const EMAIL_ADDRESS = "email_address";
 
-function AccountInfo(props) {
+export default function AccountProfile(props) {
   const [user, setUser] = useState({
     email: "",
     email_verified: false,
     given_name: "",
-    family_name: ""
+    family_name: "",
   });
   useEffect(() => {
     const fetchCognitoUser = async () => {
       const {
-        attributes: {
-          email,
-          email_verified
-        }
+        attributes: { email, email_verified },
       } = await Auth.currentAuthenticatedUser();
       const given_name = props.name?.split(" ")[0] || "";
       const family_name = props.name?.split(" ")[1] || "";
-      setUser(s => ({ ...s, email, email_verified, given_name, family_name}));
+      setUser((s) => ({
+        ...s,
+        email,
+        email_verified,
+        given_name,
+        family_name,
+      }));
     };
     fetchCognitoUser();
   }, [props]);
@@ -48,7 +51,7 @@ function AccountInfo(props) {
               First name
             </label>
             <input
-              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
                 focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-70`}
               disabled
               value={user.given_name}
@@ -73,7 +76,7 @@ function AccountInfo(props) {
               name={LAST_NAME}
               id={LAST_NAME}
               autoComplete="off"
-              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
               focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-701`}
             />
           </div>
@@ -92,7 +95,7 @@ function AccountInfo(props) {
               name={EMAIL_ADDRESS}
               id={EMAIL_ADDRESS}
               autoComplete="off"
-              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-3 sm:py-2 px-3 text-gray-700 sm:text-gray-500  cursor-not-allowed
+              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500  cursor-not-allowed
               focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-70`}
             />
           </div>
@@ -132,5 +135,3 @@ function AccountInfo(props) {
     </div>
   );
 }
-
-export default AccountInfo;

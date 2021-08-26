@@ -3,7 +3,6 @@ import MayCongress from "../../components/Events/Tables/MayCongress";
 import MayRapidplayDivOne from "../../components/Events/Tables/MayRapidplayDivOne";
 import MayRapidplayDivTwo from "../../components/Events/Tables/MayRapidplayDivTwo";
 import JuneCongress from "../../components/Events/Tables/JuneCongress";
-import Nav from "../../components/Events/Breadcrumb/Nav";
 
 function ListEvents(props) {
   const { setSelectedEvent, current } = props;
@@ -27,11 +26,11 @@ function ListEvents(props) {
       name: "June Open Congress",
       winner: "Tim Hilton",
       id: 4,
-    },
+    }
   ];
 
   const renderEvent = (id) => {
-    setSelectedEvent(id)
+    setSelectedEvent(id);
   };
 
   return (
@@ -57,7 +56,6 @@ function ListEvents(props) {
             >
               View
             </th>
-
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -86,13 +84,12 @@ function ListEvents(props) {
 }
 
 function Results() {
-
   const [selectedEvent, setSelectedEvent] = useState(0);
 
   const renderSelectedEvent = () => {
     switch (selectedEvent) {
-      case 0: 
-        return <></>
+      case 0:
+        return <></>;
       case 1:
         return <MayCongress />;
       case 2:
@@ -104,21 +101,22 @@ function Results() {
       default:
         break;
     }
-  }
+  };
 
   return (
     <div className="">
-      <div className="my-6 pb-5 border-b border-gray-200 dark:border-gray-700">
+      <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        <i class="fad fa-poll-people text-teal-600"></i> Results
+      </h1>
+      <div className="mb-5 pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
-          <h3 className="ml-2 mt-2 text-lg leading-6 font-medium text-gray-900 dark:text-white">
-            <Nav />
-          </h3>
+          <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
+            A brief summary of our event results.
+          </p>
         </div>
       </div>
       <ListEvents setSelectedEvent={setSelectedEvent} current={selectedEvent} />
-      <div className="mt-6">
-        { renderSelectedEvent() }
-      </div>
+      <div className="mt-6">{renderSelectedEvent()}</div>
     </div>
   );
 }
