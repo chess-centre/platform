@@ -173,7 +173,7 @@ export default function Dashboard() {
           />
         </ChartCard>
       </div>
-      <div className="grid gap-6 mb-8 mt-6 relative min-w-0 p-4 bg-white shadow rounded-lg border-gray-100">
+      <div className="grid gap-6 mb-8 mt-4 relative min-w-0 p-4 bg-white shadow rounded-lg border-gray-100">
         <div className="overflow-x-auto">
           <p className="mb-4 font-semibold text-gray-800 dark:text-gray-300">
             Events
@@ -181,10 +181,10 @@ export default function Dashboard() {
           <div className="overflow-x-auto">
           { upcomingEvents.length > 0 ? (
             <div>
-              <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
-                Your upcoming events.
+              <p className="ml-1 mt-1 text-sm text-left text-gray-500 dark:text-gray-400">
+                Your upcoming events
               </p>
-              <table className="mt-2 divide-y divide-gray-200">
+              <table className="mt-2 divide-y divide-gray-200 mb-2">
                 <thead className="bg-gray-50">
                 <tr>
                     <th
@@ -197,7 +197,7 @@ export default function Dashboard() {
                       scope="col"
                       className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
                     >
-                      Description
+                      Date
                     </th>
                     <th
                       scope="col"
@@ -211,12 +211,6 @@ export default function Dashboard() {
                     >
                       Entries
                     </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
-                    >
-                      Date
-                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -224,22 +218,19 @@ export default function Dashboard() {
                     upcomingEvents.map(({ event }, key) => (
                       <tr
                         key={key}
-                        className={key % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                        className={key % 2 === 0 ? "bg-white hover:bg-yellow-50" : "bg-gray-50 hover:bg-yellow-50"}
                       >
                         <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {event.name || event.type?.name}
                         </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {event.type.description}
+                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
+                          {prettyDate(event.startDate)}
                         </td>
                         <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                           {event.rounds || event.type?.rounds}
                         </td>
                         <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                           {event.entryCount}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
-                          {prettyDate(event.startDate)}
                         </td>
                       </tr>
                     ))}
@@ -254,7 +245,7 @@ export default function Dashboard() {
           
           { previousEvents.length > 0 ? (
             <div>
-              <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
+              <p className="ml-1 mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
                 Your previous events you have participated in.
               </p>
               <table className="mt-2 divide-y divide-gray-200">
