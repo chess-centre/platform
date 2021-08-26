@@ -146,12 +146,13 @@ function CongressEvent() {
                       <i className="fal fa-info-circle text-yellow-400 fa-2x"></i>
                     </div>
                     <div className="ml-3">
-                      <p className="text-sm text-yellow-700 mt-2">
+                      <p className="text-sm text-yellow-700 sm:mt-2">
                         There is currently {entryCount}{" "}
                         {entryCount === 1 ? "entry" : "entries"}.
+                        <br className="block sm:hidden"/>
                         <Link
                           to="/login"
-                          className="font-medium underline text-yellow-700 hover:text-yellow-600 ml-2"
+                          className="font-medium underline text-yellow-700 hover:text-yellow-600 sm:ml-2"
                         >
                           Login to see the full list
                         </Link>
