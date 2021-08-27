@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import FilterMenu from "./FilterMenu";
 import ToggleView from "./ToggleView";
@@ -357,13 +357,7 @@ export default function Calendar() {
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
   const [calenderView, setCalenderView] = useState(defaultView);
   const [selected, setSelected] = useState(false);
-  const [filters, setFilters] = useState({
-    rapidplay: true,
-    congress: true,
-    junior: true,
-    club: true,
-    match: true,
-  });
+  const [filters, setFilters] = useState({});
   const today = new Date();
   const currentMonth = today.getMonth();
   const nextMonth = currentMonth + 1;
@@ -374,6 +368,24 @@ export default function Calendar() {
   const handleViewSwitch = (view) => {
     setCalenderView(view);
   };
+
+  useMemo(() => {
+
+    if(data) {
+      const availableTypes = data.reduce((pre, { type: { eventType } }) => {
+        const type = eventType.includes("junior") ? "junior" : eventType;
+        return {
+          ...pre,
+          [type]: true
+        }
+      }, {});
+  
+      setFilters(availableTypes);
+    }
+
+
+  }, [data]);
+
 
   return (
     <section>
