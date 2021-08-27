@@ -16,7 +16,7 @@ function GridComingSoonCard() {
   return (
     <li
       className={
-        "relative -z-1 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
+        "relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
       }
     >
       <div
@@ -48,7 +48,7 @@ function GridCard({ event }) {
   return (
     <div
       className={
-        "relative -z-1 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
+        "relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
       }
     >
       <div
@@ -141,10 +141,9 @@ function GridCalendar({
                       })}
                     </span>
                     <span
-                      className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full ${
-                        selected === month &&
+                      className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full ${selected === month &&
                         (isEven ? "bg-teal-brand " : "bg-orange-brand ")
-                      }`}
+                        }`}
                     ></span>
                   </button>
                 );
@@ -164,14 +163,12 @@ function GridCalendar({
                   >
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4">
                       {data
-                        .filter(
-                          (data) =>
-                            new Date(data.startDate).getMonth() === month
-                        )
-                        .filter((data) => filters[data.type.eventType])
-                        .map((data, key) => (
-                          <GridCard key={key} event={data} />
-                        ))}
+                        .filter(data => new Date(data.startDate).getMonth() === month)
+                        .filter(({ type: { eventType } }) => {
+                          const isJunior = eventType.includes("junior");
+                          return isJunior ? filters["junior"] : filters[eventType];
+                        })
+                        .map((data, key) => <GridCard key={key} event={data} />)}
 
                       {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                       {data.filter(
@@ -206,7 +203,7 @@ function GridCalendar({
 
 function ListCard({ event }) {
   return (
-    <li key={event.id} className="col-span-1 flex mb-3 sm:ml-28">
+    <li key={event.id} className="col-span-1 flex mb-3 sm:ml-28 z-0">
       <div
         className={
           event.endDate && event.startDate !== event.endDate
@@ -248,7 +245,7 @@ function ListCard({ event }) {
           ></div>
         </div>
       </div>
-      <div className="relative -z-1 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
         <div className="px-4 sm:px-6 py-2 sm:py-0 text-sm truncate">
           <p className="sm:text-2xl sm:font-medium font-bold text-lg">
             {event.name}
@@ -300,7 +297,7 @@ function ListCard({ event }) {
 function ListComingSoonCard() {
   return (
     <li className=" col-span-1 flex mb-3 sm:ml-28 px-1">
-      <div className="relative -z-1 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
         <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate rounded-l-lg">
           <h3 className="font-red-hat-display text-xl mb-1">Coming Soon</h3>
           <p className="text-gray-900 font-thin text-sm mb-1">
@@ -322,24 +319,19 @@ function ListCalendar({ isLoading, error, data, selected, filters, filtersSelect
             <>
               <ul>
                 {data
-                  .filter(
-                    (data) => new Date(data.startDate).getMonth() === selected
-                  )
-                  .filter((data) => filters[data.type.eventType])
-                  .map((d, key) => {
-                    return <ListCard key={key} event={d} />;
-                  })}
+                  .filter(event => new Date(event.startDate).getMonth() === selected)
+                  .filter(({ type: { eventType } }) => {
+                    const isJunior = eventType.includes("junior");
+                    return isJunior ? filters["junior"] : filters[eventType];
+                  })
+                  .map((data, key) => <ListCard key={key} event={data} />)}
 
                 {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
-                {data.filter(
-                  (data) => new Date(data.startDate).getMonth() === selected
-                )
-                .filter((data) => filters[data.type.eventType])
-                .length === 0 && !filtersSelected && (
-                  <ul className="-z-10">
-                    <ListComingSoonCard />
-                  </ul>
-                )}
+                {data
+                  .filter(event => new Date(event.startDate).getMonth() === selected)
+                  .filter(event => filters[event.type.eventType])
+                  .length === 0 && !filtersSelected && (<ListComingSoonCard />)
+                }
               </ul>
             </>
           ) : (
@@ -403,7 +395,7 @@ export default function Calendar() {
                 </div>
               ) : null}
               <div className="absolute right-0 top-16 sm:top-8 text-center sm:mt-6 sm:text-right">
-                <span className="relative z-0 inline-flex">
+                <span className="relative z-10 inline-flex">
                   <ToggleView calendarView={calenderView} handleViewSwitch={handleViewSwitch} />
                   <FilterMenu filters={filters} setFilters={setFilters} selected={selected} setSelected={setSelected} />
                 </span>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
 
 function classNames(...classes) {
@@ -9,8 +9,8 @@ export default function FilterMenu(props) {
   const { filters, setFilters, selected, setSelected } = props;
   const trueState = Object.keys(filters).reduce((pre, cur) => ({...pre, [cur]: true }), {});
   const falseState = Object.keys(filters).reduce((pre, cur) => ({...pre, [cur]: false }), {});
-
-  const handleClick = (type) => {
+  const [someSelected, setSomeSelected] = useState(false);
+  const handleClick = async (type) => {
     setFilters((state) => {
       return {
         ...state,
@@ -19,28 +19,36 @@ export default function FilterMenu(props) {
     });
   };
   const handleSelectAll = () => {
-    if(selected) {
-      setFilters(trueState);
-    } else {
-      setFilters(falseState);
-    }
+    selected ? setFilters(trueState) : setFilters(falseState);
     setSelected(!selected);
   };
 
+  useEffect(() => {
+    const allSelected = Object.values(filters).every(filter => filter);
+    if(allSelected) {
+      setSelected(false /* "Deselect All" */);
+    }
+    // Note: "selected" is unchecked / false!
+    setSomeSelected(Object.values(filters).some(filter => !filter));
+  
+  }, [filters]);
+
   return (
-    <div className="mt-0.5 z-100">
+    <div className="mt-0.5">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button
-            className={`ml-2 relative inline-flex items-center px-2 py-2 shadow-md rounded-md border border-gray-300 bg-white text-sm ring-teal-500
-                      hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
+            className={classNames(someSelected ? 'text-teal-600 bg-gray-50' : 'text-gray-500 bg-white hover:bg-gray-50',`ml-2 relative inline-flex items-center px-2 py-2 shadow-md 
+                      rounded-md border border-gray-300 text-sm ring-teal-500
+                       focus:z-10 focus:outline-none 
+                      focus:ring-1 focus:ring-teal-500 focus:border-teal-500`)}
           >
             <span className="sr-only">Filter</span>
             <i className="fas fa-filter"></i>
           </Menu.Button>
         </div>
 
-        <Menu.Items className="origin-top-right absolute right-0 z-100 mt-2 w-34 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
+        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
           <div className="py-1">
             <Menu.Item onClick={() => handleClick("rapidplay")}>
               {({ active }) => (
