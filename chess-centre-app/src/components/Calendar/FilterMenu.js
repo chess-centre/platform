@@ -6,7 +6,7 @@ function classNames(...classes) {
 }
 
 export default function FilterMenu(props) {
-  const { filters, setFilters, selected, setSelected } = props;
+  const { filters, setFilters, selected, setSelected, setAllDeselected } = props;
   const trueState = Object.keys(filters).reduce((pre, cur) => ({ ...pre, [cur]: true }), {});
   const falseState = Object.keys(filters).reduce((pre, cur) => ({ ...pre, [cur]: false }), {});
   const [someSelected, setSomeSelected] = useState(false);
@@ -26,11 +26,13 @@ export default function FilterMenu(props) {
   useEffect(() => {
     const allSelected = Object.values(filters).every(filter => filter);
     if (allSelected) {
-      setSelected(false /* "Deselect All" */);
+      setSelected(false /* "Deselect All =" */);
     }
-    // Note: "selected" is unchecked / false!
+    setAllDeselected(Object.values(filters).every(filter => filter === false));
+
+    // Note: "selected" is unchecked i.e false!
     setSomeSelected(Object.values(filters).some(filter => !filter));
-  }, [filters]);
+  }, [filters, setSelected, setAllDeselected]);
 
   return (
     <div className="mt-0.5">
@@ -50,9 +52,9 @@ export default function FilterMenu(props) {
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
 
           {
-            Object.keys(filters).map(filterName => {
+            Object.keys(filters).map((filterName, key) => {
               return (
-                <Menu.Item onClick={() => handleClick(filterName)}>
+                <Menu.Item key={key} onClick={() => handleClick(filterName)}>
                   {({ active }) => (
                     <div
                       className={classNames(

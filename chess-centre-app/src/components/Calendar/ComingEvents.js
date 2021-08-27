@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import FilterMenu from "./FilterMenu";
 import ToggleView from "./ToggleView";
@@ -11,38 +11,6 @@ import {
 } from "../../utils/DateFormating";
 import { classNames, bgColor900 } from "../../utils/Classes";
 import { useEvents } from "../../api/events";
-
-function GridComingSoonCard() {
-  return (
-    <li
-      className={
-        "relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
-      }
-    >
-      <div
-        className={
-          "bg-indigo-700 absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
-        }
-      ></div>
-      <header>
-        <h3 className="h4 font-red-hat-display mb-1 text-center">
-          Coming Soon...
-        </h3>
-      </header>
-      <div className="text-gray-600 flex-grow mb-5">
-        <div></div>
-        <p className="text-gray-900 font-thin text-base text-center">
-          Our latest events will be published here soon. Watch this space.
-        </p>
-      </div>
-      <div
-        className={
-          "absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"
-        }
-      ></div>
-    </li>
-  );
-}
 
 function GridCard({ event }) {
   return (
@@ -112,14 +80,15 @@ function GridCalendar({
   months,
   selected,
   setSelectedMonth,
-  filters
+  filters,
+  allDeselected,
 }) {
   return (
     <div>
       {!error ? (
         <div className="flex items-start">
           {/* Timeline buttons */}
-          {!isLoading ? (
+          {!isLoading && (
             <div className="relative mr-4 sm:mr-12 lg:mr-22">
               <div
                 className="absolute inset-0 my-6 ml-16 pointer-events-none -z-1"
@@ -141,19 +110,18 @@ function GridCalendar({
                       })}
                     </span>
                     <span
-                      className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full ${selected === month &&
+                      className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full ${
+                        selected === month &&
                         (isEven ? "bg-teal-brand " : "bg-orange-brand ")
-                        }`}
+                      }`}
                     ></span>
                   </button>
                 );
               })}
             </div>
-          ) : (
-            ""
           )}
 
-          {!isLoading ? (
+          {!isLoading && !allDeselected && (
             <>
               {months.map((month, i) => {
                 return (
@@ -163,32 +131,45 @@ function GridCalendar({
                   >
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4">
                       {data
-                        .filter(data => new Date(data.startDate).getMonth() === month)
+                        .filter(
+                          (data) =>
+                            new Date(data.startDate).getMonth() === month
+                        )
                         .filter(({ type: { eventType } }) => {
                           const isJunior = eventType.includes("junior");
-                          return isJunior ? filters["junior"] : filters[eventType];
+                          return isJunior
+                            ? filters["junior"]
+                            : filters[eventType];
                         })
-                        .map((data, key) => <GridCard key={key} event={data} />)}
+                        .map((data, key) => (
+                          <GridCard key={key} event={data} />
+                        ))}
 
                       {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                       {data.filter(
                         (data) => new Date(data.startDate).getMonth() === month
-                      ).length === 0 ? (
-                        <ul>
-                          <GridComingSoonCard />
-                        </ul>
-                      ) : null}
+                      ).length === 0 && <GridComingSoonCard />}
                     </div>
                   </div>
                 );
               })}
             </>
-          ) : (
+          )}
+          {isLoading && (
             <div className="m-auto text-center">
               <div className="text-teal-500 mb-2">
                 <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
               </div>
               <div className="italic text-gray-500">fetching events...</div>
+            </div>
+          )}
+
+          {!isLoading && allDeselected && (
+            <div className="relative block w-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+              <i className="fad fa-grip-horizontal fa-4x text-teal-500"></i>
+              <span className="mt-2 block text-sm font-medium text-gray-900">
+                Select a filter <i className="far fa-filter"></i> to see events
+              </span>
             </div>
           )}
         </div>
@@ -294,52 +275,56 @@ function ListCard({ event }) {
   );
 }
 
-function ListComingSoonCard() {
-  return (
-    <li className=" col-span-1 flex mb-3 sm:ml-28 px-1">
-      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
-        <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate rounded-l-lg">
-          <h3 className="font-red-hat-display text-xl mb-1">Coming Soon</h3>
-          <p className="text-gray-900 font-thin text-sm mb-1">
-            Our next events will be published here soon.{" "}
-          </p>
-        </div>
-        <div className="bg-pink-900 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
-      </div>
-    </li>
-  );
-}
-
-function ListCalendar({ isLoading, error, data, selected, filters, filtersSelected }) {
+function ListCalendar({
+  isLoading,
+  error,
+  data,
+  selected,
+  filters,
+  allDeselected,
+}) {
   return (
     <>
       {!error ? (
         <>
-          {!isLoading ? (
+          {!isLoading && !allDeselected && (
             <>
               <ul>
                 {data
-                  .filter(event => new Date(event.startDate).getMonth() === selected)
+                  .filter(
+                    (event) => new Date(event.startDate).getMonth() === selected
+                  )
                   .filter(({ type: { eventType } }) => {
                     const isJunior = eventType.includes("junior");
                     return isJunior ? filters["junior"] : filters[eventType];
                   })
-                  .map((data, key) => <ListCard key={key} event={data} />)}
+                  .map((data, key) => (
+                    <ListCard key={key} event={data} />
+                  ))}
 
                 {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
-                {data
-                  .filter(event => new Date(event.startDate).getMonth() === selected)
-                  .filter(event => filters[event.type.eventType])
-                  .length === 0 && !filtersSelected && (<ListComingSoonCard />)
-                }
+                {data.filter(
+                  (event) => new Date(event.startDate).getMonth() === selected
+                ).length === 0 && <ListComingSoonCard />}
               </ul>
             </>
-          ) : (
+          )}
+
+          {isLoading && (
             <div className="m-auto text-center">
               <div className="text-teal-500 mb-2">
                 <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
               </div>
               <div className="italic text-gray-500">fetching events...</div>
+            </div>
+          )}
+
+          {!isLoading && allDeselected && (
+            <div className="relative ml-28 block border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+              <i className="fad fa-th-list fa-4x text-teal-500"></i>
+              <span className="mt-2 block text-sm font-medium text-gray-900">
+                Select a filter <i className="far fa-filter"></i> to see events
+              </span>
             </div>
           )}
         </>
@@ -356,7 +341,8 @@ export default function Calendar() {
   const { isLoading, error, data } = useEvents();
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
   const [calenderView, setCalenderView] = useState(defaultView);
-  const [selected, setSelected] = useState(false);
+  const [selectedMenuFilter, setSelectedMenuFilter] = useState(false);
+  const [allDeselected, setAllDeselected] = useState(false);
   const [filters, setFilters] = useState({});
   const today = new Date();
   const currentMonth = today.getMonth();
@@ -370,22 +356,17 @@ export default function Calendar() {
   };
 
   useMemo(() => {
-
-    if(data) {
+    if (data) {
       const availableTypes = data.reduce((pre, { type: { eventType } }) => {
         const type = eventType.includes("junior") ? "junior" : eventType;
         return {
           ...pre,
-          [type]: true
-        }
+          [type]: true,
+        };
       }, {});
-  
       setFilters(availableTypes);
     }
-
-
   }, [data]);
-
 
   return (
     <section>
@@ -403,13 +384,26 @@ export default function Calendar() {
               </div>
               {calenderView === "list" ? (
                 <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex m-auto">
-                  <TabMonths selectedMonth={selectedMonth} months={months} setSelectedMonth={setSelectedMonth} />
+                  <TabMonths
+                    selectedMonth={selectedMonth}
+                    months={months}
+                    setSelectedMonth={setSelectedMonth}
+                  />
                 </div>
               ) : null}
               <div className="absolute right-0 top-16 sm:top-8 text-center sm:mt-6 sm:text-right">
                 <span className="relative z-10 inline-flex">
-                  <ToggleView calendarView={calenderView} handleViewSwitch={handleViewSwitch} />
-                  <FilterMenu filters={filters} setFilters={setFilters} selected={selected} setSelected={setSelected} />
+                  <ToggleView
+                    calendarView={calenderView}
+                    handleViewSwitch={handleViewSwitch}
+                  />
+                  <FilterMenu
+                    filters={filters}
+                    setFilters={setFilters}
+                    selected={selectedMenuFilter}
+                    setSelected={setSelectedMenuFilter}
+                    setAllDeselected={setAllDeselected}
+                  />
                 </span>
               </div>
             </div>
@@ -417,28 +411,80 @@ export default function Calendar() {
           {calenderView === "grid" ? (
             <GridCalendar
               filters={filters}
-              filtersSelected={selected}
+              filtersSelected={selectedMenuFilter}
               isLoading={isLoading}
               error={error}
               data={data}
               months={months}
               setSelectedMonth={setSelectedMonth}
               selected={selectedMonth}
+              allDeselected={allDeselected}
             />
           ) : (
             <ListCalendar
               filters={filters}
-              filtersSelected={selected}
+              filtersSelected={selectedMenuFilter}
               isLoading={isLoading}
               error={error}
               data={data}
               months={months}
               setSelectedMonth={setSelectedMonth}
               selected={selectedMonth}
+              allDeselected={allDeselected}
             />
           )}
         </div>
       </div>
     </section>
+  );
+}
+
+/* PLACEHOLDERS */
+
+function ListComingSoonCard() {
+  return (
+    <li className=" col-span-1 flex mb-3 sm:ml-28 px-1">
+      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+        <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate rounded-l-lg">
+          <h3 className="font-red-hat-display text-xl mb-1">Coming Soon</h3>
+          <p className="text-gray-900 font-thin text-sm mb-1">
+            Our next events will be published here soon.{" "}
+          </p>
+        </div>
+        <div className="bg-indigo-700 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
+      </div>
+    </li>
+  );
+}
+
+function GridComingSoonCard() {
+  return (
+    <li
+      className={
+        "relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
+      }
+    >
+      <div
+        className={
+          "bg-indigo-700 absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
+        }
+      ></div>
+      <header>
+        <h3 className="h4 font-red-hat-display mb-1 text-center">
+          Coming Soon...
+        </h3>
+      </header>
+      <div className="text-gray-600 flex-grow mb-5">
+        <div></div>
+        <p className="text-gray-900 font-thin text-base text-center">
+          Our latest events will be published here soon. Watch this space.
+        </p>
+      </div>
+      <div
+        className={
+          "absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"
+        }
+      ></div>
+    </li>
   );
 }
