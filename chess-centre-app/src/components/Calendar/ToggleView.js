@@ -6,8 +6,8 @@ export default function ToggleView({ calendarView, handleViewSwitch }) {
         type="button"
         className={`${
           calendarView === "list"
-            ? "text-teal-600 font-bold"
-            : "font-medium text-gray-500"
+          ? "text-teal-600 font-bold bg-gray-50"
+          : "font-medium text-gray-500 bg-white"
         } relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm
      hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
       >
@@ -19,9 +19,9 @@ export default function ToggleView({ calendarView, handleViewSwitch }) {
         type="button"
         className={`${
           calendarView === "grid"
-            ? "text-teal-600 font-bold"
-            : "font-medium text-gray-500"
-        } -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm
+            ? "text-teal-600 font-bold bg-gray-50"
+            : "font-medium text-gray-500 bg-white"
+        } -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300  text-sm
       hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
       >
         <span className="sr-only">Grid</span>
