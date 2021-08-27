@@ -1,6 +1,6 @@
 export default function ToggleView({ calendarView, handleViewSwitch }) {
   return (
-    <div>
+    <div className="shadow-md rounded-md mt-0.5">
       <button
         onClick={() => handleViewSwitch("list")}
         type="button"

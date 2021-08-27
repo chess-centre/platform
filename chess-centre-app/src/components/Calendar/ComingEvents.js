@@ -112,6 +112,7 @@ function GridCalendar({
   months,
   selected,
   setSelectedMonth,
+  filters
 }) {
   return (
     <div>
@@ -128,7 +129,6 @@ function GridCalendar({
               </div>
               {months.map((month, key) => {
                 const isEven = key % 2 === 0;
-
                 return (
                   <button
                     key={key}
@@ -168,6 +168,7 @@ function GridCalendar({
                           (data) =>
                             new Date(data.startDate).getMonth() === month
                         )
+                        .filter((data) => filters[data.type.eventType])
                         .map((data, key) => (
                           <GridCard key={key} event={data} />
                         ))}
@@ -298,12 +299,12 @@ function ListCard({ event }) {
 
 function ListComingSoonCard() {
   return (
-    <li className="col-span-1 flex mb-3 sm:ml-28 px-1">
-      <div className="relative flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-md truncate shadow">
-        <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate">
+    <li className=" col-span-1 flex mb-3 sm:ml-28 px-1">
+      <div className="relative -z-1 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+        <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate rounded-l-lg">
           <h3 className="font-red-hat-display text-xl mb-1">Coming Soon</h3>
           <p className="text-gray-900 font-thin text-sm mb-1">
-            Our latest events will be published here soon.{" "}
+            Our next events will be published here soon.{" "}
           </p>
         </div>
         <div className="bg-pink-900 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
@@ -312,7 +313,7 @@ function ListComingSoonCard() {
   );
 }
 
-function ListCalendar({ isLoading, error, data, selected }) {
+function ListCalendar({ isLoading, error, data, selected, filters, filtersSelected }) {
   return (
     <>
       {!error ? (
@@ -324,6 +325,7 @@ function ListCalendar({ isLoading, error, data, selected }) {
                   .filter(
                     (data) => new Date(data.startDate).getMonth() === selected
                   )
+                  .filter((data) => filters[data.type.eventType])
                   .map((d, key) => {
                     return <ListCard key={key} event={d} />;
                   })}
@@ -331,11 +333,13 @@ function ListCalendar({ isLoading, error, data, selected }) {
                 {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                 {data.filter(
                   (data) => new Date(data.startDate).getMonth() === selected
-                ).length === 0 ? (
-                  <ul>
+                )
+                .filter((data) => filters[data.type.eventType])
+                .length === 0 && !filtersSelected && (
+                  <ul className="-z-10">
                     <ListComingSoonCard />
                   </ul>
-                ) : null}
+                )}
               </ul>
             </>
           ) : (
@@ -357,10 +361,17 @@ function ListCalendar({ isLoading, error, data, selected }) {
 }
 
 export default function Calendar() {
+  const { isLoading, error, data } = useEvents();
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
   const [calenderView, setCalenderView] = useState(defaultView);
-  const [filterApplied, setFilterApplied] = useState(false);
-  const { isLoading, error, data } = useEvents();
+  const [selected, setSelected] = useState(false);
+  const [filters, setFilters] = useState({
+    rapidplay: true,
+    congress: true,
+    junior: true,
+    club: true,
+    match: true,
+  });
   const today = new Date();
   const currentMonth = today.getMonth();
   const nextMonth = currentMonth + 1;
@@ -376,7 +387,6 @@ export default function Calendar() {
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="pb-12 pt-6 md:py-10">
-          {/* Section header */}
           <div className="mx-auto text-center pb-4 md:pb-8">
             <h2 className="h2 font-red-hat-display mb-4">Our Calendar</h2>
             <div className="relative grid grid-cols-4 gap-0 mb-10">
@@ -388,20 +398,22 @@ export default function Calendar() {
                 Coming up next
               </div>
               {calenderView === "list" ? (
-                <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex shadow-sm rounded-md m-auto -mb-1">
+                <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex m-auto">
                   <TabMonths selectedMonth={selectedMonth} months={months} setSelectedMonth={setSelectedMonth} />
                 </div>
               ) : null}
               <div className="absolute right-0 top-16 sm:top-8 text-center sm:mt-6 sm:text-right">
-                <span className="relative z-0 inline-flex shadow-sm rounded-md">
+                <span className="relative z-0 inline-flex">
                   <ToggleView calendarView={calenderView} handleViewSwitch={handleViewSwitch} />
-                  <FilterMenu />
+                  <FilterMenu filters={filters} setFilters={setFilters} selected={selected} setSelected={setSelected} />
                 </span>
               </div>
             </div>
           </div>
           {calenderView === "grid" ? (
             <GridCalendar
+              filters={filters}
+              filtersSelected={selected}
               isLoading={isLoading}
               error={error}
               data={data}
@@ -411,6 +423,8 @@ export default function Calendar() {
             />
           ) : (
             <ListCalendar
+              filters={filters}
+              filtersSelected={selected}
               isLoading={isLoading}
               error={error}
               data={data}

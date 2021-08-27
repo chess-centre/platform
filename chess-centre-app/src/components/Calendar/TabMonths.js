@@ -1,7 +1,7 @@
 export default function ToggleView({ selectedMonth, months, setSelectedMonth }) {
   return (
-    <div className="inline-flex shadow-sm rounded-md m-auto">
-      <span className="relative z-0 inline-flex shadow-sm rounded-md">
+    <div className="inline-flex shadow-md rounded-md m-auto -ml-1">
+      <div className="relative z-0 inline-flex rounded-md">
         <button
           onClick={() => setSelectedMonth(months[0])}
           type="button"
@@ -45,7 +45,7 @@ export default function ToggleView({ selectedMonth, months, setSelectedMonth }) 
             month: "short",
           })}
         </button>
-      </span>
+      </div>
     </div>
   );
 }
