@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import MembershipCard from "../../components/Membership/MembershipCard";
@@ -103,7 +104,7 @@ function Membership() {
               <div className="max-w-md mx-auto space-y-4 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0">
                 {Memberships.map((membership, key) => {
                   return (
-                    <div className="z-20">
+                    <div className="z-20" key={key}>
                       <MembershipCard key={key} {...membership} />
                     </div>
                   );
@@ -118,6 +119,7 @@ function Membership() {
                   <div className="text-center text-sm font-normal text-gray-900 space-y-2">
                     <h2 className="mt-4 text-2xl font-extrabold">Still deciding?</h2>
                     <p>Come pay us a visit and see what we've got to offer. There is no charge for your first few visits and no obligation to sign-up.</p>
+                    <div><Link to="/faqs" className="text-teal-500 hover:underline hover:text-teal-700 text-lg">FAQs</Link></div>
                   </div>
                 </div>
               </div>

@@ -32,7 +32,7 @@ const EventPrice = ({ isLive, isFull, defaultPrice }) => {
   return (
     <div className="mt-5 text-center">
       {isLive && (
-        <span className="animate-pulsebg-gray-100 px-16 rounded-lg text-5xl font-extrabold text-red-600 mr-1">
+        <span className="animate-pulse bg-gray-100 px-16 rounded-lg text-5xl font-extrabold text-red-600 mr-1">
           LIVE
         </span>
       )}
