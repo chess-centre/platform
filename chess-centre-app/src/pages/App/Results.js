@@ -106,7 +106,7 @@ function Results() {
   return (
     <div className="">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i class="fad fa-poll-people text-teal-600"></i> Results
+        <i className="fad fa-poll-people text-teal-600"></i> Results
       </h1>
       <div className="mb-5 pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">

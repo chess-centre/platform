@@ -94,24 +94,24 @@ export default function JuniorRapidplayEvent() {
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               Junior Rapidplay
-              {!isLoading && isLive && (
-                <div>
-                  <a
-                    href="/broadcast/live"
-                    className={`inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400`}
-                  >
-                    <span className="flex relative h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full rounded-full bg-orange-500 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
-                    </span>{" "}
-                    <span className="ml-2">Watch Here</span>
-                  </a>
-                </div>
-              )}
             </p>
             <p className="mt-2 text-2xl leading-8 font-extrabold tracking-tight text-gray-500 sm:text-2xl">
               {!isLoading && startDate && prettyLongDate(startDate)}
             </p>
+            {!isLoading && isLive && (
+              <div className="mt-3">
+                <a
+                  href="/broadcast/live"
+                  className={`inline-flex items-center px-16 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-700 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400`}
+                >
+                  <span className="flex relative h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full rounded-full bg-orange-500 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
+                  </span>{" "}
+                  <span className="ml-2">Watch Here</span>
+                </a>
+              </div>
+            )}
           </div>
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
@@ -168,7 +168,7 @@ export default function JuniorRapidplayEvent() {
               )}
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                 <h3>Facilities / Refreshments</h3>
-                <ul class="list-none">
+                <ul className="list-none">
                   <li className="no"><span><i class="fas fa-check-circle"></i></span> Hot Tea &amp; Coffee</li>
                   <li>Cold Drinks</li>
                   <li>Snacks</li>

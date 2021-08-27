@@ -45,13 +45,18 @@ export default function Rounds(props) {
                     {event.prizeGiving.day}
                   </td>
                   <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {event.prizeGiving.time}{" "}
-                    <i className="ml-4 text-teal-600 fad fa-trophy-alt fa-2x"></i>
+                    <span className="">{event.prizeGiving.time}</span>
+                    <i className="ml-4 -mt-2 text-teal-600 fas fa-trophy-alt fa-2x"></i>
                   </td>
                 </tr>
               ) : null}
             </tbody>
           </table>
+          {isFull && (
+            <div className="text-sm text-gray-400 text-center bg-gray-100 py-2 rounded-lg">
+              Event Full
+            </div>
+          )}
           {eventId && !removeStyles && (
             <div className="flex text-base max-w-prose mb-2 mt-2">
               {isFull && !isLive && (
@@ -71,6 +76,7 @@ export default function Rounds(props) {
                   </Link>
                 </div>
               )}
+              
               {isLive && (
                 <div className="mx-auto w-full">
                   <Link
@@ -90,16 +96,12 @@ export default function Rounds(props) {
               )}
             </div>
           )}
-          {isFull && (
-            <div className="text-xs text-gray-500 text-center">
-              This event is now full.
-            </div>
-          )}
+
         </div>
       </div>
-      {!removeStyles ? (
+      {!removeStyles && (
         <div className="relative flex items-center sm:items-start bg-teal-700 rounded-b-lg not-italic py-5 px-6 sm:py-5 sm:pl-12 sm:pr-10"></div>
-      ) : null}
+      )}
     </div>
   );
 }
