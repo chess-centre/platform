@@ -104,7 +104,7 @@ function Membership() {
               <div className="max-w-md mx-auto space-y-4 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0">
                 {Memberships.map((membership, key) => {
                   return (
-                    <div className="z-20">
+                    <div className="z-20" key={key}>
                       <MembershipCard key={key} {...membership} />
                     </div>
                   );

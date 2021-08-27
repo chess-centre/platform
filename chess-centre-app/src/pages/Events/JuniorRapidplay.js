@@ -169,7 +169,7 @@ export default function JuniorRapidplayEvent() {
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                 <h3>Facilities / Refreshments</h3>
                 <ul className="list-none">
-                  <li className="no"><span><i class="fas fa-check-circle"></i></span> Hot Tea &amp; Coffee</li>
+                  <li className="no"><span><i className="fas fa-check-circle"></i></span> Hot Tea &amp; Coffee</li>
                   <li>Cold Drinks</li>
                   <li>Snacks</li>
                 </ul>
