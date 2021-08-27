@@ -320,7 +320,7 @@ function ListCalendar({
           )}
 
           {!isLoading && allDeselected && (
-            <div className="relative ml-28 block border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+            <div className="relative sm:ml-28 block border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
               <i className="fad fa-th-list fa-4x text-teal-500"></i>
               <span className="mt-2 block text-sm font-medium text-gray-900">
                 Select a filter <i className="far fa-filter"></i> to see events
