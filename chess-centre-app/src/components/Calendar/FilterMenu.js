@@ -7,8 +7,8 @@ function classNames(...classes) {
 
 export default function FilterMenu(props) {
   const { filters, setFilters, selected, setSelected } = props;
-  const trueState = Object.keys(filters).reduce((pre, cur) => ({...pre, [cur]: true }), {});
-  const falseState = Object.keys(filters).reduce((pre, cur) => ({...pre, [cur]: false }), {});
+  const trueState = Object.keys(filters).reduce((pre, cur) => ({ ...pre, [cur]: true }), {});
+  const falseState = Object.keys(filters).reduce((pre, cur) => ({ ...pre, [cur]: false }), {});
   const [someSelected, setSomeSelected] = useState(false);
   const handleClick = async (type) => {
     setFilters((state) => {
@@ -25,12 +25,11 @@ export default function FilterMenu(props) {
 
   useEffect(() => {
     const allSelected = Object.values(filters).every(filter => filter);
-    if(allSelected) {
+    if (allSelected) {
       setSelected(false /* "Deselect All" */);
     }
     // Note: "selected" is unchecked / false!
     setSomeSelected(Object.values(filters).some(filter => !filter));
-  
   }, [filters]);
 
   return (
@@ -38,7 +37,7 @@ export default function FilterMenu(props) {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button
-            className={classNames(someSelected ? 'text-teal-600 bg-gray-50' : 'text-gray-500 bg-white hover:bg-gray-50',`ml-2 relative inline-flex items-center px-2 py-2 shadow-md 
+            className={classNames(someSelected ? 'text-teal-600 bg-gray-50' : 'text-gray-500 bg-white hover:bg-gray-50', `ml-2 relative inline-flex items-center px-2 py-2 shadow-md 
                       rounded-md border border-gray-300 text-sm ring-teal-500
                        focus:z-10 focus:outline-none 
                       focus:ring-1 focus:ring-teal-500 focus:border-teal-500`)}
@@ -48,102 +47,33 @@ export default function FilterMenu(props) {
           </Menu.Button>
         </div>
 
-        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none">
-          <div className="py-1">
-            <Menu.Item onClick={() => handleClick("rapidplay")}>
-              {({ active }) => (
-                <div
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "group flex items-center px-4 py-2 text-sm cursor-pointer"
+        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-34 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+
+          {
+            Object.keys(filters).map(filterName => {
+              return (
+                <Menu.Item onClick={() => handleClick(filterName)}>
+                  {({ active }) => (
+                    <div
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "group flex items-center px-4 py-2 text-sm cursor-pointer"
+                      )}
+                    >
+                      <input
+                        type="checkbox"
+                        onChange={() => { }}
+                        checked={filters[filterName]}
+                        className="mr-3 focus:ring-teal-500 h-4 w-4 text-teal-600 rounded cursor-pointer"
+                      />
+                      {`${filterName[0].toUpperCase()}${filterName.slice(1)}`}
+                    </div>
                   )}
-                >
-                  <input
-                    type="checkbox"
-                    onChange={() => {}}
-                    checked={filters.rapidplay}
-                    className="mr-3 focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded cursor-pointer"
-                  />
-                  Rapidplays
-                </div>
-              )}
-            </Menu.Item>
-            <Menu.Item onClick={() => handleClick("congress")}>
-              {({ active }) => (
-                <div
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "group flex items-center px-4 py-2 text-sm cursor-pointer"
-                  )}
-                >
-                  <input
-                    type="checkbox"
-                    onChange={() => {}}
-                    checked={filters.congress}
-                    className="mr-3 focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded cursor-pointer"
-                  />
-                  Congresses
-                </div>
-              )}
-            </Menu.Item>
-          </div>
-          <div className="py-1">
-            <Menu.Item onClick={() => handleClick("junior")}>
-              {({ active }) => (
-                <div
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "group flex items-center px-4 py-2 text-sm cursor-pointer"
-                  )}
-                >
-                  <input
-                    type="checkbox"
-                    onChange={() => {}}
-                    checked={filters.junior}
-                    className="mr-3 focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded cursor-pointer"
-                  />
-                  Juniors
-                </div>
-              )}
-            </Menu.Item>
-            <Menu.Item onClick={() => handleClick("club")}>
-              {({ active }) => (
-                <div
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "group flex items-center px-4 py-2 text-sm cursor-pointer"
-                  )}
-                >
-                  <input
-                    type="checkbox"
-                    onChange={() => {}}
-                    checked={filters.club}
-                    className="mr-3 focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded cursor-pointer"
-                  />
-                  Socials
-                </div>
-              )}
-            </Menu.Item>
-            <Menu.Item onClick={() => handleClick("match")}>
-              {({ active }) => (
-                <div
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "group flex items-center px-4 py-2 text-sm cursor-pointer"
-                  )}
-                >
-                  <input
-                    type="checkbox"
-                    onChange={() => {}}
-                    checked={filters.match}
-                    className="mr-3 focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded cursor-pointer"
-                  />
-                  Matches
-                </div>
-              )}
-            </Menu.Item>
-          </div>
-          <div className="py-1">
+                </Menu.Item>
+              )
+            })
+          }
+          <div className="py-1 border-t border-gray-100">
             <Menu.Item onClick={handleSelectAll}>
               {({ active }) => (
                 <div
@@ -152,7 +82,7 @@ export default function FilterMenu(props) {
                     "group flex items-center px-4 py-2 text-xs cursor-pointer text-center"
                   )}
                 >
-                  { selected ? "Select All" : "Deselect All" }
+                  {selected ? "Select All" : "Deselect All"}
                 </div>
               )}
             </Menu.Item>
