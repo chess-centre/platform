@@ -5,16 +5,16 @@ import { PairingsTable } from "./Pairings";
 export const CongressEntries = [
   {
     id: 1,
-    name: "Andy Ross",
+    name: "Matthew Webb",
     ratingInfo: {
-      rating: 1660,
+      rating: 1808,
     },
   },
   {
     id: 2,
-    name: "Max Shaw",
+    name: "Andy Ross",
     ratingInfo: {
-      rating: 1605,
+      rating: 1660,
     },
   },
   {
@@ -40,11 +40,11 @@ export const CongressEntries = [
   },
   {
     id: 6,
-    name: "Oleg Kungurovs",
+    name: "Harry Shaw",
     ratingInfo: {
       rating: undefined,
     },
-  },
+  }
 ];
 
 const SixPlayerPairings = [
@@ -93,23 +93,23 @@ const SixPlayerPairings = [
 const results = [
   {
     round: 1,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [0.5,0.5], [1,0]],
   },
   {
     round: 2,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [0,1], [1,0]],
   },
   {
     round: 3,
-    pairResults: [[], [], []],
+    pairResults: [[0.5, 0.5], [1,0], [0,1]],
   },
   {
     round: 4,
-    pairResults: [[], [], []],
+    pairResults: [[0.5, 0.5], [0.5, 0.5], [0.5, 0.5]],
   },
   {
     round: 5,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [0,1], [0.5,0.5]],
   },
 ];
 
@@ -120,7 +120,7 @@ const players = [
   }),
 ];
 
-const resultCheck = () => {
+const resultCheck = (players) => {
   const resultBySeed = [];
   SixPlayerPairings.forEach(({ round, pairings }) => {
     const pairingResults = results.find((r) => r.round === round).pairResults;
@@ -171,12 +171,16 @@ export default function Rapidplay() {
       <div className="">
         <Standings roundByRound={roundByRound} division={"Division 2"}></Standings>
       </div>
-      <div className="text-2xl mt-4 py-2 font-semibold text-teal-700 text-center bg-yellow-50 rounded-lg border">Next Round @ 10:00am</div>
+      <div className="text-2xl mt-4 py-2 font-semibold text-teal-700 text-center bg-yellow-50 rounded-lg border">
+        FINAL STANDINGS
+      </div>
       <div className="mt-6">
+          <p>Last Round</p>
           <PairingsTable
-            format={SixPlayerPairings[0]}
+            format={SixPlayerPairings[4]}
             players={players}
             results={results}
+            indexer={3}
           />
       </div>
     </div>

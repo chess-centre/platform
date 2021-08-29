@@ -5,7 +5,7 @@ import { PairingsTable } from "./Pairings";
 export const CongressEntries = [
   {
     id: 1,
-    name: "Harry Shaw",
+    name: "Oleg Kungurovs",
     ratingInfo: {
       rating: undefined,
     },
@@ -93,23 +93,23 @@ const SixPlayerPairings = [
 const results = [
   {
     round: 1,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [1,0], [1,0]],
   },
   {
     round: 2,
-    pairResults: [[], [], []],
+    pairResults: [[0,1], [1,0], [0,1]],
   },
   {
     round: 3,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [0,1], [1,0]],
   },
   {
     round: 4,
-    pairResults: [[], [], []],
+    pairResults: [[0,1], [1,0], [1,0]],
   },
   {
     round: 5,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [0.5,0.5], [0,1]],
   },
 ];
 
@@ -173,10 +173,12 @@ export default function Rapidplay() {
       </div>
       <div className="text-2xl mt-4 py-2 font-semibold text-gray-700 text-left"><i className="far fa-caret-left text-teal-500 ml-4"></i></div>
       <div className="mt-6">
+          <p>Next Round</p>
           <PairingsTable
-            format={SixPlayerPairings[0]}
+            format={SixPlayerPairings[4]}
             players={players}
             results={results}
+            indexer={6}
           />
       </div>
     </div>

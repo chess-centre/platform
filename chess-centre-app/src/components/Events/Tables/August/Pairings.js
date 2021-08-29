@@ -1,4 +1,4 @@
-export const PairingsTable = ({ format, players, results }) => {
+export const PairingsTable = ({ format, players, results, indexer }) => {
   const { round, pairings } = format;
   return (
     <div className="shadow-md rounded-lg">
@@ -48,7 +48,7 @@ export const PairingsTable = ({ format, players, results }) => {
             return (
               <tr key={key} className="bg-white dark:bg-gray-800">
                 <td className="bg-gray-100 px-2 py-3 border-r text-xs">
-                  {key + 1}
+                  {key + 1 + indexer}
                 </td>
                 <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700">
                   {whitePlayer.name ? (

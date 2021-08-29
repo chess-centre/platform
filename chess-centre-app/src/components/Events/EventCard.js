@@ -133,7 +133,7 @@ export default function EventCard({
         </h3>
         <ul className="mt-4 space-y-2">
           {details.map(({ icon, information, show }, key) => {
-            return show ? (
+            return show && (
               <li key={key} className="flex items-start">
                 <div className="flex-shrink-0">
                   <span className="text-teal-500 ml-2">
@@ -142,7 +142,7 @@ export default function EventCard({
                 </div>
                 <p className="ml-3 text-md text-gray-700">{information}</p>
               </li>
-            ) : null;
+            );
           })}
         </ul>
       </div>

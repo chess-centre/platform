@@ -1,70 +1,41 @@
 import React from "react";
-import Winner from "../../../assets/img/pete-shaw-winner.jpg";
-import DaveGary from "../../../assets/img/dave-barlow-vs-gary-corcoran.jpg";
+import Winner from "../../../../assets/img/june-congress-winner.jpg";
+import LukeJacob from "../../../../assets/img/june-congress-round-4.jpg";
 
 export const CongressEntries = [
   {
     id: 1,
-    name: "Peter Shaw",
-    ratingInfo: {
-      rating: 2172,
-    },
+    name: "Tim Hilton",
+    rating: 2005,
   },
   {
     id: 2,
-    name: "David Barlow",
-    ratingInfo: {
-      rating: 2005,
-    },
+    name: "Arron Barker",
+
+    rating: 1953,
   },
   {
     id: 3,
-    name: "Gary Corcoran",
-    ratingInfo: {
-      rating: 1878,
-    },
+    name: "Sam Davies",
+
+    rating: 1908,
   },
   {
     id: 4,
-    name: "Gawain Ako",
-    ratingInfo: {
-      rating: 1907,
-    },
+    name: "Max Shaw",
+
+    rating: 1796,
   },
   {
     id: 5,
-    name: "Max Shaw",
-    ratingInfo: {
-      rating: undefined,
-    },
+    name: "Jacob Smith",
+
+    rating: 1791,
   },
   {
     id: 6,
-    name: "Jacob Smith",
-    ratingInfo: {
-      rating: undefined,
-    },
-  },
-  {
-    id: 7,
-    name: "Bob Gaunt",
-    ratingInfo: {
-      rating: undefined,
-    },
-  },
-  {
-    id: 8,
-    name: "Steven Law",
-    ratingInfo: {
-      rating: undefined,
-    },
-  },
-  {
-    id: 9,
-    name: "Andrew Wainwright",
-    ratingInfo: {
-      rating: 2013,
-    },
+    name: "Luke Gostelow",
+    rating: "",
   },
 ];
 
@@ -72,100 +43,90 @@ const SwissPairings = [
   {
     round: 1,
     pairings: [
-      [1, 5],
-      [6, 2],
-      [3, 7],
-      [8, 9],
+      [1, 6],
+      [2, 5],
+      [3, 4],
     ],
   },
   {
     round: 2,
     pairings: [
-      [9, 1],
-      [2, 3],
-      [5, 8],
-      [7, 6],
+      [6, 4],
+      [5, 3],
+      [1, 2],
     ],
   },
   {
     round: 3,
     pairings: [
-      [1, 2],
-      [3, 5],
-      [6, 9],
-      [8, 7],
+      [2, 6],
+      [3, 1],
+      [4, 5],
     ],
   },
   {
     round: 4,
     pairings: [
-      [3, 1],
-      [2, 8],
-      [5, 6],
-      [7, 4],
+      [6, 5],
+      [1, 4],
+      [2, 3],
     ],
   },
   {
     round: 5,
     pairings: [
-      [1, 6],
+      [3, 6],
       [4, 2],
-      [3, 8],
-      [5, 7],
+      [5, 1],
     ],
   },
 ];
 
 const results = [
-  {
-    round: 1,
-    pairResults: [
-      [1, 0],
-      [0, 1],
-      [1, 0],
-      [0, 1],
-    ],
-  },
-  {
-    round: 2,
-    pairResults: [
-      [0, 1],
-      [1, 0],
-      [1, 0],
-      [0, 1],
-    ],
-  },
-  {
-    round: 3,
-    pairResults: [
-      [1, 0],
-      [1, 0],
-      [0, 1],
-      [1, 0],
-    ],
-  },
-  {
-    round: 4,
-    pairResults: [
-      [0, 1],
-      [1, 0],
-      [0.5, 0.5],
-      [0, 1],
-    ],
-  },
-  {
-    round: 5,
-    pairResults: [
-      [1, 0],
-      [0.5, 0.5],
-      [1, 0],
-      [1, 0],
-    ],
-  },
+    {
+      pairResults: [
+        [1, 0],
+        [1, 0],
+        [1, 0],
+      ],
+      round: 1,
+    },
+    {
+      pairResults: [
+        [0, 1],
+        [0, 1],
+        [1, 0],
+      ],
+      round: 2,
+    },
+    {
+      pairResults: [
+        [1, 0],
+        [0.5, 0.5],
+        [1, 0],
+      ],
+      round: 3,
+    },
+    {
+      pairResults: [
+        [1, 0],
+        [1, 0],
+        [0, 1],
+      ],
+      round: 4,
+    },
+    {
+      pairResults: [
+        [1, 0],
+        [0, 1],
+        [0, 1],
+      ],
+      round: 5,
+    }
 ];
 
 const players = [
-  ...CongressEntries.slice(0, 9).map((m, i) => {
+  ...CongressEntries.slice(0, 6).map((m, i) => {
     m.seed = i + 1;
     return m;
   }),
@@ -203,7 +164,7 @@ const resultCheck = () => {
         rounds: [result],
         total: result || 0,
         name: p.name,
-        rating: p.ratingInfo.rating,
+        rating: p.rating,
       };
     } else {
       player[seed].rounds.push(result);
@@ -324,11 +285,11 @@ const PairsTable = ({ format, players, results }) => {
             return (
               <tr key={key} className="bg-white dark:bg-gray-800">
                 <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {whitePlayer.name}{" "}<br />
+                  {whitePlayer.name} <br />
                   <span className="font-thin">
                     (
-                    {whitePlayer.ratingInfo.rating
-                      ? whitePlayer.ratingInfo.rating
+                    {whitePlayer.rating
+                      ? whitePlayer.rating
                       : "unrated"}
                     )
                   </span>
@@ -341,11 +302,11 @@ const PairsTable = ({ format, players, results }) => {
                     : "? - ?"}
                 </td>
                 <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {blackPlayer.name}{" "}<br />
+                  {blackPlayer.name} <br />
                   <span className="font-thin">
                     (
-                    {blackPlayer.ratingInfo.rating
-                      ? blackPlayer.ratingInfo.rating
+                    {blackPlayer.rating
+                      ? blackPlayer.rating
                       : "unrated"}
                     )
                   </span>
@@ -365,7 +326,7 @@ function MayCongress() {
       <section className="flex flex-wrap overflow-hidden">
         <div>
           <h2 className="ml-4 mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200 text-center sm:text-left">
-            May Open Congress 2021
+            June Open Congress 2021
           </h2>
           <p className="ml-4 mt-4 text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
             Thank you to all who attended our event, below you will find
@@ -373,12 +334,19 @@ function MayCongress() {
           </p>
           <div className="ml-4 mt-4 text-sm text-gray-500 dark:text-gray-400 text-center sm:text-left">
             <ul>
-              <li>PGN Games: coming</li>
+              <li>Play-off Armageddon:{" "}
+              <a
+                  className="text-teal-600 hover:text-teal-700"
+                  href="https://youtu.be/zvukpNyuVQY"
+                >
+                video
+                </a>
+                </li>
               <li>
                 ECF results: <span className="font-semibold">submitted</span> (
                 <a
                   className="text-teal-600 hover:text-teal-700"
-                  href="https://ecflms.org.uk/lms/node/67636/swtable"
+                  href="https://ecflms.org.uk/lms/node/68985/swtable"
                 >
                   details here
                 </a>
@@ -398,12 +366,13 @@ function MayCongress() {
             <div className="aspect-w-3 aspect-h-2 ml-2">
               <img
                 className="object-cover shadow-lg rounded-lg object-center m-auto"
-                src={DaveGary}
-                alt=""
+                src={LukeJacob}
+                alt="Luke Gostelow vs Jacob Smith"
               />
             </div>
             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 flex-wrap">
-              Round 2 <br />David Barlow (white) vs Gary Corcoran (black)
+              Round 4 <br />
+              Luke Gostelow (white) vs Jacob Smith (black)
             </p>
           </div>
           <div className="text-center mt-4 sm:mt-10">
@@ -415,7 +384,7 @@ function MayCongress() {
               />
             </div>
             <p className="ml-2 mt-2 text-sm text-gray-500 dark:text-gray-400">
-              Our Winner <br /> Peter Shaw (left)
+              Our Winners <br /> Sam Davies (left) &amp; Tim Hilton (right)
             </p>
           </div>
         </div>
