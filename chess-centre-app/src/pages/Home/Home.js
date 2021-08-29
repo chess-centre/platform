@@ -13,6 +13,7 @@ import DownloadPWA from "../../components/Quote/PWA";
 const Home = () => {
   const { user } = useAuthState();
   const today = new Date();
+  const yesterday = new Date(Date.now() - (3600 * 1000 * 24));
   const [eventInfo, setEventInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,7 +22,7 @@ const Home = () => {
       setIsLoading(true);
       const  { data: { listEventsActive: { items } }} = await API.graphql({
         query: listEventsActive,
-        variables: { active: "yes", startDate: { gt: today }, filter: { isLive: { eq: true } } },
+        variables: { active: "yes", startDate: { gt: yesterday }, filter: { isLive: { eq: true } } },
         authMode: "AWS_IAM",
       }).catch((error) => {
         setIsLoading(false);
