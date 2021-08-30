@@ -9,7 +9,7 @@ import {
   getMonth,
   getDayStr,
 } from "../../utils/DateFormating";
-import { classNames, bgColor900 } from "../../utils/Classes";
+import { classNames, bgColor700 } from "../../utils/Classes";
 import { useEvents } from "../../api/events";
 
 function GridCard({ event }) {
@@ -21,7 +21,7 @@ function GridCard({ event }) {
     >
       <div
         className={classNames(
-          bgColor900(event.color),
+          bgColor700(event.color),
           "absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
         )}
       ></div>
@@ -220,7 +220,7 @@ function ListCard({ event }) {
 
           <div
             className={classNames(
-              bgColor900(event.color),
+              bgColor700(event.color),
               "absolute bottom-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-b-lg"
             )}
           ></div>
@@ -253,7 +253,7 @@ function ListCard({ event }) {
         </div>
         <div
           className={classNames(
-            bgColor900(event.color),
+            bgColor700(event.color),
             "absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"
           )}
         ></div>
@@ -451,7 +451,7 @@ function ListComingSoonCard() {
             Our next events will be published here soon.{" "}
           </p>
         </div>
-        <div className="bg-indigo-700 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
+        <div className="bg-indigo-500 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
       </div>
     </li>
   );
@@ -466,7 +466,7 @@ function GridComingSoonCard() {
     >
       <div
         className={
-          "bg-indigo-700 absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
+          "bg-indigo-500 absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
         }
       ></div>
       <header>

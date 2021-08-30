@@ -63,8 +63,68 @@ export const rounds = [
         time: "14:30 - 15:20",
       },
     ],
+    break: {
+      afterRound: 2
+    },
     prizeGiving: {
       time: "15:30",
+      day: "Saturday",
+    },
+  },
+  {
+    type: "blitz",
+    rounds: [
+      {
+        round: 1,
+        day: "Saturday",
+        time: "10:00 - 10:10",
+      },
+      {
+        round: 2,
+        day: "Saturday",
+        time: "10:20 - 10:30",
+      },
+      {
+        round: 3,
+        day: "Saturday",
+        time: "10:40 - 10:50",
+      },
+      {
+        round: 4,
+        day: "Saturday",
+        time: "11:00 - 11:10",
+      },
+      {
+        round: 5,
+        day: "Saturday",
+        time: "11:20 - 11:30",
+      },
+      {
+        round: 6,
+        day: "Saturday",
+        time: "12:30 - 12:40",
+      },
+      {
+        round: 7,
+        day: "Saturday",
+        time: "12:50 - 13:00",
+      },
+      {
+        round: 9,
+        day: "Saturday",
+        time: "13:10 - 13:20",
+      },
+      {
+        round: 10,
+        day: "Saturday",
+        time: "13:30 - 13:40",
+      },
+    ],
+    break: {
+      afterRound: 5
+    },
+    prizeGiving: {
+      time: "13:50",
       day: "Saturday",
     },
   },
@@ -97,6 +157,9 @@ export const rounds = [
         time: "14:30 - 15:20",
       },
     ],
+    break: {
+      afterRound: 2
+    },
     prizeGiving: {
       time: "15:30",
       day: "Saturday",
