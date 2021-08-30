@@ -23,20 +23,32 @@ export default function Rounds(props) {
               {event &&
                 event.rounds.map(({ round, time, day }, key) => {
                   return (
-                    <tr key={key}>
-                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        Round {round}
-                      </td>
-                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {day}
-                      </td>
-                      <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {time}
-                      </td>
-                    </tr>
+                    <>
+                      <tr key={key}>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          Round {round}
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {day}
+                        </td>
+                        <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {time}
+                        </td>
+                      </tr>
+                      {event.break && event.break.afterRound === round && (
+                        <tr key={key}>
+                          <td
+                            colSpan="3"
+                            className="py-2 text-center whitespace-nowrap text-xs font-medium text-gray-400"
+                          >
+                            Lunch Break
+                          </td>
+                        </tr>
+                      )}
+                    </>
                   );
                 })}
-              {event && event.prizeGiving ? (
+              {event && event.prizeGiving && (
                 <tr key={1000}>
                   <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     Prize Ceremony
@@ -49,7 +61,7 @@ export default function Rounds(props) {
                     <i className="ml-4 -mt-2 text-teal-600 fas fa-trophy-alt fa-2x"></i>
                   </td>
                 </tr>
-              ) : null}
+              )}
             </tbody>
           </table>
           {isFull && (
@@ -76,7 +88,7 @@ export default function Rounds(props) {
                   </Link>
                 </div>
               )}
-              
+
               {isLive && (
                 <div className="mx-auto w-full">
                   <Link
@@ -96,7 +108,6 @@ export default function Rounds(props) {
               )}
             </div>
           )}
-
         </div>
       </div>
       {!removeStyles && (

@@ -5,7 +5,7 @@ import JuniorRapidPlay from "../../assets/img/junior-rapidplay.jpg";
 import OpenRapidPlay from "../../assets/img/dave-barlow-vs-gary-corcoran.jpg";
 import OpenCongress from "../../assets/img/june-congress-round-4.jpg";
 import { prettyDate } from "../../utils/DateFormating";
-import { classNames, borderColor900 } from "../../utils/Classes";
+import { classNames, borderColor700 } from "../../utils/Classes";
 
 function truncate(str, n) {
   return str.length > n ? str.substr(0, n - 1) + " ..." : str;
@@ -236,7 +236,7 @@ export default function EventDetailsSlideOut(props) {
                           <div className="">
                             <img
                               className={classNames(
-                                borderColor900(eventDetails.type?.color),
+                                borderColor700(eventDetails.type?.color),
                                 `absolute h-full w-full object-cover border-2`
                               )}
                               src={selectImage(eventDetails.type?.eventType)}
