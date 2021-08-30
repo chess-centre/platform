@@ -79,3 +79,22 @@ export function borderColor900(color) {
       return "border-teal-900";
   }
 };
+
+export function borderColor700(color) {
+  switch (color) {
+    case "blue":
+      return "border-blue-700";
+    case "orange":
+      return "border-orange-700";
+    case "teal":
+      return "border-teal-700";
+    case "pink":
+      return "border-pink-700";
+    case "green":
+      return "border-green-700";
+    case "yellow":
+      return "border-yellow-700";
+    default:
+      return "border-teal-700";
+  }
+};
