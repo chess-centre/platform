@@ -5,6 +5,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
 import { prettyLongDate } from "../../utils/DateFormating";
+import GawainAkoBlitz from "../../assets/img/blitz-gawain-ako.jpg";
 
 const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
@@ -120,26 +121,21 @@ export default function BlitzEvent() {
           </div>
 
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
-            <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-              Ready for some adrenaline pumping, hand trembling, piece flying chess? Join us for our quick fire one day blitz event.
+            <p className="text-center prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
+              Ready for some adrenaline pumping, hand trembling, piece flying chess? Join us for our quick-fire one-day blitz event.
             </p>
+            <img alt="Gawain Ako - Blitz Chess" className="mt-4 mx-auto rounded-full w-44 sm:w-52 border-4 border-teal-500" src={GawainAkoBlitz} />
           </div>
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             <div className="relative">
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-                <p>
-                  Our Open Blitz tournaments are designed to be fun and fast paced. We 
-                </p>
                 <h3>Event Information</h3>
                 <p>
-                  Players will be placed in a group of 6, based on rating, and
-                  will play all others within their group during the 5 rounds of
-                  the tournament.
+                  This will be run as a <a href="https://en.wikipedia.org/wiki/Swiss-system_tournament" className="text-teal-500 underline">Swiss-system</a> pairing event. 
                 </p>
                 <ul>
-                  <li>5 Rounds</li>
-                  <li>25 mins per player on the clock</li>
-                  <li>All games will be ECF rapidplay rated.</li>
+                  <li>10 Rounds</li>
+                  <li>3 mins plus 2 second increment per player on the clock</li>
                   {defaultPrice && <li>Entry fee £{defaultPrice}</li>}
                   <li>Entries are currently limited to 18 players.</li>
                 </ul>
