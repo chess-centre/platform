@@ -9,7 +9,7 @@ import { useAuthState } from "../../context/Auth";
 import Register from "./Register";
 import RoundTimesModal from "../Modal/RoundTimesModal";
 import { prettyDate } from "../../utils/DateFormating";
-import { classNames, bgColor900 } from "../../utils/Classes";
+import { classNames, bgColor700 } from "../../utils/Classes";
 import PaymentCompleteModal from "../../components/Modal/PaymentCompleteModal";
 import EventDetailsSlideOut from "../../components/SlideOut/EventDetailsSlideOut";
 import { listEventsActive } from "../../graphql/queries";
@@ -148,7 +148,7 @@ export default function AppEvents() {
                   >
                     <div
                       className={classNames(
-                        bgColor900(type.color),
+                        bgColor700(type.color),
                         "absolute left-0 z-10 inset-y-0 py-1 px-1.5 text-xs rounded-l-lg"
                       )}
                     ></div>

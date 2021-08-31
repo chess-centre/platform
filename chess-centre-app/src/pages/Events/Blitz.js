@@ -39,7 +39,7 @@ const getEvent = /* GraphQL */ `
   }
 `;
 
-export default function RapidplayEvent() {
+export default function BlitzEvent() {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState();
@@ -93,12 +93,12 @@ export default function RapidplayEvent() {
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
             <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
               <span className="text-teal-500">
-                <i className="fad fa-stopwatch"></i>
+                <i className="fad fa-bolt"></i>
               </span>{" "}
-              No time to waste
+              Over in a flash
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              Open Rapidplay
+              Open Blitz
             </p>
             <p className="mt-2 text-2xl leading-8 font-extrabold tracking-tight text-gray-500 sm:text-2xl">
               {!isLoading && startDate && prettyLongDate(startDate)}
@@ -121,29 +121,14 @@ export default function RapidplayEvent() {
 
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-              Want to test yourself, but don’t have time for a full weekend
-              tournament? Then look no further, as our 1 day, 5 round Rapidplay
-              tournaments are ideal for new and returning players who want to
-              “scratch their competitive itch”, but in a more condensed and
-              faster format of the game.
+              Ready for some adrenaline pumping, hand trembling, piece flying chess? Join us for our quick fire one day blitz event.
             </p>
           </div>
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             <div className="relative">
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                 <p>
-                  Our Open Rapidplay Tournaments also tend to follow our favored
-                  “all-play-all” format of players competing in rated groups of
-                  six, to ensure that players know they will receive a
-                  competitive and challenging test of their skills across all
-                  rounds of the competitions.
-                </p>
-                <p>
-                  Though a little “less serious” by nature than congress events,
-                  our Open Rapidplay Tournaments are nonetheless fully ECF
-                  Rapidplay events, and as such are competitive in nature. So if
-                  you like the idea of a quick fire day of competitive Chess in
-                  Ilkley then try one of our Rapidplay events.
+                  Our Open Blitz tournaments are designed to be fun and fast paced. We 
                 </p>
                 <h3>Event Information</h3>
                 <p>
@@ -242,7 +227,7 @@ export default function RapidplayEvent() {
               </svg>
               <RoundTimes
                 eventId={id}
-                eventType="rapidplay"
+                eventType="blitz"
                 isFull={isFull}
                 isLive={isLive}
               />

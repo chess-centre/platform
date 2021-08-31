@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
@@ -21,17 +21,26 @@ function setIcon(type) {
 }
 
 export default function Events() {
-  const selectableEventTypes = [
-    "all",
-    "congress",
-    "rapidplay",
-    "junior-rapidplay",
-  ];
   const location = useLocation();
-  const [,,eventType] = location.pathname.split("/");
-  const defaultSelectedEventType = eventType && selectableEventTypes.includes(eventType) ? eventType : "all";
-  const [selectedEventType, setSelectedEventType] = useState(defaultSelectedEventType);
   const { isLoading, error, data } = useEvents();
+  const [selectableEventTypes, setSelectableEventTypes] = useState([]);
+  const [,,eventType] = location.pathname.split("/");
+  const [selectedEventType, setSelectedEventType] = useState("all");
+
+  useMemo(() => {
+    if (data) {
+      const availableTypes = data.reduce((pre, { type: { eventType, canRegister } }) => {
+        if(!canRegister) return pre;
+        if(pre.includes(eventType)) return pre;
+        return [...pre, eventType];
+      }, ["all"]);
+      setSelectableEventTypes(availableTypes);
+      const defaultSelectedEventType = eventType && availableTypes.includes(eventType) ? eventType : "all";
+      setSelectedEventType(defaultSelectedEventType);
+    }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data, eventType]);
 
   return (
     <div>
@@ -147,8 +156,8 @@ export default function Events() {
                       type === selectedEventType
                         ? "bg-white border-gray-200 text-teal-500"
                         : ""
-                    } relative w-1/2 rounded-md shadow-sm py-2 text-sm font-medium text-gray-700
-                    whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-teal-500 focus:z-10 sm:w-auto sm:px-8`}
+                    } relative w-1/2 px-2 border sm:border-none rounded-md shadow-sm py-2 text-xs sm:text-sm sm:font-medium text-gray-700
+                    whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-teal-500 focus:z-10 sm:w-auto sm:px-6`}
                   >
                     {`${type.charAt(0).toUpperCase()}${type
                       .slice(1)
