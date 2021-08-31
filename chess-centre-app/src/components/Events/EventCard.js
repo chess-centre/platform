@@ -1,18 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { classNames, bgColor900 } from "../../utils/Classes";
+import { classNames, bgColor700 } from "../../utils/Classes";
 
 const EventHeader = ({ type, icon, name, description }) => {
   const getColor = (type) => {
     switch (type) {
       case "junior-rapidplay":
-        return "text-green-900";
+        return "text-green-500";
       case "rapidplay":
-        return "text-orange-900";
+        return "text-orange-500";
       case "congress":
-        return "text-blue-900";
+        return "text-blue-500";
+      case "blitz":
+        return "text-yellow-500";
       default:
-        return "text-yellow-900";
+        return "text-yellow-500";
     }
   };
   return (
@@ -113,7 +115,7 @@ export default function EventCard({
     >
       <div
         className={classNames(
-          bgColor900(color),
+          bgColor700(color),
           "absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
         )}
       ></div>
@@ -133,7 +135,7 @@ export default function EventCard({
         </h3>
         <ul className="mt-4 space-y-2">
           {details.map(({ icon, information, show }, key) => {
-            return show ? (
+            return show && (
               <li key={key} className="flex items-start">
                 <div className="flex-shrink-0">
                   <span className="text-teal-500 ml-2">
@@ -142,7 +144,7 @@ export default function EventCard({
                 </div>
                 <p className="ml-3 text-md text-gray-700">{information}</p>
               </li>
-            ) : null;
+            );
           })}
         </ul>
       </div>

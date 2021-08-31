@@ -34,8 +34,6 @@ const LandingFooter = () => {
               Roadmap
             </Link>
           </div>
-
-
         </nav>
         <div className="mt-6 flex justify-center space-x-6">
           <a

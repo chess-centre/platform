@@ -44,7 +44,7 @@ export function getDayStr(date) {
 function formatDate(date) {
   return new Date(date).toLocaleDateString("en-GB", {
     weekday: "short",
-    day: "numeric",
+    day: "2-digit",
     month: "short",
   });
 }
@@ -52,7 +52,7 @@ function formatDate(date) {
 function formatLongDate(date) {
   return new Date(date).toLocaleDateString("en-GB", {
     weekday: "long",
-    day: "numeric",
+    day: "2-digit",
     month: "long",
   });
 }

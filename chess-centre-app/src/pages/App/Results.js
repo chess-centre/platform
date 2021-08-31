@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import MayCongress from "../../components/Events/Tables/MayCongress";
-import MayRapidplayDivOne from "../../components/Events/Tables/MayRapidplayDivOne";
-import MayRapidplayDivTwo from "../../components/Events/Tables/MayRapidplayDivTwo";
-import JuneCongress from "../../components/Events/Tables/JuneCongress";
+import MayCongress from "../../components/Events/Tables/May/MayCongress";
+import MayRapidplayDivOne from "../../components/Events/Tables/May/MayRapidplayDivOne";
+import MayRapidplayDivTwo from "../../components/Events/Tables/May/MayRapidplayDivTwo";
+import JuneCongress from "../../components/Events/Tables/June/JuneCongress";
 
 function ListEvents(props) {
   const { setSelectedEvent, current } = props;

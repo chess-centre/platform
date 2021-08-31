@@ -117,7 +117,7 @@ export default function ClubNight() {
                   </div>
                 )}
             </div>
-            <div className="text-sm text-center mt-6 sm:hidden">
+            <div className="text-sm text-center mt-6 sm:mt-0">
               <Link className="text-teal-600 hover:text-teal-500" to="/">
                 <i className="fad fa-long-arrow-alt-left"></i> back
               </Link>
