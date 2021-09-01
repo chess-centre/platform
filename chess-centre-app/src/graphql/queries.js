@@ -1,6 +1,70 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getMailingList = /* GraphQL */ `
+  query GetMailingList($id: ID!) {
+    getMailingList(id: $id) {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listMailingLists = /* GraphQL */ `
+  query ListMailingLists(
+    $filter: ModelMailingListFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMailingLists(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        email
+        enabled
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncMailingLists = /* GraphQL */ `
+  query SyncMailingLists(
+    $filter: ModelMailingListFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncMailingLists(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        email
+        enabled
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getBroadcast = /* GraphQL */ `
   query GetBroadcast($id: ID!) {
     getBroadcast(id: $id) {
@@ -3735,10 +3799,6 @@ export const getMember = /* GraphQL */ `
               _lastChangedAt
               createdAt
               updatedAt
-            }
-            entries {
-              nextToken
-              startedAt
             }
           }
           ecfRating

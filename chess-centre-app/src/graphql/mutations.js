@@ -1,6 +1,57 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createMailingList = /* GraphQL */ `
+  mutation CreateMailingList(
+    $input: CreateMailingListInput!
+    $condition: ModelMailingListConditionInput
+  ) {
+    createMailingList(input: $input, condition: $condition) {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateMailingList = /* GraphQL */ `
+  mutation UpdateMailingList(
+    $input: UpdateMailingListInput!
+    $condition: ModelMailingListConditionInput
+  ) {
+    updateMailingList(input: $input, condition: $condition) {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteMailingList = /* GraphQL */ `
+  mutation DeleteMailingList(
+    $input: DeleteMailingListInput!
+    $condition: ModelMailingListConditionInput
+  ) {
+    deleteMailingList(input: $input, condition: $condition) {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createBroadcast = /* GraphQL */ `
   mutation CreateBroadcast(
     $input: CreateBroadcastInput!

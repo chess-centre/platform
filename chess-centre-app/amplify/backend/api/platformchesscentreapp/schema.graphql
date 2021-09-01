@@ -1,3 +1,9 @@
+type MailingList @model @auth(rules: [{allow: private}]) {
+  id: ID!
+  email: String!
+  enabled: Boolean!
+}
+
 type Broadcast @model @auth(rules: [{allow: private}]) {
   id: ID!
   buttonName: String
@@ -27,12 +33,7 @@ type S3Object {
   key: String!
 }
 
-type Game
-@model
-@auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}])
-@key(name: "byEvent", fields: ["eventId"], queryField: "listGamesByEvent")
-@key(name: "byWhite", fields: ["whiteMemberId"], queryField: "listGamesByWhiteMember")
-@key(name: "byBlack", fields: ["blackMemberId"], queryField: "listGamesByBlackMember") {
+type Game @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventId"], queryField: "listGamesByEvent") @key(name: "byWhite", fields: ["whiteMemberId"], queryField: "listGamesByWhiteMember") @key(name: "byBlack", fields: ["blackMemberId"], queryField: "listGamesByBlackMember") {
   id: ID!
   eventId: ID!
   whiteMemberId: ID!
@@ -123,3 +124,4 @@ type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   event: Event @connection(fields: ["eventId"])
   member: Member @connection(fields: ["memberId"])
 }
+ 

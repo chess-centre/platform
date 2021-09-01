@@ -1,6 +1,48 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateMailingList = /* GraphQL */ `
+  subscription OnCreateMailingList {
+    onCreateMailingList {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateMailingList = /* GraphQL */ `
+  subscription OnUpdateMailingList {
+    onUpdateMailingList {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteMailingList = /* GraphQL */ `
+  subscription OnDeleteMailingList {
+    onDeleteMailingList {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateBroadcast = /* GraphQL */ `
   subscription OnCreateBroadcast {
     onCreateBroadcast {
