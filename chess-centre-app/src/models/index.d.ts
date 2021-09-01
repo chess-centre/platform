@@ -9,6 +9,14 @@ export declare class S3Object {
   constructor(init: ModelInit<S3Object>);
 }
 
+export declare class MailingList {
+  readonly id: string;
+  readonly email: string;
+  readonly enabled: boolean;
+  constructor(init: ModelInit<MailingList>);
+  static copyOf(source: MailingList, mutator: (draft: MutableModel<MailingList>) => MutableModel<MailingList> | void): MailingList;
+}
+
 export declare class Broadcast {
   readonly id: string;
   readonly buttonName?: string;

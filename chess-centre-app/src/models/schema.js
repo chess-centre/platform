@@ -1,5 +1,55 @@
 export const schema = {
     "models": {
+        "MailingList": {
+            "name": "MailingList",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "enabled": {
+                    "name": "enabled",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "MailingLists",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Broadcast": {
             "name": "Broadcast",
             "fields": {
@@ -1100,5 +1150,5 @@ export const schema = {
             }
         }
     },
-    "version": "23f9a50004e86b304f45fa53c90d6756"
+    "version": "c012f206cf2069c7f783555b1984f6ab"
 };

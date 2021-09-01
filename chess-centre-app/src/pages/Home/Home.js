@@ -12,7 +12,6 @@ import DownloadPWA from "../../components/Quote/PWA";
 
 const Home = () => {
   const { user } = useAuthState();
-  const today = new Date();
   const yesterday = new Date(Date.now() - (3600 * 1000 * 24));
   const [eventInfo, setEventInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
