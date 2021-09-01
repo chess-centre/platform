@@ -1,69 +1,134 @@
 
 
-const https = require('https');
+const AWS = require("aws-sdk");
+const { API_CHESSPLAYERS_MEMBERTABLE_NAME } = process.env;
+const fetchGames = require("./ecfAPI").fetchGames;
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+const memberTable = API_CHESSPLAYERS_MEMBERTABLE_NAME;
 
-exports.handler = async (event) => {
+exports.handler = async () => {
 
-    const { id, type } = event.pathParameters;
-    // type: "Standard" | "Rapid"
-    // id: ecf player id (minus alpha char on the end)
+    try {
+        const {
+            Items
+        } = await dynamodb.scan({
+            TableName: memberTable,
+            FilterExpression: "attribute_exists(ecfId)"
+        }).promise();
 
-    // Docs: https://www.ecfrating.org.uk/v2/help/help_api.php
-    const url = `https://www.ecfrating.org.uk/v2/new/api.php?v2/games/${type}/player/${id}/limit/100`
+        console.log(`Fetching games for ${Items.length} players.`);
 
-    const getECFPlayerGameInfo = async () => {
-        console.log("GET: getECFPlayerGameInfo", id);
-        return new Promise((resolve, reject) => {
-            https.get(url, response => {
-                let data = "";
-                response.on("data", chunk => {
-                    data += chunk;
-                });
-                response.on("end", () => {
-                    resolve(data);
-                });
-                response.on("error", (e) => {
-                    reject("error", e);
-                });
-            });
-        });
+        const getAllGameInfo = await Promise.all(Items.map(member => {
+            const getAllData = async () => {
+                const standardGames = await fetchGames(member.ecfId, "Standard", 100);
+                const rapidGames = await fetchGames(member.ecfId, "Rapid", 100);
+
+                const standardGamesValidated = stageGames(member, standardGames, Items, "standard");
+                const rapidGamesValidated = stageGames(member, rapidGames, Items, "rapid");
+
+                return [
+                    ...standardGamesValidated,
+                    ...rapidGamesValidated
+                ];
+            };
+            return getAllData();
+        }));
+
+        const uniqueGames = getAllGameInfo
+            .flat(2)
+            .filter((v, i, a) => a.findIndex(t => (JSON.stringify(t) === JSON.stringify(v))) === i);
+
+        console.log(uniqueGames);
+
+    } catch (error) {
+        console.log(error);
+    }
+    const response = {
+        statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*"
+        },
+        body: JSON.stringify("Done"),
     };
-
-    let error = false;
-    let errorMessage = "";
-    const games = await getECFPlayerGameInfo().catch(e => { error = true; errorMessage = e.message; });
-
-    const data = {
-        games
-    };
-    console.log(data);
-
-    if(!error) {
-        const response = {
-            statusCode: 200,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
-            }, 
-            body: JSON.stringify(data),
-        };
-        return response;
-    } else {
-        const response = {
-            statusCode: 404,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
-            }, 
-            body: JSON.stringify({ error: errorMessage })
-        };
-        return response;
-    };
+    return response;
 };
 
-function formatDate() {
-    const today = new Date();
-    const lastDayOfPreviousMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-    const format = lastDayOfPreviousMonth.toISOString()
-    return format.slice(0, 10);;
-  }
+function stageGames(member, games, members, type) {
+
+    const json = (function (raw) {
+        try {
+            return JSON.parse(raw);
+        } catch (err) {
+            console.log("Error parsing JSON", type);
+            return false;
+        }
+    })(games);
+
+    if (json && json.games) {
+        // GET only Chess Centre games:
+        const results = json.games.filter(({ event_name }) => {
+
+            const includes = ((event) => {
+                try {
+                    return event.toString().includes("The Chess Centre")
+                } catch (error) {
+                    console.log("error", event, member);
+                    return false;
+                }
+            })(event_name);
+
+            return includes;
+        });
+        // MAP published games to internal members:
+        const gameList = results.reduce((list, game) => {
+            const opponent = members.find(m => m.ecfId.includes(game.opponent_no));
+            if (opponent && opponent.id) {
+
+                const whitePlayer = game.colour === "W" ? member : opponent;
+                const blackPlayer = game.colour === "B" ? member : opponent;
+
+                return [...list, {
+                    whiteMemberId: whitePlayer.id,
+                    whiteName: whitePlayer.name,
+                    blackMemberId: blackPlayer.id,
+                    blackName: blackPlayer.name,
+                    opponentRating: game.player_rating,
+                    eventName: game.event_name.replace("The Chess Centre", ""),
+                    result: calculateGameResult(game.colour, game.score),
+                    type: type
+                }]
+            } else {
+                return [...list];
+            }
+        }, []);
+        return gameList;
+    } else {
+        return [];
+    }
+};
+
+function calculateGameResult(colour, score) {
+
+    if (score === 5) {
+        return "0.5-0.5";
+    }
+
+    if (colour === "W" && score === 1) {
+        return "1-0";
+    }
+
+    if (colour === "W" && score === 0) {
+        return "0-1";
+    }
+
+    if (colour === "B" && score === 1) {
+        return "0-1";
+    }
+
+    if (colour === "B" && score === 0) {
+        return "1-0"
+    }
+
+    return "0.5-0.5";
+}
