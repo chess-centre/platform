@@ -50,7 +50,6 @@ exports.handler = async (event) => {
         console.log("error", e);
     });
 
-
     if(data) {
         const params = {
             TableName: memberTable,
