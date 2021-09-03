@@ -21,22 +21,45 @@ const fetchData = (url) => {
   });
 };
 
-export const getHistoricRatings = async (id, type = "S") => {
-  const currentDate = new Date();
+const getRatings = async (id, type = "S") => {
   const urls = [];
   for (let month = 0; month < 5; month++) {
+    const currentDate = new Date();
     const date = new Date(currentDate.setMonth(currentDate.getMonth() - month));
     const ratingUrl = url(id, type, date.toISOString().split("T")[0]);
     urls.push(ratingUrl);
   }
   const data = await Promise.all(urls.map(fetchData));
-  return data.map((result) => {
-    const { effective_date, original_rating, domain } = JSON.parse(result);
-    return {
-      month: effective_date,
-      rating: original_rating ? original_rating : 0,
-      type: domain === "S" ? "standard" : "rapid",
-    };
-  });
+  if(data && data.length > 0) {
+    return data.map((result) => {
+      const { effective_date, original_rating, domain } = JSON.parse(result);
+      const month = effective_date ? new Date(effective_date).toLocaleString('default', { month: 'long'}) : '';
+      return {
+        date: effective_date,
+        month,
+        [domain === "S" ? "standard" : "rapid"]: original_rating ? original_rating : 0
+      };
+    });
+  } else {
+    return [];
+  }
+
 };
 
+exports.getHistoricRatings = async (id) => {
+  try {
+    const standard = await getRatings(id, "S");
+    const rapid = await getRatings(id, "R");
+    // merge both arrays:
+    return standard.map(info => {
+        const r = rapid.find(r => info.date === r.date)?.rapid || 0;
+        return {
+            ...info,
+            rapid: r
+        };
+    });
+  } catch (e) {
+    console.log("Error", e);
+    return [];
+  }
+};
