@@ -17,10 +17,10 @@ const getMonthByMonthGameCount = (type, data) => {
 
 const getMonthByMonthRating = (type, data) => {
   return data.reduce((pre, cur) => {
-    if(cur[type]) {
+    if(cur[type] || cur[type] === 0) {
       return [...pre, cur[type]];
     } else return [...pre]
-  }, []);
+  }, []).reverse();
 };
 
 const getMonths = (data) => {
