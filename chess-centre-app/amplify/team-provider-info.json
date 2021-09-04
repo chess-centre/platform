@@ -46,7 +46,7 @@
         },
         "ecfPlayerGames": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfPlayerGames-775259456d4f546a2b34-build.zip"
+          "s3Key": "amplify-builds/ecfPlayerGames-6e654b7366554a2f634b-build.zip"
         },
         "ecfRatingScrapper": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",

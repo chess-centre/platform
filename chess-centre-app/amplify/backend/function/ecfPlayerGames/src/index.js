@@ -1,4 +1,5 @@
 const AWS = require("aws-sdk");
+const  uuid = require('uuid');
 const { API_CHESSPLAYERS_MEMBERTABLE_NAME,
     API_CHESSPLAYERS_EVENTTABLE_NAME,
     API_CHESSPLAYERS_GAMESTABLE_NAME
@@ -44,6 +45,8 @@ exports.handler = async () => {
 
         const games = await addEventId(uniqueGames);
         console.log(`Games ready for adding to db ${games.length}`);
+        await addGames(games);
+        console.log(`Updated!`);
 
     } catch (error) {
         console.log(error);
@@ -158,7 +161,30 @@ async function addEventId(games) {
     }
 }
 
-async function addGamesToDynamo() {
-
-
+async function addGames(games) {
+    const timestamp = new Date().toISOString();
+    const updates = games.map(async (game) => {
+        const params = {
+            TableName: gameTable,
+            Item: {
+                id: uuid.v1(),
+                __typename: "Game",
+                _lastChangedAt: Date.now(),
+                createdAt: timestamp,
+                updatedAt: timestamp,
+                _version: 1,
+                ...game
+            },
+            ReturnValues: 'ALL_OLD'
+        };
+        try {
+            const result = await dynamodb.put(params).promise();
+            return result;
+        } catch (error) {
+            console.log(error);
+        } 
+    });
+    const response = await Promise.all(updates);
+    console.log("Updated!", response);
+    return;
 }
