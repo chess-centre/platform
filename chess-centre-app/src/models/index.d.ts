@@ -46,12 +46,18 @@ export declare class Result {
 
 export declare class Game {
   readonly id: string;
+  readonly eventName?: string;
+  readonly date?: string;
+  readonly whiteName?: string;
+  readonly blackName?: string;
   readonly round?: number;
   readonly event?: Event;
   readonly whiteMember?: Member;
   readonly blackMember?: Member;
   readonly result?: string;
+  readonly type?: string;
   readonly pgn?: S3Object;
+  readonly pgnStr?: string;
   constructor(init: ModelInit<Game>);
   static copyOf(source: Game, mutator: (draft: MutableModel<Game>) => MutableModel<Game> | void): Game;
 }

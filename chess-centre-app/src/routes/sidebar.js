@@ -19,6 +19,11 @@ const routes = [
     icon: "UsersIcon",
     name: "Members",
   },
+  {
+    path: "/app/games",
+    icon: "UsersIcon",
+    name: "Games",
+  }
 ];
 
 export default routes;
