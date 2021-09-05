@@ -1,5 +1,26 @@
+import { API } from "aws-amplify";
 import React, { useState } from "react";
 import Loading from "../../assets/img/loading.svg";
+import ValidateEmail from "../../utils/ValidateEmail";
+
+
+const createMailingList = /* GraphQL */ `
+  mutation CreateMailingList(
+    $input: CreateMailingListInput!
+    $condition: ModelMailingListConditionInput
+  ) {
+    createMailingList(input: $input, condition: $condition) {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 
 export default function NewsLetter() {
   const [isSubcribed, setIsSubscribed] = useState(false);
@@ -8,15 +29,19 @@ export default function NewsLetter() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if(!ValidateEmail(email)) return;
     setIsLoading(true);
-    const form = event.currentTarget;
-    const url = "https://app.convertkit.com/forms/2201273/subscriptions";
-
     try {
-      const formData = new FormData(form);
-      const responseData = await postFormDataAsJson({ url, formData });
-      if (responseData.status === "success") {
+      const user ={
+        email,
+        enabled: true
+      };
+      const newUser = await API.graphql({ 
+        query: createMailingList, variables: { input: user }})
+
+      if (newUser) {
         setIsSubscribed(true);
+        setEmail("");
       }
       setIsLoading(false);
     } catch (error) {
@@ -26,25 +51,7 @@ export default function NewsLetter() {
     }
   };
 
-  async function postFormDataAsJson({ url, formData }) {
-    const plainFormData = Object.fromEntries(formData.entries());
-    const formDataJsonString = JSON.stringify(plainFormData);
-    const fetchOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: formDataJsonString,
-    };
-    const response = await fetch(url, fetchOptions);
 
-    if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(errorMessage);
-    }
-    return response.json();
-  }
 
   return (
     <div className="bg-white py-16 sm:py-24">

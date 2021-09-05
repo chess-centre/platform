@@ -43,6 +43,10 @@ const routes = [
     path: "/profile",
     component: lazy(() => import("../pages/App/User/Profile")),
   },
+  {
+    path: "/games",
+    component: lazy(() => import("../pages/App/Games")),
+  },
 ];
 
 const Page404 = lazy(() => import("../pages/Error/404"));

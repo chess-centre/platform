@@ -9,6 +9,14 @@ export declare class S3Object {
   constructor(init: ModelInit<S3Object>);
 }
 
+export declare class MailingList {
+  readonly id: string;
+  readonly email: string;
+  readonly enabled: boolean;
+  constructor(init: ModelInit<MailingList>);
+  static copyOf(source: MailingList, mutator: (draft: MutableModel<MailingList>) => MutableModel<MailingList> | void): MailingList;
+}
+
 export declare class Broadcast {
   readonly id: string;
   readonly buttonName?: string;
@@ -38,12 +46,20 @@ export declare class Result {
 
 export declare class Game {
   readonly id: string;
+  readonly eventName?: string;
+  readonly date?: string;
+  readonly whiteName?: string;
+  readonly whiteRating?: number;
+  readonly blackName?: string;
+  readonly blackRating?: number;
   readonly round?: number;
   readonly event?: Event;
   readonly whiteMember?: Member;
   readonly blackMember?: Member;
   readonly result?: string;
+  readonly type?: string;
   readonly pgn?: S3Object;
+  readonly pgnStr?: string;
   constructor(init: ModelInit<Game>);
   static copyOf(source: Game, mutator: (draft: MutableModel<Game>) => MutableModel<Game> | void): Game;
 }

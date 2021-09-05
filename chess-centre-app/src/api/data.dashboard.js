@@ -16,11 +16,11 @@ const getMonthByMonthGameCount = (type, data) => {
 };
 
 const getMonthByMonthRating = (type, data) => {
-  return data.reduce((pre, { rating }) => {
-    if(rating[type]) {
-      return [...pre, rating[type]];
+  return data.reduce((pre, cur) => {
+    if(cur[type] || cur[type] === 0) {
+      return [...pre, cur[type]];
     } else return [...pre]
-  }, []);
+  }, []).reverse();
 };
 
 const getMonths = (data) => {
@@ -34,9 +34,9 @@ export const RatingProgressChart = (
 ) => {
 
   const data = ratingInfo ? JSON.parse(ratingInfo) : [];
-  const months = getMonths(data);
-  const longPlayRatings = getMonthByMonthRating("longPlay", data);
-  const rapidplayRatings = getMonthByMonthRating("rapidPlay", data);
+  const months = getMonths(data).reverse();
+  const longPlayRatings = getMonthByMonthRating("standard", data);
+  const rapidplayRatings = getMonthByMonthRating("rapid", data);
 
   return {
     data: {
@@ -95,8 +95,8 @@ export const GamesChart = (gameInfo) => {
 
   const data = gameInfo ? JSON.parse(gameInfo) : [];
   const months = getMonths(data);
-  const longPlayGamesCount = getMonthByMonthGameCount("longPlay", data);
-  const rapidplayGamesCount = getMonthByMonthGameCount("rapidPlay", data);
+  const longPlayGamesCount = getMonthByMonthGameCount("standard", data);
+  const rapidplayGamesCount = getMonthByMonthGameCount("rapid", data);
 
   return {
     data: {

@@ -1,6 +1,6 @@
 {
   "name": "the-chess-centre-platform",
-  "version": "0.6.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.13.10",
@@ -36,7 +36,7 @@
     "react-router-dom": "^5.2.0",
     "react-toast-notifications": "^2.4.3",
     "react-transition-group": "^4.4.1",
-    "swiper": "^6.4.1",
+    "swiper": "^6.8.4",
     "uuid": "^8.3.2"
   },
   "scripts": {
