@@ -10,6 +10,7 @@ const memberTable = API_CHESSPLAYERS_MEMBERTABLE_NAME;
 const eventTable = API_CHESSPLAYERS_EVENTTABLE_NAME; //TestEventProdTable
 const gameTable = API_CHESSPLAYERS_GAMESTABLE_NAME;
 const TOTAL_GAMES_TO_CHECK = 150;
+const TRACKED_EVENTS = [];
 
 exports.handler = async () => {
     try {
@@ -45,9 +46,13 @@ exports.handler = async () => {
 
         const games = await addEventId(uniqueGames);
         console.log(`Games ready for adding to db ${games.length}`);
-        await addGames(games);
-        console.log(`Updated!`);
-
+        if(games && games.length > 0) {
+            await addGames(games);
+            await updateEvents([...new Set(TRACKED_EVENTS)]);
+            console.log(`Updated!`);
+        } else {
+            console.log("No games to update.")
+        }
     } catch (error) {
         console.log(error);
     }
@@ -142,22 +147,31 @@ async function addEventId(games) {
         // We assume events with entries (entryCount) as those which have associated games:
         const { Items } = await dynamodb.scan({
             TableName: eventTable,
-            FilterExpression: `entryCount > :count`,
+            FilterExpression: `entryCount > :count and (ecfGamesRetreived = :pending)`,
             ExpressionAttributeValues: {
-                ':count': 0
+                ':count': 0,
+                ':pending': false
             }
         }).promise();
 
         const gamesWithEventIds = games.map(game => {
-            const { id } = Items.find(({ startDate }) => startDate === game.date);
+            const event = Items.find(({ startDate }) => startDate === game.date);
+            const eventId = event?.id || undefined;
+            if(!eventId) {
+                console.log(`Couldn't find event Id for ${JSON.stringify(game)}`);
+            } else {
+                // used to ensure we don't duplicate events!
+                TRACKED_EVENTS.push(eventId);
+            }
             return {
                 ...game,
-                eventId: id
+                eventId
             };
         });
-        return gamesWithEventIds;
+        return gamesWithEventIds.filter(game => !!game.eventId);
     } catch (error) {
         console.log("error", error);
+        return [];
     }
 }
 
@@ -185,6 +199,27 @@ async function addGames(games) {
         } 
     });
     const response = await Promise.all(updates);
-    console.log("Updated!", response);
+    console.log("Updated games!", response);
+    return;
+}
+
+async function updateEvents(events) {
+    const updates = events.map(async (event) => {
+        const params = {
+            TableName: eventTable,
+            Key: {
+                id: event.id
+            },
+            UpdateExpression: "set ecfGamesRetreived=:retreived",
+            ExpressionAttributeValues: {
+                ":retreived": true,
+            },
+            ReturnValues: "UPDATED_NEW"
+        };
+        const response = await dynamodb.update(params).promise();
+        console.log(response);
+    });
+    const response = await Promise.all(updates);
+    console.log("Updated events!", response);
     return;
 }

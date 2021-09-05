@@ -195,15 +195,23 @@ export const createGame = /* GraphQL */ `
     createGame(input: $input, condition: $condition) {
       id
       eventId
+      eventName
+      date
       whiteMemberId
+      whiteName
+      whiteRating
       blackMemberId
+      blackName
+      blackRating
       round
       result
+      type
       pgn {
         bucket
         region
         key
       }
+      pgnStr
       _version
       _deleted
       _lastChangedAt
@@ -220,15 +228,23 @@ export const createGame = /* GraphQL */ `
         games {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -245,10 +261,18 @@ export const createGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -293,10 +317,18 @@ export const createGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -481,15 +513,23 @@ export const createGame = /* GraphQL */ `
         games {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -506,10 +546,18 @@ export const createGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -554,10 +602,18 @@ export const createGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -775,15 +831,23 @@ export const createGame = /* GraphQL */ `
           items {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -971,15 +1035,23 @@ export const updateGame = /* GraphQL */ `
     updateGame(input: $input, condition: $condition) {
       id
       eventId
+      eventName
+      date
       whiteMemberId
+      whiteName
+      whiteRating
       blackMemberId
+      blackName
+      blackRating
       round
       result
+      type
       pgn {
         bucket
         region
         key
       }
+      pgnStr
       _version
       _deleted
       _lastChangedAt
@@ -996,15 +1068,23 @@ export const updateGame = /* GraphQL */ `
         games {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -1021,10 +1101,18 @@ export const updateGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -1069,10 +1157,18 @@ export const updateGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -1257,15 +1353,23 @@ export const updateGame = /* GraphQL */ `
         games {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -1282,10 +1386,18 @@ export const updateGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -1330,10 +1442,18 @@ export const updateGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -1551,15 +1671,23 @@ export const updateGame = /* GraphQL */ `
           items {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -1747,15 +1875,23 @@ export const deleteGame = /* GraphQL */ `
     deleteGame(input: $input, condition: $condition) {
       id
       eventId
+      eventName
+      date
       whiteMemberId
+      whiteName
+      whiteRating
       blackMemberId
+      blackName
+      blackRating
       round
       result
+      type
       pgn {
         bucket
         region
         key
       }
+      pgnStr
       _version
       _deleted
       _lastChangedAt
@@ -1772,15 +1908,23 @@ export const deleteGame = /* GraphQL */ `
         games {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -1797,10 +1941,18 @@ export const deleteGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -1845,10 +1997,18 @@ export const deleteGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -2033,15 +2193,23 @@ export const deleteGame = /* GraphQL */ `
         games {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -2058,10 +2226,18 @@ export const deleteGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -2106,10 +2282,18 @@ export const deleteGame = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -2327,15 +2511,23 @@ export const deleteGame = /* GraphQL */ `
           items {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -2663,15 +2855,23 @@ export const createMember = /* GraphQL */ `
       games {
         id
         eventId
+        eventName
+        date
         whiteMemberId
+        whiteName
+        whiteRating
         blackMemberId
+        blackName
+        blackRating
         round
         result
+        type
         pgn {
           bucket
           region
           key
         }
+        pgnStr
         _version
         _deleted
         _lastChangedAt
@@ -2688,15 +2888,23 @@ export const createMember = /* GraphQL */ `
           games {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -2833,15 +3041,23 @@ export const createMember = /* GraphQL */ `
           games {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -3011,10 +3227,18 @@ export const createMember = /* GraphQL */ `
             items {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -3102,10 +3326,18 @@ export const createMember = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -3213,15 +3445,23 @@ export const updateMember = /* GraphQL */ `
       games {
         id
         eventId
+        eventName
+        date
         whiteMemberId
+        whiteName
+        whiteRating
         blackMemberId
+        blackName
+        blackRating
         round
         result
+        type
         pgn {
           bucket
           region
           key
         }
+        pgnStr
         _version
         _deleted
         _lastChangedAt
@@ -3238,15 +3478,23 @@ export const updateMember = /* GraphQL */ `
           games {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -3383,15 +3631,23 @@ export const updateMember = /* GraphQL */ `
           games {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -3561,10 +3817,18 @@ export const updateMember = /* GraphQL */ `
             items {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -3652,10 +3916,18 @@ export const updateMember = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -3763,15 +4035,23 @@ export const deleteMember = /* GraphQL */ `
       games {
         id
         eventId
+        eventName
+        date
         whiteMemberId
+        whiteName
+        whiteRating
         blackMemberId
+        blackName
+        blackRating
         round
         result
+        type
         pgn {
           bucket
           region
           key
         }
+        pgnStr
         _version
         _deleted
         _lastChangedAt
@@ -3788,15 +4068,23 @@ export const deleteMember = /* GraphQL */ `
           games {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -3933,15 +4221,23 @@ export const deleteMember = /* GraphQL */ `
           games {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -4111,10 +4407,18 @@ export const deleteMember = /* GraphQL */ `
             items {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -4202,10 +4506,18 @@ export const deleteMember = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -4346,15 +4658,23 @@ export const createEvent = /* GraphQL */ `
         items {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -4371,10 +4691,18 @@ export const createEvent = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -4419,10 +4747,18 @@ export const createEvent = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -4551,10 +4887,18 @@ export const createEvent = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -4695,15 +5039,23 @@ export const updateEvent = /* GraphQL */ `
         items {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -4720,10 +5072,18 @@ export const updateEvent = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -4768,10 +5128,18 @@ export const updateEvent = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -4900,10 +5268,18 @@ export const updateEvent = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -5044,15 +5420,23 @@ export const deleteEvent = /* GraphQL */ `
         items {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -5069,10 +5453,18 @@ export const deleteEvent = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -5117,10 +5509,18 @@ export const deleteEvent = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -5249,10 +5649,18 @@ export const deleteEvent = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -5369,15 +5777,23 @@ export const createEntry = /* GraphQL */ `
         games {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -5394,10 +5810,18 @@ export const createEntry = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -5442,10 +5866,18 @@ export const createEntry = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -5663,15 +6095,23 @@ export const createEntry = /* GraphQL */ `
           items {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -5876,15 +6316,23 @@ export const updateEntry = /* GraphQL */ `
         games {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -5901,10 +6349,18 @@ export const updateEntry = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -5949,10 +6405,18 @@ export const updateEntry = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -6170,15 +6634,23 @@ export const updateEntry = /* GraphQL */ `
           items {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt
@@ -6383,15 +6855,23 @@ export const deleteEntry = /* GraphQL */ `
         games {
           id
           eventId
+          eventName
+          date
           whiteMemberId
+          whiteName
+          whiteRating
           blackMemberId
+          blackName
+          blackRating
           round
           result
+          type
           pgn {
             bucket
             region
             key
           }
+          pgnStr
           _version
           _deleted
           _lastChangedAt
@@ -6408,10 +6888,18 @@ export const deleteEntry = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -6456,10 +6944,18 @@ export const deleteEntry = /* GraphQL */ `
             games {
               id
               eventId
+              eventName
+              date
               whiteMemberId
+              whiteName
+              whiteRating
               blackMemberId
+              blackName
+              blackRating
               round
               result
+              type
+              pgnStr
               _version
               _deleted
               _lastChangedAt
@@ -6677,15 +7173,23 @@ export const deleteEntry = /* GraphQL */ `
           items {
             id
             eventId
+            eventName
+            date
             whiteMemberId
+            whiteName
+            whiteRating
             blackMemberId
+            blackName
+            blackRating
             round
             result
+            type
             pgn {
               bucket
               region
               key
             }
+            pgnStr
             _version
             _deleted
             _lastChangedAt

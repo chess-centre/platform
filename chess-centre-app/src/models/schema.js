@@ -246,6 +246,48 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "eventName": {
+                    "name": "eventName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "date": {
+                    "name": "date",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "whiteName": {
+                    "name": "whiteName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "whiteRating": {
+                    "name": "whiteRating",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "blackName": {
+                    "name": "blackName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "blackRating": {
+                    "name": "blackRating",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "round": {
                     "name": "round",
                     "isArray": false,
@@ -299,12 +341,26 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "type": {
+                    "name": "type",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "pgn": {
                     "name": "pgn",
                     "isArray": false,
                     "type": {
                         "nonModel": "S3Object"
                     },
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "pgnStr": {
+                    "name": "pgnStr",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -1150,5 +1206,5 @@ export const schema = {
             }
         }
     },
-    "version": "c012f206cf2069c7f783555b1984f6ab"
+    "version": "0af3cda39103c1c25e676f9a217a746b"
 };
