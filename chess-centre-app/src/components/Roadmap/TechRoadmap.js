@@ -49,9 +49,10 @@ export const TechRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-            <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+              <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
                 Complete
               </span>
+              <span className="font-thin">v1.1.0</span>
             </div>
           </div>
           <div className="ml-12">
@@ -67,10 +68,10 @@ export const TechRoadmap = () => {
           <div className="flex items-center mb-1">
             <div className="bg-teal-500 rounded-full h-4 w-4"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-yellow-200 text-black p-1 rounded  leading-none">
-                Soon
+              <span className="mr-2 bg-blue-200 text-blue-700 p-1 rounded  leading-none">
+                BETA
               </span>
-              <span className="font-thin">v1.1.0</span>
+              <span className="font-thin">v2.0.0</span>
             </div>
           </div>
           <div className="ml-12">
@@ -87,7 +88,7 @@ export const TechRoadmap = () => {
               <span className="mr-2 bg-yellow-200 text-black p-1 rounded  leading-none">
                 Soon
               </span>
-              <span className="font-thin">v1.2.0</span>
+              <span className="font-thin">v2.1.0</span>
             </div>
           </div>
           <div className="ml-12">
@@ -104,7 +105,7 @@ export const TechRoadmap = () => {
               <span className="mr-2 bg-blue-200 text-black p-1 rounded  leading-none">
                 Discuss
               </span>
-              <span className="font-thin">v1.3.0</span>
+              <span className="font-thin">v3.0.0</span>
             </div>
           </div>
           <div className="ml-12">
