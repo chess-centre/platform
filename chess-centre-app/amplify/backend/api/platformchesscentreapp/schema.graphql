@@ -40,8 +40,10 @@ type Game @model @auth(rules: [{allow: private}, {allow: public}, {allow: public
   date: String
   whiteMemberId: ID!
   whiteName: String
+  whiteRating: Int
   blackMemberId: ID!
   blackName: String
+  blackRating: Int
   round: Int
   event: Event @connection(fields: ["eventId"])
   whiteMember: Member @connection(fields: ["whiteMemberId"])

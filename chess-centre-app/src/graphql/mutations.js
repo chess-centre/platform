@@ -199,8 +199,10 @@ export const createGame = /* GraphQL */ `
       date
       whiteMemberId
       whiteName
+      whiteRating
       blackMemberId
       blackName
+      blackRating
       round
       result
       type
@@ -230,8 +232,10 @@ export const createGame = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -261,8 +265,10 @@ export const createGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -315,8 +321,10 @@ export const createGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -509,8 +517,10 @@ export const createGame = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -540,8 +550,10 @@ export const createGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -594,8 +606,10 @@ export const createGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -821,8 +835,10 @@ export const createGame = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -1023,8 +1039,10 @@ export const updateGame = /* GraphQL */ `
       date
       whiteMemberId
       whiteName
+      whiteRating
       blackMemberId
       blackName
+      blackRating
       round
       result
       type
@@ -1054,8 +1072,10 @@ export const updateGame = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -1085,8 +1105,10 @@ export const updateGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -1139,8 +1161,10 @@ export const updateGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -1333,8 +1357,10 @@ export const updateGame = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -1364,8 +1390,10 @@ export const updateGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -1418,8 +1446,10 @@ export const updateGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -1645,8 +1675,10 @@ export const updateGame = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -1847,8 +1879,10 @@ export const deleteGame = /* GraphQL */ `
       date
       whiteMemberId
       whiteName
+      whiteRating
       blackMemberId
       blackName
+      blackRating
       round
       result
       type
@@ -1878,8 +1912,10 @@ export const deleteGame = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -1909,8 +1945,10 @@ export const deleteGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -1963,8 +2001,10 @@ export const deleteGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -2157,8 +2197,10 @@ export const deleteGame = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -2188,8 +2230,10 @@ export const deleteGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -2242,8 +2286,10 @@ export const deleteGame = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -2469,8 +2515,10 @@ export const deleteGame = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -2811,8 +2859,10 @@ export const createMember = /* GraphQL */ `
         date
         whiteMemberId
         whiteName
+        whiteRating
         blackMemberId
         blackName
+        blackRating
         round
         result
         type
@@ -2842,8 +2892,10 @@ export const createMember = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -2993,8 +3045,10 @@ export const createMember = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -3177,8 +3231,10 @@ export const createMember = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -3274,8 +3330,10 @@ export const createMember = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -3391,8 +3449,10 @@ export const updateMember = /* GraphQL */ `
         date
         whiteMemberId
         whiteName
+        whiteRating
         blackMemberId
         blackName
+        blackRating
         round
         result
         type
@@ -3422,8 +3482,10 @@ export const updateMember = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -3573,8 +3635,10 @@ export const updateMember = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -3757,8 +3821,10 @@ export const updateMember = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -3854,8 +3920,10 @@ export const updateMember = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -3971,8 +4039,10 @@ export const deleteMember = /* GraphQL */ `
         date
         whiteMemberId
         whiteName
+        whiteRating
         blackMemberId
         blackName
+        blackRating
         round
         result
         type
@@ -4002,8 +4072,10 @@ export const deleteMember = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -4153,8 +4225,10 @@ export const deleteMember = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -4337,8 +4411,10 @@ export const deleteMember = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -4434,8 +4510,10 @@ export const deleteMember = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -4584,8 +4662,10 @@ export const createEvent = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -4615,8 +4695,10 @@ export const createEvent = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -4669,8 +4751,10 @@ export const createEvent = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -4807,8 +4891,10 @@ export const createEvent = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -4957,8 +5043,10 @@ export const updateEvent = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -4988,8 +5076,10 @@ export const updateEvent = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -5042,8 +5132,10 @@ export const updateEvent = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -5180,8 +5272,10 @@ export const updateEvent = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -5330,8 +5424,10 @@ export const deleteEvent = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -5361,8 +5457,10 @@ export const deleteEvent = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -5415,8 +5513,10 @@ export const deleteEvent = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -5553,8 +5653,10 @@ export const deleteEvent = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -5679,8 +5781,10 @@ export const createEntry = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -5710,8 +5814,10 @@ export const createEntry = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -5764,8 +5870,10 @@ export const createEntry = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -5991,8 +6099,10 @@ export const createEntry = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -6210,8 +6320,10 @@ export const updateEntry = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -6241,8 +6353,10 @@ export const updateEntry = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -6295,8 +6409,10 @@ export const updateEntry = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -6522,8 +6638,10 @@ export const updateEntry = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type
@@ -6741,8 +6859,10 @@ export const deleteEntry = /* GraphQL */ `
           date
           whiteMemberId
           whiteName
+          whiteRating
           blackMemberId
           blackName
+          blackRating
           round
           result
           type
@@ -6772,8 +6892,10 @@ export const deleteEntry = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -6826,8 +6948,10 @@ export const deleteEntry = /* GraphQL */ `
               date
               whiteMemberId
               whiteName
+              whiteRating
               blackMemberId
               blackName
+              blackRating
               round
               result
               type
@@ -7053,8 +7177,10 @@ export const deleteEntry = /* GraphQL */ `
             date
             whiteMemberId
             whiteName
+            whiteRating
             blackMemberId
             blackName
+            blackRating
             round
             result
             type

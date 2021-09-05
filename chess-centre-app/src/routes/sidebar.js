@@ -21,7 +21,7 @@ const routes = [
   },
   {
     path: "/app/games",
-    icon: "UsersIcon",
+    icon: "PuzzleIcon",
     name: "Games",
   }
 ];

@@ -49,7 +49,9 @@ export declare class Game {
   readonly eventName?: string;
   readonly date?: string;
   readonly whiteName?: string;
+  readonly whiteRating?: number;
   readonly blackName?: string;
+  readonly blackRating?: number;
   readonly round?: number;
   readonly event?: Event;
   readonly whiteMember?: Member;
