@@ -147,10 +147,10 @@ async function addEventId(games) {
         // We assume events with entries (entryCount) as those which have associated games:
         const { Items } = await dynamodb.scan({
             TableName: eventTable,
-            FilterExpression: `entryCount > :count and (ecfGamesRetreived = :pending)`,
+            FilterExpression: `entryCount > :count and (ecfGamesRetreived = :isFalse or attribute_not_exists(ecfGamesRetreived))`,
             ExpressionAttributeValues: {
                 ':count': 0,
-                ':pending': false
+                ':isFalse': false
             }
         }).promise();
 
