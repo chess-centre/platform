@@ -111,7 +111,7 @@ export default function MatchNight() {
               </div>
               <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                 <p>
-                  Each upcoming matches will be listed and detailed within our website and visible when logged in. Here
+                  Each upcoming match will be listed and detailed within our website and visible when logged in. Here
                   you can find fixtures, results and individual scores of previous matches.
                 </p>
                 <p>The types of events we'll participate in:</p>

@@ -140,6 +140,28 @@
           ]
         }
       ]
+    },
+    "travel": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "trainTravelInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "busTravelInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "function": {
@@ -251,6 +273,16 @@
       "service": "Lambda"
     },
     "ecfHistoricRating": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "trainTravelInfo": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "busTravelInfo": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
