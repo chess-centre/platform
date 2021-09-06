@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
+import TravelInformation from "../../components/Travel/Information";
 import { prettyLongDate } from "../../utils/DateFormating";
 
 const getEvent = /* GraphQL */ `
@@ -128,6 +129,7 @@ export default function RapidplayEvent() {
               faster format of the game.
             </p>
           </div>
+
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             <div className="relative">
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
@@ -189,12 +191,19 @@ export default function RapidplayEvent() {
                   <li>Snacks</li>
                 </ul>
                 <p className="prose prose-teal text-gray-500">
-                  All food and drink purchases greatly help towards the support and continued running of our dedicated Chess Centre.
+                  All food and drink purchases greatly help towards the support
+                  and continued running of our dedicated Chess Centre.
+                </p>
+              </div>
+              <div className="mt-2 prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+                <h3>Facilities</h3>
+                <p className="prose prose-teal text-gray-500">
+                <i class="fad fa-wheelchair text-teal-500"></i> We apologise, our venue is located on the 1st floor with no wheelchair access. Please <a href="mailto:info@chesscentre.online">contact us</a> with any specific requests or enquiries.
                 </p>
                 <p className="prose prose-teal text-gray-500">
                   Our venue will be open from{" "}
-                  <span className="font-medium">9:30am</span> Saturday morning to
-                  welcome you all.
+                  <span className="font-medium">9:30am</span> Saturday morning
+                  to welcome you all.
                 </p>
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">
@@ -240,12 +249,16 @@ export default function RapidplayEvent() {
                   fill="url(#bedc54bc-7371-44a2-a2bc-dc68d819ae60)"
                 />
               </svg>
-              <RoundTimes
-                eventId={id}
-                eventType="rapidplay"
-                isFull={isFull}
-                isLive={isLive}
-              />
+                <RoundTimes
+                  eventId={id}
+                  eventType="rapidplay"
+                  isFull={isFull}
+                  isLive={isLive}
+                />
+              <div className="mt-5">
+                <TravelInformation eventId={id} />
+              </div>
+
               <div className="text-sm text-center mt-6 sm:hidden">
                 <Link
                   className="text-teal-600 hover:text-teal-500"

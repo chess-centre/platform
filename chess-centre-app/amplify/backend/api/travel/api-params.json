@@ -1,0 +1,61 @@
+{
+    "paths": [
+        {
+            "name": "/train/{eventId}",
+            "lambdaFunction": "trainTravelInfo",
+            "privacy": {
+                "protected": false,
+                "auth": [
+                    "/GET"
+                ],
+                "unauth": [
+                    "/GET"
+                ]
+            },
+            "policyResourceName": "/train/*"
+        },
+        {
+            "name": "/bus/{eventId}",
+            "lambdaFunction": "busTravelInfo",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/bus/*"
+        }
+    ],
+    "resourceName": "travel",
+    "apiName": "travel",
+    "functionArns": [
+        {
+            "lambdaFunction": "trainTravelInfo"
+        },
+        {
+            "lambdaFunction": "busTravelInfo"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 1,
+        "authRoleName": "amplify-platformchesscentrea-dev-45655-authRole",
+        "unAuthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "trainTravelInfo",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "busTravelInfo",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "17fec420"
+}

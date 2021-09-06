@@ -7,7 +7,7 @@ const { API_CHESSPLAYERS_MEMBERTABLE_NAME,
 const fetchGames = require("./ecfAPI").fetchGames;
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const memberTable = API_CHESSPLAYERS_MEMBERTABLE_NAME;
-const eventTable = API_CHESSPLAYERS_EVENTTABLE_NAME; //TestEventProdTable
+const eventTable = API_CHESSPLAYERS_EVENTTABLE_NAME;
 const gameTable = API_CHESSPLAYERS_GAMESTABLE_NAME;
 const TOTAL_GAMES_TO_CHECK = 150;
 const TRACKED_EVENTS = [];
