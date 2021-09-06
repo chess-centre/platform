@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { rounds } from "../../api/data.roundTimes";
 
 export default function Rounds(props) {
-  const { eventId, eventType, removeStyles, date, isFull, isLive } = props;
+  const { eventId, eventType, removeStyles, isFull, isLive } = props;
   const event = rounds.find(({ type }) => type === eventType);
 
   return (
@@ -13,17 +13,14 @@ export default function Rounds(props) {
       <div className="rounded-t-lg px-6 py-2 sm:pt-8">
         <div className="relative text-lg text-gray-700">
           <h2 className="text-center font-bold mb-4 tracking-tight text-gray-900 mt-3 sm:mt-0">
-            Rounds
+            Playing Schedule
           </h2>
-          <h3 className="text-center font-bold mb-4 tracking-tight text-gray-900 mt-3 sm:mt-0">
-            {date}
-          </h3>
           <table className="m-auto min-w-full divide-y divide-gray-200">
             <tbody className="bg-white divide-y divide-gray-200">
               {event &&
                 event.rounds.map(({ round, time, day }, key) => {
                   return (
-                    <>
+                    <React.Fragment key={key}>
                       <tr key={key}>
                         <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           Round {round}
@@ -36,7 +33,7 @@ export default function Rounds(props) {
                         </td>
                       </tr>
                       {event.break && event.break.afterRound === round && (
-                        <tr key={key}>
+                        <tr>
                           <td
                             colSpan="3"
                             className="py-2 text-center whitespace-nowrap text-xs font-medium text-gray-400"
@@ -45,11 +42,11 @@ export default function Rounds(props) {
                           </td>
                         </tr>
                       )}
-                    </>
+                    </ React.Fragment>
                   );
                 })}
               {event && event.prizeGiving && (
-                <tr key={1000}>
+                <tr>
                   <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     Prize Ceremony
                   </td>
@@ -111,7 +108,7 @@ export default function Rounds(props) {
         </div>
       </div>
       {!removeStyles && (
-        <div className="relative flex items-center sm:items-start bg-teal-700 rounded-b-lg not-italic py-5 px-6 sm:py-5 sm:pl-12 sm:pr-10"></div>
+        <div className="relative flex items-center sm:items-start bg-gray-100 rounded-b-lg not-italic py-2 px-6 sm:pl-12 sm:pr-10"></div>
       )}
     </div>
   );
