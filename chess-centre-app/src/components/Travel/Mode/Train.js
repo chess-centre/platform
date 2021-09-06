@@ -74,11 +74,10 @@ export default function Trains({ eventId }) {
 
       {isLoading && (
         <div
-          type="button"
           className="relative block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center"
         >
           <span>
-            <i className="animate-bounce fal fa-train fa-8x text-gray-200"></i>
+            <i className="animate-bounce fal fa-train fa-3x sm:fa-8x text-gray-200"></i>
           </span>
           <span className="mt-2 block text-sm font-medium text-teal-500">
             Loading...

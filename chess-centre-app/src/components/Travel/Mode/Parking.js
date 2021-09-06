@@ -32,7 +32,7 @@ export default function Parking() {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <div className="mt-4 p-2 text-sm">
+    <div className="mt-4 p-0 text-sm">
       {parkingInfo && !isLoading && (
         <div>
           <div className="overflow-auto">
@@ -84,7 +84,7 @@ export default function Parking() {
                         target="_blank"
                         rel="noreferrer"
                         type="button"
-                        className="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                        className="items-center px-3 py-2 border shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
                       >
                         <i className="far fa-directions text-white"></i>
                       </a>
