@@ -9,7 +9,7 @@ export default function Parking() {
       cost: "£6",
       distance: "0.1 mile",
       mapURL:
-        "https://www.google.co.uk/maps/dir/LS29+8DE,+Brook+St,+Ilkley/LS29+9DX,+S+Hawksworth+St,+Ilkley/@53.9257177,-1.8249175,18z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x487bfb1d8a00f4d3:0x717687c6d0ec4fbc!2m2!1d-1.8229554!2d53.9257312!1m5!1m1!1s0x487bfae24301b425:0xbf264418fb874913!2m2!1d-1.8248278!2d53.9258957!3e3?hl=en&authuser=0",
+        "https://www.google.co.uk/maps/dir/LS29+8DE,+Brook+St,+Ilkley/LS29+9DX,+S+Hawksworth+St,+Ilkley/@53.9257164,-1.8250916,18z/am=t/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x487bfb1d8a00f4d3:0x717687c6d0ec4fbc!2m2!1d-1.8229554!2d53.9257312!1m5!1m1!1s0x487bfae24301b425:0xbf264418fb874913!2m2!1d-1.8248278!2d53.9258957!3e3?hl=en&authuser=0",
     },
     {
       street: "Railway Road",
@@ -17,7 +17,7 @@ export default function Parking() {
       cost: "£5",
       distance: "0.2 miles",
       mapURL:
-        "https://www.google.co.uk/maps/dir/LS29+8DE,+Brook+St,+Ilkley/LS29+8HP,+Railway+Rd,+Ilkley/@53.9253728,-1.8227944,18z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x487bfb1d8a00f4d3:0x717687c6d0ec4fbc!2m2!1d-1.8229554!2d53.9257312!1m5!1m1!1s0x487bfb1dcbf9e1ab:0xda41a13ba810bf70!2m2!1d-1.8200189!2d53.9251337!3e3?hl=en&authuser=0",
+        "https://www.google.co.uk/maps/dir/LS29+8DE,+Brook+St,+Ilkley/LS29+8HP,+Railway+Rd,+Ilkley/@53.9253712,-1.8238887,17z/am=t/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x487bfb1d8a00f4d3:0x717687c6d0ec4fbc!2m2!1d-1.8229554!2d53.9257312!1m5!1m1!1s0x487bfb1dcbf9e1ab:0xda41a13ba810bf70!2m2!1d-1.8200189!2d53.9251337!3e3?hl=en&authuser=0",
     },
     {
       street: "Wharfe View Road",
@@ -25,7 +25,7 @@ export default function Parking() {
       cost: "£5",
       distance: "0.2 miles",
       mapURL:
-        "https://www.google.co.uk/maps/dir/LS29+8DE,+Brook+St,+Ilkley/LS29+8DY,+Wharfe+View+Rd,+Ilkley/@53.9264747,-1.8245958,17z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x487bfb1d8a00f4d3:0x717687c6d0ec4fbc!2m2!1d-1.8229554!2d53.9257312!1m5!1m1!1s0x487bfb1d0cb7ad11:0x7f88899a9ab73afd!2m2!1d-1.821411!2d53.9272119!3e3?hl=en&authuser=0",
+        "https://www.google.co.uk/maps/dir/LS29+8DE,+Brook+St,+Ilkley/LS29+8DY,+Wharfe+View+Rd,+Ilkley/@53.9264715,-1.8245958,17z/am=t/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x487bfb1d8a00f4d3:0x717687c6d0ec4fbc!2m2!1d-1.8229554!2d53.9257312!1m5!1m1!1s0x487bfb1d0cb7ad11:0x7f88899a9ab73afd!2m2!1d-1.821411!2d53.9272119!3e3?hl=en&authuser=0",
     },
   ]);
   // eslint-disable-next-line no-unused-vars
@@ -55,7 +55,7 @@ export default function Parking() {
                   scope="col"
                   className="px-2 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider"
                 >
-                  Cost*
+                  Cost
                 </th>
                 <th
                   scope="col"
@@ -84,7 +84,7 @@ export default function Parking() {
                         target="_blank"
                         rel="noreferrer"
                         type="button"
-                        className="items-center px-3 py-2 border shadow-sm text-sm leading-4 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
+                        className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
                       >
                         <i className="far fa-directions text-white"></i>
                       </a>

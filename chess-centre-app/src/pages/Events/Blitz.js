@@ -5,7 +5,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
 import { prettyLongDate } from "../../utils/DateFormating";
-import GawainAkoBlitz from "../../assets/img/blitz-gawain-ako.jpg";
+import GawainAkoBlitz from "../../assets/img/gawain-ako.jpg";
 
 const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
