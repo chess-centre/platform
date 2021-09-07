@@ -75,6 +75,10 @@
         "busTravelInfo": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
           "s3Key": "amplify-builds/busTravelInfo-65733631594d72675437-build.zip"
+        },
+        "updateGameHistory": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/updateGameHistory-3838493036473071574f-build.zip"
         }
       }
     }
