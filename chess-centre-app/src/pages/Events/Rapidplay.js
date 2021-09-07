@@ -6,6 +6,7 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
 import TravelInformation from "../../components/Travel/Information";
 import { prettyLongDate } from "../../utils/DateFormating";
+import KevinWinterRapid from "../../assets/img/kevin-winter.jpg";
 
 const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
@@ -128,6 +129,7 @@ export default function RapidplayEvent() {
               “scratch their competitive itch”, but in a more condensed and
               faster format of the game.
             </p>
+            <img alt="Gawain Ako - Blitz Chess" className="mt-4 mx-auto rounded-full w-44 sm:w-52 border-4 border-teal-500" src={KevinWinterRapid} />
           </div>
 
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
@@ -139,13 +141,6 @@ export default function RapidplayEvent() {
                   six, to ensure that players know they will receive a
                   competitive and challenging test of their skills across all
                   rounds of the competitions.
-                </p>
-                <p>
-                  Though a little “less serious” by nature than congress events,
-                  our Open Rapidplay Tournaments are nonetheless fully ECF
-                  Rapidplay events, and as such are competitive in nature. So if
-                  you like the idea of a quick fire day of competitive Chess in
-                  Ilkley then try one of our Rapidplay events.
                 </p>
                 <h3>Event Information</h3>
                 <p>
