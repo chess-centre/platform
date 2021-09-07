@@ -78,7 +78,7 @@
         },
         "updateGameHistory": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateGameHistory-3838493036473071574f-build.zip"
+          "s3Key": "amplify-builds/updateGameHistory-3265354c38586b303167-build.zip"
         }
       }
     }
