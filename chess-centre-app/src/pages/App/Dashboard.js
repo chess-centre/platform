@@ -148,8 +148,8 @@ export default function Dashboard() {
       <Stats
         entries={member?.entries?.items || 0}
         gameCount={
-          getTotalGameCount("longPlay", member?.gameInfo) +
-          getTotalGameCount("rapidPlay", member?.gameInfo)
+          getTotalGameCount("standard", member?.gameInfo) +
+          getTotalGameCount("rapid", member?.gameInfo)
         }
         rating={member?.ecfRating || 0}
       />
