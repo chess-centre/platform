@@ -10,24 +10,24 @@ const memberTable = API_CHESSPLAYERS_MEMBERTABLE_NAME;
 const eventTable = API_CHESSPLAYERS_EVENTTABLE_NAME;
 const gameTable = API_CHESSPLAYERS_GAMESTABLE_NAME;
 const TOTAL_GAMES_TO_CHECK = 150;
-const TRACKED_EVENTS = [];
+const TRACKED_EVENT_IDS = [];
 
 exports.handler = async () => {
     try {
         const {
-            Items
+            Items: membersList
         } = await dynamodb.scan({
             TableName: memberTable,
             FilterExpression: "attribute_exists(ecfId)"
         }).promise();
-        console.log(`Fetching games for ${Items.length} players.`);
-        const getAllGameInfo = await Promise.all(Items.map(member => {
+        console.log(`Fetching games for ${membersList.length} players.`);
+        const getAllGameInfo = await Promise.all(membersList.map(member => {
             // Iterates over each player in the members table and fetches their published ECF games.
             const getAllData = async () => {
                 const standardGames = await fetchGames(member.ecfId, "Standard", TOTAL_GAMES_TO_CHECK);
                 const rapidGames = await fetchGames(member.ecfId, "Rapid", TOTAL_GAMES_TO_CHECK);
-                const standardGamesValidated = stageGames(member, standardGames, Items, "standard");
-                const rapidGamesValidated = stageGames(member, rapidGames, Items, "rapid");
+                const standardGamesValidated = stageGames(member, standardGames, membersList, "standard");
+                const rapidGamesValidated = stageGames(member, rapidGames, membersList, "rapid");
 
                 return [
                     ...standardGamesValidated,
@@ -48,10 +48,10 @@ exports.handler = async () => {
         console.log(`Games ready for adding to db ${games.length}`);
         if(games && games.length > 0) {
             await addGames(games);
-            await updateEvents([...new Set(TRACKED_EVENTS)]);
+            await updateEvents([...new Set(TRACKED_EVENT_IDS)]);
             console.log(`Updated!`);
         } else {
-            console.log("No games to update.")
+            console.log("No games to update.");
         }
     } catch (error) {
         console.log(error);
@@ -147,7 +147,7 @@ async function addEventId(games) {
         // We assume events with entries (entryCount) as those which have associated games:
         const { Items } = await dynamodb.scan({
             TableName: eventTable,
-            FilterExpression: `entryCount > :count and (ecfGamesRetreived = :pending)`,
+            FilterExpression: `entryCount > :count and (ecfGamesRetreived = :pending or ecfGamesRetreived = :null)`,
             ExpressionAttributeValues: {
                 ':count': 0,
                 ':pending': false
@@ -161,7 +161,7 @@ async function addEventId(games) {
                 console.log(`Couldn't find event Id for ${JSON.stringify(game)}`);
             } else {
                 // used to ensure we don't duplicate events!
-                TRACKED_EVENTS.push(eventId);
+                TRACKED_EVENT_IDS.push(eventId);
             }
             return {
                 ...game,
