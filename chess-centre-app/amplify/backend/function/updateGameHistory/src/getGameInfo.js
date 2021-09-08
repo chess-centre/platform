@@ -47,7 +47,7 @@ function prepareGameData(games) {
     const exists = prev.find(g => g.month === month);
     if (exists) {
       const index = prev.findIndex(g => g.month === month);
-      prev[index][type] ? prev[index][type] += 1 : prev[index][type] = 0;
+      prev[index][type] ? prev[index][type] += 1 : prev[index][type] = 1;
       return [...prev];
     } else {
       return [...prev, {

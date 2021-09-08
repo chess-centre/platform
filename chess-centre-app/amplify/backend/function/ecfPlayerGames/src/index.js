@@ -67,6 +67,19 @@ exports.handler = async () => {
     return response;
 };
 
+function eventNameCheck(game) {
+    let name = "";
+    if(game.event_name) {
+        name = game.event_name;
+    } else if(game.org_name) {
+        name = game.org_name;
+    };
+    return name
+            .replace("The Chess Centre ", "")
+            .replace("The Chess Centre - ", "")
+            .replace("The Chess Centre", ""); // You'd be surprised! example event_name "The Chess Centre The Chess Centre - August Congress"
+}
+
 function stageGames(member, games, members, type) {
     // This function is carrying out a number of important tasks:
     // 1. filtering games from players by "The Chess Centre" (the ecf API only gives all games)
@@ -84,15 +97,15 @@ function stageGames(member, games, members, type) {
 
     if (json && json.games) {
         // GET only Chess Centre games:
-        const results = json.games.filter(({ event_name }) => {
-            const includes = ((event) => {
+        const results = json.games.filter(({ event_name, org_name }) => {
+            const includes = ((event, org) => {
                 try {
-                    return event.toString().includes("The Chess Centre");
+                    return event.toString().includes("The Chess Centre") || org.toString().includes("The Chess Centre");
                 } catch (error) {
                     console.log("error", event, member);
                     return false;
                 }
-            })(event_name);
+            })(event_name, org_name);
             return includes;
         });
         // MAP published games to internal members:
@@ -101,6 +114,9 @@ function stageGames(member, games, members, type) {
             if (opponent && opponent.id) {
                 const whitePlayer = game.colour === "W" ? member : opponent;
                 const blackPlayer = game.colour === "B" ? member : opponent;
+
+                const eventName = eventNameCheck(game);
+
                 return [...list, {
                     whiteMemberId: whitePlayer.id,
                     whiteName: whitePlayer.name,
@@ -109,9 +125,9 @@ function stageGames(member, games, members, type) {
                     date: game.game_date,
                     whiteRating: type === "standard" ? whitePlayer.ecfRating : whitePlayer.ecfRapid,
                     blackRating: type === "standard" ? blackPlayer.ecfRating : blackPlayer.ecfRapid,
-                    eventName: game.event_name.replace("The Chess Centre ", ""),
+                    eventName,
                     result: calculateGameResult(game.colour, game.score),
-                    type: type
+                    type
                 }];
             } else {
                 return [...list];
@@ -122,6 +138,8 @@ function stageGames(member, games, members, type) {
         return [];
     }
 }
+
+
 
 function calculateGameResult(colour, score) {
     if (score === 5) {
@@ -147,7 +165,7 @@ async function addEventId(games) {
         // We assume events with entries (entryCount) as those which have associated games:
         const { Items } = await dynamodb.scan({
             TableName: eventTable,
-            FilterExpression: `entryCount > :count and (ecfGamesRetreived = :pending or ecfGamesRetreived = :null)`,
+            FilterExpression: `entryCount > :count and (ecfGamesRetreived = :pending or attribute_not_exists(ecfGamesRetreived))`,
             ExpressionAttributeValues: {
                 ':count': 0,
                 ':pending': false
