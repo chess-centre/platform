@@ -48,7 +48,7 @@ function Stats(props) {
           </div>
           <div className="sm:ml-16 flex items-baseline pb-7 sm:pb-0">
             <p className="text-2xl font-semibold text-gray-900 dark:text-white m-auto sm:m-0">
-              {gameCount ? <Link to="/app/games">{ gameCount } </Link> : 0 }
+              {gameCount ? <Link className="text-teal-500" to="/app/games">{ gameCount } </Link> : 0 }
             </p>
 
             <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-100 dark:border-gray-700"></div>
