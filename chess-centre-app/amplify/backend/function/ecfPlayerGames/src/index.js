@@ -49,7 +49,7 @@ exports.handler = async () => {
         if(games && games.length > 0) {
             await addGames(games);
             await updateEvents([...new Set(TRACKED_EVENT_IDS)]);
-            console.log(`Updated!`);
+            console.log(`Updated games!`);
         } else {
             console.log("No games to update.");
         }
@@ -73,7 +73,7 @@ function eventNameCheck(game) {
         name = game.event_name;
     } else if(game.org_name) {
         name = game.org_name;
-    };
+    }
     return name
             .replace("The Chess Centre ", "")
             .replace("The Chess Centre - ", "")
@@ -165,30 +165,36 @@ async function addEventId(games) {
         // We assume events with entries (entryCount) as those which have associated games:
         const { Items: events } = await dynamodb.scan({
             TableName: eventTable,
-            FilterExpression: `entryCount > :count and (ecfGamesRetreived = :pending or attribute_not_exists(ecfGamesRetreived))`,
+            FilterExpression: `entryCount > :count`,
             ExpressionAttributeValues: {
-                ':count': 0,
-                ':pending': false
+                ':count': 0
             }
         }).promise();
+        
+        // and (ecfGamesRetreived = :pending or attribute_not_exists(ecfGamesRetreived))
 
-        console.log(`Events found: ${events.length}`);
+        console.log(`Events found: ${events.length} ${JSON.stringify(events.map(e => e.startDate))}`);
 
         const gamesWithEventIds = games.map(game => {
-            const event = events.find(({ startDate }) => startDate === game.date);
+            let shouldSave = true;
+            const event = events.find(({ startDate, endDate }) => startDate === game.date || endDate === game.date);
             const eventId = event?.id;
             if(!eventId) {
-                console.log(`Couldn't find event Id for ${JSON.stringify(game)} ${JSON.stringify(event)}`);
+                console.log(`Couldn't find event Id for ${JSON.stringify(game)}`);
+            } else if(event.ecfGamesRetreived) {
+                console.log(`We have already recorded this game for this event!`);
+                shouldSave = false;
             } else {
                 // used to ensure we don't duplicate events!
                 TRACKED_EVENT_IDS.push(eventId);
             }
             return {
                 ...game,
-                eventId
+                eventId,
+                shouldSave
             };
         });
-        return gamesWithEventIds.filter(game => !!game.eventId);
+        return gamesWithEventIds.filter(game => !!game.eventId && game.shouldSave);
     } catch (error) {
         console.log("error", error);
         return [];
@@ -224,6 +230,7 @@ async function addGames(games) {
 }
 
 async function updateEvents(eventIds) {
+    console.log("Updating events", eventIds);
     const updates = eventIds.map(async (id) => {
         const params = {
             TableName: eventTable,
