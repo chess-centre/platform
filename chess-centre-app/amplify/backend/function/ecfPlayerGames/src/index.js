@@ -163,7 +163,7 @@ function calculateGameResult(colour, score) {
 async function addEventId(games) {
     try {
         // We assume events with entries (entryCount) as those which have associated games:
-        const { Items } = await dynamodb.scan({
+        const { Items: events } = await dynamodb.scan({
             TableName: eventTable,
             FilterExpression: `entryCount > :count and (ecfGamesRetreived = :pending or attribute_not_exists(ecfGamesRetreived))`,
             ExpressionAttributeValues: {
@@ -172,11 +172,13 @@ async function addEventId(games) {
             }
         }).promise();
 
+        console.log(`Events found: ${events.length}`);
+
         const gamesWithEventIds = games.map(game => {
-            const event = Items.find(({ startDate }) => startDate === game.date);
-            const eventId = event?.id || undefined;
+            const event = events.find(({ startDate }) => startDate === game.date);
+            const eventId = event?.id;
             if(!eventId) {
-                console.log(`Couldn't find event Id for ${JSON.stringify(game)}`);
+                console.log(`Couldn't find event Id for ${JSON.stringify(game)} ${JSON.stringify(event)}`);
             } else {
                 // used to ensure we don't duplicate events!
                 TRACKED_EVENT_IDS.push(eventId);
@@ -216,17 +218,17 @@ async function addGames(games) {
             console.log(error);
         } 
     });
-    const response = await Promise.all(updates);
-    console.log("Updated games!", response);
+    await Promise.all(updates);
+    console.log("Updated games!");
     return;
 }
 
-async function updateEvents(events) {
-    const updates = events.map(async (event) => {
+async function updateEvents(eventIds) {
+    const updates = eventIds.map(async (id) => {
         const params = {
             TableName: eventTable,
             Key: {
-                id: event.id
+                id
             },
             UpdateExpression: "set ecfGamesRetreived=:retreived",
             ExpressionAttributeValues: {
@@ -234,10 +236,9 @@ async function updateEvents(events) {
             },
             ReturnValues: "UPDATED_NEW"
         };
-        const response = await dynamodb.update(params).promise();
-        console.log(response);
+        return await dynamodb.update(params).promise();
     });
-    const response = await Promise.all(updates);
-    console.log("Updated events!", response);
+    await Promise.all(updates);
+    console.log("Updated events!");
     return;
 }
