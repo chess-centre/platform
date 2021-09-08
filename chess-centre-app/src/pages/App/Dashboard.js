@@ -2,12 +2,13 @@ import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
 import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
-import { Line, Bar } from "react-chartjs-2";
+import { Line, Bar, Doughnut } from "react-chartjs-2";
 import ChartLegend from "../../components/Chart/ChartLegend";
 import {
   GamesChart,
   RatingProgressChart,
   getTotalGameCount,
+  ResultsDoughnut
 } from "../../api/data.dashboard";
 import { prettyDate } from "../../utils/DateFormating";
 import { useAuthState, isPaidMember } from "../../context/Auth";
@@ -153,7 +154,7 @@ export default function Dashboard() {
         }
         rating={member?.ecfRating || 0}
       />
-      <div className="grid gap-6 mb-8 md:grid-cols-2 mt-6">
+      <div className="grid gap-6 mb-8 md:grid-cols-3 mt-6">
         <ChartCard title="Rating">
           <Line {...RatingProgressChart(member?.ratingInfo)} />
           <ChartLegend
@@ -169,6 +170,16 @@ export default function Dashboard() {
             legends={[
               { title: "Standard", color: "bg-teal-brand" },
               { title: "Rapid", color: "bg-orange-brand" },
+            ]}
+          />
+        </ChartCard>
+        <ChartCard title="Results">
+          <Doughnut {...ResultsDoughnut(member?.gameInfo)} />
+          <ChartLegend
+            legends={[
+              { title: "Wins", color: "bg-teal-brand" },
+              { title: "Draws", color: "bg-pink-500" },
+              { title: "Lossses", color: "bg-orange-brand" },
             ]}
           />
         </ChartCard>
