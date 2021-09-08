@@ -130,6 +130,10 @@ export const ResultsDoughnut = (gameInfo) => {
   const stats = gameInfo ? JSON.parse(gameInfo).stats : {};
 
   const data = {
+    labels: ["Wins", "Draws", "Losses"],
+    legend: {
+      display: false,
+    },
     datasets: [
       {
         label: '# result',

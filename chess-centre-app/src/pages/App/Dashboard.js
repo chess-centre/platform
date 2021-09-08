@@ -164,22 +164,22 @@ export default function Dashboard() {
             ]}
           />
         </ChartCard>
-        <ChartCard title="Games">
-          <Bar {...GamesChart(member?.gameInfo)} />
-          <ChartLegend
-            legends={[
-              { title: "Standard", color: "bg-teal-brand" },
-              { title: "Rapid", color: "bg-orange-brand" },
-            ]}
-          />
-        </ChartCard>
         <ChartCard title="Results">
           <Doughnut {...ResultsDoughnut(member?.gameInfo)} />
           <ChartLegend
             legends={[
               { title: "Wins", color: "bg-teal-brand" },
               { title: "Draws", color: "bg-pink-500" },
-              { title: "Lossses", color: "bg-orange-brand" },
+              { title: "Losses", color: "bg-orange-brand" },
+            ]}
+          />
+        </ChartCard>
+        <ChartCard title="Games">
+          <Bar {...GamesChart(member?.gameInfo)} />
+          <ChartLegend
+            legends={[
+              { title: "Standard", color: "bg-teal-brand" },
+              { title: "Rapid", color: "bg-orange-brand" },
             ]}
           />
         </ChartCard>
