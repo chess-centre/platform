@@ -30,14 +30,6 @@ export const listGamesByWhiteMember = /* GraphQL */ `
         round
         result
         pgnStr
-        pgn {
-          bucket
-          region
-          key
-        }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
         whiteMember {
@@ -54,22 +46,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           estimatedRating
           club
           gender
-          membershipType
-          gameInfo
-          ratingInfo
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
-          stripeCustomerId
-          stripeCurrentPeriodEnd
-          stripePriceId
-          stripeProductId
         }
         blackMember {
           id
@@ -86,21 +64,6 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           club
           gender
           membershipType
-          gameInfo
-          ratingInfo
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          stripeCustomerId
-          stripeCurrentPeriodEnd
-          stripePriceId
-          stripeProductId
         }
       }
       nextToken
@@ -135,14 +98,6 @@ export const listGamesByBlackMember = /* GraphQL */ `
         round
         result
         pgnStr
-        pgn {
-          bucket
-          region
-          key
-        }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
         whiteMember {
@@ -160,21 +115,6 @@ export const listGamesByBlackMember = /* GraphQL */ `
           club
           gender
           membershipType
-          gameInfo
-          ratingInfo
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          stripeCustomerId
-          stripeCurrentPeriodEnd
-          stripePriceId
-          stripeProductId
         }
         blackMember {
           id
@@ -191,21 +131,6 @@ export const listGamesByBlackMember = /* GraphQL */ `
           club
           gender
           membershipType
-          gameInfo
-          ratingInfo
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          stripeCustomerId
-          stripeCurrentPeriodEnd
-          stripePriceId
-          stripeProductId
         }
       }
       nextToken
@@ -278,7 +203,10 @@ export default function GamesView() {
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
           <p className="text-sm text-center sm:text-left text-gray-500 dark:text-gray-300">
-            Here are competitive games played by our members in official events
+            We're activily working towards publishing all your PGNs{" "}
+            <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
+              Coming Soon
+            </span>
           </p>
         </div>
       </div>
