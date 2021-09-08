@@ -10,24 +10,24 @@ const memberTable = API_CHESSPLAYERS_MEMBERTABLE_NAME;
 const eventTable = API_CHESSPLAYERS_EVENTTABLE_NAME;
 const gameTable = API_CHESSPLAYERS_GAMESTABLE_NAME;
 const TOTAL_GAMES_TO_CHECK = 150;
-const TRACKED_EVENTS = [];
+const TRACKED_EVENT_IDS = [];
 
 exports.handler = async () => {
     try {
         const {
-            Items
+            Items: membersList
         } = await dynamodb.scan({
             TableName: memberTable,
             FilterExpression: "attribute_exists(ecfId)"
         }).promise();
-        console.log(`Fetching games for ${Items.length} players.`);
-        const getAllGameInfo = await Promise.all(Items.map(member => {
+        console.log(`Fetching games for ${membersList.length} players.`);
+        const getAllGameInfo = await Promise.all(membersList.map(member => {
             // Iterates over each player in the members table and fetches their published ECF games.
             const getAllData = async () => {
                 const standardGames = await fetchGames(member.ecfId, "Standard", TOTAL_GAMES_TO_CHECK);
                 const rapidGames = await fetchGames(member.ecfId, "Rapid", TOTAL_GAMES_TO_CHECK);
-                const standardGamesValidated = stageGames(member, standardGames, Items, "standard");
-                const rapidGamesValidated = stageGames(member, rapidGames, Items, "rapid");
+                const standardGamesValidated = stageGames(member, standardGames, membersList, "standard");
+                const rapidGamesValidated = stageGames(member, rapidGames, membersList, "rapid");
 
                 return [
                     ...standardGamesValidated,
@@ -48,10 +48,10 @@ exports.handler = async () => {
         console.log(`Games ready for adding to db ${games.length}`);
         if(games && games.length > 0) {
             await addGames(games);
-            await updateEvents([...new Set(TRACKED_EVENTS)]);
+            await updateEvents([...new Set(TRACKED_EVENT_IDS)]);
             console.log(`Updated!`);
         } else {
-            console.log("No games to update.")
+            console.log("No games to update.");
         }
     } catch (error) {
         console.log(error);
@@ -66,6 +66,19 @@ exports.handler = async () => {
     };
     return response;
 };
+
+function eventNameCheck(game) {
+    let name = "";
+    if(game.event_name) {
+        name = game.event_name;
+    } else if(game.org_name) {
+        name = game.org_name;
+    };
+    return name
+            .replace("The Chess Centre ", "")
+            .replace("The Chess Centre - ", "")
+            .replace("The Chess Centre", ""); // You'd be surprised! example event_name "The Chess Centre The Chess Centre - August Congress"
+}
 
 function stageGames(member, games, members, type) {
     // This function is carrying out a number of important tasks:
@@ -84,15 +97,15 @@ function stageGames(member, games, members, type) {
 
     if (json && json.games) {
         // GET only Chess Centre games:
-        const results = json.games.filter(({ event_name }) => {
-            const includes = ((event) => {
+        const results = json.games.filter(({ event_name, org_name }) => {
+            const includes = ((event, org) => {
                 try {
-                    return event.toString().includes("The Chess Centre");
+                    return event.toString().includes("The Chess Centre") || org.toString().includes("The Chess Centre");
                 } catch (error) {
                     console.log("error", event, member);
                     return false;
                 }
-            })(event_name);
+            })(event_name, org_name);
             return includes;
         });
         // MAP published games to internal members:
@@ -101,6 +114,9 @@ function stageGames(member, games, members, type) {
             if (opponent && opponent.id) {
                 const whitePlayer = game.colour === "W" ? member : opponent;
                 const blackPlayer = game.colour === "B" ? member : opponent;
+
+                const eventName = eventNameCheck(game);
+
                 return [...list, {
                     whiteMemberId: whitePlayer.id,
                     whiteName: whitePlayer.name,
@@ -109,9 +125,9 @@ function stageGames(member, games, members, type) {
                     date: game.game_date,
                     whiteRating: type === "standard" ? whitePlayer.ecfRating : whitePlayer.ecfRapid,
                     blackRating: type === "standard" ? blackPlayer.ecfRating : blackPlayer.ecfRapid,
-                    eventName: game.event_name.replace("The Chess Centre ", ""),
+                    eventName,
                     result: calculateGameResult(game.colour, game.score),
-                    type: type
+                    type
                 }];
             } else {
                 return [...list];
@@ -122,6 +138,8 @@ function stageGames(member, games, members, type) {
         return [];
     }
 }
+
+
 
 function calculateGameResult(colour, score) {
     if (score === 5) {
@@ -147,7 +165,7 @@ async function addEventId(games) {
         // We assume events with entries (entryCount) as those which have associated games:
         const { Items } = await dynamodb.scan({
             TableName: eventTable,
-            FilterExpression: `entryCount > :count and (ecfGamesRetreived = :pending)`,
+            FilterExpression: `entryCount > :count and (ecfGamesRetreived = :pending or attribute_not_exists(ecfGamesRetreived))`,
             ExpressionAttributeValues: {
                 ':count': 0,
                 ':pending': false
@@ -161,7 +179,7 @@ async function addEventId(games) {
                 console.log(`Couldn't find event Id for ${JSON.stringify(game)}`);
             } else {
                 // used to ensure we don't duplicate events!
-                TRACKED_EVENTS.push(eventId);
+                TRACKED_EVENT_IDS.push(eventId);
             }
             return {
                 ...game,
