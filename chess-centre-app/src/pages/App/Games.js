@@ -141,8 +141,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
 
 export default function GamesView() {
   const { isLoading, error, data } = useMember();
-  const [selectedPGN, setSelectedPGN] = useState(null);
   const [games, setGames] = useState([]);
+  const [validPgn, setValidPgn] = useState("");
 
   useEffect(() => {
     const fetchWhiteGames = async () => {
@@ -180,11 +180,12 @@ export default function GamesView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  const setSelectedGame = (pgn) => {
-    if (pgn) {
-      setSelectedPGN(pgn.replace(/["']/g, '"'));
+
+  const handleGameViewClick = (pgn) => {
+    if(pgn) {
+      setValidPgn(pgn.replace(/["']/g, '"'))
     }
-  };
+  }
 
   return (
     <div>
@@ -208,34 +209,24 @@ export default function GamesView() {
       </div>
 
       <div className="bg-white sm:mt-6 mx-auto rounded-lg shadow-xl">
-        <div className="grid grid-cols-1 sm:grid-cols-1 mt-4 sm:mt-10 py-2 px-2 gap-1">
-          <div className="">
+        <div className="grid grid-cols-1 sm:grid-cols-6 mt-4 sm:mt-10 py-2 px-2 gap-1">
+          <div className=" col-span-4">
             {!isLoading && !error && (
+              <>
               <div className="text-center sm:text-left text-base mt-5 sm:text-md text-gray-500">
-                <GamesTable games={games} setSelectedGame={setSelectedGame} />
+                <GamesTable games={games} handleGameViewClick={handleGameViewClick} />
               </div>
+              </>
             )}
           </div>
-          <div>
-            <div className="hidden sm:block relative">
-              {/* WEB SPECIFIC */}
-              <div className="mx-auto content-center overscroll-none">
-                {selectedPGN && (
-                  <PGNViewer layout={"left"} size="350">
-                    {selectedPGN}
-                  </PGNViewer>
-                )}
+          <div className="col-span-2">
+            {!isLoading && !error && (
+              <>
+              <div className="text-center -ml-1 sm:text-left text-base mt-5 sm:text-md text-gray-500">
+                  { validPgn && <PGNViewer layout={"top"}>{ validPgn }</PGNViewer> }
               </div>
-            </div>
-            <div className="block sm:hidden relative">
-              <div className="mb-4 h-full mt-4">
-                <div className="bg-white overflow-auto mx-auto content-center">
-                  {selectedPGN && (
-                    <PGNViewer layout={"top"}>{selectedPGN}</PGNViewer>
-                  )}
-                </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -243,7 +234,7 @@ export default function GamesView() {
   );
 }
 
-export const GamesTable = ({ games, setSelectedGame }) => {
+export const GamesTable = ({ games, handleGameViewClick }) => {
   return (
     <div className="shadow-md rounded-lg overflow-auto">
       <table className="w-full divide-y divide-gray-200 table-auto border-gray-300 border rounded-lg">
@@ -313,7 +304,7 @@ export const GamesTable = ({ games, setSelectedGame }) => {
                 <td className="bg-gray-100 px-2 py-3 border-r text-center">
                   {key + 1}
                 </td>
-                <td className="flex-none px-2 pl-4 py-2 border-r text-gray-700">
+                <td onClick={() => handleGameViewClick(game.pgnStr)} className="flex-none px-2 pl-4 py-2 border-r text-gray-700">
                   {game.whiteMember.name}
                 </td>
                 <td className="flex-none px-2 pl-4 py-2 border-r text-gray-700">
@@ -338,7 +329,7 @@ export const GamesTable = ({ games, setSelectedGame }) => {
                   {game.pgnStr ? (
                     <button
                       type="button"
-                      onClick={() => setSelectedGame(game.pgnStr)}
+                      onClick={() => handleGameViewClick(game.pgnStr)}
                       className={`text-teal-600 bg-gray-50 -ml-px relative inline-flex items-center px-2 py-2 rounded-md border border-gray-300
  focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
                     >

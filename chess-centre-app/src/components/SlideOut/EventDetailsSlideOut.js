@@ -52,7 +52,7 @@ function EntriesTable(data) {
       const row = {
         id: entry.member.id,
         name: entry.member.name,
-        club: entry.member.club ? truncate(entry.member.club, 18) : "",
+        club: entry.member.club ? truncate(entry.member.club, 12) : "",
         rating: getRating(entry.member).value === "0" ? getRating({ /* unrated */ }) : getRating(entry.member)
       };
       list.push(row);
