@@ -154,8 +154,6 @@ export default function GamesView() {
         query: listGamesByWhiteMember,
         variables: { whiteMemberId: data.id },
       });
-
-      console.log(items);
       setGames((state) => {
         return [...state, ...items];
       });
@@ -170,8 +168,6 @@ export default function GamesView() {
         query: listGamesByBlackMember,
         variables: { blackMemberId: data.id },
       });
-
-      console.log(items);
       setGames((state) => {
         return [...state, ...items];
       });
