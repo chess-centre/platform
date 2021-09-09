@@ -7,8 +7,7 @@ import ChartLegend from "../../components/Chart/ChartLegend";
 import {
   GamesChart,
   RatingProgressChart,
-  getTotalGameCount,
-  ResultsDoughnut
+  ResultsDoughnut,
 } from "../../api/data.dashboard";
 import { prettyDate } from "../../utils/DateFormating";
 import { useAuthState, isPaidMember } from "../../context/Auth";
@@ -109,7 +108,7 @@ export default function Dashboard() {
       }
     }
     fetchMember();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const setEventData = (data) => {
@@ -140,17 +139,21 @@ export default function Dashboard() {
       <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
           <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
+            <span className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-600 top-2">
+              BETA
+            </span>
             Insights from your previous games and results.
           </p>
         </div>
       </div>
+
       <Stats
-        entries={member?.entries?.items || 0}
-        gameCount={
-          getTotalGameCount("standard", member?.gameInfo) +
-          getTotalGameCount("rapid", member?.gameInfo)
-        }
-        rating={member?.ecfRating || 0}
+        ratingData={member?.ratingInfo ? JSON.parse(member.ratingInfo) : []}
+        eventData={{
+          past: previousEvents.length || 0,
+          future: upcomingEvents.length || 0,
+        }}
+        gameData={member?.gameInfo ? JSON.parse(member.gameInfo) : {}}
       />
       <div className="grid gap-6 mb-8 md:grid-cols-3 mt-6">
         <ChartCard title="Rating">
@@ -182,82 +185,28 @@ export default function Dashboard() {
           />
         </ChartCard>
       </div>
-      <div className="grid gap-6 mb-8 mt-4 relative min-w-0 p-4 bg-white shadow rounded-lg border-gray-100">
+      <EventTable
+        upcomingEvents={upcomingEvents}
+        previousEvents={previousEvents}
+      />
+    </>
+  );
+}
+
+function EventTable({ upcomingEvents, previousEvents }) {
+  return (
+    <div className="grid gap-6 mb-8 mt-4 relative min-w-0 p-4 bg-white shadow rounded-lg border-gray-100">
+      <div className="overflow-x-auto">
+        <p className="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+          Events
+        </p>
         <div className="overflow-x-auto">
-          <p className="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-            Events
-          </p>
-          <div className="overflow-x-auto">
-          { upcomingEvents.length > 0 ? (
+          {upcomingEvents.length > 0 ? (
             <div>
               <p className="ml-1 mt-1 text-sm text-left text-gray-500 dark:text-gray-400">
                 Your upcoming events
               </p>
               <table className="mt-2 divide-y divide-gray-200 mb-2">
-                <thead className="bg-gray-50">
-                <tr>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
-                    >
-                      Name
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
-                    >
-                      Date
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
-                    >
-                      Rounds
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
-                    >
-                      Entries
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {upcomingEvents &&
-                    upcomingEvents.map(({ event }, key) => (
-                      <tr
-                        key={key}
-                        className={key % 2 === 0 ? "bg-white hover:bg-yellow-50" : "bg-gray-50 hover:bg-yellow-50"}
-                      >
-                        <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {event.name || event.type?.name}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
-                          {prettyDate(event.startDate)}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                          {event.rounds || event.type?.rounds}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                          {event.entryCount}
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            ""
-          )}
-          <div>
-
-          
-          { previousEvents.length > 0 ? (
-            <div>
-              <p className="ml-1 mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
-                Your previous events you have participated in.
-              </p>
-              <table className="mt-2 divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
                     <th
@@ -270,7 +219,7 @@ export default function Dashboard() {
                       scope="col"
                       className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
                     >
-                      Description
+                      Date
                     </th>
                     <th
                       scope="col"
@@ -286,49 +235,147 @@ export default function Dashboard() {
                     </th>
                     <th
                       scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
                     >
-                      Date
+                      Pos.
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                    >
+                      Results
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {previousEvents.length > 0 &&
-                    previousEvents.map(({ event }, key) => (
-                      <tr
-                        key={key}
-                        className={key % 2 === 0 ? "bg-white" : "bg-gray-50"}
-                      >
-                        <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {event.name || event.type?.name}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {event.type.description}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                          {event.rounds || event.type?.rounds}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                          {event.entryCount}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
-                          {prettyDate(event.startDate)}
-                        </td>
-                      </tr>
-                    ))}
+                  {upcomingEvents &&
+                    upcomingEvents
+                      .sort(
+                        (a, b) => new Date(a.startDate) - new Date(b.startDate)
+                      )
+                      .map(({ event }, key) => (
+                        <tr
+                          key={key}
+                          className={
+                            key % 2 === 0
+                              ? "bg-white hover:bg-yellow-50"
+                              : "bg-gray-50 hover:bg-yellow-50"
+                          }
+                        >
+                          <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {event.name || event.type?.name}
+                          </td>
+                          <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
+                            {prettyDate(event.startDate)}
+                          </td>
+                          <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                            {event.rounds || event.type?.rounds}
+                          </td>
+                          <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                            {event.entryCount}
+                          </td>
+                          <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
+                              Coming soon
+                            </span>
+                          </td>
+                          <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-pink-100 text-pink-800">
+                              Coming soon
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
                 </tbody>
               </table>
-              
             </div>
           ) : (
             ""
           )}
+          <div>
+            {previousEvents.length > 0 ? (
+              <div>
+                <p className="ml-1 mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
+                  Your previous events you have participated in.
+                </p>
+                <table className="mt-2 divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                      >
+                        Name
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                      >
+                        Date
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                      >
+                        Description
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                      >
+                        Rounds
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                      >
+                        Entries
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {previousEvents.length > 0 &&
+                      previousEvents
+                        .sort(
+                          (a, b) =>
+                            new Date(a.startDate) - new Date(b.startDate)
+                        )
+                        .map(({ event }, key) => (
+                          <tr
+                            key={key}
+                            className={
+                              key % 2 === 0
+                                ? "bg-white hover:bg-yellow-50"
+                                : "bg-gray-50 hover:bg-yellow-50"
+                            }
+                          >
+                            <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                              {event.name || event.type?.name}
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
+                              {prettyDate(event.startDate)}
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900">
+                              {event.type.description}
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                              {event.rounds || event.type?.rounds}
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                              {event.entryCount}
+                            </td>
+                          </tr>
+                        ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-          
-          </div>
-          <div className="absolute rounded-b-lg bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-100"></div>
-        </div>  
+        </div>
+        <div className="absolute rounded-b-lg bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-100"></div>
       </div>
-    </>
+    </div>
   );
 }
