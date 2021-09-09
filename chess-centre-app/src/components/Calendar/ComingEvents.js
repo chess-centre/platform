@@ -312,8 +312,8 @@ function ListCalendar({
           {isLoading && (
             <>
               <ul>
-                {[1, 2, 3].map((dummy, key) => {
-                  return <ListSkeleton key={key} />;
+                {[1, 2, 3].map((dummy) => {
+                  return <ListSkeleton key={dummy} />;
                 })}
               </ul>
             </>
