@@ -573,7 +573,6 @@ function GridSkeleton() {
       <div className="text-gray-600 flex-grow mb-3">
         <p className="text-gray-900 bg-gray-300 font-thin text-base text-center w-full h-4 mb-2 rounded-md"></p>
         <p className="text-gray-900 bg-gray-300 font-thin text-base text-center w-full h-4 mb-2 rounded-md"></p>
-        <p className="hidden sm:block text-gray-900 bg-gray-300 font-thin text-base text-center w-full h-4 rounded-md"></p>
       </div>
       <div
         className={
