@@ -12,7 +12,7 @@ const getMonthByMonthGameCount = (type, data) => {
       return [...pre, month[type]];
     } else return [...pre, 0]
 
-  }, []).reverse();
+  }, []);
 };
 
 const getMonthByMonthRating = (type, data) => {
@@ -43,6 +43,7 @@ export const RatingProgressChart = (
       labels: [...months],
       datasets: [
         {
+          lineTension: 0,
           label: "Standard",
           backgroundColor: "#0694a2",
           borderColor: "#0694a2",
@@ -50,6 +51,7 @@ export const RatingProgressChart = (
           fill: false,
         },
         {
+          lineTension: 0,
           label: "Rapid",
           fill: false,
           backgroundColor: "#f0802b",
@@ -93,7 +95,7 @@ export const RatingProgressChart = (
 
 export const GamesChart = (gameInfo) => {
 
-  const data = gameInfo ? JSON.parse(gameInfo).history : [];
+  const data = gameInfo ? JSON.parse(gameInfo).history.reverse() : [];
   const months = getMonths(data);
   const standardGamesCount = getMonthByMonthGameCount("standard", data);
   const rapidGamesCount = getMonthByMonthGameCount("rapid", data);
@@ -118,10 +120,23 @@ export const GamesChart = (gameInfo) => {
     },
     options: {
       responsive: true,
+      scales: {
+        reverse: true,
+        yAxes: [{
+          ticks: {
+              beginAtZero: true,
+              userCallback: function(label) {
+                  if (Math.floor(label) === label) {
+                      return label;
+                  }
+              }
+          }
+      }],
+      }
     },
     legend: {
       display: false,
-    },
+    }
   };
 };
 

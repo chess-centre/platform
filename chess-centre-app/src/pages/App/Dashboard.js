@@ -9,6 +9,7 @@ import {
   RatingProgressChart,
   ResultsDoughnut,
 } from "../../api/data.dashboard";
+import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 import { prettyDate } from "../../utils/DateFormating";
 import { useAuthState, isPaidMember } from "../../context/Auth";
 
@@ -91,6 +92,10 @@ export default function Dashboard() {
   const [member, setMember] = useState();
   const [previousEvents, setPreviousEvents] = useState([]);
   const [upcomingEvents, setUpComingEvents] = useState([]);
+  const [slideState, setIsSlideOutOpen] = useState({
+    open: false,
+    eventDetails: {},
+  });
 
   useEffect(() => {
     async function fetchMember() {
@@ -139,7 +144,10 @@ export default function Dashboard() {
       <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
           <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
-            <span className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-600 top-2">
+            <span
+              onClick={() => setIsSlideOutOpen({ open: true })}
+              className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-600 top-2 cursor-pointer"
+            >
               BETA
             </span>
             Insights from your previous games and results.
@@ -189,6 +197,10 @@ export default function Dashboard() {
         upcomingEvents={upcomingEvents}
         previousEvents={previousEvents}
       />
+      <BetaSlideOut
+        slideState={slideState}
+        setIsSlideOutOpen={setIsSlideOutOpen}
+      ></BetaSlideOut>
     </>
   );
 }
@@ -233,18 +245,6 @@ function EventTable({ upcomingEvents, previousEvents }) {
                     >
                       Entries
                     </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
-                    >
-                      Pos.
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
-                    >
-                      Results
-                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -273,16 +273,6 @@ function EventTable({ upcomingEvents, previousEvents }) {
                           </td>
                           <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                             {event.entryCount}
-                          </td>
-                          <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-                              Coming soon
-                            </span>
-                          </td>
-                          <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-pink-100 text-pink-800">
-                              Coming soon
-                            </span>
                           </td>
                         </tr>
                       ))}
@@ -331,6 +321,18 @@ function EventTable({ upcomingEvents, previousEvents }) {
                       >
                         Entries
                       </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                      >
+                        Pos.
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                      >
+                        Results
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -363,6 +365,16 @@ function EventTable({ upcomingEvents, previousEvents }) {
                             </td>
                             <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                               {event.entryCount}
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
+                                Coming soon
+                              </span>
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-pink-100 text-pink-800">
+                                Coming soon
+                              </span>
                             </td>
                           </tr>
                         ))}
