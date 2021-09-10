@@ -5,6 +5,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
 import TravelInformation from "../../components/Travel/Information";
+import VenueInfo from "../../components/Facilities";
 import { prettyLongDate } from "../../utils/DateFormating";
 import KevinWinterRapid from "../../assets/img/kevin-winter.jpg";
 
@@ -178,29 +179,7 @@ export default function RapidplayEvent() {
                   </div>
                 </div>
               )}
-              <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-                <h3>Refreshments</h3>
-                <ul>
-                  <li>Hot Tea &amp; Coffee</li>
-                  <li>Cold Drinks</li>
-                  <li>Snacks</li>
-                </ul>
-                <p className="prose prose-teal text-gray-500">
-                  All food and drink purchases greatly help towards the support
-                  and continued running of our dedicated Chess Centre.
-                </p>
-              </div>
-              <div className="mt-2 prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-                <h3>Facilities</h3>
-                <p className="prose prose-teal text-gray-500">
-                <i class="fad fa-wheelchair text-teal-500"></i> We apologise, our venue is located on the 1st floor with no wheelchair access. Please <a href="mailto:info@chesscentre.online">contact us</a> with any specific requests or enquiries.
-                </p>
-                <p className="prose prose-teal text-gray-500">
-                  Our venue will be open from{" "}
-                  <span className="font-medium">9:30am</span> Saturday morning
-                  to welcome you all.
-                </p>
-              </div>
+              <VenueInfo />
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <Link
                   className="text-teal-600 hover:text-teal-500"
@@ -210,6 +189,7 @@ export default function RapidplayEvent() {
                 </Link>
               </div>
             </div>
+            
             <div className="mt-12 relative text-base max-w-prose mx-auto lg:mt-0 lg:max-w-none">
               <svg
                 className="hidden sm:block absolute top-0 right-0 -mt-20 -mr-20 lg:top-auto lg:right-auto lg:bottom-1/2 lg:left-1/2 lg:mt-0 lg:mr-0 xl:top-0 xl:right-0 xl:-mt-20 xl:-mr-20"
@@ -251,7 +231,7 @@ export default function RapidplayEvent() {
                   isLive={isLive}
                 />
               <div className="mt-5">
-                <TravelInformation eventId={id} />
+                <TravelInformation eventType="rapidplay" eventId={id} />
               </div>
 
               <div className="text-sm text-center mt-6 sm:hidden">

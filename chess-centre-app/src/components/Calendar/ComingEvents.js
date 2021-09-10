@@ -10,7 +10,7 @@ import {
   getDayStr,
 } from "../../utils/DateFormating";
 import { classNames, bgColor700 } from "../../utils/Classes";
-import { useEvents } from "../../api/events";
+import { useEventsLite } from "../../api/events";
 
 function GridCard({ event }) {
   return (
@@ -88,7 +88,7 @@ function GridCalendar({
       {!error ? (
         <div className="flex items-start">
           {/* Timeline buttons */}
-          {!isLoading && (
+          {(
             <div className="relative mr-4 sm:mr-12 lg:mr-22">
               <div
                 className="absolute inset-0 my-6 ml-16 pointer-events-none -z-1"
@@ -156,11 +156,10 @@ function GridCalendar({
             </>
           )}
           {isLoading && (
-            <div className="m-auto text-center">
-              <div className="text-teal-500 mb-2">
-                <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
-              </div>
-              <div className="italic text-gray-500">fetching events...</div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4 w-full">
+              {[1, 2, 3].map((dummy) => {
+                return <GridSkeleton key={dummy} />;
+              })}
             </div>
           )}
 
@@ -311,12 +310,13 @@ function ListCalendar({
           )}
 
           {isLoading && (
-            <div className="m-auto text-center">
-              <div className="text-teal-500 mb-2">
-                <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
-              </div>
-              <div className="italic text-gray-500">fetching events...</div>
-            </div>
+            <>
+              <ul>
+                {[1, 2, 3].map((dummy) => {
+                  return <ListSkeleton key={dummy} />;
+                })}
+              </ul>
+            </>
           )}
 
           {!isLoading && allDeselected && (
@@ -338,7 +338,7 @@ function ListCalendar({
 }
 
 export default function Calendar() {
-  const { isLoading, error, data } = useEvents();
+  const { isLoading, error, data } = useEventsLite();
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
   const [calenderView, setCalenderView] = useState(defaultView);
   const [selectedMenuFilter, setSelectedMenuFilter] = useState(false);
@@ -382,7 +382,7 @@ export default function Calendar() {
                 </span>{" "}
                 Coming up next
               </div>
-              {calenderView === "list" ? (
+              {calenderView === "list" && (
                 <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex m-auto">
                   <TabMonths
                     selectedMonth={selectedMonth}
@@ -390,7 +390,7 @@ export default function Calendar() {
                     setSelectedMonth={setSelectedMonth}
                   />
                 </div>
-              ) : null}
+              )}
               <div className="absolute right-0 top-16 sm:top-8 text-center sm:mt-6 sm:text-right">
                 <span className="relative z-10 inline-flex">
                   <ToggleView
@@ -479,6 +479,100 @@ function GridComingSoonCard() {
         <p className="text-gray-900 font-thin text-base text-center">
           Our latest events will be published here soon. Watch this space.
         </p>
+      </div>
+      <div
+        className={
+          "absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"
+        }
+      ></div>
+    </li>
+  );
+}
+
+/* SKELETON */
+
+function ListSkeleton() {
+  return (
+    <li className=" animate-pulse col-span-1 flex mb-3 sm:ml-28 z-0">
+      <div
+        className={`relative min-w-16 text-center sm:text-left bg-white px-1 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`}
+      >
+        <div className="w-16">
+          <p className="text-xs font-base sm:text-lg text-gray-900 mt-2 sm:mt-0 text-center  mx-4 h-5 bg-gray-200 rounded-md mb-2">
+          </p>
+        </div>
+        <div className="items-baseline pb-4 sm:pb-0 sm:text-center">
+          <p className="font-semibold text-2xl sm:text-3xl text-gray-900 m-auto cursor-pointer mx-3 h-8 bg-gray-200 rounded-lg mb-2">
+            
+          </p>
+          <p className="font-thin text-xs sm:text-sm text-gray-900 m-auto cursor-pointer h-4 mx-2 bg-gray-200 rounded-md sm:mb-2">
+          </p>
+          <div
+            className={classNames(
+              "bg-gray-300",
+              "absolute bottom-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-b-lg"
+            )}
+          ></div>
+        </div>
+      </div>
+      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+        <div className="px-4 sm:px-6 py-0 text-sm truncate w-full">
+          <p className="sm:text-2xl sm:font-medium font-bold text-lg h-7 bg-gray-300 rounded-md mb-2 w-2/3 sm:w-1/4"></p>
+          <p className="mr-1 mb-1 text-gray-900 font-thin truncate h-4 bg-gray-300 rounded-md w-full sm:w-1/2">
+
+          </p>
+          <div className="text-gray-400 flex-grow">
+            <div>
+              <p className="inline text-sm text-gray-300 mr-2">
+                <i className="fad fa-clock mr-1"></i>
+                <span className="inline"></span>{" "}
+              </p>
+              <p className="inline text-sm text-gray-300">
+                <i className="fad fa-flag mr-1"></i>
+                <span className="inline"></span>{" "}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          className={classNames(
+            "bg-gray-300",
+            "absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"
+          )}
+        ></div>
+        <div className="flex-shrink-0 pr-2">
+          <Link
+            className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
+            justify-center text-gray-300 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
+          >
+            <span className="text-gray-400">
+              <i className="fas fa-info"></i>
+            </span>
+          </Link>
+        </div>
+      </div>
+    </li>
+  );
+}
+
+function GridSkeleton() {
+  return (
+    <li
+      className={
+        "animate-pulse relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
+      }
+    >
+      <div
+        className={
+          "bg-gray-400 absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
+        }
+      ></div>
+      <header className="mb-2">
+        <div className="h4 bg-gray-300 font-red-hat-display mb-1 text-center h-14 rounded-md"></div>
+      </header>
+      <div className="text-gray-600 flex-grow mb-3">
+        <p className="text-gray-900 bg-gray-300 font-thin text-base text-center w-full h-4 mb-2 rounded-md"></p>
+        <p className="text-gray-900 bg-gray-300 font-thin text-base text-center w-full h-4 mb-2 rounded-md"></p>
       </div>
       <div
         className={
