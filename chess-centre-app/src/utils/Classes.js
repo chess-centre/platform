@@ -36,7 +36,7 @@ export function bgColor700(color) {
     case "green":
       return "bg-green-700";
     case "yellow":
-      return "bg-yellow-700";
+      return "bg-yellow-400";
     default:
       return "bg-teal-700";
   }

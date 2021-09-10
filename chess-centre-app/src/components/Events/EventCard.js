@@ -12,7 +12,7 @@ const EventHeader = ({ type, icon, name, description }) => {
       case "congress":
         return "text-blue-500";
       case "blitz":
-        return "text-yellow-500";
+        return "text-yellow-400";
       default:
         return "text-yellow-500";
     }
@@ -126,7 +126,11 @@ export default function EventCard({
           description={description}
           type={type}
         />
-        <EventPrice defaultPrice={defaultPrice} isFull={isFull} isLive={isLive} />
+        <EventPrice
+          defaultPrice={defaultPrice}
+          isFull={isFull}
+          isLive={isLive}
+        />
         <RegisterButton id={id} isFull={isFull} isLive={isLive} />
       </div>
       <div className="pt-6 pb-8 px-6">
@@ -134,18 +138,22 @@ export default function EventCard({
           Details
         </h3>
         <ul className="mt-4 space-y-2">
-          {details.map(({ icon, information, show }, key) => {
-            return show && (
-              <li key={key} className="flex items-start">
-                <div className="flex-shrink-0">
-                  <span className="text-teal-500 ml-2">
-                    <i className={icon}></i>
-                  </span>
-                </div>
-                <p className="ml-3 text-md text-gray-700">{information}</p>
-              </li>
+          {details.map(({ icon, information, show, empty }, key) => {
+            return (
+              show && !empty && (
+                <li key={key} className="flex items-start">
+                  <div className="flex-shrink-0">
+                    <span className="text-teal-500 ml-2">
+                      <i className={icon}></i>
+                    </span>
+                  </div>
+                  <p className="ml-3 text-md text-gray-700">{information}</p>
+                </li>
+              )
             );
           })}
+          {/* gnarly solution */}
+          {details.filter(({ empty }) => empty).map(() => <li key="1000" className="h-6"></li>)}
         </ul>
       </div>
       <div className="text-center p-2">
