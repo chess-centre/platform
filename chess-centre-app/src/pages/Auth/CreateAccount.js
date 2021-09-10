@@ -181,7 +181,7 @@ function Login(props) {
                   disabled={loading}
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 py-2 placeholder-opacity-50"
                   type="text"
                   placeholder="Garry"
                 />
@@ -194,7 +194,7 @@ function Login(props) {
                   disabled={loading}
                   value={surname}
                   onChange={(e) => setSurname(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 py-2 placeholder-opacity-50"
                   type="text"
                   placeholder="Kasparov"
                 />
@@ -205,7 +205,7 @@ function Login(props) {
                   disabled={loading}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 py-2 placeholder-opacity-50"
                   type="email"
                   placeholder="garry@kasparov.com"
                 />
@@ -216,7 +216,7 @@ function Login(props) {
                   disabled={loading}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 py-2 placeholder-opacity-50"
                   placeholder="***************"
                   type="password"
                 />
@@ -226,7 +226,7 @@ function Login(props) {
                 <Input
                   disabled={loading}
                   value={rePassword}
-                  className="mt-1"
+                  className="mt-1 py-2 placeholder-opacity-50"
                   onChange={(e) => setRePassword(e.target.value)}
                   placeholder="***************"
                   type="password"

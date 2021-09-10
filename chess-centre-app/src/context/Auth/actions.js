@@ -7,6 +7,15 @@ Amplify.configure({
 
 export async function loginUser(dispatch, Email, Password) {
   dispatch({ type: "REQUEST_LOGIN" });
+
+  if (!Email || !Password) {
+    dispatch({
+      type: "LOGIN_MISSING_FIELDS",
+      error: "Please enter both email and password."
+    });
+    return;
+  }
+
   const user = await Auth.signIn(Email, Password).catch((error) => {
     dispatch({ type: "LOGIN_ERROR", error: error.message });
   });
