@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
-import ImageLarge from "../../assets/img/create-account-desktop.png";
-import ImageSmall from "../../assets/img/create-account-small.jpg";
+import ImageLarge from "../../assets/img/bar.jpg";
+import ImageSmall from "../../assets/img/junior-rapidplay.jpg";
 import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
 import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal.js";
@@ -49,7 +49,7 @@ function Login(props) {
 
   const openModal = () => {
     setIsModalOpen(true);
-  }
+  };
 
   const setPrivacyPolicyStatus = (checked) => {
     checked
@@ -149,7 +149,7 @@ function Login(props) {
             />
             <img
               aria-hidden="true"
-              className="sm:hidden object-cover object-bottom w-full h-32"
+              className="sm:hidden object-cover object-bottom w-full h-36"
               src={ImageSmall}
               alt="Office"
             />{" "}
@@ -174,64 +174,103 @@ function Login(props) {
               <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Register
               </h1>
-              <div className="mb-4 text-right text-xs font-semibold text-gray-700 dark:text-gray-200">Signing up a junior member? <span className="text-teal-600 dark:text-teal-400 hover:underline" onClick={openModal}>Help</span></div>
-              <Label>
-                <span>First Name</span>
-                <Input
+              <div className="mb-4 text-right text-xs font-semibold text-gray-700 dark:text-gray-200">
+                Signing up a junior member?{" "}
+                <span
+                  className="text-teal-600 dark:text-teal-400 hover:underline"
+                  onClick={openModal}
+                >
+                  Help
+                </span>
+              </div>
+
+              <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                <label
+                  htmlFor="name"
+                  className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
+                >
+                  First Name
+                </label>
+                <input
                   disabled={loading}
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="mt-1"
                   type="text"
+                  className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
                   placeholder="Garry"
                 />
-              </Label>
-              <Label>
-                <span onClick={() => setIsSpecialLoading(!isSpecialLoading)}>
+              </div>
+
+              <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                <label
+                  htmlFor="name"
+                  className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
+                >
                   Surname
-                </span>
-                <Input
+                </label>
+                <input
                   disabled={loading}
                   value={surname}
                   onChange={(e) => setSurname(e.target.value)}
-                  className="mt-1"
                   type="text"
+                  className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
                   placeholder="Kasparov"
                 />
-              </Label>
-              <Label>
-                <span>Email</span>
-                <Input
+              </div>
+
+              <div className="mb-8 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                <label
+                  htmlFor="name"
+                  className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
+                >
+                  Email
+                </label>
+                <input
+                  autoComplete="off"
                   disabled={loading}
-                  value={email}
+                  value={surname}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="mt-1"
                   type="email"
+                  className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
                   placeholder="garry@kasparov.com"
                 />
-              </Label>
-              <Label className="mt-4">
-                <span>Password</span>
-                <Input
+              </div>
+
+              <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                <label
+                  htmlFor="name"
+                  className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
+                >
+                  Password
+                </label>
+                <input
+                  autoComplete="off"
                   disabled={loading}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="mt-1"
-                  placeholder="***************"
                   type="password"
+                  className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
+                  placeholder="***************"
                 />
-              </Label>
-              <Label className="mt-4">
-                <span>Confirm password</span>
-                <Input
+              </div>
+
+              <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                <label
+                  htmlFor="name"
+                  className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
+                >
+                  Confirm Password
+                </label>
+                <input
+                  autoComplete="off"
                   disabled={loading}
                   value={rePassword}
-                  className="mt-1"
                   onChange={(e) => setRePassword(e.target.value)}
-                  placeholder="***************"
                   type="password"
+                  className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
+                  placeholder="***************"
                 />
-              </Label>
+              </div>
 
               <Label className="mt-6" check>
                 <Input
@@ -275,7 +314,7 @@ function Login(props) {
 
               <hr className="my-8" />
 
-              <p className="mt-4">
+              <p className="mt-2">
                 <Link
                   className="text-sm font-medium text-teal-600 dark:text-teal-400 hover:underline"
                   to={`/login${props.location.search}`}
@@ -292,7 +331,10 @@ function Login(props) {
                 </Link>
               </p>
             </div>
-            <JuniorMemberSignUpModal open={isModalOpen} closeModal={closeModal} />
+            <JuniorMemberSignUpModal
+              open={isModalOpen}
+              closeModal={closeModal}
+            />
           </main>
         </div>
       </div>

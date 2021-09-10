@@ -209,8 +209,8 @@ export default function GamesView() {
       </div>
 
       <div className="bg-white sm:mt-6 mx-auto rounded-lg shadow-xl">
-        <div className="grid grid-cols-1 sm:grid-cols-6 mt-4 sm:mt-10 py-2 px-2 gap-1">
-          <div className=" col-span-4">
+        <div className="grid grid-cols-1 sm:grid-cols-6 mt-4 sm:mt-10 py-2 px-2 gap-3">
+          <div className="col-span-4">
             {!isLoading && !error && (
               <>
               <div className="text-center sm:text-left text-base mt-5 sm:text-md text-gray-500">
@@ -220,6 +220,7 @@ export default function GamesView() {
             )}
           </div>
           <div className="col-span-2">
+            <div className="m-auto">
             {!isLoading && !error && (
               <>
               <div className="text-center -ml-1 sm:text-left text-base mt-5 sm:text-md text-gray-500">
@@ -227,6 +228,7 @@ export default function GamesView() {
               </div>
               </>
             )}
+            </div>
           </div>
         </div>
       </div>
