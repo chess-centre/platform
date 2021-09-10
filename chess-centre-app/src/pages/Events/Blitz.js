@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
+import TravelInformation from "../../components/Travel/Information";
+import VenueInfo from "../../components/Facilities";
 import { prettyLongDate } from "../../utils/DateFormating";
 import GawainAkoBlitz from "../../assets/img/gawain-ako.jpg";
 
@@ -162,22 +164,7 @@ export default function BlitzEvent() {
                   </div>
                 </div>
               )}
-              <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-                <h3>Refreshments</h3>
-                <ul>
-                  <li>Hot Tea &amp; Coffee</li>
-                  <li>Cold Drinks</li>
-                  <li>Snacks</li>
-                </ul>
-                <p className="prose prose-teal text-gray-500">
-                  All food and drink purchases greatly help towards the support and continued running of our dedicated Chess Centre.
-                </p>
-                <p className="prose prose-teal text-gray-500">
-                  Our venue will be open from{" "}
-                  <span className="font-medium">9:30am</span> Saturday morning to
-                  welcome you all.
-                </p>
-              </div>
+              <VenueInfo />
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <Link
                   className="text-teal-600 hover:text-teal-500"
@@ -227,6 +214,9 @@ export default function BlitzEvent() {
                 isFull={isFull}
                 isLive={isLive}
               />
+              <div className="mt-5">
+                <TravelInformation eventType="blitz" eventId={id} />
+              </div>
               <div className="text-sm text-center mt-6 sm:hidden">
                 <Link
                   className="text-teal-600 hover:text-teal-500"

@@ -66,19 +66,19 @@
         },
         "ecfHistoricRating": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfHistoricRating-4b4d686b457544714c6e-build.zip"
+          "s3Key": "amplify-builds/ecfHistoricRating-4f70705558767a366834-build.zip"
         },
         "trainTravelInfo": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/trainTravelInfo-4d6a4a7443716e34664f-build.zip"
+          "s3Key": "amplify-builds/trainTravelInfo-6f763069386f71375547-build.zip"
         },
         "busTravelInfo": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/busTravelInfo-65733631594d72675437-build.zip"
+          "s3Key": "amplify-builds/busTravelInfo-66714c6876434c515661-build.zip"
         },
         "updateGameHistory": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateGameHistory-4c3149656b4946326655-build.zip"
+          "s3Key": "amplify-builds/updateGameHistory-585865626f4570744350-build.zip"
         }
       }
     }

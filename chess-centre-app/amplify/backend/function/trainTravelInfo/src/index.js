@@ -5,17 +5,20 @@ const getTrainInfo = require("./trainAPI").getTrainInfo;
 
 exports.handler = async (event) => {
 
-    const { eventId } = event.pathParameters;
+    const { pathParameters: { eventId: id }, body} = event;
 
     const params = {
         TableName: API_TRAINS_EVENTTABLE_NAME,
         Key: {
-            "id": eventId
+            "id": id
         }
     };
     
     const { Item: { startDate }} = await dynamodb.get(params).promise();
-    const departures = await getTrainInfo("ILK", startDate, "15:00");
+    const { eventStart, eventEnd } = JSON.parse(body);
+    console.log(`eventStart ${eventStart}, eventEnd ${eventEnd}`);
+
+    const departures = await getTrainInfo("ILK", startDate, eventEnd);
 
     const response = {
         statusCode: 200,
