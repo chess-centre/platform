@@ -22,6 +22,12 @@ export const initialState = {
 
 export const AuthReducer = (initialState, action) => {
   switch (action.type) {
+    case "LOGIN_MISSING_FIELDS":
+      return {
+        ...initialState,
+        loading: false,
+        errorMessage: action.error
+      };
     case "REQUEST_LOGIN":
       return {
         ...initialState,

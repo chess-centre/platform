@@ -91,7 +91,7 @@ function ForgotPassword(props) {
                   <span>Email</span>
                   <Input
                     disabled={loading}
-                    className="mt-1"
+                    className="mt-1 py-2 placeholder-opacity-50"
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     placeholder="garry@kasparov.com"
@@ -105,6 +105,7 @@ function ForgotPassword(props) {
                     </span>
                     <div className="flex space-x-3 mt-1 mb-3">
                       <Input
+                        className="py-2 placeholder-opacity-50"
                         disabled={loading}
                         onChange={(e) => setCode(e.target.value)}
                         type="text"
@@ -116,7 +117,7 @@ function ForgotPassword(props) {
                     <span>New Password</span>
                     <Input
                       disabled={loading}
-                      className="mt-1"
+                      className="mt-1 py-2 placeholder-opacity-50"
                       onChange={(e) => setPassword(e.target.value)}
                       type="password"
                       placeholder="Password"

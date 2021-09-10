@@ -181,7 +181,7 @@ function RatingSummary({ title, data }) {
         <p className="md:hidden inline-flex text-center items-center px-2 py-0 rounded text-xs text-gray-500">
           Rapid
         </p>
-        <div className="text-1xl md:text-4xl md:flex font-semibold text-black dark:text-white m-auto md:m-0">
+        <div className="text-1xl md:text-1xl md:flex font-semibold text-black dark:text-white m-auto md:m-0">
           {currentRapid}{" "}
           <Diff current={currentRapid} previous={previousRapid} />
         </div>

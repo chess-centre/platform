@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ImageDark from "../../assets/img/chess-players.jpg";
 import Logo from "../../assets/img/logo.svg";
@@ -15,16 +15,18 @@ import queryString from "query-string";
 import { useStripe } from "@stripe/react-stripe-js";
 
 function Login(props) {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("")
+  const [confirmEmail, setConfirmEmail] = useState("");
+  const [isChecked, setIsChecked] = useState(!!window.localStorage.getItem("email"));
   const stripe = useStripe();
-
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
 
-  async function signIn() {
+  const signIn = async () => {
     setConfirmEmail(email);
+    handleRememberMe(isChecked);
     let response = await loginUser(dispatch, email, password);
     if (response) {
       const { search } = props.location;
@@ -46,6 +48,25 @@ function Login(props) {
       signIn();
     }
   }
+
+  const handleRememberMe = (isChecked) => {
+    if(isChecked && email) {
+      window.localStorage.setItem("email", email);
+      setIsChecked(true);
+    } else {
+      window.localStorage.removeItem("email");
+      setIsChecked(false);
+    }
+  }
+
+  useEffect(() => {
+    const userEmail = window.localStorage.getItem("email");
+    if(userEmail) {
+      setEmail(userEmail);
+      setIsChecked(true);
+    }
+  }, []);
+
 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-200 dark:bg-gray-900">
@@ -83,8 +104,10 @@ function Login(props) {
                 <span>Email</span>
                 <Input
                   disabled={loading}
-                  className="mt-1"
+                  defaultValue={email}
+                  className="mt-1 py-2 placeholder-opacity-50"
                   type="email"
+                  required
                   placeholder="magnus@carlsen.com"
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -94,32 +117,52 @@ function Login(props) {
                 <span>Password</span>
                 <Input
                   disabled={loading}
-                  className="mt-1"
+                  className="mt-1 py-2 placeholder-opacity-50"
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="***************"
+                  required
                   onKeyDown={handleKeyDown}
                 />
               </Label>
 
-              <Button className="mt-4" onClick={signIn} disabled={loading}>
-                {loading ? (
-                  <div>
-                    <div className="flex">
-                      <img
-                        alt="Loading"
-                        className="h-5 w-5 mr-3"
-                        src={Loading}
-                      />{" "}
-                      <span className="inline-block align-middle text-sm font-thin">
-                        Preparing ...
-                      </span>
+              <div className="relative inline-flex w-full">
+
+
+                <Label className="mt-6" check>
+                  <Input
+                    type="checkbox"
+                    disabled={loading}
+                    defaultChecked={isChecked}
+
+                    onChange={(e) => handleRememberMe(e.target.checked)}
+                  />
+                  <span className="ml-2">
+                    Remember me
+                  </span>
+                </Label>
+
+
+                <Button className="absolute mt-4 right-0" onClick={signIn} disabled={loading}>
+                  {loading ? (
+                    <div>
+                      <div className="flex">
+                        <img
+                          alt="Loading"
+                          className="h-5 w-5 mr-3"
+                          src={Loading}
+                        />{" "}
+                        <span className="inline-block align-middle text-sm font-thin">
+                          Preparing ...
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  "Login"
-                )}
-              </Button>
+                  ) : (
+                    "Login"
+                  )}
+                </Button>
+              </div>
+
 
               <div className={errorMessage ? "my-2 text-centre" : ""}>
                 <p
@@ -131,11 +174,11 @@ function Login(props) {
                 >
                   {errorMessage}
                   {
-                  errorMessage === "User is not confirmed." && confirmEmail ? 
-                  <Link
-                  className="text-sm text-teal-600 font-medium hover:underline ml-1"
-                  to={`/register/confirm/${confirmEmail}`}>Please click here to confirm.</Link> : ""
-                }
+                    errorMessage === "User is not confirmed." && confirmEmail ?
+                      <Link
+                        className="text-sm text-teal-600 font-medium hover:underline ml-1"
+                        to={`/register/confirm/${confirmEmail}`}>Please click here to confirm.</Link> : ""
+                  }
                 </p>
               </div>
 
