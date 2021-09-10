@@ -1,7 +1,11 @@
 import React, { useState, useMemo } from "react";
 import { API } from "aws-amplify";
+import { rounds } from "../../../api/data.roundTimes";
 
-export default function Buses({ eventId }) {
+export default function Buses({ eventId, eventType }) {
+  const { eventStart, eventEnd } = rounds.find(
+    ({ type }) => type === eventType
+  );
   const [busInfo, setTrainInfo] = useState({});
   const [busRoadName, setBusRoadName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -9,13 +13,18 @@ export default function Buses({ eventId }) {
   useMemo(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const { departures, name } = await API.get("travel", `/bus/${eventId}`);
+      const { departures, name } = await API.post("travel", `/bus/${eventId}`, {
+        body: {
+          eventStart,
+          eventEnd
+        }
+      });
       setTrainInfo(departures);
       setBusRoadName(name);
       setIsLoading(false);
     };
     fetchData();
-  }, [eventId]);
+  }, [eventId, eventStart, eventEnd]);
 
   return (
     <div className="mt-4 p-2 text-sm">

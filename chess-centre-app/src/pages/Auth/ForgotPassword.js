@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import Image from "../../assets/img/chess-players.jpg";
-import { Label, Input, Button } from "@windmill/react-ui";
+import { Button } from "@windmill/react-ui";
 import {
   useAuthDispatch,
   userPasswordForgotSubmit,
@@ -87,41 +87,59 @@ function ForgotPassword(props) {
                 Forgot password
               </h1>
               {!forget ? (
-                <Label>
-                  <span>Email</span>
-                  <Input
+                <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                  <label
+                    htmlFor="name"
+                    className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
+                  >
+                    Email
+                  </label>
+                  <input
                     disabled={loading}
-                    className="mt-1"
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
+                    required
+                    className="block w-full border-0 p-0 text-teal-600 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 sm:text-sm"
                     placeholder="garry@kasparov.com"
                   />
-                </Label>
+                </div>
               ) : (
                 <>
-                  <Label>
-                    <span>
-                      Code <span className="text-xs">(send to your email)</span>
-                    </span>
-                    <div className="flex space-x-3 mt-1 mb-3">
-                      <Input
-                        disabled={loading}
-                        onChange={(e) => setCode(e.target.value)}
-                        type="text"
-                        placeholder="000000"
-                      />
-                    </div>
-                  </Label>
-                  <Label>
-                    <span>New Password</span>
-                    <Input
+                  <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                    <label
+                      htmlFor="name"
+                      className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
+                    >
+                      Code <span className="text-xs">(sent to your email)</span>
+                    </label>
+                    <input
                       disabled={loading}
-                      className="mt-1"
+                      autoCorrect="on"
+                      onChange={(e) => setCode(e.target.value)}
+                      type="number"
+                      required
+
+                      className="block w-full border-0 p-0 text-teal-600 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 sm:text-sm"
+                      placeholder="000000"
+                    />
+                  </div>
+
+                  <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                    <label
+                      htmlFor="name"
+                      className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
+                    >
+                      Password
+                    </label>
+                    <input
+                      disabled={loading}
                       onChange={(e) => setPassword(e.target.value)}
                       type="password"
-                      placeholder="Password"
+                      required
+                      className="block w-full border-0 p-0 text-teal-600 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 sm:text-sm"
+                      placeholder="***************"
                     />
-                  </Label>
+                  </div>
                 </>
               )}
               <Button
