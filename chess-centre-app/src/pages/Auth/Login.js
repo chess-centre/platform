@@ -97,34 +97,45 @@ function Login(props) {
                   />
                 )}
               </Link>
-              <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+              <h1 className="mb-4 prose prose-sm text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Login
               </h1>
-              <Label>
-                <span>Email</span>
-                <Input
+
+              <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                <label
+                  htmlFor="name"
+                  className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
+                >
+                  Email
+                </label>
+                <input
                   disabled={loading}
                   defaultValue={email}
-                  className="mt-1 py-2 placeholder-opacity-50"
+                  onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   required
+                  className="block w-full border-0 p-0 text-teal-600 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
                   placeholder="magnus@carlsen.com"
-                  onChange={(e) => setEmail(e.target.value)}
                 />
-              </Label>
+              </div>
 
-              <Label className="mt-4">
-                <span>Password</span>
-                <Input
+              <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                <label
+                  htmlFor="name"
+                  className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
+                >
+                  Password
+                </label>
+                <input
                   disabled={loading}
-                  className="mt-1 py-2 placeholder-opacity-50"
-                  type="password"
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="***************"
-                  required
                   onKeyDown={handleKeyDown}
+                  type="password"
+                  required
+                  className="block w-full border-0 p-0 text-teal-600 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
+                  placeholder="***************"
                 />
-              </Label>
+              </div>
 
               <div className="relative inline-flex w-full">
 
@@ -134,7 +145,6 @@ function Login(props) {
                     type="checkbox"
                     disabled={loading}
                     defaultChecked={isChecked}
-
                     onChange={(e) => handleRememberMe(e.target.checked)}
                   />
                   <span className="ml-2">
