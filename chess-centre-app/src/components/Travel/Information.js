@@ -8,7 +8,7 @@ function classNames(...classes) {
 }
 
 export default function TravelInformation(props) {
-  const { removeStyles, eventId } = props;
+  const { removeStyles, eventId, eventType } = props;
   const [tabs, setTabs] = useState([
     { name: "Parking", icon: "fa-cars", current: true },
     { name: "Trains", icon: "fa-train", current: false },
@@ -16,14 +16,14 @@ export default function TravelInformation(props) {
   ]);
   const [selected, setSelected] = useState("parking");
 
-  const renderInfo = (selected, eventId) => {
+  const renderInfo = (selected, eventId, eventType) => {
     switch (selected) {
       case "Parking":
         return <Parking />;
       case "Trains":
-        return <Trains eventId={eventId} />;
+        return <Trains eventId={eventId} eventType={eventType} />;
       case "Buses":
-        return <Buses eventId={eventId} />;
+        return <Buses eventId={eventId} eventType={eventType} />;
       default:
         return <Parking />;
     }
@@ -39,7 +39,7 @@ export default function TravelInformation(props) {
             Travel Information
           </h2>
           <Tabs tabs={tabs} setSelected={setSelected} setTabs={setTabs} />
-          {renderInfo(selected, eventId)}
+          {renderInfo(selected, eventId, eventType)}
         </div>
       </div>
       {!removeStyles && (

@@ -2,6 +2,8 @@
 export const rounds = [
   {
     type: "congress",
+    eventStart: "9:30",
+    eventEnd: "14:30",
     rounds: [
       {
         round: 1,
@@ -36,6 +38,8 @@ export const rounds = [
   },
   {
     type: "rapidplay",
+    eventStart: "9:30",
+    eventEnd: "15:30",
     rounds: [
       {
         round: 1,
@@ -73,6 +77,8 @@ export const rounds = [
   },
   {
     type: "blitz",
+    eventStart: "9:30",
+    eventEnd: "14:00",
     rounds: [
       {
         round: 1,
@@ -130,6 +136,8 @@ export const rounds = [
   },
   {
     type: "junior-rapidplay",
+    eventStart: "9:30",
+    eventEnd: "15:30",
     rounds: [
       {
         round: 1,
