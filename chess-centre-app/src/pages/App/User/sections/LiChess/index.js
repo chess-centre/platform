@@ -13,6 +13,7 @@ export default function LiChessFetch({ liChessUsername, liChessInfo }) {
     const [username, setUsername] = useState("");
     const [blitz, setBlitz] = useState(0);
     const [bullet, setBullet] = useState(0);
+    const [rapid, setRapid] = useState(0);
 
 
     useEffect(() => {
@@ -22,6 +23,7 @@ export default function LiChessFetch({ liChessUsername, liChessInfo }) {
                 const parsed = JSON.parse(liChessInfo);
                 setBlitz(parsed.perfs.blitz?.rating);
                 setBullet(parsed.perfs.bullet?.rating);
+                setRapid(parsed.perfs.rapid?.rating);
             } catch (error) {
                 console.log(error);
             }
@@ -36,10 +38,11 @@ export default function LiChessFetch({ liChessUsername, liChessInfo }) {
             const response = await API.post("lichess", `/user/${username}`);
             if (!response.error) {
                 const {
-                    perfs: { blitz, bullet },
+                    perfs: { blitz, bullet, rapid },
                 } = response;
                 setBlitz(blitz?.rating);
                 setBullet(bullet?.rating);
+                setRapid(rapid.rating);
                 addToast(`Successfully updated your LiChess username!`, {
                     appearance: "success",
                     autoDismiss: true,
@@ -103,7 +106,7 @@ export default function LiChessFetch({ liChessUsername, liChessInfo }) {
                 </div>
             </div>
             <div className="grid grid-cols-6 gap-6">
-                <div className="col-span-3 gap-6 mt-6">
+                <div className="col-span-2 gap-6 mt-6">
                     <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         <div className="flex">Bullet</div>
                         <input
@@ -115,7 +118,7 @@ export default function LiChessFetch({ liChessUsername, liChessInfo }) {
                         />
                     </div>
                 </div>
-                <div className="col-span-3 gap-6 mt-6">
+                <div className="col-span-2 gap-6 mt-6">
                     <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         <div className="flex">Blitz</div>
                         <input
@@ -123,6 +126,18 @@ export default function LiChessFetch({ liChessUsername, liChessInfo }) {
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                             disabled
                             value={blitz}
+                            type="text"
+                        />
+                    </div>
+                </div>
+                <div className="col-span-2 gap-6 mt-6">
+                    <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <div className="flex">Rapid</div>
+                        <input
+                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 sm:py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
+                            disabled
+                            value={rapid}
                             type="text"
                         />
                     </div>
