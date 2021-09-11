@@ -56,8 +56,8 @@ Intended to be open and transparent, striving to make it easy to reproduce and c
 ## Examples
 
 <p align="center">
-  <img width="150px" style="padding: 10px" src="img/dashboard-example.png" />
-  <img width="150px" style="padding: 10px" src="img/profile-integration-example.png" />
+  <img width="150px" style="border-color: #0694a2; border-style: solid; margin-right: 10px" src="img/dashboard-example.png" />
+  <img width="150px" style="border-color: #0694a2; border-style: solid; margin-left: 10px" src="img/profile-integration-example.png" />
 </p>
 
 ## Getting started
