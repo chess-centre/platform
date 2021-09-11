@@ -190,7 +190,7 @@ export default function RapidplayEvent() {
               </div>
             </div>
             
-            <div className="mt-12 relative text-base max-w-prose mx-auto lg:mt-0 lg:max-w-none">
+            <div className="mt-12 relative text-base max-w-prose mx-auto md:-mt-32 lg:max-w-none">
               <svg
                 className="hidden sm:block absolute top-0 right-0 -mt-20 -mr-20 lg:top-auto lg:right-auto lg:bottom-1/2 lg:left-1/2 lg:mt-0 lg:mr-0 xl:top-0 xl:right-0 xl:-mt-20 xl:-mr-20"
                 width={404}
@@ -230,7 +230,7 @@ export default function RapidplayEvent() {
                   isFull={isFull}
                   isLive={isLive}
                 />
-              <div className="mt-5">
+              <div className="mt-8">
                 <TravelInformation eventType="rapidplay" eventId={id} />
               </div>
 

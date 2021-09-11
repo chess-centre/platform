@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
+import TravelInformation from "../../components/Travel/Information";
+import VenueInfo from "../../components/Facilities";
 import { prettyLongDate } from "../../utils/DateFormating";
 
 const getEvent = /* GraphQL */ `
@@ -166,17 +168,7 @@ export default function JuniorRapidplayEvent() {
                   </div>
                 </div>
               )}
-              <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-                <h3>Facilities / Refreshments</h3>
-                <ul className="list-none">
-                  <li className="no"><span><i className="fas fa-check-circle"></i></span> Hot Tea &amp; Coffee</li>
-                  <li>Cold Drinks</li>
-                  <li>Snacks</li>
-                </ul>
-                <p>
-                  Our venue will be open from <span className="font-bold">9:30 am</span> Saturday morning to welcome you all.
-                </p>
-              </div>
+              <VenueInfo />
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <Link
                   className="text-teal-600 hover:text-teal-500"
@@ -220,7 +212,10 @@ export default function JuniorRapidplayEvent() {
                   fill="url(#bedc54bc-7371-44a2-a2bc-dc68d819ae60)"
                 />
               </svg>
-              <RoundTimes eventId={id} eventType="rapidplay" isFull={isFull} isLive={isLive} />
+              <RoundTimes eventId={id} eventType="junior-rapidplay" isFull={isFull} isLive={isLive} />
+              <div className="mt-5">
+                <TravelInformation eventType="junior-rapidplay" eventId={id} />
+              </div>
               <div className="text-sm text-center mt-6 sm:hidden">
                 <Link
                   className="text-teal-600 hover:text-teal-500"

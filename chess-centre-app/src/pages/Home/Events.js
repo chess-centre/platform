@@ -245,6 +245,11 @@ export default function Events() {
                                   }`,
                                   show: !!entryCount,
                                 },
+                                // blank placeholder for 0 entries:
+                                {
+                                  empty: !!!entryCount,
+                                  show: !!!entryCount
+                                }
                               ]}
                             />
                           </div>

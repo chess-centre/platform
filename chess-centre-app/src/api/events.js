@@ -32,8 +32,6 @@ const listEventsActive = /* GraphQL */ `
         cancelled
         isLive
         active
-        createdAt
-        updatedAt
         type {
           id
           name
@@ -54,45 +52,6 @@ const listEventsActive = /* GraphQL */ `
             id
             eventId
             memberId
-            createdAt
-            updatedAt
-            member {
-              id
-              about
-              fideId
-              ecfId
-              username
-              name
-              email
-              ecfRating
-              ecfRapid
-              ecfMembership
-              estimatedRating
-              club
-              gender
-              membershipType
-              gameInfo
-              ratingInfo
-              liChessUsername
-              liChessInfo
-              chesscomUsername
-              chesscomInfo
-            }
-            event {
-              id
-              name
-              description
-              rounds
-              time
-              startDate
-              endDate
-              maxEntries
-              entryCount
-              complete
-              cancelled
-              isLive
-              active
-            }
           }
         }
       }
