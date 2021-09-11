@@ -90,6 +90,7 @@ export default function Dashboard() {
   const [isPaid, setIsPaid] = useState(false);
   const { user } = useAuthState();
   const [member, setMember] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [previousEvents, setPreviousEvents] = useState([]);
   const [upcomingEvents, setUpComingEvents] = useState([]);
   const [slideState, setIsSlideOutOpen] = useState({
@@ -99,6 +100,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function fetchMember() {
+      setIsLoading(true);
       const {
         data: { getMember: member },
       } = await API.graphql({
@@ -111,6 +113,7 @@ export default function Dashboard() {
       if (member?.entries?.items) {
         setEventData(member.entries.items);
       }
+      setIsLoading(false);
     }
     fetchMember();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -129,18 +132,24 @@ export default function Dashboard() {
 
   return (
     <>
-      <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+      <h1 className="relative my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <i className="fad fa-chart-network text-teal-600"></i> Dashboard
-        {isPaid ? (
+        {isPaid && !isLoading && (
           <div className="inline-flex align-top top-2">
             <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
               Premium
             </span>
           </div>
-        ) : (
-          ""
         )}
+        {
+          isLoading && (
+            
+            <div className="absolute text-teal-500 mt-2 align-middle ml-2 text-sm inline-flex">
+              <i className="fal fa-spinner-third fa-spin fa-fw"></i>
+            </div>)
+        }
       </h1>
+
       <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
           <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
