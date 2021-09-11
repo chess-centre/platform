@@ -18,10 +18,11 @@ This project contains the core source code of **The Chess Centre** application i
 ### Table of Contents
 1. [Motivation](#motivation)
 2. [Objective](#objective)
-3. [Getting started](#getting-started)
+3. [Examples](#examples)
+4. [Getting started](#getting-started)
     * [Prerequisites](#prerequisites)
     * [Environments](#environments)
-4. [Tech Overview](#tech-overview)
+5. [Tech Overview](#tech-overview)
     * [Architecture](#architecture)
     * [Integrations](#integrations)
 6. [Contributing](#contributing)
@@ -52,12 +53,19 @@ Intended to be open and transparent, striving to make it easy to reproduce and c
 - 🚀 **Feature rich**
     - Embracing other chess projects / useful public APIs
 
+## Examples
+
+<p align="center">
+  <img width="150px" style="padding: 10px" src="img/dashboard-example.png" />
+  <img width="150px" style="padding: 10px" src="img/profile-integration-example.png" />
+</p>
+
 ## Getting started
 
 ### Prerequisites
 
 - [Node.js](https://git-scm.com/downloads) - v14+
-- [AWS Amplify CLI](https://docs.amplify.aws/cli/start/install) v5.3.0
+- [AWS Amplify CLI](https://docs.amplify.aws/cli/start/install) - v5.3.0
 
 Clone the project:
 
