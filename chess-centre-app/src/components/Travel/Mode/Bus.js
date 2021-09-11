@@ -9,18 +9,23 @@ export default function Buses({ eventId, eventType }) {
   const [busInfo, setTrainInfo] = useState({});
   const [busRoadName, setBusRoadName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useMemo(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const { departures, name } = await API.post("travel", `/bus/${eventId}`, {
-        body: {
-          eventStart,
-          eventEnd
-        }
-      });
-      setTrainInfo(departures);
-      setBusRoadName(name);
+      try {
+        const { departures, name } = await API.post("travel", `/bus/${eventId}`, {
+          body: {
+            eventStart,
+            eventEnd
+          }
+        });
+        setTrainInfo(departures);
+        setBusRoadName(name);    
+      } catch (error) {
+        setIsError(true);
+      }
       setIsLoading(false);
     };
     fetchData();
@@ -90,9 +95,23 @@ export default function Buses({ eventId, eventType }) {
           <span>
             <i className="animate-bounce fal fa-bus fa-3x sm:fa-8x text-gray-200"></i>
           </span>
-          <span className="mt-2 block text-sm font-medium text-teal-500">
-            Loading...
+          <span className="mt-2 block text-sm font-medium text-teal-600">
+            Checking bus schedule...
           </span>
+        </div>
+      )}
+
+{isError && (
+        <div className="relative block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+          <span>
+            <i className="fal fa-bus fa-3x sm:fa-8x text-red-800"></i>
+          </span>
+          <p className="mt-2 block text-sm font-medium text-gray-600">
+            Oops, unable to find bus schedule.
+          </p>
+          <p className="mt-2 block text-sm font-medium text-gray-600">
+            Check back later.
+          </p>
         </div>
       )}
     </div>

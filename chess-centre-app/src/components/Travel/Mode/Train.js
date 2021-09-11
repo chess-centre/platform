@@ -8,17 +8,22 @@ export default function Trains({ eventId, eventType }) {
   );
   const [trainInfo, setTrainInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useMemo(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      const { departures } = await API.post("travel", `/train/${eventId}`, {
-        body: {
-          eventStart,
-          eventEnd,
-        },
-      });
-      setTrainInfo(departures.all.slice(0, 6));
+      try {
+        const { departures } = await API.post("travel", `/train/${eventId}`, {
+          body: {
+            eventStart,
+            eventEnd,
+          },
+        });
+        setTrainInfo(departures.all.slice(0, 6));
+      } catch (error) {
+        setIsError(true);
+      }
       setIsLoading(false);
     };
     fetchData();
@@ -30,7 +35,7 @@ export default function Trains({ eventId, eventType }) {
         Departures <span className="text-xs text-gray-500">from Ilkley</span>{" "}
         <i className="fad fa-map-signs text-teal-500"></i>
       </h1>
-      {trainInfo && !isLoading && (
+      {trainInfo && !isLoading && !isError && (
         <div>
           <div className="overflow-auto">
             <table className="m-auto w-full divide-y divide-gray-200">
@@ -94,9 +99,23 @@ export default function Trains({ eventId, eventType }) {
           <span>
             <i className="animate-bounce fal fa-train fa-3x sm:fa-8x text-gray-200"></i>
           </span>
-          <span className="mt-2 block text-sm font-medium text-teal-500">
-            Loading...
+          <span className="mt-2 block text-sm font-medium text-teal-600">
+            Checking Train times...
           </span>
+        </div>
+      )}
+
+      {isError && (
+        <div className="relative block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+          <span>
+            <i className="fal fa-train fa-3x sm:fa-8x text-red-800"></i>
+          </span>
+          <p className="mt-2 block text-sm font-medium text-gray-600">
+            Oops, unable to find train schedule.
+          </p>
+          <p className="mt-2 block text-sm font-medium text-gray-600">
+            Check back later.
+          </p>
         </div>
       )}
     </div>
