@@ -7,8 +7,6 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade&style=flat&colour=light)
 [![GitHub](https://img.shields.io/github/license/chess-centre/platform?color=light)](https://github.com/chess-centre/platform/LICENSE)
 [![Version](https://img.shields.io/github/v/release/chess-centre/platform?color=light)](https://github.com/chess-centre/platform/releases)
-
-
 [![Open Issues](https://img.shields.io/github/issues/chess-centre/platform?color=orange)](https://github.com/chess-centre/platform/issues)
 [![Closed Issues](https://img.shields.io/github/issues-closed/chess-centre/platform?color=blue)](https://github.com/chess-centre/platform/issues?q=is%3Aissue+is%3Aclosed)
 
@@ -27,24 +25,28 @@ This project contains the core source code of **The Chess Centre** application i
 
 ## Motivation
 
-<span style="color:#5499ab; font-weight: bold;">The Chess Centre</span> was born through a love of Chess and the amazing community it has! This platform serves to provide chess players who enjoy playing over-the-board (in person), with modern, accessible features to easily find upcoming events, register and quickly track results of their real games!
+<span style="color:#5499ab; font-weight: bold;">The Chess Centre</span> was born through a love of Chess and the amazing community it has! This platform serves to provide keen chess players who enjoy playing over-the-board (in person) chess, with modern, accessible, easy to use features to easily find upcoming events, register and effortlessly track results of their games and others!
 
-To support this goal a dedicated centre (physical premises) has been established and opened for players to come learn and play the game. As such, supporting these fantastic facilities requires a platform that allows new and existing players to participate in events as seamlessly as possible.
+To support this goal a dedicated centre (physical premises) has been established and is open for players to come learn and play the game. As such, supporting these fantastic venue requires a platform that allows new and existing players to participate as seamlessly as possible.
 
-This project, both the centre and this platform, operate entirely as a <span style="color:#f0802b;">#not-for-profit</span> venture.
+This code project and venue operate entirely as a <span style="color:#f0802b;">#not-for-profit</span> venture.
 
 - website: [chesscentre.online](https:chesscentre.online)
   
 ## Objective
   
-The project is intended to be as open and transparent as possible, making it easy to reproduce and contribute to. The long term goals include the following technical objectives:
+It is intended to be as open and transparent as possible, making it easy to reproduce and contribute to. The long term goals include the following technical objectives:
   
-- Low cost
+- 💰 **Low cost**
     - Infrastructure
-- Scalable
+    - Support
+- 🌻 **Scalable** 
     - White-label (independent deployments)
     - Internationalisation
-- Feature rich
+- ℹ️ **Maintainable** 
+    - Admin UI
+    - Documentation
+- 🚀 **Feature rich**
     - Embracing other chess projects / useful public APIs
 
 ## Getting started
@@ -136,7 +138,6 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 <p align="center">
   <img src="img/architecture-overview.jpg" />
 </p>
-
 </details>
 
 
@@ -146,7 +147,6 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 <p align="center">
   <img src="img/live-broadcast-overview.jpg" />
 </p>
-
 </details>
 
 ### Integrations
@@ -188,7 +188,6 @@ Taking advantage of the fantastic online chess sites, we pull in live data from 
 
 - Train departures
 - Bus departures
-
 </details>
 
 ## Contributing
