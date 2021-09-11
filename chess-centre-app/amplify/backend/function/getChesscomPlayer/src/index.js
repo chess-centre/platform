@@ -27,12 +27,10 @@ exports.handler = async (event) => {
             statusCode: 404,
             body: "Must supply a username.",
         };
-    };
-
-    const url = `https://api.chess.com/pub/player/${id.toLowerCase()}/stats`;
+    }
 
     // Docs: https://www.chess.com/news/view/published-data-api
-    const getChesscomInfo = async () => {
+    const fetch = async (url) => {
         console.log("GET: getChesscomInfo", id);
         console.log("URL:", url);
         return new Promise((resolve, reject) => {
@@ -51,15 +49,26 @@ exports.handler = async (event) => {
         });
     };
 
-    const data = await getChesscomInfo().catch(e => {
+    const info = `https://api.chess.com/pub/player/${id.toLowerCase()}`;
+    const stats = `https://api.chess.com/pub/player/${id.toLowerCase()}/stats`;
+
+    const statsResponse = await fetch(stats).catch(e => {
         console.log("error", e);
     });
 
-    let parsedData = null;
+    const infoResponse = await fetch(info).catch(e => {
+        console.log("error", e);
+    });
+
+    let parsedStats = null;
+    let parsedInfo = null;
 
     try {
-        parsedData = JSON.parse(data);
-        console.log("parsed data", parsedData);
+        parsedStats = JSON.parse(statsResponse);
+        console.log("parsed stats", parsedStats);
+
+        parsedInfo = JSON.parse(infoResponse);
+        console.log("parsed info", parsedInfo);
     } catch (error) {
         console.log(error);
         return {
@@ -68,7 +77,7 @@ exports.handler = async (event) => {
         };
     }
 
-    if (parsedData && (parsedData.chess_rapid || parsedData.chess_blitz)) {
+    if (parsedInfo && parsedStats && (parsedStats.chess_rapid || parsedStats.chess_blitz)) {
         try {
             console.log("updating db");
             const params = {
@@ -79,7 +88,7 @@ exports.handler = async (event) => {
                 UpdateExpression: "set chesscomUsername=:username, chesscomInfo=:json",
                 ExpressionAttributeValues: {
                     ":username": id,
-                    ":json": JSON.parse(data),
+                    ":json": { ...parsedInfo, ...parsedStats },
                 },
                 ReturnValues: "UPDATED_NEW"
             };
@@ -95,17 +104,16 @@ exports.handler = async (event) => {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify("done"),
         };
     } else {
         return {
-            statusCode: 200,
+            statusCode: 404,
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify("error data undefined"),
         };
     }
 };
-

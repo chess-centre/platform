@@ -12,14 +12,16 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
     const [username, setUsername] = useState("");
     const [blitz, setBlitz] = useState(0);
     const [bullet, setBullet] = useState(0);
+    const [rapid, setRapid] = useState(0)
 
     useEffect(() => {
         setUsername(chesscomUsername || "");
         if(chesscomInfo) {
             try {
                 const parsed = JSON.parse(chesscomInfo);
-                setBlitz(parsed.chess_blitz.last.rating);
-                setBullet(parsed.chess_bullet.last.rating);
+                setBlitz(parsed?.chess_blitz?.last?.rating || 0);
+                setBullet(parsed?.chess_bullet?.last?.rating || 0);
+                setRapid(parsed?.chess_rapid?.last?.rating || 0);
             } catch (error) {
                 console.log(error);
             }
@@ -32,9 +34,10 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
         try {
             const response = await API.post("chesscom", `/user/${username}`);
             if (response) {
-                const { chess_bullet, chess_blitz } = response;
-                setBlitz(chess_blitz?.last.rating);
-                setBullet(chess_bullet?.last.rating);
+                const { chess_bullet, chess_blitz, chess_rapid } = response;
+                setBlitz(chess_blitz?.last?.rating || 0);
+                setBullet(chess_bullet?.last?.rating || 0);
+                setRapid(chess_rapid?.last?.rating || 0);
                 addToast(`Successfully updated your Chess.com username!`, {
                     appearance: "success",
                     autoDismiss: true,
@@ -98,7 +101,7 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                 </div>
             </div>
             <div className="grid grid-cols-6 gap-6">
-                <div className="col-span-3 gap-6 mt-6">
+                <div className="col-span-2 gap-6 mt-6">
                     <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         <div className="flex">Bullet</div>
                         <input
@@ -110,7 +113,7 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                         />
                     </div>
                 </div>
-                <div className="col-span-3 gap-6 mt-6">
+                <div className="col-span-2 gap-6 mt-6">
                     <div className="block text-sm font-medium text-gray-700">
                         <div className="flex">Blitz</div>
 
@@ -119,6 +122,19 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 disabled:opacity-60`}
                             disabled
                             value={blitz}
+                            type="text"
+                        />
+                    </div>
+                </div>
+                <div className="col-span-2 gap-6 mt-6">
+                    <div className="block text-sm font-medium text-gray-700">
+                        <div className="flex">Rapid</div>
+
+                        <input
+                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 disabled:opacity-60`}
+                            disabled
+                            value={rapid}
                             type="text"
                         />
                     </div>
