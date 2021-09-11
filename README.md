@@ -3,14 +3,17 @@
   <h1 align="center"><strong></strong> The Chess Centre | Platform</h1>
 </p>
 
+<div align="center">
+
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/chess-centre/welcome)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade&style=flat&colour=light)
-[![GitHub](https://img.shields.io/github/license/chess-centre/platform?color=light)](https://github.com/chess-centre/platform/LICENSE)
 [![Version](https://img.shields.io/github/v/release/chess-centre/platform?color=light)](https://github.com/chess-centre/platform/releases)
-[![Open Issues](https://img.shields.io/github/issues/chess-centre/platform?color=orange)](https://github.com/chess-centre/platform/issues)
-[![Closed Issues](https://img.shields.io/github/issues-closed/chess-centre/platform?color=blue)](https://github.com/chess-centre/platform/issues?q=is%3Aissue+is%3Aclosed)
-
-This project contains the core source code of **The Chess Centre** application its associated services and deployment configuration.
+[![Closed Issues](https://img.shields.io/github/issues-closed/chess-centre/platform?color=light&label=features)](https://github.com/chess-centre/platform/issues?q=is%3Aissue+is%3Aclosed)
+[![Open Issues](https://img.shields.io/github/issues/chess-centre/platform?color=orange&label=features)](https://github.com/chess-centre/platform/issues)
+  
+</div>
+  
+This project contains the core source code of **The Chess Centre** application including its associated services and deployment configuration.
 
 ### Table of Contents
 1. [Motivation](#motivation)
@@ -25,17 +28,17 @@ This project contains the core source code of **The Chess Centre** application i
 
 ## Motivation
 
-<span style="color:#5499ab; font-weight: bold;">The Chess Centre</span> was born through a love of Chess and the amazing community it has! This platform serves to provide keen chess players who enjoy playing over-the-board (in person) chess, with modern, accessible, easy to use features to easily find upcoming events, register and effortlessly track results of their games and others!
+<span style="color:#5499ab; font-weight: bold;">The Chess Centre</span> was born through a love of Chess and the amazing community it has! This platform serves to provide keen chess players who enjoy playing over-the-board (in person) chess with modern, accessible and easy to use features which enables easily find upcoming events, register and effortlessly track results of their games and others!
 
-To support this goal a dedicated centre (physical premises) has been established and is open for players to come learn and play the game. As such, supporting these fantastic venue requires a platform that allows new and existing players to participate as seamlessly as possible.
+To support this goal a dedicated centre (physical premises) have been established for players to come, learn and play the game. As such, supporting this fantastic venue requires a digital platform that enables new and existing players to participate as seamlessly as possible.
 
-This code project and venue operate entirely as a <span style="color:#f0802b;">#not-for-profit</span> venture.
+- ♟️ website: [chesscentre.online](https:chesscentre.online)
 
-- website: [chesscentre.online](https:chesscentre.online)
+Our mission is entirely <span style="color:#f0802b;">**#not-for-profit**</span> so we welcome anyone who wishes to volunteer.
   
 ## Objective
   
-It is intended to be as open and transparent as possible, making it easy to reproduce and contribute to. The long term goals include the following technical objectives:
+Intended to be open and transparent, striving to make it easy to reproduce and contribute to our model. Our long term goals include the following technical objectives:
   
 - 💰 **Low cost**
     - Infrastructure
@@ -43,9 +46,9 @@ It is intended to be as open and transparent as possible, making it easy to repr
 - 🌻 **Scalable** 
     - White-label (independent deployments)
     - Internationalisation
-- ℹ️ **Maintainable** 
-    - Admin UI
-    - Documentation
+- 🏗️ **Maintainable** 
+    - Admin capabilities (non-technical users)
+    - Documentation (technical / non-technical)
 - 🚀 **Feature rich**
     - Embracing other chess projects / useful public APIs
 
@@ -53,13 +56,13 @@ It is intended to be as open and transparent as possible, making it easy to repr
 
 ### Prerequisites
 
-- [Node.js](https://git-scm.com/downloads) v14+
+- [Node.js](https://git-scm.com/downloads) - v14+
 - [AWS Amplify CLI](https://docs.amplify.aws/cli/start/install) v5.3.0
 
 Clone the project:
 
 ```bash
-$ git clone git@github.com:chess-centre/platform.git 
+$ git clone git@github.com:chess-centre/platform.git && cd platform
 ```
 
 Change directory to the root of the React application:
@@ -80,9 +83,9 @@ Install dependencies
 $ yarn install
 ```
 
-At this point you now have everything you need for the UI, minus the Amplify backend..
+At this point you now have everything you need for the frontend UI, now you need the `AWS Amplify` backend.
 
-- Our current practise is to manually set up your **AWS IAM** user (contact [@matt-d-webb](https://github.com/matt-d-webb) for this), providing you with the requisite configure to pull the necessay backend environment. 
+- Our current practise is to manually set up your **AWS IAM** user (contact [@matt-d-webb](https://github.com/matt-d-webb) for this), providing you with the requisite configuration to pull the necessay backend environment(s). 
 
 Example configuration:
 
@@ -96,7 +99,7 @@ const config = {
 };
 ```
 
-Once you are setup with an IAM user, add this in the app root as `aws-exports.js`
+Once you are setup with an IAM user, add your config in the app root named `aws-exports.js`
 
 Then pull down the backend environment:
 
@@ -104,12 +107,12 @@ Then pull down the backend environment:
 amplify env pull dev
 ```
   
-You will now have a custom development environment!
+You will now have a custom development environment! 🥳
 
 Finally, start the project:
 
 ```bash
-$ yarn start # app runs on port 3000
+$ yarn start # default port 3000
 ```
 
 ### Environments
@@ -162,8 +165,10 @@ Taking advantage of the fantastic online chess sites, we pull in live data from 
 
 - Bullet Rating
 - Blitz Rating
+- Rapid Rating
 - Profile Image
 - Puzzle Rating
+- Online Status
 
 <p align="left">
   <img width="200px" src="img/lichess-logo.png" />
@@ -171,6 +176,8 @@ Taking advantage of the fantastic online chess sites, we pull in live data from 
 
 - Bullet Rating
 - Blitz Rating
+- Rapid Rating
+- Online Status 
 
 <p align="left">
   <img width="200px" src="img/ecf-logo.jpeg" />
@@ -181,6 +188,7 @@ Taking advantage of the fantastic online chess sites, we pull in live data from 
 - FIDE ID
 - ECF Membership Status
 - Recent Game History
+- Latest Rating
 
 <p align="left">
   <img width="200px" src="img/transport-api-logo.png" />
@@ -188,13 +196,14 @@ Taking advantage of the fantastic online chess sites, we pull in live data from 
 
 - Train departures
 - Bus departures
+  
 </details>
 
 ## Contributing
 
 See our [welcome](https://github.com/chess-centre/welcome) respository for guidelines on helping us develop this platform.
 
-## Special Thanks
+## Special thanks 👏
 
 This project used many amazing open source libraries but for chess specifically, we are grateful for the efforts of:
 
@@ -205,7 +214,7 @@ This project used many amazing open source libraries but for chess specifically,
 
 ## License
 
-[MIT](LICENSE)
+[![License](https://img.shields.io/github/license/chess-centre/platform?color=light)](https://github.com/chess-centre/platform/LICENSE)
 
 ## Contributors ✨
 
