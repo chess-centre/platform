@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from "react";
 import API from "@aws-amplify/api";
 import { useMember } from "../../api/member";
-import PGNViewer from "../../components/ChessBoard/ChessBoard";
 import GameTable from "../../components/Table/GameTable";
 
 export const listGamesByWhiteMember = /* GraphQL */ `
@@ -143,7 +142,6 @@ export const listGamesByBlackMember = /* GraphQL */ `
 export default function GamesView() {
   const { isLoading, error, data } = useMember();
   const [games, setGames] = useState([]);
-  const [validPgn, setValidPgn] = useState("");
 
   useMemo(() => {
     const fetchWhiteGames = async () => {
@@ -181,13 +179,6 @@ export default function GamesView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-
-  const handleGameViewClick = (pgn) => {
-    if(pgn) {
-      setValidPgn(pgn.replace(/["']/g, '"'))
-    }
-  }
-
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
@@ -211,7 +202,7 @@ export default function GamesView() {
           <div className="">
             {!isLoading && !error && (
               <div className="">
-                <GameTable games={games} setSelectedGame={setValidPgn} memberId={data.id} />
+                <GameTable games={games} memberId={data.id} />
               </div>
             )}
           </div>

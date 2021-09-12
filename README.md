@@ -16,30 +16,33 @@
 This project contains the core source code of **The Chess Centre** application including its associated services and deployment configuration.
 
 ### Table of Contents
-1. [Motivation](#motivation)
-2. [Objective](#objective)
-3. [Examples](#examples)
-4. [Getting started](#getting-started)
-    * [Prerequisites](#prerequisites)
-    * [Environments](#environments)
-5. [Tech Overview](#tech-overview)
-    * [Architecture](#architecture)
-    * [Integrations](#integrations)
-6. [Contributing](#contributing)
+- [Motivation](#motivation)
+- [Objective](#objective)
+- [Examples](#examples)
+- [Getting started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Environments](#environments)
+- [Tech Overview](#tech-overview)
+  - [Architecture](#architecture)
+  - [Integrations](#integrations)
+- [Contributing](#contributing)
+- [Special thanks 👏](#special-thanks-)
+- [License](#license)
+- [Contributors ✨](#contributors-)
 
 ## Motivation
 
-<span style="color:#5499ab; font-weight: bold;">The Chess Centre</span> was born through a love of Chess and the amazing community it has! This platform serves to provide keen chess players who enjoy playing over-the-board (in person) chess with modern, accessible and easy to use features which enables easily find upcoming events, register and effortlessly track results of their games and others!
+<span style="color:#5499ab; font-weight: bold;">The Chess Centre</span> was born through a love of Chess and built for the amazing community which surrounds it. Here we will provide keen chess players who enjoy playing over-the-board chess with a platform to utilise modern, accessible and easy to use features that enables them to easily find upcoming events, register and effortlessly track results of their games and those of others.
 
-To support this goal a dedicated centre (physical premises) have been established for players to come, learn and play the game. As such, supporting this fantastic venue requires a digital platform that enables new and existing players to participate as seamlessly as possible.
+To support this goal a dedicated centre has been established for players to come, learn and play the game face to face. Seamlessly linking the physical face to face game at our fantastic venue with our digital platform, enabling new and existing players to participate and track their progress effortlessly.
 
 - ♟️ website: [chesscentre.online](https:chesscentre.online)
 
-Our mission is entirely <span style="color:#f0802b;">**#not-for-profit**</span> so we welcome anyone who wishes to volunteer.
+Our mission is entirely <span style="color:#f0802b;">**#not-for-profit**</span> so we gladly welcome volunteers.
   
 ## Objective
   
-Intended to be open and transparent, striving to make it easy to reproduce and contribute to our model. Our long term goals include the following technical objectives:
+Intentionally open and transparent and striving to make it easy to reproduce and contribute to our model, our long term goals include the following technical objectives:
   
 - 💰 **Low cost**
     - Infrastructure
