@@ -14,7 +14,7 @@ export default function RoundTimesModal(props) {
   return (
     <>
       <Modal isOpen={open} onClose={() => closeModal()} >
-        <ModalBody> 
+          <ModalBody> 
             <RoundTimes eventId={eventId} eventType={eventType} removeStyles={true} />
           </ModalBody >
         <ModalFooter>

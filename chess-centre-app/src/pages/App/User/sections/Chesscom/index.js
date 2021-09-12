@@ -19,9 +19,9 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
         if(chesscomInfo) {
             try {
                 const parsed = JSON.parse(chesscomInfo);
-                setBlitz(parsed?.chess_blitz?.last?.rating || 0);
-                setBullet(parsed?.chess_bullet?.last?.rating || 0);
-                setRapid(parsed?.chess_rapid?.last?.rating || 0);
+                setBlitz(parsed?.chess_blitz?.last?.rating);
+                setBullet(parsed?.chess_bullet?.last?.rating);
+                setRapid(parsed?.chess_rapid?.last?.rating);
             } catch (error) {
                 console.log(error);
             }
@@ -100,39 +100,39 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-6 gap-6">
-                <div className="col-span-2 gap-6 mt-6">
+            <div className="grid grid-cols-6 gap-2 sm:gap-6">
+                <div className="col-span-2 mt-6">
                     <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         <div className="flex">Bullet</div>
                         <input
-                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 disabled:opacity-60`}
+                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500`}
                             disabled
                             value={bullet}
                             type="text"
                         />
                     </div>
                 </div>
-                <div className="col-span-2 gap-6 mt-6">
+                <div className="col-span-2 mt-6">
                     <div className="block text-sm font-medium text-gray-700">
                         <div className="flex">Blitz</div>
 
                         <input
-                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 disabled:opacity-60`}
+                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500`}
                             disabled
                             value={blitz}
                             type="text"
                         />
                     </div>
                 </div>
-                <div className="col-span-2 gap-6 mt-6">
+                <div className="col-span-2 mt-6">
                     <div className="block text-sm font-medium text-gray-700">
                         <div className="flex">Rapid</div>
 
                         <input
-                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 disabled:opacity-60`}
+                            className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500`}
                             disabled
                             value={rapid}
                             type="text"

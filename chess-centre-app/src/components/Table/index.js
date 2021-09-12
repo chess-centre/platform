@@ -118,8 +118,7 @@ function GlobalFilter({
   );
 }
 
-// This is a custom filter UI for selecting
-// a unique option from a list
+
 export function SelectColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id, render },
 }) {
@@ -158,16 +157,13 @@ export function SelectColumnFilter({
 }
 
 function Table({ columns, data }) {
-  // Use the state and functions returned from useTable to build your UI
+
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    page, // Instead of using 'rows', we'll use page,
-    // which has only the rows for the active page
-
-    // The rest of these things are super handy, too ;)
+    page,
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -176,7 +172,6 @@ function Table({ columns, data }) {
     nextPage,
     previousPage,
     setPageSize,
-
     state,
     preGlobalFilteredRows,
     setGlobalFilter,
@@ -188,7 +183,7 @@ function Table({ columns, data }) {
     useFilters, // useFilters!
     useGlobalFilter,
     useSortBy,
-    usePagination // new
+    usePagination
   );
 
   // Render the UI for your table
@@ -265,7 +260,7 @@ function Table({ columns, data }) {
                           return (
                             <td
                               {...cell.getCellProps()}
-                              className="px-2 py-4 whitespace-nowrap"
+                              className="whitespace-nowrap"
                               role="cell"
                             >
                               {cell.column.Cell.name === "defaultRenderer" ? (
