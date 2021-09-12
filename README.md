@@ -1,48 +1,79 @@
 <p align="center">
   <img src="img/bcc-logo.png" width="150" />
   <h1 align="center"><strong></strong> The Chess Centre | Platform</h1>
-  <h3 align="center">v2.0.0</h3
 </p>
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade&style=flat-square)
-[![GitHub](https://img.shields.io/github/license/chess-centre/welcome)](https://img.shields.io/github/license/chess-centre/welcome?style=flat-square)
+<div align="center">
 
-This project contains the source code of **The Chess Centre** application including configuration for deployment to AWS. Using a "serveless" approach with out-of-the-box Amplify for authentication, data modelling we can connect our UI to our backend resources (GraphQL -> AppSync -> Lambda -> DynamoDb).
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/chess-centre/welcome)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade&style=flat&colour=light)
+[![Version](https://img.shields.io/github/v/release/chess-centre/platform?color=light)](https://github.com/chess-centre/platform/releases)
+[![Closed Issues](https://img.shields.io/github/issues-closed/chess-centre/platform?color=light&label=features)](https://github.com/chess-centre/platform/issues?q=is%3Aissue+is%3Aclosed)
+[![Open Issues](https://img.shields.io/github/issues/chess-centre/platform?color=orange&label=features)](https://github.com/chess-centre/platform/issues)
+  
+</div>
+  
+This project contains the core source code of **The Chess Centre** application including its associated services and deployment configuration.
+
+### Table of Contents
+1. [Motivation](#motivation)
+2. [Objective](#objective)
+3. [Examples](#examples)
+4. [Getting started](#getting-started)
+    * [Prerequisites](#prerequisites)
+    * [Environments](#environments)
+5. [Tech Overview](#tech-overview)
+    * [Architecture](#architecture)
+    * [Integrations](#integrations)
+6. [Contributing](#contributing)
 
 ## Motivation
 
-**The Chess Centre** was born through a love of Chess and the amazing community it has! This platform serves to provide chess players who enjoy playing over-the-board (in person), with modern, accessible features to easily find upcoming events, register and quickly track results of their real games!
+<span style="color:#5499ab; font-weight: bold;">The Chess Centre</span> was born through a love of Chess and the amazing community it has! This platform serves to provide keen chess players who enjoy playing over-the-board (in person) chess with modern, accessible and easy to use features which enables easily find upcoming events, register and effortlessly track results of their games and others!
 
-To support this goal, a dedicated centre (physical premises) has been set up for players to come and play. Although there is a cost for members to join, **every single penny** is recycled entirely back into the growth of chess to ensure the beautiful game continues to grow and embrace the new world we live in.
+To support this goal a dedicated centre (physical premises) have been established for players to come, learn and play the game. As such, supporting this fantastic venue requires a digital platform that enables new and existing players to participate as seamlessly as possible.
 
-- website: [chesscentre.online](https:chesscentre.online)
+- ♟️ website: [chesscentre.online](https:chesscentre.online)
+
+Our mission is entirely <span style="color:#f0802b;">**#not-for-profit**</span> so we welcome anyone who wishes to volunteer.
   
 ## Objective
   
-The project is intended to be as open and transparent as possible, making it easy to reproduce and contribute to. The long term goals include the following technical objectives:
+Intended to be open and transparent, striving to make it easy to reproduce and contribute to our model. Our long term goals include the following technical objectives:
   
-- Low cost
+- 💰 **Low cost**
     - Infrastructure
-- Scalable
+    - Support
+- 🌻 **Scalable** 
     - White-label (independent deployments)
     - Internationalisation
-- Feature rich
+- 🏗️ **Maintainable** 
+    - Admin capabilities (non-technical users)
+    - Documentation (technical / non-technical)
+- 🚀 **Feature rich**
     - Embracing other chess projects / useful public APIs
 
-### Prerequisites
+## Examples
 
-- Node.js - [Download & Install Node.js](https://git-scm.com/downloads) and the npm package manager.
-- Amplify CLI - [Download & Install the Amplify CLI](https://docs.amplify.aws/cli/start/install)
+<p align="center">
+  <img width="150px" style="border-color: #0694a2; border-style: solid; margin-right: 10px" src="img/dashboard-example.png" />
+  <img width="150px" style="border-color: #0694a2; border-style: solid; margin-left: 10px" src="img/profile-integration-example.png" />
+</p>
 
 ## Getting started
 
-Using git, clone the project (_or fork it_)
+### Prerequisites
+
+- [Node.js](https://git-scm.com/downloads) - v14+
+- [AWS Amplify CLI](https://docs.amplify.aws/cli/start/install) - v5.3.0
+
+Clone the project:
 
 ```bash
-$ git clone git@github.com:chess-centre/platform.git 
+$ git clone git@github.com:chess-centre/platform.git && cd platform
 ```
 
-IMPORTANT: Change directory to the root of the React app
+Change directory to the root of the React application:
 
 ```bash
 $ cd chess-centre-app
@@ -60,9 +91,11 @@ Install dependencies
 $ yarn install
 ```
 
-At this point you now have everything you need, minus the AWS configuration to run locally.
+At this point you now have everything you need for the frontend UI, now you need the `AWS Amplify` backend.
 
-1. Our current practise is to manually set up AWS IAM users (contact [@matt-d-webb](https://github.com/matt-d-webb) for this), with specific Amplify settings which is used for authentication. Example:
+- Our current practise is to manually set up your **AWS IAM** user (contact [@matt-d-webb](https://github.com/matt-d-webb) for this), providing you with the requisite configuration to pull the necessay backend environment(s). 
+
+Example configuration:
 
 ```js
 const config = {
@@ -74,37 +107,41 @@ const config = {
 };
 ```
 
-2. The alternative is setting up your own AWS account. _This is advised if you're forking this project for your own use. Steps in the future will be added, feel free to reach out for help, happy to discussed._
+Once you are setup with an IAM user, add your config in the app root named `aws-exports.js`
 
-Once you are setup with an IAM user, you'll be sent this config which you can add in the app root as `aws-exports.js`
-
-THEN
+Then pull down the backend environment:
 
 ```bash
 amplify env pull dev
 ```
   
-You will now have a custom development environment!
+You will now have a custom development environment! 🥳
 
-FINALLY
+Finally, start the project:
 
 ```bash
-$ yarn start # app runs on port 3000
+$ yarn start # default port 3000
 ```
 
 ### Environments
   
-| Env  | Chessplayer API | Public API |
-| ------------- | ------------- | ------------- |
-| Develop  | mgsigrqo6  | bd7p7atax7 |
-| Staging  | 21bx1c1zlk  | vrhqu5b9u6  |
-| Production  | ms60qr0ljj  | zkxiggnvb5  |
+| Env  | Player API | Public API | Travel API 
+| ------------- | ------------- | ------------- | ------------- |
+| Develop  | mgsigrqo6  | bd7p7atax7 | qxbqiiv6nc |
+| Staging  | 21bx1c1zlk  | vrhqu5b9u6  | qrqz8sdqtd |
+| Production  | ms60qr0ljj  | zkxiggnvb5  | 1mif6e1fj6 |
 
-## Overview
+## Tech Overview
 
 The front-end app uses `create-react-app` and `tailwindcss`. The backend is entirely serverless using AWS (see Architecture).
 
-## Architecture
+- JavaScript
+- React
+- Tailwind CSS
+- GraphQL
+- Node
+
+### Architecture
 
 <details>
 <summary>Overview</summary>
@@ -112,7 +149,6 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 <p align="center">
   <img src="img/architecture-overview.jpg" />
 </p>
-
 </details>
 
 
@@ -122,10 +158,9 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 <p align="center">
   <img src="img/live-broadcast-overview.jpg" />
 </p>
-
 </details>
 
-## Integrations
+### Integrations
 
 <details>
 <summary>Key Details</summary>
@@ -133,23 +168,27 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 Taking advantage of the fantastic online chess sites, we pull in live data from the following sources:
 
 <p align="left">
-  <img width="200px" src="chess-centre-app/src/assets/img/chesscom.png" />
+  <img width="200px" src="img/chesscom-logo.png" />
 </p>
 
 - Bullet Rating
 - Blitz Rating
+- Rapid Rating
 - Profile Image
 - Puzzle Rating
+- Online Status
 
 <p align="left">
-  <img width="200px" src="chess-centre-app/src/assets/img/lichess.png" />
+  <img width="200px" src="img/lichess-logo.png" />
 </p>
 
 - Bullet Rating
 - Blitz Rating
+- Rapid Rating
+- Online Status 
 
 <p align="left">
-  <img width="200px" src="chess-centre-app/src/assets/img/ecf.jpeg" />
+  <img width="200px" src="img/ecf-logo.jpeg" />
 </p>
 
 - Standard Rating
@@ -157,16 +196,24 @@ Taking advantage of the fantastic online chess sites, we pull in live data from 
 - FIDE ID
 - ECF Membership Status
 - Recent Game History
+- Latest Rating
 
+<p align="left">
+  <img width="200px" src="img/transport-api-logo.png" />
+</p>
+
+- Train departures
+- Bus departures
+  
 </details>
 
 ## Contributing
 
 See our [welcome](https://github.com/chess-centre/welcome) respository for guidelines on helping us develop this platform.
 
-## Special Thanks
+## Special thanks 👏
 
-This project used many amazing open source libraries, but for chess specifically, we are grateful for the efforts of:
+This project used many amazing open source libraries but for chess specifically, we are grateful for the efforts of:
 
 - [PgnViewerJS](https://github.com/mliebelt/PgnViewerJS#readme)
 - [chess.js](https://github.com/jhlywa/chess.js)
@@ -175,7 +222,7 @@ This project used many amazing open source libraries, but for chess specifically
 
 ## License
 
-[MIT](../LICENSE.md)
+[![License](https://img.shields.io/github/license/chess-centre/platform?color=light)](https://github.com/chess-centre/platform/LICENSE)
 
 ## Contributors ✨
 
@@ -198,5 +245,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
+  
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

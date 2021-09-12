@@ -42,7 +42,7 @@ export default function Rounds(props) {
                           </td>
                         </tr>
                       )}
-                    </ React.Fragment>
+                    </React.Fragment>
                   );
                 })}
               {event && event.prizeGiving && (

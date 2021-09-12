@@ -2,15 +2,18 @@ import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
 import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
-import { Line, Bar } from "react-chartjs-2";
+import { Line, Bar, Doughnut, defaults } from "react-chartjs-2";
 import ChartLegend from "../../components/Chart/ChartLegend";
 import {
   GamesChart,
   RatingProgressChart,
-  getTotalGameCount,
+  ResultsDoughnut,
 } from "../../api/data.dashboard";
+import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 import { prettyDate } from "../../utils/DateFormating";
 import { useAuthState, isPaidMember } from "../../context/Auth";
+
+defaults.legend = false;
 
 export const getMember = /* GraphQL */ `
   query GetMember($id: ID!) {
@@ -87,11 +90,17 @@ export default function Dashboard() {
   const [isPaid, setIsPaid] = useState(false);
   const { user } = useAuthState();
   const [member, setMember] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [previousEvents, setPreviousEvents] = useState([]);
   const [upcomingEvents, setUpComingEvents] = useState([]);
+  const [slideState, setIsSlideOutOpen] = useState({
+    open: false,
+    eventDetails: {},
+  });
 
   useEffect(() => {
     async function fetchMember() {
+      setIsLoading(true);
       const {
         data: { getMember: member },
       } = await API.graphql({
@@ -104,9 +113,10 @@ export default function Dashboard() {
       if (member?.entries?.items) {
         setEventData(member.entries.items);
       }
+      setIsLoading(false);
     }
     fetchMember();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const setEventData = (data) => {
@@ -122,44 +132,63 @@ export default function Dashboard() {
 
   return (
     <>
-      <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+      <h1 className="relative my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <i className="fad fa-chart-network text-teal-600"></i> Dashboard
-        {isPaid ? (
+        {isPaid && !isLoading && (
           <div className="inline-flex align-top top-2">
             <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
               Premium
             </span>
           </div>
-        ) : (
-          ""
         )}
+        {
+          isLoading && (
+            
+            <div className="absolute text-teal-500 mt-2 align-middle ml-2 text-sm inline-flex">
+              <i className="fal fa-spinner-third fa-spin fa-fw"></i>
+            </div>)
+        }
       </h1>
+
       <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
           <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
-            <span className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-teal-100 text-teal-700 top-2">
-              Feature Coming Soon
+            <span
+              onClick={() => setIsSlideOutOpen({ open: true })}
+              className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-600 top-2 cursor-pointer"
+            >
+              BETA
             </span>
-            Here is where we'll provide insights from your previous games and
-            results.
+            Insights from your previous games and results.
           </p>
         </div>
       </div>
+
       <Stats
-        entries={member?.entries?.items || 0}
-        gameCount={
-          getTotalGameCount("standard", member?.gameInfo) +
-          getTotalGameCount("rapid", member?.gameInfo)
-        }
-        rating={member?.ecfRating || 0}
+        ratingData={member?.ratingInfo ? JSON.parse(member.ratingInfo) : []}
+        eventData={{
+          past: previousEvents.length || 0,
+          future: upcomingEvents.length || 0,
+        }}
+        gameData={member?.gameInfo ? JSON.parse(member.gameInfo) : {}}
       />
-      <div className="grid gap-6 mb-8 md:grid-cols-2 mt-6">
+      <div className="grid gap-6 mb-8 md:grid-cols-3 mt-6">
         <ChartCard title="Rating">
           <Line {...RatingProgressChart(member?.ratingInfo)} />
           <ChartLegend
             legends={[
               { title: "Standard", color: "bg-teal-brand" },
               { title: "Rapid", color: "bg-orange-brand" },
+            ]}
+          />
+        </ChartCard>
+        <ChartCard title="Results">
+          <Doughnut {...ResultsDoughnut(member?.gameInfo)} />
+          <ChartLegend
+            legends={[
+              { title: "Wins", color: "bg-teal-brand" },
+              { title: "Draws", color: "bg-pink-500" },
+              { title: "Losses", color: "bg-orange-brand" },
             ]}
           />
         </ChartCard>
@@ -173,20 +202,34 @@ export default function Dashboard() {
           />
         </ChartCard>
       </div>
-      <div className="grid gap-6 mb-8 mt-4 relative min-w-0 p-4 bg-white shadow rounded-lg border-gray-100">
+      <EventTable
+        upcomingEvents={upcomingEvents}
+        previousEvents={previousEvents}
+      />
+      <BetaSlideOut
+        slideState={slideState}
+        setIsSlideOutOpen={setIsSlideOutOpen}
+      ></BetaSlideOut>
+    </>
+  );
+}
+
+function EventTable({ upcomingEvents, previousEvents }) {
+  return (
+    <div className="grid gap-6 mb-8 mt-4 relative min-w-0 p-4 bg-white shadow rounded-lg border-gray-100">
+      <div className="overflow-x-auto">
+        <p className="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+          Events
+        </p>
         <div className="overflow-x-auto">
-          <p className="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-            Events
-          </p>
-          <div className="overflow-x-auto">
-          { upcomingEvents.length > 0 ? (
+          {upcomingEvents.length > 0 ? (
             <div>
               <p className="ml-1 mt-1 text-sm text-left text-gray-500 dark:text-gray-400">
                 Your upcoming events
               </p>
               <table className="mt-2 divide-y divide-gray-200 mb-2">
                 <thead className="bg-gray-50">
-                <tr>
+                  <tr>
                     <th
                       scope="col"
                       className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
@@ -215,25 +258,33 @@ export default function Dashboard() {
                 </thead>
                 <tbody>
                   {upcomingEvents &&
-                    upcomingEvents.map(({ event }, key) => (
-                      <tr
-                        key={key}
-                        className={key % 2 === 0 ? "bg-white hover:bg-yellow-50" : "bg-gray-50 hover:bg-yellow-50"}
-                      >
-                        <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {event.name || event.type?.name}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
-                          {prettyDate(event.startDate)}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                          {event.rounds || event.type?.rounds}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                          {event.entryCount}
-                        </td>
-                      </tr>
-                    ))}
+                    upcomingEvents
+                      .sort(
+                        (a, b) => new Date(a.startDate) - new Date(b.startDate)
+                      )
+                      .map(({ event }, key) => (
+                        <tr
+                          key={key}
+                          className={
+                            key % 2 === 0
+                              ? "bg-white hover:bg-yellow-50"
+                              : "bg-gray-50 hover:bg-yellow-50"
+                          }
+                        >
+                          <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {event.name || event.type?.name}
+                          </td>
+                          <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
+                            {prettyDate(event.startDate)}
+                          </td>
+                          <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                            {event.rounds || event.type?.rounds}
+                          </td>
+                          <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                            {event.entryCount}
+                          </td>
+                        </tr>
+                      ))}
                 </tbody>
               </table>
             </div>
@@ -241,85 +292,111 @@ export default function Dashboard() {
             ""
           )}
           <div>
-
-          
-          { previousEvents.length > 0 ? (
-            <div>
-              <p className="ml-1 mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
-                Your previous events you have participated in.
-              </p>
-              <table className="mt-2 divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
-                    >
-                      Name
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
-                    >
-                      Description
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
-                    >
-                      Rounds
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
-                    >
-                      Entries
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
-                    >
-                      Date
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {previousEvents.length > 0 &&
-                    previousEvents.map(({ event }, key) => (
-                      <tr
-                        key={key}
-                        className={key % 2 === 0 ? "bg-white" : "bg-gray-50"}
+            {previousEvents.length > 0 ? (
+              <div>
+                <p className="ml-1 mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
+                  Your previous events you have participated in.
+                </p>
+                <table className="mt-2 divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
                       >
-                        <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                          {event.name || event.type?.name}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {event.type.description}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                          {event.rounds || event.type?.rounds}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                          {event.entryCount}
-                        </td>
-                        <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
-                          {prettyDate(event.startDate)}
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-              
-            </div>
-          ) : (
-            ""
-          )}
+                        Name
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                      >
+                        Date
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-left"
+                      >
+                        Description
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                      >
+                        Rounds
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                      >
+                        Entries
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                      >
+                        Pos.
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                      >
+                        Results
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {previousEvents.length > 0 &&
+                      previousEvents
+                        .sort(
+                          (a, b) =>
+                            new Date(a.startDate) - new Date(b.startDate)
+                        )
+                        .map(({ event }, key) => (
+                          <tr
+                            key={key}
+                            className={
+                              key % 2 === 0
+                                ? "bg-white hover:bg-yellow-50"
+                                : "bg-gray-50 hover:bg-yellow-50"
+                            }
+                          >
+                            <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                              {event.name || event.type?.name}
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
+                              {prettyDate(event.startDate)}
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900">
+                              {event.type.description}
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                              {event.rounds || event.type?.rounds}
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                              {event.entryCount}
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
+                                Coming soon
+                              </span>
+                            </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
+                              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-pink-100 text-pink-800">
+                                Coming soon
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-          
-          </div>
-          <div className="absolute rounded-b-lg bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-100"></div>
-        </div>  
+        </div>
+        <div className="absolute rounded-b-lg bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 sm:px-6 border-t border-gray-100"></div>
       </div>
-    </>
+    </div>
   );
 }

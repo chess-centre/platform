@@ -18,21 +18,6 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-function Button({ children, className, ...rest }) {
-  return (
-    <button
-      type="button"
-      className={classNames(
-        "relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50",
-        className
-      )}
-      {...rest}
-    >
-      {children}
-    </button>
-  );
-}
-
 function PageButton({ children, className, ...rest }) {
   return (
     <button
@@ -112,11 +97,16 @@ function GlobalFilter({
   }, 200);
 
   return (
-    <label className="flex gap-x-2 items-baseline text-sm">
-      <span className="text-gray-700">Search: </span>
+    <div className="relative bg-white border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-600 focus-within:border-teal-600">
+      <label
+        htmlFor="name"
+        className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900"
+      >
+        Search
+      </label>
       <input
         type="text"
-        className="rounded-md text-sm border-gray-300 shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50"
+        className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 text-sm"
         value={value || ""}
         onChange={(e) => {
           setValue(e.target.value);
@@ -124,7 +114,7 @@ function GlobalFilter({
         }}
         placeholder={`${count} games...`}
       />
-    </label>
+    </div>
   );
 }
 
@@ -145,8 +135,8 @@ export function SelectColumnFilter({
 
   // Render a multi-select box
   return (
-    <label className="flex gap-x-2 items-baseline text-sm">
-      <span className="text-gray-700">{render("Header")}: </span>
+    <label className="hidden sm:block gap-x-2 items-baseline text-sm">
+      <span className="text-sm text-black">{render("Header")}: </span>
       <select
         className="rounded-md text-sm border-gray-300 shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50"
         name={id}
@@ -164,43 +154,6 @@ export function SelectColumnFilter({
         ))}
       </select>
     </label>
-  );
-}
-
-export function StatusPill({ value }) {
-  const status = value ? value.toLowerCase() : "unknown";
-
-  return (
-    <span
-      className={classNames(
-        "px-3 py-1 uppercase leading-wide font-bold text-xs rounded-full shadow-sm",
-        status.startsWith("active") ? "bg-green-100 text-green-800" : null,
-        status.startsWith("inactive") ? "bg-yellow-100 text-yellow-800" : null,
-        status.startsWith("offline") ? "bg-red-100 text-red-800" : null
-      )}
-    >
-      {status}
-    </span>
-  );
-}
-
-export function AvatarCell({ value, column, row }) {
-  return (
-    <div className="flex items-center">
-      <div className="flex-shrink-0 h-10 w-10">
-        <img
-          className="h-10 w-10 rounded-full"
-          src={row.original[column.imgAccessor]}
-          alt=""
-        />
-      </div>
-      <div className="ml-4">
-        <div className="text-sm font-medium text-gray-900">{value}</div>
-        <div className="text-sm text-gray-500">
-          {row.original[column.emailAccessor]}
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -241,7 +194,7 @@ function Table({ columns, data }) {
   // Render the UI for your table
   return (
     <>
-      <div className="sm:flex sm:gap-x-2">
+      <div className="mr-2 sm:flex sm:gap-x-2">
         <GlobalFilter
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={state.globalFilter}
@@ -250,7 +203,7 @@ function Table({ columns, data }) {
         {headerGroups.map((headerGroup) =>
           headerGroup.headers.map((column) =>
             column.Filter ? (
-              <div className="mt-2 sm:mt-0" key={column.id}>
+              <div className="mt-0" key={column.id}>
                 {column.render("Filter")}
               </div>
             ) : null
@@ -258,13 +211,13 @@ function Table({ columns, data }) {
         )}
       </div>
       {/* table */}
-      <div className="mt-4 flex flex-col">
-        <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+      <div className="relative mt-4 sm:flex sm:flex-col">
+        <div className=" ">
+          <div className="">
+            <div className="overflow-auto w-80 sm:w-full shadow border-b border-gray-200 rounded-lg">
               <table
                 {...getTableProps()}
-                className="min-w-full divide-y divide-gray-200"
+                className="w-full table-auto divide-y divide-gray-200"
               >
                 <thead className="bg-teal-700">
                   {headerGroups.map((headerGroup) => (
@@ -274,7 +227,7 @@ function Table({ columns, data }) {
                         // we can add them into the header props
                         <th
                           scope="col"
-                          className="group px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider"
+                          className="group px-2 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider"
                           {...column.getHeaderProps(
                             column.getSortByToggleProps()
                           )}
@@ -312,7 +265,7 @@ function Table({ columns, data }) {
                           return (
                             <td
                               {...cell.getCellProps()}
-                              className="px-6 py-4 whitespace-nowrap"
+                              className="px-2 py-4 whitespace-nowrap"
                               role="cell"
                             >
                               {cell.column.Cell.name === "defaultRenderer" ? (
@@ -336,38 +289,30 @@ function Table({ columns, data }) {
       </div>
       {/* Pagination */}
       <div className="py-3 flex items-center justify-between">
-        <div className="flex-1 flex justify-between sm:hidden">
-          <Button onClick={() => previousPage()} disabled={!canPreviousPage}>
-            Previous
-          </Button>
-          <Button onClick={() => nextPage()} disabled={!canNextPage}>
-            Next
-          </Button>
-        </div>
-        <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+        <div className="flex-1 flex items-center justify-between">
           <div className="flex gap-x-2 items-baseline">
-            <span className="text-sm text-gray-700">
+            <span className="text-xs text-gray-700">
               Page <span className="font-medium">{state.pageIndex + 1}</span> of{" "}
               <span className="font-medium">{pageOptions.length}</span>
             </span>
             <label>
               <span className="sr-only">Items Per Page</span>
               <select
-                className="mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50"
+                className="mt-1 block w-full text-xs rounded-md border-gray-300 shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-500 focus:ring-opacity-50"
                 value={state.pageSize}
                 onChange={(e) => {
                   setPageSize(Number(e.target.value));
                 }}
               >
                 {[5, 10, 20].map((pageSize) => (
-                  <option key={pageSize} value={pageSize}>
+                  <option className="hover:bg-teal-200" key={pageSize} value={pageSize}>
                     Show {pageSize}
                   </option>
                 ))}
               </select>
             </label>
           </div>
-          <div>
+          <div className="hidden sm:block">
             <nav
               className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
               aria-label="Pagination"

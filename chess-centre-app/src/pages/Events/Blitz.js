@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
+import TravelInformation from "../../components/Travel/Information";
+import VenueInfo from "../../components/Facilities";
 import { prettyLongDate } from "../../utils/DateFormating";
 import GawainAkoBlitz from "../../assets/img/gawain-ako.jpg";
 
@@ -122,20 +124,34 @@ export default function BlitzEvent() {
 
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="text-center prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
-              Ready for some adrenaline pumping, hand trembling, piece flying chess? Join us for our quick-fire one-day blitz event.
+              Ready for some adrenaline pumping, hand trembling, piece flying
+              chess? Join us for our quick-fire one-day blitz event.
             </p>
-            <img alt="Gawain Ako - Blitz Chess" className="mt-4 mx-auto rounded-full w-44 sm:w-52 border-4 border-teal-500" src={GawainAkoBlitz} />
+            <img
+              alt="Gawain Ako - Blitz Chess"
+              className="mt-4 mx-auto rounded-full w-44 sm:w-52 border-4 border-teal-500"
+              src={GawainAkoBlitz}
+            />
           </div>
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             <div className="relative">
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                 <h3>Event Information</h3>
                 <p>
-                  This will be run as a <a href="https://en.wikipedia.org/wiki/Swiss-system_tournament" className="text-teal-500 underline">Swiss-system</a> pairing event. 
+                  This will be run as a{" "}
+                  <a
+                    href="https://en.wikipedia.org/wiki/Swiss-system_tournament"
+                    className="text-teal-500 underline"
+                  >
+                    Swiss-system
+                  </a>{" "}
+                  pairing event.
                 </p>
                 <ul>
                   <li>10 Rounds</li>
-                  <li>3 mins plus 2 second increment per player on the clock</li>
+                  <li>
+                    3 mins plus 2 second increment per player on the clock
+                  </li>
                   {defaultPrice && <li>Entry fee £{defaultPrice}</li>}
                   <li>Entries are currently limited to 18 players.</li>
                 </ul>
@@ -162,22 +178,7 @@ export default function BlitzEvent() {
                   </div>
                 </div>
               )}
-              <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-                <h3>Refreshments</h3>
-                <ul>
-                  <li>Hot Tea &amp; Coffee</li>
-                  <li>Cold Drinks</li>
-                  <li>Snacks</li>
-                </ul>
-                <p className="prose prose-teal text-gray-500">
-                  All food and drink purchases greatly help towards the support and continued running of our dedicated Chess Centre.
-                </p>
-                <p className="prose prose-teal text-gray-500">
-                  Our venue will be open from{" "}
-                  <span className="font-medium">9:30am</span> Saturday morning to
-                  welcome you all.
-                </p>
-              </div>
+              <VenueInfo />
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <Link
                   className="text-teal-600 hover:text-teal-500"
@@ -187,7 +188,7 @@ export default function BlitzEvent() {
                 </Link>
               </div>
             </div>
-            <div className="mt-12 relative text-base max-w-prose mx-auto lg:mt-0 lg:max-w-none">
+            <div className="mt-12 relative text-base max-w-prose mx-auto md:-mt-60 lg:max-w-none">
               <svg
                 className="hidden sm:block absolute top-0 right-0 -mt-20 -mr-20 lg:top-auto lg:right-auto lg:bottom-1/2 lg:left-1/2 lg:mt-0 lg:mr-0 xl:top-0 xl:right-0 xl:-mt-20 xl:-mr-20"
                 width={404}
@@ -227,6 +228,9 @@ export default function BlitzEvent() {
                 isFull={isFull}
                 isLive={isLive}
               />
+              <div className="mt-8">
+                <TravelInformation eventType="blitz" eventId={id} />
+              </div>
               <div className="text-sm text-center mt-6 sm:hidden">
                 <Link
                   className="text-teal-600 hover:text-teal-500"

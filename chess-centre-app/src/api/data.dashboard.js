@@ -1,5 +1,5 @@
 export const getTotalGameCount = (type, gameInfo) => {
-  const data = gameInfo ? JSON.parse(gameInfo) : [];
+  const data = gameInfo ? JSON.parse(gameInfo).history : [];
   return data.reduce((pre, month) => {
     pre += month[type] ? Number(month[type]) : 0
     return pre;
@@ -8,16 +8,16 @@ export const getTotalGameCount = (type, gameInfo) => {
 
 const getMonthByMonthGameCount = (type, data) => {
   return data.reduce((pre, month) => {
-    if(month[type]) {
+    if (month[type]) {
       return [...pre, month[type]];
     } else return [...pre, 0]
-    
+
   }, []);
 };
 
 const getMonthByMonthRating = (type, data) => {
   return data.reduce((pre, cur) => {
-    if(cur[type] || cur[type] === 0) {
+    if (cur[type] || cur[type] === 0) {
       return [...pre, cur[type]];
     } else return [...pre]
   }, []).reverse();
@@ -25,7 +25,7 @@ const getMonthByMonthRating = (type, data) => {
 
 const getMonths = (data) => {
   return data.reduce((pre, { month }) => {
-    return [...pre, month] 
+    return [...pre, month]
   }, []);
 }
 
@@ -43,6 +43,7 @@ export const RatingProgressChart = (
       labels: [...months],
       datasets: [
         {
+          lineTension: 0,
           label: "Standard",
           backgroundColor: "#0694a2",
           borderColor: "#0694a2",
@@ -50,6 +51,7 @@ export const RatingProgressChart = (
           fill: false,
         },
         {
+          lineTension: 0,
           label: "Rapid",
           fill: false,
           backgroundColor: "#f0802b",
@@ -93,7 +95,7 @@ export const RatingProgressChart = (
 
 export const GamesChart = (gameInfo) => {
 
-  const data = gameInfo ? JSON.parse(gameInfo) : [];
+  const data = gameInfo ? JSON.parse(gameInfo).history.reverse() : [];
   const months = getMonths(data);
   const standardGamesCount = getMonthByMonthGameCount("standard", data);
   const rapidGamesCount = getMonthByMonthGameCount("rapid", data);
@@ -118,9 +120,56 @@ export const GamesChart = (gameInfo) => {
     },
     options: {
       responsive: true,
+      scales: {
+        reverse: true,
+        yAxes: [{
+          ticks: {
+              beginAtZero: true,
+              userCallback: function(label) {
+                  if (Math.floor(label) === label) {
+                      return label;
+                  }
+              }
+          }
+      }],
+      }
     },
     legend: {
       display: false,
-    },
+    }
   };
 };
+
+export const ResultsDoughnut = (gameInfo) => {
+
+  const stats = gameInfo ? JSON.parse(gameInfo).stats : {};
+
+  return {
+    options: {
+      legend: {
+        display: false
+      },
+    },
+    data: {
+      labels: ["Wins", "Draws", "Losses"],
+      datasets: [
+        {
+
+          label: '# result',
+          data: [stats.wins, stats.draws, stats.losses],
+          backgroundColor: [
+            "#0694a2",
+            "#d53f8c",
+            "#f0802b"
+          ],
+          borderColor: [
+            "#0694a2",
+            "#d53f8c",
+            "#f0802b"
+          ],
+          borderWidth: 1,
+        },
+      ],
+    }
+  };
+}

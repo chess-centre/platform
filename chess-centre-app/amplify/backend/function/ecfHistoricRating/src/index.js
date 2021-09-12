@@ -8,15 +8,15 @@ exports.handler = async (event) => {
 
     try {
         const {
-            Items
+            Items: members
         } = await dynamodb.scan({
             TableName: memberTable,
             FilterExpression: "attribute_exists(ecfId)"
         }).promise();
         
-        console.log(`Fetching historic rating data for ${Items.length} users`);
+        console.log(`Fetching historic rating data for ${members.length} members`);
         
-        const result = await Promise.all(Items.map(async (member) => {
+        const result = await Promise.all(members.map(async (member) => {
             console.log(`Checking rating data for ${member.name}`);
             const data = await getHistoricRatings(member.ecfId);
             if(data && data.length > 0) {

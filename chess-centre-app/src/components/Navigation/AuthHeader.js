@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import API from "@aws-amplify/api";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { SidebarContext } from "../../context/SidebarContext";
 import {
@@ -7,13 +8,26 @@ import {
 import { logout, useAuthDispatch, useAuthState } from "../../context/Auth";
 import ProfileDropDown from "./ProfileDropDown";
 
+export const getMember = /* GraphQL */ `
+  query GetMember($id: ID!) {
+    getMember(id: $id) {
+      id
+      name
+      email
+      chesscomInfo
+    }
+  }
+`;
+
 function Header() {
   const { user: { attributes: {
-    given_name
+    given_name,
+    sub
   } } } = useAuthState();
   const dispatch = useAuthDispatch();
   const history = useHistory();
   const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext);
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   const signOut = () => {
     logout(dispatch);
@@ -22,6 +36,27 @@ function Header() {
 
   useEffect(() => {
     if(!given_name) signOut();
+
+    async function fetchMember() {
+      const {
+        data: { getMember: member },
+      } = await API.graphql({
+        query: getMember,
+        variables: { id: sub },
+      });
+      if(member && member.chesscomInfo) {
+        try {
+          const { avatar } = JSON.parse(member.chesscomInfo);
+          if(avatar) {
+            setAvatarUrl(avatar);
+          }
+        } catch (error) {
+          setAvatarUrl("");
+        }  
+      }
+    }
+    fetchMember();
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -47,7 +82,7 @@ function Header() {
             { given_name && (<span className="text-xs sm:text-sm text-gray-900 pb-2">Welcome, {given_name}</span>) }
           </li>
           <li className="relative">
-            <ProfileDropDown signOut={signOut} />
+            <ProfileDropDown signOut={signOut} avatarUrl={avatarUrl} />
           </li>
         </ul>
       </div>

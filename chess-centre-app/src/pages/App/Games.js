@@ -31,14 +31,6 @@ export const listGamesByWhiteMember = /* GraphQL */ `
         round
         result
         pgnStr
-        pgn {
-          bucket
-          region
-          key
-        }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
         whiteMember {
@@ -55,22 +47,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           estimatedRating
           club
           gender
-          membershipType
-          gameInfo
-          ratingInfo
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
-          stripeCustomerId
-          stripeCurrentPeriodEnd
-          stripePriceId
-          stripeProductId
         }
         blackMember {
           id
@@ -87,21 +65,6 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           club
           gender
           membershipType
-          gameInfo
-          ratingInfo
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          stripeCustomerId
-          stripeCurrentPeriodEnd
-          stripePriceId
-          stripeProductId
         }
       }
       nextToken
@@ -136,14 +99,6 @@ export const listGamesByBlackMember = /* GraphQL */ `
         round
         result
         pgnStr
-        pgn {
-          bucket
-          region
-          key
-        }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
         whiteMember {
@@ -161,21 +116,6 @@ export const listGamesByBlackMember = /* GraphQL */ `
           club
           gender
           membershipType
-          gameInfo
-          ratingInfo
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          stripeCustomerId
-          stripeCurrentPeriodEnd
-          stripePriceId
-          stripeProductId
         }
         blackMember {
           id
@@ -192,21 +132,6 @@ export const listGamesByBlackMember = /* GraphQL */ `
           club
           gender
           membershipType
-          gameInfo
-          ratingInfo
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          stripeCustomerId
-          stripeCurrentPeriodEnd
-          stripePriceId
-          stripeProductId
         }
       }
       nextToken
@@ -217,8 +142,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
 
 export default function GamesView() {
   const { isLoading, error, data } = useMember();
-  const [selectedPGN, setSelectedPGN] = useState(null);
   const [games, setGames] = useState([]);
+  const [validPgn, setValidPgn] = useState("");
 
   useMemo(() => {
     const fetchWhiteGames = async () => {
@@ -230,8 +155,6 @@ export default function GamesView() {
         query: listGamesByWhiteMember,
         variables: { whiteMemberId: data.id },
       });
-
-      console.log(items);
       setGames((state) => {
         return [...state, ...items];
       });
@@ -246,8 +169,6 @@ export default function GamesView() {
         query: listGamesByBlackMember,
         variables: { blackMemberId: data.id },
       });
-
-      console.log(items);
       setGames((state) => {
         return [...state, ...items];
       });
@@ -260,11 +181,12 @@ export default function GamesView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
-  const setSelectedGame = (pgn) => {
-    if (pgn) {
-      setSelectedPGN(pgn.replace(/["']/g, '"'));
+
+  const handleGameViewClick = (pgn) => {
+    if(pgn) {
+      setValidPgn(pgn.replace(/["']/g, '"'))
     }
-  };
+  }
 
   return (
     <div className="overscroll-none">
@@ -278,8 +200,8 @@ export default function GamesView() {
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
-          <p className="text-sm text-center sm:text-left text-gray-500 dark:text-gray-300">
-            Your games played at our venue.
+          <p className="text-sm text-left text-gray-500 dark:text-gray-300">
+            Find your most recent games here
           </p>
         </div>
       </div>
@@ -289,30 +211,9 @@ export default function GamesView() {
           <div className="">
             {!isLoading && !error && (
               <div className="">
-                <GameTable games={games} setSelectedGame={setSelectedGame} />
+                <GameTable games={games} setSelectedGame={setValidPgn} memberId={data.id} />
               </div>
             )}
-          </div>
-          <div>
-            <div className="hidden sm:block relative">
-              {/* WEB SPECIFIC */}
-              <div className="mx-auto content-center overscroll-none">
-                {selectedPGN && (
-                  <PGNViewer layout={"left"} size="350">
-                    {selectedPGN}
-                  </PGNViewer>
-                )}
-              </div>
-            </div>
-            <div className="block sm:hidden relative">
-              <div className="mb-4 h-full mt-4">
-                <div className="bg-white">
-                  {selectedPGN && (
-                    <PGNViewer layout={"top"}>{selectedPGN}</PGNViewer>
-                  )}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

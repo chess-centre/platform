@@ -1,28 +1,20 @@
 import React from 'react'
 import Table, { SelectColumnFilter } from './index'  // new
 
-export default function GameTable({ games }) {
+export default function GameTable({ games, memberId }) {
 
   const columns = React.useMemo(() => [
     {
-      Header: "White",
-      accessor: 'white',
+      Header: "Opponent",
+      accessor: 'name',
     },
     {
       Header: "Rating",
-      accessor: 'wRating',
+      accessor: 'rating',
     },
     {
       Header: "Result",
       accessor: 'result',
-    },
-    {
-      Header: "Black",
-      accessor: 'black',
-    },
-    {
-      Header: "Rating",
-      accessor: 'bRating',
     },
     {
       Header: "Event",
@@ -38,14 +30,16 @@ export default function GameTable({ games }) {
 
   const data = games.reduce((prev, game) => {
 
+    const opponent = game.whiteMember.id === memberId ? game.whiteMember : game.blackMember;
+    const rating = game.type === "standard" ? opponent.ecfRating : opponent.ecfRapid;
+
     return [...prev, {
-      white: game.whiteMember.name,
-      wRating: game.whiteRating,
+      name: opponent.name,
+      rating,
       result: game.result,
-      black: game.blackMember.name,
-      bRating: game.blackRating,
+      event: game.eventName,
       date: game.date,
-      event: game.eventName
+      type: game.type
     }]
 
   }, []);
@@ -53,7 +47,7 @@ export default function GameTable({ games }) {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <main className="max-w-5xl">
         <div className="mt-6">
           <Table columns={columns} data={data} />
         </div>
