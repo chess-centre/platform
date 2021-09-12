@@ -68,7 +68,7 @@ export default function GameTable({ games, memberId }) {
       type: game.type
     }]
 
-  }, []);
+  }, []).sort((a, b) => new Date(b.date) - new Date(a.date));
 
 
   
