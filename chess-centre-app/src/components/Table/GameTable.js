@@ -61,7 +61,7 @@ export default function GameTable({ games, memberId }) {
     return [...prev, {
       name: opponent.name,
       rating,
-      result: resultType(game.result),
+      result: resultType(game.result, colour),
       colour,
       event: game.eventName,
       date: game.date,
