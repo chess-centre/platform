@@ -9,16 +9,16 @@ export default function GameTable({ games, memberId }) {
       accessor: 'name',
     },
     {
-      Header: "Colour",
-      accessor: 'colour',
-    },
-    {
       Header: "Rating",
       accessor: 'rating',
     },
     {
       Header: "Result",
       accessor: 'result',
+    },
+    {
+      Header: "Colour",
+      accessor: 'colour',
     },
     {
       Header: "Event",
@@ -30,25 +30,7 @@ export default function GameTable({ games, memberId }) {
       Header: "Date",
       accessor: 'date',
     }
-  ], [])
-
-  const data = games.reduce((prev, game) => {
-
-    const opponent = game.whiteMember.id === memberId ? game.blackMember : game.whiteMember;
-    const colour = game.whiteMember.id === memberId ? "white" : "black";
-    const rating = game.type === "standard" ? opponent.ecfRating : opponent.ecfRapid;
-
-    return [...prev, {
-      name: opponent.name,
-      rating,
-      colour,
-      result: resultType(game.result),
-      event: game.eventName,
-      date: game.date,
-      type: game.type
-    }]
-
-  }, []);
+  ], []);
 
   const resultType = (result, colour) => {
     if(colour === "white") {
@@ -69,6 +51,26 @@ export default function GameTable({ games, memberId }) {
     }
     return "draw";
   }
+
+  const data = games.reduce((prev, game) => {
+
+    const opponent = game.whiteMember.id === memberId ? game.blackMember : game.whiteMember;
+    const colour = game.whiteMember.id === memberId ? "white" : "black";
+    const rating = game.type === "standard" ? opponent.ecfRating : opponent.ecfRapid;
+
+    return [...prev, {
+      name: opponent.name,
+      rating,
+      result: resultType(game.result),
+      colour,
+      event: game.eventName,
+      date: game.date,
+      type: game.type
+    }]
+
+  }, []);
+
+
   
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
