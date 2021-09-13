@@ -100,13 +100,13 @@ export default function GameTable({ games, memberId }) {
         ...prev,
         {
           pgn: game.pgnStr ? <ViewGameButton pgn={game.pgnStr} /> : "",
-          name: <div className="px-2 py-4">{ opponent.name }</div>,
-          rating: <div className="px-2 py-4">{ rating }</div>,
-          result: <div className="px-2 py-4">{resultType(game.result, colour)}</div>,
-          colour: <div className="px-2 py-4">{ colour }</div>,
-          event: <div className="px-2 py-4">{ game.eventName }</div>,
-          date: <div className="px-2 py-4">{ prettyDate(game.date) }</div>,
-          type: <div className="px-2 py-4">{ game.type }</div>,
+          name: opponent.name,
+          rating,
+          result: resultType(game.result, colour),
+          colour,
+          event: game.eventName,
+          date: prettyDate(game.date),
+          type: game.type,
         },
       ];
     }, [])
