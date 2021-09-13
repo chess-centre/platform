@@ -228,7 +228,7 @@ function Login(props) {
                 <input
                   autoComplete="off"
                   disabled={loading}
-                  value={surname}
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   className="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
