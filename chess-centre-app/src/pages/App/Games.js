@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { useMember } from "../../api/member";
 import GameTable from "../../components/Table/GameTable";
@@ -141,6 +142,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
 
 export default function GamesView() {
   const { isLoading, error, data } = useMember();
+  const [isLoadingGames, setIsLoadingGames] = useState(false);
+  const [isErrorGame, setIsErrorGame] = useState(false);
   const [games, setGames] = useState([]);
 
   useMemo(() => {
@@ -170,12 +173,26 @@ export default function GamesView() {
       setGames((state) => {
         return [...state, ...items];
       });
+      
     };
-    if (data) {
-      fetchWhiteGames();
-      fetchBlackGames();
+
+    const fetchAllGames = async () => {
+      setIsLoadingGames(true);
+      fetchWhiteGames()
+      fetchBlackGames()
+      setIsLoadingGames(false);
+      setIsErrorGame(false);
     }
 
+    if (data) {
+      try {
+        fetchAllGames();
+      } catch (error) {
+        console.log(error);
+        setIsLoadingGames(false);
+        setIsErrorGame(true);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
@@ -200,11 +217,51 @@ export default function GamesView() {
       <div className="">
         <div className="">
           <div className="">
-            {!isLoading && !error && (
-              <div className="">
-                <GameTable games={games} memberId={data.id} />
+            {!isLoading && !isLoadingGames && !error && !isErrorGame && (
+              <div>
+                {
+                  games ? (<div className="">
+                    <GameTable games={games} memberId={data.id} />
+                  </div>) : (<div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+                    <span>
+                      <i className="fal fa-chess fa-6x text-teal-500"></i>
+                    </span>
+                    <p className="mt-2 block text-sm font-medium text-gray-600">
+                      No games yet.
+                    </p>
+                    <p className="mt-2 block text-sm font-medium text-gray-600">
+                      Enter one of our fantastic <Link className="text-teal-500 font-medium hover:underline" to="/app/events">events</Link> to get your games published.
+                    </p>
+                  </div>)
+                }
               </div>
             )}
+
+            {
+              (isLoading || isLoadingGames) && (
+                <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+                  <span className="animate-pulse">
+                    <i className="aninmal-pulse fal fa-chess-board fa-10x text-teal-500 opacity-50"></i>
+                  </span>
+                  <p className="mt-2 block text-sm font-medium text-gray-600">
+                    Loading games...
+                  </p>
+                </div>
+              )
+            }
+
+            {
+              (error || isErrorGame) && (
+                <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+                  <span>
+                    <i className="aninmal-pulse fal fa-exclamation-square fa-10x text-orange-400 opacity-50"></i>
+                  </span>
+                  <p className="mt-2 block text-sm font-medium text-gray-600">
+                    Oops, there seems to be an issue loading your games. Try again later.
+                  </p>
+                </div>
+              )
+            }
           </div>
         </div>
       </div>
