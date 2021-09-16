@@ -1,122 +1,112 @@
-import React, { useState } from "react";
-import MayCongress from "../../components/Events/Tables/May/MayCongress";
-import MayRapidplayDivOne from "../../components/Events/Tables/May/MayRapidplayDivOne";
-import MayRapidplayDivTwo from "../../components/Events/Tables/May/MayRapidplayDivTwo";
-import JuneCongress from "../../components/Events/Tables/June/JuneCongress";
+import React from "react";
+import Logo from "../../assets/img/logo.svg";
 
-function ListEvents(props) {
-  const { setSelectedEvent, current } = props;
-  const eventList = [
-    {
-      name: "May Open Congress",
-      winner: "Peter Shaw",
-      id: 1,
-    },
-    {
-      name: "May Rapidplay (Div 1)",
-      winner: "Peter Shaw",
-      id: 2,
-    },
-    {
-      name: "May Rapidplay (Div 2)",
-      winner: "Jael Muachikape",
-      id: 3,
-    },
-    {
-      name: "June Open Congress",
-      winner: "Tim Hilton",
-      id: 4,
-    }
-  ];
-
-  const renderEvent = (id) => {
-    setSelectedEvent(id);
-  };
+function Results() {
 
   return (
     <div>
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
-          <tr>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Previous Event
-            </th>
-            <th
-              scope="col"
-              className="hidden sm:block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              Winner
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-            >
-              View
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {eventList.map((e) => (
-            <tr key={e.id} className={e.id === current ? "bg-yellow-50" : ""}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {e.name}
-              </td>
-              <td className="hidden sm:block px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {e.winner}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <div
-                  onClick={() => renderEvent(e.id)}
-                  className="text-teal-600 hover:text-teal-900 cursor-pointer"
-                >
-                  details
+        <>
+          <div className="relative mt-10 sm:mt-20 py-3 sm:max-w-xl mx-auto">
+            <div
+              className={
+                "absolute inset-0 bg-teal-700 shadow-lg transform skew-y-0 sm:-rotate-6 rounded-lg"
+              }
+            ></div>
+
+            <div className="relative px-4 ml-2 mr-2 py-10 bg-white shadow-lg rounded-lg sm:p-20">
+              <div className="max-w-md mx-auto">
+                <div>
+                  <img
+                    alt="Logo"
+                    src={Logo}
+                    className="h-7 sm:h-8 m-auto mb-2"
+                  />
                 </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-function Results() {
-  const [selectedEvent, setSelectedEvent] = useState(0);
-
-  const renderSelectedEvent = () => {
-    switch (selectedEvent) {
-      case 0:
-        return <></>;
-      case 1:
-        return <MayCongress />;
-      case 2:
-        return <MayRapidplayDivOne />;
-      case 3:
-        return <MayRapidplayDivTwo />;
-      case 4:
-        return <JuneCongress />;
-      default:
-        break;
-    }
-  };
-
-  return (
-    <div className="">
-      <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fad fa-poll-people text-teal-600"></i> Results
-      </h1>
-      <div className="mb-5 pb-5 border-b border-gray-200 dark:border-gray-700">
-        <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
-          <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
-            A brief summary of our event results.
-          </p>
-        </div>
-      </div>
-      <ListEvents setSelectedEvent={setSelectedEvent} current={selectedEvent} />
-      <div className="mt-6">{renderSelectedEvent()}</div>
+                <div className="divide-y divide-gray-200">
+                  <div className="sm:py-2 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                    <h1 className="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                      COMING SOON!
+                    </h1>
+                    <h4 className="text-center text-gray-700">Results</h4>
+                    <p className="text-teal-800">
+                      <span role="img">🐻</span> with us, we're busy completely re-doing
+                      your results view...
+                    </p>
+                    <ul className="list-disc space-y-2">
+                      <li className="flex items-start">
+                        <span className="h-6 flex items-center sm:h-7">
+                          <svg
+                            className="flex-shrink-0 h-5 w-5 text-teal-500"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                        <p className="ml-2">
+                          See the latest results and links to ECF submitted data
+                        </p>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="h-6 flex items-center sm:h-7">
+                          <svg
+                            className="flex-shrink-0 h-5 w-5 text-teal-500"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                        <p className="ml-2">
+                          See results and each players rating performance
+                        </p>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="h-6 flex items-center sm:h-7">
+                          <svg
+                            className="flex-shrink-0 h-5 w-5 text-teal-500"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                        <p className="ml-2">
+                          Play through all DGT board broadcast games
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="pt-4 text-base leading-6 sm:text-lg sm:leading-7 mt-3">
+                    <p className="font-bold">Write code? 🐵</p>
+                    <p>
+                      Checkout the source code for this site and get involved.
+                      <a
+                        href="https://github.com/chess-centre"
+                        className="text-teal-600 hover:text-teal-700"
+                      >
+                        {" "}
+                        Let's do this &rarr;{" "}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
     </div>
   );
 }
