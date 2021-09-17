@@ -29,7 +29,7 @@ function Results() {
                     </h1>
                     <h4 className="text-center text-gray-700">Results</h4>
                     <p className="text-teal-800">
-                      <span role="img">🐻</span> with us, we're busy completely re-doing
+                      <span role="img">🐻</span> with us, we're busy completely rebuilding
                       your results view...
                     </p>
                     <ul className="list-disc space-y-2">
@@ -48,7 +48,7 @@ function Results() {
                           </svg>
                         </span>
                         <p className="ml-2">
-                          See the latest results and links to ECF submitted data
+                          See the latest result, tables, pictures and links to ECF submitted data
                         </p>
                       </li>
                       <li className="flex items-start">
@@ -66,7 +66,7 @@ function Results() {
                           </svg>
                         </span>
                         <p className="ml-2">
-                          See results and each players rating performance
+                          Check games of each player and see their rating performance
                         </p>
                       </li>
                       <li className="flex items-start">
@@ -84,7 +84,7 @@ function Results() {
                           </svg>
                         </span>
                         <p className="ml-2">
-                          Play through all DGT board broadcast games
+                          Play through all DGT board broadcast games via Lichess
                         </p>
                       </li>
                     </ul>

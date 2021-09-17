@@ -11,7 +11,7 @@ const usefulLinks = [
     name: "FIDE",
     description: "The Internation Chess Federation, news, rating and events.",
     url: "https://www.fide.com/",
-    displayUrl: "fide.come"
+    displayUrl: "fide.com"
   },
   {
     name: "Chess.com",
@@ -41,28 +41,28 @@ const usefulLinks = [
 
 function UsefulLinksTable() {
   return (
-    <div className="mx-auto w-full">
+    <div className="rounded-md mx-auto w-full">
     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 px-2">
       <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div className="shadow-lg overflow-hidden border-b border-gray-200 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+            <thead className="bg-teal-500">
               <tr>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
                 >
                   Name
                 </th>
                 <th
                   scope="col"
-                  className="hidden sm:block px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="hidden sm:block px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
                 >
                   Description
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
                 >
                   Visit
                 </th>
@@ -108,7 +108,7 @@ export default function Juniors() {
         </div>
       </div>
       <div className="relative grid mb-8 md:grid-cols-1 mt-6">
-        <div className="mt-4">
+        <div className="">
           <h3 className="text-lg font-semibold text-gray-700 ml-4 mt-1 text-center sm:text-left mb-4">Useful links to other great chess sites</h3>
           <UsefulLinksTable />
         </div> 
