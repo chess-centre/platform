@@ -82,7 +82,7 @@
         },
         "uploadLichessPgns": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/uploadLichessPgns-2f364c30314572695043-build.zip"
+          "s3Key": "amplify-builds/uploadLichessPgns-347945384c5a43596b75-build.zip"
         }
       }
     }
