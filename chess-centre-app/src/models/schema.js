@@ -363,6 +363,13 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "liChessUrl": {
+                    "name": "liChessUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -1206,5 +1213,5 @@ export const schema = {
             }
         }
     },
-    "version": "0af3cda39103c1c25e676f9a217a746b"
+    "version": "31ef48a3416c966c8bc2b4459c87a7e0"
 };

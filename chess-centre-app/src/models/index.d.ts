@@ -60,6 +60,7 @@ export declare class Game {
   readonly type?: string;
   readonly pgn?: S3Object;
   readonly pgnStr?: string;
+  readonly liChessUrl?: string;
   constructor(init: ModelInit<Game>);
   static copyOf(source: Game, mutator: (draft: MutableModel<Game>) => MutableModel<Game> | void): Game;
 }
