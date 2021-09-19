@@ -182,6 +182,7 @@ export const onCreateGame = /* GraphQL */ `
         key
       }
       pgnStr
+      liChessUrl
       _version
       _deleted
       _lastChangedAt
@@ -215,6 +216,7 @@ export const onCreateGame = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -243,6 +245,7 @@ export const onCreateGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -299,6 +302,7 @@ export const onCreateGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -500,6 +504,7 @@ export const onCreateGame = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -528,6 +533,7 @@ export const onCreateGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -584,6 +590,7 @@ export const onCreateGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -818,6 +825,7 @@ export const onCreateGame = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -1019,6 +1027,7 @@ export const onUpdateGame = /* GraphQL */ `
         key
       }
       pgnStr
+      liChessUrl
       _version
       _deleted
       _lastChangedAt
@@ -1052,6 +1061,7 @@ export const onUpdateGame = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -1080,6 +1090,7 @@ export const onUpdateGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -1136,6 +1147,7 @@ export const onUpdateGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -1337,6 +1349,7 @@ export const onUpdateGame = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -1365,6 +1378,7 @@ export const onUpdateGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -1421,6 +1435,7 @@ export const onUpdateGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -1655,6 +1670,7 @@ export const onUpdateGame = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -1856,6 +1872,7 @@ export const onDeleteGame = /* GraphQL */ `
         key
       }
       pgnStr
+      liChessUrl
       _version
       _deleted
       _lastChangedAt
@@ -1889,6 +1906,7 @@ export const onDeleteGame = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -1917,6 +1935,7 @@ export const onDeleteGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -1973,6 +1992,7 @@ export const onDeleteGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -2174,6 +2194,7 @@ export const onDeleteGame = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -2202,6 +2223,7 @@ export const onDeleteGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -2258,6 +2280,7 @@ export const onDeleteGame = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -2492,6 +2515,7 @@ export const onDeleteGame = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -2815,6 +2839,7 @@ export const onCreateMember = /* GraphQL */ `
           key
         }
         pgnStr
+        liChessUrl
         _version
         _deleted
         _lastChangedAt
@@ -2848,6 +2873,7 @@ export const onCreateMember = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -3001,6 +3027,7 @@ export const onCreateMember = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -3182,6 +3209,7 @@ export const onCreateMember = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -3281,6 +3309,7 @@ export const onCreateMember = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -3402,6 +3431,7 @@ export const onUpdateMember = /* GraphQL */ `
           key
         }
         pgnStr
+        liChessUrl
         _version
         _deleted
         _lastChangedAt
@@ -3435,6 +3465,7 @@ export const onUpdateMember = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -3588,6 +3619,7 @@ export const onUpdateMember = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -3769,6 +3801,7 @@ export const onUpdateMember = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -3868,6 +3901,7 @@ export const onUpdateMember = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -3989,6 +4023,7 @@ export const onDeleteMember = /* GraphQL */ `
           key
         }
         pgnStr
+        liChessUrl
         _version
         _deleted
         _lastChangedAt
@@ -4022,6 +4057,7 @@ export const onDeleteMember = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -4175,6 +4211,7 @@ export const onDeleteMember = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -4356,6 +4393,7 @@ export const onDeleteMember = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -4455,6 +4493,7 @@ export const onDeleteMember = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -4609,6 +4648,7 @@ export const onCreateEvent = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -4637,6 +4677,7 @@ export const onCreateEvent = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -4693,6 +4734,7 @@ export const onCreateEvent = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -4833,6 +4875,7 @@ export const onCreateEvent = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -4987,6 +5030,7 @@ export const onUpdateEvent = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -5015,6 +5059,7 @@ export const onUpdateEvent = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -5071,6 +5116,7 @@ export const onUpdateEvent = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -5211,6 +5257,7 @@ export const onUpdateEvent = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -5365,6 +5412,7 @@ export const onDeleteEvent = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -5393,6 +5441,7 @@ export const onDeleteEvent = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -5449,6 +5498,7 @@ export const onDeleteEvent = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -5589,6 +5639,7 @@ export const onDeleteEvent = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -5719,6 +5770,7 @@ export const onCreateEntry = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -5747,6 +5799,7 @@ export const onCreateEntry = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -5803,6 +5856,7 @@ export const onCreateEntry = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -6037,6 +6091,7 @@ export const onCreateEntry = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -6255,6 +6310,7 @@ export const onUpdateEntry = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -6283,6 +6339,7 @@ export const onUpdateEntry = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -6339,6 +6396,7 @@ export const onUpdateEntry = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -6573,6 +6631,7 @@ export const onUpdateEntry = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
@@ -6791,6 +6850,7 @@ export const onDeleteEntry = /* GraphQL */ `
             key
           }
           pgnStr
+          liChessUrl
           _version
           _deleted
           _lastChangedAt
@@ -6819,6 +6879,7 @@ export const onDeleteEntry = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -6875,6 +6936,7 @@ export const onDeleteEntry = /* GraphQL */ `
               result
               type
               pgnStr
+              liChessUrl
               _version
               _deleted
               _lastChangedAt
@@ -7109,6 +7171,7 @@ export const onDeleteEntry = /* GraphQL */ `
               key
             }
             pgnStr
+            liChessUrl
             _version
             _deleted
             _lastChangedAt
