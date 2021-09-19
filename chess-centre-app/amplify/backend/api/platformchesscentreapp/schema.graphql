@@ -52,6 +52,7 @@ type Game @model @auth(rules: [{allow: private}, {allow: public}, {allow: public
   type: String
   pgn: S3Object
   pgnStr: String
+  liChessUrl: String
 }
 
 type Plan @model @auth(rules: [{allow: private}, {allow: private, provider: iam}]) @key(name: "key", fields: ["key"]) {

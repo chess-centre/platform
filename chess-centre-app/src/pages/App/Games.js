@@ -31,6 +31,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
         round
         result
         pgnStr
+        liChessUrl
         createdAt
         updatedAt
         whiteMember {
@@ -99,6 +100,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
         round
         result
         pgnStr
+        liChessUrl
         createdAt
         updatedAt
         whiteMember {

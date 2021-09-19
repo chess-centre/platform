@@ -11,8 +11,9 @@ export default function GameTable({ games, memberId }) {
   const closeModal = () => {
     setModalState((s) => ({ pgn: "", open: false }));
   };
-  const showModal = (pgn) => {
+  const showModal = (pgn, liChessUrl) => {
     setModalState({
+      liChessUrl,
       pgn,
       open: true,
     });
@@ -82,11 +83,11 @@ export default function GameTable({ games, memberId }) {
       const rating =
         game.type === "standard" ? opponent.ecfRating : opponent.ecfRapid;
 
-      const ViewGameButton = ({ pgn }) => {
+      const ViewGameButton = ({ pgn, liChessUrl }) => {
         return (
           <div className="text-center">
             <button
-              onClick={() => showModal(pgn)}
+              onClick={() => showModal(pgn, liChessUrl)}
               type="button"
               className="inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             >
@@ -99,7 +100,7 @@ export default function GameTable({ games, memberId }) {
       return [
         ...prev,
         {
-          pgn: game.pgnStr ? <ViewGameButton pgn={game.pgnStr} /> : "",
+          pgn: game.pgnStr ? <ViewGameButton pgn={game.pgnStr} liChessUrl={game.liChessUrl} /> : "",
           name: opponent.name,
           rating,
           result: resultType(game.result, colour),
