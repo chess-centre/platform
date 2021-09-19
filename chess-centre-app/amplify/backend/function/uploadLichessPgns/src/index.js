@@ -11,7 +11,7 @@ exports.handler = async (event) => {
         Items: gamesList
     } = await dynamodb.scan({
         TableName: API_GAMESTABLE_NAME,
-        FilterExpression: "attribute_exists(pgnStr) AND attribute_not_exists(getLiChessUrl)"
+        FilterExpression: "attribute_exists(pgnStr) AND attribute_not_exists(liChessUrl)"
     }).promise();
     
     console.log(`Fetching pgn strings. Total: ${gamesList.length}`);
@@ -35,8 +35,8 @@ exports.handler = async (event) => {
         const complete = Promise.all(gamesList
             .map(async ({ id, pgnStr }) => {
     
-            const { url } = JSON.parse(await getLiChessUrl(pgnStr));
-    
+            const { url } = await getLiChessUrl(pgnStr);
+
             if(url) {
                 const params = {
                     TableName: API_GAMESTABLE_NAME,
@@ -51,9 +51,11 @@ exports.handler = async (event) => {
                 };
                 await dynamodb.update(params).promise();
                 return url;
+            } else {
+                console.log("url was undefined");
             }
             return;
-        }))
+        }));
     
         await complete;
         console.log("Done");
@@ -90,8 +92,8 @@ function httpsPost({body, ...options}) {
                         break;
                 }
                 resolve(body);
-            })
-        })
+            });
+        });
         req.on('error',reject);
         if(body) {
             req.write(body);

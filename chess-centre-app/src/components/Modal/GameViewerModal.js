@@ -40,7 +40,7 @@ export default function GameViewerModal({ open, closeModal, pgn, liChessUrl }) {
           )}
 
           {!liChessUrl && (
-            <Button className="flex m-auto w-full mx-24" onClick={closeModal}>
+            <Button className="m-auto w-full sm:mx-20 mb-2" onClick={closeModal}>
               Close
             </Button>
           )}
