@@ -9,6 +9,7 @@ import ComingEvents from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
+import Integrations from "../../components/Integrations";
 
 const Home = () => {
   const { user } = useAuthState();
@@ -208,6 +209,7 @@ const Home = () => {
       <FAQs />
       <FindUs />
       <DownloadPWA />
+      <Integrations />
       <FooterLanding />
     </div>
   );
