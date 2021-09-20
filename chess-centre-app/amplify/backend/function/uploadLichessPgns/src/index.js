@@ -2,7 +2,8 @@ const https = require('https');
 const AWS = require("aws-sdk");
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const { 
-    API_GAMESTABLE_NAME
+    API_GAMESTABLE_NAME,
+    API_LICHESS_ACCESS_TOKEN
 } = process.env;
 
 exports.handler = async (event) => {
@@ -24,7 +25,8 @@ exports.handler = async (event) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Content-Length': Buffer.byteLength(body)
+                'Content-Length': Buffer.byteLength(body),
+                'Authorization': `Bearer ${API_LICHESS_ACCESS_TOKEN}`
             },
             body
         });
@@ -33,7 +35,7 @@ exports.handler = async (event) => {
 
     if(gamesList.length > 0) {
         const complete = Promise.all(gamesList
-            .map(async ({ id, pgnStr }) => {
+            .map(async ({ id, pgnStr }, i) => {
     
             const { url } = await getLiChessUrl(pgnStr);
 
@@ -52,7 +54,9 @@ exports.handler = async (event) => {
                 await dynamodb.update(params).promise();
                 return url;
             } else {
-                console.log("url was undefined");
+                // Here is where the API maybe returning HTML which highlights too many requests have been made.
+                // TODO: inspect response and terminate task if too many requests.
+                console.log(`${i}. Lichess game url was undefined, nothing to update.`);
             }
             return;
         }));
@@ -77,7 +81,6 @@ exports.handler = async (event) => {
 function httpsPost({body, ...options}) {
     return new Promise((resolve,reject) => {
         const req = https.request({
-            method: 'POST',
             ...options,
         }, res => {
             const chunks = [];
