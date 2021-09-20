@@ -35,9 +35,9 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
             const response = await API.post("chesscom", `/user/${username}`);
             if (response) {
                 const { chess_bullet, chess_blitz, chess_rapid } = response;
-                setBlitz(chess_blitz?.last?.rating || 0);
-                setBullet(chess_bullet?.last?.rating || 0);
-                setRapid(chess_rapid?.last?.rating || 0);
+                setBlitz(chess_blitz?.last?.rating);
+                setBullet(chess_bullet?.last?.rating);
+                setRapid(chess_rapid?.last?.rating);
                 addToast(`Successfully updated your Chess.com username!`, {
                     appearance: "success",
                     autoDismiss: true,
