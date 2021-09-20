@@ -1,7 +1,7 @@
 
 import LiChess from "../../assets/img/lichess.png";
 import Chesscom from "../../assets/img/chesscom.png";
-import ECF from "../../assets/img/ecf-logo.jpeg";
+import ECF from "../../assets/img/ecf.png";
 
 export default function Integrations() {
   return (
