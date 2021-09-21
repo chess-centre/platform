@@ -27,23 +27,23 @@ export const CongressEntries = [
   },
   {
     id: 4,
-    name: "Andrew Wainwright",
-    ratingInfo: {
-      rating: 1721,
-    },
-  },
-  {
-    id: 5,
     name: "Martin Gawne",
     ratingInfo: {
       rating: 1698,
     },
   },
   {
-    id: 6,
+    id: 5,
     name: "Gawain Ako",
     ratingInfo: {
       rating: 1625,
+    },
+  },
+  {
+    id: 6,
+    name: "Alannah Ashton",
+    ratingInfo: {
+      rating: 1514,
     },
   },
 ];
@@ -94,7 +94,7 @@ const SixPlayerPairings = [
 const results = [
   {
     round: 1,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [0,1], [1,0]],
   },
   {
     round: 2,
@@ -175,7 +175,7 @@ export default function Rapidplay() {
           division={"Division 2"}
         ></Standings>
       </div>
-      <div className="text-2xl mt-4 py-2 font-semibold text-teal-700 text-center bg-yellow-50 rounded-lg border">
+      <div className="text-1xl shadow-md mt-4 py-2 font-bold text-teal-900 text-center bg-yellow-50 rounded-lg border">
         {nextRoundTime}
       </div>
       <div className="mt-6">

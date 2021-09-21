@@ -95,23 +95,23 @@ const SixPlayerPairings = [
 const results = [
   {
     round: 1,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [1,0], [1,0]],
   },
   {
     round: 2,
-    pairResults: [[], [], []],
+    pairResults: [[0, 1], [0.5, 0.5], [1,0]],
   },
   {
     round: 3,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [0,1], [0.5,0.5]],
   },
   {
     round: 4,
-    pairResults: [[], [], []],
+    pairResults: [[0,1], [1,0], [1,0]],
   },
   {
     round: 5,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [1,0], [0,1]],
   },
 ];
 
@@ -170,15 +170,12 @@ const { roundByRound } = resultCheck(players);
 
 export default function Rapidplay() {
   return (
-    <div className="grid grid-cols-1 p-4">
+    <div className="grid grid-cols-1 p-4 ml-20 mt-2">
       <div className="">
         <Standings
           roundByRound={roundByRound}
-          division={"Division 1"}
+          division={"Division 1 (All Play All)"}
         ></Standings>
-      </div>
-      <div className="text-2xl mt-4 py-2 font-semibold text-gray-700 text-right">
-        <i className="far fa-caret-right text-teal-500 mr-4"></i>
       </div>
       <div className="mt-6">
         {showPreviousRound && (
@@ -192,7 +189,7 @@ export default function Rapidplay() {
             />
           </div>
         )}
-        <p className="mb-2 font-medium">Next Round</p>
+        <p className="mb-2 font-medium mt-28">Next Round</p>
         <PairingsTable
           format={SixPlayerPairings[currentRound - 1]}
           players={players}

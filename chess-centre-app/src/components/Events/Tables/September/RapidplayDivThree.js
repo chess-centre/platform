@@ -6,9 +6,9 @@ import { currentRound, showPreviousRound } from "./meta.json";
 export const CongressEntries = [
   {
     id: 1,
-    name: "Alannah Ashton",
+    name: "Andrew Wainwright",
     ratingInfo: {
-      rating: 1514,
+      rating: 1721,
     },
   },
   {
@@ -52,9 +52,9 @@ const SixPlayerPairings = [
   {
     round: 1,
     pairings: [
-      [1, 6],
-      [2, 5],
-      [3, 4],
+      [2, 6],
+      [3, 1],
+      [5, 4],
     ],
   },
   {
@@ -94,7 +94,7 @@ const SixPlayerPairings = [
 const results = [
   {
     round: 1,
-    pairResults: [[], [], []],
+    pairResults: [[1,0], [0.5, 0.5], [0,0]],
   },
   {
     round: 2,
