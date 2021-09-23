@@ -37,7 +37,7 @@ This project contains the core source code of **The Chess Centre** application i
 
 To support this goal a dedicated centre has been established for players to come, learn and play the game face to face. Seamlessly linking the physical face to face game at our fantastic venue with our digital platform, enabling new and existing players to participate and track their progress effortlessly.
 
-- ♟️ website: [chesscentre.online](https:chesscentre.online)
+- ♟️ website: [chesscentre.online](https://www.chesscentre.online)
 
 Our mission is entirely <span style="color:#f0802b;">**#NotForProfit**</span> so we gladly welcome volunteers.
   
