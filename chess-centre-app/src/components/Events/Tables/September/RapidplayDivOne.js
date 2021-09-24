@@ -1,7 +1,7 @@
 import React from "react";
 import { Standings } from "./Standings";
 import { PairingsTable } from "./Pairings";
-import { currentRound, showPreviousRound } from "./meta.json";
+import { currentRound, showPreviousRound, showAll } from "./meta.json";
 
 export const CongressEntries = [
   {
@@ -177,26 +177,38 @@ export default function Rapidplay() {
           division={"Division 1 (All Play All)"}
         ></Standings>
       </div>
-      <div className="mt-6">
-        {showPreviousRound && (
-          <div className="mb-2">
-            <p className="mb-2 font-medium">Previous Round</p>
-            <PairingsTable
-              format={SixPlayerPairings[currentRound - 2]}
-              players={players}
-              results={results}
-              indexer={0}
-            />
-          </div>
-        )}
-        <p className="mb-2 font-medium mt-28">Next Round</p>
-        <PairingsTable
-          format={SixPlayerPairings[currentRound - 1]}
-          players={players}
-          results={results}
-          indexer={0}
-        />
-      </div>
+      { !showAll && (
+                <div className="mt-6">
+                    {showPreviousRound && (
+                        <div className="mb-2">
+                            <p className="mb-2 font-medium">Previous Round</p>
+                            <PairingsTable
+                                format={SixPlayerPairings[currentRound - 2]}
+                                players={players}
+                                results={results}
+                                indexer={0}
+                            />
+                        </div>
+                    )}
+                    <p className="mb-2 font-medium">Next Round</p>
+                    <PairingsTable
+                        format={SixPlayerPairings[currentRound - 1]}
+                        players={players}
+                        results={results}
+                        indexer={3}
+                    />
+                </div>) }
+
+                { showAll && (    
+                    SixPlayerPairings.map(pairings => {
+                        return (<PairingsTable
+                            format={pairings}
+                            players={players}
+                            results={results}
+                            indexer={0}
+                        />)
+                    })
+                )}
     </div>
   );
 }

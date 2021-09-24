@@ -1,7 +1,7 @@
 import React from "react";
 import { Standings } from "./Standings";
 import { PairingsTable } from "./Pairings";
-import { currentRound, showPreviousRound, nextRoundTime } from "./meta.json";
+import { currentRound, showPreviousRound, nextRoundTime, showAll } from "./meta.json";
 
 export const CongressEntries = [
     {
@@ -215,6 +215,7 @@ export default function Rapidplay() {
                         division={"Division 2 (Swiss)"}
                     ></Standings>
                 </div>
+                { !showAll && (
                 <div className="mt-6">
                     {showPreviousRound && (
                         <div className="mb-2">
@@ -234,7 +235,18 @@ export default function Rapidplay() {
                         results={results}
                         indexer={3}
                     />
-                </div>
+                </div>) }
+
+                { showAll && (    
+                    SixPlayerPairings.map(pairings => {
+                        return (<PairingsTable
+                            format={pairings}
+                            players={players}
+                            results={results}
+                            indexer={3}
+                        />)
+                    })
+                )}
             </div>
         </div>
     );

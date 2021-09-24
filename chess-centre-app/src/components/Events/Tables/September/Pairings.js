@@ -1,7 +1,7 @@
 export const PairingsTable = ({ format, players, results, indexer }) => {
   const { round, pairings } = format;
   return (
-    <div className="shadow-md rounded-lg">
+    <div className="">
       <table className="w-full divide-y divide-gray-200 table-auto border-gray-300 border">
         <thead className="bg-teal-500 dark:bg-gray-800">
           <tr>
@@ -11,7 +11,7 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
             ></th>
             <th
               scope="col"
-              className="flex-grow-0 w-60 px-2 sm:px-4 py-2 text-center text-xs font-medium text-gray-100 dark:text-gray-300 uppercase tracking-wider"
+              className="flex-grow-0 w-80 px-2 sm:px-4 py-2 text-center text-xs font-medium text-gray-100 dark:text-gray-300 uppercase tracking-wider"
             >
               White
             </th>
@@ -23,7 +23,7 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
             </th>
             <th
               scope="col"
-              className="flex-grow-0 w-60 px-4 sm:px-6 py-3 text-center text-xs font-medium text-gray-100 dark:text-gray-300 uppercase tracking-wider"
+              className="flex-grow-0 w-80 px-4 sm:px-6 py-3 text-center text-xs font-medium text-gray-100 dark:text-gray-300 uppercase tracking-wider"
             >
               Black
             </th>
@@ -50,7 +50,7 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
                 <td className="bg-gray-100 px-2 py-3 border-r text-xs">
                   {key + 1 + indexer}
                 </td>
-                <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700">
+                <td className="flex-grow-0 max-w-full px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700">
                   {whitePlayer.name ? (
                     whitePlayer.name
                   ) : (
@@ -72,7 +72,7 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
                       }`
                     : "? - ?"}
                 </td>
-                <td className="flex-none min-w-50 px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700">
+                <td className="flex-grow-0 max-w-full px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-gray-700">
                   {blackPlayer.name ? (
                     blackPlayer.name
                   ) : (
