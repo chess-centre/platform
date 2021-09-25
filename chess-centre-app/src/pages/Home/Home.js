@@ -152,13 +152,8 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-              {!isLoading ? (
-                eventInfo.map(() => {
-                  return (
-                    <div className="mt-4">
-                      <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center">
-                        <div className="rounded-md shadow">
-                          <Link
+              <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+              <Link
                             to="/broadcast/live"
                             className={`
                             py-3
@@ -174,20 +169,9 @@ const Home = () => {
                               Live Games
                             </span>
                           </Link>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div className="mt-4">
-                  <div className="text-gray-400 mb-2 text-xs">
-                    <i className="fal fa-spinner-third fa-spin fa-fw"></i><br />
-                    checking for live games
-                  </div>
-                </div>
-              )}
+                          </div>
             </div>
+
           </main>
         </div>
       </div>
