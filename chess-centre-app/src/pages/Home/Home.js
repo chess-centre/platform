@@ -152,24 +152,6 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-              <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-              <Link
-                            to="/broadcast/live"
-                            className={`
-                            py-3
-                            w-full flex items-center justify-center px-9 border 
-                            border-transparent text-base font-medium rounded-md text-white bg-teal-700 hover:bg-teal-600 
-                            focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out`}
-                          >
-                            <span className="flex relative h-3 w-3">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-                              <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
-                            </span>{" "}
-                            <span className="ml-2">
-                              Live Games
-                            </span>
-                          </Link>
-                          </div>
             </div>
 
           </main>
