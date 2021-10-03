@@ -15,31 +15,53 @@ function EntriesTable(data) {
   const { user, eventDetails } = data;
   const sub = user.attributes.sub;
   const isRapid = eventDetails?.name?.includes("Rapidplay");
+  const isBlitz = eventDetails?.name?.includes("Blitz");
 
   const tableData = () => {
     /**
      * Calculates which rating should be listed dependant upon the data we have on a player.
      */
-     const getRating = ({ ecfRating, ecfRapid, estimatedRating }) => {
-      if (isRapid) {
-        if (ecfRapid) return { value: ecfRapid, sort: Number(ecfRapid), key: "" };
-        if (ecfRating)
-          return { value: ecfRating, sort: Number(ecfRating), key: "S" };
+    const getRating = ({ ecfRating, ecfRapid, estimatedRating }) => {
+
+      const standard = ecfRating ? parseInt(ecfRating, 10) : 0;
+      const rapid = ecfRapid ? parseInt(ecfRapid, 10) : 0;
+
+      if (isBlitz) {
+        if (rapid)
+          return { value: rapid, sort: rapid, key: "" };
+        if (standard)
+          return { value: standard, sort: standard, key: "S" };
         if (estimatedRating)
           return {
             value: estimatedRating,
             sort: Number(estimatedRating),
-            key: "E"
+            key: "E",
           };
         return { value: "unrated", sort: 0, key: "" };
-      } else {
-        if (ecfRating) return { value: ecfRating, sort: Number(ecfRating), key: "" };
-        if (ecfRapid) return { value: ecfRapid, sort: Number(ecfRapid), key: "R" };
+      }
+      if (isRapid) {
+        if (rapid)
+          return { value: rapid, sort: rapid, key: "" };
+        if (standard)
+          return { value: standard, sort: standard, key: "S" };
         if (estimatedRating)
           return {
             value: estimatedRating,
             sort: Number(estimatedRating),
-            key: "E"
+            key: "E",
+          };
+        return { value: "unrated", sort: 0, key: "" };
+        // Standard Rating
+      } else {
+        if (standard)
+          return { value: standard, sort: standard, key: "" };
+        if (rapid)
+          return { value: rapid, sort: rapid, key: "R" };
+        if (estimatedRating)
+          return {
+            value: estimatedRating,
+            sort: Number(estimatedRating),
+            key: "E",
           };
         return { value: "unrated", sort: 0, key: "" };
       }
@@ -53,7 +75,7 @@ function EntriesTable(data) {
         id: entry.member.id,
         name: entry.member.name,
         club: entry.member.club ? truncate(entry.member.club, 12) : "",
-        rating: getRating(entry.member).value === "0" ? getRating({ /* unrated */ }) : getRating(entry.member)
+        rating: getRating(entry.member),
       };
       list.push(row);
       return list;
@@ -131,15 +153,24 @@ function EntriesTable(data) {
         </tbody>
       </table>
       <div className="text-xs text-gray-400 border border-dashed p-4">
-        <p className="mb-2">
-          The latest ECF ratings are used for all players with a published
-          rating, where a rating is not available their{" "}
-          {isRapid ? "standard long play " : "Rapidplay "}
-          rating is used or an estimate if possible. This will be highlighted in
-          the entry next to the players name.
-        </p>
+        {isBlitz ? (
+          <p className="mb-2">
+            The latest ECF rapidplay are used for our blitz events, where a
+            rapidplay rating is not available, we use their standard long play
+            rating or an estimate if possible. This will be highlighted in the
+            entry next to the players name.
+          </p>
+        ) : (
+          <p className="mb-2">
+            The latest ECF ratings are used for all players with a published
+            rating, where a rating is not available their{" "}
+            {isRapid ? "standard long play " : "Rapidplay "}
+            rating is used or an estimate if possible. This will be highlighted
+            in the entry next to the players name.
+          </p>
+        )}
         <p className="mb-2">Alt Key</p>
-        {isRapid || true ? (
+        {isRapid || isBlitz ? (
           <p className="ml-2">
             <span className="font-bold text-teal-700">S</span> - standard ECF
             rating used
