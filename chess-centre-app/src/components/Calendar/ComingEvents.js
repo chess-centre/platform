@@ -144,7 +144,7 @@ function GridCalendar({
                             new Date(data.startDate).getMonth() === month
                         )
                         .filter(({ type: { eventType } }) => {
-                          const isJunior = eventType.includes("junior");
+                          const isJunior = eventType?.includes("junior");
                           return isJunior
                             ? filters["junior"]
                             : filters[eventType];
@@ -312,7 +312,7 @@ function ListCalendar({
                     (event) => new Date(event.startDate).getMonth() === selected
                   )
                   .filter(({ type: { eventType } }) => {
-                    const isJunior = eventType.includes("junior");
+                    const isJunior = eventType?.includes("junior");
                     return isJunior ? filters["junior"] : filters[eventType];
                   })
                   .map((data, key) => (
@@ -376,7 +376,7 @@ export default function Calendar() {
   useMemo(() => {
     if (data) {
       const availableTypes = data.reduce((pre, { type: { eventType } }) => {
-        const type = eventType.includes("junior") ? "junior" : eventType;
+        const type = eventType?.includes("junior") ? "junior" : eventType;
         return {
           ...pre,
           [type]: true,
