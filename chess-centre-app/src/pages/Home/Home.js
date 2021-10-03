@@ -207,7 +207,6 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-
               {!isLoading ? (
                 eventInfo.map(() => {
                   return (
@@ -237,13 +236,13 @@ const Home = () => {
                 })
               ) : (
                 <div className="mt-4">
-                  <div className="text-gray-300 mb-2 text-xs">
+                  <div className="text-gray-400 mb-2 text-xs">
                     <i className="fal fa-spinner-third fa-spin fa-fw"></i><br />
                     checking for live games
                   </div>
                 </div>
               )}
-            </div>
+             </div>
           </main>
         </div>
       </div>

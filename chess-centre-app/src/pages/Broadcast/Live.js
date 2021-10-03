@@ -3,7 +3,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
 const Live = () => {
-  const url = "https://view.livechesscloud.com/#c9215634-c670-4a2f-b224-3c096fdb5e0c";
+  const url = "https://view.livechesscloud.com#e4c2dd9e-dcd1-4492-98ff-3b46fbda09e3";
   return (
     <div>
       <div className="relative z-10 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
