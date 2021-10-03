@@ -1,7 +1,6 @@
 import API from "@aws-amplify/api";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { listEventsActive } from "../../graphql/queries";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { useAuthState } from "../../context/Auth";
 import LandingNav from "../../components/Navigation/LandingNav";
@@ -11,6 +10,61 @@ import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
 import Integrations from "../../components/Integrations";
 
+
+const listEventsActive = /* GraphQL */ `
+  query ListEventsActive(
+    $active: String
+    $startDate: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelEventFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEventsActive(
+      active: $active
+      startDate: $startDate
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        isLive
+        active
+        createdAt
+        updatedAt
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          createdAt
+          updatedAt
+        }
+      }
+    }
+  }
+`;
+
 const Home = () => {
   const { user } = useAuthState();
   const yesterday = new Date(Date.now() - (3600 * 1000 * 24));
@@ -18,28 +72,29 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchLiveEvents = async () => {
       setIsLoading(true);
-      const  { data: { listEventsActive: { items } }} = await API.graphql({
-        query: listEventsActive,
-        variables: { active: "yes", startDate: { gt: yesterday }, filter: { isLive: { eq: true } } },
-        authMode: "AWS_IAM",
-      }).catch((error) => {
-        setIsLoading(false);
-        console.log("Error loading live data", error);
-      });
-      if(items) {
-        setEventInfo(items);
+      try {
+        const { data: { listEventsActive: { items } } } = await API.graphql({
+          query: listEventsActive,
+          variables: { active: "yes", startDate: { gt: yesterday }, filter: { isLive: { eq: true } } },
+          authMode: "AWS_IAM",
+        })
+        if (items) {
+          setEventInfo(items);
+        }
+      } catch (error) {
+        console.log("Error", error);
       }
       setIsLoading(false);
     };
     try {
-      fetchEvents();
+      fetchLiveEvents();
     } catch (error) {
       setIsLoading(false);
       console.log("Error loading live data", error);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -152,9 +207,13 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-            </div>
-              <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-              <Link
+              {!isLoading ? (
+                eventInfo.map(() => {
+                  return (
+                    <div className="mt-4">
+                      <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center">
+                        <div className="rounded-md shadow">
+                          <Link
                             to="/broadcast/live"
                             className={`
                             py-3
@@ -170,8 +229,20 @@ const Home = () => {
                               Live Games
                             </span>
                           </Link>
-                          </div>
-
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="mt-4">
+                  <div className="text-gray-400 mb-2 text-xs">
+                    <i className="fal fa-spinner-third fa-spin fa-fw"></i><br />
+                    checking for live games
+                  </div>
+                </div>
+              )}
+             </div>
           </main>
         </div>
       </div>

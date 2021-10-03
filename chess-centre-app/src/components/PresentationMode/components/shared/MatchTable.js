@@ -1,119 +1,11 @@
-import React from "react";
-
-export const HomeTeam = [
-    {
-        id: 1,
-        name: "Edward Green",
-        rating: 0,
-    },
-    {
-        id: 2,
-        name: "Rory Bruce (c)",
-        rating: 0,
-    },
-    {
-        id: 3,
-        name: "Charlie Wainwright",
-        rating: 0,
-    },
-    {
-        id: 4,
-        name: "Alex Rawse",
-        rating: 0,
-    },
-    {
-        id: 5,
-        name: "Ella Bradford",
-        rating: 0,
-    },
-    {
-        id: 6,
-        name: "Freya Bramall",
-        rating: 0,
-    },
-    {
-        id: 7,
-        name: "Leo Logan",
-        rating: 0,
-    },
-    {
-        id: 8,
-        name: "Theo Kennedy",
-        rating: 0,
-    },
-    {
-        id: 9,
-        name: "Zakariyya Walker",
-        rating: 0,
-    },
-];
-
-export const AwayTeam = [
-    {
-        id: 1,
-        name: "Youjia Bi",
-        rating: 0,
-    },
-    {
-        id: 2,
-        name: "Sienna Xu",
-        rating: 0,
-    },
-    {
-        id: 3,
-        name: "Aashita Roychowdhury",
-        rating: 0,
-    },
-    {
-        id: 4,
-        name: "Chistopher Beatham",
-        rating: 0,
-    },
-    {
-        id: 5,
-        name: "Dexter Dalgleish",
-        rating: 0,
-    },
-    {
-        id: 6,
-        name: "Milo Green",
-        rating: 0,
-    },
-    {
-        id: 7,
-        name: "Eva Connearn",
-        rating: 0,
-    },
-    {
-        id: 8,
-        name: "Pranav Raja Srinivasan",
-        rating: 0,
-    },
-    {
-        id: 9,
-        name: "Kavin Raja Srinivasan",
-        rating: 0,
-    },
-];
-
-
-const results = [
-    {
-        round: 1,
-        pairResults: [[0,1], [0,1], [0,1], [0,1], [0,1], [0,1], [1,0], [0,1], [0,1]],
-    },
-    {
-        round: 2,
-        pairResults: [[0,1], [0,1], [0,1], [0,1], [0,1], [0,1], [1,0], [0,1], [0,1]],
-    }
-];
-
-const players =
-{
-    homeTeam: HomeTeam,
-    awayTeam: AwayTeam
-};
-
+/**
+ * 
+ * @param {Array} results
+ * @param {Number} round
+ * @param {Boolean} whiteOnOdd
+ * @param {Boolean} showRating 
+ * @returns React.Component
+ */
 const MatchTable = ({ results, round, whiteOnOdd, showRating = false }) => {
     const { homeTeam, awayTeam } = players;
     let homeScore = 0;
@@ -156,7 +48,6 @@ const MatchTable = ({ results, round, whiteOnOdd, showRating = false }) => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
-
                     {homeTeam.map((p, key) => {
                         const [home, away] = results.find(
                             (r) => r.round === round
@@ -195,75 +86,17 @@ const MatchTable = ({ results, round, whiteOnOdd, showRating = false }) => {
                         );
                     })}
                     <tr className="bg-gray-100 dark:bg-gray-800">
-                        <td className="">
-
-                        </td>
-                        <td className="">
-
-                        </td>
-                        <td className="">
-                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-center text-sm bg-white text-gray-500 border-2 border-gray-200 ">
                             {`${homeScore} - ${awayScore}`}
                         </td>
-                        <td className="">
-                        </td>
-                        <td className="">
-
-                        </td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     );
 };
-
-/* 
- * This view pulls in three key components:
-    1) the local iframe for internal DGT boards
-    2) the current table / standings for the event
-    3) relevant QR code for smartphones to pull up the games on their phone
-*/
-const Internal = (props) => {
-    const { url } = props;
-
-    return (
-        <div className="text-center">
-            <h2 className="mt-4 text-2xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-                <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400">
-                    The Chess Centre
-                </span>
-            </h2>
-            <h3 className="text-1xl tracking-tight leading-10 font-extrabold text-orange-700">
-                <span className="">Welcomes</span>
-            </h3>
-            <h3 className="text-2xl tracking-tight leading-10 font-extrabold text-gray-900">
-                <span className="text-gray-900">Leeds Junior Chess Club</span>
-            </h3>
-            <div className="grid grid-rows-4 grid-flow-col gap-4 px-10 py-2 h-screen">
-                <div className="col-span-1 row-span-3 bg-gray-100 rounded-lg shadow-xs p-4">
-                    <div className="text-center">
-                        <h2 className="text-2xl tracking-tight leading-10 font-extrabold text-gray-700">Game One</h2>
-                        <MatchTable
-                            results={results}
-                            round={1}
-                            whiteOnOdd={true}
-                        />
-                    </div>
-                </div>
-                <div className="col-span-1 row-span-3 bg-gray-100 rounded-lg shadow-xs p-4">
-                    <div className="text-center">
-                        <h2 className="text-2xl tracking-tight leading-10 font-extrabold text-gray-700">Game Two</h2>
-                        <MatchTable
-                            results={results}
-                            round={2}
-                            whiteOnOdd={false}
-                        />
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default Internal;
