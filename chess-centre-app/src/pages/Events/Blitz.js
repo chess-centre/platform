@@ -148,7 +148,7 @@ export default function BlitzEvent() {
                   pairing event.
                 </p>
                 <ul>
-                  <li>10 Rounds</li>
+                  <li>9 Rounds</li>
                   <li>
                     3 mins plus 2 second increment per player on the clock
                   </li>

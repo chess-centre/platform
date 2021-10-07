@@ -116,12 +116,12 @@ export const rounds = [
         time: "12:50 - 13:00",
       },
       {
-        round: 9,
+        round: 8,
         day: "Saturday",
         time: "13:10 - 13:20",
       },
       {
-        round: 10,
+        round: 9,
         day: "Saturday",
         time: "13:30 - 13:40",
       },
