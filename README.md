@@ -119,7 +119,7 @@ Then pull down the backend environment:
 amplify env pull dev
 ```
   
-You will now have a custom development environment! 🥳
+You will now have a development environment! 🥳
 
 Finally, start the project:
 
