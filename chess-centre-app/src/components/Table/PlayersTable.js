@@ -14,44 +14,76 @@ export default function PlayersTable({ players }) {
                 accessor: "name",
             },
             {
-                Header: "Standard",
-                accessor: "standard",
-            },
-            {
-                Header: "Rapid",
-                accessor: "rapid",
+                Header: "ECF",
+                columns: [{
+                    Header: "Standard",
+                    accessor: "standard",
+                },
+                {
+                    Header: "Rapid",
+                    accessor: "rapid",
+                }]
             },
             {
                 Header: "Chess.com",
-                accessor: "chesscom",
+                columns: [
+                    {
+                        Header: "Bullet",
+                        accessor: "chesscomBullet",
+                    },
+                    {
+                        Header: "Blitz",
+                        accessor: "chesscomBlitz",
+                    },
+                    {
+                        Header: "Rapid",
+                        accessor: "chesscomRapid",
+                    }
+                ]
             },
             {
                 Header: "Lichess",
-                accessor: "lichess",
+                columns: [
+                    {
+                        Header: "Bullet",
+                        accessor: "lichessBullet",
+                    },
+                    {
+                        Header: "Blitz",
+                        accessor: "lichessBlitz",
+                    },
+                    {
+                        Header: "Rapid",
+                        accessor: "lichessRapid",
+                    }
+                ]
             }
         ],
         []
     );
 
-    const data = players?.filter(m => m.ecfId != null) // <-- shouldn't be needed if AppSync could filter on null fields
+    const data = players?.filter(m => !!m.ecfId) // <-- shouldn't be needed if AppSync could filter on null fields
+        .sort((a, b) => b?.ecfRating - a?.ecfRating)
         .reduce((prev, member, index) => {
             const parsedChesscom = member.chesscomInfo ? JSON.parse(member.chesscomInfo) : "";
             const parsedLichess = member.liChessInfo ? JSON.parse(member.liChessInfo) : "";
-
             return [
                 ...prev,
                 {
                     rank: index += 1,
                     name: member.name,
-                    standard: member.ecfRating,
-                    rapid: member.ecfRapid,
-                    chesscom: parsedChesscom?.chess_blitz?.last.rating,
-                    lichess: parsedLichess?.perfs?.blitz?.rating
+                    standard: member.ecfRating === 0 ? "" : member.ecfRating,
+                    rapid: member.ecfRapid === 0 ? "" : member.ecfRapid,
+                    chesscomBullet: parsedChesscom?.chess_bullet?.last.rating,
+                    chesscomBlitz: parsedChesscom?.chess_blitz?.last.rating,
+                    chesscomRapid: parsedChesscom?.chess_rapid?.last.rating,
+                    lichessBullet: parsedLichess?.perfs?.bullet?.rating,
+                    lichessBlitz: parsedLichess?.perfs?.blitz?.rating,
+                    lichessRapid: parsedLichess?.perfs?.rapid?.rating,
                 }
             ];
-        }, [])
-        .sort((a, b) => b.standard - a.standard);
-
+        }, []);
+        
     return (
         <div className="min-h-screen bg-gray-50 text-gray-900">
             <main className="max-w-5xl">

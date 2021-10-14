@@ -49,6 +49,7 @@ export default function Players() {
         variables: { limit: 500, filter: { ecfId: { ne: null } } },
         authMode: "AWS_IAM"
       });
+      console.log(playersList);
       setPlayers(playersList);
       setIsLoading(false);
       setIsError(false);
@@ -113,7 +114,7 @@ export default function Players() {
                     <i className="aninmal-pulse fal fa-chess-board fa-10x text-teal-500 opacity-50"></i>
                   </span>
                   <p className="mt-2 block text-sm font-medium text-gray-600">
-                    Loading games...
+                    Loading players...
                   </p>
                 </div>
               )
