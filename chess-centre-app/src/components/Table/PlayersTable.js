@@ -65,8 +65,8 @@ export default function PlayersTable({ players }) {
                 {
                     rank: index += 1,
                     name: member.name,
-                    standard: member.ecfRating,
-                    rapid: member.ecfRapid,
+                    standard: member.ecfRating === 0 ? null : member.ecfRating,
+                    rapid: member.ecfRapid === 0 ? null : member.ecfRapid,
                     chesscomBullet: parsedChesscom?.chess_bullet?.last.rating,
                     chesscomBlitz: parsedChesscom?.chess_blitz?.last.rating,
                     lichessBullet: parsedLichess?.perfs?.bullet?.rating,
