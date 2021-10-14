@@ -62,19 +62,18 @@ export default function PlayersTable({ players }) {
         []
     );
 
-    const data = players?.filter(m => m.ecfId != null) // <-- shouldn't be needed if AppSync could filter on null fields
+    const data = players?.filter(m => !!m.ecfId) // <-- shouldn't be needed if AppSync could filter on null fields
         .sort((a, b) => b?.ecfRating - a?.ecfRating)
         .reduce((prev, member, index) => {
             const parsedChesscom = member.chesscomInfo ? JSON.parse(member.chesscomInfo) : "";
             const parsedLichess = member.liChessInfo ? JSON.parse(member.liChessInfo) : "";
-
             return [
                 ...prev,
                 {
                     rank: index += 1,
                     name: member.name,
-                    standard: member.ecfRating === 0 ? null : member.ecfRating,
-                    rapid: member.ecfRapid === 0 ? null : member.ecfRapid,
+                    standard: member.ecfRating === 0 ? "" : member.ecfRating,
+                    rapid: member.ecfRapid === 0 ? "" : member.ecfRapid,
                     chesscomBullet: parsedChesscom?.chess_bullet?.last.rating,
                     chesscomBlitz: parsedChesscom?.chess_blitz?.last.rating,
                     chesscomRapid: parsedChesscom?.chess_rapid?.last.rating,
