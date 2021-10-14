@@ -46,7 +46,7 @@ export default function Players() {
       } = await API.graphql({
         query: listMembers,
         // TODO: this filter isn't supported from some reason:
-        variables: { filter: { ecfId: { ne: null } } },
+        variables: { limit: 500, filter: { ecfId: { ne: null } } },
         authMode: "AWS_IAM"
       });
       console.log(playersList);
