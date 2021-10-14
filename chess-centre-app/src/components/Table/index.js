@@ -89,6 +89,7 @@ function GlobalFilter({
   preGlobalFilteredRows,
   globalFilter,
   setGlobalFilter,
+  searchPlaceholder
 }) {
   const count = preGlobalFilteredRows.length;
   const [value, setValue] = React.useState(globalFilter);
@@ -112,7 +113,7 @@ function GlobalFilter({
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} games...`}
+        placeholder={`${count} ${searchPlaceholder}`}
       />
     </div>
   );
@@ -156,7 +157,7 @@ export function SelectColumnFilter({
   );
 }
 
-function Table({ columns, data }) {
+function Table({ columns, data, searchPlaceholder="Games..." }) {
 
   const {
     getTableProps,
@@ -194,6 +195,7 @@ function Table({ columns, data }) {
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={state.globalFilter}
           setGlobalFilter={setGlobalFilter}
+          searchPlaceholder={searchPlaceholder}
         />
         {headerGroups.map((headerGroup) =>
           headerGroup.headers.map((column) =>
@@ -313,7 +315,7 @@ function Table({ columns, data }) {
               aria-label="Pagination"
             >
               <PageButton
-                className="rounded-l-md"
+                className="rounded-l-md -mr-1"
                 onClick={() => gotoPage(0)}
                 disabled={!canPreviousPage}
               >
