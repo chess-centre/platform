@@ -49,6 +49,7 @@ export default function Players() {
         variables: { filter: { ecfId: { ne: null } } },
         authMode: "AWS_IAM"
       });
+      console.log(playersList);
       setPlayers(playersList);
       setIsLoading(false);
       setIsError(false);
