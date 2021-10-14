@@ -14,20 +14,41 @@ export default function PlayersTable({ players }) {
                 accessor: "name",
             },
             {
-                Header: "Standard",
-                accessor: "standard",
-            },
-            {
-                Header: "Rapid",
-                accessor: "rapid",
+                Header: "ECF",
+                columns: [{
+                    Header: "Standard",
+                    accessor: "standard",
+                },
+                {
+                    Header: "Rapid",
+                    accessor: "rapid",
+                }]
             },
             {
                 Header: "Chess.com",
-                accessor: "chesscom",
+                columns: [
+                    {
+                        Header: "Bullet",
+                        accessor: "chesscomBullet",
+                    },
+                    {
+                        Header: "Blitz",
+                        accessor: "chesscomBlitz",
+                    }
+                ]
             },
             {
                 Header: "Lichess",
-                accessor: "lichess",
+                columns: [
+                    {
+                        Header: "Bullet",
+                        accessor: "lichessBullet",
+                    },
+                    {
+                        Header: "Blitz",
+                        accessor: "lichessBlitz",
+                    }
+                ]
             }
         ],
         []
@@ -45,8 +66,10 @@ export default function PlayersTable({ players }) {
                     name: member.name,
                     standard: member.ecfRating,
                     rapid: member.ecfRapid,
-                    chesscom: parsedChesscom?.chess_blitz?.last.rating,
-                    lichess: parsedLichess?.perfs?.blitz?.rating
+                    chesscomBullet: parsedChesscom?.chess_bullet?.last.rating,
+                    chesscomBlitz: parsedChesscom?.chess_blitz?.last.rating,
+                    lichessBullet: parsedLichess?.perfs?.bullet?.rating,
+                    lichessBlitz: parsedLichess?.perfs?.blitz?.rating
                 }
             ];
         }, [])
