@@ -34,6 +34,10 @@ export default function PlayersTable({ players }) {
                     {
                         Header: "Blitz",
                         accessor: "chesscomBlitz",
+                    },
+                    {
+                        Header: "Rapid",
+                        accessor: "chesscomRapid",
                     }
                 ]
             },
@@ -47,6 +51,10 @@ export default function PlayersTable({ players }) {
                     {
                         Header: "Blitz",
                         accessor: "lichessBlitz",
+                    },
+                    {
+                        Header: "Rapid",
+                        accessor: "lichessRapid",
                     }
                 ]
             }
@@ -69,8 +77,10 @@ export default function PlayersTable({ players }) {
                     rapid: member.ecfRapid === 0 ? null : member.ecfRapid,
                     chesscomBullet: parsedChesscom?.chess_bullet?.last.rating,
                     chesscomBlitz: parsedChesscom?.chess_blitz?.last.rating,
+                    chesscomRapid: parsedChesscom?.chess_rapid?.last.rating,
                     lichessBullet: parsedLichess?.perfs?.bullet?.rating,
-                    lichessBlitz: parsedLichess?.perfs?.blitz?.rating
+                    lichessBlitz: parsedLichess?.perfs?.blitz?.rating,
+                    lichessRapid: parsedLichess?.perfs?.rapid?.rating,
                 }
             ];
         }, []);
