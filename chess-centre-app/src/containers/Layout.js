@@ -24,8 +24,8 @@ const routes = [
     component: lazy(() => import("../pages/App/Games")),
   },
   {
-    path: "/members",
-    component: lazy(() => import("../pages/App/Members")),
+    path: "/players",
+    component: lazy(() => import("../pages/App/Players")),
   },
   {
     path: "/juniors",

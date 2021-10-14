@@ -89,6 +89,7 @@ function GlobalFilter({
   preGlobalFilteredRows,
   globalFilter,
   setGlobalFilter,
+  searchPlaceholder
 }) {
   const count = preGlobalFilteredRows.length;
   const [value, setValue] = React.useState(globalFilter);
@@ -112,7 +113,7 @@ function GlobalFilter({
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} games...`}
+        placeholder={`${count} ${searchPlaceholder}`}
       />
     </div>
   );
@@ -156,7 +157,7 @@ export function SelectColumnFilter({
   );
 }
 
-function Table({ columns, data }) {
+function Table({ columns, data, searchPlaceholder="Games..." }) {
 
   const {
     getTableProps,
@@ -194,6 +195,7 @@ function Table({ columns, data }) {
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={state.globalFilter}
           setGlobalFilter={setGlobalFilter}
+          searchPlaceholder={searchPlaceholder}
         />
         {headerGroups.map((headerGroup) =>
           headerGroup.headers.map((column) =>
@@ -214,7 +216,7 @@ function Table({ columns, data }) {
                 {...getTableProps()}
                 className="w-full table-auto divide-y divide-gray-200"
               >
-                <thead className="bg-teal-700">
+                <thead className="">
                   {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                       {headerGroup.headers.map((column) => (
@@ -222,12 +224,12 @@ function Table({ columns, data }) {
                         // we can add them into the header props
                         <th
                           scope="col"
-                          className="group px-2 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider"
+                          className="group bg-teal-700 px-2 py-3 text-center text-xs font-medium text-gray-100 uppercase"
                           {...column.getHeaderProps(
                             column.getSortByToggleProps()
                           )}
                         >
-                          <div className="flex items-center justify-between">
+                          <div className=" flex items-center text-center justify-between">
                             {column.render("Header")}
                             {/* Add a sort direction indicator */}
                             <span>
@@ -313,7 +315,7 @@ function Table({ columns, data }) {
               aria-label="Pagination"
             >
               <PageButton
-                className="rounded-l-md"
+                className="rounded-l-md -mr-1"
                 onClick={() => gotoPage(0)}
                 disabled={!canPreviousPage}
               >

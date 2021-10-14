@@ -68,7 +68,7 @@ export const useEvents = () => {
       },
     } = await API.graphql({
       query: listEventsActive,
-      variables: { active: "yes", startDate: { gt: yesterday } },
+      variables: { active: "yes", startDate: { ne: yesterday } },
       authMode: "AWS_IAM",
     });
 
