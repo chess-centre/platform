@@ -1,5 +1,6 @@
 export const PairingsTable = ({ format, players, results, indexer }) => {
   const { round, pairings } = format;
+  console.log("format", players);
   return (
     <div className="">
       <table className="w-full divide-y divide-gray-200 table-auto border-gray-300 border">
