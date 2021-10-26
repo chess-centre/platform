@@ -64,11 +64,12 @@ export default function PlayersTable({ players }) {
 
     const data = players?.filter(m => !!m.ecfId) // <-- shouldn't be needed if AppSync could filter on null fields
         .sort((a, b) => b?.ecfRating - a?.ecfRating)
-        .reduce((prev, member, index) => {
+        .reduce((tableRows, member, index) => {
             const parsedChesscom = member.chesscomInfo ? JSON.parse(member.chesscomInfo) : "";
             const parsedLichess = member.liChessInfo ? JSON.parse(member.liChessInfo) : "";
             return [
-                ...prev,
+                ...tableRows,
+                // new row:
                 {
                     rank: index += 1,
                     name: member.name,

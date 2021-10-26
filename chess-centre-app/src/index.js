@@ -11,7 +11,7 @@ import Theme from "./theme.js";
 
 ReactDOM.render(
   <SidebarProvider>
-    <Suspense fallback={<ThemedSuspense />}>
+    <Suspense fallback={<ThemedSuspense />}>    
       <Windmill theme={Theme} dark={false}>
         <App />
       </Windmill>
