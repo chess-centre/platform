@@ -13,6 +13,8 @@ const EventHeader = ({ type, icon, name, description }) => {
         return "text-blue-500";
       case "blitz":
         return "text-yellow-400";
+      case "loading":
+        return "text-gray-300";
       default:
         return "text-yellow-500";
     }
@@ -101,14 +103,14 @@ export default function EventCard({
   icon,
   name,
   description,
-  defaultPrice,
   details,
   type,
-  color,
-  url,
   isLive,
   isFull,
 }) {
+
+  const { eventType, color, defaultPrice, url } = type;
+
   return (
     <div
       className={`relative m-2 rounded-lg shadow-lg divide-y divide-gray-100 max-w-xs bg-white`}
@@ -124,7 +126,7 @@ export default function EventCard({
           icon={icon}
           name={name}
           description={description}
-          type={type}
+          type={eventType}
         />
         <EventPrice
           defaultPrice={defaultPrice}
@@ -166,4 +168,92 @@ export default function EventCard({
       </div>
     </div>
   );
+}
+
+export const SkeletonEventCard = () => {
+
+  const details = [
+    {
+      icon: "fad fa-calendar-alt",
+      ariaName: "Date / Time",
+      information: ``,
+      show: true,
+    },
+    {
+      icon: "fad fa-flag",
+      ariaName: "Number of Rounds",
+      information: ``,
+      show: true,
+    },
+    {
+      icon: "fad fa-chess-clock",
+      ariaName: "Time Control",
+      information: ``,
+      show: true,
+    },
+    {
+      icon: "fad fa-user-friends",
+      ariaName: "Entries",
+      information: ``,
+      show: true,
+    },
+    {
+      empty: true,
+      show: true
+    }
+  ];
+
+  return (
+    <div
+      className={`animate-pulse relative m-2 rounded-lg shadow-lg divide-y divide-gray-100 max-w-xs bg-white`}
+    >
+      <div
+        className={classNames(
+          "bg-colour-200 absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
+        )}
+      ></div>
+      <div className="p-6 px-10">
+        <div className="relative">
+          <h2 className="text-lg leading-6 font-medium text-gray-900 text-center">
+            <span className={"text-gray-300 text-9xl"}>
+              <i className={`fad fa-chess-queen-alt`}></i>{" "}
+            </span>
+          </h2>
+
+          <p className="text-gray-900 w-full bg-gray-300 font-thin text-base text-center h-4 mb-2 rounded-md">
+            
+          </p>
+        </div>
+
+        <div
+          className="mt-6 block w-full bg-gray-600 border border-gray-600 rounded-md py-2 text-sm font-semibold text-white text-center"
+        >
+          <span>Register Now</span>
+        </div>
+      </div>
+      <div className="pt-6 pb-8 px-6">
+        <h3 className="text-xs font-medium text-gray-200 tracking-wide uppercase">
+          Details
+        </h3>
+        <ul className="mt-4 space-y-2">
+          {details.map(({ icon, information, show, empty }, key) => {
+            return (
+              show && !empty && (
+                <li key={key} className="flex items-start">
+                  <div className="flex-shrink-0">
+                    <span className="text-gray-200 ml-2">
+                      <i className={icon}></i>
+                    </span>
+                  </div>
+                  <p className="ml-3 text-md text-gray-200">{information}</p>
+                </li>
+              )
+            );
+          })}
+        </ul>
+      </div>
+      <div className="text-center p-2">
+      </div>
+    </div>
+  )
 }

@@ -44,9 +44,9 @@ function UsefulLinksTable() {
     <div className="rounded-md mx-auto w-full">
     <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 px-2">
       <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <div className="shadow-lg overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <div className="shadow-lg overflow-hidden border-b border-gray-200 rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-teal-500">
+            <thead className="bg-teal-700">
               <tr>
                 <th
                   scope="col"
@@ -109,7 +109,7 @@ export default function Juniors() {
       </div>
       <div className="relative grid mb-8 md:grid-cols-1 mt-6">
         <div className="">
-          <h3 className="text-lg font-semibold text-gray-700 ml-4 mt-1 text-center sm:text-left mb-4">Useful links to other great chess sites</h3>
+          <h3 className="text-lg font-semibold text-gray-700 ml-4 mt-1 text-left mb-4">Useful links to great chess sites</h3>
           <UsefulLinksTable />
         </div> 
       </div>
