@@ -1,0 +1,109 @@
+{
+    "name": "November Rapidplay 2021",
+    "currentRound": 1,
+    "showAll": true,
+    "showPreviousRound": false,
+    "nextRoundTime": "Round 1 starts @ 10:00am",
+    "open": [
+        {
+            "id": 1,
+            "name": "Matthew Parsons",
+            "ratingInfo": {
+                "rating": 2167
+            }
+        },
+        {
+            "id": 2,
+            "name": "Tim Hilton",
+            "ratingInfo": {
+                "rating": 2007
+            }
+        },
+        {
+            "id": 3,
+            "name": "Jon Duckham",
+            "ratingInfo": {
+                "rating": 1840
+            }
+        },
+        {
+            "id": 4,
+            "name": "Kevin Winter",
+            "ratingInfo": {
+                "rating": 1782
+            }
+        },
+        {
+            "id": 5,
+            "name": "Gary Hinchcliffe",
+            "ratingInfo": {
+                "rating": 1768
+            }
+        },
+        {
+            "id": 6,
+            "name": "Gerald Cuaresma",
+            "ratingInfo": {
+                "rating": 1700
+            }
+        }
+    ],
+    "swiss": [
+        {
+            "id": 1,
+            "name": "Gary Corcoran",
+            "ratingInfo": {
+                "rating": 1690
+            }
+        },
+        {
+            "id": 2,
+            "name": "Nigel Redmond",
+            "ratingInfo": {
+                "rating": 1645
+            }
+        },
+        {
+            "id": 3,
+            "name": "Shriaansh Ganti",
+            "ratingInfo": {
+                "rating": 1483
+            }
+        },
+        {
+            "id": 4,
+            "name": "Donna Chadwick",
+            "ratingInfo": {
+                "rating": 1398
+            }
+        },
+        {
+            "id": 5,
+            "name": "Mary Lockey",
+            "ratingInfo": {
+                "rating": null
+            }
+        },
+        {
+            "id": 6,
+            "name": "Emma Duckham",
+            "ratingInfo": {
+                "rating": null
+            }
+        },
+        {
+            "id": 7,
+            "name": "Brendan Smith",
+            "ratingInfo": {
+                "rating": null
+            }
+        },        
+        {
+            "id": 8,
+            "name": "Paul Butterworth",
+            "ratingInfo": {
+                "rating": null
+            }
+        }
+    ]
+}
