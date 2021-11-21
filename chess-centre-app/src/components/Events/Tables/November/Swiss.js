@@ -8,46 +8,51 @@ const SixPlayerPairings = [
     {
         round: 1,
         pairings: [
-            [1, 5],
-            [6, 2],
-            [3, 7],
-            [8, 4]
+            [1, 6],
+            [7, 2],
+            [3, 8],
+            [9, 4],
+            [5, 10]
         ],
     },
     {
         round: 2,
         pairings: [
-            [],
-            [],
-            [],
-            [],
+            [4, 1],
+            [2, 3],
+            [8, 5],
+            [10, 7],
+            [6, 9],
         ],
     },
     {
         round: 3,
         pairings: [
-            [],
-            [],
-            [],
-            [],
+            [1,3],
+            [5,2],
+            [10,4],
+            [7,6],
+            [9,8],
         ],
     },
     {
         round: 4,
         pairings: [
-            [],
-            [],
-            [],
-            [],
+            [3,5],
+            [2,1],
+            [6,10],
+            [9,7],
+            [4,8],
         ],
     },
     {
         round: 5,
         pairings: [
-            [],
-            [],
-            [],
-            [],
+            [10,3],
+            [1,5],
+            [6,4],
+            [8,7],
+            [2,9],
         ],
     },
 ];
@@ -55,23 +60,23 @@ const SixPlayerPairings = [
 const results = [
     {
         round: 1,
-        pairResults: [[], [], [], []],
+        pairResults: [[1, 0], [0, 1], [1, 0], [0, 1], [1, 0]],
     },
     {
         round: 2,
-        pairResults: [[], [], [], []],
+        pairResults: [[0, 1], [0,1], [0, 1], [1, 0], [1, 0]],
     },
     {
         round: 3,
-        pairResults: [[], [], [], []],
+        pairResults: [[0,1], [0,1], [1,0], [0,1], [1,0]],
     },
     {
         round: 4,
-        pairResults: [[], [], [], []],
+        pairResults: [[0.5,0.5], [0,1], [0,1], [0,1], [1,0]],
     },
     {
         round: 5,
-        pairResults: [[], [], [], []],
+        pairResults: [[1,0], [1,0], [0,1], [0,1], [1,0]],
     },
 ];
 
@@ -81,8 +86,6 @@ const players = [
         return m;
     }),
 ];
-
-console.log(players);
 
 const resultCheck = (players) => {
     const resultBySeed = [];
@@ -117,7 +120,7 @@ const resultCheck = (players) => {
                     rounds: [result],
                     total: result || 0,
                     name: p?.name,
-                    rating: p?.rating,
+                    rating: p?.ratingInfo.rating,
                 };
             }
         } else {
@@ -142,8 +145,22 @@ export default function Rapidplay() {
                         division={"Division 2 (Swiss)"}
                     ></Standings>
                 </div>
+
+                {
+                    showPreviousRound &&
+                    <div className="mb-6">
+                        <p className="mb-2 font-medium">Previous Round</p>
+                        <PairingsTable
+                            format={SixPlayerPairings[currentRound - 2]}
+                            players={players}
+                            results={results}
+                            indexer={3}
+                        />
+                    </div>
+                }
+
                 <div className="mb-2">
-                    <p className="mb-2 font-medium">Next Round</p>
+                    <p className="mb-2 font-medium">Results</p>
                     <PairingsTable
                         format={SixPlayerPairings[currentRound - 1]}
                         players={players}
