@@ -122,6 +122,7 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   complete: Boolean
   cancelled: Boolean
   isLive: Boolean
+  isLiveUrl: String
   active: String
   results: [Result] @connection(keyName: "byEvent", fields: ["id"])
 }
