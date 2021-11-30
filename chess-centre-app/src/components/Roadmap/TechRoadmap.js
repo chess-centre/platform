@@ -71,12 +71,13 @@ export const TechRoadmap = () => {
               <span className="mr-2 bg-blue-200 text-blue-700 p-1 rounded  leading-none">
                 BETA
               </span>
-              <span className="font-thin">v2.0.0</span>
+              <span className="font-thin">v2.0.0-beta</span>
             </div>
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li>Dashboard insights <br /><Issue issue="100" /></li>
+              <li>Player search <br /><Issue issue="246" /></li>
               <li>PGN uploads <br /><Issue issue="243" /></li>
             </ul>
           </div>
@@ -95,6 +96,7 @@ export const TechRoadmap = () => {
             <ul className="list-disc ml-5">
               <li>League tables <br /><Issue issue="3" /></li>
               <li>Grand prix <br /><Issue issue="101" /></li>
+              <li>Latest News <br /><Issue issue="312" /></li>
             </ul>
           </div>
         </li>
@@ -110,8 +112,9 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-            <li>Junior - lesson resources</li>
+              <li>Junior - lesson resources</li>
             </ul>
+            <br />
             <ul className="ml-1">   
               <li>Have your say 
                 <a className="text-pink-600 hover:underline" href="https://github.com/chess-centre/platform/discussions"> here</a>{" "}💡
