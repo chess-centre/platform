@@ -132,28 +132,19 @@ export default function Rapidplay() {
                     division={"Division 1 (All Play All)"}
                 ></Standings>
             </div>
-            {
-                showPreviousRound &&
-                <div className="mt-6">
-                    <p className="mb-2 font-medium">Previous Round</p>
-                    <PairingsTable
-                        format={SixPlayerPairings[currentRound - 2]}
-                        players={players}
-                        results={results}
-                        indexer={0}
-                    />
-                </div>
-            }
 
-            <div className="mt-2">
-                <p className="mb-2 font-medium">Results</p>
-                <PairingsTable
-                    format={SixPlayerPairings[currentRound - 1]}
-                    players={players}
-                    results={results}
-                    indexer={0}
-                />
-            </div>
+            {SixPlayerPairings.map((pairings, key) => {
+                    return (
+                        <div key={key} className="mt-2">
+                            <PairingsTable
+                                format={pairings}
+                                players={players}
+                                results={results}
+                                indexer={0}
+                            />
+                        </div>
+                    );
+                })}
         </div>
     );
 }

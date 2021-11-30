@@ -146,28 +146,18 @@ export default function Rapidplay() {
                     ></Standings>
                 </div>
 
-                {
-                    showPreviousRound &&
-                    <div className="mb-6">
-                        <p className="mb-2 font-medium">Previous Round</p>
-                        <PairingsTable
-                            format={SixPlayerPairings[currentRound - 2]}
-                            players={players}
-                            results={results}
-                            indexer={3}
-                        />
-                    </div>
-                }
-
-                <div className="mb-2">
-                    <p className="mb-2 font-medium">Results</p>
-                    <PairingsTable
-                        format={SixPlayerPairings[currentRound - 1]}
-                        players={players}
-                        results={results}
-                        indexer={3}
-                    />
-                </div>
+                {SixPlayerPairings.map((pairings, key) => {
+                    return (
+                        <div key={key} className="mt-2">
+                            <PairingsTable
+                                format={pairings}
+                                players={players}
+                                results={results}
+                                indexer={0}
+                            />
+                        </div>
+                    );
+                })}
 
             </div>
         </div>
