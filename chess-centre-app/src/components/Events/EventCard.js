@@ -62,8 +62,8 @@ const RegisterButton = ({ id, isLive, isFull }) => {
     <>
       {isLive && (
         <div>
-          <a
-            href="/broadcast/live"
+          <Link
+            to="/broadcast/live"
             className={`mt-6 
               w-full flex items-center justify-center 
               py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
@@ -74,7 +74,7 @@ const RegisterButton = ({ id, isLive, isFull }) => {
               <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
             </span>{" "}
             <span className="ml-2">Watch Here</span>
-          </a>
+          </Link>
         </div>
       )}
 
@@ -87,12 +87,12 @@ const RegisterButton = ({ id, isLive, isFull }) => {
         </button>
       )}
       {!isLive && !isFull && (
-        <a
-          href={`/register?eventId=${id}`}
+        <Link
+          to={`/register?eventId=${id}`}
           className="mt-6 block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900"
         >
           <span>Register Now</span>
-        </a>
+        </Link>
       )}
     </>
   );

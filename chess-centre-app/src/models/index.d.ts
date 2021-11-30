@@ -81,6 +81,7 @@ export declare class Event {
   readonly complete?: boolean;
   readonly cancelled?: boolean;
   readonly isLive?: boolean;
+  readonly isLiveUrl?: string;
   readonly active?: string;
   readonly results?: (Result | null)[];
   constructor(init: ModelInit<Event>);

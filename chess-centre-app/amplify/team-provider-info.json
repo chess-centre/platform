@@ -46,7 +46,7 @@
         },
         "ecfPlayerGames": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfPlayerGames-2b6d3358726b50503963-build.zip"
+          "s3Key": "amplify-builds/ecfPlayerGames-32584a5231366e617030-build.zip"
         },
         "ecfRatingScrapper": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -82,7 +82,7 @@
         },
         "uploadLichessPgns": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/uploadLichessPgns-347945384c5a43596b75-build.zip"
+          "s3Key": "amplify-builds/uploadLichessPgns-4b5066326f2b7a634c33-build.zip"
         }
       }
     }

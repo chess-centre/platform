@@ -1,5 +1,4 @@
-import API from "@aws-amplify/api";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { useAuthState } from "../../context/Auth";
@@ -9,93 +8,11 @@ import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
 import Integrations from "../../components/Integrations";
-
-
-const listEventsActive = /* GraphQL */ `
-  query ListEventsActive(
-    $active: String
-    $startDate: ModelStringKeyConditionInput
-    $sortDirection: ModelSortDirection
-    $filter: ModelEventFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEventsActive(
-      active: $active
-      startDate: $startDate
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        name
-        description
-        rounds
-        time
-        startDate
-        endDate
-        maxEntries
-        entryCount
-        complete
-        cancelled
-        isLive
-        active
-        createdAt
-        updatedAt
-        type {
-          id
-          name
-          description
-          url
-          color
-          time
-          maxEntries
-          stripePriceId
-          timeControl
-          eventType
-          defaultPrice
-          canRegister
-          createdAt
-          updatedAt
-        }
-      }
-    }
-  }
-`;
+import { LiveGameContext } from "../../context/LiveGameContext";
 
 const Home = () => {
   const { user } = useAuthState();
-  const yesterday = new Date(Date.now() - (3600 * 1000 * 24));
-  const [eventInfo, setEventInfo] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchLiveEvents = async () => {
-      setIsLoading(true);
-      try {
-        const { data: { listEventsActive: { items } } } = await API.graphql({
-          query: listEventsActive,
-          variables: { active: "yes", startDate: { gt: yesterday }, filter: { isLive: { eq: true } } },
-          authMode: "AWS_IAM",
-        })
-        if (items) {
-          setEventInfo(items);
-        }
-      } catch (error) {
-        console.log("Error", error);
-      }
-      setIsLoading(false);
-    };
-    try {
-      fetchLiveEvents();
-    } catch (error) {
-      setIsLoading(false);
-      console.log("Error loading live data", error);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { eventInfo, isLoading } = React.useContext(LiveGameContext);
 
   return (
     <div>
