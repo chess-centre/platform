@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
-import EventCard, { SkeletonEventCard } from "../../components/Events/EventCard";
+import EventCard from "../../components/Events/EventCard";
 import { prettyDate } from "../../utils/DateFormating";
 import { useEvents } from "../../api/events";
 
@@ -27,14 +27,12 @@ export default function Events() {
   const [,,eventType] = location.pathname.split("/");
   const [selectedEventType, setSelectedEventType] = useState("all");
 
-  const isLoadingTest = true;
-
   useMemo(() => {
     if (data) {
-      const availableTypes = data.reduce((types, { type: { eventType, canRegister } }) => {
-        if(!canRegister) return types;
-        if(types.includes(eventType)) return types;
-        return [...types, eventType];
+      const availableTypes = data.reduce((pre, { type: { eventType, canRegister } }) => {
+        if(!canRegister) return pre;
+        if(pre.includes(eventType)) return pre;
+        return [...pre, eventType];
       }, ["all"]);
       setSelectableEventTypes(availableTypes);
       const defaultSelectedEventType = eventType && availableTypes.includes(eventType) ? eventType : "all";
@@ -179,7 +177,7 @@ export default function Events() {
                     : "m-auto mt-6 space-y-4 sm:mt-10 sm:space-y-0 sm:grid sm:gap-6 sm:grid-cols-2 md:grid-cols-3 mb-8"
                 }
               >
-                {(!isLoading || !isLoadingTest) ? (
+                {!isLoading ? (
                   data
                     .filter((event) =>
                       selectedEventType === "all"
@@ -193,22 +191,36 @@ export default function Events() {
                     .map(
                       (
                         {
+                          id,
+                          name,
+                          description,
                           rounds,
                           startDate,
                           endDate,
+                          type,
                           entryCount,
-                          ...props
+                          isLive,
+                          isFull
                         },
                         key
                       ) => {
                         return (
                           <div key={key}>
                             <EventCard
-                              {...props}
-                              icon={setIcon(props.type.eventType)}
+                              key={key}
+                              id={id}
+                              icon={setIcon(type.eventType)}
+                              color={type.color}
+                              defaultPrice={type.defaultPrice}
+                              type={type.eventType}
+                              name={name}
+                              url={type.url}
+                              description={description}
+                              isLive={isLive}
+                              isFull={isFull}
                               details={[
                                 {
-                                  icon: "fad fa-calendar-alt", 
+                                  icon: "fad fa-calendar-alt",
                                   ariaName: "Date / Time",
                                   information: prettyDate(startDate, endDate),
                                   show: !!startDate,
@@ -222,8 +234,8 @@ export default function Events() {
                                 {
                                   icon: "fad fa-chess-clock",
                                   ariaName: "Time Control",
-                                  information: `${props.type.timeControl}`,
-                                  show: !!props.type.timeControl,
+                                  information: `${type.timeControl}`,
+                                  show: !!type.timeControl,
                                 },
                                 {
                                   icon: "fad fa-user-friends",
@@ -244,9 +256,15 @@ export default function Events() {
                         );
                       }
                     )
-
                 ) : (
-                  [0,1,3].map(key => <div><SkeletonEventCard key={key} /></div>)
+                  <div className="m-auto text-center mt-10 mb-10">
+                    <div className="text-teal-500 mb-2">
+                      <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
+                    </div>
+                    <div className="italic text-gray-500">
+                      fetching events...
+                    </div>
+                  </div>
                 )}
               </div>
             ) : (

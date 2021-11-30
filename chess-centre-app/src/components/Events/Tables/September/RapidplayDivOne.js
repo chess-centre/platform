@@ -170,7 +170,7 @@ const { roundByRound } = resultCheck(players);
 
 export default function Rapidplay() {
   return (
-    <div className="grid grid-cols-2 p-4 ml-20 mt-2">
+    <div className="grid grid-cols-1 p-4 ml-20 mt-2">
       <div className="">
         <Standings
           roundByRound={roundByRound}
