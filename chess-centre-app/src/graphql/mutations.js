@@ -379,6 +379,7 @@ export const createGame = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -494,6 +495,7 @@ export const createGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -667,6 +669,7 @@ export const createGame = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -782,6 +785,7 @@ export const createGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -807,6 +811,7 @@ export const createGame = /* GraphQL */ `
         complete
         cancelled
         isLive
+        isLiveUrl
         active
         _version
         _deleted
@@ -936,6 +941,7 @@ export const createGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -1020,6 +1026,7 @@ export const createGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -1227,6 +1234,7 @@ export const updateGame = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -1342,6 +1350,7 @@ export const updateGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -1515,6 +1524,7 @@ export const updateGame = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -1630,6 +1640,7 @@ export const updateGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -1655,6 +1666,7 @@ export const updateGame = /* GraphQL */ `
         complete
         cancelled
         isLive
+        isLiveUrl
         active
         _version
         _deleted
@@ -1784,6 +1796,7 @@ export const updateGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -1868,6 +1881,7 @@ export const updateGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -2075,6 +2089,7 @@ export const deleteGame = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -2190,6 +2205,7 @@ export const deleteGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -2363,6 +2379,7 @@ export const deleteGame = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -2478,6 +2495,7 @@ export const deleteGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -2503,6 +2521,7 @@ export const deleteGame = /* GraphQL */ `
         complete
         cancelled
         isLive
+        isLiveUrl
         active
         _version
         _deleted
@@ -2632,6 +2651,7 @@ export const deleteGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -2716,6 +2736,7 @@ export const deleteGame = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -3011,6 +3032,7 @@ export const createMember = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -3165,6 +3187,7 @@ export const createMember = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -3223,6 +3246,7 @@ export const createMember = /* GraphQL */ `
           complete
           cancelled
           isLive
+          isLiveUrl
           active
           _version
           _deleted
@@ -3413,6 +3437,7 @@ export const createMember = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -3606,6 +3631,7 @@ export const updateMember = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -3760,6 +3786,7 @@ export const updateMember = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -3818,6 +3845,7 @@ export const updateMember = /* GraphQL */ `
           complete
           cancelled
           isLive
+          isLiveUrl
           active
           _version
           _deleted
@@ -4008,6 +4036,7 @@ export const updateMember = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -4201,6 +4230,7 @@ export const deleteMember = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -4355,6 +4385,7 @@ export const deleteMember = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -4413,6 +4444,7 @@ export const deleteMember = /* GraphQL */ `
           complete
           cancelled
           isLive
+          isLiveUrl
           active
           _version
           _deleted
@@ -4603,6 +4635,7 @@ export const deleteMember = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -4666,6 +4699,7 @@ export const createEvent = /* GraphQL */ `
       complete
       cancelled
       isLive
+      isLiveUrl
       active
       _version
       _deleted
@@ -4847,6 +4881,7 @@ export const createEvent = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -4988,6 +5023,7 @@ export const createEvent = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -5051,6 +5087,7 @@ export const updateEvent = /* GraphQL */ `
       complete
       cancelled
       isLive
+      isLiveUrl
       active
       _version
       _deleted
@@ -5232,6 +5269,7 @@ export const updateEvent = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -5373,6 +5411,7 @@ export const updateEvent = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -5436,6 +5475,7 @@ export const deleteEvent = /* GraphQL */ `
       complete
       cancelled
       isLive
+      isLiveUrl
       active
       _version
       _deleted
@@ -5617,6 +5657,7 @@ export const deleteEvent = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -5758,6 +5799,7 @@ export const deleteEvent = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -5978,6 +6020,7 @@ export const createEntry = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -6093,6 +6136,7 @@ export const createEntry = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -6118,6 +6162,7 @@ export const createEntry = /* GraphQL */ `
         complete
         cancelled
         isLive
+        isLiveUrl
         active
         _version
         _deleted
@@ -6247,6 +6292,7 @@ export const createEntry = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -6331,6 +6377,7 @@ export const createEntry = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -6521,6 +6568,7 @@ export const updateEntry = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -6636,6 +6684,7 @@ export const updateEntry = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -6661,6 +6710,7 @@ export const updateEntry = /* GraphQL */ `
         complete
         cancelled
         isLive
+        isLiveUrl
         active
         _version
         _deleted
@@ -6790,6 +6840,7 @@ export const updateEntry = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -6874,6 +6925,7 @@ export const updateEntry = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -7064,6 +7116,7 @@ export const deleteEntry = /* GraphQL */ `
             complete
             cancelled
             isLive
+            isLiveUrl
             active
             _version
             _deleted
@@ -7179,6 +7232,7 @@ export const deleteEntry = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -7204,6 +7258,7 @@ export const deleteEntry = /* GraphQL */ `
         complete
         cancelled
         isLive
+        isLiveUrl
         active
         _version
         _deleted
@@ -7333,6 +7388,7 @@ export const deleteEntry = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
@@ -7417,6 +7473,7 @@ export const deleteEntry = /* GraphQL */ `
               complete
               cancelled
               isLive
+              isLiveUrl
               active
               _version
               _deleted
