@@ -69,7 +69,7 @@ Intentionally open and transparent and striving to make it easy to reproduce and
 ### Prerequisites
 
 - [Node.js](https://git-scm.com/downloads) - v14+
-- [AWS Amplify CLI](https://docs.amplify.aws/cli/start/install) - v5.3.0
+- [AWS Amplify CLI](https://docs.amplify.aws/cli/start/install) - v7.5.5
 
 Clone the project:
 
