@@ -1,10 +1,9 @@
 import React from "react";
 import QR from "../../assets/img/QR-live-games.png";
-import DivOne from "../../components/Events/Tables/September/RapidplayDivOne";
-//import DivTwo from "../../components/Events/Tables/September/RapidplayDivTwo";
-//import DivThree from "../../components/Events/Tables/September/RapidplayDivThree";
-import MergedSwiss from "../../components/Events/Tables/September/MergedSwiss";
-import { name } from "../../components/Events/Tables/September/meta.json";
+import Review from "../../assets/img/google-review.png";
+import RoundRobin from "../../components/Events/Tables/November/RoundRobin";
+import Swiss from "../../components/Events/Tables/November/Swiss";
+import { name } from "../../components/Events/Tables/November/meta.json";
 
 
 const Viewer = () => {
@@ -35,10 +34,8 @@ const Viewer = () => {
           </h3>
         </div>
         <div className="grid grid-cols-3 mt-4">
-          <DivOne/>
-          <MergedSwiss />
-          {/* <DivTwo/>
-          <DivThree/> */}
+          <RoundRobin/>
+          <Swiss />
         </div>
       </div>
     </div>
