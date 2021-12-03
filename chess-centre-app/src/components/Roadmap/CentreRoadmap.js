@@ -21,9 +21,9 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>Junior club begins</li>
-              <li>Team challenges initiated</li>
-              <li>Social club opens</li>
+              <li>Junior club begins <br /><span className="text-teal-600 text-sm">May</span></li>
+              <li>Team challenges initiated <br /><span className="text-teal-600 text-sm">May</span></li>
+              <li>Social club opens <br /><span className="text-teal-600 text-sm">May</span></li>
             </ul>
           </div>
         </li>
@@ -62,6 +62,21 @@ export const CentreRoadmap = () => {
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
+          <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
+            <div className="flex-1 ml-4 font-medium">
+            <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+                Complete
+              </span>
+            </div>
+          </div>
+          <div className="ml-12">
+            <ul className="list-disc ml-5">
+              <li>First Blitz Event <br /><span className="text-teal-600 text-sm">September</span></li>
+            </ul>
+          </div>
+        </li>
+        <li className="mb-2">
+          <div className="flex items-center mb-1">
           <div className="bg-teal-500 rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
             <span className="mr-2 bg-yellow-200 text-black p-1 rounded  leading-none">
@@ -71,8 +86,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>First Blitz Event <br /><span className="text-teal-600 text-sm">TBC</span></li>
-              <li>First Junior Training Camp <br /><span className="text-teal-600 text-sm">TBC</span></li>
+              <li>First IM Norm <br /><span className="text-teal-600 text-sm">February</span></li>
             </ul>
           </div>
         </li>
@@ -88,7 +102,8 @@ export const CentreRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li>Purchasable Chess supplies</li>
-              <li>FIDE rated events</li>
+              <li>Chess Festival</li>
+              <li>Second Venue</li>
             </ul>
           </div>
         </li>

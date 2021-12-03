@@ -156,7 +156,7 @@ export const ResultsDoughnut = (gameInfo) => {
         {
 
           label: '# result',
-          data: [stats.wins, stats.draws, stats.losses],
+          data: [stats?.wins || 0, stats?.draws || 0, stats?.losses || 0],
           backgroundColor: [
             "#0694a2",
             "#d53f8c",
