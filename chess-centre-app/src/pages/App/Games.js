@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { useMember } from "../../api/member";
 import GameTable from "../../components/Table/GameTable";
@@ -143,34 +143,38 @@ export const listGamesByBlackMember = /* GraphQL */ `
 `;
 
 export default function GamesView() {
+  const { memberId } = useParams();
   const { isLoading, error, data } = useMember();
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [isErrorGame, setIsErrorGame] = useState(false);
   const [games, setGames] = useState([]);
+  const [playerId, setPlayerId] = useState(memberId);
 
   useMemo(() => {
-    const fetchWhiteGames = async () => {
+    const fetchWhiteGames = async (id) => {
       const {
         data: {
           listGamesByWhiteMember: { items },
         },
       } = await API.graphql({
         query: listGamesByWhiteMember,
-        variables: { whiteMemberId: data.id },
+        variables: { whiteMemberId: id },
+        authMode: "AWS_IAM"
       });
       setGames((state) => {
         return [...state, ...items];
       });
     };
 
-    const fetchBlackGames = async () => {
+    const fetchBlackGames = async (id) => {
       const {
         data: {
           listGamesByBlackMember: { items },
         },
       } = await API.graphql({
         query: listGamesByBlackMember,
-        variables: { blackMemberId: data.id },
+        variables: { blackMemberId: id },
+        authMode: "AWS_IAM"
       });
       setGames((state) => {
         return [...state, ...items];
@@ -178,23 +182,31 @@ export default function GamesView() {
       
     };
 
-    const fetchAllGames = async () => {
+    const fetchAllGames = async (id) => {
       setIsLoadingGames(true);
-      fetchWhiteGames()
-      fetchBlackGames()
+      fetchWhiteGames(id)
+      fetchBlackGames(id)
       setIsLoadingGames(false);
       setIsErrorGame(false);
     }
 
-    if (data) {
-      try {
-        fetchAllGames();
-      } catch (error) {
-        console.log(error);
-        setIsLoadingGames(false);
-        setIsErrorGame(true);
+
+    try {
+
+      if(memberId) {
+        setPlayerId(memberId);
+        fetchAllGames(memberId);
+      } else if(data && data.id) {
+        setPlayerId(data.id);
+        fetchAllGames(data.id);
       }
+
+    } catch (error) {
+      console.log(error);
+      setIsLoadingGames(false);
+      setIsErrorGame(true);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
@@ -223,7 +235,7 @@ export default function GamesView() {
               <div>
                 {
                   games ? (<div className="">
-                    <GameTable games={games} memberId={data.id} />
+                    <GameTable games={games} memberId={playerId} />
                   </div>) : (<div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                     <span>
                       <i className="fal fa-chess fa-6x text-teal-500"></i>
