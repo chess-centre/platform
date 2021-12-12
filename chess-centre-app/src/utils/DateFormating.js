@@ -1,5 +1,6 @@
 
 export function prettyDate(start, end) {
+  console.log(start);
   if(!end || start === end) {
     return formatDate(start).replace(",", "");
   } else {
