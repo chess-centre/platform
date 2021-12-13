@@ -16,9 +16,7 @@ exports.handler = async (event) => {
         
         console.log(`Fetching historic rating data for ${members.length} members`);
         
-        const dbUpdateQueue = new Map();
-
-        const records = await Promise.all(members.map(async (member) => {
+        const result = await Promise.all(members.map(async (member) => {
             console.log(`Checking rating data for ${member.name}`);
             const data = await getHistoricRatings(member.ecfId);
             if(data && data.length > 0) {
@@ -33,21 +31,14 @@ exports.handler = async (event) => {
                     },
                     ReturnValues: "UPDATED_NEW"
                 };
-
-                dbUpdateQueue.set(member.name, params);
-                
-                return member.name;
+                const response = await dynamodb.update(params).promise();
+                console.log(`Saving rating data for ${member.name}`);
+                return response;
             } else {
                 console.log("No data!");
             }
         }));
-
-        console.log(`Saving rating data for ${dbUpdateQueue.size} records`);
-
-        const result = await Promise.all(dbUpdateQueue.values(async params => dynamodb.update(params).promise()));        
-
-        console.log(`Total records updated ${result.length} for ${records.length} players`);
-
+        console.log(`Total records updated ${result.length}`);
     } catch (error) {
         console.log("Error", error);
     }
