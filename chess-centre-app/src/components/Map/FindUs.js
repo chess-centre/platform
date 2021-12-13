@@ -1,5 +1,6 @@
 import React from "react";
 import Map from "./GoogleMap";
+import { openingHours } from "../../api/data.openingHours";
 
 const FindUs = () => {
   return (
@@ -19,18 +20,43 @@ const FindUs = () => {
             mapElement={<div style={{ height: `100%`, borderRadius: `25px` }} />}
           />
         </div>
-        <h2 className="text-2xl font-extrabold text-gray-900 text-center mb-2 mt-6">
-          Opening Hours*
-        </h2>
-        <p className="my-3">Tuesday <span className="text-gray-700 font-medium">6pm-8pm</span> <br /><span className="text-sm text-teal-500">Juniors</span></p>
-        <p className="my-3">Thursday <span className="text-gray-700 font-medium">7pm-10pm</span> <br /><span className="text-sm text-teal-500">Social</span></p>
-        <p className="my-3">Saturday <span className="text-gray-700 font-medium">9:30am-3pm</span> <br /><span className="text-sm text-teal-500">Congress / Rapidplay</span></p>
-        <p className="my-3">Sunday <span className="text-gray-700 font-medium">9:30am-3pm</span> <br /><span className="text-sm text-teal-500">Congress</span></p>
-        <br />
-        <p className="italic text-sm text-gray-600">* These hours coincide with our events calendar, check an event is listed or drop us an email to ensure we're open.</p>
+        <OpeningTimes />
       </div>
     </div>
   );
 };
+
+const OpeningTimes = () => {
+  return (
+    <>
+        <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-2 mt-8">
+          Opening Hours*
+        </h2>
+        <>
+          { openingHours
+              .map(props => <OpeningTime {...props} />)}
+        </>
+        <p className="italic text-sm text-gray-600">
+            * These hours coincide with our events calendar, check an event is listed or drop us an email to ensure we're open.
+        </p>
+    </>
+  )
+}
+
+const OpeningTime = props => {
+  const { day, slots } = props;
+  return (
+    <div className="my-3"><span className="text-xl font-bold">{day}</span>
+      {
+        slots.map(({ time, type }) => (
+          <div className="mb-2 py-1">
+            <p className="sm:text-sm text-teal-500">{type}</p>
+            <p className="sm:text-xs text-gray-700">{time}</p>
+          </div>
+        ))
+      }
+    </div>
+  )
+}
 
 export default FindUs;

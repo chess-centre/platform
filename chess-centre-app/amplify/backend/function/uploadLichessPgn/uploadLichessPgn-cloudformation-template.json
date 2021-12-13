@@ -49,13 +49,13 @@
             "FunctionName": {
                 "Fn::If": [
                     "ShouldNotCreateEnvResources",
-                    "uploadLichessPgns",
+                    "uploadLichessPgn",
                     {
 
                         "Fn::Join": [
                             "",
                             [
-                                "uploadLichessPgns",
+                                "uploadLichessPgn",
                                 "-",
                                 {
                                     "Ref": "env"
@@ -80,13 +80,13 @@
                 "RoleName": {
                     "Fn::If": [
                         "ShouldNotCreateEnvResources",
-                        "platformchesscentreaLambdaRolea338406a",
+                        "platformchesscentreaLambdaRole70bde079",
                         {
 
                             "Fn::Join": [
                                 "",
                                 [
-                                    "platformchesscentreaLambdaRolea338406a",
+                                    "platformchesscentreaLambdaRole70bde079",
                                     "-",
                                     {
                                         "Ref": "env"

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
 import { ChessProfile, AccountProfile, IntegrationProfile } from "./sections";
-import { useAuthState, isPaidMember } from "../../../context/Auth";
-//import { getMember } from "../../../graphql/queries";
+import { useAuthState } from "../../../context/Auth";
 
 export const getMember = /* GraphQL */ `
   query GetMember($id: ID!) {
@@ -67,19 +66,17 @@ export default function Profile() {
         variables: { id: user.username },
       });
       setMember(member);
-    };
-
-    const getMemberStatus = async () => {
-      const membershipStatus = await isPaidMember();
-      setIsPaid(membershipStatus);
+      if(member && member.stripeCurrentPeriodEnd) {
+        const today = new Date();
+        const renewal = new Date(member.stripeCurrentPeriodEnd);
+        setIsPaid(renewal > today);
+      }
     };
 
     const getProfileData = async () => {
       setIsLoadingProfile(true);
-      // odd results when using Promise.all()
       await getUser();
       await getCustomerPortal();
-      await getMemberStatus();
       setIsLoadingProfile(false);
     };
 
@@ -147,7 +144,7 @@ export default function Profile() {
         </nav>
       </aside>
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-        <AccountProfile name={member.name} />
+        <AccountProfile name={member.name} expires={member.stripeCurrentPeriodEnd} />
         <ChessProfile {...member} isLoading={isLoadingProfile} />
         <IntegrationProfile {...member} isLoading={isLoadingProfile} />
       </div>

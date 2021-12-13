@@ -9,7 +9,9 @@
       "UnauthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole",
       "StackName": "amplify-platformchesscentrea-dev-45655",
       "StackId": "arn:aws:cloudformation:eu-west-1:089308357993:stack/amplify-platformchesscentrea-dev-45655/80140260-8258-11eb-b760-0a09f476c48f",
-      "AmplifyAppId": "dmw9mluzv0ulb"
+      "AmplifyAppId": "dmw9mluzv0ulb",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-platformchesscentrea-dev-45655-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
@@ -46,7 +48,7 @@
         },
         "ecfPlayerGames": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfPlayerGames-32584a5231366e617030-build.zip"
+          "s3Key": "amplify-builds/ecfPlayerGames-2b6d3358726b50503963-build.zip"
         },
         "ecfRatingScrapper": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -58,7 +60,7 @@
         },
         "getChesscomPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/getChesscomPlayer-39643452765961754e31-build.zip"
+          "s3Key": "amplify-builds/getChesscomPlayer-6c6e6a344b586a303975-build.zip"
         },
         "getLichessPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -70,11 +72,11 @@
         },
         "trainTravelInfo": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/trainTravelInfo-6f763069386f71375547-build.zip"
+          "s3Key": "amplify-builds/trainTravelInfo-4d6a4a7443716e34664f-build.zip"
         },
         "busTravelInfo": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/busTravelInfo-66714c6876434c515661-build.zip"
+          "s3Key": "amplify-builds/busTravelInfo-65733631594d72675437-build.zip"
         },
         "updateGameHistory": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
