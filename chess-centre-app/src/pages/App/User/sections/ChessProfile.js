@@ -1,49 +1,11 @@
 import { API, Auth } from "aws-amplify";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { classNames } from "../../../../utils/Classes"
 
-const getMember = /* GraphQL */ `
-  query GetMember($id: ID!) {
-    getMember(id: $id) {
-      id
-      about
-      fideId
-      ecfId
-      username
-      name
-      email
-      ecfRating
-      ecfRapid
-    }
-  }
-`;
 
-export default function ChessProfile() {
-  const [newECFId, setNewECFId] = useState("");
-  const [newFIDEId, setNewFIDEId] = useState("");
-  const [ecfRating, setEcfRating] = useState("");
-  const [ecfRapid, setEcfRapid] = useState("");
+export default function ChessProfile(props) {
 
-  useEffect(() => {
-    const fetchMember = async () => {
-      const {
-        attributes: { sub },
-      } = await Auth.currentAuthenticatedUser();
-      const {
-        data: {
-          getMember: { ecfId, fideId, ecfRating, ecfRapid },
-        },
-      } = await API.graphql({
-        query: getMember,
-        authMode: "AWS_IAM",
-        variables: { id: sub },
-      });
-      setNewFIDEId(fideId || "");
-      setNewECFId(ecfId || "");
-      setEcfRating(ecfRating || "");
-      setEcfRapid(ecfRapid || "");
-    };
-    fetchMember();
-  }, []);
+  const { fideId, ecfId, ecfRating, ecfRapid, ecfMembership } = props;
 
   return (
     <div>
@@ -84,7 +46,7 @@ export default function ChessProfile() {
                     className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                     disabled
-                    value={newECFId}
+                    value={ecfId}
                     type="text"
                     name={"ecf_ref"}
                     id={"ecf_ref"}
@@ -118,6 +80,7 @@ export default function ChessProfile() {
                   </div>
                 </div>
               </div>
+
             </div>
 
             <div className="col-span-6 sm:col-span-3">
@@ -143,7 +106,7 @@ export default function ChessProfile() {
                     className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
                 focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
                     disabled
-                    value={newFIDEId}
+                    value={fideId}
                     type="text"
                     name={"fide_ref"}
                     id={"fide_ref"}
@@ -151,16 +114,22 @@ export default function ChessProfile() {
                   />
                 </div>
               </div>
+              <div className="col-span-2 sm:col-span-3">
+                <div className="sm:mt-8 flex">
+                  <EcfMembershipStatus status={ecfMembership} />
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
 
-        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 sm:text-right text-xs sm:px-6 border-t border-gray-50 dark:border-gray-700 italic text-center">
+        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text- sm:text-right text-xs sm:px-6 border-t border-gray-50 dark:border-gray-700 italic text-center">
           <span>
             These fields will be automatically populated once you have an
             official rating with the{" "}
             <a
-              className="text-teal-600 hover:text-teal-500"
+              className="text-teal-600 hover:text-teal-500 text-"
               href="https://www.englishchess.org.uk/"
               target="_blank"
               rel="noreferrer"
@@ -172,4 +141,31 @@ export default function ChessProfile() {
       </div>
     </div>
   );
+}
+
+const EcfMembershipStatus = ({ status }) => {
+  const label = (txtColor, bgColor, text) => {
+    return (
+      <span className={classNames(txtColor, bgColor, `mt-6 inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium`)}>
+        <svg className={classNames(txtColor, "-ml-0.5 mr-1.5 h-2 w-2")} fill="currentColor" viewBox="0 0 8 8">
+          <circle cx={4} cy={4} r={3} />
+        </svg>
+        {text}
+      </span>
+    )
+  }
+  switch (status) {
+    case "ECF SUPPORTER":
+      return label("text-blue-800", "bg-blue-100", status);
+    case "BRONZE":
+      return label("text-white", "bg-yellow-700", status);
+    case "SILVER":
+      return label("text-cool-gray-800", "bg-cool-gray-100", status);
+    case "GOLD":
+      return label("text-yellow-800", "bg-yellow-100", status);
+    case "PLATINUM":
+      return label("text-pink-800", "bg-pink-100", status);
+    default:
+      return label("text-gray-400", "bg-gray-50", status ? status : "No ECF Membership")
+  }
 }
