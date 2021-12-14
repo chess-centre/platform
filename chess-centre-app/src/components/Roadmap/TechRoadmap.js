@@ -78,7 +78,7 @@ export const TechRoadmap = () => {
             <ul className="list-disc ml-5">
               <li>Dashboard insights <br /><Issue issue="100" /></li>
               <li>Player search <br /><Issue issue="246" /></li>
-              <li>PGN uploads <br /><Issue issue="243" /></li>
+              <li>PGN viewer <br /><Issue issue="243" /></li>
             </ul>
           </div>
         </li>
@@ -94,7 +94,7 @@ export const TechRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>League tables <br /><Issue issue="3" /></li>
+              <li>League Table / Results <br /><Issue issue="3" /></li>
               <li>Grand prix <br /><Issue issue="101" /></li>
               <li>Latest News <br /><Issue issue="312" /></li>
             </ul>

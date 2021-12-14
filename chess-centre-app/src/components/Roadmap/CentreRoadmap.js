@@ -86,7 +86,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>First IM Norm <br /><span className="text-teal-600 text-sm">February</span></li>
+              <li>First IM Norm Event <br /><span className="text-teal-600 text-sm">February</span></li>
             </ul>
           </div>
         </li>
@@ -101,9 +101,8 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>Purchasable Chess supplies</li>
-              <li>Chess Festival</li>
-              <li>Second Venue</li>
+              <li>Chess Festival 🚀</li>
+              <li>Second Venue 🌱</li>
             </ul>
           </div>
         </li>
