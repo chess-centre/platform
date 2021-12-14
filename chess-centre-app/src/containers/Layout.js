@@ -20,10 +20,6 @@ const routes = [
     component: lazy(() => import("../pages/App/Results")),
   },
   {
-    path: "/games/:memberId",
-    component: lazy(() => import("../pages/App/Games")),
-  },
-  {
     path: "/players",
     component: lazy(() => import("../pages/App/Players")),
   },
@@ -47,6 +43,10 @@ const routes = [
     path: "/games",
     component: lazy(() => import("../pages/App/Games")),
   },
+  {
+    path: "/games/:memberId",
+    component: lazy(() => import("../pages/App/Games")),
+  }
 ];
 
 const Page404 = lazy(() => import("../pages/Error/404"));
