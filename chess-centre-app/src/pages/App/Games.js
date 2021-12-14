@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { useMember } from "../../api/member";
 import GameTable from "../../components/Table/GameTable";
+import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 
 export const listGamesByWhiteMember = /* GraphQL */ `
   query ListGamesByWhiteMember(
@@ -150,8 +151,12 @@ export default function GamesView() {
   const [games, setGames] = useState([]);
   const [playerId, setPlayerId] = useState(memberId);
   const [description, setDescription] = useState("Find your most recent games here");
+  const [slideState, setIsSlideOutOpen] = useState({
+    open: false,
+    eventDetails: {},
+  });
 
-  useMemo(() => {
+  useEffect(() => {
     const fetchWhiteGames = async (id) => {
       const {
         data: {
@@ -162,9 +167,7 @@ export default function GamesView() {
         variables: { whiteMemberId: id },
         authMode: "AWS_IAM"
       });
-      setGames((state) => {
-        return [...state, ...items];
-      });
+      return items;
     };
 
     const fetchBlackGames = async (id) => {
@@ -180,17 +183,17 @@ export default function GamesView() {
       setGames((state) => {
         return [...state, ...items];
       });
-      
+      return items;
     };
 
     const fetchAllGames = async (id) => {
       setIsLoadingGames(true);
-      fetchWhiteGames(id)
-      fetchBlackGames(id)
+      const whiteGames = await fetchWhiteGames(id);
+      const blackGames = await fetchBlackGames(id);
+      setGames([...whiteGames, ...blackGames]);
       setIsLoadingGames(false);
       setIsErrorGame(false);
     }
-
 
     try {
 
@@ -211,14 +214,16 @@ export default function GamesView() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, memberId]);
 
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <i className="fas fa-chess-king text-teal-600"></i> Games
         <div className="inline-flex align-top top-2">
-          <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-800 top-2">
+          <span 
+            onClick={() => setIsSlideOutOpen({ open: true })}
+            className="ml-2 cursor-pointer items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-800 top-2">
             BETA
           </span>
         </div>
@@ -237,7 +242,7 @@ export default function GamesView() {
             {!isLoading && !isLoadingGames && !error && !isErrorGame && (
               <div>
                 {
-                  games ? (<div className="">
+                  games && games.length > 0 ? (<div className="">
                     <GameTable games={games} memberId={playerId} />
                   </div>) : (<div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                     <span>
@@ -282,6 +287,10 @@ export default function GamesView() {
           </div>
         </div>
       </div>
+      <BetaSlideOut
+        slideState={slideState}
+        setIsSlideOutOpen={setIsSlideOutOpen}
+      ></BetaSlideOut>
     </div>
   );
 }
