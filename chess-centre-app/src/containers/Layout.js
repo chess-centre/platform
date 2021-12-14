@@ -16,6 +16,10 @@ const routes = [
     component: lazy(() => import("../pages/App/Events")),
   },
   {
+    path: "/calendar",
+    component: lazy(() => import("../pages/App/Calendar")),
+  },
+  {
     path: "/results",
     component: lazy(() => import("../pages/App/Results")),
   },
