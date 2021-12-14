@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Table, { SelectColumnFilter } from "./index"; // new
 import GameViewerModal from "../Modal/GameViewerModal";
 import { prettyDate } from "../../utils/DateFormating";
@@ -114,7 +115,7 @@ export default function GameTable({ games, memberId }) {
               ) : (
                 ""
               ),
-              name: opponent.name,
+              name: <Link className="text-orange-500 hover:scale-90" to={`/app/games/${opponent.id}`}>{opponent.name}</Link>,
               rating,
               result: resultType(game.result, colour),
               colour,

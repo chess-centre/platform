@@ -149,6 +149,7 @@ export default function GamesView() {
   const [isErrorGame, setIsErrorGame] = useState(false);
   const [games, setGames] = useState([]);
   const [playerId, setPlayerId] = useState(memberId);
+  const [description, setDescription] = useState("Find your most recent games here");
 
   useMemo(() => {
     const fetchWhiteGames = async (id) => {
@@ -196,9 +197,11 @@ export default function GamesView() {
       if(memberId) {
         setPlayerId(memberId);
         fetchAllGames(memberId);
+        setDescription("Opponent games");
       } else if(data && data.id) {
         setPlayerId(data.id);
         fetchAllGames(data.id);
+        setDescription("Find your most recent games here");
       }
 
     } catch (error) {
@@ -223,7 +226,7 @@ export default function GamesView() {
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
           <p className="text-sm text-left text-gray-500 dark:text-gray-300">
-            Find your most recent games here
+            { description }
           </p>
         </div>
       </div>
