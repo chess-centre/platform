@@ -4,13 +4,14 @@ import { XIcon } from "@heroicons/react/outline";
 import { PlusIcon } from "@heroicons/react/solid";
 import Devices from "../../assets/img/device-users.png";
 
+
 export default function BetaSlideOut(props) {
   const { slideState, setIsSlideOutOpen } = props;
   const { open } = slideState;
 
   const mailToSupport = () => {
     const userAgent = window.navigator.userAgent
-    return `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0A Device: ${userAgent} %0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`
+    return `mailto:support@chesscentre.online?subject=Support%20Issue&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0A Device: ${userAgent} %0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`
   }
 
   return (

@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import API from "@aws-amplify/api";
 import PlayersTable from "../../components/Table/PlayersTable";
+import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 
 export const listMembers = /* GraphQL */ `
   query ListMembers(
@@ -37,6 +38,10 @@ export default function Players() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [players, setPlayers] = useState([]);
+  const [slideState, setIsSlideOutOpen] = useState({
+    open: false,
+    eventDetails: {},
+  });
 
   useMemo(() => {
     const fetchRatedPlayers = async () => {
@@ -70,7 +75,9 @@ export default function Players() {
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <i className="fas fa-chess-king text-teal-600"></i> Players
         <div className="inline-flex align-top top-2">
-          <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-800 top-2">
+          <span
+          onClick={() => setIsSlideOutOpen({ open: true })}
+          className="ml-2 cursor-pointer items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-800 top-2">
             BETA
           </span>
         </div>
@@ -134,6 +141,10 @@ export default function Players() {
           </div>
         </div>
       </div>
+      <BetaSlideOut
+        slideState={slideState}
+        setIsSlideOutOpen={setIsSlideOutOpen}
+      ></BetaSlideOut>
     </div>
   );
 }

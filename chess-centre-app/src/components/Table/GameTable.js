@@ -107,15 +107,8 @@ export default function GameTable({ games, memberId }) {
           return [
             ...prev,
             {
-              pgn: game.pgnStr ? (
-                <ViewGameButton
-                  pgn={game.pgnStr}
-                  liChessUrl={game.liChessUrl}
-                />
-              ) : (
-                ""
-              ),
-              name: <Link className="text-orange-500 hover:scale-90" to={`/app/games/${opponent.id}`}>{opponent.name}</Link>,
+              pgn: game.pgnStr ? <ViewGameButton pgn={game.pgnStr} liChessUrl={game.liChessUrl} /> : "",
+              name: <Link className="text-teal-600" to={`/app/games/${opponent.id}`}>{opponent.name}</Link>,
               rating,
               result: resultType(game.result, colour),
               colour,

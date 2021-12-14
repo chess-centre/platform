@@ -23,7 +23,7 @@ function PageButton({ children, className, ...rest }) {
     <button
       type="button"
       className={classNames(
-        "relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50",
+        "relative inline-flex items-center px-2 py-1 sm:py-2 border border-gray-300 bg-white text-xs text-gray-500 hover:bg-gray-50",
         className
       )}
       {...rest}
@@ -309,13 +309,13 @@ function Table({ columns, data, searchPlaceholder="Games..." }) {
               </select>
             </label>
           </div>
-          <div className="hidden sm:block">
+          <div>
             <nav
-              className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+              className="relative mt-1 sm:mt-0 z-0 inline-flex rounded-md shadow-sm -space-x-px"
               aria-label="Pagination"
             >
               <PageButton
-                className="rounded-l-md -mr-1"
+                className="rounded-l-md -mr-1 hidden sm:block"
                 onClick={() => gotoPage(0)}
                 disabled={!canPreviousPage}
               >
@@ -326,6 +326,7 @@ function Table({ columns, data, searchPlaceholder="Games..." }) {
                 />
               </PageButton>
               <PageButton
+                className="rounded-l-md sm:rounded-none"
                 onClick={() => previousPage()}
                 disabled={!canPreviousPage}
               >
@@ -335,7 +336,7 @@ function Table({ columns, data, searchPlaceholder="Games..." }) {
                   aria-hidden="true"
                 />
               </PageButton>
-              <PageButton onClick={() => nextPage()} disabled={!canNextPage}>
+              <PageButton className="rounded-r-md sm:rounded-none" onClick={() => nextPage()} disabled={!canNextPage}>
                 <span className="sr-only">Next</span>
                 <ChevronRightIcon
                   className="h-5 w-5 text-gray-400"
@@ -343,7 +344,7 @@ function Table({ columns, data, searchPlaceholder="Games..." }) {
                 />
               </PageButton>
               <PageButton
-                className="rounded-r-md"
+                className="rounded-r-md hidden sm:block"
                 onClick={() => gotoPage(pageCount - 1)}
                 disabled={!canNextPage}
               >
