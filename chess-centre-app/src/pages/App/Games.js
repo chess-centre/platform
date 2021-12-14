@@ -150,7 +150,7 @@ export default function GamesView() {
   const [isErrorGame, setIsErrorGame] = useState(false);
   const [games, setGames] = useState([]);
   const [playerId, setPlayerId] = useState(memberId);
-  const [description, setDescription] = useState("Find your most recent games here");
+  const [opponentName, setOpponentName] = useState("");
   const [slideState, setIsSlideOutOpen] = useState({
     open: false,
     eventDetails: {},
@@ -189,7 +189,14 @@ export default function GamesView() {
     const fetchAllGames = async (id) => {
       setIsLoadingGames(true);
       const whiteGames = await fetchWhiteGames(id);
+      
       const blackGames = await fetchBlackGames(id);
+      if(whiteGames[0]?.whiteMember?.name) {
+        setOpponentName(whiteGames[0]?.whiteMember?.name);
+      }
+      if(blackGames[0]?.blackMember?.name) {
+        setOpponentName(blackGames[0]?.blackMember?.name);
+      }
       setGames([...whiteGames, ...blackGames]);
       setIsLoadingGames(false);
       setIsErrorGame(false);
@@ -200,11 +207,9 @@ export default function GamesView() {
       if(memberId) {
         setPlayerId(memberId);
         fetchAllGames(memberId);
-        setDescription("Opponent games");
       } else if(data && data.id) {
         setPlayerId(data.id);
         fetchAllGames(data.id);
-        setDescription("Find your most recent games here");
       }
 
     } catch (error) {
@@ -230,9 +235,9 @@ export default function GamesView() {
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
-          <p className="text-sm text-left text-gray-500 dark:text-gray-300">
-            { description }
-          </p>
+          <h1 className="text-md sm:text-lg font-semibold text-gray-400">Individual results for{" "} 
+            <span className="text-teal-800">{ opponentName }</span>
+          </h1>
         </div>
       </div>
 

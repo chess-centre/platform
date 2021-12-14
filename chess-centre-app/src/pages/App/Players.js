@@ -84,8 +84,8 @@ export default function Players() {
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
-          <p className="text-sm text-left text-gray-500 dark:text-gray-300">
-            Players who have participated in our events
+          <p className="text-sm text-left text-gray-500 dark:text-gray-300 mb-2">
+            Players who have registered an account with us. 
           </p>
         </div>
       </div>
