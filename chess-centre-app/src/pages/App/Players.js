@@ -117,7 +117,7 @@ export default function Players() {
               isLoading && (
                 <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                   <span className="animate-pulse">
-                    <i className="aninmal-pulse fal fa-chess-board fa-10x text-teal-500 opacity-50"></i>
+                    <i className="aninmal-pulse fal fa-chess-clock fa-10x text-teal-500 opacity-50"></i>
                   </span>
                   <p className="mt-2 block text-sm font-medium text-gray-600">
                     Loading players...
