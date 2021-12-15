@@ -74,8 +74,8 @@ export default function PlayersTable({ players }) {
                 {
                     rank: index += 1,
                     name: <Link className="text-teal-600" to={`/app/games/${member.id}`}>{member.name}</Link>,
-                    standard: member.ecfRating === 0 ? "" : member.ecfRating,
-                    rapid: member.ecfRapid === 0 ? "" : member.ecfRapid,
+                    standard: member.ecfRating ? member.ecfRating : "",
+                    rapid: member.ecfRapid ? member.ecfRapid : "",
                     chesscomBullet: parsedChesscom?.chess_bullet?.last.rating,
                     chesscomBlitz: parsedChesscom?.chess_blitz?.last.rating,
                     chesscomRapid: parsedChesscom?.chess_rapid?.last.rating,

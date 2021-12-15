@@ -243,7 +243,7 @@ export default function GamesView() {
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
           {playerName && (
-            <h1 className="text-md sm:text-lg font-semibold text-gray-400">
+            <h1 className="text-sm text-left text-gray-500">
               Individual results for{" "}
               <span className="text-teal-800">{playerName}</span>
             </h1>

@@ -89,7 +89,7 @@ function GlobalFilter({
   preGlobalFilteredRows,
   globalFilter,
   setGlobalFilter,
-  searchPlaceholder
+  searchPlaceholder,
 }) {
   const count = preGlobalFilteredRows.length;
   const [value, setValue] = React.useState(globalFilter);
@@ -118,7 +118,6 @@ function GlobalFilter({
     </div>
   );
 }
-
 
 export function SelectColumnFilter({
   column: { filterValue, setFilter, preFilteredRows, id, render },
@@ -157,8 +156,7 @@ export function SelectColumnFilter({
   );
 }
 
-function Table({ columns, data, searchPlaceholder="Games..." }) {
-
+function Table({ columns, data, searchPlaceholder = "Games..." }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -209,79 +207,73 @@ function Table({ columns, data, searchPlaceholder="Games..." }) {
       </div>
       {/* table */}
       <div className="relative mt-4 sm:flex sm:flex-col">
-        <div className=" ">
-          <div className="">
-            <div className="overflow-auto w-80 sm:w-full shadow border-b border-gray-200 rounded-lg">
-              <table
-                {...getTableProps()}
-                className="w-full table-auto divide-y divide-gray-200"
-              >
-                <thead className="">
-                  {headerGroups.map((headerGroup) => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                      {headerGroup.headers.map((column) => (
-                        // Add the sorting props to control sorting. For this example
-                        // we can add them into the header props
-                        <th
-                          scope="col"
-                          className="group bg-teal-700 px-2 py-3 text-center text-xs font-medium text-gray-100 uppercase"
-                          {...column.getHeaderProps(
-                            column.getSortByToggleProps()
+        <div className="overflow-auto w-80 sm:w-full shadow border-b border-gray-200 rounded-lg">
+          <table
+            {...getTableProps()}
+            className="w-full table-auto divide-y divide-gray-200"
+          >
+            <thead className="">
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    // Add the sorting props to control sorting. For this example
+                    // we can add them into the header props
+                    <th
+                      scope="col"
+                      className="group bg-teal-700 px-2 py-3 text-center text-xs font-medium text-gray-100 uppercase"
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                    >
+                      <div className=" flex items-center text-center justify-between">
+                        {column.render("Header")}
+                        {/* Add a sort direction indicator */}
+                        <span>
+                          {column.isSorted ? (
+                            column.isSortedDesc ? (
+                              <SortDownIcon className="w-4 h-4 text-gray-200" />
+                            ) : (
+                              <SortUpIcon className="w-4 h-4 text-gray-200" />
+                            )
+                          ) : (
+                            <SortIcon className="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100" />
                           )}
-                        >
-                          <div className=" flex items-center text-center justify-between">
-                            {column.render("Header")}
-                            {/* Add a sort direction indicator */}
-                            <span>
-                              {column.isSorted ? (
-                                column.isSortedDesc ? (
-                                  <SortDownIcon className="w-4 h-4 text-gray-200" />
-                                ) : (
-                                  <SortUpIcon className="w-4 h-4 text-gray-200" />
-                                )
-                              ) : (
-                                <SortIcon className="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100" />
-                              )}
-                            </span>
-                          </div>
-                        </th>
-                      ))}
-                    </tr>
+                        </span>
+                      </div>
+                    </th>
                   ))}
-                </thead>
-                <tbody
-                  {...getTableBodyProps()}
-                  className="bg-white divide-y divide-gray-200"
-                >
-                  {page.map((row, i) => {
-                    // new
-                    prepareRow(row);
-                    return (
-                      <tr {...row.getRowProps()}>
-                        {row.cells.map((cell) => {
-                          return (
-                            <td
-                              {...cell.getCellProps()}
-                              className="py-4 px-2 whitespace-nowrap"
-                              role="cell"
-                            >
-                              {cell.column.Cell.name === "defaultRenderer" ? (
-                                <div className="text-sm text-gray-500">
-                                  {cell.render("Cell")}
-                                </div>
-                              ) : (
-                                cell.render("Cell")
-                              )}
-                            </td>
-                          );
-                        })}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                </tr>
+              ))}
+            </thead>
+            <tbody
+              {...getTableBodyProps()}
+              className="bg-white divide-y divide-gray-200"
+            >
+              {page.map((row, i) => {
+                // new
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()}>
+                    {row.cells.map((cell) => {
+                      return (
+                        <td
+                          {...cell.getCellProps()}
+                          className="py-4 px-2 whitespace-nowrap"
+                          role="cell"
+                        >
+                          {cell.column.Cell.name === "defaultRenderer" ? (
+                            <div className="text-sm text-gray-500">
+                              {cell.render("Cell")}
+                            </div>
+                          ) : (
+                            cell.render("Cell")
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
       {/* Pagination */}
@@ -302,7 +294,11 @@ function Table({ columns, data, searchPlaceholder="Games..." }) {
                 }}
               >
                 {[5, 10, 20].map((pageSize) => (
-                  <option className="hover:bg-teal-200" key={pageSize} value={pageSize}>
+                  <option
+                    className="hover:bg-teal-200"
+                    key={pageSize}
+                    value={pageSize}
+                  >
                     Show {pageSize}
                   </option>
                 ))}
@@ -336,7 +332,11 @@ function Table({ columns, data, searchPlaceholder="Games..." }) {
                   aria-hidden="true"
                 />
               </PageButton>
-              <PageButton className="rounded-r-md sm:rounded-none" onClick={() => nextPage()} disabled={!canNextPage}>
+              <PageButton
+                className="rounded-r-md sm:rounded-none"
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+              >
                 <span className="sr-only">Next</span>
                 <ChevronRightIcon
                   className="h-5 w-5 text-gray-400"

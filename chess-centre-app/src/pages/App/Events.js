@@ -102,8 +102,8 @@ function Events() {
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
-          <p className="text-sm text-center sm:text-left text-gray-500 dark:text-gray-300">
-            List of our forth coming events
+          <p className="text-sm text-left text-gray-500 dark:text-gray-300">
+            List of our forth coming events open for registration
           </p>
           <div className="flex space-x-6">
             <MyEventsToggle enabled={enabled} setEnabled={setEnabled} />
