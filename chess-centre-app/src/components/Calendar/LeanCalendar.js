@@ -182,15 +182,15 @@ export default function Calendar() {
       <div className="mx-auto px-2">
         <div className="pb-12">
           <div className="mx-auto text-center">
-            <div className="relative grid grid-cols-1 gap-0 mb-20">
-              <div className="absolute ml-1 z-0 top-6 inline-flex m-auto">
+            <div className="relative flex mb-5 mt-2">
+              <div className="ml-1 z-0 top-6 inline-flex m-auto">
                 <TabMonths
                   selectedMonth={selectedMonth}
                   months={months}
                   setSelectedMonth={setSelectedMonth}
                 />
               </div>
-              <div className="absolute right-0 top-6 text-center sm:text-right">
+              <div className="right-0 top-6 text-center sm:text-right">
                 <span className="relative z-10 inline-flex">
                   <FilterMenu
                     filters={filters}
