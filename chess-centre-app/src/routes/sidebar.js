@@ -15,11 +15,6 @@ const routes = [
     name: "Calendar",
   },
   {
-    path: "/app/results",
-    icon: "ChartsIcon",
-    name: "Results",
-  },
-  {
     path: "/app/players",
     icon: "UsersIcon",
     name: "Players",
