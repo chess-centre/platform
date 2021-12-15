@@ -7,7 +7,6 @@ import { classNames, bgColor700 } from "../../utils/Classes";
 import { useEventsLite } from "../../api/events";
 
 function ListCard({ event }) {
-
   return (
     <li key={event.id} className="col-span-1 flex mb-3 z-0">
       <div
@@ -51,14 +50,12 @@ function ListCard({ event }) {
           ></div>
         </div>
       </div>
-      <div
-        className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
-      >
-        <div className="px-4 sm:px-6 py-2 sm:py-0 text-sm truncate">
+      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+        <div className="px-4 sm:px-6 py-2 sm:py-0 text-sm ">
           <p className="sm:text-2xl sm:font-medium font-bold text-lg">
             {event.name}
           </p>
-          <p className="mr-1 mb-1 text-gray-900 font-thin truncate">
+          <p className="mr-1 mb-2 text-gray-900 font-thin">
             {event.description}
           </p>
           <div className="text-gray-600 flex-grow">
@@ -178,45 +175,41 @@ export default function Calendar() {
   }, [data]);
 
   return (
-    <section>
-      <div className="mx-auto px-2">
-        <div className="pb-12">
-          <div className="mx-auto text-center">
-            <div className="relative flex mb-5 mt-2">
-              <div className="ml-1 z-0 top-6 inline-flex m-auto">
-                <TabMonths
-                  selectedMonth={selectedMonth}
-                  months={months}
-                  setSelectedMonth={setSelectedMonth}
+    <div className="mx-auto max-w-xs sm:max-w-none mt-6">
+        <div className="mx-auto text-center">
+          <div className="relative flex mb-5 mt-2">
+            <div className="ml-1 z-0 top-6 inline-flex m-auto">
+              <TabMonths
+                selectedMonth={selectedMonth}
+                months={months}
+                setSelectedMonth={setSelectedMonth}
+              />
+            </div>
+            <div className="right-0 top-6 text-center sm:text-right">
+              <span className="relative z-10 inline-flex">
+                <FilterMenu
+                  filters={filters}
+                  setFilters={setFilters}
+                  selected={selectedMenuFilter}
+                  setSelected={setSelectedMenuFilter}
+                  setAllDeselected={setAllDeselected}
                 />
-              </div>
-              <div className="right-0 top-6 text-center sm:text-right">
-                <span className="relative z-10 inline-flex">
-                  <FilterMenu
-                    filters={filters}
-                    setFilters={setFilters}
-                    selected={selectedMenuFilter}
-                    setSelected={setSelectedMenuFilter}
-                    setAllDeselected={setAllDeselected}
-                  />
-                </span>
-              </div>
+              </span>
             </div>
           </div>
-          <ListCalendar
-            filters={filters}
-            filtersSelected={selectedMenuFilter}
-            isLoading={isLoading}
-            error={error}
-            data={data}
-            months={months}
-            setSelectedMonth={setSelectedMonth}
-            selected={selectedMonth}
-            allDeselected={allDeselected}
-          />
         </div>
-      </div>
-    </section>
+        <ListCalendar
+          filters={filters}
+          filtersSelected={selectedMenuFilter}
+          isLoading={isLoading}
+          error={error}
+          data={data}
+          months={months}
+          setSelectedMonth={setSelectedMonth}
+          selected={selectedMonth}
+          allDeselected={allDeselected}
+        />
+    </div>
   );
 }
 
