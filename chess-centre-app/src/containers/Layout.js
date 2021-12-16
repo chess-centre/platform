@@ -32,6 +32,10 @@ const routes = [
     component: lazy(() => import("../pages/App/Juniors")),
   },
   {
+    path: "/faqs",
+    component: lazy(() => import("../pages/App/FAQs")),
+  },
+  {
     path: "/upgrade",
     component: lazy(() => import("../pages/App/Upgrade")),
   },

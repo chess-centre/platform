@@ -4,6 +4,7 @@ import { XIcon } from "@heroicons/react/outline";
 import JuniorRapidPlay from "../../assets/img/junior-rapidplay.jpg";
 import OpenRapidPlay from "../../assets/img/dave-barlow-vs-gary-corcoran.jpg";
 import OpenCongress from "../../assets/img/june-congress-round-4.jpg";
+import QuickSearch from "../FAQs/QuickSearch";
 import { prettyDate } from "../../utils/DateFormating";
 import { classNames, borderColor700 } from "../../utils/Classes";
 
@@ -347,7 +348,7 @@ export default function EventDetailsSlideOut(props) {
                             )}
                           </dd>
                         </div>
-                      </dl>
+                      </dl>                      
                     </div>
                     <div className="px-4 sm:flex sm:items-end sm:px-6 mb-2">
                       <div className="sm:flex-1">
@@ -366,6 +367,9 @@ export default function EventDetailsSlideOut(props) {
                           </button>
                         </div>
                       </div>
+                    </div>
+                    <div className="text-right mr-2 -mt-10">
+                        <QuickSearch tag="events" />
                     </div>
                   </div>
                 </div>
