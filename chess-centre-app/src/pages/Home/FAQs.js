@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router";
+import queryString from "query-string";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { Search } from "../../components/FAQs/Search";
@@ -10,8 +11,9 @@ import { faqs } from "../../api/data.faqs";
 export default function FAQs() {
   const history = useHistory();
   const location = useLocation();
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const parsed = queryString.parse(location.search);
+  const [selectedTags, setSelectedTags] = useState(parsed.tag ? [parsed.tag] : []);
+  const [searchTerm, setSearchTerm] = useState(parsed.search || "");
   const totalQuestions = faqs.length;
   const onResultChange = query => { 
     const search = searchQuery(location.search, query);
@@ -106,6 +108,7 @@ export default function FAQs() {
               </p>
               <div className="pr-4 pl-4 sm:px-52">
                 <Search
+                  searchTerm={searchTerm}
                   onResultChange={onResultChange}
                   setSearchTerm={setSearchTerm}
                   setSelectedTags={setSelectedTags}

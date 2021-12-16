@@ -1,6 +1,7 @@
 import { SearchIcon } from "@heroicons/react/solid";
 
-export const Search = ({ setSearchTerm, selectedTags, setSelectedTags, onResultChange }) => {
+export const Search = ({ searchTerm, setSearchTerm, selectedTags, setSelectedTags, onResultChange }) => {
+  
   const handleSearchInput = (search) => {
     setSearchTerm(search);
     onResultChange({ search });
@@ -30,6 +31,7 @@ export const Search = ({ setSearchTerm, selectedTags, setSelectedTags, onResultC
               onChange={(e) => handleSearchInput(e.target.value)}
               type="search"
               name="search"
+              defaultValue={searchTerm}
               autoComplete="off"
               id="search"
               className="focus:border-teal-500 block w-full pl-10 sm:text-sm border-teal-500 rounded-md"
@@ -50,7 +52,7 @@ export const Search = ({ setSearchTerm, selectedTags, setSelectedTags, onResultC
                 {tag}
                 <button
                   type="button"
-                  className="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-yellow-400 hover:bg-yellow-200 hover:text-yellow-500 focus:outline-none focus:bg-yellow-500 focus:text-white"
+                  className="cursor-pointer flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-yellow-400 hover:bg-yellow-200 hover:text-yellow-500 focus:outline-none focus:bg-yellow-500 focus:text-white"
                 >
                   <svg
                     className="h-2 w-2"
