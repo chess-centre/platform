@@ -1,4 +1,5 @@
 import React from "react";
+import QuickSearch from "../../components/FAQs/QuickSearch";
 
 const usefulLinks = [
   {
@@ -127,6 +128,10 @@ export default function Juniors() {
       <div className="mt-6">
         <UsefulLinksTable />
       </div>
+      <div className="mt-8 sm:mt-4 text-right sm:text-left">
+        <QuickSearch tag="juniors" />
+      </div>
+      
     </>
   );
 }

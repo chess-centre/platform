@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { faqs } from "../../api/data.faqs";
 
+/**
+ * @returns subset of FAQs displayed on the home page
+ */
 export default function FAQs() {
   return (
     <div className="bg-gray-50">
@@ -34,7 +37,7 @@ export default function FAQs() {
             </div>
             <div className="relative flex justify-center">
               <span className="px-2 bg-gray-50 text-sm text-teal-500 font-semibold hover:text-teal-700 hover:underline">
-              <Link to="/faqs">more</Link>
+                <Link to="/faqs">more</Link>
               </span>
             </div>
           </div>
