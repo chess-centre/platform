@@ -44,13 +44,13 @@ export const Search = ({ searchTerm, setSearchTerm, selectedTags, setSelectedTag
         {selectedTags &&
           selectedTags.map((tag, key) => {
             return (
-              <span
+              <div
                 key={key}
-                onClick={() => handleRemoveTags(tag)}
                 className="inline-flex items-center py-0.5 pl-2 pr-0.5 mr-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700"
               >
                 {tag}
                 <button
+                  onClick={() => handleRemoveTags(tag)}
                   type="button"
                   className="cursor-pointer flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-yellow-400 hover:bg-yellow-200 hover:text-yellow-500 focus:outline-none focus:bg-yellow-500 focus:text-white"
                 >
@@ -67,7 +67,7 @@ export const Search = ({ searchTerm, setSearchTerm, selectedTags, setSelectedTag
                     />
                   </svg>
                 </button>
-              </span>
+              </div>
             );
           })}
       </div>

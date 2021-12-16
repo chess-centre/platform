@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import queryString from "query-string";
-import LandingNav from "../../components/Navigation/LandingNav";
-import FooterLanding from "../../components/Footer/LandingFooter";
 import { Search } from "../../components/FAQs/Search";
 import { Results } from "../../components/FAQs/Results";
 import { searchQuery } from "../../utils/UrlChange";
 import { faqs } from "../../api/data.faqs";
 
 export default function FAQs() {
+
   const history = useHistory();
   const location = useLocation();
   const parsed = queryString.parse(location.search);
@@ -22,19 +21,16 @@ export default function FAQs() {
 
   return (
     <div>
-      <div className="relative bg-gray-50 overflow-hidden">
-        <div className="relative pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-2 xl:pb-6">
-          <LandingNav current="events" />
-        </div>
-        <div className="bg-white">
+      <div className="relative overflow-hidden">
+        <div className="">
           <div>
             <div className="relative">
               <svg
                 className="hidden xl:block absolute top-48 mb-1 right-0 md:-mr-32 2xl:-mr-4"
                 width="500"
-                height="100"
+                height="150"
                 fill="none"
-                viewBox="0 0 500 100"
+                viewBox="0 0 500 150"
                 aria-hidden="true"
               >
                 <defs>
@@ -51,14 +47,14 @@ export default function FAQs() {
                       y="0"
                       width="4"
                       height="4"
-                      className="text-gray-100"
+                      className="text-gray-200"
                       fill="currentColor"
                     />
                   </pattern>
                 </defs>
                 <rect
                   width="500"
-                  height="100"
+                  height="150"
                   fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
                 />
               </svg>
@@ -66,9 +62,9 @@ export default function FAQs() {
               <svg
                 className="hidden md:block absolute top-0 left-0 md:-ml-32 2xl:-ml-4"
                 width="500"
-                height="200"
+                height="300"
                 fill="none"
-                viewBox="0 0 500 200"
+                viewBox="0 0 500 300"
                 aria-hidden="true"
               >
                 <defs>
@@ -85,7 +81,7 @@ export default function FAQs() {
                       y="0"
                       width="4"
                       height="4"
-                      className="text-gray-100"
+                      className="text-gray-200"
                       fill="currentColor"
                     />
                   </pattern>
@@ -119,7 +115,7 @@ export default function FAQs() {
           </div>
         </div>
         <div className="container m-auto">
-          <div className="max-w-7xl mx-auto mt-4 py-10 px-4 sm:py-12 sm:px-16 lg:px-16">
+          <div className="max-w-7xl mx-auto pt-2 pb-8 px-4 sm:pt-6 sm:pb-8 sm:px-16 lg:px-16">
             <Results
               faqs={faqs}
               totalQuestions={totalQuestions}
@@ -131,7 +127,6 @@ export default function FAQs() {
           </div>
         </div>
       </div>
-      <FooterLanding />
     </div>
   );
 }

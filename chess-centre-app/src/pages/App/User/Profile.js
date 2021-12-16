@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
+import QuickSearch from "../../../components/FAQs/QuickSearch";
 import { ChessProfile, AccountProfile, IntegrationProfile } from "./sections";
 import { useAuthState } from "../../../context/Auth";
 
@@ -66,7 +67,7 @@ export default function Profile() {
         variables: { id: user.username },
       });
       setMember(member);
-      if(member && member.stripeCurrentPeriodEnd) {
+      if (member && member.stripeCurrentPeriodEnd) {
         const today = new Date();
         const renewal = new Date(member.stripeCurrentPeriodEnd);
         setIsPaid(renewal > today);
@@ -102,25 +103,23 @@ export default function Profile() {
                 <i className="fas fa-1x fa-user-circle mr-2 text-teal-500 dark:text-teal-400"></i>{" "}
                 <span className="">
                   Account
-                  {isPaid ? (
+                  {isPaid && (
                     <div className="inline-flex align-top top-2">
                       <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
                         Premium
                       </span>
                     </div>
-                  ) : (
-                    ""
                   )}
                 </span>
               </div>
-              {isLoadingProfile ? (
+              {isLoadingProfile && (
                 <div className="text-teal-500 ml-2 text-sm inline-block">
                   <i className="fal fa-spinner-third fa-spin fa-fw"></i>{" "}
                   <span className="sm:hidden ml-2 text-xs text-gray-600">
                     fetching details...
                   </span>
                 </div>
-              ) : null}
+              )}
             </div>
           </Link>
 
@@ -144,9 +143,15 @@ export default function Profile() {
         </nav>
       </aside>
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
-        <AccountProfile name={member.name} expires={member.stripeCurrentPeriodEnd} />
+        <AccountProfile
+          name={member.name}
+          expires={member.stripeCurrentPeriodEnd}
+        />
         <ChessProfile {...member} isLoading={isLoadingProfile} />
         <IntegrationProfile {...member} isLoading={isLoadingProfile} />
+        <div className="text-right">
+          <QuickSearch tag="membership" />
+        </div>
       </div>
     </div>
   );

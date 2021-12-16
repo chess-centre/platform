@@ -98,7 +98,7 @@ export const Results = ({
     <div>
       {filteredQuestionsCount !== totalQuestions && (
         <h3 className="text-center mb-6">
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-300 text-gray-700">
+          <span className="inline-flex items-center px-8 py-0.5 rounded text-xs font-normal bg-gray-200 text-gray-400">
             Results {filteredQuestionsCount} / {totalQuestions}
           </span>
         </h3>
