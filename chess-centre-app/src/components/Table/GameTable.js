@@ -39,7 +39,7 @@ export default function GameTable({ games, memberId }) {
               />
             );
           } else {
-            return undefined;
+            return "";
           }
         },
       },
@@ -173,6 +173,7 @@ export default function GameTable({ games, memberId }) {
           return [
             ...prev,
             {
+              id: opponent.id,
               pgn: game.pgnStr,
               name: opponent.name,
               rating: rating === "0" ? undefined : rating,
