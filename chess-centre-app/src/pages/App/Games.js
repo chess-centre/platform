@@ -157,10 +157,6 @@ export default function GamesView() {
     eventDetails: {},
   });
 
-  const santitizeGameDate = games => {
-    
-  }
-
   useEffect(() => {
     const fetchWhiteGames = async (id) => {
       const {
@@ -197,8 +193,8 @@ export default function GamesView() {
     const fetchAllGames = async (id) => {
       setIsLoadingGames(true);
       const whiteGames = await fetchWhiteGames(id);
-
       const blackGames = await fetchBlackGames(id);
+
       if (whiteGames[0]?.whiteMember?.name) {
         setPlayerName(whiteGames[0]?.whiteMember?.name);
       }
