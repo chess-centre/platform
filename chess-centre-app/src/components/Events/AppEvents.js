@@ -379,7 +379,7 @@ export default function AppEvents() {
               }
             )
           ) :(
-            <> { [1,2,3,4,5,6,7,8,9].map(key => <SkelectonAppEventCard key={key} />) } </>
+            <> { [1,2,3,4,5,6,7,8,9].map((_, key) => <SkelectonAppEventCard key={key} />) } </>
           )}
         </>
       ) : (
@@ -401,9 +401,9 @@ export default function AppEvents() {
   );
 }
 
-function SkelectonAppEventCard({ key }) {
+function SkelectonAppEventCard() {
   return (
-    <section key={key} className="animate-pulse relative sm:mr-3 mb-3 rounded-lg border">
+    <section className="animate-pulse relative sm:mr-3 mb-3 rounded-lg border">
       <div
         className={classNames(
           "bg-gray-300",

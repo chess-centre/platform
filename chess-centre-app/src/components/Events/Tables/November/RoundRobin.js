@@ -1,7 +1,7 @@
 import React from "react";
 import { Standings } from "../Shared/Standings";
 import { PairingsTable } from "../Shared/Pairings";
-import { currentRound, showPreviousRound, showAll, open } from "./meta.json";
+import { open } from "./meta.json";
 
 
 const SixPlayerPairings = [
