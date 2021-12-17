@@ -28,6 +28,10 @@ export default function GameTable({ games, memberId }) {
         accessor: "id",
       },
       {
+        Header: "liChessUrl",
+        accessor: "liChessUrl",
+      },
+      {
         Header: "Game",
         accessor: "pgn",
         Cell: (props) => {
@@ -39,7 +43,7 @@ export default function GameTable({ games, memberId }) {
               />
             );
           } else {
-            return undefined;
+            return "";
           }
         },
       },
@@ -170,9 +174,12 @@ export default function GameTable({ games, memberId }) {
           const rating =
             game.type === "standard" ? opponent.ecfRating : opponent.ecfRapid;
 
+            console.log(game.liChessUrl);
+
           return [
             ...prev,
             {
+              id: opponent.id,
               pgn: game.pgnStr,
               name: opponent.name,
               rating: rating === "0" ? undefined : rating,
@@ -181,6 +188,7 @@ export default function GameTable({ games, memberId }) {
               event: game.eventName,
               date: prettyDate(game.date),
               type: game.type,
+              liChessUrl: game.liChessUrl
             },
           ];
         }, [])

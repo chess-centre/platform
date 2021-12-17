@@ -179,7 +179,7 @@ function Table({ columns, data, searchPlaceholder = "games..." }) {
       columns,
       data,
       initialState: {
-        hiddenColumns: ["id"]
+        hiddenColumns: ["id", "liChessUrl"]
       }
     },
     useFilters, // useFilters!
