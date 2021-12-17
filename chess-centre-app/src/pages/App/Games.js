@@ -157,6 +157,10 @@ export default function GamesView() {
     eventDetails: {},
   });
 
+  const santitizeGameDate = games => {
+    
+  }
+
   useEffect(() => {
     const fetchWhiteGames = async (id) => {
       const {
@@ -181,6 +185,9 @@ export default function GamesView() {
         variables: { blackMemberId: id },
         authMode: "AWS_IAM",
       });
+
+
+
       setGames((state) => {
         return [...state, ...items];
       });

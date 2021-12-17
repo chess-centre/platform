@@ -134,31 +134,31 @@ export default function Dashboard() {
     <>
       <h1 className="relative my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <i className="fad fa-chart-network text-teal-600"></i> Dashboard
+        <div className="inline-flex align-top top-2 ml-1">
+          <span
+            onClick={() => setIsSlideOutOpen({ open: true })}
+            className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-600 top-2 cursor-pointer"
+          >
+            BETA
+          </span>
+        </div>
         {isPaid && !isLoading && (
           <div className="inline-flex align-top top-2">
-            <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
+            <span className="items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
               Premium
             </span>
           </div>
         )}
-        {
-          isLoading && (
-            
-            <div className="absolute text-teal-500 mt-2 align-middle ml-2 text-sm inline-flex">
-              <i className="fal fa-spinner-third fa-spin fa-fw"></i>
-            </div>)
-        }
+        {isLoading && (
+          <div className="absolute text-teal-500 mt-2 align-middle ml-2 text-sm inline-flex">
+            <i className="fal fa-spinner-third fa-spin fa-fw"></i>
+          </div>
+        )}
       </h1>
 
       <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
-          <p className="ml-2 mt-1 text-sm text-center sm:text-left text-gray-500 dark:text-gray-400">
-            <span
-              onClick={() => setIsSlideOutOpen({ open: true })}
-              className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-600 top-2 cursor-pointer"
-            >
-              BETA
-            </span>
+          <p className="ml-2 mt-1 text-sm text-left text-gray-500 dark:text-gray-400">
             Insights from your previous games and results.
           </p>
         </div>
