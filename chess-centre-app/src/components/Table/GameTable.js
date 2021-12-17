@@ -174,8 +174,6 @@ export default function GameTable({ games, memberId }) {
           const rating =
             game.type === "standard" ? opponent.ecfRating : opponent.ecfRapid;
 
-            console.log(game.liChessUrl);
-
           return [
             ...prev,
             {
