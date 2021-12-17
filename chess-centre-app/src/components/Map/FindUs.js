@@ -34,7 +34,7 @@ const OpeningTimes = () => {
         </h2>
         <>
           { openingHours
-              .map(props => <OpeningTime {...props} />)}
+              .map((props, key) => <OpeningTime key={key} {...props} />)}
         </>
         <p className="italic text-sm text-gray-600">
             * These hours coincide with our events calendar, check an event is listed or drop us an email to ensure we're open.
@@ -48,8 +48,8 @@ const OpeningTime = props => {
   return (
     <div className="my-3"><span className="text-xl font-bold">{day}</span>
       {
-        slots.map(({ time, type }) => (
-          <div className="mb-2 py-1">
+        slots.map(({ time, type }, key) => (
+          <div key={key} className="mb-2 py-1">
             <p className="sm:text-sm text-teal-500">{type}</p>
             <p className="sm:text-xs text-gray-700">{time}</p>
           </div>

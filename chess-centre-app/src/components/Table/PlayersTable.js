@@ -27,7 +27,8 @@ export default function PlayersTable({ players }) {
         ),
       },
       {
-        Header: "ECF",
+        id: "ecf",
+        Header: () => (<div className="mx-auto">ECF</div>),
         disableSortBy: true,
         columns: [
           {
@@ -36,12 +37,13 @@ export default function PlayersTable({ players }) {
           },
           {
             Header: "Rapid",
-            accessor: "rapid",
+            accessor: "rapid"
           },
         ],
       },
       {
-        Header: "Chess.com",
+        id: "chess.com",
+        Header: () => (<div className="mx-auto">chess.com</div>),
         disableSortBy: true,
         columns: [
           {
@@ -59,7 +61,8 @@ export default function PlayersTable({ players }) {
         ],
       },
       {
-        Header: "Lichess",
+        id: "lichess",
+        Header: () => (<div className="mx-auto">lichess</div>),
         disableSortBy: true,
         columns: [
           {

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 import Table, { SelectColumnFilter } from "./index"; // new
 import GameViewerModal from "../Modal/GameViewerModal";
-import { prettyDate } from "../../utils/DateFormating";
 
 export default function GameTable({ games, memberId }) {
   const [modalState, setModalState] = useState({
@@ -32,7 +32,7 @@ export default function GameTable({ games, memberId }) {
         accessor: "liChessUrl",
       },
       {
-        Header: "Game",
+        Header: () => (<div className="mx-auto">Game</div>),
         accessor: "pgn",
         Cell: (props) => {
           if (props.cell.value) {
@@ -96,20 +96,20 @@ export default function GameTable({ games, memberId }) {
         },
       },
       {
-        Header: "Colour",
+        Header: () => (<div className="mx-auto">Colour</div>),
         accessor: "colour",
         Cell: (props) => {
           if (props.cell.value === "white") {
             return (
-              <span className="text-center">
+              <div className="text-center">
                 <i className="far fa-chess-pawn"></i>
-              </span>
+              </div>
             );
           } else {
             return (
-              <span className="text-center">
+              <div className="text-center">
                 <i className="fas fa-chess-pawn"></i>
-              </span>
+              </div>
             );
           }
         },
@@ -123,6 +123,9 @@ export default function GameTable({ games, memberId }) {
       {
         Header: "Date",
         accessor: "date",
+        Cell: (props) => (
+          <span className="text-sm">{ moment(props.cell.value).format("Do MMM YYYY") }</span>
+        )
       },
     ],
     []
@@ -184,13 +187,13 @@ export default function GameTable({ games, memberId }) {
               result: resultType(game.result, colour),
               colour,
               event: game.eventName,
-              date: prettyDate(game.date),
+              date: new Date(game.date),
               type: game.type,
               liChessUrl: game.liChessUrl
             },
           ];
         }, [])
-        .sort((a, b) => new Date(b.date) - new Date(a.date));
+        .sort((a, b) => b.date - a.date);
     } else {
       return undefined;
     }

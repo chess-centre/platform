@@ -225,8 +225,6 @@ const MatchTable = ({ results, round, whiteOnOdd, showRating = false }) => {
     3) relevant QR code for smartphones to pull up the games on their phone
 */
 const Internal = (props) => {
-    const { url } = props;
-
     return (
         <div className="text-center">
             <h2 className="mt-4 text-2xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">

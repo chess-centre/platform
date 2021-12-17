@@ -125,9 +125,9 @@ const Home = () => {
                 </div>
               </div>
               {!isLoading ? (
-                eventInfo.map(() => {
+                eventInfo.map((_, key) => {
                   return (
-                    <div className="mt-4">
+                    <div key={key} className="mt-4">
                       <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center">
                         <div className="rounded-md shadow">
                           <Link
