@@ -156,7 +156,7 @@ export function SelectColumnFilter({
   );
 }
 
-function Table({ columns, data, searchPlaceholder = "Games..." }) {
+function Table({ columns, data, searchPlaceholder = "games..." }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -178,6 +178,9 @@ function Table({ columns, data, searchPlaceholder = "Games..." }) {
     {
       columns,
       data,
+      initialState: {
+        hiddenColumns: ["id"]
+      }
     },
     useFilters, // useFilters!
     useGlobalFilter,
