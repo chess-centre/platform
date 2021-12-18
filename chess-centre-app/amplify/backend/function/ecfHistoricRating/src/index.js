@@ -16,28 +16,40 @@ exports.handler = async (event) => {
         
         console.log(`Fetching historic rating data for ${members.length} members`);
         
+        const historicData = new Map();
+        
         const result = await Promise.all(members.map(async (member) => {
             console.log(`Checking rating data for ${member.name}`);
             const data = await getHistoricRatings(member.ecfId);
             if(data && data.length > 0) {
-                const params = {
+                historicData.set(member.id, data);
+            } else {
+                console.log("No data!");
+            }
+        }));
+        
+        await Promise.all(members.map(async (member) => {
+             const params = {
                     TableName: memberTable,
                     Key: {
                         id: member.id
                     },
                     UpdateExpression: "set ratingInfo=:info",
                     ExpressionAttributeValues: {
-                        ":info": data
+                        ":info": historicData.get(member.id)
                     },
                     ReturnValues: "UPDATED_NEW"
                 };
-                const response = await dynamodb.update(params).promise();
-                console.log(`Saving rating data for ${member.name}`);
-                return response;
-            } else {
-                console.log("No data!");
-            }
+                try {
+                    const response = await dynamodb.update(params).promise();
+                    console.log(`Saving rating data for ${member.name}`);
+                    return response;
+                } catch (e) {
+                    console.log("error caught!");
+                    console.log(e);
+                }
         }));
+        
         console.log(`Total records updated ${result.length}`);
     } catch (error) {
         console.log("Error", error);

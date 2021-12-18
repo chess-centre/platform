@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "paths": {
+    "/train/{eventId}": {
+      "permissions": {
+        "setting": "protected",
+        "auth": [
+          "read"
+        ],
+        "guest": [
+          "read"
+        ]
+      },
+      "lambdaFunction": "trainTravelInfo"
+    },
+    "/bus/{eventId}": {
+      "permissions": {
+        "setting": "open"
+      },
+      "lambdaFunction": "busTravelInfo"
+    }
+  }
+}
