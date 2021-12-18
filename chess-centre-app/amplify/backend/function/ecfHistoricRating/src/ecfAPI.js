@@ -32,12 +32,13 @@ const getRatings = async (id, type = "S") => {
   const data = await Promise.all(urls.map(fetchData));
   if(data && data.length > 0) {
     return data.map((result) => {
-      const { effective_date, original_rating, domain } = JSON.parse(result);
+      const { effective_date, revised_rating, domain } = JSON.parse(result);
       const month = effective_date ? new Date(effective_date).toLocaleString('default', { month: 'long'}) : '';
       return {
         date: effective_date,
         month,
-        [domain === "S" ? "standard" : "rapid"]: original_rating ? original_rating : 0
+        standard: domain === "S" ? (revised_rating ? revised_rating : 0 ) : 0,
+        rapid: domain === "R" ? (revised_rating ? revised_rating : 0 ) : 0 
       };
     });
   } else {
