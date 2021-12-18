@@ -261,7 +261,7 @@ export default function EventDetailsSlideOut(props) {
                       </div>
                     </div>
                   </div>
-                  <div>
+                  <div className="mb-4">
                     <div className="pb-1 sm:pb-6">
                       <div>
                         <div className="relative h-52">
