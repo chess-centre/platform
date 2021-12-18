@@ -2,7 +2,7 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
   const { round, pairings } = format;
   return (
     <div className="">
-      <table className="w-full divide-y divide-gray-200 table-auto border-gray-300 border">
+      <table className="w-full divide-y divide-gray-200 table-auto border-gray-300 border shadow-2xl">
         <thead className="bg-teal-500 dark:bg-gray-800">
           <tr>
             <th

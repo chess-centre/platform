@@ -1,0 +1,107 @@
+{
+    "name": "December Rapidplay 2021",
+    "currentRound": 1,
+    "showAll": true,
+    "showPreviousRound": false,
+    "nextRoundTime": "Round 1 starts @ 10:00pm",
+    "swiss": [
+        {
+            "id": 1,
+            "name": "Luke Gostelow",
+            "ratingInfo": {
+                "rating": 2098
+            }
+        },
+        {
+            "id": 2,
+            "name": "Oleg Cukovs",
+            "ratingInfo": {
+                "rating": 1961
+            }
+        },
+        {
+            "id": 3,
+            "name": "Shriaansh Ganti",
+            "ratingInfo": {
+                "rating": 1483
+            }
+        },
+        {
+            "id": 4,
+            "name": "Elliott Barnett",
+            "ratingInfo": {
+                "rating": 1473
+            }
+        },
+        {
+            "id": 5,
+            "name": "Zac Cansdale",
+            "ratingInfo": {
+                "rating": 1432
+            }
+        },
+        {
+            "id": 6,
+            "name": "Donna Chadwick",
+            "ratingInfo": {
+                "rating": 1379
+            }
+        },
+        {
+            "id": 7,
+            "name": "Charles Wainwright",
+            "ratingInfo": {
+                "rating": 1373
+            }
+        },
+        {
+            "id": 8,
+            "name": "Harry Wilson",
+            "ratingInfo": {
+                "rating": 1359
+            }
+        },
+        {
+            "id": 9,
+            "name": "Brendan Smith",
+            "ratingInfo": {
+                "rating": 1335
+            }
+        },
+        {
+            "id": 10,
+            "name": "Juris Kirilenkovs",
+            "ratingInfo": {
+                "rating": 1285
+            }
+        },
+        {
+            "id": 11,
+            "name": "Jacob Smith",
+            "ratingInfo": {
+                "rating": 1222
+            }
+        },
+        {
+            "id": 12,
+            "name": "Sebastian Costa",
+            "ratingInfo": {
+                "rating": ""
+            }
+        },
+        {
+            "id": 13,
+            "name": "Ted Freeman",
+            "ratingInfo": {
+                "rating": ""
+            }
+        },
+        {
+            "id": 14,
+            "name": "Dylan Parkinson",
+            "ratingInfo": {
+                "rating": 0
+            }
+        }
+    ]
+}

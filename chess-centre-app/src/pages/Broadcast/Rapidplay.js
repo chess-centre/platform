@@ -1,9 +1,8 @@
 import React from "react";
 import QR from "../../assets/img/QR-live-games.png";
 import Review from "../../assets/img/google-review.png";
-import RoundRobin from "../../components/Events/Tables/November/RoundRobin";
-import Swiss from "../../components/Events/Tables/November/Swiss";
-import { name } from "../../components/Events/Tables/November/meta.json";
+import Swiss from "../../components/Events/Tables/December/Swiss";
+import { name } from "../../components/Events/Tables/December/meta.json";
 
 const Viewer = () => {
   return (
@@ -31,8 +30,7 @@ const Viewer = () => {
             <span className="text-gray-300">#NotForProfit</span>
           </h3>
         </div>
-        <div className="grid grid-cols-3 mt-4">
-          <RoundRobin />
+        <div className="grid grid-cols-2 mt-4">
           <Swiss />
         </div>
       </div>

@@ -2,7 +2,7 @@ export const Standings = ({ roundByRound, division }) => {
   return (
     <div>
       <h3 className="text-2xl mb-2 -mt-4 font-semibold text-pink-900 text-center">{ division }</h3>
-      <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow">
+      <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 border-gray-300 border dark:border-gray-700 shadow-2xl">
         <thead className="bg-pink-900">
           <tr>
             <th
