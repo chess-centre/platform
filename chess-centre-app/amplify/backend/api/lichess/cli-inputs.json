@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "paths": {
+    "/user/{id}": {
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update"
+        ]
+      },
+      "lambdaFunction": "getLichessPlayer"
+    }
+  }
+}
