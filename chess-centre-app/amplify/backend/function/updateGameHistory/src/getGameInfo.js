@@ -80,7 +80,7 @@ function genGameStats(whiteGames, blackGames) {
         prev.losses += 1;
         return prev;
       default:
-        break;
+        return prev;
     }
   }, {
     wins: 0,
@@ -115,10 +115,9 @@ function genGameStats(whiteGames, blackGames) {
 
   const totalStats = {};
 
-  for(prop in whiteStats) {
+  for(let prop in whiteStats) {
     totalStats[prop] = whiteStats[prop] + blackStats[prop];
   }
 
   return totalStats;
-
 }
