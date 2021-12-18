@@ -243,11 +243,6 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "ecfRatingScrapper": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "getMemberGames": {
       "build": true,
       "providerPlugin": "awscloudformation",
