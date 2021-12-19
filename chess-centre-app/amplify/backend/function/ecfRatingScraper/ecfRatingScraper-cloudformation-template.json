@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Lambda Function resource stack creation using Amplify CLI",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"7.6.4\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ecfRatingScrapper",
+            "ecfRatingScraper",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ecfRatingScrapper",
+                  "ecfRatingScraper",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "platformchesscentreaLambdaRole052acf43",
+            "platformchesscentreaLambdaRole6d38d2e1",
             {
               "Fn::Join": [
                 "",
                 [
-                  "platformchesscentreaLambdaRole052acf43",
+                  "platformchesscentreaLambdaRole6d38d2e1",
                   "-",
                   {
                     "Ref": "env"

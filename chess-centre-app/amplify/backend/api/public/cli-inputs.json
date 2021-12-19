@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "paths": {
+    "/checkout": {
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      },
+      "lambdaFunction": "stripeCheckout"
+    },
+    "/stripe/webhook": {
+      "permissions": {
+        "setting": "open"
+      },
+      "lambdaFunction": "stripeWebhook"
+    },
+    "/customer-portal": {
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      },
+      "lambdaFunction": "stripeCustomerPortal"
+    },
+    "/event/register": {
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      },
+      "lambdaFunction": "eventRegister"
+    }
+  }
+}

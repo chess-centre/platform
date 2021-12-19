@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "paths": {
+    "/ecf/{id}": {
+      "permissions": {
+        "setting": "open"
+      },
+      "lambdaFunction": "ecfPlayer"
+    },
+    "/games/{id}/{type}": {
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update"
+        ]
+      },
+      "lambdaFunction": "ecfPlayerGames"
+    }
+  }
+}

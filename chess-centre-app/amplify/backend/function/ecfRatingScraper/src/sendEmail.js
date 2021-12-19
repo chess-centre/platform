@@ -21,22 +21,35 @@ async function sendRatingUpdateEmail(members, erredChecks, erredMembers) {
   const ratingChangeTable = (members, type) => {
     const prop = type === "standard" ? "oldRating" : "oldRapid";
     const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    const currentDay = new Date().getDate();
+
     const rows = members
-      .sort((a, b) => Number(b[prop] - Number(a[prop])))
+      .sort((a, b) => {
+        const _b = Number(b[prop]) ? Number(b[prop]) : 0;
+        const _a = Number(a[prop]) ? Number(a[prop]) : 0;
+        return _b - _a;
+      })
       .reduce((pre, cur, index) => {
-        const previousRating = type === "standard" ? Number(cur.oldRating) : Number(cur.oldRapid);
-        const currentRating = Number(cur[type].original_rating);
+        const previousR = type === "standard" ? Number(cur.oldRating) : Number(cur.oldRapid);
+        const previousRating = Number(previousR) ? Number(previousR) : 0;
+        const currentRating = Number(cur[type].revised_rating) ? Number(cur[type].revised_rating) : 0;
+        const diff = currentRating - previousRating;
         const changeColor = currentRating > previousRating ? "green" : currentRating < previousRating ? "red" : "black";
-        const viewURL = `https://www.ecfrating.org.uk/v2/new/list_games_player.php?domain=${type === "standard" ? "S" : "R"}&year=${currentYear}&show_games=on&show_ratings=on&ECF_code=${cur.ecfId}`;
+        const profileUrl = `https://www.ecfrating.org.uk/v2/new/list_games_player.php?domain=${type === "standard" ? "S" : "R"}&year=${currentYear}&show_games=on&show_ratings=on&ECF_code=${cur.ecfId}`;
+        const APIUrl = `https://www.ecfrating.org.uk/v2/new/api.php?v2/ratings/${type === "standard" ? "S" : "R"}/${cur.ecfId}/${currentYear}-${currentMonth + 1}-${currentDay}`;
 
         const row = `<tr>
           <td align="center">${index + 1}</td>
           <td align="left">${cur.name}</td>
-          <td align="center">${isNaN(previousRating) ? 0 : previousRating }</td>
-          <td align="center">${isNaN(currentRating) ? 0 : currentRating }</td>
-          <td align="center" style="color: ${changeColor}">${currentRating - previousRating}</td>
+          <td align="center">${previousRating }</td>
+          <td align="center">${currentRating }</td>
+          <td align="center" style="color: ${changeColor}">${diff}</td>
           <td align="center">
-            <a href="${viewURL}">view</a>
+            <a href="${profileUrl}">view</a>
+          </td>
+          <td align="center">
+            <a href="${APIUrl}">check</a>
           </td>
         </tr>`;
         pre.push(row);
@@ -52,7 +65,8 @@ async function sendRatingUpdateEmail(members, erredChecks, erredMembers) {
           <th>Previous</th>
           <th>Latest</th>
           <th>+/-</th>
-          <th>Check</th>
+          <th>Profile</th>
+          <th>API</th>
         </tr>
         ${ rows }
       </table>`;
@@ -93,8 +107,7 @@ async function sendRatingUpdateEmail(members, erredChecks, erredMembers) {
         </div>
         <p style="color: #9da4a5;font-size:14px;">This rating scheduler runs every week to capture rating changes across all our members. It relies on having an accurate ECF player ID.</p>
         <p style="color: #9da4a5;font-size:14px;">Notes: The above "previous" ratings relate only to the previous record we held and not the previously published ECF rating.</p>
-        `
-      }
+        `}
       }
     }
   };

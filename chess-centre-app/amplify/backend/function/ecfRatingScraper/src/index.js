@@ -53,7 +53,7 @@ exports.handler = async (event) => {
                 return;
             }
             
-            console.log(`Updated record for ${member.name} ${member.id} ${member.standard?.original_rating} ${member.rapid?.original_rating}`);
+            console.log(`Updated record for ${member.name} ${member.id} ${member.standard?.revised_rating} ${member.rapid?.revised_rating}`);
 
             const params = {
                 TableName: memberTable,
@@ -62,11 +62,11 @@ exports.handler = async (event) => {
                 },
                 UpdateExpression: "set ecfRating=:standard, ecfRapid=:rapid, gender=:gender, fideId=:fide, club=:club, ecfMembership=:membership",
                 ExpressionAttributeValues: {
-                    ":standard": member.standard?.original_rating | null,
-                    ":rapid": member.rapid?.original_rating | null,
+                    ":standard": member.standard?.revised_rating || null,
+                    ":rapid": member.rapid?.revised_rating || null,
                     ":gender": member.gender,
                     ":club": member.club_name,
-                    ":fide": member.FIDE_no,
+                    ":fide": member?.FIDE_no || null,
                     ":membership": member.category
                 },
                 ReturnValues: "UPDATED_NEW"
