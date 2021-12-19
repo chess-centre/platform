@@ -188,7 +188,6 @@ export default function AppEvents() {
           cancelUrl: redirectTo,
         },
       });
-
       await stripe.redirectToCheckout({ sessionId });
     } catch (error) {
       const mailToString = `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0AEvent ID: ${eventId}%0D%0AUser ID: ${user.username}%0D%0AUser: ${user.attributes.given_name} ${user.attributes.family_name}%0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`;
@@ -225,9 +224,11 @@ export default function AppEvents() {
 
   return (
     <>
-      {!error ? (
+      {!error && (
         <>
-          {!isLoading ? (
+          {!isLoading &&
+            data &&
+            data.lenth > 0 &&
             data.map(
               (
                 {
@@ -377,25 +378,43 @@ export default function AppEvents() {
                   </section>
                 );
               }
-            )
-          ) :(
-            <> { [1,2,3,4,5,6,7,8,9].map((_, key) => <SkelectonAppEventCard key={key} />) } </>
+            )}
+
+          {data && data.length === 0 && (
+            <div className="mt-6 sm:mt-2 mb-10 text-center sm:text-left">
+              <span className="text-8xl sm:text-4xl">
+                <i className="fad fa-frown text-teal-700"></i>
+              </span>
+              <h3 className="mt-2 text-2xl text-gray-600 font-extrabold">
+                Oh, no events...
+              </h3>
+              <p className="mt-6 mx-6 sm:mx-0 text-md text-teal-500">
+                Don't worry, we are busy planning our 2022 schedule.
+              </p>
+            </div>
+          )}
+
+          {isLoading && (
+            <>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((_, key) => (
+                <SkelectonAppEventCard key={key} />
+              ))}
+            </>
           )}
         </>
-      ) : (
-        <div className="">
+      )}
+
+      {error && (
+        <div>
           <div className="italic text-red-700">Error fetching events.</div>
         </div>
       )}
+
       <PaymentCompleteModal
         open={paymentSuccesseful}
         setOpen={setPaymentSuccessful}
       />
-      <EventDetailsSlideOut
-        slideState={slideState}
-        setIsSlideOutOpen={setIsSlideOutOpen}
-        user={user}
-      ></EventDetailsSlideOut>
+      <EventDetailsSlideOut {...{ user, slideState, setIsSlideOutOpen }} />
       <RoundTimesModal {...modalState} closeModal={closeModal} />
     </>
   );
