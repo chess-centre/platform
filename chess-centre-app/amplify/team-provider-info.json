@@ -64,7 +64,7 @@
         },
         "ecfHistoricRating": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfHistoricRating-386b346c554a766e3852-build.zip"
+          "s3Key": "amplify-builds/ecfHistoricRating-70717946392f5a477634-build.zip"
         },
         "trainTravelInfo": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
