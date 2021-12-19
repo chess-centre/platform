@@ -24,22 +24,27 @@ export default function Events() {
   const location = useLocation();
   const { isLoading, error, data } = useEvents();
   const [selectableEventTypes, setSelectableEventTypes] = useState([]);
-  const [,,eventType] = location.pathname.split("/");
+  const [, , eventType] = location.pathname.split("/");
   const [selectedEventType, setSelectedEventType] = useState("all");
 
   useMemo(() => {
     if (data) {
-      const availableTypes = data.reduce((pre, { type: { eventType, canRegister } }) => {
-        if(!canRegister) return pre;
-        if(pre.includes(eventType)) return pre;
-        return [...pre, eventType];
-      }, ["all"]);
+      const availableTypes = data.reduce(
+        (pre, { type: { eventType, canRegister } }) => {
+          if (!canRegister) return pre;
+          if (pre.includes(eventType)) return pre;
+          return [...pre, eventType];
+        },
+        ["all"]
+      );
+
       setSelectableEventTypes(availableTypes);
-      const defaultSelectedEventType = eventType && availableTypes.includes(eventType) ? eventType : "all";
+      const defaultSelectedEventType =
+        eventType && availableTypes.includes(eventType) ? eventType : "all";
       setSelectedEventType(defaultSelectedEventType);
     }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, eventType]);
 
   return (
@@ -49,75 +54,75 @@ export default function Events() {
           <LandingNav current="events" />
         </div>
         <div className="bg-white">
-        <div className="relative">
-          <svg
-            className="hidden xl:block absolute top-0 right-0 md:-mr-32 2xl:-mr-4"
-            width="500"
-            height="300"
-            fill="none"
-            viewBox="0 0 500 300"
-            aria-hidden="true"
-          >
-            <defs>
-              <pattern
-                id="95e8f2de-6d30-4b7e-8159-f791729db21b"
-                x="0"
-                y="0"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x="0"
-                  y="0"
-                  width="4"
-                  height="4"
-                  className="text-gray-100"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
-            <rect
+          <div className="relative">
+            <svg
+              className="hidden xl:block absolute top-0 right-0 md:-mr-32 2xl:-mr-4"
               width="500"
               height="300"
-              fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
-            />
-          </svg>
-
-          <svg
-            className="hidden md:block absolute top-32 left-0 md:-ml-32 2xl:-ml-4"
-            width="500"
-            height="600"
-            fill="none"
-            viewBox="0 0 500 600"
-            aria-hidden="true"
-          >
-            <defs>
-              <pattern
-                id="95e8f2de-6d30-4b7e-8159-f791729db21b"
-                x="0"
-                y="0"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
+              fill="none"
+              viewBox="0 0 500 300"
+              aria-hidden="true"
+            >
+              <defs>
+                <pattern
+                  id="95e8f2de-6d30-4b7e-8159-f791729db21b"
                   x="0"
                   y="0"
-                  width="4"
-                  height="4"
-                  className="text-gray-100"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
-            <rect
+                  width="20"
+                  height="20"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <rect
+                    x="0"
+                    y="0"
+                    width="4"
+                    height="4"
+                    className="text-gray-100"
+                    fill="currentColor"
+                  />
+                </pattern>
+              </defs>
+              <rect
+                width="500"
+                height="300"
+                fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
+              />
+            </svg>
+
+            <svg
+              className="hidden md:block absolute top-32 left-0 md:-ml-32 2xl:-ml-4"
               width="500"
               height="600"
-              fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
-            />
-          </svg>
-        </div>
+              fill="none"
+              viewBox="0 0 500 600"
+              aria-hidden="true"
+            >
+              <defs>
+                <pattern
+                  id="95e8f2de-6d30-4b7e-8159-f791729db21b"
+                  x="0"
+                  y="0"
+                  width="20"
+                  height="20"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <rect
+                    x="0"
+                    y="0"
+                    width="4"
+                    height="4"
+                    className="text-gray-100"
+                    fill="currentColor"
+                  />
+                </pattern>
+              </defs>
+              <rect
+                width="500"
+                height="600"
+                fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
+              />
+            </svg>
+          </div>
           <div className="max-w-7xl mx-auto py-16 px-4 sm:py-28 sm:px-6 lg:px-8">
             <div className="text-center">
               <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
@@ -144,29 +149,13 @@ export default function Events() {
         </div>
 
         <div className="container m-auto">
-          <div className="pr-4 pl-4 sm:flex sm:flex-col sm:align-center">
-            <div className="relative self-center mt-6 bg-gray-100 rounded-lg p-0.5 flex sm:mt-8">
-              {selectableEventTypes.map((type, key) => {
-                return (
-                  <button
-                    key={key}
-                    onClick={() => setSelectedEventType(type)}
-                    type="button"
-                    className={`${
-                      type === selectedEventType
-                        ? "bg-white border-gray-200 text-teal-500"
-                        : ""
-                    } relative w-1/2 px-2 border sm:border-none rounded-md shadow-sm py-2 text-xs sm:text-sm sm:font-medium text-gray-700
-                    whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-teal-500 focus:z-10 sm:w-auto sm:px-6`}
-                  >
-                    {`${type.charAt(0).toUpperCase()}${type
-                      .slice(1)
-                      .replace("-rapidplay", "")}`}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
+          <EventTabs
+            {...{
+              selectedEventType,
+              selectableEventTypes,
+              setSelectedEventType,
+            }}
+          />
           <div className="flex">
             {" "}
             {!error ? (
@@ -200,7 +189,7 @@ export default function Events() {
                           type,
                           entryCount,
                           isLive,
-                          isFull
+                          isFull,
                         },
                         key
                       ) => {
@@ -248,8 +237,8 @@ export default function Events() {
                                 // blank placeholder for 0 entries:
                                 {
                                   empty: !!!entryCount,
-                                  show: !!!entryCount
-                                }
+                                  show: !!!entryCount,
+                                },
                               ]}
                             />
                           </div>
@@ -282,3 +271,51 @@ export default function Events() {
     </div>
   );
 }
+
+const EventTabs = ({
+  selectedEventType,
+  selectableEventTypes,
+  setSelectedEventType,
+}) => {
+  if (selectableEventTypes.length === 1) {
+    // No Events  (one === default "all")
+    return (
+      <div className="text-center mt-12 sm:mt-20 mb-10">
+        <span className="text-7xl sm:text-9xl"><i className="fad fa-frown text-teal-700"></i></span>
+        <h3 className="mt-2 text-2xl text-gray-600 font-extrabold">Oh, no events...</h3>
+        <p className="mt-6 mx-10 text-md text-teal-500">
+          Don't worry, we are busy planning our 2022 schedule.
+        </p>
+        <p className="mt-6 mx-10 text-md text-gray-500">
+          Check back here soon!
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="pr-4 pl-4 sm:flex sm:flex-col sm:align-center">
+      <div className="relative self-center mt-6 bg-gray-100 rounded-lg p-0.5 flex sm:mt-8">
+        {selectableEventTypes.map((type, key) => {
+          return (
+            <button
+              key={key}
+              onClick={() => setSelectedEventType(type)}
+              type="button"
+              className={`${
+                type === selectedEventType
+                  ? "bg-white border-gray-200 text-teal-500"
+                  : ""
+              } relative w-1/2 px-2 border sm:border-none rounded-md shadow-sm py-2 text-xs sm:text-sm sm:font-medium text-gray-700
+            whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-teal-500 focus:z-10 sm:w-auto sm:px-6`}
+            >
+              {`${type.charAt(0).toUpperCase()}${type
+                .slice(1)
+                .replace("-rapidplay", "")}`}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
