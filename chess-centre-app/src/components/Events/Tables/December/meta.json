@@ -4,6 +4,50 @@
     "showAll": true,
     "showPreviousRound": false,
     "nextRoundTime": "Round 1 starts @ 10:00pm",
+    "open": [
+        {
+            "id": 1,
+            "name": "Luke Gostelow",
+            "ratingInfo": {
+                "rating": 2098
+            }
+        },
+        {
+            "id": 2,
+            "name": "Oleg Cukovs",
+            "ratingInfo": {
+                "rating": 1961
+            }
+        },
+        {
+            "id": 3,
+            "name": "Shriaansh Ganti",
+            "ratingInfo": {
+                "rating": 1483
+            }
+        },
+        {
+            "id": 4,
+            "name": "Elliott Barnett",
+            "ratingInfo": {
+                "rating": 1473
+            }
+        },
+        {
+            "id": 5,
+            "name": "Zac Cansdale",
+            "ratingInfo": {
+                "rating": 1432
+            }
+        },
+        {
+            "id": 6,
+            "name": "Donna Chadwick",
+            "ratingInfo": {
+                "rating": 1379
+            }
+        }
+    ],
     "swiss": [
         {
             "id": 1,
@@ -100,7 +144,7 @@
             "id": 14,
             "name": "Dylan Parkinson",
             "ratingInfo": {
-                "rating": 0
+                "rating": ""
             }
         }
     ]

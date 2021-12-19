@@ -3,7 +3,6 @@ import { Standings } from "../Shared/Standings";
 import { PairingsTable } from "../Shared/Pairings";
 import { open } from "./meta.json";
 
-
 const SixPlayerPairings = [
     {
         round: 1,
@@ -50,23 +49,23 @@ const SixPlayerPairings = [
 const results = [
     {
         round: 1,
-        pairResults: [[1, 0], [1, 0], [0.5, 0.5]],
+        pairResults: [[], [], []],
     },
     {
         round: 2,
-        pairResults: [[1, 0], [0, 1], [1, 0]],
+        pairResults: [[], [], []],
     },
     {
         round: 3,
-        pairResults: [[0.5,0.5], [0,1], [0,1]],
+        pairResults: [[], [], []],
     },
     {
         round: 4,
-        pairResults: [[0.5,0.5], [1,0], [0,1]],
+        pairResults: [[], [], []],
     },
     {
         round: 5,
-        pairResults: [[1,0], [0.5,0.5], [0,1]],
+        pairResults: [[], [], []],
     },
 ];
 

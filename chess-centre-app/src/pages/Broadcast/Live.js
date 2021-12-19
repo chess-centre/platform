@@ -1,11 +1,11 @@
 import React from "react";
-import { LiveGameContext } from "../../context/LiveGameContext";
+import { useLiveGameState } from "../../context/LiveGameContext";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
 const Live = () => {
 
-  const { eventInfo, isLoading } = React.useContext(LiveGameContext);
+  const { eventInfo, isLoading } = useLiveGameState();
 
   return (
     <div>
