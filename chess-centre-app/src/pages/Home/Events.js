@@ -281,7 +281,7 @@ const EventTabs = ({
     // No Events  (one === default "all")
     return (
       <div className="text-center mt-12 sm:mt-20 mb-10">
-        <span className="text-7xl sm:text-9xl"><i class="fad fa-frown text-teal-700"></i></span>
+        <span className="text-7xl sm:text-9xl"><i className="fad fa-frown text-teal-700"></i></span>
         <h3 className="mt-2 text-2xl text-gray-600 font-extrabold">Oh, no events...</h3>
         <p className="mt-6 mx-10 text-md text-teal-500">
           Don't worry, we are busy planning our 2022 schedule.
