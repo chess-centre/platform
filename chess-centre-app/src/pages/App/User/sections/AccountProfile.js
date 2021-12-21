@@ -1,6 +1,6 @@
 import { Auth } from "aws-amplify";
 import React, { useEffect, useState } from "react";
-import { prettyLongDate } from "../../../../utils/DateFormating";
+import moment from "moment";
 
 const FIRST_NAME = "first_name";
 const LAST_NAME = "last_name";
@@ -106,7 +106,7 @@ export default function AccountProfile(props) {
               <div className="mt-8 flex">
                 <span className="h-6 flex items-center sm:h-7 mr-1">
                   <svg
-                    className="flex-shrink-0 h-5 w-5 text-teal-500"
+                    className="flex-shrink-0 h-5 w-5 text-green-400"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -134,7 +134,7 @@ export default function AccountProfile(props) {
                     Membership Renewal
                   </label>
                   <input
-                    value={prettyLongDate(props.expires)}
+                    value={moment(props.expires).format("Do MMMM YYYY")}
                     disabled
                     type="text"
                     name="renewal"
@@ -149,7 +149,7 @@ export default function AccountProfile(props) {
                 <div className="mt-8 flex">
                   <span className="h-6 flex items-center sm:h-7 mr-1">
                     <svg
-                      className="flex-shrink-0 h-5 w-5 text-pink-800"
+                      className="flex-shrink-0 h-5 w-5 text-green-400"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
