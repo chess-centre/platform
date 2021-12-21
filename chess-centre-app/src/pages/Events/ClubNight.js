@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 import { useEvents } from "../../api/events";
 import ClubNightImage from "../../assets/img/club-night.jpg";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
-import { prettyLongDate } from "../../utils/DateFormating";
 
 export default function ClubNight() {
 
@@ -107,11 +107,11 @@ export default function ClubNight() {
                 </ul>
               </div>
                 { !isLoading && !error && clubNightDates.length > 0 && (
-                  <div className="prose prose-teal">
+                  <div className="prose">
                     <h4>Upcoming Club Nights</h4>
                     <ul>
                       { clubNightDates.map(({ startDate }, key) => {
-                          return <li key={key}>{ prettyLongDate(startDate)}</li>
+                          return <li key={key} className="text-sm text-teal-700">{ moment(startDate).format("Do MMMM YYYY")}</li>
                       })}
                     </ul>
                   </div>
