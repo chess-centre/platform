@@ -1,11 +1,12 @@
 import API from "@aws-amplify/api";
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import queryString from "query-string";
 import { useQuery } from "react-query";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
+import { Button } from "@windmill/react-ui";
 import Register from "./Register";
 import RoundTimesModal from "../Modal/RoundTimesModal";
 import { prettyDate } from "../../utils/DateFormating";
@@ -145,7 +146,8 @@ function useEvents() {
 
     return sorted.map((event) => ({
       ...event,
-      allowedToRegister: !alreadyRegistered(event) && !isFull(event),
+      allowedToRegister:
+        !alreadyRegistered(event) && !isFull(event) && !event?.isLive,
       full: isFull(event),
       registered: alreadyRegistered(event),
     }));
@@ -228,7 +230,6 @@ export default function AppEvents() {
         <>
           {!isLoading &&
             data &&
-            data.lenth > 0 &&
             data.map(
               (
                 {
@@ -242,6 +243,7 @@ export default function AppEvents() {
                   time,
                   allowedToRegister,
                   full,
+                  isLive,
                   registered,
                   maxEntries,
                   entryCount,
@@ -252,7 +254,7 @@ export default function AppEvents() {
                 return (
                   <section
                     key={key}
-                    className="relative sm:mr-3 mb-3 rounded-lg border"
+                    className="relative sm:mr-3 mb-3 rounded-lg border shadow-2xl"
                   >
                     <div
                       className={classNames(
@@ -307,15 +309,34 @@ export default function AppEvents() {
                               {allowedToRegister ? (
                                 <Register id={id} register={register} />
                               ) : (
+                                <>
                                 <p className="text-sm text-gray-700 mr-2">
-                                  <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
-                                    {registered
-                                      ? "Entered"
-                                      : full
-                                      ? "Full"
-                                      : ""}
-                                  </span>{" "}
+                                  {registered && !isLive && !full && (
+                                    <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                      Entered
+                                    </span>
+                                  )}
+                                  {full && !isLive && !registered && (
+                                    <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                      Full
+                                    </span>
+                                  )}
                                 </p>
+                                  {isLive && (
+                                    <Link
+                                      to="/broadcast/live"
+                                      className={`inline-flex items-center px-2 2xl:px-2.5 py-1.5 
+                                      border border-transparent text-sm font-medium rounded-lg shadow-sm text-white
+                                       bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600`}
+                                    >
+                                      <span className="hidden 2xl:flex relative h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-65"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
+                                      </span>
+                                      <span className="2xl:ml-2">Now Live</span>
+                                    </Link>
+                                  )}
+                                </>
                               )}
                             </div>
                           </div>

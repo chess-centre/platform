@@ -8,11 +8,11 @@ import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
 import Integrations from "../../components/Integrations";
-import { LiveGameContext } from "../../context/LiveGameContext";
+import { useLiveGameState } from "../../context/LiveGameContext";
 
 const Home = () => {
   const { user } = useAuthState();
-  const { eventInfo, isLoading } = React.useContext(LiveGameContext);
+  const { eventInfo, isLoading } = useLiveGameState();
 
   return (
     <div>
