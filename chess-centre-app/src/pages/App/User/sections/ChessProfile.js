@@ -163,6 +163,6 @@ const EcfMembershipStatus = ({ status }) => {
     case "PLATINUM":
       return label("text-pink-800", "bg-pink-100", status);
     default:
-      return label("text-gray-400", "bg-gray-50", status ? status : "No ECF Membership")
+      return label("text-gray-400", "bg-gray-50", status ? status : "None")
   }
 }
