@@ -364,7 +364,7 @@ export default function Calendar() {
   const [filters, setFilters] = useState({});
   const today = new Date();
   const currentMonth = today.getMonth();
-  const nextMonth = currentMonth + 1;
+  const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
   const nextNextMonth = nextMonth + 1;
   const months = [currentMonth, nextMonth, nextNextMonth];
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
