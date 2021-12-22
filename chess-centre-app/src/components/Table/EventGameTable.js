@@ -28,10 +28,6 @@ export default function GameTable({ games, memberId }) {
         accessor: "id",
       },
       {
-        Header: "eventId",
-        accessor: "eventId",
-      },
-      {
         Header: "liChessUrl",
         accessor: "liChessUrl",
       },
@@ -52,8 +48,10 @@ export default function GameTable({ games, memberId }) {
         },
       },
       {
-        Header: "Opponent",
-        accessor: "name",
+        Header: "White",
+        accessor: "white",
+        Filter: SelectColumnFilter,
+        filter: "includes",
         Cell: (props) => (
           <Link
             className="text-teal-600"
@@ -65,71 +63,34 @@ export default function GameTable({ games, memberId }) {
       },
       {
         Header: () => (<div className="mx-auto">Rating</div>),
-        accessor: "rating",
+        accessor: "whiteRating",
         Cell: (props) => (
           <div className="text-center text-sm">{props.cell.value}</div>
         )
       },
       {
-        Header: "Result",
+        Header: () => (<div className="mx-auto">Result</div>),
         accessor: "result",
-        Cell: (props) => {
-          switch (props.cell.value) {
-            case "win":
-              return (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
-                  win
-                </span>
-              );
-            case "loss":
-              return (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
-                  loss
-                </span>
-              );
-            case "draw":
-              return (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-                  draw
-                </span>
-              );
-            default:
-              return (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
-                  {props.cell.value}
-                </span>
-              );
-          }
-        },
+        Cell: (props) => (
+          <div className="text-center">{props.cell.value}</div>
+        )
       },
       {
-        Header: () => (<div className="mx-auto">Colour</div>),
-        accessor: "colour",
-        Cell: (props) => {
-          if (props.cell.value === "white") {
-            return (
-              <div className="text-center">
-                <i className="far fa-chess-pawn"></i>
-              </div>
-            );
-          } else {
-            return (
-              <div className="text-center">
-                <i className="fas fa-chess-pawn"></i>
-              </div>
-            );
-          }
-        },
+        Header: () => (<div className="mx-auto">Rating</div>),
+        accessor: "blackRating",
+        Cell: (props) => (
+          <div className="text-center text-sm">{props.cell.value}</div>
+        )
       },
       {
-        Header: "Event",
+        Header: "Black",
+        accessor: "black",
         Filter: SelectColumnFilter,
         filter: "includes",
-        accessor: "event",
         Cell: (props) => (
           <Link
             className="text-teal-600"
-            to={`/app/games/event/${props.row.values.eventId}`}
+            to={`/app/games/${props.row.values.id}`}
           >
             {props.cell.value}
           </Link>
@@ -160,26 +121,6 @@ export default function GameTable({ games, memberId }) {
     );
   };
 
-  const resultType = (result, colour) => {
-    if (colour === "white") {
-      if (result === "1-0") {
-        return "win";
-      }
-      if (result === "0-1") {
-        return "loss";
-      }
-    }
-    if (colour === "black") {
-      if (result === "0-1") {
-        return "win";
-      }
-      if (result === "1-0") {
-        return "loss";
-      }
-    }
-    return "draw";
-  };
-
   const data = React.useMemo(() => {
     if (games.length > 0) {
       return games
@@ -188,21 +129,17 @@ export default function GameTable({ games, memberId }) {
             game.whiteMember.id === memberId
               ? game.blackMember
               : game.whiteMember;
-          const colour = game.whiteMember.id === memberId ? "white" : "black";
-          const rating =
-            game.type === "standard" ? opponent.ecfRating : opponent.ecfRapid;
 
           return [
             ...prev,
             {
               id: opponent.id,
               pgn: game.pgnStr,
-              eventId: game.eventId,
-              name: opponent.name,
-              rating: rating === "0" ? undefined : rating,
-              result: resultType(game.result, colour),
-              colour,
-              event: game.eventName,
+              white: game.whiteMember.name,
+              whiteRating: game.whiteRating,
+              result: game.result,
+              blackRating: game.blackRating,
+              black: game.blackMember.name,
               date: new Date(game.date),
               type: game.type,
               liChessUrl: game.liChessUrl

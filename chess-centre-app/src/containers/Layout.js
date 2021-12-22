@@ -54,6 +54,10 @@ const routes = [
   {
     path: "/games/:memberId",
     component: lazy(() => import("../pages/App/Games")),
+  },
+  {
+    path: "/games/event/:eventId",
+    component: lazy(() => import("../pages/App/EventGames")),
   }
 ];
 
