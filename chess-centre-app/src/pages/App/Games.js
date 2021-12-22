@@ -182,8 +182,6 @@ export default function GamesView() {
         authMode: "AWS_IAM",
       });
 
-
-
       setGames((state) => {
         return [...state, ...items];
       });
@@ -248,7 +246,7 @@ export default function GamesView() {
           {playerName && (
             <h1 className="text-sm text-left text-gray-500">
               Individual results for{" "}
-              <span className="text-teal-800">{playerName}</span>
+              <span className="text-orange-brand font-medium">{playerName}</span>
             </h1>
           )}
         </div>
