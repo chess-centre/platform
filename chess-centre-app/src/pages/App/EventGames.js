@@ -37,6 +37,44 @@ export const listGamesByEvent = /* GraphQL */ `
         liChessUrl
         createdAt
         updatedAt
+        whiteMember {
+          id
+          fideId
+          ecfId
+          username
+          name
+          ecfRating
+          ecfRapid
+          estimatedRating
+          club
+        }
+        blackMember {
+          id
+          fideId
+          ecfId
+          username
+          name
+          ecfRating
+          ecfRapid
+          estimatedRating
+          club
+        }
+        event {
+          id
+          name
+          rounds
+          startDate
+          endDate
+          maxEntries
+          entryCount
+          complete
+          cancelled
+          isLive
+          isLiveUrl
+          active
+          createdAt
+          updatedAt
+        }
       }
       nextToken
       startedAt
