@@ -33,334 +33,36 @@ export const listGamesByEvent = /* GraphQL */ `
         round
         result
         type
-        pgn {
-          bucket
-          region
-          key
-        }
         pgnStr
         liChessUrl
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
         whiteMember {
           id
-          about
           fideId
           ecfId
           username
           name
-          email
-          games {
-            id
-            eventId
-            eventName
-            date
-            whiteMemberId
-            whiteName
-            whiteRating
-            blackMemberId
-            blackName
-            blackRating
-            round
-            result
-            type
-            pgn {
-              bucket
-              region
-              key
-            }
-            pgnStr
-            liChessUrl
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            whiteMember {
-              id
-              about
-              fideId
-              ecfId
-              username
-              name
-              email
-              ecfRating
-              ecfRapid
-              ecfMembership
-              estimatedRating
-              club
-              gender
-              membershipType
-              gameInfo
-              ratingInfo
-              liChessUsername
-              liChessInfo
-              chesscomUsername
-              chesscomInfo
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              stripeCustomerId
-              stripeCurrentPeriodEnd
-              stripePriceId
-              stripeProductId
-            }
-            blackMember {
-              id
-              about
-              fideId
-              ecfId
-              username
-              name
-              email
-              ecfRating
-              ecfRapid
-              ecfMembership
-              estimatedRating
-              club
-              gender
-              membershipType
-              gameInfo
-              ratingInfo
-              liChessUsername
-              liChessInfo
-              chesscomUsername
-              chesscomInfo
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              stripeCustomerId
-              stripeCurrentPeriodEnd
-              stripePriceId
-              stripeProductId
-            }
-            event {
-              id
-              name
-              description
-              rounds
-              time
-              startDate
-              endDate
-              maxEntries
-              entryCount
-              complete
-              cancelled
-              isLive
-              isLiveUrl
-              active
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-          }
           ecfRating
           ecfRapid
-          ecfMembership
           estimatedRating
           club
-          gender
-          membershipType
-          gameInfo
-          ratingInfo
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          stripeCustomerId
-          stripeCurrentPeriodEnd
-          stripePriceId
-          stripeProductId
-          entries {
-            items {
-              id
-              eventId
-              memberId
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            nextToken
-            startedAt
-          }
         }
         blackMember {
           id
-          about
           fideId
           ecfId
           username
           name
-          email
-          games {
-            id
-            eventId
-            eventName
-            date
-            whiteMemberId
-            whiteName
-            whiteRating
-            blackMemberId
-            blackName
-            blackRating
-            round
-            result
-            type
-            pgn {
-              bucket
-              region
-              key
-            }
-            pgnStr
-            liChessUrl
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-            whiteMember {
-              id
-              about
-              fideId
-              ecfId
-              username
-              name
-              email
-              ecfRating
-              ecfRapid
-              ecfMembership
-              estimatedRating
-              club
-              gender
-              membershipType
-              gameInfo
-              ratingInfo
-              liChessUsername
-              liChessInfo
-              chesscomUsername
-              chesscomInfo
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              stripeCustomerId
-              stripeCurrentPeriodEnd
-              stripePriceId
-              stripeProductId
-            }
-            blackMember {
-              id
-              about
-              fideId
-              ecfId
-              username
-              name
-              email
-              ecfRating
-              ecfRapid
-              ecfMembership
-              estimatedRating
-              club
-              gender
-              membershipType
-              gameInfo
-              ratingInfo
-              liChessUsername
-              liChessInfo
-              chesscomUsername
-              chesscomInfo
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-              stripeCustomerId
-              stripeCurrentPeriodEnd
-              stripePriceId
-              stripeProductId
-            }
-            event {
-              id
-              name
-              description
-              rounds
-              time
-              startDate
-              endDate
-              maxEntries
-              entryCount
-              complete
-              cancelled
-              isLive
-              isLiveUrl
-              active
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-          }
           ecfRating
           ecfRapid
-          ecfMembership
           estimatedRating
           club
-          gender
-          membershipType
-          gameInfo
-          ratingInfo
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-          stripeCustomerId
-          stripeCurrentPeriodEnd
-          stripePriceId
-          stripeProductId
-          entries {
-            items {
-              id
-              eventId
-              memberId
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            nextToken
-            startedAt
-          }
         }
         event {
           id
           name
-          description
           rounds
-          time
           startDate
           endDate
           maxEntries
@@ -370,91 +72,8 @@ export const listGamesByEvent = /* GraphQL */ `
           isLive
           isLiveUrl
           active
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
-          results {
-            items {
-              id
-              pairings
-              results
-              players
-              eventID
-              name
-              complete
-              live
-              winner
-              dgtCloudUrl
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            nextToken
-            startedAt
-          }
-          games {
-            items {
-              id
-              eventId
-              eventName
-              date
-              whiteMemberId
-              whiteName
-              whiteRating
-              blackMemberId
-              blackName
-              blackRating
-              round
-              result
-              type
-              pgnStr
-              liChessUrl
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            nextToken
-            startedAt
-          }
-          type {
-            id
-            name
-            description
-            url
-            color
-            time
-            maxEntries
-            stripePriceId
-            timeControl
-            eventType
-            defaultPrice
-            canRegister
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          entries {
-            items {
-              id
-              eventId
-              memberId
-              _version
-              _deleted
-              _lastChangedAt
-              createdAt
-              updatedAt
-            }
-            nextToken
-            startedAt
-          }
         }
       }
       nextToken
