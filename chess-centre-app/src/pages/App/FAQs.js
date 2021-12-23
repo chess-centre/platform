@@ -4,17 +4,19 @@ import queryString from "query-string";
 import { Search } from "../../components/FAQs/Search";
 import { Results } from "../../components/FAQs/Results";
 import { searchQuery } from "../../utils/UrlChange";
-import { faqs } from "../../api/data.faqs";
+import { faqData } from "../../api/data.faqs";
 
 export default function FAQs() {
-
   const history = useHistory();
   const location = useLocation();
+  const faqs = faqData("internal");
   const parsed = queryString.parse(location.search);
-  const [selectedTags, setSelectedTags] = useState(parsed.tag ? [parsed.tag] : []);
+  const [selectedTags, setSelectedTags] = useState(
+    parsed.tag ? [parsed.tag] : []
+  );
   const [searchTerm, setSearchTerm] = useState(parsed.search || "");
   const totalQuestions = faqs.length;
-  const onResultChange = query => { 
+  const onResultChange = (query) => {
     const search = searchQuery(location.search, query);
     history.replace({ pathname: location.pathname, search });
   };
@@ -104,11 +106,13 @@ export default function FAQs() {
               </p>
               <div className="pr-4 pl-4 sm:px-52">
                 <Search
-                  searchTerm={searchTerm}
-                  onResultChange={onResultChange}
-                  setSearchTerm={setSearchTerm}
-                  setSelectedTags={setSelectedTags}
-                  selectedTags={selectedTags}
+                  {...{
+                    searchTerm,
+                    onResultChange,
+                    setSearchTerm,
+                    setSelectedTags,
+                    selectedTags,
+                  }}
                 />
               </div>
             </div>
@@ -117,12 +121,14 @@ export default function FAQs() {
         <div className="container m-auto">
           <div className="max-w-7xl mx-auto pt-2 pb-8 px-4 sm:pt-6 sm:pb-8 sm:px-16 lg:px-16">
             <Results
-              faqs={faqs}
-              totalQuestions={totalQuestions}
-              onResultChange={onResultChange}
-              setSelectedTags={setSelectedTags}
-              selectedTags={selectedTags}
-              searchTerm={searchTerm}
+              {...{
+                faqs,
+                totalQuestions,
+                onResultChange,
+                setSelectedTags,
+                selectedTags,
+                searchTerm
+              }}
             />
           </div>
         </div>

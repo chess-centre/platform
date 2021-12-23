@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
 
 const QuestionsAndAnswers = ({ faqs, handleSelectedTags }) => {
-  return faqs.map((faq, key) => {
+  return faqs.map(({ question, Answer, tags }, key) => {
     return (
       <div key={key}>
         <dt className="text-lg leading-6 font-medium text-gray-900">
-          <span dangerouslySetInnerHTML={{ __html: faq.question }}></span>
+          <span dangerouslySetInnerHTML={{ __html: question }}></span>
         </dt>
         <dd className="mt-2 text-justify text-base text-gray-500 mb-1">
-          <span dangerouslySetInnerHTML={{ __html: faq.answer }}></span>
+          <Answer />
         </dd>
         <div className="text-right">
-          {faq.tags && <span className="text-xs text-gray-500">category: </span>}
-          {faq.tags &&
-            faq.tags.map((tag, key) => {
+          {tags && <span className="text-xs text-gray-500">category: </span>}
+          {tags &&
+            tags.map((tag, key) => {
               return (
                 <span
                   key={key}
                   onClick={() => handleSelectedTags(tag)}
-                  className="inline-flex items-center px-2 py-0.5 mr-1 rounded text-xs font-medium bg-teal-100 text-teal-800 cursor-pointer"
+                  className="inline-flex items-center px-2 py-0.5 mr-1 rounded text-xs font-medium bg-teal-100 text-teal-800 hover:bg-teal-700 hover:text-white cursor-pointer"
                 >
                   {tag}
                 </span>

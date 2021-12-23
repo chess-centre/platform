@@ -1,11 +1,14 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { faqs } from "../../api/data.faqs";
+import { faqData } from "../../api/data.faqs";
 
 /**
  * @returns subset of FAQs displayed on the home page
  */
 export default function FAQs() {
+
+  const faqs = faqData("public");
+  const FAQ_COUNT = 6;
+
   return (
     <div className="bg-gray-50">
       <div className="max-w-7xl mx-auto pt-16 pb-10 px-4 sm:py-16 sm:px-6 lg:px-8">
@@ -13,20 +16,20 @@ export default function FAQs() {
           Frequently asked questions
         </h2>
         <div className="mt-12">
-          <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-x-8 md:gap-y-12 lg:grid-cols-3">
-            {faqs.slice(0, 6).map(({ question, answer }, index) => {
+          <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:grid-rows-2 md:gap-x-8 md:gap-y-12 lg:grid-cols-3">
+            {faqs.slice(0, FAQ_COUNT).map(({ question, Answer }, index) => {
               return (
                 <div key={index}>
                   <dt className="text-lg leading-6 font-medium text-gray-900">
                     <span dangerouslySetInnerHTML={{ __html: question }}></span>
                   </dt>
                   <dd className="mt-2 text-base text-gray-500 text-justify">
-                    <span dangerouslySetInnerHTML={{ __html: answer }}></span>
+                    <Answer />
                   </dd>
                 </div>
               );
             })}
-          </dl>
+          </div>
 
           <div className="relative mt-8 mx-10 sm:mx-36">
             <div
