@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import QuickSearch from "../../components/FAQs/QuickSearch";
 import Table, { SelectColumnFilter } from "./index"; // new
 import GameViewerModal from "../Modal/GameViewerModal";
 
@@ -36,7 +37,7 @@ export default function GameTable({ games, memberId }) {
         accessor: "liChessUrl",
       },
       {
-        Header: () => (<div className="mx-auto">Game</div>),
+        Header: () => <div className="mx-auto">Game</div>,
         accessor: "pgn",
         Cell: (props) => {
           if (props.cell.value) {
@@ -64,11 +65,11 @@ export default function GameTable({ games, memberId }) {
         ),
       },
       {
-        Header: () => (<div className="mx-auto">Rating</div>),
+        Header: () => <div className="mx-auto">Rating</div>,
         accessor: "rating",
         Cell: (props) => (
           <div className="text-center text-sm">{props.cell.value}</div>
-        )
+        ),
       },
       {
         Header: "Result",
@@ -103,7 +104,7 @@ export default function GameTable({ games, memberId }) {
         },
       },
       {
-        Header: () => (<div className="mx-auto">Colour</div>),
+        Header: () => <div className="mx-auto">Colour</div>,
         accessor: "colour",
         Cell: (props) => {
           if (props.cell.value === "white") {
@@ -139,8 +140,10 @@ export default function GameTable({ games, memberId }) {
         Header: "Date",
         accessor: "date",
         Cell: (props) => (
-          <span className="text-sm">{ moment(props.cell.value).format("Do MMM YYYY") }</span>
-        )
+          <span className="text-sm">
+            {moment(props.cell.value).format("Do MMM YYYY")}
+          </span>
+        ),
       },
     ],
     []
@@ -205,7 +208,7 @@ export default function GameTable({ games, memberId }) {
               event: game.eventName,
               date: new Date(game.date),
               type: game.type,
-              liChessUrl: game.liChessUrl
+              liChessUrl: game.liChessUrl,
             },
           ];
         }, [])
@@ -221,6 +224,9 @@ export default function GameTable({ games, memberId }) {
       <main className="max-w-5xl">
         <div className="mt-6">
           {data && <Table columns={columns} data={data} />}
+        </div>
+        <div className="mt-4 sm:mt-4 text-right sm:text-left">
+          <QuickSearch tag="games" />
         </div>
       </main>
       <GameViewerModal {...modalState} closeModal={closeModal} />

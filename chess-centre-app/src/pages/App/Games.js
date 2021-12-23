@@ -246,19 +246,21 @@ export default function GamesView() {
           {playerName && (
             <h1 className="text-sm text-left text-gray-500">
               Individual results for{" "}
-              <span className="text-orange-brand font-medium">{playerName}</span>
+              <span className="text-orange-brand font-medium">
+                {playerName}
+              </span>
             </h1>
           )}
         </div>
       </div>
 
-      <div className="">
-        <div className="">
-          <div className="">
+      <div>
+        <div>
+          <div>
             {!isLoading && !isLoadingGames && !error && !isErrorGame && (
               <div>
                 {games && games.length > 0 ? (
-                  <div className="">
+                  <div>
                     <GameTable games={games} memberId={playerId} />
                   </div>
                 ) : (
@@ -282,7 +284,7 @@ export default function GamesView() {
                       </p>
                     )}
 
-                   {!currentUser && (
+                    {!currentUser && (
                       <p className="mt-2 block text-sm font-medium text-gray-600">
                         Encourage this player to enter into one of our fantastic{" "}
                         <Link
@@ -290,7 +292,8 @@ export default function GamesView() {
                           to="/app/events"
                         >
                           events
-                        </Link>!
+                        </Link>
+                        !
                       </p>
                     )}
                   </div>
