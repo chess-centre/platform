@@ -9,6 +9,10 @@ const TOPIC = {
   COACHING: "coaching",
   EVENTS: "events",
 };
+const TYPE = {
+  INTERNAL: "internal",
+  PUBLIC: "public",
+}
 
 export const faqData = (type) =>
   [
@@ -19,13 +23,13 @@ export const faqData = (type) =>
           Yes, absolutely! We welcome anyone to come visit us on our{" "}
           <Link
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
-            to={`${type !== "public" ? "/app" : ""}/events/club`}
+            to={`/events/club`}
           >
             Thursday club night
           </Link>, here we can show you the basics and go from there! Alternatively, we also have our
           <Link
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
-            to={`${type !== "public" ? "/app" : ""}/events/junior-club`}
+            to={`/events/junior-club`}
           >
             Junior Club
           </Link>{" "}
@@ -33,7 +37,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.BEGINNERS],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Do I need a chess rating to participate in an event?`,
@@ -46,7 +50,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.RATING],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Do I need to be a member to join an event?`,
@@ -58,7 +62,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.MEMBERSHIP],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Can I just turn up to for a casual game?`,
@@ -77,7 +81,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.RATING],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Will my games be FIDE rated?`,
@@ -89,24 +93,23 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.RATING],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `What if I am unable to make an event I am registered for?`,
       Answer: () => (
         <>
-          We know at times things won't always go to plan. No problem,
+          We know at times things won't always go to plan. No problem,{" "}
           <a
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
             href="mailto:support@chesscentre.online"
           >
             send us a message
-          </a>
-          and we'll do our best to re-work our event.
+          </a>{" "} and we'll do our best to re-work our event.
         </>
       ),
       tags: [TOPIC.RATING],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Can I pay my membership annually?`,
@@ -117,7 +120,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.MEMBERSHIP],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Do you offer any discounts?`,
@@ -132,7 +135,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.MEMBERSHIP],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Do I need to sign up before coming down to the Junior Club?`,
@@ -141,17 +144,17 @@ export const faqData = (type) =>
           We encourage you to drop us an{" "}
           <a
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
-            href="mailto:info@chesscentre.online"
+            href="mailto:info@chesscentre.online?subject=Junior%20Club%20Enquiry"
           >
             email
           </a>{" "}
           before hand as our classes fill up fast! The first few sessions are
-          completely free with no obligation to sign up. Come down, see what we
+          <span className="font-medium">completely free</span> with no obligation to sign up. Come down, see what we
           have to offer and take it from there.
         </>
       ),
       tags: [TOPIC.JUNIORS],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `How can I improve my game outside of The Chess Centre`,
@@ -160,11 +163,10 @@ export const faqData = (type) =>
           There are many fantastic resources on the web which can help players
           improve. We are planning to collate some recommended online sites and
           learning materials to support our own teaching and coaching efforts.
-          Coming soon!
         </>
       ),
       tags: [TOPIC.JUNIORS],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Can I cancel my membership anytime?`,
@@ -178,7 +180,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.MEMBERSHIP],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `How can I find my live games or results?`,
@@ -191,7 +193,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.GAMES],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `How can I find the venue?`,
@@ -202,7 +204,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.GENERAL],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Is there nearby parking?`,
@@ -214,7 +216,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.GENERAL],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Is there nearby train station?`,
@@ -225,7 +227,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.GENERAL],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Do I need to be a member to play?`,
@@ -237,13 +239,13 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.MEMBERSHIP],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `How old are "Juniors"?`,
       Answer: () => <>Under 16 from September 2021.</>,
       tags: [TOPIC.JUNIORS],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Can I join a team?`,
@@ -254,11 +256,11 @@ export const faqData = (type) =>
           that, we are also in close contact with many other club captains
           around the Bradford and Leeds area so, should there a more convenient
           venue for you to join a league team, we will happily put you in touch
-          with that club.
+          with that club captain.
         </>
       ),
       tags: [TOPIC.MEMBERSHIP],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `What is a "rating"?`,
@@ -267,11 +269,11 @@ export const faqData = (type) =>
           A rating is something used to help calculate a players playing
           strength and ability. The higher the number, the stronger the player.
           Players acquire a rating after participating in a minimum number of
-          officially timed games.
+          officially timed games. You are given a rating separately for Rapidplay and Standard play time controls.
         </>
       ),
       tags: [TOPIC.MEMBERSHIP],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `How long are games?`,
@@ -281,15 +283,13 @@ export const faqData = (type) =>
           and be different across leagues, individual competitions and event
           types like congresses or rapidplays. Each event will specify the time
           control for the games. Our standard congresses for example has a limit
-          of
-          <span className="text-teal-500 font-bold">60 minutes</span> on the
-          clock per player. Our rapidplays conversly are{" "}
-          <span className="text-teal-500 font-bold">25 minutes</span> on the
-          clock per player.
+          of{" "}
+          <span className="font-bold">60 minutes</span>{" "}on the clock per player. Our rapidplays conversly are{" "}
+          <span className="font-bold">25 minutes</span>{" "}on the clock per player.
         </>
       ),
       tags: [TOPIC.GAMES],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `What if I run out of time on my clock during a game?`,
@@ -301,7 +301,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.GAMES],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Do you offer private 1-2-1 Chess coaching?`,
@@ -311,15 +311,14 @@ export const faqData = (type) =>
           requirements and availablity. Please speak to us in the club or{" "}
           <a
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
-            href="mailto:info@chesscentre.online"
+            href="mailto:info@chesscentre.online?subject=Coaching"
           >
             send us a message
-          </a>
-          .
+          </a>.
         </>
       ),
       tags: [TOPIC.COACHING],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Does your venue provide disabled access?`,
@@ -331,7 +330,7 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.GENERAL],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `How much is a membership?`,
@@ -340,24 +339,24 @@ export const faqData = (type) =>
           You can find our membership pricing here:{" "}
           <Link
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
-            to={`${type !== "public" ? "/app" : ""}/membership`}
+            to={`/membership`}
           >
             membership
           </Link>
         </>
       ),
       tags: [TOPIC.MEMBERSHIP],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `How do I find what time each round starts for an event?`,
       Answer: () => (
         <>
-          Look out for the <i className="text-teal-500 fa fa-flag"></i> icon,
+          Look out for the <i className="text-teal-500 hover:text-gray-600 fa fa-flag"></i> icon,
           click on this to reveal the details of the round times or see the{" "}
           <Link
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
-            to={`${type !== "public" ? "/app" : ""}/events`}
+            to={`/events`}
           >
             more info
           </Link>{" "}
@@ -365,15 +364,14 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.EVENTS],
-      type: "public",
+      type: TYPE.PUBLIC,
     },
     {
       question: `Why don't all results from an event appear?`,
       Answer: () => (
         <>
-          This could be for a number of reasons. If an opponent is not rated,
-          this can take longer to be registered with the ECF. 
-          If both players are rating and this still is not showing, let us know so we can add the data!{" "}
+          This could be for a number of reasons. If an opponent is not rated, this can take longer to be registered with the ECF. 
+          If both players are rated and this still is not showing, let us know so we can check for you.{" "}
           <a
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
             href="mailto:support@chesscentre.online?subject=Missing%20Games"
@@ -383,17 +381,16 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.GAMES],
-      type: "internal",
+      type: TYPE.INTERNAL,
     },
     {
       question: `Why don't all results have playable games?`,
       Answer: () => (
         <>
-          We do our best to capture as many pgns as possible. Sometimes this are
-          corrupt (if the pieces have been moved unintentionally) or your round
-          was not on a live board. If we have captured it correctly then we make
-          sure we add these to your profile. Feel free to contact us about
-          adding any missing data.{" "}
+          We do our best to capture as many <span className="font-medium">pgns</span> as possible. Sometimes these become
+          corrupt i.e., if the pieces have been moved unintentionally to illegal squares or your round
+          was not played on a live board. If we have captured it correctly then we make
+          sure we add these to your profile. Feel free to contact us about adding any missing data.{" "}
           <a 
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
             href="mailto:support@chesscentre.online?subject=Add%20Games"
@@ -403,24 +400,24 @@ export const faqData = (type) =>
         </>
       ),
       tags: [TOPIC.GAMES],
-      type: "internal",
+      type: TYPE.INTERNAL,
     },
     {
       question: `How do I add my bullet and blitz ratings?`,
       Answer: () => (
         <>
-          You can add your <span className="font-bold">chess.com</span> and{" "}
-          <span className="font-bold">lichess.com</span> via your{" "}
+          You can add your <span className="font-medium">chess.com</span> and{" "}
+          <span className="font-medium">lichess.com</span> via your{" "}
           <Link className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" to="/app/profile">profile.</Link>
         </>
       ),
       tags: [TOPIC.RATING],
-      type: "internal",
+      type: TYPE.INTERNAL,
     }
   ].filter((q) =>
-    type === "internal"
+    type === TYPE.INTERNAL
       ? /* ALL */ true
       : q.type === type
-      ? true
-      : /* SPECIFIC */ false
+      ? /* SPECIFIC */ true
+      : false
   );
