@@ -26,7 +26,7 @@ export const faqData = (type) =>
             to={`/events/club`}
           >
             Thursday club night
-          </Link>, here we can show you the basics and go from there! Alternatively, we also have our
+          </Link>, here we can show you the basics and go from there! Alternatively, we also have our{" "}
           <Link
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
             to={`/events/junior-club`}
@@ -148,7 +148,7 @@ export const faqData = (type) =>
           >
             email
           </a>{" "}
-          before hand as our classes fill up fast! The first few sessions are
+          before hand as our classes fill up fast! The first few sessions are{" "}
           <span className="font-medium">completely free</span> with no obligation to sign up. Come down, see what we
           have to offer and take it from there.
         </>
