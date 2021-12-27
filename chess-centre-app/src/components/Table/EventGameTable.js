@@ -71,9 +71,13 @@ export default function GameTable({ games, memberId }) {
       {
         Header: () => (<div className="mx-auto">Result</div>),
         accessor: "result",
-        Cell: (props) => (
-          <div className="text-center">{props.cell.value}</div>
-        )
+        Cell: (props) => {
+          const result = props.cell.value
+          if(result.includes("0.5")) {
+            return <div className="text-center">½-½</div>
+          }
+          return <div className="text-center">{result}</div>
+        }
       },
       {
         Header: () => (<div className="mx-auto">Rating</div>),
