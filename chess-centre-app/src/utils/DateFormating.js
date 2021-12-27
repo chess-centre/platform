@@ -1,24 +1,21 @@
+import moment from 'moment';
 
 export function prettyDate(start, end) {
   if(!end || start === end) {
-    return formatDate(start).replace(",", "");
+    return formatDate(start);
   } else {
-    // we want to remove the "month" to shorten the string
-    // FROM:  Sat, 22 May - Sun, 23 May 
-    // TO:    Sat 22 - Sun 23 May 
-    const dateStr = `${formatDate(start).slice(0, 7).replace(",", "")}, ${formatDate(end).replace(",", "")}`;
-    return dateStr;
+    return formatDoubleDateMoment(start, end);
   }
 };
 
 export function prettyLongDate(start, end) {
   if(!end || start === end) {
-    return formatLongDate(start).replace(",", "");
+    return moment(start).format("dddd Do MMMM")
   } else {
     // we want to remove the "month" to shorten the string
     // FROM:  Saturday, 22 August - Sunday, 23 August
     // TO:    Saturday 22 - Sunday 23 August 
-    const dateStr = `${formatLongDate(start).slice(0, 7).replace(",", "")}, ${formatLongDate(end).replace(",", "")}`;
+    const dateStr = `${moment(start).format("dddd Do MMMM")}, ${moment(end).format("dddd Do MMMM")}`;
     return dateStr;
   }
 };
@@ -42,17 +39,10 @@ export function getDayStr(date) {
 };
 
 function formatDate(date) {
-  return new Date(date).toLocaleDateString("en-GB", {
-    weekday: "short",
-    day: "2-digit",
-    month: "short",
-  });
+  return moment(date).format("ddd Do MMM");
 }
 
-function formatLongDate(date) {
-  return new Date(date).toLocaleDateString("en-GB", {
-    weekday: "long",
-    day: "2-digit",
-    month: "long",
-  });
+function formatDoubleDateMoment(start, end) {
+  return `${moment(start).format("ddd Do")}, ${moment(end).format("ddd Do MMM")}`
 }
+
