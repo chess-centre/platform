@@ -2,8 +2,7 @@ import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
 import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
-import { Line, Bar, Doughnut, defaults } from "react-chartjs-2";
-import ChartLegend from "../../components/Chart/ChartLegend";
+import { Line, Bar, Doughnut } from "react-chartjs-2";
 import {
   GamesChart,
   RatingProgressChart,
@@ -12,8 +11,6 @@ import {
 import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 import { prettyDate } from "../../utils/DateFormating";
 import { useAuthState, isPaidMember } from "../../context/Auth";
-
-defaults.legend = false;
 
 export const getMember = /* GraphQL */ `
   query GetMember($id: ID!) {
@@ -173,33 +170,14 @@ export default function Dashboard() {
         gameData={member?.gameInfo ? JSON.parse(member.gameInfo) : {}}
       />
       <div className="grid gap-6 mb-8 md:grid-cols-3 mt-6">
-        <ChartCard title="Rating">
-          <Line {...RatingProgressChart(member?.ratingInfo)} />
-          <ChartLegend
-            legends={[
-              { title: "Standard", color: "bg-teal-brand" },
-              { title: "Rapid", color: "bg-orange-brand" },
-            ]}
-          />
-        </ChartCard>
         <ChartCard title="Results">
           <Doughnut {...ResultsDoughnut(member?.gameInfo)} />
-          <ChartLegend
-            legends={[
-              { title: "Wins", color: "bg-teal-brand" },
-              { title: "Draws", color: "bg-pink-500" },
-              { title: "Losses", color: "bg-orange-brand" },
-            ]}
-          />
         </ChartCard>
         <ChartCard title="Games">
           <Bar {...GamesChart(member?.gameInfo)} />
-          <ChartLegend
-            legends={[
-              { title: "Standard", color: "bg-teal-brand" },
-              { title: "Rapid", color: "bg-orange-brand" },
-            ]}
-          />
+        </ChartCard>
+        <ChartCard title="Rating">
+          <Line {...RatingProgressChart(member?.ratingInfo)} />
         </ChartCard>
       </div>
       <EventTable
@@ -330,18 +308,6 @@ function EventTable({ upcomingEvents, previousEvents }) {
                       >
                         Entries
                       </th>
-                      <th
-                        scope="col"
-                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
-                      >
-                        Pos.
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
-                      >
-                        Results
-                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -374,16 +340,6 @@ function EventTable({ upcomingEvents, previousEvents }) {
                             </td>
                             <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                               {event.entryCount}
-                            </td>
-                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-                                Coming soon
-                              </span>
-                            </td>
-                            <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
-                              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-pink-100 text-pink-800">
-                                Coming soon
-                              </span>
                             </td>
                           </tr>
                         ))}

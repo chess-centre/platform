@@ -6,7 +6,6 @@ import { useQuery } from "react-query";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
-import { Button } from "@windmill/react-ui";
 import Register from "./Register";
 import RoundTimesModal from "../Modal/RoundTimesModal";
 import { prettyDate } from "../../utils/DateFormating";
@@ -274,11 +273,11 @@ export default function AppEvents() {
                           <div className="col-span-2">
                             <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1">
                               {name || type.name}{" "}
-                              {eventId === id ? (
+                              {eventId === id && (
                                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
                                   Selected
                                 </span>
-                              ) : null}
+                              )}
                             </h2>
                             <p className="text-sm text-gray-700 dark:text-gray-500">
                               Entries:{" "}
@@ -286,7 +285,6 @@ export default function AppEvents() {
                                 maxEntries || type.maxEntries
                               }`}
                             </p>
-                            {}
                             {type.defaultPrice && !registered && !full ? (
                               <p className="text-sm text-gray-700 mr-2">
                                 <span className="inline">

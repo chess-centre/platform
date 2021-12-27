@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/solid";
+import {
+  ArrowSmDownIcon,
+  ArrowSmUpIcon,
+  ArrowNarrowLeftIcon,
+} from "@heroicons/react/solid";
 
 function Stats(props) {
   const { ratingData, eventData, gameData } = props;
@@ -146,14 +150,22 @@ function RatingSummary({ title, data }) {
     if (diff === 0) {
       return (
         <p className="ml-4 xl:ml-0 flex text-xs items-baseline text-gray-700">
-          {diff}
+          <ArrowNarrowLeftIcon
+            className="self-center flex-shrink-0 h-4 w-4 text-gray-700 -mt-1 xl:-mt-5"
+            aria-hidden="true"
+          />
+          0
         </p>
       );
     }
 
     return (
       <p className="ml-2 xl:ml-0 flex text-xs items-baseline text-gray-700">
-        {/* BLANK */}
+        <ArrowNarrowLeftIcon
+          className="self-center flex-shrink-0 h-4 w-4 text-gray-700 -mt-1 xl:-mt-5"
+          aria-hidden="true"
+        />
+        0
       </p>
     );
   };
@@ -176,14 +188,18 @@ function RatingSummary({ title, data }) {
         </p>
         <div className="text-1xl lg:text-4xl xl:flex font-semibold text-black dark:text-white m-auto xl:m-0">
           {currentStandard}{" "}
-          <div className="flex items-center justify-center"><Diff current={currentStandard} previous={previousStandard} /></div>
+          <div className="flex items-center justify-center">
+            <Diff current={currentStandard} previous={previousStandard} />
+          </div>
         </div>
         <p className="xl:hidden inline-flex text-center items-center px-2 py-0 rounded text-xs text-gray-500">
           Rapid
         </p>
         <div className="text-1xl lg:text-4xl xl:flex font-semibold text-black dark:text-white m-auto xl:m-0">
           {currentRapid}{" "}
-          <div className="flex items-center justify-center"><Diff current={currentRapid} previous={previousRapid} /></div>
+          <div className="flex items-center justify-center">
+            <Diff current={currentRapid} previous={previousRapid} />
+          </div>
         </div>
         <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 xl:px-10 border-t border-gray-100 dark:border-gray-700"></div>
       </div>

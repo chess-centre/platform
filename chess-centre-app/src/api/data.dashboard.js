@@ -86,9 +86,10 @@ export const RatingProgressChart = (
           },
         },
       },
-    },
-    legend: {
-      display: false,
+      legend: {
+        display: true,
+        position: 'bottom'
+      }
     },
   };
 };
@@ -132,10 +133,19 @@ export const GamesChart = (gameInfo) => {
               }
           }
       }],
+      },
+      legend: {
+        display: true,
+        position: 'bottom',
+        
+      },
+      plugins: {
+        legend: {
+          labels: {
+            usePointStyle: true,
+          }
+        }
       }
-    },
-    legend: {
-      display: false,
     }
   };
 };
@@ -147,7 +157,8 @@ export const ResultsDoughnut = (gameInfo) => {
   return {
     options: {
       legend: {
-        display: false
+        display: true,
+        position: 'bottom'
       },
     },
     data: {
@@ -169,7 +180,7 @@ export const ResultsDoughnut = (gameInfo) => {
           ],
           borderWidth: 1,
         },
-      ],
+      ]
     }
   };
 }
