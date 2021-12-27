@@ -6,7 +6,6 @@ import { useQuery } from "react-query";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
-import { Button } from "@windmill/react-ui";
 import Register from "./Register";
 import RoundTimesModal from "../Modal/RoundTimesModal";
 import { prettyDate } from "../../utils/DateFormating";

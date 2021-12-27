@@ -1,0 +1,35 @@
+{
+  "paths": [
+    {
+      "name": "/player/search/{name}",
+      "lambdaFunction": "searchECFPlayer",
+      "privacy": {
+        "open": true
+      },
+      "policyResourceName": "/player/search/*"
+    }
+  ],
+  "resourceName": "player",
+  "apiName": "player",
+  "functionArns": [
+    {
+      "lambdaFunction": "searchECFPlayer"
+    }
+  ],
+  "privacy": {
+    "auth": 0,
+    "unauth": 0,
+    "authRoleName": "amplify-platformchesscentrea-dev-45655-authRole",
+    "unAuthRoleName": "amplify-platformchesscentrea-dev-45655-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "searchECFPlayer",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}

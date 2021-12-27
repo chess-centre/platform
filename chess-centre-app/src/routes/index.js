@@ -25,6 +25,12 @@ const routes = [
     isPrivate: false,
   },
   {
+    path: "/register/festival/:section",
+    component: lazy(() => import("../pages/Auth/FestivalRegister")),
+    exact: true,
+    isPrivate: false,
+  },
+  {
     path: "/forgot-password",
     component: lazy(() => import("../pages/Auth/ForgotPassword")),
     isPrivate: false,

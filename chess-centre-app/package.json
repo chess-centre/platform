@@ -66,6 +66,9 @@
       "last 1 safari version"
     ]
   },
+  "resolutions": {
+    "react-error-overlay": "6.0.9"
+  },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
     "eslint": "^7.22.0",
