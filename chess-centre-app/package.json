@@ -2,6 +2,7 @@
   "name": "the-chess-centre-platform",
   "version": "2.2.0",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.13.10",
     "@geoffcodesthings/react-scripts": "4.0.1",
