@@ -162,20 +162,6 @@
           ]
         }
       ]
-    },
-    "player": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "searchECFPlayer",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
     }
   },
   "function": {
@@ -307,11 +293,6 @@
       "service": "Lambda"
     },
     "ecfRatingScraper": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "searchECFPlayer": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
