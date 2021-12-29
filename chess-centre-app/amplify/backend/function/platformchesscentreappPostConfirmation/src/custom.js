@@ -33,13 +33,19 @@ exports.handler = async (event, context, callback) => {
       eventsByEmail: false,
       eventsByText: false,
     },
+    ConditionExpression: "attribute_not_exists(id)"
   };
 
   try {
-    const response = await dynamodb.put(params).promise();
-    console.log(response);
+
+    // Note: track other trigger sources that are unexpected:
+    console.log(triggerSource);
 
     if(triggerSource === "PostConfirmation_ConfirmSignUp") {
+
+      const response = await dynamodb.put(params).promise();
+      console.log(response);
+
       await sendNewAccountEmail(userAttributes);
       console.log("Email sent.")
     };
