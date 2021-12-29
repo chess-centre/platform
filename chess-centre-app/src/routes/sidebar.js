@@ -30,6 +30,11 @@ const routes = [
     name: "Juniors",
   },
   {
+    path: "/app/gallery",
+    icon: "PhotographIcon",
+    name: "Gallery",
+  },
+  {
     path: "/app/faqs",
     icon: "QuestionIcon",
     name: "FAQs",
