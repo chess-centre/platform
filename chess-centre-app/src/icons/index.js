@@ -37,6 +37,7 @@ import { ReactComponent as AcademicIcon } from "./academic.svg";
 import { ReactComponent as PuzzleIcon } from "./puzzle.svg";
 import { ReactComponent as GlobeIcon } from "./globe.svg";
 import { ReactComponent as QuestionIcon } from "./question.svg";
+import { ReactComponent as PhotographIcon } from "./photograph.svg";
 
 export {
   AcademicIcon,
@@ -77,5 +78,6 @@ export {
   ClickIcon,
   PuzzleIcon,
   GlobeIcon,
-  QuestionIcon
+  QuestionIcon,
+  PhotographIcon
 };

@@ -162,6 +162,20 @@
           ]
         }
       ]
+    },
+    "social": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "getInstagramFeed",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "function": {
@@ -293,6 +307,11 @@
       "service": "Lambda"
     },
     "ecfRatingScraper": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getInstagramFeed": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
