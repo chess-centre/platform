@@ -64,7 +64,7 @@
         },
         "ecfHistoricRating": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfHistoricRating-70717946392f5a477634-build.zip"
+          "s3Key": "amplify-builds/ecfHistoricRating-7a3358754374675a6539-build.zip"
         },
         "trainTravelInfo": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -80,11 +80,11 @@
         },
         "uploadLichessPgns": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/uploadLichessPgns-36657356596a70656830-build.zip"
+          "s3Key": "amplify-builds/uploadLichessPgns-57614f3662487347426f-build.zip"
         },
         "ecfRatingScraper": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfRatingScraper-4263394543492b627659-build.zip"
+          "s3Key": "amplify-builds/ecfRatingScraper-577978744c6f56516e4d-build.zip"
         }
       }
     }
