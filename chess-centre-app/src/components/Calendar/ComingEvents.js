@@ -553,14 +553,14 @@ function ListSkeleton() {
           )}
         ></div>
         <div className="flex-shrink-0 pr-2">
-          <Link
+          <div
             className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
             justify-center text-gray-300 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
           >
             <span className="text-gray-400">
               <i className="fas fa-info"></i>
             </span>
-          </Link>
+          </div>
         </div>
       </div>
     </li>

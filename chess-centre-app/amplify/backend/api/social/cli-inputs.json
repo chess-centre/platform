@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/instagram/feed": {
+      "name": "/instagram/feed",
+      "lambdaFunction": "getInstagramFeed",
+      "permissions": {
+        "setting": "protected",
+        "auth": [
+          "read"
+        ],
+        "guest": [
+          "read"
+        ]
+      }
+    }
+  }
+}
