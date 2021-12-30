@@ -42,7 +42,7 @@ const LandingFooter = () => {
             href="https://www.instagram.com/thechesscentre"
             className="text-gray-400 hover:text-pink-700"
           >
-            <span className="sr-only">Twitter</span>
+            <span className="sr-only">Instagram</span>
             <i className="fab fa-instagram fa-2x"></i>
           </a>
           <a
