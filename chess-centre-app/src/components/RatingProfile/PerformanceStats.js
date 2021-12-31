@@ -15,41 +15,61 @@ const initialState = {
 };
 
 const calculatePerformanceRating = (id, games) => {
+  const maxOpponentRating = (rating, opponentRating) => {
+    const diff = opponentRating - rating;
+    if (diff > 400) {
+      return rating + 400;
+    }
+    if (opponentRating < 400) {
+      return rating - 400;
+    }
+    return opponentRating;
+  };
+
   return games.reduce(
     (stats, game) => {
       if (game.whiteMemberId === id) {
+        const opponentRating = maxOpponentRating(
+          game.whiteRating,
+          game.blackRating
+        );
+
         stats.games += 1;
         stats.ratings.push(game.blackRating);
         switch (game.result) {
           case "1-0":
             stats.points += 1;
-            stats.ratingsAdjusted.push(game.blackRating + 400);
+            stats.ratingsAdjusted.push(opponentRating + 400);
             break;
           case "0.5-0.5":
             stats.points += 0.5;
-            stats.ratingsAdjusted.push(game.blackRating);
+            stats.ratingsAdjusted.push(opponentRating);
             break;
           case "0-1":
-            stats.ratingsAdjusted.push(game.blackRating - 400);
+            stats.ratingsAdjusted.push(opponentRating - 400);
             break;
           default:
             break;
         }
       }
       if (game.blackMemberId === id) {
+        const opponentRating = maxOpponentRating(
+          game.blackRating,
+          game.whiteRating
+        );
         stats.games += 1;
         stats.ratings.push(game.whiteRating);
         switch (game.result) {
           case "0-1":
             stats.points += 1;
-            stats.ratingsAdjusted.push(game.whiteRating + 400);
+            stats.ratingsAdjusted.push(opponentRating + 400);
             break;
           case "0.5-0.5":
             stats.points += 0.5;
-            stats.ratingsAdjusted.push(game.whiteRating);
+            stats.ratingsAdjusted.push(opponentRating);
             break;
           case "1-0":
-            stats.ratingsAdjusted.push(game.whiteRating - 400);
+            stats.ratingsAdjusted.push(opponentRating - 400);
             break;
           default:
             break;
@@ -105,10 +125,11 @@ export default function PerformanceStats({ playerInfo, games }) {
   return (
     <div className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
       <div className="flex-1 flex flex-col p-4">
-        <h3 className="text-gray-900 text-5xl font-medium mb-4">
-          <i className="fal fa-sigma mr-1 text-teal-600"></i>
-          <span className="sr-only">Performance</span>
+        <h3 className="text-gray-500 text-sm font-sans mb-4">
+          <div className="mb-2">Results Overview</div>
+          <i className="fal fa-sigma mr-1 text-teal-600 text-4xl"></i>
         </h3>
+
         {avatarUrl ? (
           <img
             className="w-32 h-32 flex-shrink-0 mx-auto rounded-full"
@@ -117,17 +138,21 @@ export default function PerformanceStats({ playerInfo, games }) {
           />
         ) : (
           <img
-            className="w-32 h-32 flex-shrink-0 mx-auto rounded-full"
+            className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:opacity-70 cursor-pointer"
             src={DefaultAvatar}
             alt=""
           />
         )}
-        <dl className="mt-1 flex-grow flex flex-col justify-between">
+        <dl className="mt-2 flex-grow flex flex-col justify-between text-gray-600">
           <dt className="text-sm font-medium">Games</dt>
-          <dd className="ext-gray-800 text-lg font-medium text-teal-600">{stats.games}</dd>
+          <dd className="text-lg font-medium text-teal-600">
+            {stats.games}
+          </dd>
           <dt className="text-sm font-medium">Performance Rating</dt>
           <dd className="m-3">
-            {stats.performanceRating >= playerInfo.ecfRating ? (
+            {stats &&
+            stats.performanceRating &&
+            stats.performanceRating >= playerInfo.ecfRating ? (
               <span className="px-6 py-1 text-green-800 text-lg font-medium bg-green-100 rounded-lg">
                 {stats.performanceRating}
               </span>
