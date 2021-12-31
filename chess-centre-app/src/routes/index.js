@@ -138,7 +138,6 @@ const routes = [
     isPrivate: false,
     isAdmin: true
   },
-
   {
     path: "/internal/match",
     component: lazy(() => import("../pages/Broadcast/InternalChallenge")),
