@@ -105,15 +105,15 @@ export default function EventGamesView() {
         variables: { eventId },
         authMode: "AWS_IAM",
       });
-      if(items) {
+      if (items) {
         setGames(items);
-        setEventName(items[0].eventName)
+        setEventName(items[0].eventName);
         setIsLoadingGames(false);
       }
     };
 
     try {
-        fetchGames(eventId);
+      fetchGames(eventId);
     } catch (error) {
       console.log(error);
       setIsLoadingGames(false);
@@ -147,53 +147,50 @@ export default function EventGamesView() {
         </div>
       </div>
 
-      <div className="">
-        <div className="">
-          <div className="">
-            {!isLoadingGames && !isErrorGame && (
+      <div>
+        {!isLoadingGames && !isErrorGame && (
+          <div>
+            {games && games.length > 0 ? (
               <div>
-                {games && games.length > 0 ? (
-                  <div>
-                    <EventGameTable games={games} />
-                  </div>
-                ) : (
-                  <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
-                    <span>
-                      <i className="fal fa-chess fa-6x text-teal-500"></i>
-                    </span>
-                    <p className="mt-2 block text-sm font-medium text-gray-600">
-                      No games for this event.
-                    </p>
-                  </div>
-                )}
+                <EventGameTable games={games} />
               </div>
-            )}
-
-            {(isLoadingGames) && (
-              <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
-                <span className="animate-pulse">
-                  <i className="aninmal-pulse fal fa-chess-board fa-10x text-teal-500 opacity-50"></i>
-                </span>
-                <p className="mt-2 block text-sm font-medium text-gray-600">
-                  Loading games...
-                </p>
-              </div>
-            )}
-
-            {(isErrorGame) && (
+            ) : (
               <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                 <span>
-                  <i className="aninmal-pulse fal fa-exclamation-square fa-10x text-orange-400 opacity-50"></i>
+                  <i className="fal fa-chess fa-6x text-teal-500"></i>
                 </span>
                 <p className="mt-2 block text-sm font-medium text-gray-600">
-                  Oops, there seems to be an issue loading your games. Try again
-                  later.
+                  No games for this event.
                 </p>
               </div>
             )}
           </div>
-        </div>
+        )}
+
+        {isLoadingGames && (
+          <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+            <span className="animate-pulse">
+              <i className="aninmal-pulse fal fa-chess-board fa-10x text-teal-500 opacity-50"></i>
+            </span>
+            <p className="mt-2 block text-sm font-medium text-gray-600">
+              Loading games...
+            </p>
+          </div>
+        )}
+
+        {isErrorGame && (
+          <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+            <span>
+              <i className="aninmal-pulse fal fa-exclamation-square fa-10x text-orange-400 opacity-50"></i>
+            </span>
+            <p className="mt-2 block text-sm font-medium text-gray-600">
+              Oops, there seems to be an issue loading your games. Try again
+              later.
+            </p>
+          </div>
+        )}
       </div>
+
       <BetaSlideOut
         slideState={slideState}
         setIsSlideOutOpen={setIsSlideOutOpen}

@@ -1,9 +1,9 @@
+import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import API from "@aws-amplify/api";
 import { useMember } from "../../api/member";
 import GameTable from "../../components/Table/GameTable";
-import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
+import PerformanceStats from "../../components/RatingProfile/PerformanceStats";
 
 export const listGamesByWhiteMember = /* GraphQL */ `
   query ListGamesByWhiteMember(
@@ -42,15 +42,15 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           ecfId
           username
           name
-          email
           ecfRating
           ecfRapid
           ecfMembership
           estimatedRating
           club
-          gender
-          createdAt
-          updatedAt
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
         }
         blackMember {
           id
@@ -59,14 +59,15 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           ecfId
           username
           name
-          email
           ecfRating
           ecfRapid
           ecfMembership
           estimatedRating
           club
-          gender
-          membershipType
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
         }
       }
       nextToken
@@ -111,14 +112,15 @@ export const listGamesByBlackMember = /* GraphQL */ `
           ecfId
           username
           name
-          email
           ecfRating
           ecfRapid
           ecfMembership
           estimatedRating
           club
-          gender
-          membershipType
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
         }
         blackMember {
           id
@@ -127,14 +129,15 @@ export const listGamesByBlackMember = /* GraphQL */ `
           ecfId
           username
           name
-          email
           ecfRating
           ecfRapid
           ecfMembership
           estimatedRating
           club
-          gender
-          membershipType
+          liChessUsername
+          liChessInfo
+          chesscomUsername
+          chesscomInfo
         }
       }
       nextToken
@@ -150,60 +153,66 @@ export default function GamesView() {
   const [isErrorGame, setIsErrorGame] = useState(false);
   const [games, setGames] = useState([]);
   const [currentUser, setCurrentUser] = useState(true);
+  const [currentUserInfo, setCurrentUserInfo] = useState("");
   const [playerId, setPlayerId] = useState(memberId);
   const [playerName, setPlayerName] = useState("");
-  const [slideState, setIsSlideOutOpen] = useState({
-    open: false,
-    eventDetails: {},
-  });
+
+  const fetchWhiteGames = async (id) => {
+    const {
+      data: {
+        listGamesByWhiteMember: { items },
+      },
+    } = await API.graphql({
+      query: listGamesByWhiteMember,
+      variables: { whiteMemberId: id },
+      authMode: "AWS_IAM",
+    });
+
+    if (items && items.length > 0) {
+      setCurrentUserInfo(items[0].whiteMember);
+    }
+    return items;
+  };
+
+  const fetchBlackGames = async (id) => {
+    const {
+      data: {
+        listGamesByBlackMember: { items },
+      },
+    } = await API.graphql({
+      query: listGamesByBlackMember,
+      variables: { blackMemberId: id },
+      authMode: "AWS_IAM",
+    });
+
+    setGames((state) => {
+      return [...state, ...items];
+    });
+
+    if (items && items.length > 0) {
+      setCurrentUserInfo(items[0].blackMember);
+    }
+
+    return items;
+  };
+
+  const fetchAllGames = async (id) => {
+    setIsLoadingGames(true);
+    const whiteGames = await fetchWhiteGames(id);
+    const blackGames = await fetchBlackGames(id);
+
+    if (whiteGames[0]?.whiteMember?.name) {
+      setPlayerName(whiteGames[0]?.whiteMember?.name);
+    }
+    if (blackGames[0]?.blackMember?.name) {
+      setPlayerName(blackGames[0]?.blackMember?.name);
+    }
+    setGames([...whiteGames, ...blackGames]);
+    setIsLoadingGames(false);
+    setIsErrorGame(false);
+  };
 
   useEffect(() => {
-    const fetchWhiteGames = async (id) => {
-      const {
-        data: {
-          listGamesByWhiteMember: { items },
-        },
-      } = await API.graphql({
-        query: listGamesByWhiteMember,
-        variables: { whiteMemberId: id },
-        authMode: "AWS_IAM",
-      });
-      return items;
-    };
-
-    const fetchBlackGames = async (id) => {
-      const {
-        data: {
-          listGamesByBlackMember: { items },
-        },
-      } = await API.graphql({
-        query: listGamesByBlackMember,
-        variables: { blackMemberId: id },
-        authMode: "AWS_IAM",
-      });
-
-      setGames((state) => {
-        return [...state, ...items];
-      });
-      return items;
-    };
-
-    const fetchAllGames = async (id) => {
-      setIsLoadingGames(true);
-      const whiteGames = await fetchWhiteGames(id);
-      const blackGames = await fetchBlackGames(id);
-
-      if (whiteGames[0]?.whiteMember?.name) {
-        setPlayerName(whiteGames[0]?.whiteMember?.name);
-      }
-      if (blackGames[0]?.blackMember?.name) {
-        setPlayerName(blackGames[0]?.blackMember?.name);
-      }
-      setGames([...whiteGames, ...blackGames]);
-      setIsLoadingGames(false);
-      setIsErrorGame(false);
-    };
-
     try {
       if (memberId) {
         setPlayerId(memberId);
@@ -225,6 +234,13 @@ export default function GamesView() {
       setIsErrorGame(true);
     }
 
+    return () => {
+      setIsLoadingGames(false);
+      setIsErrorGame(false);
+      setCurrentUser(true);
+      setPlayerId(memberId);
+    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, memberId]);
 
@@ -232,14 +248,6 @@ export default function GamesView() {
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <i className="fas fa-chess-king text-teal-600"></i> Games
-        <div className="inline-flex align-top top-2">
-          <span
-            onClick={() => setIsSlideOutOpen({ open: true })}
-            className="ml-2 cursor-pointer items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-800 top-2"
-          >
-            BETA
-          </span>
-        </div>
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
@@ -254,9 +262,14 @@ export default function GamesView() {
         </div>
       </div>
 
-      <div>
-        <div>
-          <div>
+      <div className="mt-2 max-w-3xl mx-auto grid grid-cols-1 gap-4 lg:max-w-full lg:grid-flow-col-dense xl:grid-cols-3">
+        <section className="hidden xl:block col-span-1 mt-5">
+          {games && games.length > 0 && (
+            <PerformanceStats playerInfo={currentUserInfo} {...{ games }} />
+          )}
+        </section>
+        <section className="space-y-6 lg:col-start-1 lg:col-span-2">
+          <dl className="grid grid-cols-1">
             {!isLoading && !isLoadingGames && !error && !isErrorGame && (
               <div>
                 {games && games.length > 0 ? (
@@ -300,7 +313,6 @@ export default function GamesView() {
                 )}
               </div>
             )}
-
             {(isLoading || isLoadingGames) && (
               <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                 <span className="animate-pulse">
@@ -323,13 +335,9 @@ export default function GamesView() {
                 </p>
               </div>
             )}
-          </div>
-        </div>
+          </dl>
+        </section>
       </div>
-      <BetaSlideOut
-        slideState={slideState}
-        setIsSlideOutOpen={setIsSlideOutOpen}
-      ></BetaSlideOut>
     </div>
   );
 }
