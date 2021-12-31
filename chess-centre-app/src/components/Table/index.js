@@ -210,7 +210,7 @@ function Table({ columns, data, searchPlaceholder = "games..." }) {
       </div>
       {/* table */}
       <div className="relative mt-4 sm:flex sm:flex-col">
-        <div className="overflow-auto w-80 sm:w-full shadow border-b border-gray-200 rounded-lg">
+        <div className="overflow-auto w-full shadow border-b border-gray-200 rounded-lg">
           <table
             {...getTableProps()}
             className="w-full table-auto divide-y divide-gray-200"
