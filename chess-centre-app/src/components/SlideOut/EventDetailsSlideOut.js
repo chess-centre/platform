@@ -71,17 +71,21 @@ function EntriesTable(data) {
     /**
      * Returns a clean list of table data which has a pre defined sort integar on the rating object
      */
-    const data = eventDetails.entries?.items.reduce((list, entry) => {
-      const row = {
-        id: entry.member.id,
-        name: entry.member.name,
-        club: entry.member.club ? truncate(entry.member.club, 12) : "",
-        rating: getRating(entry.member),
-      };
-      list.push(row);
-      return list;
-    }, []);
-    return data;
+    if(eventDetails.entries?.items && eventDetails.entries?.items.length > 0) {
+      return eventDetails.entries.items.reduce((list, entry) => {
+        const row = {
+          id: entry.member.id,
+          name: entry.member.name,
+          club: entry.member.club ? truncate(entry.member.club, 12) : "",
+          rating: getRating(entry.member),
+        };
+        list.push(row);
+        return list;
+      }, []);
+      
+    } else {
+      return [];
+    }
   };
 
   return (

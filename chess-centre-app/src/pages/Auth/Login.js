@@ -15,11 +15,12 @@ import queryString from "query-string";
 import { useStripe } from "@stripe/react-stripe-js";
 
 function Login(props) {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const [isChecked, setIsChecked] = useState(!!window.localStorage.getItem("email"));
+  const [isChecked, setIsChecked] = useState(
+    !!window.localStorage.getItem("email")
+  );
   const stripe = useStripe();
   const dispatch = useAuthDispatch();
   const { loading, errorMessage } = useAuthState();
@@ -36,37 +37,41 @@ function Login(props) {
       } else if (parsed.eventId) {
         props.history.push(`/app/events?eventId=${parsed.eventId}`);
       } else {
-        props.history.push("/app");
+        if (props.history?.location?.state?.from) {
+          const { pathname, search } = props.history.location.state.from;
+          props.history.push(`${pathname}${search}`);
+        } else {
+          props.history.push("/app/dashboard");
+        }
       }
     } else {
       return;
     }
-  }
+  };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       signIn();
     }
-  }
+  };
 
   const handleRememberMe = (isChecked) => {
-    if(isChecked && email) {
+    if (isChecked && email) {
       window.localStorage.setItem("email", email);
       setIsChecked(true);
     } else {
       window.localStorage.removeItem("email");
       setIsChecked(false);
     }
-  }
+  };
 
   useEffect(() => {
     const userEmail = window.localStorage.getItem("email");
-    if(userEmail) {
+    if (userEmail) {
       setEmail(userEmail);
       setIsChecked(true);
     }
   }, []);
-
 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-200 dark:bg-gray-900">
@@ -82,21 +87,21 @@ function Login(props) {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              <Link to="/">
-                {loading ? (
-                  <img
-                    src={SpecialLoading}
-                    className="object-contain h-24 w-full md:h-40"
-                    alt="Creating Account"
-                  />
-                ) : (
+              {loading ? (
+                <img
+                  src={SpecialLoading}
+                  className="object-contain h-24 w-full md:h-40"
+                  alt="Creating Account"
+                />
+              ) : (
+                <Link to="/">
                   <img
                     src={Logo}
                     className="object-contain h-20 sm:h-28 w-full"
                     alt="The Chess Centre"
                   />
-                )}
-              </Link>
+                </Link>
+              )}
               <h1 className="mb-4 prose prose-sm text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Login
               </h1>
@@ -138,8 +143,6 @@ function Login(props) {
               </div>
 
               <div className="relative inline-flex w-full">
-
-
                 <Label className="mt-6" check>
                   <Input
                     type="checkbox"
@@ -147,13 +150,14 @@ function Login(props) {
                     defaultChecked={isChecked}
                     onChange={(e) => handleRememberMe(e.target.checked)}
                   />
-                  <span className="ml-2">
-                    Remember me
-                  </span>
+                  <span className="ml-2">Remember me</span>
                 </Label>
 
-
-                <Button className="absolute mt-4 right-0" onClick={signIn} disabled={loading}>
+                <Button
+                  className="absolute mt-4 right-0"
+                  onClick={signIn}
+                  disabled={loading}
+                >
                   {loading ? (
                     <div>
                       <div className="flex">
@@ -173,7 +177,6 @@ function Login(props) {
                 </Button>
               </div>
 
-
               <div className={errorMessage ? "my-2 text-centre" : ""}>
                 <p
                   className={
@@ -183,12 +186,16 @@ function Login(props) {
                   }
                 >
                   {errorMessage}
-                  {
-                    errorMessage === "User is not confirmed." && confirmEmail ?
-                      <Link
-                        className="text-sm text-teal-600 font-medium hover:underline ml-1"
-                        to={`/register/confirm/${confirmEmail}`}>Please click here to confirm.</Link> : ""
-                  }
+                  {errorMessage === "User is not confirmed." && confirmEmail ? (
+                    <Link
+                      className="text-sm text-teal-600 font-medium hover:underline ml-1"
+                      to={`/register/confirm/${confirmEmail}`}
+                    >
+                      Please click here to confirm.
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </p>
               </div>
 

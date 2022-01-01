@@ -37,7 +37,7 @@ function ConfirmEmail(props) {
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      resendCode();
+      submitActivationCode();
     }
   }
 

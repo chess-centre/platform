@@ -156,7 +156,7 @@ function useEvents() {
 export default function AppEvents() {
   const { user } = useAuthState();
   const { search } = useLocation();
-  const { eventId, session_id, event_payment_success } = queryString.parse(
+  const { eventId, session_id, event_payment_success, show_info } = queryString.parse(
     search
   );
   const stripe = useStripe();
@@ -220,8 +220,19 @@ export default function AppEvents() {
     ) {
       setPaymentSuccessful(true);
     }
+
+    if(show_info) {
+      const eventDetails = data?.find(event => event.id === show_info);
+      console.log("eventDetails", eventDetails);
+      if(eventDetails) {
+        setIsSlideOutOpen({
+          open: true,
+          eventDetails: { ...eventDetails },
+        })
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [eventId]);
+  }, [eventId, data]);
 
   return (
     <>
