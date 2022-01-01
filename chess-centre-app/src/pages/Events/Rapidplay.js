@@ -124,7 +124,7 @@ export default function RapidplayEvent() {
 
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-              Want to test yourself, but don’t have time for a full weekend
+              Want to test yourself, but don&#8217;t have time for a full weekend
               tournament? Then look no further, as our 1 day, 5 round Rapidplay
               tournaments are ideal for new and returning players who want to
               “scratch their competitive itch”, but in a more condensed and
@@ -169,7 +169,7 @@ export default function RapidplayEvent() {
                         {entryCount === 1 ? "entry" : "entries"}.
                         <br className="block sm:hidden" />
                         <Link
-                          to="/login"
+                          to={`/app/events?show_info=${id}`}
                           className="font-medium underline text-yellow-700 hover:text-yellow-600 sm:ml-2"
                         >
                           Login to see the full list

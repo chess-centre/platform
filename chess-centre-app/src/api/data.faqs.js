@@ -12,7 +12,7 @@ const TOPIC = {
 const TYPE = {
   INTERNAL: "internal",
   PUBLIC: "public",
-}
+};
 
 export const faqData = (type) =>
   [
@@ -26,7 +26,9 @@ export const faqData = (type) =>
             to={`/events/club`}
           >
             Thursday club night
-          </Link>, here we can show you the basics and go from there! Alternatively, we also have our{" "}
+          </Link>
+          , here we can show you the basics and go from there! Alternatively, we
+          also have our{" "}
           <Link
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
             to={`/events/junior-club`}
@@ -105,7 +107,8 @@ export const faqData = (type) =>
             href="mailto:support@chesscentre.online"
           >
             send us a message
-          </a>{" "} and we'll do our best to re-work our event.
+          </a>{" "}
+          and we'll do our best to re-work our event.
         </>
       ),
       tags: [TOPIC.RATING],
@@ -149,8 +152,9 @@ export const faqData = (type) =>
             email
           </a>{" "}
           before hand as our classes fill up fast! The first few sessions are{" "}
-          <span className="font-medium">completely free</span> with no obligation to sign up. Come down, see what we
-          have to offer and take it from there.
+          <span className="font-medium">completely free</span> with no
+          obligation to sign up. Come down, see what we have to offer and take
+          it from there.
         </>
       ),
       tags: [TOPIC.JUNIORS],
@@ -269,7 +273,8 @@ export const faqData = (type) =>
           A rating is something used to help calculate a players playing
           strength and ability. The higher the number, the stronger the player.
           Players acquire a rating after participating in a minimum number of
-          officially timed games. You are given a rating separately for Rapidplay and Standard play time controls.
+          officially timed games. You are given a rating separately for
+          Rapidplay and Standard play time controls.
         </>
       ),
       tags: [TOPIC.MEMBERSHIP],
@@ -283,9 +288,9 @@ export const faqData = (type) =>
           and be different across leagues, individual competitions and event
           types like congresses or rapidplays. Each event will specify the time
           control for the games. Our standard congresses for example has a limit
-          of{" "}
-          <span className="font-bold">60 minutes</span>{" "}on the clock per player. Our rapidplays conversly are{" "}
-          <span className="font-bold">25 minutes</span>{" "}on the clock per player.
+          of <span className="font-bold">60 minutes</span> on the clock per
+          player. Our rapidplays conversly are{" "}
+          <span className="font-bold">25 minutes</span> on the clock per player.
         </>
       ),
       tags: [TOPIC.GAMES],
@@ -314,7 +319,8 @@ export const faqData = (type) =>
             href="mailto:info@chesscentre.online?subject=Coaching"
           >
             send us a message
-          </a>.
+          </a>
+          .
         </>
       ),
       tags: [TOPIC.COACHING],
@@ -352,7 +358,8 @@ export const faqData = (type) =>
       question: `How do I find what time each round starts for an event?`,
       Answer: () => (
         <>
-          Look out for the <i className="text-teal-500 hover:text-gray-600 fa fa-flag"></i> icon,
+          Look out for the{" "}
+          <i className="text-teal-500 hover:text-gray-600 fa fa-flag"></i> icon,
           click on this to reveal the details of the round times or see the{" "}
           <Link
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
@@ -370,8 +377,10 @@ export const faqData = (type) =>
       question: `Why don't all results from an event appear?`,
       Answer: () => (
         <>
-          This could be for a number of reasons. If an opponent is not rated, this can take longer to be registered with the ECF. 
-          If both players are rated and this still is not showing, let us know so we can check for you.{" "}
+          This could be for a number of reasons. If an opponent is not rated,
+          this can take longer to be registered with the ECF. If both players
+          are rated and this still is not showing, let us know so we can check
+          for you.{" "}
           <a
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
             href="mailto:support@chesscentre.online?subject=Missing%20Games"
@@ -387,11 +396,13 @@ export const faqData = (type) =>
       question: `Why don't all results have playable games?`,
       Answer: () => (
         <>
-          We do our best to capture as many <span className="font-medium">pgns</span> as possible. Sometimes these become
-          corrupt i.e., if the pieces have been moved unintentionally to illegal squares or your round
-          was not played on a live board. If we have captured it correctly then we make
-          sure we add these to your profile. Feel free to contact us about adding any missing data.{" "}
-          <a 
+          We do our best to capture as many{" "}
+          <span className="font-medium">pgns</span> as possible. Sometimes these
+          become corrupt i.e., if the pieces have been moved unintentionally to
+          illegal squares or your round was not played on a live board. If we
+          have captured it correctly then we make sure we add these to your
+          profile. Feel free to contact us about adding any missing data.{" "}
+          <a
             className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
             href="mailto:support@chesscentre.online?subject=Add%20Games"
           >
@@ -408,12 +419,17 @@ export const faqData = (type) =>
         <>
           You can add your <span className="font-medium">chess.com</span> and{" "}
           <span className="font-medium">lichess.com</span> via your{" "}
-          <Link className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline" to="/app/profile">profile.</Link>
+          <Link
+            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            to="/app/profile"
+          >
+            profile.
+          </Link>
         </>
       ),
       tags: [TOPIC.RATING],
       type: TYPE.INTERNAL,
-    }
+    },
   ].filter((q) =>
     type === TYPE.INTERNAL
       ? /* ALL */ true
