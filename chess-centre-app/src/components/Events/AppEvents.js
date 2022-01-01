@@ -223,7 +223,6 @@ export default function AppEvents() {
 
     if(show_info) {
       const eventDetails = data?.find(event => event.id === show_info);
-      console.log("eventDetails", eventDetails);
       if(eventDetails) {
         setIsSlideOutOpen({
           open: true,
