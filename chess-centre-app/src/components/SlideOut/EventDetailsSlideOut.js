@@ -73,13 +73,15 @@ function EntriesTable(data) {
      */
     if(eventDetails.entries?.items && eventDetails.entries?.items.length > 0) {
       return eventDetails.entries.items.reduce((list, entry) => {
-        const row = {
-          id: entry.member.id,
-          name: entry.member.name,
-          club: entry.member.club ? truncate(entry.member.club, 12) : "",
-          rating: getRating(entry.member),
-        };
-        list.push(row);
+        if(entry && entry.member) {
+          const row = {
+            id: entry.member.id,
+            name: entry.member.name,
+            club: entry.member.club ? truncate(entry.member.club, 12) : "",
+            rating: getRating(entry.member),
+          };
+          list.push(row);
+        }
         return list;
       }, []);
       
