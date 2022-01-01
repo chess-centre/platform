@@ -9,13 +9,13 @@ const AppRoutes = ({ component: Component, path, isPrivate, ...rest }) => {
     return (
       <Route
         path={path}
-        render={(props) =>
-          userDetails.token ? (
+        render={(props) => {
+          return userDetails.token ? (
             <Component {...props} />
           ) : (
-            <Redirect to={{ pathname: "/login" }} />
-          )
-        }
+            <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+          );
+        }}
         {...rest}
       />
     );
