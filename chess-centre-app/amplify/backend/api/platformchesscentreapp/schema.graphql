@@ -102,10 +102,8 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   ratingInfo: AWSJSON
   liChessUsername: String
   liChessInfo: AWSJSON
-  lichessLastUpdated: Int,
   chesscomUsername: String
   chesscomInfo: AWSJSON
-  chesscomLastUpdated: Int
 }
 
 type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}, {allow: public, provider: iam, operations: [read]}]) @key(name: "eventsByActive", fields: ["active", "startDate"], queryField: "listEventsActive") {
