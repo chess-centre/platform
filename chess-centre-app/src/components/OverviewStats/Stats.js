@@ -89,6 +89,7 @@ function GamesSummary({ title, data }) {
             </Link>
           )}
         </div>
+        
         <div className="relative m-auto xl:m-0 flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-teal-100 text-teal-700 mb-3 xl:ml-2 mt-6 xl:mr-2">
           Standard
           <span className="absolute text-teal-500 ml-2 right-2">

@@ -119,7 +119,7 @@ export default function PerformanceStats({ playerInfo, games }) {
       setStats(() => ({ ...calculations }));
     }
 
-    return () => {};
+    return () => { };
   }, [playerInfo, games]);
 
   return (
@@ -151,8 +151,8 @@ export default function PerformanceStats({ playerInfo, games }) {
           <dt className="text-sm font-medium">Performance Rating</dt>
           <dd className="m-3">
             {stats &&
-            stats.performanceRating &&
-            stats.performanceRating >= playerInfo.ecfRating ? (
+              stats.performanceRating &&
+              stats.performanceRating >= playerInfo.ecfRating ? (
               <span className="px-6 py-1 text-green-800 text-lg font-medium bg-green-100 rounded-lg">
                 {stats.performanceRating}
               </span>
@@ -169,43 +169,9 @@ export default function PerformanceStats({ playerInfo, games }) {
             </span>
           </dd>
         </dl>
-        <div className="mt-3 grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-2">
-          <div className="col-span-1 flex shadow-sm rounded-md">
-            <div
-              className={classNames(
-                "bg-teal-500",
-                "flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md"
-              )}
-            >
-              S
-            </div>
-            <div className="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
-              <div className="flex-1 px-4 py-2 text-sm truncate">
-                <div className="text-gray-900 font-medium hover:text-gray-600">
-                  Standard
-                </div>
-                <p className="text-gray-500">{playerInfo?.ecfRating || 0}</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-span-1 flex shadow-sm rounded-md">
-            <div
-              className={classNames(
-                "bg-orange-400",
-                "flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md"
-              )}
-            >
-              R
-            </div>
-            <div className="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
-              <div className="flex-1 px-4 py-2 text-sm truncate">
-                <div className="text-gray-900 font-medium hover:text-gray-600">
-                  Rapid
-                </div>
-                <p className="text-gray-500">{playerInfo?.ecfRapid || 0}</p>
-              </div>
-            </div>
-          </div>
+        <div className="mt-3 grid grid-cols-1 gap-4 sm:gap-6 2xl:grid-cols-2">
+          <RatingCard color="bg-teal-500" name="Standard" rating={playerInfo?.ecfRating} />
+          <RatingCard color="bg-orange-400" name="Rapid" rating={playerInfo?.ecfRapid} />
         </div>
       </div>
       <div>
@@ -213,4 +179,25 @@ export default function PerformanceStats({ playerInfo, games }) {
       </div>
     </div>
   );
+}
+
+const RatingCard = ({ color, name, rating }) => {
+  return (<div className="col-span-1 flex shadow-sm rounded-md">
+    <div
+      className={classNames(
+        color,
+        "flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md"
+      )}
+    >
+      { name.charAt(0) }
+    </div>
+    <div className="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
+      <div className="flex-1 px-4 py-2 text-sm truncate">
+        <div className="text-gray-900 font-medium hover:text-gray-600">
+          {name}
+        </div>
+        <p className="text-gray-500">{rating || 0}</p>
+      </div>
+    </div>
+  </div>)
 }

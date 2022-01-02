@@ -169,7 +169,7 @@ export default function Dashboard() {
         }}
         gameData={member?.gameInfo ? JSON.parse(member.gameInfo) : {}}
       />
-      <div className="grid gap-6 mb-8 md:grid-cols-3 mt-6">
+      <div className="grid gap-2 xl:gap-4 mb-8 md:grid-cols-3 mt-6">
         <ChartCard title="Results">
           <Doughnut {...ResultsDoughnut(member?.gameInfo)} />
         </ChartCard>
