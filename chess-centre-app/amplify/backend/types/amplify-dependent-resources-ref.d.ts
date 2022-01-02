@@ -11,10 +11,6 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "platformchesscentreapp": {
-            "GraphQLAPIIdOutput": "string",
-            "GraphQLAPIEndpointOutput": "string"
-        },
         "public": {
             "RootUrl": "string",
             "ApiName": "string",
