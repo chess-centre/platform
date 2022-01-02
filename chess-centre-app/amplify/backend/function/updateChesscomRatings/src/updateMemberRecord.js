@@ -10,7 +10,7 @@ exports.updateMemberRecord = async (id, data) => {
     },
     UpdateExpression: "set chesscomInfo=:json, chesscomLastUpdated=:updated",
     ExpressionAttributeValues: {
-        ":json": JSON.parse(data),
+        ":json": data,
         ":updated": Date.now()
     },
     ReturnValues: "UPDATED_NEW"

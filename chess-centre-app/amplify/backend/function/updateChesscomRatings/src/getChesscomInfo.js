@@ -5,7 +5,6 @@ exports.getChesscomInfo = async handle => {
 
   // Docs: https://www.chess.com/news/view/published-data-api
   const fetch = async (url) => { 
-      console.log("URL:", url);
       return new Promise((resolve, reject) => {
           https.get(url, response => {
               let data = "";
