@@ -88,7 +88,15 @@
         },
         "getInstagramFeed": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/getInstagramFeed-694a3269755a6f473578-build.zip"
+          "s3Key": "amplify-builds/getInstagramFeed-316a6d476341656c2b6f-build.zip"
+        },
+        "updateLichessPlayerRatings": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/updateLichessPlayerRatings-6e635177573634637250-build.zip"
+        },
+        "updateChesscomRatings": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/updateChesscomRatings-4775546a7565574d6a68-build.zip"
         }
       }
     }
