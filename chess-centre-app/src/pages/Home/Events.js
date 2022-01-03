@@ -84,7 +84,7 @@ export default function Events() {
               </defs>
               <rect
                 width="500"
-                height="600"
+                height="300"
                 fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
               />
             </svg>
