@@ -92,9 +92,9 @@ export default function Events() {
             <svg
               className="hidden md:block absolute top-32 left-0 md:-ml-32 2xl:-ml-4"
               width="500"
-              height="600"
+              height="300"
               fill="none"
-              viewBox="0 0 500 600"
+              viewBox="0 0 500 270"
               aria-hidden="true"
             >
               <defs>
@@ -118,7 +118,7 @@ export default function Events() {
               </defs>
               <rect
                 width="500"
-                height="600"
+                height="280"
                 fill="url(#95e8f2de-6d30-4b7e-8159-f791729db21b)"
               />
             </svg>
