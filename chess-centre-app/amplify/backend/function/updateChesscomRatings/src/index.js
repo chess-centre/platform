@@ -19,6 +19,7 @@ exports.handler = async (event) => {
 
     const chesscomDate = await Promise.all(memberHandles.map(async m => {
         const info = await getChesscomInfo(m.chesscomUsername);
+
         if(info && !info.error) {
             console.log("POST: updating record for", m.name);
             await updateMemberRecord(m.id, info);
