@@ -68,7 +68,7 @@ export default function Profile() {
         authMode: "AWS_IAM",
         variables: { id: user.username },
       });
-      console.log("member", member);
+
       setMember(member);
       if (member && member.stripeCurrentPeriodEnd) {
         const today = new Date();
