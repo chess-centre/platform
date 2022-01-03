@@ -85,11 +85,10 @@ exports.handler = async (event) => {
                 Key: {
                     id: userSub
                 },
-                UpdateExpression: "set chesscomUsername=:username, chesscomInfo=:json, chesscomLastUpdated=:updated",
+                UpdateExpression: "set chesscomUsername=:username, chesscomInfo=:json",
                 ExpressionAttributeValues: {
                     ":username": id,
                     ":json": { ...parsedInfo, ...parsedStats },
-                    ":updated": Date.now()
                 },
                 ReturnValues: "UPDATED_NEW"
             };
@@ -105,7 +104,7 @@ exports.handler = async (event) => {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
             },
-            body: { ...parsedInfo, ...parsedStats },
+            body: JSON.stringify({ ...parsedInfo, ...parsedStats }),
         };
     } else {
         return {
