@@ -5,7 +5,7 @@ exports.getChesscomInfo = async handle => {
 
   // Docs: https://www.chess.com/news/view/published-data-api
   const fetch = async (url) => {
-    const response = axios.get(url);
+    const response = await axios.get(url);
     return response.data
   };
 
