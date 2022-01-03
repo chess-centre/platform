@@ -1,34 +1,37 @@
 import { API } from "aws-amplify";
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 import { useToasts } from "react-toast-notifications";
 import liChessImage from "../../../../../assets/img/lichess.png";
 import { AtSymbolIcon } from "@heroicons/react/solid";
 
 
-export default function LiChessFetch({ liChessUsername, liChessInfo }) {
+export default function LiChessFetch({ liChessUsername, liChessInfo, lichessLastUpdated }) {
 
     const { addToast } = useToasts();
     const [isFetching, setIsFetching] = useState(false);
-
-    const [username, setUsername] = useState("");
-    const [blitz, setBlitz] = useState(0);
-    const [bullet, setBullet] = useState(0);
-    const [rapid, setRapid] = useState(0);
-
+    const [username, setUsername] = useState(liChessUsername);
+    const [blitz, setBlitz] = useState("");
+    const [bullet, setBullet] = useState("");
+    const [rapid, setRapid] = useState("");
+    const [lastUpdated, setLastUpdated] = useState("");
 
     useEffect(() => {
-        setUsername(liChessUsername || "");
         if(liChessInfo) {
             try {
                 const parsed = JSON.parse(liChessInfo);
-                setBlitz(parsed.perfs.blitz?.rating);
-                setBullet(parsed.perfs.bullet?.rating);
-                setRapid(parsed.perfs.rapid?.rating);
+                setBlitz(parsed.perfs.blitz?.rating?.toString() || "");
+                setBullet(parsed.perfs.bullet?.rating?.toString() || "");
+                setRapid(parsed.perfs.rapid?.rating?.toString() || "");
+
+                if(lichessLastUpdated) {
+                    setLastUpdated(lichessLastUpdated);
+                }
             } catch (error) {
                 console.log(error);
             }
         };
-    }, [liChessUsername, liChessInfo])
+    }, [liChessUsername, liChessInfo, lichessLastUpdated])
 
 
     const getLiChessData = async () => {
@@ -40,10 +43,11 @@ export default function LiChessFetch({ liChessUsername, liChessInfo }) {
                 const {
                     perfs: { blitz, bullet, rapid },
                 } = response;
-                setBlitz(blitz?.rating);
-                setBullet(bullet?.rating);
-                setRapid(rapid.rating);
-                addToast(`Successfully updated your LiChess username!`, {
+                setBlitz(blitz?.rating?.toString());
+                setBullet(bullet?.rating?.toString());
+                setRapid(rapid?.rating?.toString());
+                setLastUpdated(Date.now());
+                addToast(`Successfully updated your Lichess username and rating!`, {
                     appearance: "success",
                     autoDismiss: true,
                 });  
@@ -57,7 +61,7 @@ export default function LiChessFetch({ liChessUsername, liChessInfo }) {
 
     return (
         <div className="col-span-6 sm:col-span-3 gap-6 border border-dotted p-4 rounded-lg">
-            <div className="">
+            <div>
                 <img
                     src={liChessImage}
                     alt="LiChess"
@@ -142,7 +146,9 @@ export default function LiChessFetch({ liChessUsername, liChessInfo }) {
                         />
                     </div>
                 </div>
+                
             </div>
+            { lastUpdated && <div className="text-right text-xs mt-4 text-gray-300 italic">Last updated: { moment(lastUpdated).format("Do MMM YY hh:mm")} </div> }
         </div>
     );
 }

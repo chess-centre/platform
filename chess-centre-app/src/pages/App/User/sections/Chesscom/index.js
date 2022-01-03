@@ -1,44 +1,50 @@
 import { API } from "aws-amplify";
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 import { useToasts } from "react-toast-notifications";
 import chesscomImage from "../../../../../assets/img/chesscom.png";
 import { AtSymbolIcon } from "@heroicons/react/solid";
 
-export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
+export default function ChesscomFetch({ chesscomUsername, chesscomInfo, chesscomLastUpdated }) {
 
     const { addToast } = useToasts();
     const [isFetching, setIsFetching] = useState(false);
-
     const [username, setUsername] = useState("");
-    const [blitz, setBlitz] = useState(0);
-    const [bullet, setBullet] = useState(0);
-    const [rapid, setRapid] = useState(0)
+    const [blitz, setBlitz] = useState("");
+    const [bullet, setBullet] = useState("");
+    const [rapid, setRapid] = useState("");
+    const [lastUpdated, setLastUpdated] = useState("");
 
     useEffect(() => {
-        setUsername(chesscomUsername || "");
         if(chesscomInfo) {
             try {
                 const parsed = JSON.parse(chesscomInfo);
-                setBlitz(parsed?.chess_blitz?.last?.rating);
-                setBullet(parsed?.chess_bullet?.last?.rating);
-                setRapid(parsed?.chess_rapid?.last?.rating);
+                setBlitz(parsed?.chess_blitz?.last?.rating.toString() || "");
+                setBullet(parsed?.chess_bullet?.last?.rating.toString() || "");
+                setRapid(parsed?.chess_rapid?.last?.rating.toString() || "");
+                if(chesscomLastUpdated) {
+                    setLastUpdated(chesscomLastUpdated);
+                }
             } catch (error) {
                 console.log(error);
             }
         }
-    }, [chesscomUsername, chesscomInfo]);
+        if(chesscomUsername) {
+            setUsername(chesscomUsername);
+        }
+    }, [chesscomUsername, chesscomInfo, chesscomLastUpdated]);
 
     const getChesscomData = async () => {
         if (!username) return;
         setIsFetching(true);
         try {
             const response = await API.post("chesscom", `/user/${username}`);
-            if (response) {
+            if (!response.error) {
                 const { chess_bullet, chess_blitz, chess_rapid } = response;
                 setBlitz(chess_blitz?.last?.rating);
                 setBullet(chess_bullet?.last?.rating);
                 setRapid(chess_rapid?.last?.rating);
-                addToast(`Successfully updated your Chess.com username!`, {
+                addToast(`Successfully updated your Chess.com username and ratings!`, {
                     appearance: "success",
                     autoDismiss: true,
                 });   
@@ -78,7 +84,7 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                                 type="text"
                                 name="chesscomUsername"
                                 id="chesscomUsername"
-                                defaultValue={chesscomUsername}
+                                defaultValue={username}
                                 className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 text-xs sm:text-sm border-gray-300"
                                 placeholder="MagnusCarlsen"
                             />
@@ -140,6 +146,7 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                     </div>
                 </div>
             </div>
+            { lastUpdated && <div className="text-right text-xs mt-4 text-gray-300 italic">Last updated: { moment(lastUpdated).format("Do MMM YY hh:mm")} </div> }
         </div>
     );
 }
