@@ -10,7 +10,6 @@ export default function LiChessFetch({ liChessUsername, liChessInfo, lichessLast
 
     const { addToast } = useToasts();
     const [isFetching, setIsFetching] = useState(false);
-
     const [username, setUsername] = useState(liChessUsername);
     const [blitz, setBlitz] = useState("");
     const [bullet, setBullet] = useState("");
@@ -24,6 +23,7 @@ export default function LiChessFetch({ liChessUsername, liChessInfo, lichessLast
                 setBlitz(parsed.perfs.blitz?.rating?.toString() || "");
                 setBullet(parsed.perfs.bullet?.rating?.toString() || "");
                 setRapid(parsed.perfs.rapid?.rating?.toString() || "");
+
                 if(lichessLastUpdated) {
                     setLastUpdated(lichessLastUpdated);
                 }
