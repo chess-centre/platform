@@ -1,31 +1,31 @@
 {
-  "features": {
-    "graphqltransformer": {
-      "addmissingownerfields": true,
-      "validatetypenamereservedwords": true,
-      "useexperimentalpipelinedtransformer": false,
-      "enableiterativegsiupdates": true,
-      "secondarykeyasgsi": true
-    },
-    "frontend-ios": {
-      "enablexcodeintegration": true
-    },
-    "auth": {
-      "enablecaseinsensitivity": true,
-      "breakcirculardependency": true
-    },
-    "codegen": {
-      "useappsyncmodelgenplugin": true,
-      "usedocsgeneratorplugin": true,
-      "usetypesgeneratorplugin": true,
-      "cleangeneratedmodelsdirectory": true,
-      "retaincasestyle": true
-    },
-    "appsync": {
-      "generategraphqlpermissions": true
-    },
-    "project": {
-      "overrides": true
+    "features": {
+        "graphqltransformer": {
+            "addmissingownerfields": true,
+            "validatetypenamereservedwords": true,
+            "useexperimentalpipelinedtransformer": false,
+            "enableiterativegsiupdates": true,
+            "secondarykeyasgsi": true
+        },
+        "frontend-ios": {
+            "enablexcodeintegration": true
+        },
+        "auth": {
+            "enablecaseinsensitivity": true,
+            "breakcirculardependency": true
+        },
+        "codegen": {
+            "useappsyncmodelgenplugin": true,
+            "usedocsgeneratorplugin": true,
+            "usetypesgeneratorplugin": true,
+            "cleangeneratedmodelsdirectory": true,
+            "retaincasestyle": true
+        },
+        "appsync": {
+            "generategraphqlpermissions": true
+        },
+        "project": {
+            "overrides": true
+        }
     }
-  }
 }

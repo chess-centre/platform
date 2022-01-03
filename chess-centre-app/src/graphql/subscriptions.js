@@ -263,10 +263,10 @@ export const onCreateGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -322,10 +322,10 @@ export const onCreateGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -404,10 +404,10 @@ export const onCreateGame = /* GraphQL */ `
         ratingInfo
         liChessUsername
         liChessInfo
-        lichessLastUpdated
         chesscomUsername
         chesscomInfo
         chesscomLastUpdated
+        lichessLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -446,10 +446,10 @@ export const onCreateGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -561,10 +561,10 @@ export const onCreateGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -620,10 +620,10 @@ export const onCreateGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -702,10 +702,10 @@ export const onCreateGame = /* GraphQL */ `
         ratingInfo
         liChessUsername
         liChessInfo
-        lichessLastUpdated
         chesscomUsername
         chesscomInfo
         chesscomLastUpdated
+        lichessLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -744,10 +744,10 @@ export const onCreateGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -871,10 +871,10 @@ export const onCreateGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -904,10 +904,10 @@ export const onCreateGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -991,10 +991,10 @@ export const onCreateGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1137,10 +1137,10 @@ export const onUpdateGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -1196,10 +1196,10 @@ export const onUpdateGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -1278,10 +1278,10 @@ export const onUpdateGame = /* GraphQL */ `
         ratingInfo
         liChessUsername
         liChessInfo
-        lichessLastUpdated
         chesscomUsername
         chesscomInfo
         chesscomLastUpdated
+        lichessLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -1320,10 +1320,10 @@ export const onUpdateGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1435,10 +1435,10 @@ export const onUpdateGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -1494,10 +1494,10 @@ export const onUpdateGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -1576,10 +1576,10 @@ export const onUpdateGame = /* GraphQL */ `
         ratingInfo
         liChessUsername
         liChessInfo
-        lichessLastUpdated
         chesscomUsername
         chesscomInfo
         chesscomLastUpdated
+        lichessLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -1618,10 +1618,10 @@ export const onUpdateGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1745,10 +1745,10 @@ export const onUpdateGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1778,10 +1778,10 @@ export const onUpdateGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1865,10 +1865,10 @@ export const onUpdateGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2011,10 +2011,10 @@ export const onDeleteGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -2070,10 +2070,10 @@ export const onDeleteGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -2152,10 +2152,10 @@ export const onDeleteGame = /* GraphQL */ `
         ratingInfo
         liChessUsername
         liChessInfo
-        lichessLastUpdated
         chesscomUsername
         chesscomInfo
         chesscomLastUpdated
+        lichessLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -2194,10 +2194,10 @@ export const onDeleteGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2309,10 +2309,10 @@ export const onDeleteGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -2368,10 +2368,10 @@ export const onDeleteGame = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -2450,10 +2450,10 @@ export const onDeleteGame = /* GraphQL */ `
         ratingInfo
         liChessUsername
         liChessInfo
-        lichessLastUpdated
         chesscomUsername
         chesscomInfo
         chesscomLastUpdated
+        lichessLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -2492,10 +2492,10 @@ export const onDeleteGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2619,10 +2619,10 @@ export const onDeleteGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2652,10 +2652,10 @@ export const onDeleteGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2739,10 +2739,10 @@ export const onDeleteGame = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2985,10 +2985,10 @@ export const onCreateMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3018,10 +3018,10 @@ export const onCreateMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3065,10 +3065,10 @@ export const onCreateMember = /* GraphQL */ `
           ratingInfo
           liChessUsername
           liChessInfo
-          lichessLastUpdated
           chesscomUsername
           chesscomInfo
           chesscomLastUpdated
+          lichessLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -3146,10 +3146,10 @@ export const onCreateMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3179,10 +3179,10 @@ export const onCreateMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3226,10 +3226,10 @@ export const onCreateMember = /* GraphQL */ `
           ratingInfo
           liChessUsername
           liChessInfo
-          lichessLastUpdated
           chesscomUsername
           chesscomInfo
           chesscomLastUpdated
+          lichessLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -3367,10 +3367,10 @@ export const onCreateMember = /* GraphQL */ `
       ratingInfo
       liChessUsername
       liChessInfo
-      lichessLastUpdated
       chesscomUsername
       chesscomInfo
       chesscomLastUpdated
+      lichessLastUpdated
       _version
       _deleted
       _lastChangedAt
@@ -3431,10 +3431,10 @@ export const onCreateMember = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -3597,10 +3597,10 @@ export const onUpdateMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3630,10 +3630,10 @@ export const onUpdateMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3677,10 +3677,10 @@ export const onUpdateMember = /* GraphQL */ `
           ratingInfo
           liChessUsername
           liChessInfo
-          lichessLastUpdated
           chesscomUsername
           chesscomInfo
           chesscomLastUpdated
+          lichessLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -3758,10 +3758,10 @@ export const onUpdateMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3791,10 +3791,10 @@ export const onUpdateMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3838,10 +3838,10 @@ export const onUpdateMember = /* GraphQL */ `
           ratingInfo
           liChessUsername
           liChessInfo
-          lichessLastUpdated
           chesscomUsername
           chesscomInfo
           chesscomLastUpdated
+          lichessLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -3979,10 +3979,10 @@ export const onUpdateMember = /* GraphQL */ `
       ratingInfo
       liChessUsername
       liChessInfo
-      lichessLastUpdated
       chesscomUsername
       chesscomInfo
       chesscomLastUpdated
+      lichessLastUpdated
       _version
       _deleted
       _lastChangedAt
@@ -4043,10 +4043,10 @@ export const onUpdateMember = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -4209,10 +4209,10 @@ export const onDeleteMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -4242,10 +4242,10 @@ export const onDeleteMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -4289,10 +4289,10 @@ export const onDeleteMember = /* GraphQL */ `
           ratingInfo
           liChessUsername
           liChessInfo
-          lichessLastUpdated
           chesscomUsername
           chesscomInfo
           chesscomLastUpdated
+          lichessLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -4370,10 +4370,10 @@ export const onDeleteMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -4403,10 +4403,10 @@ export const onDeleteMember = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -4450,10 +4450,10 @@ export const onDeleteMember = /* GraphQL */ `
           ratingInfo
           liChessUsername
           liChessInfo
-          lichessLastUpdated
           chesscomUsername
           chesscomInfo
           chesscomLastUpdated
+          lichessLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -4591,10 +4591,10 @@ export const onDeleteMember = /* GraphQL */ `
       ratingInfo
       liChessUsername
       liChessInfo
-      lichessLastUpdated
       chesscomUsername
       chesscomInfo
       chesscomLastUpdated
+      lichessLastUpdated
       _version
       _deleted
       _lastChangedAt
@@ -4655,10 +4655,10 @@ export const onDeleteMember = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -4843,10 +4843,10 @@ export const onCreateEvent = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -4902,10 +4902,10 @@ export const onCreateEvent = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5046,10 +5046,10 @@ export const onCreateEvent = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5234,10 +5234,10 @@ export const onUpdateEvent = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5293,10 +5293,10 @@ export const onUpdateEvent = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5437,10 +5437,10 @@ export const onUpdateEvent = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5625,10 +5625,10 @@ export const onDeleteEvent = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5684,10 +5684,10 @@ export const onDeleteEvent = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5828,10 +5828,10 @@ export const onDeleteEvent = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5991,10 +5991,10 @@ export const onCreateEntry = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -6050,10 +6050,10 @@ export const onCreateEntry = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -6132,10 +6132,10 @@ export const onCreateEntry = /* GraphQL */ `
         ratingInfo
         liChessUsername
         liChessInfo
-        lichessLastUpdated
         chesscomUsername
         chesscomInfo
         chesscomLastUpdated
+        lichessLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -6174,10 +6174,10 @@ export const onCreateEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6301,10 +6301,10 @@ export const onCreateEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6334,10 +6334,10 @@ export const onCreateEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6421,10 +6421,10 @@ export const onCreateEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6550,10 +6550,10 @@ export const onUpdateEntry = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -6609,10 +6609,10 @@ export const onUpdateEntry = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -6691,10 +6691,10 @@ export const onUpdateEntry = /* GraphQL */ `
         ratingInfo
         liChessUsername
         liChessInfo
-        lichessLastUpdated
         chesscomUsername
         chesscomInfo
         chesscomLastUpdated
+        lichessLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -6733,10 +6733,10 @@ export const onUpdateEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6860,10 +6860,10 @@ export const onUpdateEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6893,10 +6893,10 @@ export const onUpdateEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6980,10 +6980,10 @@ export const onUpdateEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -7109,10 +7109,10 @@ export const onDeleteEntry = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -7168,10 +7168,10 @@ export const onDeleteEntry = /* GraphQL */ `
             ratingInfo
             liChessUsername
             liChessInfo
-            lichessLastUpdated
             chesscomUsername
             chesscomInfo
             chesscomLastUpdated
+            lichessLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -7250,10 +7250,10 @@ export const onDeleteEntry = /* GraphQL */ `
         ratingInfo
         liChessUsername
         liChessInfo
-        lichessLastUpdated
         chesscomUsername
         chesscomInfo
         chesscomLastUpdated
+        lichessLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -7292,10 +7292,10 @@ export const onDeleteEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -7419,10 +7419,10 @@ export const onDeleteEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -7452,10 +7452,10 @@ export const onDeleteEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -7539,10 +7539,10 @@ export const onDeleteEntry = /* GraphQL */ `
               ratingInfo
               liChessUsername
               liChessInfo
-              lichessLastUpdated
               chesscomUsername
               chesscomInfo
               chesscomLastUpdated
+              lichessLastUpdated
               _version
               _deleted
               _lastChangedAt

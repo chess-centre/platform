@@ -1054,6 +1054,20 @@ export const schema = {
                     "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
+                },
+                "chesscomLastUpdated": {
+                    "name": "chesscomLastUpdated",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "lichessLastUpdated": {
+                    "name": "lichessLastUpdated",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -1220,5 +1234,5 @@ export const schema = {
             }
         }
     },
-    "version": "c291739d88a696e9f3e2ed7adb05d3a7"
+    "version": "c64ed4bf63b9b297cbac9c8b9873ee21"
 };

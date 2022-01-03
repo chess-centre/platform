@@ -56,7 +56,7 @@
         },
         "getChesscomPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/getChesscomPlayer-75426348725466383131-build.zip"
+          "s3Key": "amplify-builds/getChesscomPlayer-42436f69513552726c38-build.zip"
         },
         "getLichessPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -96,7 +96,7 @@
         },
         "updateChesscomRatings": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateChesscomRatings-4464437a557246384c48-build.zip"
+          "s3Key": "amplify-builds/updateChesscomRatings-577041442f7357626973-build.zip"
         }
       }
     }
