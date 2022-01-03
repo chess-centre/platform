@@ -32,8 +32,10 @@ export const getMember = /* GraphQL */ `
       stripeProductId
       liChessUsername
       liChessInfo
+      lichessLastUpdated
       chesscomUsername
       chesscomInfo
+      chesscomLastUpdated
     }
   }
 `;
@@ -58,7 +60,7 @@ export default function Profile() {
       setCustomerPortalUrl(url);
     };
 
-    const getUser = async () => {
+    const getMemberInfo = async () => {
       const {
         data: { getMember: member },
       } = await API.graphql({
@@ -66,6 +68,7 @@ export default function Profile() {
         authMode: "AWS_IAM",
         variables: { id: user.username },
       });
+      console.log("member", member);
       setMember(member);
       if (member && member.stripeCurrentPeriodEnd) {
         const today = new Date();
@@ -76,7 +79,7 @@ export default function Profile() {
 
     const getProfileData = async () => {
       setIsLoadingProfile(true);
-      await getUser();
+      await getMemberInfo().catch(e => console.log(e));
       await getCustomerPortal();
       setIsLoadingProfile(false);
     };

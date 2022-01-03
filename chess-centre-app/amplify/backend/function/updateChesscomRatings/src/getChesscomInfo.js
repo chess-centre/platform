@@ -38,12 +38,22 @@ exports.getChesscomInfo = async handle => {
   try {
       parsedStats = JSON.parse(statsResponse);
       parsedInfo = JSON.parse(infoResponse);
-      return {
-        ...parsedInfo,
-        ...parsedStats
-      };
+      
+      delete parsedInfo['@id'];
+      
+      if(parsedStats && parsedStats) {
+        return {
+            ...parsedInfo,
+            ...parsedStats
+          };
+      } else {
+          return { error: "No data" }
+      }
+
   } catch (error) {
-      console.log(error);
+      console.log("Error parsing", error);
+      console.log(statsResponse);
+      console.log(infoResponse);
       return { error: "Error parsing response data" };
   }
 };

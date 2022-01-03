@@ -1,18 +1,20 @@
 import { API } from "aws-amplify";
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 import { useToasts } from "react-toast-notifications";
 import chesscomImage from "../../../../../assets/img/chesscom.png";
 import { AtSymbolIcon } from "@heroicons/react/solid";
 
-export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
+export default function ChesscomFetch({ chesscomUsername, chesscomInfo, chesscomLastUpdated }) {
 
     const { addToast } = useToasts();
     const [isFetching, setIsFetching] = useState(false);
 
     const [username, setUsername] = useState("");
-    const [blitz, setBlitz] = useState(0);
-    const [bullet, setBullet] = useState(0);
-    const [rapid, setRapid] = useState(0)
+    const [blitz, setBlitz] = useState("");
+    const [bullet, setBullet] = useState("");
+    const [rapid, setRapid] = useState("");
+    const [lastUpdated, setLastUpdated] = useState("");
 
     useEffect(() => {
         setUsername(chesscomUsername || "");
@@ -22,11 +24,14 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                 setBlitz(parsed?.chess_blitz?.last?.rating);
                 setBullet(parsed?.chess_bullet?.last?.rating);
                 setRapid(parsed?.chess_rapid?.last?.rating);
+                if(chesscomLastUpdated) {
+                    setLastUpdated(chesscomLastUpdated);
+                }
             } catch (error) {
                 console.log(error);
             }
         }
-    }, [chesscomUsername, chesscomInfo]);
+    }, [chesscomUsername, chesscomInfo, chesscomLastUpdated]);
 
     const getChesscomData = async () => {
         if (!username) return;
@@ -140,6 +145,7 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo }) {
                     </div>
                 </div>
             </div>
+            { lastUpdated && <div className="text-right text-xs mt-4 text-gray-300 italic">Last updated: { moment(lastUpdated).format("Do MMM YY hh:mm")} </div> }
         </div>
     );
 }

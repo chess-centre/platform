@@ -56,10 +56,11 @@ exports.handler = async (event) => {
             Key: {
                 id: userSub
             },
-            UpdateExpression: "set liChessUsername=:username, liChessInfo=:json",
+            UpdateExpression: "set liChessUsername=:username, liChessInfo=:json, lichessLastUpdated=:updated",
             ExpressionAttributeValues: {
                 ":username": id,
                 ":json": JSON.parse(data),
+                ":updated": Date.now()
             },
             ReturnValues: "UPDATED_NEW"
         };
