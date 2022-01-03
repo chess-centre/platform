@@ -10,21 +10,20 @@ export default function LiChessFetch({ liChessUsername, liChessInfo, lichessLast
 
     const { addToast } = useToasts();
     const [isFetching, setIsFetching] = useState(false);
-
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState(liChessUsername);
     const [blitz, setBlitz] = useState("");
     const [bullet, setBullet] = useState("");
     const [rapid, setRapid] = useState("");
     const [lastUpdated, setLastUpdated] = useState("");
 
     useEffect(() => {
-        setUsername(liChessUsername || "");
         if(liChessInfo) {
             try {
                 const parsed = JSON.parse(liChessInfo);
-                setBlitz(parsed.perfs.blitz?.rating?.toString());
-                setBullet(parsed.perfs.bullet?.rating?.toString());
-                setRapid(parsed.perfs.rapid?.rating?.toString());
+                setBlitz(parsed.perfs.blitz?.rating?.toString() || "");
+                setBullet(parsed.perfs.bullet?.rating?.toString() || "");
+                setRapid(parsed.perfs.rapid?.rating?.toString() || "");
+
                 if(lichessLastUpdated) {
                     setLastUpdated(lichessLastUpdated);
                 }
@@ -48,7 +47,7 @@ export default function LiChessFetch({ liChessUsername, liChessInfo, lichessLast
                 setBullet(bullet?.rating?.toString());
                 setRapid(rapid?.rating?.toString());
                 setLastUpdated(Date.now());
-                addToast(`Successfully updated your Lichess username!`, {
+                addToast(`Successfully updated your Lichess username and rating!`, {
                     appearance: "success",
                     autoDismiss: true,
                 });  

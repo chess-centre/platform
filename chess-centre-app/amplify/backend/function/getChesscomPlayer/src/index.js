@@ -105,7 +105,7 @@ exports.handler = async (event) => {
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
             },
-            body: { ...parsedInfo, ...parsedStats },
+            body: JSON.stringify({ ...parsedInfo, ...parsedStats }),
         };
     } else {
         return {

@@ -56,7 +56,7 @@
         },
         "getChesscomPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/getChesscomPlayer-5245745a62796e314950-build.zip"
+          "s3Key": "amplify-builds/getChesscomPlayer-75426348725466383131-build.zip"
         },
         "getLichessPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",

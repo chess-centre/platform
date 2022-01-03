@@ -9,7 +9,6 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo, chesscom
 
     const { addToast } = useToasts();
     const [isFetching, setIsFetching] = useState(false);
-
     const [username, setUsername] = useState("");
     const [blitz, setBlitz] = useState("");
     const [bullet, setBullet] = useState("");
@@ -17,19 +16,21 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo, chesscom
     const [lastUpdated, setLastUpdated] = useState("");
 
     useEffect(() => {
-        setUsername(chesscomUsername || "");
         if(chesscomInfo) {
             try {
                 const parsed = JSON.parse(chesscomInfo);
-                setBlitz(parsed?.chess_blitz?.last?.rating);
-                setBullet(parsed?.chess_bullet?.last?.rating);
-                setRapid(parsed?.chess_rapid?.last?.rating);
+                setBlitz(parsed?.chess_blitz?.last?.rating.toString() || "");
+                setBullet(parsed?.chess_bullet?.last?.rating.toString() || "");
+                setRapid(parsed?.chess_rapid?.last?.rating.toString() || "");
                 if(chesscomLastUpdated) {
                     setLastUpdated(chesscomLastUpdated);
                 }
             } catch (error) {
                 console.log(error);
             }
+        }
+        if(chesscomUsername) {
+            setUsername(chesscomUsername);
         }
     }, [chesscomUsername, chesscomInfo, chesscomLastUpdated]);
 
@@ -38,12 +39,12 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo, chesscom
         setIsFetching(true);
         try {
             const response = await API.post("chesscom", `/user/${username}`);
-            if (response) {
+            if (!response.error) {
                 const { chess_bullet, chess_blitz, chess_rapid } = response;
                 setBlitz(chess_blitz?.last?.rating);
                 setBullet(chess_bullet?.last?.rating);
                 setRapid(chess_rapid?.last?.rating);
-                addToast(`Successfully updated your Chess.com username!`, {
+                addToast(`Successfully updated your Chess.com username and ratings!`, {
                     appearance: "success",
                     autoDismiss: true,
                 });   
@@ -83,7 +84,7 @@ export default function ChesscomFetch({ chesscomUsername, chesscomInfo, chesscom
                                 type="text"
                                 name="chesscomUsername"
                                 id="chesscomUsername"
-                                defaultValue={chesscomUsername}
+                                defaultValue={username}
                                 className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 text-xs sm:text-sm border-gray-300"
                                 placeholder="MagnusCarlsen"
                             />
