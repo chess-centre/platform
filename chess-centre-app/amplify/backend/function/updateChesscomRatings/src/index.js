@@ -1,6 +1,7 @@
 const getMemberHandles = require("./getMemberHandles").getMemberHandles;
 const getChesscomInfo = require("./getChesscomInfo").getChesscomInfo;
 const updateMemberRecord = require("./updateMemberRecord").updateMemberRecord;
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 exports.handler = async (event) => {
 
@@ -17,7 +18,8 @@ exports.handler = async (event) => {
         };
     }
 
-    const chesscomDate = await Promise.all(memberHandles.map(async m => {
+    const chesscomDate = await Promise.all(memberHandles.map(async (m, i) => {
+        await delay(200 * i);
         const info = await getChesscomInfo(m.chesscomUsername);
 
         if(info && !info.error) {
