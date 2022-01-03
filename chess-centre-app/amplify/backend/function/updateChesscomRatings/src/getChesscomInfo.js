@@ -1,29 +1,17 @@
-const https = require('https');
+const axios = require('axios');
 
 exports.getChesscomInfo = async handle => {
   console.log("GET: getChesscomInfo", handle);
 
   // Docs: https://www.chess.com/news/view/published-data-api
-  const fetch = async (url) => { 
-      return new Promise((resolve, reject) => {
-          https.get(url, response => {
-              let data = "";
-              response.on("data", chunk => {
-                  data += chunk;
-              });
-              response.on("end", () => {
-                  resolve(data);
-              });
-              response.on("error", (e) => {
-                  reject("error", e);
-              });
-          });
-      });
+  const fetch = async (url) => {
+    const response = axios.get(url);
+    return response.data
   };
 
-  const info = `https://api.chess.com/pub/player/${handle.toLowerCase()}`;
   const stats = `https://api.chess.com/pub/player/${handle.toLowerCase()}/stats`;
-
+  const info = `https://api.chess.com/pub/player/${handle.toLowerCase()}`;
+  
   const statsResponse = await fetch(stats).catch(e => {
       console.log("error", e);
   });
@@ -32,28 +20,13 @@ exports.getChesscomInfo = async handle => {
       console.log("error", e);
   });
 
-  let parsedStats = null;
-  let parsedInfo = null;
 
-  try {
-      parsedStats = JSON.parse(statsResponse);
-      parsedInfo = JSON.parse(infoResponse);
-      
-      delete parsedInfo['@id'];
-      
-      if(parsedStats && parsedStats) {
-        return {
-            ...parsedInfo,
-            ...parsedStats
-          };
-      } else {
-          return { error: "No data" }
-      }
-
-  } catch (error) {
-      console.log("Error parsing", error);
-      console.log(statsResponse);
-      console.log(infoResponse);
-      return { error: "Error parsing response data" };
+  if(statsResponse && infoResponse) {
+    return {
+        ...statsResponse,
+        ...infoResponse
+      };
+  } else {
+      return { error: "No data" }
   }
 };
