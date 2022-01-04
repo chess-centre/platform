@@ -165,7 +165,7 @@ export default function GamesView() {
   const [avatarUrl, setAvatar] = useState("");
 
   const openModal = () => {
-    if (currentUser || true) {
+    if (currentUser) {
       setIsOpenModal(true);
     }
   };

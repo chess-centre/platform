@@ -25,8 +25,7 @@ export default function AddMyProfileImageModel({ open, currentUserInfo, closeMod
               have one).
             </p>
             <p>
-              To include yours, <span className="font-medium">sync</span> your
-              account here to update your profile image.
+              To include yours add your{" "}<span className="font-medium">chess.com</span> username and click <span className="font-medium">Sync</span> to retrieve your profile image.
             </p>
           </div>
           <ChesscomFetch {...{...currentUserInfo, setAvatar}} />
