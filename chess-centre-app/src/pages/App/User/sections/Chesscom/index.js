@@ -9,6 +9,7 @@ export default function ChesscomFetch({
   chesscomUsername,
   chesscomInfo,
   chesscomLastUpdated,
+  setAvatar
 }) {
   const { addToast } = useToasts();
   const [isFetching, setIsFetching] = useState(false);
@@ -43,11 +44,14 @@ export default function ChesscomFetch({
     try {
       const response = await API.post("chesscom", `/user/${username}`);
       if (!response.error) {
-        const { chess_bullet, chess_blitz, chess_rapid } = response;
+        const { chess_bullet, chess_blitz, chess_rapid, avatar } = response;
         setBlitz(chess_blitz?.last?.rating);
         setBullet(chess_bullet?.last?.rating);
         setRapid(chess_rapid?.last?.rating);
         setLastUpdated(Date.now());
+        if(avatar && setAvatar) {
+          setAvatar(avatar);
+        }  
         addToast(`Successfully updated your Chess.com username and ratings!`, {
           appearance: "success",
           autoDismiss: true,

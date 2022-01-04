@@ -102,16 +102,15 @@ const calculatePerformanceRating = (id, games) => {
   );
 };
 
-export default function PerformanceStats({ playerInfo, games }) {
-  const [avatarUrl, setAvatarUrl] = useState("");
+export default function PerformanceStats({ playerInfo, games, openModal, avatarUrl, setAvatar }) {
   const [stats, setStats] = useState(initialState);
 
   useEffect(() => {
     if (playerInfo && playerInfo.chesscomInfo) {
       const { avatar } = JSON.parse(playerInfo.chesscomInfo);
-      setAvatarUrl(avatar);
+      setAvatar(avatar);
     } else {
-      setAvatarUrl("");
+      setAvatar("");
     }
 
     if (games && games.length > 0) {
@@ -120,7 +119,7 @@ export default function PerformanceStats({ playerInfo, games }) {
     }
 
     return () => { };
-  }, [playerInfo, games]);
+  }, [playerInfo, games, setAvatar]);
 
   return (
     <div className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
@@ -141,6 +140,7 @@ export default function PerformanceStats({ playerInfo, games }) {
             className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:opacity-70 cursor-pointer"
             src={DefaultAvatar}
             alt=""
+            onClick={openModal}
           />
         )}
         <dl className="mt-2 flex-grow flex flex-col justify-between text-gray-600">
@@ -189,7 +189,7 @@ const RatingCard = ({ color, name, rating }) => {
         "flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md"
       )}
     >
-      { name.charAt(0) }
+      {name.charAt(0)}
     </div>
     <div className="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
       <div className="flex-1 px-4 py-2 text-sm truncate">

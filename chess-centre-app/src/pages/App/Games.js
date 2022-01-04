@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useMember } from "../../api/member";
 import GameTable from "../../components/Table/GameTable";
 import PerformanceStats from "../../components/RatingProfile/PerformanceStats";
+import AddMyProfileImageModal from "../../components/Modal/AddMyProfileImageModal";
 
 export const listGamesByWhiteMember = /* GraphQL */ `
   query ListGamesByWhiteMember(
@@ -51,6 +52,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           liChessInfo
           chesscomUsername
           chesscomInfo
+          chesscomLastUpdated
         }
         blackMember {
           id
@@ -68,6 +70,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           liChessInfo
           chesscomUsername
           chesscomInfo
+          chesscomLastUpdated
         }
       }
       nextToken
@@ -121,6 +124,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           liChessInfo
           chesscomUsername
           chesscomInfo
+          chesscomLastUpdated
         }
         blackMember {
           id
@@ -138,6 +142,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           liChessInfo
           chesscomUsername
           chesscomInfo
+          chesscomLastUpdated
         }
       }
       nextToken
@@ -156,6 +161,17 @@ export default function GamesView() {
   const [currentUserInfo, setCurrentUserInfo] = useState("");
   const [playerId, setPlayerId] = useState(memberId);
   const [playerName, setPlayerName] = useState("");
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [avatarUrl, setAvatar] = useState("");
+
+  const openModal = () => {
+    if (currentUser) {
+      setIsOpenModal(true);
+    }
+  };
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
 
   const fetchWhiteGames = async (id) => {
     const {
@@ -265,7 +281,7 @@ export default function GamesView() {
       <div className="mt-2 max-w-3xl mx-auto grid grid-cols-1 gap-4 lg:max-w-full lg:grid-flow-col-dense xl:grid-cols-3">
         <section className="hidden xl:block col-span-1 mt-5">
           {games && games.length > 0 && (
-            <PerformanceStats playerInfo={currentUserInfo} {...{ games }} />
+            <PerformanceStats playerInfo={currentUserInfo} {...{ games, openModal, avatarUrl, setAvatar }} />
           )}
         </section>
         <section className="space-y-6 lg:col-start-1 lg:col-span-2">
@@ -337,6 +353,10 @@ export default function GamesView() {
             )}
           </dl>
         </section>
+        <AddMyProfileImageModal
+          open={isOpenModal}
+          {...{ ...currentUserInfo, closeModal, setAvatar }}
+        />
       </div>
     </div>
   );
