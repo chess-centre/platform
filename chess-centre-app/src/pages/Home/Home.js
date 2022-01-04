@@ -180,8 +180,8 @@ const Home = () => {
       </div>
 
       <ComingEvents />
-      <FAQs />
       <GamesSignUp />
+      <FAQs /> 
       <FindUs />
       <DownloadPWA />
       <Integrations />

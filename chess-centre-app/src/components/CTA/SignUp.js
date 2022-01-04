@@ -1,4 +1,5 @@
-import GamesExample from "../../assets/img/games-example.jpg";
+import { Link } from "react-router-dom";
+import GamesExample from "../../assets/img/games-example.png";
 
 export default function SignUp() {
   return (
@@ -8,23 +9,22 @@ export default function SignUp() {
           <div className="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
             <div className="lg:self-center">
               <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-                <span className="block">Ready to dive in?</span>
-                <span className="block">Track your progress</span>
+                <i className="fal fa-analytics"></i><span className="block">Track your progress</span>
               </h2>
               <p className="mt-4 text-lg leading-6 text-teal-200">
-                Find all your over-the-board games all in one place!
+                View your previous games and instantly check them with Lichess analysis.
               </p>
-              <a
-                href="#"
+              <Link
+                to="/register"
                 className="mt-8 bg-white border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-teal-600 hover:bg-teal-50"
               >
-                Sign up for free
-              </a>
+                Register free
+              </Link>
             </div>
           </div>
-          <div className="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+          <div className="-mt-6 aspect-w-2 aspect-h-1">
             <img
-              className="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20"
+              className="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top xl:translate-x-10 lg:translate-y-20"
               src={GamesExample}
               alt="App screenshot"
             />
