@@ -102,17 +102,15 @@ const calculatePerformanceRating = (id, games) => {
   );
 };
 
-export default function PerformanceStats(props, { playerInfo, games }) {
-  const [avatarUrl, setAvatarUrl] = useState("");
+export default function PerformanceStats({ playerInfo, games, openModal, avatarUrl, setAvatar }) {
   const [stats, setStats] = useState(initialState);
-  const { openModel } = props;
 
   useEffect(() => {
     if (playerInfo && playerInfo.chesscomInfo) {
       const { avatar } = JSON.parse(playerInfo.chesscomInfo);
-      setAvatarUrl(avatar);
+      setAvatar(avatar);
     } else {
-      setAvatarUrl("");
+      setAvatar("");
     }
 
     if (games && games.length > 0) {
@@ -121,7 +119,7 @@ export default function PerformanceStats(props, { playerInfo, games }) {
     }
 
     return () => { };
-  }, [playerInfo, games]);
+  }, [playerInfo, games, setAvatar]);
 
   return (
     <div className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
@@ -142,7 +140,7 @@ export default function PerformanceStats(props, { playerInfo, games }) {
             className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:opacity-70 cursor-pointer"
             src={DefaultAvatar}
             alt=""
-            onClick={openModel}
+            onClick={openModal}
           />
         )}
         <dl className="mt-2 flex-grow flex flex-col justify-between text-gray-600">
