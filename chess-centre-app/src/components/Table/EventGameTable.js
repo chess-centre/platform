@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import Table, { SelectColumnFilter } from "./index"; // new
+import Table from "./index"; // new
 import GameViewerModal from "../Modal/GameViewerModal";
 
 export default function GameTable({ games, memberId }) {
@@ -50,8 +50,6 @@ export default function GameTable({ games, memberId }) {
       {
         Header: "White",
         accessor: "white",
-        Filter: SelectColumnFilter,
-        filter: "includes",
         Cell: (props) => (
           <Link
             className="text-teal-600"
@@ -89,8 +87,6 @@ export default function GameTable({ games, memberId }) {
       {
         Header: "Black",
         accessor: "black",
-        Filter: SelectColumnFilter,
-        filter: "includes",
         Cell: (props) => (
           <Link
             className="text-teal-600"

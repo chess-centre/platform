@@ -81,7 +81,11 @@ export default function Players() {
             },
           ];
         }, [])
-        .sort((a, b) => a.lichessBlitz - b.lichessBlitz);
+        .sort((a, b) => a.lichessBlitz - b.lichessBlitz)
+        .map((player, i) => {
+          player.rank = i + 1;
+          return {...player }
+        });
       setLichessPlayers(filtered);
     }
   };
@@ -99,7 +103,6 @@ export default function Players() {
             ...players,
             {
               id: member.id,
-              rank: (index += 1),
               name: member.name,
               handle: member.chesscomUsername,
               tactics: parsedChesscom?.tactics?.highest?.rating,
@@ -110,7 +113,11 @@ export default function Players() {
             },
           ];
         }, [])
-        .sort((a, b) => a.chesscomBlitz - b.chesscomBlitz);
+        .sort((a, b) => a.chesscomBlitz - b.chesscomBlitz)
+        .map((player, i) => {
+          player.rank = i + 1;
+          return {...player }
+        });
       setChesscomPlayers(filtered);
     }
   };
