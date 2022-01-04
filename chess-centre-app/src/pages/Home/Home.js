@@ -7,7 +7,9 @@ import ComingEvents from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
+import GamesSignUp from "../../components/CTA/SignUp";
 import Integrations from "../../components/Integrations";
+
 import { useLiveGameState } from "../../context/LiveGameContext";
 
 const Home = () => {
@@ -178,7 +180,8 @@ const Home = () => {
       </div>
 
       <ComingEvents />
-      <FAQs />
+      <GamesSignUp />
+      <FAQs /> 
       <FindUs />
       <DownloadPWA />
       <Integrations />
