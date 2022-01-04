@@ -1,8 +1,10 @@
 import React from "react";
+import moment from "moment";
 import { Link } from "react-router-dom";
-import Table from "./index"; // new
+import Table from "./index";
 
-export default function PlayersTable({ players }) {
+
+export default function LichessPlayersTable({ players, colour }) {
   const columns = React.useMemo(
     () => [
       {
@@ -27,36 +29,46 @@ export default function PlayersTable({ players }) {
         ),
       },
       {
-        Header: "Standard",
-        accessor: "standard",
+        Header: "Handle",
+        accessor: "handle",
       },
       {
-        Header: "Rapid",
-        accessor: "rapid"
-      },
-      {
-        Header: "Bullet",
-        accessor: "chesscomBullet",
-      },
-      {
-        Header: "Blitz",
-        accessor: "chesscomBlitz",
-      },
-      {
-        Header: "Rapid",
-        accessor: "chesscomRapid",
-      },
-      {
-        Header: "Bullet",
-        accessor: "lichessBullet",
+        Header: "Total Game",
+        accessor: "total",
+        Cell: (props) => (
+          <div
+            className="font-medium text-sm"
+          >
+            {props.cell.value}
+          </div>
+        ),
       },
       {
         Header: "Blitz",
         accessor: "lichessBlitz",
       },
       {
+        Header: "Bullet",
+        accessor: "lichessBullet",
+      },
+      {
         Header: "Rapid",
         accessor: "lichessRapid",
+      },
+      {
+        Header: "Puzzle Rating",
+        accessor: "puzzleRating",
+      },
+      {
+        Header: "Last Updated",
+        accessor: "lastUpdated",
+        Cell: (props) => (
+          <div
+            className="text-sm text-gray-500"
+          >
+            {moment(props.cell.value).format("Do MMM @ HH:mm")}
+          </div>
+        ),
       }
     ],
     []
@@ -70,6 +82,7 @@ export default function PlayersTable({ players }) {
             columns={columns}
             data={players}
             searchPlaceholder="players..."
+            colour={colour}
           /> }
         </div>
       </main>

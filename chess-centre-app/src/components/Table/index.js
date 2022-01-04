@@ -13,10 +13,7 @@ import {
   ChevronRightIcon,
   ChevronDoubleRightIcon,
 } from "@heroicons/react/solid";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { classNames } from "../../utils/Classes";
 
 function PageButton({ children, className, ...rest }) {
   return (
@@ -156,7 +153,7 @@ export function SelectColumnFilter({
   );
 }
 
-function Table({ columns, data, searchPlaceholder = "games..." }) {
+function Table({ columns, data, searchPlaceholder = "games...", colour="bg-teal-700" }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -191,7 +188,7 @@ function Table({ columns, data, searchPlaceholder = "games..." }) {
   // Render the UI for your table
   return (
     <>
-      <div className="mr-2 sm:flex sm:gap-x-2">
+      <div className="sm:gap-x-2">
         <GlobalFilter
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={state.globalFilter}
@@ -223,7 +220,7 @@ function Table({ columns, data, searchPlaceholder = "games..." }) {
                     // we can add them into the header props
                     <th
                       scope="col"
-                      className="group bg-teal-700 px-2 py-3 text-center text-xs font-medium text-gray-100 uppercase"
+                      className={classNames(colour, "group px-2 py-3 text-center text-xs font-medium text-gray-100 uppercase")}
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                     >
                       <div className=" flex items-center text-center justify-between">
