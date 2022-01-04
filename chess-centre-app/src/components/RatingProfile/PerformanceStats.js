@@ -103,10 +103,10 @@ const calculatePerformanceRating = (id, games) => {
   );
 };
 
-export default function PerformanceStats( { playerInfo, games }) {
+export default function PerformanceStats(props, { playerInfo, games }) {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [stats, setStats] = useState(initialState);
-
+  const { openModal } = props;
   useEffect(() => {
     if (playerInfo && playerInfo.chesscomInfo) {
       const { avatar } = JSON.parse(playerInfo.chesscomInfo);

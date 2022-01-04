@@ -157,7 +157,16 @@ export default function GamesView() {
   const [currentUserInfo, setCurrentUserInfo] = useState("");
   const [playerId, setPlayerId] = useState(memberId);
   const [playerName, setPlayerName] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const openModal = () => {
+    if (currentUser === false) {
+      setIsModalOpen(true);
+    }
+  };
   const fetchWhiteGames = async (id) => {
     const {
       data: {
