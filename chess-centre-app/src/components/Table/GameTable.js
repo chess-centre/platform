@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import QuickSearch from "../../components/FAQs/QuickSearch";
-import Table, { SelectColumnFilter } from "./index"; // new
+import Table from "./index"; // new
 import GameViewerModal from "../Modal/GameViewerModal";
 
 export default function GameTable({ games, memberId }) {
@@ -124,8 +124,6 @@ export default function GameTable({ games, memberId }) {
       },
       {
         Header: "Event",
-        Filter: SelectColumnFilter,
-        filter: "includes",
         accessor: "event",
         Cell: (props) => (
           <Link
