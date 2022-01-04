@@ -102,9 +102,10 @@ const calculatePerformanceRating = (id, games) => {
   );
 };
 
-export default function PerformanceStats({ playerInfo, games }) {
+export default function PerformanceStats(props, { playerInfo, games }) {
   const [avatarUrl, setAvatarUrl] = useState("");
   const [stats, setStats] = useState(initialState);
+  const { openModel } = props;
 
   useEffect(() => {
     if (playerInfo && playerInfo.chesscomInfo) {
@@ -141,6 +142,7 @@ export default function PerformanceStats({ playerInfo, games }) {
             className="w-32 h-32 flex-shrink-0 mx-auto rounded-full hover:opacity-70 cursor-pointer"
             src={DefaultAvatar}
             alt=""
+            onClick={openModel}
           />
         )}
         <dl className="mt-2 flex-grow flex flex-col justify-between text-gray-600">
@@ -189,7 +191,7 @@ const RatingCard = ({ color, name, rating }) => {
         "flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md"
       )}
     >
-      { name.charAt(0) }
+      {name.charAt(0)}
     </div>
     <div className="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
       <div className="flex-1 px-4 py-2 text-sm truncate">
