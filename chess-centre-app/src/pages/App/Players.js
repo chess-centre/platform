@@ -81,7 +81,7 @@ export default function Players() {
             },
           ];
         }, [])
-        .sort((a, b) => a.lichessBlitz - b.lichessBlitz)
+        .sort((a, b) => b.lichessBlitz - a.lichessBlitz)
         .map((player, i) => {
           player.rank = i + 1;
           return {...player }
@@ -94,7 +94,7 @@ export default function Players() {
     if (players && players.length > 0) {
       const filtered = players
         .filter((m) => !!m.chesscomUsername)
-        .reduce((players, member, index) => {
+        .reduce((players, member) => {
           const parsedChesscom = member.chesscomInfo
             ? JSON.parse(member.chesscomInfo)
             : undefined;
@@ -113,7 +113,7 @@ export default function Players() {
             },
           ];
         }, [])
-        .sort((a, b) => a.chesscomBlitz - b.chesscomBlitz)
+        .sort((a, b) => b.chesscomBlitz - a.chesscomBlitz)
         .map((player, i) => {
           player.rank = i + 1;
           return {...player }
