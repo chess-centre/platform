@@ -32,7 +32,7 @@ export default function AddMyProfileImageModel(props) {
                     </p>
                 </ModalBody>
                 <ModalFooter>
-                    <Button className="w-full sm:w-auto mb-2" onClick={closeModal}>
+                    <Button className="w-full sm:w-auto mb-2" >
                         Close
                     </Button>
                 </ModalFooter>
