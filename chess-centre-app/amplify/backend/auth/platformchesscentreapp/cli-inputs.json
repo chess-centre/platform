@@ -2,7 +2,7 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "platfoe3724a3f",
     "userPoolName": "platformchesscentreapp",
     "autoVerifiedAttributes": [
@@ -48,7 +48,7 @@
     "usernameAttributes": [
       "email"
     ],
-    "useDefault": "default",
+    "useDefault": "defaultSocial",
     "userPoolGroups": false,
     "userPoolGroupList": [],
     "adminQueries": false,
@@ -81,13 +81,20 @@
         "alter-claims"
       ]
     },
-    "hostedUI": false,
+    "hostedUI": true,
     "parentStack": {
       "Ref": "AWS::StackId"
     },
     "permissions": [],
     "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PostConfirmation\",\n    \"lambdaFunctionName\": \"platformchesscentreappPostConfirmation\"\n  },\n  {\n    \"triggerType\": \"PreTokenGeneration\",\n    \"lambdaFunctionName\": \"platformchesscentreappPreTokenGeneration\"\n  }\n]",
     "breakCircularDependency": true,
+    "useEnabledMfas": false,
+    "hostedUIDomainName": "fbdev",
+    "authProvidersUserPool": [
+      "Facebook"
+    ],
+    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}}]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/app/dashboard/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}",
     "authProviders": []
   }
 }
