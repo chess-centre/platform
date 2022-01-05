@@ -8,7 +8,7 @@
   "resourceName": "platformchesscentreappPostConfirmation",
   "parentStack": "auth",
   "triggerEnvs": "[]",
-  "triggerDir": "C:\\Users\\user\\AppData\\Roaming\\nvm\\v14.16.0\\node_modules\\@aws-amplify\\cli\\node_modules\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerDir": "C:\\Users\\user\\AppData\\Roaming\\npm\\node_modules\\@aws-amplify\\cli\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
   "triggerTemplate": "PostConfirmation.json.ejs",
   "triggerEventPath": "PostConfirmation.event.json",
   "roleName": "platformchesscentreappPostConfirmation",
