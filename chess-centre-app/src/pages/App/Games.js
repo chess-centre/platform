@@ -229,6 +229,9 @@ export default function GamesView() {
   };
 
   useEffect(() => {
+
+    document.title = "The Chess Centre | Games";
+
     try {
       if (memberId) {
         setPlayerId(memberId);

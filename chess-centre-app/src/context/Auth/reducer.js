@@ -14,8 +14,8 @@ let token = (() => {
 })();
 
 export const initialState = {
-  user: "" || user,
-  token: "" || token,
+  user: user || "",
+  token: token || "",
   loading: false,
   errorMessage: null,
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { useAuthState } from "../../context/Auth";
@@ -15,6 +15,10 @@ import { useLiveGameState } from "../../context/LiveGameContext";
 const Home = () => {
   const { user } = useAuthState();
   const { eventInfo, isLoading } = useLiveGameState();
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Welcome"
+  }, []);
 
   return (
     <div>

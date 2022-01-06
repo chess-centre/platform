@@ -1,10 +1,15 @@
-import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import MatchNightImage from "../../assets/img/match-night.jpg";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
 export default function MatchNight() {
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Match Night";
+  }, []);
+
   return (
     <div>
       <div className="relative pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
