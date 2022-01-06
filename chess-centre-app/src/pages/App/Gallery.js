@@ -1,7 +1,12 @@
-import React from "react";
+import { useEffect } from "react";
 import InstagramFeed from "../../components/Social/InstagramFeed";
 
 export default function Gallery() {
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Gallery";
+  }, []);
+
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">

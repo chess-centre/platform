@@ -16,6 +16,9 @@ export default function ClubNight() {
       const clubNights = data.filter(event => event.type.eventType === "club").splice(0, 3);
       setClubNightDates(clubNights);
     }
+
+    document.title = "The Chess Centre | Socials";
+
   }, [data]);
 
   return (

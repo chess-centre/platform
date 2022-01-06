@@ -96,6 +96,9 @@ export default function Dashboard() {
   });
 
   useEffect(() => {
+
+    document.title = "The Chess Centre | Dashboard";
+
     async function fetchMember() {
       setIsLoading(true);
       const {

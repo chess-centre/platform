@@ -11,7 +11,7 @@ import Loading from "../../assets/img/loading.svg";
 import SpecialLoading from "../../assets/img/special-loading.gif";
 import JuniorMemberSignUpModal from "../../components/Modal/JuniorMemberSignUpModal";
 
-function Login(props) {
+function Register(props) {
   const [isSpecialLoading, setIsSpecialLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
@@ -24,6 +24,9 @@ function Login(props) {
   const dispatch = useAuthDispatch();
 
   useEffect(() => {
+
+    document.title = "The Chess Centre | Register";
+
     const isFormValid = () => {
       if (!email) return false;
       if (!firstName) return false;
@@ -342,4 +345,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default Register;

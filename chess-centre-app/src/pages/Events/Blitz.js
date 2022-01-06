@@ -52,6 +52,9 @@ export default function BlitzEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
+
+    document.title = "The Chess Centre | Blitz";
+
     const fetchEvent = async () => {
       setIsLoading(true);
       const response = await API.graphql({
@@ -83,6 +86,7 @@ export default function BlitzEvent() {
       setIsLoading(false);
     };
     fetchEvent();
+
   }, [id, startDate, defaultPrice]);
 
   return (
