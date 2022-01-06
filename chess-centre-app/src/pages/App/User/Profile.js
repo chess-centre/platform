@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
 import QuickSearch from "../../../components/FAQs/QuickSearch";
@@ -48,6 +48,9 @@ export default function Profile() {
   const [isPaid, setIsPaid] = useState(false);
 
   useEffect(() => {
+
+    document.title = "The Chess Centre | Profile";
+
     const getCustomerPortal = async () => {
       const returnUrl = `${window.location.origin}/app/profile`;
       const { url } = await API.post("public", "/customer-portal", {
@@ -59,7 +62,7 @@ export default function Profile() {
       });
       setCustomerPortalUrl(url);
     };
-
+  
     const getMemberInfo = async () => {
       const {
         data: { getMember: member },
@@ -68,15 +71,18 @@ export default function Profile() {
         authMode: "AWS_IAM",
         variables: { id: user.username },
       });
-
+  
       setMember(member);
+
+      document.title = `The Chess Centre | ${member.name}`;
+
       if (member && member.stripeCurrentPeriodEnd) {
         const today = new Date();
         const renewal = new Date(member.stripeCurrentPeriodEnd);
         setIsPaid(renewal > today);
       }
     };
-
+  
     const getProfileData = async () => {
       setIsLoadingProfile(true);
       await getMemberInfo().catch(e => console.log(e));
@@ -87,6 +93,7 @@ export default function Profile() {
     getProfileData().catch((error) => {
       setIsLoadingProfile(false);
     });
+
   }, [user]);
 
   return (

@@ -178,6 +178,9 @@ export default function Players() {
   };
 
   useEffect(() => {
+
+    document.title = "The Chess Centre | Players";
+
     const fetchRatedPlayers = async () => {
       setIsLoading(true);
       const {

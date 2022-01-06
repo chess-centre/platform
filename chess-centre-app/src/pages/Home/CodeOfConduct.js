@@ -1,8 +1,13 @@
-import React from "react";
+import { useEffect } from "react";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
 function CodeOfConduct() {
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Code of Conduct"
+  }, []);
+
   return (
     <div>
       <div className="relative bg-gray-50 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">

@@ -1,8 +1,13 @@
-import React from "react";
+import { useEffect } from "react";
 import { CentreRoadmap } from "../../components/Roadmap/CentreRoadmap";
 import { TechRoadmap } from "../../components/Roadmap/TechRoadmap";
 
 export default function AppRoadmap() {
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Roadmap";
+  }, []);
+
   return (
     <div className="">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">

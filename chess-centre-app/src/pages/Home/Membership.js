@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
@@ -6,6 +6,11 @@ import MembershipCard from "../../components/Membership/MembershipCard";
 import { Memberships } from "../../api/data.memberships";
 
 function Membership() {
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Membership"
+  }, []);
+
   return (
     <div>
       <div className="relative bg-gray-50 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">

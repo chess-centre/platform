@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import queryString from "query-string";
 import { Search } from "../../components/FAQs/Search";
@@ -20,6 +20,10 @@ export default function FAQs() {
     const search = searchQuery(location.search, query);
     history.replace({ pathname: location.pathname, search });
   };
+
+  useEffect(() => {
+    document.title = "The Chess Centre | FAQs";
+  }, []);
 
   return (
     <div>

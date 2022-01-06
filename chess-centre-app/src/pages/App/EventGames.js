@@ -94,6 +94,9 @@ export default function EventGamesView() {
   });
 
   useEffect(() => {
+
+    document.title = "The Chess Centre | Games by Event";
+
     const fetchGames = async (eventId) => {
       setIsLoadingGames(true);
       const {

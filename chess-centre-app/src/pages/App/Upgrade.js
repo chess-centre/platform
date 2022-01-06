@@ -1,8 +1,13 @@
-import React from "react";
+import { useEffect } from "react";
 import MembershipCard from "../../components/Membership/MembershipCard";
 import { Memberships } from "../../api/data.memberships";
 
 export default function Upgrade() {
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Membership";
+  }, []);
+
   return (
     <>
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
