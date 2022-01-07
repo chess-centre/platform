@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import EventGameTable from "../../components/Table/EventGameTable";
-import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 
 export const listGamesByEvent = /* GraphQL */ `
   query ListGamesByEvent(
@@ -88,13 +87,8 @@ export default function EventGamesView() {
   const [isErrorGame, setIsErrorGame] = useState(false);
   const [games, setGames] = useState([]);
   const [eventName, setEventName] = useState("");
-  const [slideState, setIsSlideOutOpen] = useState({
-    open: false,
-    eventDetails: {},
-  });
 
   useEffect(() => {
-
     document.title = "The Chess Centre | Games by Event";
 
     const fetchGames = async (eventId) => {
@@ -129,28 +123,21 @@ export default function EventGamesView() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-chess-king text-teal-600"></i> Games
-        <div className="inline-flex align-top top-2">
-          <span
-            onClick={() => setIsSlideOutOpen({ open: true })}
-            className="ml-2 cursor-pointer items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-800 top-2"
-          >
-            BETA
-          </span>
-        </div>
+        <i className="fas fa-chess-king text-teal-600"></i> Games <span className="text-sm text-gray-500">by event</span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
           {eventName && (
-            <h1 className="text-sm text-left text-gray-500">
-              Result for event{" "}
-              <span className="text-orange-brand font-medium">{eventName}</span>
-            </h1>
+            <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
+              <p className="ml-2 mt-1 text-md text-gray-500 truncate">
+                {eventName}
+              </p>
+            </div>
           )}
         </div>
       </div>
 
-      <div>
+      <div className="grid grid-cols-1">
         {!isLoadingGames && !isErrorGame && (
           <div>
             {games && games.length > 0 ? (
@@ -193,11 +180,6 @@ export default function EventGamesView() {
           </div>
         )}
       </div>
-
-      <BetaSlideOut
-        slideState={slideState}
-        setIsSlideOutOpen={setIsSlideOutOpen}
-      ></BetaSlideOut>
     </div>
   );
 }

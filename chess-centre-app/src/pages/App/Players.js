@@ -41,10 +41,23 @@ export const listMembers = /* GraphQL */ `
 export default function Players() {
   const [tabs, setTabs] = useState([
     { name: "ECF", ref: "ecf", colour: "bg-teal-700", current: true },
-    { name: "Lichess", ref: "lichess", colour: "bg-purple-800", current: false },
-    { name: "Chess.com", ref: "chesscom", colour: "bg-yellow-600", current: false },
+    {
+      name: "Lichess",
+      ref: "lichess",
+      colour: "bg-purple-800",
+      current: false,
+    },
+    {
+      name: "Chess.com",
+      ref: "chesscom",
+      colour: "bg-yellow-600",
+      current: false,
+    },
   ]);
-  const [selectedTab, setSelectedTab] = useState({ ref: "ecf", colour: "bg-teal-700"});
+  const [selectedTab, setSelectedTab] = useState({
+    ref: "ecf",
+    colour: "bg-teal-700",
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [ecfPlayers, setECFPlayers] = useState([]);
@@ -77,14 +90,14 @@ export default function Players() {
               lichessBlitz: parsedLichess?.perfs?.blitz?.rating,
               lichessBullet: parsedLichess?.perfs?.bullet?.rating,
               lichessRapid: parsedLichess?.perfs?.rapid?.rating,
-              lastUpdated: member.lichessLastUpdated
+              lastUpdated: member.lichessLastUpdated,
             },
           ];
         }, [])
         .sort((a, b) => b.lichessBlitz - a.lichessBlitz)
         .map((player, i) => {
           player.rank = i + 1;
-          return {...player }
+          return { ...player };
         });
       setLichessPlayers(filtered);
     }
@@ -109,14 +122,14 @@ export default function Players() {
               chesscomBlitz: parsedChesscom?.chess_blitz?.last?.rating,
               chesscomBullet: parsedChesscom?.chess_bullet?.last?.rating,
               chesscomRapid: parsedChesscom?.chess_rapid?.last?.rating,
-              lastUpdated: member.chesscomLastUpdated
+              lastUpdated: member.chesscomLastUpdated,
             },
           ];
         }, [])
         .sort((a, b) => b.chesscomBlitz - a.chesscomBlitz)
         .map((player, i) => {
           player.rank = i + 1;
-          return {...player }
+          return { ...player };
         });
       setChesscomPlayers(filtered);
     }
@@ -138,13 +151,25 @@ export default function Players() {
               ? undefined
               : member.ecfRapid
             : undefined;
+
+          const form = member.gameInfo
+            ? JSON.parse(member.gameInfo)?.formStats
+            : [];
+          const formCount = form.reduce((p, c) => p + c, 0);
+
+          while (form.length < 6) {
+            form.unshift("");
+          }
+
           return [
             ...players,
             {
               id: member.id,
+              formArray: form,
               rank: (index += 1),
               name: member.name,
               club: member.club,
+              form: formCount,
               standard,
               rapid,
             },
@@ -167,18 +192,19 @@ export default function Players() {
   const renderTable = ({ ref, colour }) => {
     switch (ref) {
       case "ecf":
-        return <ECFPlayerTable players={ecfPlayers} {...{colour}} />;
+        return <ECFPlayerTable players={ecfPlayers} {...{ colour }} />;
       case "lichess":
-        return <LichessPlayerTable players={lichessPlayers} {...{colour}} />;
+        return <LichessPlayerTable players={lichessPlayers} {...{ colour }} />;
       case "chesscom":
-        return <ChesscomPlayerTable players={chesscomPlayers} {...{colour}} />;
+        return (
+          <ChesscomPlayerTable players={chesscomPlayers} {...{ colour }} />
+        );
       default:
-        return <ECFPlayerTable players={ecfPlayers} {...{colour}} />;
+        return <ECFPlayerTable players={ecfPlayers} {...{ colour }} />;
     }
   };
 
   useEffect(() => {
-
     document.title = "The Chess Centre | Players";
 
     const fetchRatedPlayers = async () => {
