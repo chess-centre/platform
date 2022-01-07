@@ -22,7 +22,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const region = process.env.REGION;
 const appsyncUrl = process.env.API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIENDPOINTOUTPUT;
 const memberTable = process.env.API_PLATFORMCHESSCENTREAPP_MEMBERTABLE_NAME;
-const planTable = process.env.API_PLATFORMCHESSCENTREAPP_PLANTABLE_NAME
+const planTable = process.env.API_PLATFORMCHESSCENTREAPP_PLANTABLE_NAME;
 const endpoint = new urlParse(appsyncUrl).hostname.toString();
 
 

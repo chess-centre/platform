@@ -26,7 +26,8 @@ async function sendMembershipEmailInternal({ email, name, stripeEmail, price, st
         <p>Email: ${email}</p>
         <p>Payment Email: ${stripeEmail}</p>
         <p>Price: £${price / 100}</p>
-        <p>Type: £${stripeFriendlyProductName}</p>
+        <p>Type: ${stripeFriendlyProductName}</p>
+        ${email !== stripeEmail && `<p><span style="color: #FF0000;">Be aware:</span> The account email and the strip email differ!</p>`}
         `
       }
       }
