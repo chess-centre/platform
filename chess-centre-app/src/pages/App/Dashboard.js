@@ -8,7 +8,6 @@ import {
   RatingProgressChart,
   ResultsDoughnut,
 } from "../../api/data.dashboard";
-import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 import { prettyDate } from "../../utils/DateFormating";
 import { useAuthState, isPaidMember } from "../../context/Auth";
 
@@ -90,10 +89,6 @@ export default function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [previousEvents, setPreviousEvents] = useState([]);
   const [upcomingEvents, setUpComingEvents] = useState([]);
-  const [slideState, setIsSlideOutOpen] = useState({
-    open: false,
-    eventDetails: {},
-  });
 
   useEffect(() => {
 
@@ -134,16 +129,8 @@ export default function Dashboard() {
     <>
       <h1 className="relative my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <i className="fad fa-chart-network text-teal-600"></i> Dashboard
-        <div className="inline-flex align-top top-2 ml-1">
-          <span
-            onClick={() => setIsSlideOutOpen({ open: true })}
-            className="mr-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-600 top-2 cursor-pointer"
-          >
-            BETA
-          </span>
-        </div>
         {isPaid && !isLoading && (
-          <div className="inline-flex align-top top-2">
+          <div className="inline-flex align-top top-2 ml-2">
             <span className="items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
               Premium
             </span>
@@ -187,10 +174,6 @@ export default function Dashboard() {
         upcomingEvents={upcomingEvents}
         previousEvents={previousEvents}
       />
-      <BetaSlideOut
-        slideState={slideState}
-        setIsSlideOutOpen={setIsSlideOutOpen}
-      ></BetaSlideOut>
     </>
   );
 }
