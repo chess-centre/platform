@@ -180,6 +180,8 @@ async function handleCheckoutSessionCompletedSubscription(id, customer, price, s
     memberId
   });
 
+  console.log("test");
+
   // Go ahead and set this since we know they should be considered
   // a paid member; we'll get a more specific date from subsequent
   // webhook events.
