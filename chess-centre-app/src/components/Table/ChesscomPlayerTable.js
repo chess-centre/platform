@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import Table from "./index";
 
 export default function ChesscomPlayersTable({ players, colour }) {
@@ -18,15 +17,7 @@ export default function ChesscomPlayersTable({ players, colour }) {
       },
       {
         Header: "Name",
-        accessor: "name",
-        Cell: (props) => (
-          <Link
-            className="text-teal-600"
-            to={`/app/games/${props.row.values.id}`}
-          >
-            {props.cell.value}
-          </Link>
-        ),
+        accessor: "name"
       },
       {
         Header: "Handle",

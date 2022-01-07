@@ -24,7 +24,7 @@
         },
         "stripeWebhook": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeWebhook-6267314477476a303036-build.zip"
+          "s3Key": "amplify-builds/stripeWebhook-534d7a6a4349736e3235-build.zip"
         },
         "platformchesscentreappPostConfirmation": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -76,7 +76,7 @@
         },
         "updateGameHistory": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateGameHistory-637a3130345a482f6b6d-build.zip"
+          "s3Key": "amplify-builds/updateGameHistory-4966676834684c346c63-build.zip"
         },
         "uploadLichessPgns": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -96,7 +96,7 @@
         },
         "updateChesscomRatings": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateChesscomRatings-714b2f466d682f433068-build.zip"
+          "s3Key": "amplify-builds/updateChesscomRatings-42385a4868434d353476-build.zip"
         }
       }
     }

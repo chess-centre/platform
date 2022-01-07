@@ -40,10 +40,12 @@ exports.getGameInfo = async (memberId) => {
   const games = [...asWhitePlayer, ...asBlackPlayer];
   const history = genGameHistory(games);
   const stats = genGameStats(asWhitePlayer, asBlackPlayer);
+  const formStats = getFormStats(memberId, games);
             
   return {
     stats,
-    history
+    history,
+    formStats
   };
 };
 
@@ -63,6 +65,22 @@ function genGameHistory(games) {
       }];
     }
   }, []);
+}
+
+function getFormStats(memberId, games) {
+    return games.sort((a, b) => new Date(a.date) - new Date(b.date)).reduce((pre, cur) => {
+      if(cur.whiteMemberId === memberId) {
+        if(cur.result === "1-0") pre.push(1);
+        if(cur.result === "0.5-0.5") pre.push(0.5);
+        if(cur.result === "0-1") pre.push(0);
+      }
+      if(cur.blackMemberId === memberId) {
+        if(cur.result === "0-1") pre.push(1);
+        if(cur.result === "0.5-0.5") pre.push(0.5);
+        if(cur.result === "1-0") pre.push(0);
+      }
+      return [...pre];
+    }, []);
 }
 
 function genGameStats(whiteGames, blackGames) {
@@ -103,7 +121,7 @@ function genGameStats(whiteGames, blackGames) {
         prev.blackWins += 1;
         return prev;
       default:
-        break;
+        return prev;
     }
   }, {
     wins: 0,

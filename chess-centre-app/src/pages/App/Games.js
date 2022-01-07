@@ -229,7 +229,6 @@ export default function GamesView() {
   };
 
   useEffect(() => {
-
     document.title = "The Chess Centre | Games";
 
     try {
@@ -266,17 +265,17 @@ export default function GamesView() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-chess-king text-teal-600"></i> Games
+        <i className="fas fa-chess-king text-teal-600"></i> Games{" "}
+        <span className="text-sm text-gray-500">by player</span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
           {playerName && (
-            <h1 className="text-sm text-left text-gray-500">
-              Individual results for{" "}
-              <span className="text-orange-brand font-medium">
+            <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
+              <p className="ml-2 mt-1 text-md text-gray-500 truncate">
                 {playerName}
-              </span>
-            </h1>
+              </p>
+            </div>
           )}
         </div>
       </div>
@@ -284,7 +283,10 @@ export default function GamesView() {
       <div className="mt-2 max-w-3xl mx-auto grid grid-cols-1 gap-4 lg:max-w-full lg:grid-flow-col-dense xl:grid-cols-3">
         <section className="hidden xl:block col-span-1 mt-5">
           {games && games.length > 0 && (
-            <PerformanceStats playerInfo={currentUserInfo} {...{ games, openModal, avatarUrl, setAvatar }} />
+            <PerformanceStats
+              playerInfo={currentUserInfo}
+              {...{ games, openModal, avatarUrl, setAvatar }}
+            />
           )}
         </section>
         <section className="space-y-6 lg:col-start-1 lg:col-span-2">

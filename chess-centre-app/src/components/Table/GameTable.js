@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import QuickSearch from "../../components/FAQs/QuickSearch";
-import Table from "./index"; // new
+import Table from "./index";
 import GameViewerModal from "../Modal/GameViewerModal";
 
 export default function GameTable({ games, memberId }) {
@@ -22,7 +22,7 @@ export default function GameTable({ games, memberId }) {
     });
   };
 
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: "id",
@@ -181,7 +181,7 @@ export default function GameTable({ games, memberId }) {
     return "draw";
   };
 
-  const data = React.useMemo(() => {
+  const data = useMemo(() => {
     if (games.length > 0) {
       return games
         .reduce((prev, game) => {
@@ -221,13 +221,13 @@ export default function GameTable({ games, memberId }) {
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <main className="max-w-5xl">
         <div className="mt-6">
-          {data && <Table columns={columns} data={data} />}
+          {data && <Table {...{ columns, data }} />}
         </div>
         <div className="mt-4 sm:mt-4 text-right sm:text-left">
           <QuickSearch tag="games" />
         </div>
       </main>
-      <GameViewerModal {...modalState} closeModal={closeModal} />
+      <GameViewerModal {...{ ...modalState, closeModal }} />
     </div>
   );
 }
