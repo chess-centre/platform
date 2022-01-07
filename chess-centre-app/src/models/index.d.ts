@@ -126,6 +126,7 @@ export declare class Member {
   readonly stripeCurrentPeriodEnd?: number;
   readonly stripePriceId?: string;
   readonly stripeProductId?: string;
+  readonly stripeFriendlyProductName?: string;
   readonly ecfRating?: string;
   readonly ecfRapid?: string;
   readonly ecfMembership?: string;

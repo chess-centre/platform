@@ -91,6 +91,7 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   stripeCurrentPeriodEnd: Float @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   stripePriceId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   stripeProductId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
+  stripeFriendlyProductName: String @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   ecfRating: String
   ecfRapid: String
   ecfMembership: String
