@@ -306,6 +306,7 @@ export const createGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -365,6 +366,7 @@ export const createGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -447,6 +449,7 @@ export const createGame = /* GraphQL */ `
         stripeCurrentPeriodEnd
         stripePriceId
         stripeProductId
+        stripeFriendlyProductName
         entries {
           items {
             id
@@ -489,6 +492,7 @@ export const createGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -604,6 +608,7 @@ export const createGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -663,6 +668,7 @@ export const createGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -745,6 +751,7 @@ export const createGame = /* GraphQL */ `
         stripeCurrentPeriodEnd
         stripePriceId
         stripeProductId
+        stripeFriendlyProductName
         entries {
           items {
             id
@@ -787,6 +794,7 @@ export const createGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -914,6 +922,7 @@ export const createGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -947,6 +956,7 @@ export const createGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -1034,6 +1044,7 @@ export const createGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -1183,6 +1194,7 @@ export const updateGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -1242,6 +1254,7 @@ export const updateGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -1324,6 +1337,7 @@ export const updateGame = /* GraphQL */ `
         stripeCurrentPeriodEnd
         stripePriceId
         stripeProductId
+        stripeFriendlyProductName
         entries {
           items {
             id
@@ -1366,6 +1380,7 @@ export const updateGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -1481,6 +1496,7 @@ export const updateGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -1540,6 +1556,7 @@ export const updateGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -1622,6 +1639,7 @@ export const updateGame = /* GraphQL */ `
         stripeCurrentPeriodEnd
         stripePriceId
         stripeProductId
+        stripeFriendlyProductName
         entries {
           items {
             id
@@ -1664,6 +1682,7 @@ export const updateGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -1791,6 +1810,7 @@ export const updateGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -1824,6 +1844,7 @@ export const updateGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -1911,6 +1932,7 @@ export const updateGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -2060,6 +2082,7 @@ export const deleteGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -2119,6 +2142,7 @@ export const deleteGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -2201,6 +2225,7 @@ export const deleteGame = /* GraphQL */ `
         stripeCurrentPeriodEnd
         stripePriceId
         stripeProductId
+        stripeFriendlyProductName
         entries {
           items {
             id
@@ -2243,6 +2268,7 @@ export const deleteGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -2358,6 +2384,7 @@ export const deleteGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -2417,6 +2444,7 @@ export const deleteGame = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -2499,6 +2527,7 @@ export const deleteGame = /* GraphQL */ `
         stripeCurrentPeriodEnd
         stripePriceId
         stripeProductId
+        stripeFriendlyProductName
         entries {
           items {
             id
@@ -2541,6 +2570,7 @@ export const deleteGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -2668,6 +2698,7 @@ export const deleteGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -2701,6 +2732,7 @@ export const deleteGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -2788,6 +2820,7 @@ export const deleteGame = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -3055,6 +3088,7 @@ export const createMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -3088,6 +3122,7 @@ export const createMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -3135,6 +3170,7 @@ export const createMember = /* GraphQL */ `
           stripeCurrentPeriodEnd
           stripePriceId
           stripeProductId
+          stripeFriendlyProductName
           entries {
             items {
               id
@@ -3216,6 +3252,7 @@ export const createMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -3249,6 +3286,7 @@ export const createMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -3296,6 +3334,7 @@ export const createMember = /* GraphQL */ `
           stripeCurrentPeriodEnd
           stripePriceId
           stripeProductId
+          stripeFriendlyProductName
           entries {
             items {
               id
@@ -3437,6 +3476,7 @@ export const createMember = /* GraphQL */ `
       stripeCurrentPeriodEnd
       stripePriceId
       stripeProductId
+      stripeFriendlyProductName
       entries {
         items {
           id
@@ -3501,6 +3541,7 @@ export const createMember = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -3670,6 +3711,7 @@ export const updateMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -3703,6 +3745,7 @@ export const updateMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -3750,6 +3793,7 @@ export const updateMember = /* GraphQL */ `
           stripeCurrentPeriodEnd
           stripePriceId
           stripeProductId
+          stripeFriendlyProductName
           entries {
             items {
               id
@@ -3831,6 +3875,7 @@ export const updateMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -3864,6 +3909,7 @@ export const updateMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -3911,6 +3957,7 @@ export const updateMember = /* GraphQL */ `
           stripeCurrentPeriodEnd
           stripePriceId
           stripeProductId
+          stripeFriendlyProductName
           entries {
             items {
               id
@@ -4052,6 +4099,7 @@ export const updateMember = /* GraphQL */ `
       stripeCurrentPeriodEnd
       stripePriceId
       stripeProductId
+      stripeFriendlyProductName
       entries {
         items {
           id
@@ -4116,6 +4164,7 @@ export const updateMember = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -4285,6 +4334,7 @@ export const deleteMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -4318,6 +4368,7 @@ export const deleteMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -4365,6 +4416,7 @@ export const deleteMember = /* GraphQL */ `
           stripeCurrentPeriodEnd
           stripePriceId
           stripeProductId
+          stripeFriendlyProductName
           entries {
             items {
               id
@@ -4446,6 +4498,7 @@ export const deleteMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -4479,6 +4532,7 @@ export const deleteMember = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -4526,6 +4580,7 @@ export const deleteMember = /* GraphQL */ `
           stripeCurrentPeriodEnd
           stripePriceId
           stripeProductId
+          stripeFriendlyProductName
           entries {
             items {
               id
@@ -4667,6 +4722,7 @@ export const deleteMember = /* GraphQL */ `
       stripeCurrentPeriodEnd
       stripePriceId
       stripeProductId
+      stripeFriendlyProductName
       entries {
         items {
           id
@@ -4731,6 +4787,7 @@ export const deleteMember = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -4922,6 +4979,7 @@ export const createEvent = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -4981,6 +5039,7 @@ export const createEvent = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -5125,6 +5184,7 @@ export const createEvent = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -5316,6 +5376,7 @@ export const updateEvent = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -5375,6 +5436,7 @@ export const updateEvent = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -5519,6 +5581,7 @@ export const updateEvent = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -5710,6 +5773,7 @@ export const deleteEvent = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -5769,6 +5833,7 @@ export const deleteEvent = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -5913,6 +5978,7 @@ export const deleteEvent = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -6079,6 +6145,7 @@ export const createEntry = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -6138,6 +6205,7 @@ export const createEntry = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -6220,6 +6288,7 @@ export const createEntry = /* GraphQL */ `
         stripeCurrentPeriodEnd
         stripePriceId
         stripeProductId
+        stripeFriendlyProductName
         entries {
           items {
             id
@@ -6262,6 +6331,7 @@ export const createEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -6389,6 +6459,7 @@ export const createEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -6422,6 +6493,7 @@ export const createEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -6509,6 +6581,7 @@ export const createEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -6641,6 +6714,7 @@ export const updateEntry = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -6700,6 +6774,7 @@ export const updateEntry = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -6782,6 +6857,7 @@ export const updateEntry = /* GraphQL */ `
         stripeCurrentPeriodEnd
         stripePriceId
         stripeProductId
+        stripeFriendlyProductName
         entries {
           items {
             id
@@ -6824,6 +6900,7 @@ export const updateEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -6951,6 +7028,7 @@ export const updateEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -6984,6 +7062,7 @@ export const updateEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -7071,6 +7150,7 @@ export const updateEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -7203,6 +7283,7 @@ export const deleteEntry = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -7262,6 +7343,7 @@ export const deleteEntry = /* GraphQL */ `
             stripeCurrentPeriodEnd
             stripePriceId
             stripeProductId
+            stripeFriendlyProductName
             entries {
               nextToken
               startedAt
@@ -7344,6 +7426,7 @@ export const deleteEntry = /* GraphQL */ `
         stripeCurrentPeriodEnd
         stripePriceId
         stripeProductId
+        stripeFriendlyProductName
         entries {
           items {
             id
@@ -7386,6 +7469,7 @@ export const deleteEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -7513,6 +7597,7 @@ export const deleteEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             blackMember {
               id
@@ -7546,6 +7631,7 @@ export const deleteEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id
@@ -7633,6 +7719,7 @@ export const deleteEntry = /* GraphQL */ `
               stripeCurrentPeriodEnd
               stripePriceId
               stripeProductId
+              stripeFriendlyProductName
             }
             event {
               id

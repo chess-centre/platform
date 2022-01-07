@@ -964,6 +964,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "stripeFriendlyProductName": {
+                    "name": "stripeFriendlyProductName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "ecfRating": {
                     "name": "ecfRating",
                     "isArray": false,
@@ -1234,5 +1241,5 @@ export const schema = {
             }
         }
     },
-    "version": "c64ed4bf63b9b297cbac9c8b9873ee21"
+    "version": "bd1d495723e56b54363005eaca19aaa1"
 };
