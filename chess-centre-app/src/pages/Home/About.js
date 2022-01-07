@@ -1,10 +1,15 @@
-import React from "react";
+import { useEffect } from "react";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import LandingNav from "../../components/Navigation/LandingNav";
 import Volunteers from "../../components/Volunteers";
 import MattAndyImage from "../../assets/img/matt-andy.png";
 
 const About = () => {
+
+  useEffect(() => {
+    document.title = "The Chess Centre | About Us"
+  }, []);
+
   return (
     <div>
       <div className="bg-white">

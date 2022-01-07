@@ -1,4 +1,4 @@
-import { Auth } from 'aws-amplify';
+import { Auth } from "aws-amplify";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
@@ -24,29 +24,25 @@ const LandingNav = (props) => {
   const selectableMenuMobile =
     "text-gray-700 hover:text-teal-900 hover:bg-orange-50";
 
-  const signOut = () => { 
+  const signOut = () => {
     logout(dispatch);
     history.push("/");
   };
 
   useEffect(() => {
-      const getCurrentUser = async () => {
-        try {
-          await Auth.currentAuthenticatedUser();
-        } catch (error) {
-          localStorage.removeItem("currentUser");
-          localStorage.removeItem("token");
-        }
-      }
-      if(user && user.userConfirmed) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
+    const getCurrentUser = async () => {
+      try {
+        await Auth.currentAuthenticatedUser();
+      } catch (error) {
         localStorage.removeItem("currentUser");
         localStorage.removeItem("token");
       }
-      getCurrentUser();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    };
+    if (user && user.userConfirmed) {
+      setIsLoggedIn(true);
+    }
+    getCurrentUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -111,49 +107,60 @@ const LandingNav = (props) => {
             })}
           </div>
           <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
-              <span className="inline-flex rounded-md">
-                {isLoggedIn ? (
-                  <div className="grid grid-cols-2">
-                    <div className="text-teal-brand bg-white hover:text-teal-700 ">
-                      <Link
-                        to="/app"
-                        className={`inline-flex items-center px-4 py-2 border border-transparent 
+            <span className="inline-flex rounded-md">
+              {isLoggedIn ? (
+                <div className="grid grid-cols-2">
+                  <div className="text-teal-brand bg-white hover:text-teal-700 ">
+                    <Link
+                      to="/app"
+                      className={`inline-flex items-center px-4 py-2 border border-transparent 
                         text-base leading-4 font-medium rounded-md 
                         focus:outline-none  active:bg-gray-50 active:text-orange-700 transition duration-300 ease-in-out shadow`}
-                      >
-                        <span alt="Dashboard">
-                          <i className="fad fa-user"></i>{" "}
-                          <span className="text-gray-600 hover:text-teal-700 text-sm">
-                            Profile
-                          </span>
+                    >
+                      <span alt="Dashboard">
+                        <i className="fad fa-user"></i>{" "}
+                        <span className="text-gray-600 hover:text-teal-700 text-sm">
+                          Dashboard
                         </span>
-                      </Link>
-                    </div>
-                    <div className="ml-1 text-gray-700 hover:text-white transition duration-300 ease-in-out">
-                      <button
-                        aria-label="Sign Out"
-                        onClick={signOut}
-                        className={`inline-flex items-center px-4 py-2 border border-transparent 
+                      </span>
+                    </Link>
+                  </div>
+                  <div className="ml-1 text-gray-700 hover:text-white transition duration-300 ease-in-out">
+                    <button
+                      aria-label="Sign Out"
+                      onClick={signOut}
+                      className={`inline-flex items-center px-4 py-2 border border-transparent 
                       text-base leading-4 font-medium rounded-md text-white bg-gray-400 hover:text-gray-900
                       focus:outline-none active:bg-gray-50 active:text-orange-700 transition duration-300 ease-in-out shadow`}
-                      >
-                        <span alt="Logout">
-                          <i className="fad fa-sign-out"></i>{" "}
-                          <span className="text-sm">Logout</span>
-                        </span>
-                      </button>
-                    </div>
+                    >
+                      <span alt="Logout">
+                        <i className="fad fa-sign-out"></i>{" "}
+                        <span className="text-sm">Logout</span>
+                      </span>
+                    </button>
                   </div>
-                ) : (
+                </div>
+              ) : (
+                <div className="flex gap-3">
                   <Link
                     to="/login"
-                    className={`inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-teal-600 bg-white hover:text-teal-500 focus:outline-none 
-                  focus:border-teal-300 focus:shadow-outline-teal active:bg-gray-50 active:text-teal-700 transition duration-150 ease-in-out shadow`}
+                    className={`inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
+                    font-medium rounded-md text-teal-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 
+                    focus:ring-offset-2 focus:ring-teal-500`}
                   >
                     <span className="text-sm">Login</span>
                   </Link>
-                )}
-              </span>
+                  <Link
+                    to="/register"
+                    className={`inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
+                    font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
+                    focus:ring-offset-2 focus:ring-teal-500`}
+                  >
+                    <span className="text-sm">Register</span>
+                  </Link>
+                </div>
+              )}
+            </span>
           </div>
         </nav>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import ImageLight from "../../assets/img/chess-players.jpg";
@@ -55,6 +55,10 @@ function ConfirmEmail(props) {
       });      
     }
   }
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Confirm Email";
+  }, []);
 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">

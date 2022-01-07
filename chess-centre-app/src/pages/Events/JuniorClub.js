@@ -1,10 +1,15 @@
-import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import JuniorClubImage from "../../assets/img/create-account-small.jpg";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
 export default function JuniorClub() {
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Junior Club";
+  }, []);
+
   return (
     <div>
       <div className="relative pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">

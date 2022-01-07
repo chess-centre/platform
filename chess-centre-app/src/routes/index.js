@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: "/register",
-    component: lazy(() => import("../pages/Auth/CreateAccount")),
+    component: lazy(() => import("../pages/Auth/Register")),
     exact: true,
     isPrivate: false,
   },

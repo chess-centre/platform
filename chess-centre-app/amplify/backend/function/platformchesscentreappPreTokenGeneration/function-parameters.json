@@ -8,7 +8,7 @@
   "resourceName": "platformchesscentreappPreTokenGeneration",
   "parentStack": "auth",
   "triggerEnvs": "[]",
-  "triggerDir": "C:\\Users\\user\\AppData\\Roaming\\nvm\\v14.16.0\\node_modules\\@aws-amplify\\cli\\node_modules\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PreTokenGeneration",
+  "triggerDir": "C:\\Users\\user\\AppData\\Roaming\\npm\\node_modules\\@aws-amplify\\cli\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PreTokenGeneration",
   "triggerTemplate": "PreTokenGeneration.json.ejs",
   "triggerEventPath": "PreTokenGeneration.event.json",
   "roleName": "platformchesscentreappPreTokenGeneration",

@@ -52,6 +52,9 @@ function CongressEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
+
+    document.title = "The Chess Centre | Congress";
+
     try {
       const fetchEvent = async () => {
         setIsLoading(true);

@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import Calendar from "../../components/Calendar/LeanCalendar";
-import React from "react";
 
 export default function AppCalendar() {
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Calendar";
+  }, []);
+
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">

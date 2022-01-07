@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import QuickSearch from "../../components/FAQs/QuickSearch";
 
 const usefulLinks = [
@@ -107,6 +107,11 @@ function UsefulLinksTable() {
 }
 
 export default function Juniors() {
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Juniors";
+  }, []);
+
   return (
     <>
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
