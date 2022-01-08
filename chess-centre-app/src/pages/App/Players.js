@@ -40,7 +40,12 @@ export const listMembers = /* GraphQL */ `
 
 export default function Players() {
   const [tabs, setTabs] = useState([
-    { name: "ECF", ref: "ecf", colour: "bg-teal-700", current: true },
+    { 
+      name: "ECF", 
+      ref: "ecf", 
+      colour: "bg-teal-700", 
+      current: true 
+    },
     {
       name: "Lichess",
       ref: "lichess",
@@ -155,7 +160,7 @@ export default function Players() {
           const form = member.gameInfo
             ? JSON.parse(member.gameInfo)?.formStats
             : [];
-          const formCount = form.reduce((p, c) => p + c, 0);
+          const formCount = form?.reduce((p, c) => p + c, 0) || 0;
 
           while (form.length < 6) {
             form.unshift("");
