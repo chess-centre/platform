@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu } from "@headlessui/react";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { classNames } from "../../utils/Classes";
 
 export default function FilterMenu(props) {
   const { filters, setFilters, selected, setSelected, setAllDeselected } = props;

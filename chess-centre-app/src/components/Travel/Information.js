@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import Buses from "./Mode/Bus";
 import Trains from "./Mode/Train";
 import Parking from "./Mode/Parking";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { classNames } from "../../utils/Classes";
 
 export default function TravelInformation(props) {
   const { removeStyles, eventId, eventType } = props;
@@ -14,20 +11,20 @@ export default function TravelInformation(props) {
     { name: "Trains", icon: "fa-train", current: false },
     { name: "Buses", icon: "fa-bus", current: false },
   ]);
-  const [selected, setSelected] = useState("parking");
+  const [selected, setSelected] = useState("Parking");
 
   const renderInfo = (selected, eventId, eventType) => {
     switch (selected) {
       case "Parking":
         return <Parking />;
       case "Trains":
-        return <Trains eventId={eventId} eventType={eventType} />;
+        return <Trains {...{ eventId, eventType }} />;
       case "Buses":
-        return <Buses eventId={eventId} eventType={eventType} />;
+        return <Buses {...{ eventId, eventType }} />;
       default:
         return <Parking />;
     }
-  }
+  };
 
   return (
     <div
@@ -60,7 +57,7 @@ function Tabs(props) {
       prevState.map(({ name, icon }) => ({
         name,
         icon,
-        current: name === tab ? true : false,
+        current: name === tab,
       }))
     );
   };
