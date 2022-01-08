@@ -36,7 +36,7 @@ function Events() {
         </div>
       </div>
 
-      <main className="mt-5 grid grid-col-1 lg:grid-cols-2 xl:grid-cols-3">
+      <main>
         <AppEvents />
       </main>
     </>
