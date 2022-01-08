@@ -1,12 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowSmDownIcon,
-  ArrowSmUpIcon,
-  ArrowNarrowLeftIcon,
-} from "@heroicons/react/solid";
+import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/solid";
 
-function Stats(props) {
+export default function Stats(props) {
   const { ratingData, eventData, gameData } = props;
 
   return (
@@ -19,8 +15,6 @@ function Stats(props) {
     </div>
   );
 }
-
-export default Stats;
 
 function EventsSummary({ title, data }) {
   const total = data.past + data.future;
@@ -122,7 +116,7 @@ function RatingSummary({ title, data }) {
   const Diff = ({ current, previous }) => {
     const change = (current - previous).toFixed(0);
     const diff = isNaN(change) ? "blank" : change;
-    
+
     if (diff > 0) {
       return (
         <p className="flex text-xs items-baseline text-green-600">

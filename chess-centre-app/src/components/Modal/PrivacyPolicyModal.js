@@ -29,7 +29,7 @@ function PrivacyPolicyModal() {
         <ModalHeader>Privacy Policy</ModalHeader>
         <ModalBody>
           <div className="overflow-auto h-60 prose prose-teal prose-sm">
-          <p className="">Last updated: September 10, 2021</p>
+          <p className="">Last updated: January 8, 2022</p>
           <p>
             This Privacy Policy describes Our policies and procedures on the
             collection, use and disclosure of Your information when You use the
@@ -161,9 +161,6 @@ function PrivacyPolicyModal() {
               <p>First name and last name</p>
             </li>
             <li>
-              <p>Phone number</p>
-            </li>
-            <li>
               <p>Usage Data</p>
             </li>
           </ul>
@@ -198,6 +195,7 @@ function PrivacyPolicyModal() {
             <li>Google</li>
             <li>Facebook</li>
             <li>Twitter</li>
+            <li>Instagram</li>
           </ul>
           <p>
             If You decide to register through or otherwise grant us access to a

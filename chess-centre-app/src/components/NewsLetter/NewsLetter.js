@@ -3,21 +3,14 @@ import React, { useState } from "react";
 import Loading from "../../assets/img/loading.svg";
 import ValidateEmail from "../../utils/ValidateEmail";
 
-
 const createMailingList = /* GraphQL */ `
   mutation CreateMailingList(
     $input: CreateMailingListInput!
     $condition: ModelMailingListConditionInput
   ) {
     createMailingList(input: $input, condition: $condition) {
-      id
       email
       enabled
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -29,15 +22,17 @@ export default function NewsLetter() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if(!ValidateEmail(email)) return;
+    if (!ValidateEmail(email)) return;
     setIsLoading(true);
     try {
-      const user ={
+      const user = {
         email,
-        enabled: true
+        enabled: true,
       };
-      const newUser = await API.graphql({ 
-        query: createMailingList, variables: { input: user }})
+      const newUser = await API.graphql({
+        query: createMailingList,
+        variables: { input: user }
+      });
 
       if (newUser) {
         setIsSubscribed(true);
@@ -50,8 +45,6 @@ export default function NewsLetter() {
       console.error(error);
     }
   };
-
-
 
   return (
     <div className="bg-white py-16 sm:py-24">
@@ -119,10 +112,15 @@ export default function NewsLetter() {
             <div className="relative">
               {isLoading ? (
                 <div className="flex">
-                  <img alt="Loading" className="h-6 w-6 object-center" src={Loading} />
-                  <p className="sm:text-center text-white ml-3 font-medium">Subscribing to events...</p>
+                  <img
+                    alt="Loading"
+                    className="h-6 w-6 object-center"
+                    src={Loading}
+                  />
+                  <p className="sm:text-center text-white ml-3 font-medium">
+                    Subscribing to events...
+                  </p>
                 </div>
-                
               ) : isSubcribed ? (
                 <div className="sm:text-center">
                   <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
@@ -150,12 +148,6 @@ export default function NewsLetter() {
 
                   <form
                     onSubmit={(e) => handleSubmit(e)}
-                    data-sv-form="2201273"
-                    data-uid="817b0da041"
-                    data-format="inline"
-                    data-version="5"
-                    data-options='{"settings":{"after_subscribe":{"action":"message","success_message":"Success! Now check your email to confirm your subscription.","redirect_url":""},"analytics":{"google":null,"facebook":null,"segment":null,"pinterest":null,"sparkloop":null,"googletagmanager":null},"modal":{"trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"powered_by":{"show":true,"url":"https://convertkit.com?utm_source=dynamic&amp;utm_medium=referral&amp;utm_campaign=poweredby&amp;utm_content=form"},"recaptcha":{"enabled":false},"return_visitor":{"action":"show","custom_content":""},"slide_in":{"display_in":"bottom_right","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15},"sticky_bar":{"display_in":"top","trigger":"timer","scroll_percentage":null,"timer":5,"devices":"all","show_once_every":15}},"version":"5"}'
-                    min-width="400 500 600 700 800"
                     className="mt-12 sm:mx-auto sm:max-w-lg sm:flex"
                   >
                     <div className="min-w-0 flex-1">

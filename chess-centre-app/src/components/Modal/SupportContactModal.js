@@ -11,8 +11,7 @@ export default function SupportContactModal(props) {
   const { open, closeModal } = props;
 
   return (
-    <>
-      <Modal isOpen={open} onClose={() => closeModal()}>
+      <Modal isOpen={open} onClose={closeModal}>
         <ModalBody>
           <div className="pt-6">
             <div className="flow-root bg-gray-50 rounded-lg px-5 pb-8">
@@ -22,7 +21,7 @@ export default function SupportContactModal(props) {
                 </h3>
                 <p className="mt-3 text-sm text-gray-500">
                   We aim to respond and resolve your issues as
-                  quickly as possible.
+                  quickly as possible (usually within 24 hours).
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
                   <i className="fad fa-credit-card"></i> <br />
@@ -30,7 +29,7 @@ export default function SupportContactModal(props) {
                   <span className="font-semibold">
                     paid membership
                   </span>
-                  , this can mostly be resolved via the "subscription" tab under
+                  , these can mostly be resolved via the "subscription" tab under
                   your <Link className="font-semibold text-teal-500 hover:text-teal-700" to="profile">profile</Link>.
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
@@ -72,6 +71,5 @@ export default function SupportContactModal(props) {
           </Button>
         </ModalFooter>
       </Modal>
-    </>
   );
 }

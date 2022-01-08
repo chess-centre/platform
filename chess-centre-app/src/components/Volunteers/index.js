@@ -35,22 +35,21 @@ export default function Volunteers() {
       <div className="mx-auto mt-6">
         <div className="space-y-12">
           <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Volunteers</h2>
-
           <ul className="space-y-12 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:gap-y-12 lg:space-y-0">
-            {volunteers.map((volunteer) => (
-              <li key={volunteer.name}>
+            {volunteers.map(({ name, role, bio, imageUrl }) => (
+              <li key={name}>
                 <div className="space-y-4 sm:grid sm:grid-cols-3 sm:gap-6 sm:space-y-0 lg:gap-8">
                   <div className="h-0 aspect-w-3 aspect-h-2 sm:aspect-w-3 sm:aspect-h-4">
-                    <img className="object-cover shadow-lg rounded-lg" src={volunteer.imageUrl} alt="" />
+                    <img className="object-cover shadow-lg rounded-lg" src={imageUrl} alt="volunteer" />
                   </div>
                   <div className="sm:col-span-2">
                     <div className="space-y-4">
                       <div className="text-lg leading-6 font-medium space-y-1">
-                        <h3>{volunteer.name}</h3>
-                        <p className="text-teal-600">{volunteer.role}</p>
+                        <h3>{name}</h3>
+                        <p className="text-teal-600">{role}</p>
                       </div>
                       <div className="text-lg">
-                        <p className="text-gray-500 text-justify">{volunteer.bio}</p>
+                        <p className="text-gray-500 text-justify">{bio}</p>
                       </div>
                     </div>
                   </div>

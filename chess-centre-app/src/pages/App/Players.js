@@ -40,7 +40,12 @@ export const listMembers = /* GraphQL */ `
 
 export default function Players() {
   const [tabs, setTabs] = useState([
-    { name: "ECF", ref: "ecf", colour: "bg-teal-700", current: true },
+    { 
+      name: "ECF", 
+      ref: "ecf", 
+      colour: "bg-teal-700", 
+      current: true 
+    },
     {
       name: "Lichess",
       ref: "lichess",
@@ -155,7 +160,7 @@ export default function Players() {
           const form = member.gameInfo
             ? JSON.parse(member.gameInfo)?.formStats
             : [];
-          const formCount = form.reduce((p, c) => p + c, 0);
+          const formCount = form?.reduce((p, c) => p + c, 0) || 0;
 
           while (form.length < 6) {
             form.unshift("");
@@ -268,7 +273,7 @@ export default function Players() {
         {isLoading && (
           <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
             <span className="animate-pulse">
-              <i className="aninmal-pulse fal fa-chess-clock fa-10x text-teal-500 opacity-50"></i>
+              <i className="aninmal-pulse fal fa-chess-clock fa-10x text-gray-400 opacity-50"></i>
             </span>
             <p className="mt-2 block text-sm font-medium text-gray-600">
               Loading players...

@@ -180,7 +180,7 @@ function Register(props) {
               <div className="mb-4 text-right text-xs font-semibold text-gray-700 dark:text-gray-200">
                 Signing up a junior member?{" "}
                 <span
-                  className="text-teal-600 dark:text-teal-400 hover:underline"
+                  className="text-teal-600 dark:text-teal-400 hover:underline cursor-pointer"
                   onClick={openModal}
                 >
                   Help
