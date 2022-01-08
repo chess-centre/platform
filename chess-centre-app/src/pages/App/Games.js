@@ -1,6 +1,6 @@
 import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { useMember } from "../../api/member";
 import GameTable from "../../components/Table/GameTable";
 import PerformanceStats from "../../components/RatingProfile/PerformanceStats";
@@ -153,6 +153,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
 
 export default function GamesView() {
   const { memberId } = useParams();
+  const history = useHistory();
   const { isLoading, error, data } = useMember();
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [isErrorGame, setIsErrorGame] = useState(false);
@@ -228,6 +229,10 @@ export default function GamesView() {
     setIsErrorGame(false);
   };
 
+  const handleGoBack = () => {
+    return history.goBack();
+  }
+
   useEffect(() => {
     document.title = "The Chess Centre | Games";
 
@@ -281,15 +286,7 @@ export default function GamesView() {
       </div>
 
       <div className="mt-2 max-w-3xl mx-auto grid grid-cols-1 gap-4 lg:max-w-full lg:grid-flow-col-dense xl:grid-cols-3">
-        <section className="hidden xl:block col-span-1 mt-5">
-          {games && games.length > 0 && (
-            <PerformanceStats
-              playerInfo={currentUserInfo}
-              {...{ games, openModal, avatarUrl, setAvatar }}
-            />
-          )}
-        </section>
-        <section className="space-y-6 lg:col-start-1 lg:col-span-2">
+        <section className="space-y-6 lg:col-span-2">
           <dl className="grid grid-cols-1">
             {!isLoading && !isLoadingGames && !error && !isErrorGame && (
               <div>
@@ -304,6 +301,9 @@ export default function GamesView() {
                     </span>
                     <p className="mt-2 block text-sm font-medium text-gray-600">
                       No games yet.
+                    </p>
+                    <p className="mt-2 text-teal-500 text-sm font-medium hover:opacity-90 cursor-pointer" onClick={handleGoBack}>
+                      <i className="fas fa-long-arrow-alt-left mr-1"></i> Go back
                     </p>
                     {playerName && currentUser && (
                       <p className="mt-2 block text-sm font-medium text-gray-600">
@@ -335,9 +335,9 @@ export default function GamesView() {
               </div>
             )}
             {(isLoading || isLoadingGames) && (
-              <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+              <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-10 text-center">
                 <span className="animate-pulse">
-                  <i className="aninmal-pulse fal fa-chess-board fa-10x text-teal-500 opacity-50"></i>
+                  <i className="aninmal-pulse fal fa-chess-board fa-10x text-gray-400 opacity-50"></i>
                 </span>
                 <p className="mt-2 block text-sm font-medium text-gray-600">
                   Loading games...
@@ -357,6 +357,44 @@ export default function GamesView() {
               </div>
             )}
           </dl>
+        </section>
+        <section className="hidden xl:block col-span-1 mt-5">
+          {!isLoading && !isLoadingGames && !error && !isErrorGame && (
+            <>
+              {games && games.length > 0 ? (
+                <PerformanceStats
+                  playerInfo={currentUserInfo}
+                  {...{ games, openModal, avatarUrl, setAvatar }}
+                />
+              ) : (
+                <div className="relative mt-1 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+                  <span>
+                    <i className="far fa-user-ninja fa-6x text-teal-500"></i>
+                  </span>
+                  <p className="mt-4 block text-sm font-medium text-gray-600">
+                    No overview profile
+                  </p>
+                  <p className="mt-6">
+                    <i className="far fal fa-chart-bar fa-3x text-teal-500"></i>
+                  </p>
+                </div>
+              )}
+            </>
+          )}
+
+          {(isLoading || isLoadingGames) && (
+            <div className="relative mt-1 block w-full border-2 border-gray-300 border-dashed rounded-sm p-10 text-center">
+              <span className="animate-pulse">
+                <i className="aninmal-pulse fal fa-user fa-10x text-gray-400 opacity-50"></i>
+              </span>
+              <p className="mt-4 block text-sm font-medium text-gray-600">
+                Loading overview profile...
+              </p>
+              <p className="mt-6">
+                <i className="aninmal-pulse fal fa-chart-bar fa-3x text-gray-400 opacity-50"></i>
+              </p>
+            </div>
+          )}
         </section>
         <AddMyProfileImageModal
           open={isOpenModal}
