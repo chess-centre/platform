@@ -12,7 +12,7 @@ export default function RoundTimesModal(props) {
 
   return (
     <Modal isOpen={open} onClose={closeModal}>
-      <ModalHeader>Junior Member</ModalHeader>
+      <ModalHeader className="-mt-4">Junior Member</ModalHeader>
       <ModalBody>
         <h2 className="text-1xl font-semibold text-gray-700 mb-4">
           Tips &#38; Advice
@@ -58,7 +58,7 @@ export default function RoundTimesModal(props) {
           </a>{" "}
           to help manage these.
         </p>
-        <p className="mt-2 mb-2">
+        <div className="mt-2 mb-2">
           <p className="mb-2">Example:</p>
           <p>
             <span className="text-blue-700">parent@email.com</span>{" "}
@@ -82,7 +82,7 @@ export default function RoundTimesModal(props) {
               Contact us
             </a>
           </p>
-        </p>
+        </div>
       </ModalBody>
       <ModalFooter>
         <Button className="w-full sm:w-auto mb-2" onClick={closeModal}>
