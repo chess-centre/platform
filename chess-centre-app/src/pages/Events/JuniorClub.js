@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import JuniorClubImage from "../../assets/img/create-account-small.jpg";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
 export default function JuniorClub() {
+  const history = useHistory();
 
   useEffect(() => {
     document.title = "The Chess Centre | Junior Club";
@@ -81,35 +82,45 @@ export default function JuniorClub() {
             <div className="mt-8 lg:mt-0">
               <div className="text-base max-w-prose mx-auto lg:max-w-none">
                 <p className="text-lg text-gray-500">
-                The Chess Centre’s junior Chess Club is open to boys and girls
-                aged 6 - 16 years of age.
+                  The Chess Centre’s junior Chess Club is open to boys and girls
+                  aged 6 - 16 years of age.
                 </p>
               </div>
               <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                 <p>
-                Irrespective of experience, playing strength or ability all
-                children are welcome to join our Junior Club. In the Junior Club
-                they will learn from our dedicated coaching team all the
-                fundamentals of the game, whilst developing their cognitive
-                reasoning skills, problem solving and spatial awareness.
+                  Irrespective of experience, playing strength or ability all
+                  children are welcome to join our Junior Club. In the Junior
+                  Club they will learn from our dedicated coaching team all the
+                  fundamentals of the game, whilst developing their cognitive
+                  reasoning skills, problem solving and spatial awareness.
                 </p>
                 <p>
-                Alongside the more technical elements of the game we also
-                believe that it is just as important for Children learning Chess
-                to also develop their teamwork, sportsmanship and social skills,
-                all of which is possible as part of our Junior Club activities.
+                  Alongside the more technical elements of the game we also
+                  believe that it is just as important for Children learning
+                  Chess to also develop their teamwork, sportsmanship and social
+                  skills, all of which is possible as part of our Junior Club
+                  activities.
                 </p>
                 <p>
-                So if you would like to learn more about the game of Chess in a
-                fun, friendly and safe environment then please{" "}
-                <a className="text-teal-500 hover:text-teal-700 hover:underline" href="mailto:info@chesscentre.online">contact us</a> to book a place.
+                  So if you would like to learn more about the game of Chess in
+                  a fun, friendly and safe environment then please{" "}
+                  <a
+                    className="text-teal-500 hover:text-teal-700 hover:underline"
+                    href="mailto:info@chesscentre.online"
+                  >
+                    contact us
+                  </a>{" "}
+                  to book a place.
                 </p>
               </div>
             </div>
             <div className="text-sm text-center mt-6 sm:hidden">
-              <Link className="text-teal-600 hover:text-teal-500" to="/">
+              <button
+                className="text-teal-600 hover:text-teal-500"
+                onClick={history.goBack}
+              >
                 <i className="fad fa-long-arrow-alt-left"></i> back
-              </Link>
+              </button>
             </div>
           </div>
         </div>

@@ -20,6 +20,21 @@ export default function MoreInfo() {
       <div className="relative z-10 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6 border-b bg-gray-50">
         <LandingNav />
       </div>
+      <div className="bg-white">
+        <div className="max-w-7xl mx-auto pt-16 pb-6 px-4 sm:py-20 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base font-semibold text-teal-700 tracking-wide uppercase">
+              Feature Rich
+            </h2>
+            <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+              Take it up a notch
+            </p>
+            <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
+              Connecting the power of modern, integrated, online features with traditional over the board chess.
+            </p>
+          </div>
+        </div>
+      </div>
       <div className="relative pt-16 pb-4 sm:pb-32 overflow-hidden">
         <div
           aria-hidden="true"
@@ -30,7 +45,7 @@ export default function MoreInfo() {
             <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
               <div>
                 <div>
-                  <span className="h-12 w-12 rounded-md flex items-center justify-center bg-teal-600">
+                  <span className="h-12 w-12 rounded-md flex items-center justify-center bg-teal-700">
                     <i className="fal fa-users-crown text-2xl text-white"></i>
                   </span>
                 </div>
@@ -41,13 +56,13 @@ export default function MoreInfo() {
                   <p className="mt-4 text-lg text-gray-500">
                     Follow the progress of your favourite local players. Anyone
                     participating in our events will have their results
-                    automatically published, this includes games and performance
-                    metrics.
+                    automatically published. This includes replayable games and
+                    performance metrics.
                   </p>
                   <div className="mt-6">
                     <Link
                       to="events"
-                      className="inline-flex bg-teal-600 hover:bg-teal-500 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
+                      className="inline-flex bg-pink-800 hover:bg-pink-900 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-pink-700"
                     >
                       See our events
                     </Link>
@@ -57,7 +72,8 @@ export default function MoreInfo() {
               <div className="mt-8 border-t border-gray-200 pt-6">
                 <div>
                   <p className="text-base text-gray-500">
-                    All games played during our events are submitted to the{" "}
+                    All games played in any of our core events are submitted to
+                    the{" "}
                     <span className="font-medium">
                       English Chess Federation
                     </span>{" "}
@@ -76,20 +92,20 @@ export default function MoreInfo() {
               </div>
             </div>
             <div className="block sm:hidden mx-6 mt-10">
-                <img
-                  className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
-                  src={PlayersMobileExample}
-                  alt=""
-                />
+              <img
+                className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
+                src={PlayersMobileExample}
+                alt="Mobile Players performance tracking"
+              />
             </div>
           </div>
         </div>
-        <div className="mt-12 sm:mt-24">
+        <div className="mt-20 sm:mt-24">
           <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
             <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2">
               <div>
                 <div>
-                  <span className="h-12 w-12 rounded-md flex items-center justify-center bg-teal-600">
+                  <span className="h-12 w-12 rounded-md flex items-center justify-center bg-teal-700">
                     <i className="fad fa-chart-pie text-2xl text-white"></i>
                   </span>
                 </div>
@@ -99,13 +115,14 @@ export default function MoreInfo() {
                   </h2>
                   <p className="mt-4 text-lg text-gray-500">
                     Quickly view your overall performance across all your over
-                    the board games. We automatically track your rating
-                    progress, even pulling your previous results.
+                    the board games played at The Chess Centre. We automatically
+                    track your rating progress and even import your previous
+                    results from the ECF.
                   </p>
                   <div className="mt-6">
                     <Link
                       to="register"
-                      className="inline-flex bg-teal-600 hover:bg-teal-500 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-indigo-700"
+                      className="inline-flex bg-pink-800 hover:bg-pink-900 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:from-purple-700 hover:to-pink-700"
                     >
                       Register now
                     </Link>
@@ -113,7 +130,7 @@ export default function MoreInfo() {
                 </div>
               </div>
             </div>
-            <div className="hidden sm:block mt-12 sm:mt-16 lg:mt-0 lg:col-start-1">
+            <div className="hidden sm:block mt-4 sm:mt-16 lg:mt-0 lg:col-start-1">
               <div className="pr-4 -ml-48 sm:pr-6 md:-ml-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                 <img
                   className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
@@ -122,48 +139,47 @@ export default function MoreInfo() {
                 />
               </div>
             </div>
-            <div className="block sm:hidden mx-6 mt-16">
-                <img
-                  className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
-                  src={DashboardMobileExample}
-                  alt=""
-                />
+            <div className="block sm:hidden mt-10 mx-6">
+              <img
+                className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
+                src={DashboardMobileExample}
+                alt="Mobile Dashboard insights"
+              />
             </div>
           </div>
         </div>
         <div className="relative pt-16">
-            <div className="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
-              <div className="relative">
-                <div className="text-center items-center object-center mx-auto">
-                  <span className="h-12 w-12 rounded-md px-5 py-4 items-center justify-center bg-teal-600">
-                    <i className="fas fa-chess-bishop text-2xl text-white"></i>
-                  </span>
-                </div>
-                <p className="mt-6 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
-                  Play online?
-                </p>
-                <p className="mt-4 text-lg text-gray-500">
-                  Pull all your ratings into one place
-                </p>
+          <div className="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+            <div className="relative">
+              <div className="text-center items-center object-center mx-auto">
+                <span className="h-12 w-12 rounded-md px-5 py-4 items-center justify-center bg-teal-700">
+                  <i className="fas fa-chess-bishop text-2xl text-white"></i>
+                </span>
               </div>
-              <div className="hidden sm:block mt-12 -mb-10 sm:-mb-24 lg:-mb-80">
-                <img
-                  className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
-                  src={IntegrationsExample}
-                  alt=""
-                />
-              </div>
-              <div className="block sm:hidden mx-6 mt-10">
-                <img
-                  className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
-                  src={IntegrationsMobileExample}
-                  alt=""
-                />
-              </div>
+              <p className="mt-6 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
+                Play online?
+              </p>
+              <p className="mt-4 text-lg text-gray-500">
+                Syncronise all your ratings into one easy to manage location.
+              </p>
+            </div>
+            <div className="hidden sm:block mt-12 -mb-10 sm:-mb-24 lg:-mb-80">
+              <img
+                className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
+                src={IntegrationsExample}
+                alt="Online Platform Integrations"
+              />
+            </div>
+            <div className="block sm:hidden mx-6 mt-10">
+              <img
+                className="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
+                src={IntegrationsMobileExample}
+                alt="Mobile Online Platform Integrations"
+              />
             </div>
           </div>
+        </div>
       </div>
-
       <FooterLanding />
     </div>
   );
