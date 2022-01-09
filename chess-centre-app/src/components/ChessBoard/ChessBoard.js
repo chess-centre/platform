@@ -5,14 +5,14 @@ import { pgnView } from "@mliebelt/pgn-viewer";
 import "../../assets/css/additional-styles/chessboard.scss";
 
 function PGNViewer(props) {
-  const { layout, size }  = props;
+  const { layout, size, mode="view" }  = props;
   const gameDescription = Children.onlyText(props.children);
   const id = "board-" + uuid.v4();
 
   useLayoutEffect(() => {
     pgnView(id, {
       pgn: gameDescription,
-      mode: "view",
+      mode,
       theme: "informator",
       layout: layout,
       hideMovesBefore: true,

@@ -20,6 +20,12 @@ export default function SignUp() {
               >
                 Register free
               </Link>
+              <Link
+                to="/more-info"
+                className="ml-2 mt-8 px-5 py-3 inline-flex items-center text-base font-medium text-gray-200 hover:text-white"
+              >
+                More info
+              </Link>
             </div>
           </div>
           <div className="-mt-6 aspect-w-2 aspect-h-1">

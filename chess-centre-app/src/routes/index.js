@@ -92,6 +92,11 @@ const routes = [
     isPrivate: false,
   },
   {
+    path: "/more-info",
+    component: lazy(() => import("../pages/Home/MoreInfo")),
+    isPrivate: false,
+  },
+  {
     path: "/faqs",
     component: lazy(() => import("../pages/Home/FAQs")),
     isPrivate: false,
