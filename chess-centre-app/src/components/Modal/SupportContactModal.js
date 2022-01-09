@@ -13,7 +13,7 @@ export default function SupportContactModal(props) {
   return (
       <Modal isOpen={open} onClose={closeModal}>
         <ModalBody>
-          <div className="pt-6">
+          <div className="pt-4">
             <div className="flow-root bg-gray-50 rounded-lg px-5 pb-8">
               <div className="relative">
                 <h3 className="mt-2 text-lg font-medium text-gray-900 tracking-tight">
@@ -47,19 +47,19 @@ export default function SupportContactModal(props) {
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
                   <i className="fad fa-ambulance"></i> <br />
-                  If you are really struggling and need assistance,
+                  However, if you are really struggling and just need assistance,
                   please don't hesitate to{" "}
                   <a
                     className="font-semibold text-teal-500 hover:text-teal-700"
-                    href="mailto:support@chesscentre.online"
+                    href="mailto:support@chesscentre.online?subject=Help!"
                   >
                     contact us
                   </a>
                   .
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
-                  Unfortunately, we have no official support team - as
-                  everyone is a volunteer ❤️ so, please bear with us!
+                  Unfortunately, we have no official support team (as
+                  everyone is a volunteer ❤️) so please bear with us!
                 </p>
               </div>
             </div>
