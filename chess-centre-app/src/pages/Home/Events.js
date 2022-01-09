@@ -28,6 +28,9 @@ export default function Events() {
   const [selectedEventType, setSelectedEventType] = useState("all");
 
   useMemo(() => {
+
+    window.scrollTo(0, 0);
+
     if (data) {
       const availableTypes = data.reduce(
         (pre, { type: { eventType, canRegister } }) => {

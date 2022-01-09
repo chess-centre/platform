@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import MatchNightImage from "../../assets/img/match-night.jpg";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
 export default function MatchNight() {
+  const history = useHistory();
 
   useEffect(() => {
     document.title = "The Chess Centre | Match Night";
@@ -82,9 +83,10 @@ export default function MatchNight() {
               <div className="text-base max-w-prose mx-auto lg:max-w-none">
                 <p className="text-lg text-gray-500">
                   These dates are reserved for our Chess Centre members, here we
-                  participate in team events and competitions such as local, county and national leagues. These are either
-                  internally hosted or events being run as part of the wider
-                  Chess community such as the{" "}
+                  participate in team events and competitions such as local,
+                  county and national leagues. These are either internally
+                  hosted or events being run as part of the wider Chess
+                  community such as the{" "}
                   <a
                     target="_blank"
                     rel="noreferrer"
@@ -92,8 +94,8 @@ export default function MatchNight() {
                     href="https://www.bradfordchess.co.uk/"
                   >
                     BDCA Bradford Chess League
-                  </a>,
-                  the{" "}
+                  </a>
+                  , the{" "}
                   <a
                     target="_blank"
                     rel="noreferrer"
@@ -101,8 +103,8 @@ export default function MatchNight() {
                     href="https://mannchess.org.uk/YCA.htm"
                   >
                     YCA Yorkshire Leagues
-                  </a>
-                  {" "} or the {" "}
+                  </a>{" "}
+                  or the{" "}
                   <a
                     target="_blank"
                     rel="noreferrer"
@@ -116,8 +118,9 @@ export default function MatchNight() {
               </div>
               <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                 <p>
-                  Each upcoming match will be listed and detailed within our website and visible when logged in. Here
-                  you can find fixtures, results and individual scores of previous matches.
+                  Each upcoming match will be listed and detailed within our
+                  website and visible when logged in. Here you can find
+                  fixtures, results and individual scores of previous matches.
                 </p>
                 <p>The types of events we'll participate in:</p>
                 <ul>
@@ -127,16 +130,22 @@ export default function MatchNight() {
                   <li>Individual events</li>
                 </ul>
                 <div className="text-sm text-left mt-6 hidden sm:block">
-                  <Link className="text-teal-600 hover:text-teal-500 " to="/">
+                  <button
+                    className="text-teal-600 hover:text-teal-500"
+                    onClick={history.goBack}
+                  >
                     <i className="fad fa-long-arrow-alt-left"></i> back
-                  </Link>
+                  </button>
                 </div>
               </div>
             </div>
             <div className="text-sm text-center mt-6 sm:hidden">
-              <Link className="text-teal-600 hover:text-teal-500" to="/">
+              <button
+                className="text-teal-600 hover:text-teal-500"
+                onClick={history.goBack}
+              >
                 <i className="fad fa-long-arrow-alt-left"></i> back
-              </Link>
+              </button>
             </div>
           </div>
         </div>
