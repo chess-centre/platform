@@ -13,7 +13,6 @@ import { classNames, bgColor700 } from "../../utils/Classes";
 import { useEventsLite } from "../../api/events";
 
 function GridCard({ event }) {
-
   const history = useHistory();
 
   const handleClick = () => {
@@ -112,10 +111,10 @@ function GridCalendar({
                     className="flex items-center justify-between font-medium text-gray-500 w-20 py-3 pr-2 text-left focus:outline-none"
                     onClick={() => setSelectedMonth(month)}
                   >
-                    <span className="block w-12 truncate">
+                    <span className="block">
                       {new Date(2000, month, 1).toLocaleString("default", {
-                        month: "long",
-                      })}
+                        month: "short",
+                      })} ...
                     </span>
                     <span
                       className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full ${
@@ -241,8 +240,7 @@ function ListCard({ event }) {
       </div>
       <div
         onClick={handleClick}
-        className=
-          "hover:bg-gray-50 relative cursor-pointer z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
+        className="hover:bg-gray-50 relative cursor-pointer z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
       >
         <div className="px-4 sm:px-6 py-2 sm:py-0 text-sm truncate">
           <p className="sm:text-2xl sm:font-medium font-bold text-lg">
@@ -403,24 +401,30 @@ export default function Calendar() {
               {calenderView === "list" && (
                 <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex m-auto">
                   <TabMonths
-                    selectedMonth={selectedMonth}
-                    months={months}
-                    setSelectedMonth={setSelectedMonth}
+                    {...{
+                      selectedMonth,
+                      months,
+                      setSelectedMonth,
+                    }}
                   />
                 </div>
               )}
               <div className="absolute right-0 top-16 sm:top-8 text-center sm:mt-6 sm:text-right">
                 <span className="relative z-10 inline-flex">
                   <ToggleView
-                    calendarView={calenderView}
-                    handleViewSwitch={handleViewSwitch}
+                    {...{
+                      calenderView,
+                      handleViewSwitch,
+                    }}
                   />
                   <FilterMenu
-                    filters={filters}
-                    setFilters={setFilters}
                     selected={selectedMenuFilter}
                     setSelected={setSelectedMenuFilter}
-                    setAllDeselected={setAllDeselected}
+                    {...{
+                      filters,
+                      setFilters,
+                      setAllDeselected,
+                    }}
                   />
                 </span>
               </div>
@@ -428,27 +432,31 @@ export default function Calendar() {
           </div>
           {calenderView === "grid" ? (
             <GridCalendar
-              filters={filters}
               filtersSelected={selectedMenuFilter}
-              isLoading={isLoading}
-              error={error}
-              data={data}
-              months={months}
-              setSelectedMonth={setSelectedMonth}
               selected={selectedMonth}
-              allDeselected={allDeselected}
+              {...{
+                filters,
+                isLoading,
+                error,
+                data,
+                months,
+                setSelectedMonth,
+                allDeselected,
+              }}
             />
           ) : (
             <ListCalendar
-              filters={filters}
               filtersSelected={selectedMenuFilter}
-              isLoading={isLoading}
-              error={error}
-              data={data}
-              months={months}
-              setSelectedMonth={setSelectedMonth}
               selected={selectedMonth}
-              allDeselected={allDeselected}
+              {...{
+                filters,
+                isLoading,
+                error,
+                data,
+                months,
+                setSelectedMonth,
+                allDeselected,
+              }}
             />
           )}
         </div>

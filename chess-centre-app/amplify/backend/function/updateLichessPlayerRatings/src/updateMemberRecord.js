@@ -1,4 +1,3 @@
-
 const AWS = require("aws-sdk");
 const { MEMBERTABLE_NAME } = process.env;
 const dynamodb = new AWS.DynamoDB.DocumentClient();
@@ -11,7 +10,7 @@ exports.updateMemberRecord = async (id, data) => {
     },
     UpdateExpression: "set liChessInfo=:json, lichessLastUpdated=:updated",
     ExpressionAttributeValues: {
-        ":json": JSON.parse(data),
+        ":json": data,
         ":updated": Date.now()
     },
     ReturnValues: "UPDATED_NEW"

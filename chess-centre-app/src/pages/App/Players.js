@@ -83,6 +83,12 @@ export default function Players() {
             ? JSON.parse(member.liChessInfo)
             : undefined;
 
+          const diffCheck = (current, previous) => {
+            if(current > previous) return 1;
+            if(current < previous) return -1;
+            return 0;
+          };
+          
           return [
             ...players,
             {
@@ -92,8 +98,11 @@ export default function Players() {
               handle: member.liChessUsername,
               total: parsedLichess?.count?.all || 0,
               puzzleRating: parsedLichess?.perfs?.puzzle?.rating,
-              lichessBlitz: parsedLichess?.perfs?.blitz?.rating,
+              bulletDiff: diffCheck(parsedLichess?.perfs?.bullet?.rating, parsedLichess?.perfs?.bullet?.prev),
+              blitzDiff: diffCheck(parsedLichess?.perfs?.blitz?.rating, parsedLichess?.perfs?.blitz?.prev),
+              rapidDiff: diffCheck(parsedLichess?.perfs?.rapid?.rating, parsedLichess?.perfs?.rapid?.prev),
               lichessBullet: parsedLichess?.perfs?.bullet?.rating,
+              lichessBlitz: parsedLichess?.perfs?.blitz?.rating,
               lichessRapid: parsedLichess?.perfs?.rapid?.rating,
               lastUpdated: member.lichessLastUpdated,
             },
