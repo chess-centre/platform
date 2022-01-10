@@ -176,7 +176,7 @@ function Table({ columns, data, searchPlaceholder = "games...", colour="bg-teal-
       columns,
       data,
       initialState: {
-        hiddenColumns: ["id", "liChessUrl", "eventId", "formArray"]
+        hiddenColumns: ["id", "liChessUrl", "eventId", "formArray", "bulletDiff", "blitzDiff", "rapidDiff"]
       }
     },
     useFilters, // useFilters!
