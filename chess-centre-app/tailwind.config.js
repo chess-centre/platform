@@ -56,6 +56,9 @@ module.exports = windmill({
         },
         teal: {
           brand: "#5499ab"
+        },
+        blue: {
+          brand: "#2b374b"
         }
       },
       spacing: {
