@@ -108,8 +108,8 @@ function ListCalendar({
                     const isJunior = eventType?.includes("junior");
                     return isJunior ? filters["junior"] : filters[eventType];
                   })
-                  .map((data, key) => (
-                    <ListCard key={key} event={data} />
+                  .map((event, key) => (
+                    <ListCard {...{ key, event }} />
                   ))}
 
                 {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
@@ -174,40 +174,45 @@ export default function Calendar() {
   }, [data]);
 
   return (
-    <div className="mx-auto max-w-xs sm:max-w-none mt-6">
-        <div className="mx-auto text-center">
-          <div className="relative flex mb-5 mt-2">
-            <div className="ml-1 z-0 top-6 inline-flex m-auto">
-              <TabMonths
-                selectedMonth={selectedMonth}
-                months={months}
-                setSelectedMonth={setSelectedMonth}
+    <div className="mx-auto sm:max-w-none mt-6">
+      <div className="mx-auto text-center">
+        <div className="relative flex mb-5 mt-2">
+          <div className="ml-1 z-0 top-6 inline-flex m-auto">
+            <TabMonths
+              {...{
+                selectedMonth,
+                months,
+                setSelectedMonth,
+              }}
+            />
+          </div>
+          <div className="right-0 top-6 text-center sm:text-right">
+            <span className="relative z-10 inline-flex">
+              <FilterMenu
+                setSelected={setSelectedMenuFilter}
+                {...{
+                  filters,
+                  setFilters,
+                  setAllDeselected,
+                }}
               />
-            </div>
-            <div className="right-0 top-6 text-center sm:text-right">
-              <span className="relative z-10 inline-flex">
-                <FilterMenu
-                  filters={filters}
-                  setFilters={setFilters}
-                  selected={selectedMenuFilter}
-                  setSelected={setSelectedMenuFilter}
-                  setAllDeselected={setAllDeselected}
-                />
-              </span>
-            </div>
+            </span>
           </div>
         </div>
-        <ListCalendar
-          filters={filters}
-          filtersSelected={selectedMenuFilter}
-          isLoading={isLoading}
-          error={error}
-          data={data}
-          months={months}
-          setSelectedMonth={setSelectedMonth}
-          selected={selectedMonth}
-          allDeselected={allDeselected}
-        />
+      </div>
+      <ListCalendar
+        filtersSelected={selectedMenuFilter}
+        selected={selectedMonth}
+        {...{
+          filters,
+          isLoading,
+          error,
+          data,
+          months,
+          setSelectedMonth,
+          allDeselected,
+        }}
+      />
     </div>
   );
 }

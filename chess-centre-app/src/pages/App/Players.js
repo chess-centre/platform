@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "@aws-amplify/api";
+import { useAuthState } from "../../context/Auth";
 import ECFPlayerTable from "../../components/Table/ECFPlayerTable";
 import LichessPlayerTable from "../../components/Table/LichessPlayerTable";
 import ChesscomPlayerTable from "../../components/Table/ChesscomPlayerTable";
@@ -39,6 +40,7 @@ export const listMembers = /* GraphQL */ `
 `;
 
 export default function Players() {
+  const { user } = useAuthState();
   const [tabs, setTabs] = useState([
     { 
       name: "ECF", 
@@ -209,15 +211,15 @@ export default function Players() {
   const renderTable = ({ ref, colour }) => {
     switch (ref) {
       case "ecf":
-        return <ECFPlayerTable players={ecfPlayers} {...{ colour }} />;
+        return <ECFPlayerTable userId={user.attributes.sub} players={ecfPlayers} {...{ colour }} />;
       case "lichess":
-        return <LichessPlayerTable players={lichessPlayers} {...{ colour }} />;
+        return <LichessPlayerTable userId={user.attributes.sub} players={lichessPlayers} {...{ colour }} />;
       case "chesscom":
         return (
-          <ChesscomPlayerTable players={chesscomPlayers} {...{ colour }} />
+          <ChesscomPlayerTable userId={user.attributes.sub} players={chesscomPlayers} {...{ colour }} />
         );
       default:
-        return <ECFPlayerTable players={ecfPlayers} {...{ colour }} />;
+        return <ECFPlayerTable userId={user.attributes.sub} players={ecfPlayers} {...{ colour }} />;
     }
   };
 
