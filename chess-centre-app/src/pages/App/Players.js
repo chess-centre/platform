@@ -6,7 +6,6 @@ import LichessPlayerTable from "../../components/Table/LichessPlayerTable";
 import ChesscomPlayerTable from "../../components/Table/ChesscomPlayerTable";
 import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 import { classNames } from "../../utils/Classes";
-import { ConsoleLogger } from "@aws-amplify/core";
 
 export const listMembers = /* GraphQL */ `
   query ListMembers(
@@ -71,9 +70,7 @@ export default function Players() {
   const [ecfPlayers, setECFPlayers] = useState([]);
   const [lichessPlayers, setLichessPlayers] = useState([]);
   const [chesscomPlayers, setChesscomPlayers] = useState([]);
-  const [lichessStatuses, setLichessStatuses] = useState([]);
   
-
   const [slideState, setIsSlideOutOpen] = useState({
     open: false,
     eventDetails: {},
