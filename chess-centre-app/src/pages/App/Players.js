@@ -74,6 +74,12 @@ export default function Players() {
     eventDetails: {},
   });
 
+  const diffCheck = (current, previous) => {
+    if(current > previous) return 1;
+    if(current < previous) return -1;
+    return 0;
+  };
+
   const lichessPlayerData = (players) => {
     if (players && players.length > 0) {
       const filtered = players
@@ -82,12 +88,6 @@ export default function Players() {
           const parsedLichess = member.liChessInfo
             ? JSON.parse(member.liChessInfo)
             : undefined;
-
-          const diffCheck = (current, previous) => {
-            if(current > previous) return 1;
-            if(current < previous) return -1;
-            return 0;
-          };
           
           return [
             ...players,
@@ -133,6 +133,9 @@ export default function Players() {
               name: member.name,
               handle: member.chesscomUsername,
               tactics: parsedChesscom?.tactics?.highest?.rating,
+              bulletDiff: diffCheck(parsedChesscom?.chess_bullet?.rating, parsedChesscom?.chess_bullet?.last?.prev),
+              blitzDiff: diffCheck(parsedChesscom?.chess_blitz?.rating, parsedChesscom?.chess_blitz?.last?.prev),
+              rapidDiff: diffCheck(parsedChesscom?.chess_rapid?.rating, parsedChesscom?.chess_rapid?.last?.prev),
               chesscomBlitz: parsedChesscom?.chess_blitz?.last?.rating,
               chesscomBullet: parsedChesscom?.chess_bullet?.last?.rating,
               chesscomRapid: parsedChesscom?.chess_rapid?.last?.rating,
