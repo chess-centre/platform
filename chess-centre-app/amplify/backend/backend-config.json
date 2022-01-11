@@ -138,6 +138,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "getLichessStatuses",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     },
@@ -322,6 +330,11 @@
       "service": "Lambda"
     },
     "updateChesscomRatings": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getLichessStatuses": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

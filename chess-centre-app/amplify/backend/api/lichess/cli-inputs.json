@@ -11,6 +11,16 @@
         ]
       },
       "lambdaFunction": "getLichessPlayer"
+    },
+    "/statuses": {
+      "name": "/statuses",
+      "lambdaFunction": "getLichessStatuses",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "read"
+        ]
+      }
     }
   }
 }

@@ -1,8 +1,20 @@
-import React from "react";
+import { useState, useMemo } from "react";
 import moment from "moment";
 import Table from "./index";
+import ChallengePlayerModal from "../../components/Modal/ChallengePlayerModal";
 
-export default function LichessPlayersTable({ players, colour }) {
+export default function LichessPlayersTable({ userId, players, colour }) {
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [selectedHandleInfo, setSelectedHandleInfo] = useState({ handle: "", online: false });
+
+  const openModal = ({ handle, online }) => {
+    setIsOpenModal(true);
+    setSelectedHandleInfo({ handle, online });
+  };
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
+
   const DiffArrow = (diff) => {
     switch (diff) {
       case 1:
@@ -16,7 +28,7 @@ export default function LichessPlayersTable({ players, colour }) {
     }
   };
 
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: "id",
@@ -39,22 +51,33 @@ export default function LichessPlayersTable({ players, colour }) {
         show: false,
       },
       {
+        Header: "Online",
+        accessor: "isOnline",
+      },
+      {
         Header: "#",
         accessor: "rank",
       },
       {
         Header: "Name",
         accessor: "name",
+        Cell: (props) => {
+          return (
+            <span className="inline-block relative">
+              {props.cell.value}
+              { props.row.values.isOnline && <span className="absolute animate-pulse top-0 -right-2 block h-2 w-2 rounded-full ring-2 ring-white bg-green-400" /> }
+            </span>
+          );
+        },
       },
+
       {
-        Header: "Handle",
-        accessor: "handle",
-      },
-      {
-        Header: "Total Game",
+        Header: () => <div className="mx-auto">Games</div>,
         accessor: "total",
         Cell: (props) => (
-          <div className="font-medium text-sm text-center">{props.cell.value}</div>
+          <div className="font-medium text-sm text-center">
+            {props.cell.value}
+          </div>
         ),
       },
       {
@@ -88,11 +111,32 @@ export default function LichessPlayersTable({ players, colour }) {
         ),
       },
       {
-        Header: "Puzzle Rating",
+        Header: () => <div className="mx-auto">Puzzle Rating</div>,
         accessor: "puzzleRating",
         Cell: (props) => (
-          <div className="font-medium text-sm text-center">{props.cell.value}</div>
+          <div className="font-medium text-sm text-center px-10 sm:px-2">
+            {props.cell.value}
+          </div>
         ),
+      },
+      {
+        Header: "Handle",
+        accessor: "handle",
+        Cell: (props) => {
+          return props.row.values.id !== userId ? (
+            <button
+              onClick={() => openModal({ handle: props.cell.value, online: props.row.values.isOnline })}
+              type="button"
+              className="inline-flex items-center px-2.5 py-1 border border-gray-200 shadow text-xs font-medium rounded text-gray-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            >
+              @{props.cell.value}
+            </button>
+          ) : (
+            <div className="px-2.5 text-xs font-medium text-gray-600">
+              @{props.cell.value}
+            </div>
+          );
+        },
       },
       {
         Header: "Last Updated",
@@ -104,7 +148,7 @@ export default function LichessPlayersTable({ players, colour }) {
         ),
       },
     ],
-    []
+    [userId]
   );
 
   return (
@@ -121,6 +165,11 @@ export default function LichessPlayersTable({ players, colour }) {
           )}
         </div>
       </main>
+      <ChallengePlayerModal
+        open={isOpenModal}
+        info={selectedHandleInfo}
+        {...{ closeModal }}
+      />
     </div>
   );
 }
