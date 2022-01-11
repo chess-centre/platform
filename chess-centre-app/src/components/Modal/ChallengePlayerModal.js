@@ -7,31 +7,17 @@ import {
   ModalHeader,
 } from "@windmill/react-ui";
 
-export default function AddMyProfileImageModel({
-  open,
-  closeModal,
-  handle,
-  status,
-}) {
+export default function ChallengePlayerModal({ open, closeModal, info }) {
   const handleChallengeEvent = () => {
-    window.open(`https://lichess.org/?user=${handle}#friend`);
+    window.open(`https://lichess.org/?user=${info.handle}#friend`);
   };
 
   const renderStatus = (status) => {
-    switch (status) {
-      case "Online":
-        return (
-          <span className="text-green-600 font-medium text-xl">{status}</span>
-        );
-      case "Offline":
-        return (
-          <span className="text-gray-500 font-medium text-xl">{status}</span>
-        );
-      default:
-        return (
-          <span className="text-gray-500 font-medium text-xl">Offline</span>
-        );
-    }
+    return status ? (
+      <span className="text-green-600 font-medium text-xl">Online</span>
+    ) : (
+      <span className="text-gray-500 font-medium text-xl">Offline</span>
+    );
   };
 
   return (
@@ -41,8 +27,8 @@ export default function AddMyProfileImageModel({
       </ModalHeader>
       <ModalBody className="px-4 text-center">
         <div className="mb-4">
-          <p className="mb-4 font-extrabold text-2xl">{handle}</p>
-          <p className="mb-4">{renderStatus(status)}</p>
+          <p className="mb-4 font-extrabold text-2xl">{info.handle}</p>
+          <p className="mb-4">{renderStatus(info.online)}</p>
           <button
             type="button"
             onClick={handleChallengeEvent}

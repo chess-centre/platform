@@ -6,6 +6,7 @@ import LichessPlayerTable from "../../components/Table/LichessPlayerTable";
 import ChesscomPlayerTable from "../../components/Table/ChesscomPlayerTable";
 import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 import { classNames } from "../../utils/Classes";
+import { ConsoleLogger } from "@aws-amplify/core";
 
 export const listMembers = /* GraphQL */ `
   query ListMembers(
@@ -42,11 +43,11 @@ export const listMembers = /* GraphQL */ `
 export default function Players() {
   const { user } = useAuthState();
   const [tabs, setTabs] = useState([
-    { 
-      name: "ECF", 
-      ref: "ecf", 
-      colour: "bg-teal-700", 
-      current: true 
+    {
+      name: "ECF",
+      ref: "ecf",
+      colour: "bg-teal-700",
+      current: true,
     },
     {
       name: "Lichess",
@@ -70,6 +71,8 @@ export default function Players() {
   const [ecfPlayers, setECFPlayers] = useState([]);
   const [lichessPlayers, setLichessPlayers] = useState([]);
   const [chesscomPlayers, setChesscomPlayers] = useState([]);
+  const [lichessStatuses, setLichessStatuses] = useState([]);
+  
 
   const [slideState, setIsSlideOutOpen] = useState({
     open: false,
@@ -77,12 +80,13 @@ export default function Players() {
   });
 
   const diffCheck = (current, previous) => {
-    if(current > previous) return 1;
-    if(current < previous) return -1;
+    if (current > previous) return 1;
+    if (current < previous) return -1;
     return 0;
   };
 
-  const lichessPlayerData = (players) => {
+  const lichessPlayerData = (players, lichessStatuses) => {
+
     if (players && players.length > 0) {
       const filtered = players
         .filter((m) => !!m.liChessUsername)
@@ -90,19 +94,31 @@ export default function Players() {
           const parsedLichess = member.liChessInfo
             ? JSON.parse(member.liChessInfo)
             : undefined;
-          
+
+          const status = lichessStatuses.find(s => s.id === member.liChessUsername.toLowerCase());
+
           return [
             ...players,
             {
               id: member.id,
               rank: (index += 1),
               name: member.name,
+              isOnline: status && status?.online ? status.online : false,
               handle: member.liChessUsername,
               total: parsedLichess?.count?.all || 0,
               puzzleRating: parsedLichess?.perfs?.puzzle?.rating,
-              bulletDiff: diffCheck(parsedLichess?.perfs?.bullet?.rating, parsedLichess?.perfs?.bullet?.prev),
-              blitzDiff: diffCheck(parsedLichess?.perfs?.blitz?.rating, parsedLichess?.perfs?.blitz?.prev),
-              rapidDiff: diffCheck(parsedLichess?.perfs?.rapid?.rating, parsedLichess?.perfs?.rapid?.prev),
+              bulletDiff: diffCheck(
+                parsedLichess?.perfs?.bullet?.rating,
+                parsedLichess?.perfs?.bullet?.prev
+              ),
+              blitzDiff: diffCheck(
+                parsedLichess?.perfs?.blitz?.rating,
+                parsedLichess?.perfs?.blitz?.prev
+              ),
+              rapidDiff: diffCheck(
+                parsedLichess?.perfs?.rapid?.rating,
+                parsedLichess?.perfs?.rapid?.prev
+              ),
               lichessBullet: parsedLichess?.perfs?.bullet?.rating,
               lichessBlitz: parsedLichess?.perfs?.blitz?.rating,
               lichessRapid: parsedLichess?.perfs?.rapid?.rating,
@@ -135,9 +151,18 @@ export default function Players() {
               name: member.name,
               handle: member.chesscomUsername,
               tactics: parsedChesscom?.tactics?.highest?.rating,
-              bulletDiff: diffCheck(parsedChesscom?.chess_bullet?.last?.rating, parsedChesscom?.chess_bullet?.last?.prev),
-              blitzDiff: diffCheck(parsedChesscom?.chess_blitz?.last?.rating, parsedChesscom?.chess_blitz?.last?.prev),
-              rapidDiff: diffCheck(parsedChesscom?.chess_rapid?.last?.rating, parsedChesscom?.chess_rapid?.last?.prev),
+              bulletDiff: diffCheck(
+                parsedChesscom?.chess_bullet?.last?.rating,
+                parsedChesscom?.chess_bullet?.last?.prev
+              ),
+              blitzDiff: diffCheck(
+                parsedChesscom?.chess_blitz?.last?.rating,
+                parsedChesscom?.chess_blitz?.last?.prev
+              ),
+              rapidDiff: diffCheck(
+                parsedChesscom?.chess_rapid?.last?.rating,
+                parsedChesscom?.chess_rapid?.last?.prev
+              ),
               chesscomBlitz: parsedChesscom?.chess_blitz?.last?.rating,
               chesscomBullet: parsedChesscom?.chess_bullet?.last?.rating,
               chesscomRapid: parsedChesscom?.chess_rapid?.last?.rating,
@@ -211,20 +236,44 @@ export default function Players() {
   const renderTable = ({ ref, colour }) => {
     switch (ref) {
       case "ecf":
-        return <ECFPlayerTable userId={user.attributes.sub} players={ecfPlayers} {...{ colour }} />;
+        return (
+          <ECFPlayerTable
+            userId={user.attributes.sub}
+            players={ecfPlayers}
+            {...{ colour }}
+          />
+        );
       case "lichess":
-        return <LichessPlayerTable userId={user.attributes.sub} players={lichessPlayers} {...{ colour }} />;
+        return (
+          <LichessPlayerTable
+            userId={user.attributes.sub}
+            players={lichessPlayers}
+            {...{ colour }}
+          />
+        );
       case "chesscom":
         return (
-          <ChesscomPlayerTable userId={user.attributes.sub} players={chesscomPlayers} {...{ colour }} />
+          <ChesscomPlayerTable
+            userId={user.attributes.sub}
+            players={chesscomPlayers}
+            {...{ colour }}
+          />
         );
       default:
-        return <ECFPlayerTable userId={user.attributes.sub} players={ecfPlayers} {...{ colour }} />;
+        return (
+          <ECFPlayerTable
+            userId={user.attributes.sub}
+            players={ecfPlayers}
+            {...{ colour }}
+          />
+        );
     }
   };
 
   useEffect(() => {
     document.title = "The Chess Centre | Players";
+
+    const fetchStatuses = async () => await API.get("lichess", "/statuses");
 
     const fetchRatedPlayers = async () => {
       setIsLoading(true);
@@ -239,14 +288,16 @@ export default function Players() {
         authMode: "AWS_IAM",
       });
       ecfPlayerData(playersList);
-      lichessPlayerData(playersList);
       chesscomPlayerData(playersList);
+      const lichessStatuses = await fetchStatuses();
+      lichessPlayerData(playersList, lichessStatuses);
       setIsLoading(false);
       setIsError(false);
     };
 
     try {
       fetchRatedPlayers();
+      fetchStatuses();
     } catch (error) {
       console.log(error);
       setIsLoading(false);

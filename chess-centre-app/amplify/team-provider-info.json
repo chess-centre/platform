@@ -97,6 +97,10 @@
         "updateChesscomRatings": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
           "s3Key": "amplify-builds/updateChesscomRatings-776738797a624c396574-build.zip"
+        },
+        "getLichessStatuses": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/getLichessStatuses-42685379357271417a63-build.zip"
         }
       }
     }
