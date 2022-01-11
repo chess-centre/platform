@@ -62,7 +62,7 @@ export default function LichessPlayersTable({ players, colour }) {
         accessor: "lichessBullet",
         Cell: (props) => (
           <div className="text-sm text-gray-500">
-            {DiffArrow(props.row.values.bulletDiff)}
+            {props.cell.value && DiffArrow(props.row.values.bulletDiff)}
             {props.cell.value}
           </div>
         ),
@@ -72,7 +72,7 @@ export default function LichessPlayersTable({ players, colour }) {
         accessor: "lichessBlitz",
         Cell: (props) => (
           <div className="text-sm text-gray-500">
-            {DiffArrow(props.row.values.blitzDiff)}
+            {props.cell.value && DiffArrow(props.row.values.blitzDiff)}
             {props.cell.value}
           </div>
         ),
@@ -82,7 +82,7 @@ export default function LichessPlayersTable({ players, colour }) {
         accessor: "lichessRapid",
         Cell: (props) => (
           <div className="text-sm text-gray-500">
-            {DiffArrow(props.row.values.rapidDiff)}
+            {props.cell.value && DiffArrow(props.row.values.rapidDiff)}
             {props.cell.value}
           </div>
         ),
