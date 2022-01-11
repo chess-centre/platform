@@ -96,7 +96,7 @@
         },
         "updateChesscomRatings": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateChesscomRatings-42385a4868434d353476-build.zip"
+          "s3Key": "amplify-builds/updateChesscomRatings-776738797a624c396574-build.zip"
         }
       }
     }
