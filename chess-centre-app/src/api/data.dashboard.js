@@ -169,14 +169,14 @@ export const ResultsDoughnut = (gameInfo) => {
           label: '# result',
           data: [stats?.wins || 0, stats?.draws || 0, stats?.losses || 0],
           backgroundColor: [
-            "#0694a2",
-            "#d53f8c",
-            "#f0802b"
+            "#057A55",
+            "#c27803",
+            "#c81e1e"
           ],
           borderColor: [
-            "#0694a2",
-            "#d53f8c",
-            "#f0802b"
+            "#057A55",
+            "#c27803",
+            "#c81e1e"
           ],
           borderWidth: 1,
         },
