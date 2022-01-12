@@ -5,14 +5,14 @@ import ChallengePlayerModal from "../../components/Modal/ChallengePlayerModal";
 
 export default function LichessPlayersTable({ userId, players, colour, statuses }) {
 
-  const [data, setData] = useState({ open: false, handle: "", data: {} });
+  const [data, setData] = useState({ open: false, handle: "", status: {} });
 
   const openModal = ({ handle }) => {
-    const data = statuses.find(s => s.id === handle.toLowerCase());
-    setData({ open: true, handle, data });
+    const status = statuses.find(s => s.id === handle.toLowerCase());
+    setData({ open: true, handle, status });
   };
   const closeModal = () => {
-    setData(state => ({ ...state, open: false }));
+    setData(state => ({ ...state, open: false, status: {} }));
   };
 
   const DiffArrow = (diff) => {
