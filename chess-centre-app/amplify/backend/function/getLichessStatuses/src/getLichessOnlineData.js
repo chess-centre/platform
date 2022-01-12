@@ -2,7 +2,7 @@ const https = require('https');
 
 exports.getLichessOnlineData = async query => {
   console.log("GET: getLichessOnlineData", query);
-  const url = `https://lichess.org/api/users/status?ids=${query}`;
+  const url = `https://lichess.org/api/users/status?ids=${query}&withGameIds=true`;
   
   console.log(url);
 

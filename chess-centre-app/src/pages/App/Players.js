@@ -4,7 +4,6 @@ import { useAuthState } from "../../context/Auth";
 import ECFPlayerTable from "../../components/Table/ECFPlayerTable";
 import LichessPlayerTable from "../../components/Table/LichessPlayerTable";
 import ChesscomPlayerTable from "../../components/Table/ChesscomPlayerTable";
-import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 import { classNames } from "../../utils/Classes";
 
 export const listMembers = /* GraphQL */ `
@@ -41,40 +40,37 @@ export const listMembers = /* GraphQL */ `
 
 export default function Players() {
   const { user } = useAuthState();
-  const [tabs, setTabs] = useState([
-    {
-      name: "ECF",
+  const [state, setState] = useState({
+    isLoading: false,
+    isError: false,
+    ecfPlayers: [],
+    lichessPlayers: [],
+    chesscomPlayers: [],
+    tabs: [
+      {
+        name: "ECF",
+        ref: "ecf",
+        colour: "bg-teal-700",
+        current: true,
+      },
+      {
+        name: "Lichess",
+        ref: "lichess",
+        colour: "bg-purple-800",
+        current: false,
+      },
+      {
+        name: "Chess.com",
+        ref: "chesscom",
+        colour: "bg-yellow-600",
+        current: false,
+      },
+    ],
+    selectedTab: {
       ref: "ecf",
-      colour: "bg-teal-700",
-      current: true,
-    },
-    {
-      name: "Lichess",
-      ref: "lichess",
-      colour: "bg-purple-800",
-      current: false,
-    },
-    {
-      name: "Chess.com",
-      ref: "chesscom",
-      colour: "bg-yellow-600",
-      current: false,
-    },
-  ]);
-  const [selectedTab, setSelectedTab] = useState({
-    ref: "ecf",
-    colour: "bg-teal-700",
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [ecfPlayers, setECFPlayers] = useState([]);
-  const [lichessPlayers, setLichessPlayers] = useState([]);
-  const [chesscomPlayers, setChesscomPlayers] = useState([]);
-  
-  const [slideState, setIsSlideOutOpen] = useState({
-    open: false,
-    eventDetails: {},
-  });
+      colour: "bg-teal-700"
+    }
+  })
 
   const diffCheck = (current, previous) => {
     if (current > previous) return 1;
@@ -128,7 +124,7 @@ export default function Players() {
           player.rank = i + 1;
           return { ...player };
         });
-      setLichessPlayers(filtered);
+      setState(state => ({...state, lichessPlayers: [...filtered]}));
     }
   };
 
@@ -172,7 +168,7 @@ export default function Players() {
           player.rank = i + 1;
           return { ...player };
         });
-      setChesscomPlayers(filtered);
+      setState(state => ({...state, chesscomPlayers: [...filtered]}));
     }
   };
 
@@ -216,18 +212,21 @@ export default function Players() {
             },
           ];
         }, []);
-      setECFPlayers(filtered);
+      setState(state => ({...state, ecfPlayers: [...filtered]}));
     }
   };
 
   const handleSelectedTab = ({ ref, colour }) => {
-    setTabs((state) => [
-      ...state.map((s) => ({
-        ...s,
-        current: s.ref === ref,
-      })),
-    ]);
-    setSelectedTab({ ref, colour });
+    setState(state => (
+      {...state, 
+        selectedTab: { ref, colour },
+        tabs: [
+          ...state.tabs.map(tab => ({
+            ...tab,
+            current: tab.ref === ref
+          }))
+        ]
+      }))
   };
 
   const renderTable = ({ ref, colour }) => {
@@ -236,7 +235,7 @@ export default function Players() {
         return (
           <ECFPlayerTable
             userId={user.attributes.sub}
-            players={ecfPlayers}
+            players={state.ecfPlayers}
             {...{ colour }}
           />
         );
@@ -244,7 +243,7 @@ export default function Players() {
         return (
           <LichessPlayerTable
             userId={user.attributes.sub}
-            players={lichessPlayers}
+            players={state.lichessPlayers}
             {...{ colour }}
           />
         );
@@ -252,7 +251,7 @@ export default function Players() {
         return (
           <ChesscomPlayerTable
             userId={user.attributes.sub}
-            players={chesscomPlayers}
+            players={state.chesscomPlayers}
             {...{ colour }}
           />
         );
@@ -260,7 +259,7 @@ export default function Players() {
         return (
           <ECFPlayerTable
             userId={user.attributes.sub}
-            players={ecfPlayers}
+            players={state.ecfPlayers}
             {...{ colour }}
           />
         );
@@ -270,10 +269,8 @@ export default function Players() {
   useEffect(() => {
     document.title = "The Chess Centre | Players";
 
-    const fetchStatuses = async () => await API.get("lichess", "/statuses");
-
     const fetchRatedPlayers = async () => {
-      setIsLoading(true);
+      setState(state => ({...state, isLoading: true, isError: false }));
       const {
         data: {
           listMembers: { items: playersList },
@@ -284,38 +281,37 @@ export default function Players() {
         variables: { limit: 500, filter: { ecfId: { ne: null } } },
         authMode: "AWS_IAM",
       });
-      ecfPlayerData(playersList);
-      chesscomPlayerData(playersList);
-      const lichessStatuses = await fetchStatuses();
-      lichessPlayerData(playersList, lichessStatuses);
-      setIsLoading(false);
-      setIsError(false);
+
+      if(state.selectedTab.ref === "ecf") {
+        ecfPlayerData(playersList);
+      }
+
+      if(state.selectedTab.ref === "chesscom") {
+        chesscomPlayerData(playersList);
+      }
+
+      if(state.selectedTab.ref === "lichess") {
+        const fetchStatuses = async () => await API.get("lichess", "/statuses");
+        const lichessStatuses = await fetchStatuses();
+        lichessPlayerData(playersList, lichessStatuses);
+      }
+      setState(state => ({...state, isLoading: false, isError: false }));
     };
 
     try {
       fetchRatedPlayers();
-      fetchStatuses();
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
-      setIsError(true);
+      setState(state => ({...state, isLoading: false, isError: true }));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTab]);
+  }, [state.selectedTab]);
 
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <i className="fas fa-chess-king text-teal-600"></i> Players
-        <div className="inline-flex align-top top-2">
-          <span
-            onClick={() => setIsSlideOutOpen({ open: true })}
-            className="ml-2 cursor-pointer items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-800 top-2"
-          >
-            BETA
-          </span>
-        </div>
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
@@ -327,12 +323,12 @@ export default function Players() {
 
       <div className="grid grid-cols-1">
         <div className="mt-4 mb-2">
-          <RatingTypeTabs {...{ tabs, handleSelectedTab }} />
+          <RatingTypeTabs {...{ tabs: state.tabs, handleSelectedTab }} />
         </div>
 
-        {!isLoading && !isError && <div>{renderTable(selectedTab)}</div>}
+        {!state.isLoading && !state.isError && <div>{renderTable(state.selectedTab)}</div>}
 
-        {isLoading && (
+        {state.isLoading && (
           <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
             <span className="animate-pulse">
               <i className="aninmal-pulse fal fa-chess-clock fa-10x text-gray-400 opacity-50"></i>
@@ -343,7 +339,7 @@ export default function Players() {
           </div>
         )}
 
-        {isError && (
+        {state.isError && (
           <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
             <span>
               <i className="aninmal-pulse fal fa-exclamation-square fa-10x text-orange-400 opacity-50"></i>
@@ -355,11 +351,6 @@ export default function Players() {
           </div>
         )}
       </div>
-
-      <BetaSlideOut
-        slideState={slideState}
-        setIsSlideOutOpen={setIsSlideOutOpen}
-      ></BetaSlideOut>
     </div>
   );
 }
