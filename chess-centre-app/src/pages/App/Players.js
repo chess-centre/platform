@@ -45,6 +45,7 @@ export default function Players() {
     isError: false,
     ecfPlayers: [],
     lichessPlayers: [],
+    lichessStatuses: [],
     chesscomPlayers: [],
     tabs: [
       {
@@ -88,15 +89,15 @@ export default function Players() {
             ? JSON.parse(member.liChessInfo)
             : undefined;
 
-          const status = lichessStatuses.find(s => s.id === member.liChessUsername.toLowerCase());
+          const isOnline = lichessStatuses.find(s => s.id === member.liChessUsername.toLowerCase());
 
           return [
             ...players,
             {
               id: member.id,
               rank: (index += 1),
+              isOnline: isOnline?.online,
               name: member.name,
-              isOnline: status && status?.online ? status.online : false,
               handle: member.liChessUsername,
               total: parsedLichess?.count?.all || 0,
               puzzleRating: parsedLichess?.perfs?.puzzle?.rating,
@@ -124,7 +125,7 @@ export default function Players() {
           player.rank = i + 1;
           return { ...player };
         });
-      setState(state => ({...state, lichessPlayers: [...filtered]}));
+      setState(state => ({...state, lichessPlayers: [...filtered], lichessStatuses }));
     }
   };
 
@@ -244,7 +245,9 @@ export default function Players() {
           <LichessPlayerTable
             userId={user.attributes.sub}
             players={state.lichessPlayers}
+            statuses={state.lichessStatuses}
             {...{ colour }}
+
           />
         );
       case "chesscom":

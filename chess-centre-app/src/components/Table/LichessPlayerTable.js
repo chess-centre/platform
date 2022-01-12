@@ -3,16 +3,16 @@ import moment from "moment";
 import Table from "./index";
 import ChallengePlayerModal from "../../components/Modal/ChallengePlayerModal";
 
-export default function LichessPlayersTable({ userId, players, colour }) {
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [selectedHandleInfo, setSelectedHandleInfo] = useState({ handle: "", online: false });
+export default function LichessPlayersTable({ userId, players, colour, statuses }) {
 
-  const openModal = ({ handle, online }) => {
-    setIsOpenModal(true);
-    setSelectedHandleInfo({ handle, online });
+  const [data, setData] = useState({ open: false, handle: "", data: {} });
+
+  const openModal = ({ handle }) => {
+    const data = statuses.find(s => s.id === handle.toLowerCase());
+    setData({ open: true, handle, data });
   };
   const closeModal = () => {
-    setIsOpenModal(false);
+    setData(state => ({ ...state, open: false }));
   };
 
   const DiffArrow = (diff) => {
@@ -51,8 +51,8 @@ export default function LichessPlayersTable({ userId, players, colour }) {
         show: false,
       },
       {
-        Header: "Online",
-        accessor: "isOnline",
+        Header: "isOnline",
+        accessor: "isOnline"
       },
       {
         Header: "#",
@@ -65,7 +65,7 @@ export default function LichessPlayersTable({ userId, players, colour }) {
           return (
             <span className="inline-block relative">
               {props.cell.value}
-              { props.row.values.isOnline && <span className="absolute animate-pulse top-0 -right-2 block h-2 w-2 rounded-full ring-2 ring-white bg-green-400" /> }
+              { props.row.values?.isOnline && <span className="absolute animate-pulse top-0 -right-2 block h-2 w-2 rounded-full ring-2 ring-white bg-green-400" /> }
             </span>
           );
         },
@@ -125,7 +125,7 @@ export default function LichessPlayersTable({ userId, players, colour }) {
         Cell: (props) => {
           return props.row.values.id !== userId ? (
             <button
-              onClick={() => openModal({ handle: props.cell.value, online: props.row.values.isOnline })}
+              onClick={() => openModal({ handle: props.cell.value })}
               type="button"
               className="inline-flex items-center px-2.5 py-1 border border-gray-200 shadow text-xs font-medium rounded text-gray-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             >
@@ -148,6 +148,7 @@ export default function LichessPlayersTable({ userId, players, colour }) {
         ),
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [userId]
   );
 
@@ -166,9 +167,7 @@ export default function LichessPlayersTable({ userId, players, colour }) {
         </div>
       </main>
       <ChallengePlayerModal
-        open={isOpenModal}
-        info={selectedHandleInfo}
-        {...{ closeModal }}
+        {...{ closeModal, data }}
       />
     </div>
   );

@@ -100,7 +100,7 @@
         },
         "getLichessStatuses": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/getLichessStatuses-42685379357271417a63-build.zip"
+          "s3Key": "amplify-builds/getLichessStatuses-6564786f764469787970-build.zip"
         }
       }
     }
