@@ -9,8 +9,11 @@ export default function LichessPlayersTable({ userId, players, colour, statuses 
 
   const openModal = ({ handle }) => {
     const status = statuses.find(s => s.id === handle.toLowerCase());
-    setData({ open: true, handle, status });
+    if(status) {
+      setData({ open: true, handle, status });
+    }   
   };
+  
   const closeModal = () => {
     setData(state => ({ ...state, open: false, status: {} }));
   };

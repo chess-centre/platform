@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-} from "@windmill/react-ui";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "@windmill/react-ui";
 
 export default function ChallengePlayerModal({ closeModal, data }) {
-
   const handleChallengeEvent = () => {
     window.open(`https://lichess.org/?user=${data.handle}#friend`);
   };
@@ -32,27 +26,32 @@ export default function ChallengePlayerModal({ closeModal, data }) {
       <ModalBody className="px-4 text-center">
         <div className="mb-4">
           <p className="mb-4 font-extrabold text-2xl">{data.handle}</p>
-          <p className="mb-4">{renderStatus(data.online)}</p>
-          <p className="mb-4">
-            {data.status.playing && data.status.playingId && (
+          <p className="mb-4">{renderStatus(data.status.online)}</p>
+          {data.status.playing && data.status.playingId && (
+            <div className="mb-4">
+              <p className="mb-2">Currently in a game...</p>
+
               <button
                 type="button"
                 onClick={() => handleWatchEvent(data.status.playingId)}
-                className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-50 bg-teal-700 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                className="inline-flex items-center px-7 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-50 bg-teal-700 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
-                Watch Game
+                Watch
               </button>
+            </div>
+          )}
+          <div className="mb-4">
+            {data.status.playing && data.status.playingId && (
+              <p className="mb-2">Or</p>
             )}
-          </p>
-          <p>
             <button
               type="button"
               onClick={handleChallengeEvent}
-              className="inline-flex items-center px-6 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             >
               Challenge
             </button>
-          </p>
+          </div>
         </div>
       </ModalBody>
       <ModalFooter className="py-2 bg-gray-200">
