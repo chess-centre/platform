@@ -3,12 +3,10 @@ import {
   Modal,
   ModalBody,
   ModalFooter,
-  Button,
   ModalHeader,
 } from "@windmill/react-ui";
 
 export default function ChallengePlayerModal({ closeModal, data }) {
-  console.log("data", data.data);
 
   const handleChallengeEvent = () => {
     window.open(`https://lichess.org/?user=${data.handle}#friend`);
