@@ -34,10 +34,10 @@ export default function ChallengePlayerModal({ closeModal, data }) {
           <p className="mb-4 font-extrabold text-2xl">{data.handle}</p>
           <p className="mb-4">{renderStatus(data.online)}</p>
           <p className="mb-4">
-            {data.data.playing && data.data.playingId && (
+            {data.status.playing && data.status.playingId && (
               <button
                 type="button"
-                onClick={() => handleWatchEvent(data.data.playingId)}
+                onClick={() => handleWatchEvent(data.status.playingId)}
                 className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-50 bg-teal-700 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
                 Watch Game
