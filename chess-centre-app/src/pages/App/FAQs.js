@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router-dom";
 import queryString from "query-string";
 import { Search } from "../../components/FAQs/Search";
 import { Results } from "../../components/FAQs/Results";
