@@ -149,11 +149,11 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 
 ### Testing
 
-See our published storybook [here](https://61df76f187afd2003a044a06-jzkearkgbv.chromatic.com/?path=/story/example-introduction--page)
+See our published storybook [here](https://61df76f187afd2003a044a06-gaxeydksrb.chromatic.com/?path=/story/introduction--page)
 
-- Jest
-- React Testing Library
-- Cypress
+- Jest (todo)
+- React Testing Library (todo)
+- Cypress (todo)
 
 ### Architecture
 
