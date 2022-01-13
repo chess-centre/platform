@@ -23,7 +23,7 @@ Rapidplay.args = { event:
 export const Congress = Template.bind({});
 Congress.args = { event:
   {
-    id: "1",
+    id: "2",
     url: "test.com",
     color: "bg-red-700",
     name: "Open Congress",
@@ -33,3 +33,17 @@ Congress.args = { event:
     rounds: 5,
   }
 };
+
+export const Blitz = Template.bind({});
+Blitz.args = { event:
+  {
+    id: "3",
+    url: "test.com",
+    color: "bg-blue-700",
+    name: "Open Blitz",
+    startDate: "01-10-2022",
+    time: "various",
+    rounds: 9,
+  }
+};
+
