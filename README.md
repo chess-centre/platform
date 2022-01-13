@@ -24,6 +24,7 @@ This project contains the core source code of **The Chess Centre** application i
   - [Prerequisites](#prerequisites)
   - [Environments](#environments)
 - [Tech Overview](#tech-overview)
+  - [Testing](#testing)
   - [Architecture](#architecture)
   - [Integrations](#integrations)
 - [Contributing](#contributing)
@@ -145,6 +146,14 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 - GraphQL
 - Node
 - DynamoDB
+
+### Testing
+
+See our published storybook [here](https://61df76f187afd2003a044a06-jzkearkgbv.chromatic.com/?path=/story/example-introduction--page)
+
+- Jest
+- React Testing Library
+- Cypress
 
 ### Architecture
 
