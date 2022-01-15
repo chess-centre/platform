@@ -18,7 +18,7 @@ Rapidplay.args = { event:
   {
     id: "1",
     url: "test.com",
-    color: "bg-teal-700",
+    color: "teal",
     name: "Open Rapidplay",
     startDate: "10-01-2022",
     time: "9:00",
@@ -31,7 +31,7 @@ Congress.args = { event:
   {
     id: "2",
     url: "test.com",
-    color: "bg-red-700",
+    color: "red",
     name: "Open Congress",
     startDate: "01-10-2022",
     endDate: "01-11-2022",
@@ -45,7 +45,7 @@ Blitz.args = { event:
   {
     id: "3",
     url: "test.com",
-    color: "bg-blue-700",
+    color: "blue",
     name: "Open Blitz",
     startDate: "01-10-2022",
     endDate: "01-11-2022",
