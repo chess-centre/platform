@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import {
   prettyDate,
 } from "../../../utils/DateFormating";
@@ -8,16 +8,21 @@ import { classNames, bgColor700 } from "../../../utils/Classes";
 export function GridCard({ event }) {
   const history = useHistory();
 
-  const handleClick = () => {
-    history.push(`${event.url}/${event.id}`);
+  const handleClick = (url) => {
+    if(url) {
+      history.push(`${url}/${event.id}`);
+    } else if(event.isLive) {
+      // nice fallback
+      history.push("/broadcast/live");
+    }
   };
 
   return (
     <div
-      onClick={handleClick}
-      className={
-        "relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-gray-200 hover:bg-gray-50 cursor-pointer"
-      }
+      onClick={() => handleClick(event.url)}
+      className={classNames((event.url || event.isLive) && "hover:bg-gray-50",
+        "relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-gray-200 cursor-pointer"
+      )}
     >
       <div
         className={classNames(
@@ -58,13 +63,26 @@ export function GridCard({ event }) {
       >
         {event.url && (
           <div className="text-center align-middle">
-            <div className="text-x text-teal-500 hover:underline cursor-pointer">
-              <a
+            <div className="text-sm text-teal-500 hover:underline cursor-pointer">
+              <Link
                 className="inline-flex items-center text-teal-500 "
-                href={`${event.url}/${event.id}`}
+                to={`${event.url}/${event.id}`}
               >
                 More Info
-              </a>
+              </Link>
+            </div>
+          </div>
+        )}
+        {/* Only show if there is not event url! Live is displayed on the landing pages (if there is one) */}
+        {!event.url && event.isLive && (
+          <div className="text-center align-middle">
+            <div className="text-sm text-red-700 hover:underline cursor-pointer">
+              <Link
+                className="inline-flex items-center text-red-700"
+                to="/broadcast/live"
+              >
+                Watch Live
+              </Link>
             </div>
           </div>
         )}
