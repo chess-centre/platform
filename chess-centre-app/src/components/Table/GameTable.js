@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import QuickSearch from "../../components/FAQs/QuickSearch";
-import Table from "./index"; // new
+import Table from "./index";
 import GameViewerModal from "../Modal/GameViewerModal";
 
 export default function GameTable({ games, memberId }) {
@@ -22,7 +22,7 @@ export default function GameTable({ games, memberId }) {
     });
   };
 
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: "id",
@@ -78,27 +78,19 @@ export default function GameTable({ games, memberId }) {
           switch (props.cell.value) {
             case "win":
               return (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
-                  win
-                </span>
+                <div className="shadow-lg bg-green-600 hover:bg-green-500 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm">Win</div>
               );
             case "loss":
               return (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800">
-                  loss
-                </span>
+                <div className="shadow-lg bg-red-700 hover:bg-red-600 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm">Loss</div>
               );
             case "draw":
               return (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
-                  draw
-                </span>
+                <div className="shadow-lg bg-yellow-500 hover:bg-yellow-400 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm">Draw</div>
               );
             default:
               return (
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
-                  {props.cell.value}
-                </span>
+                <div className="shadow-lg bg-gray-50 hover:bg-gray-100 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm"></div>
               );
           }
         },
@@ -181,7 +173,7 @@ export default function GameTable({ games, memberId }) {
     return "draw";
   };
 
-  const data = React.useMemo(() => {
+  const data = useMemo(() => {
     if (games.length > 0) {
       return games
         .reduce((prev, game) => {
@@ -221,13 +213,13 @@ export default function GameTable({ games, memberId }) {
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <main className="max-w-5xl">
         <div className="mt-6">
-          {data && <Table columns={columns} data={data} />}
+          {data && <Table {...{ columns, data }} />}
         </div>
         <div className="mt-4 sm:mt-4 text-right sm:text-left">
           <QuickSearch tag="games" />
         </div>
       </main>
-      <GameViewerModal {...modalState} closeModal={closeModal} />
+      <GameViewerModal {...{ ...modalState, closeModal }} />
     </div>
   );
 }

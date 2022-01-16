@@ -24,11 +24,11 @@
         },
         "stripeWebhook": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeWebhook-6267314477476a303036-build.zip"
+          "s3Key": "amplify-builds/stripeWebhook-534d7a6a4349736e3235-build.zip"
         },
         "platformchesscentreappPostConfirmation": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-3464557778533031596a-build.zip"
+          "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-352f6f453174524b7a48-build.zip"
         },
         "platformchesscentreappPreTokenGeneration": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -64,7 +64,7 @@
         },
         "ecfHistoricRating": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfHistoricRating-7a3358754374675a6539-build.zip"
+          "s3Key": "amplify-builds/ecfHistoricRating-52453479794251765932-build.zip"
         },
         "trainTravelInfo": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -76,7 +76,7 @@
         },
         "updateGameHistory": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateGameHistory-637a3130345a482f6b6d-build.zip"
+          "s3Key": "amplify-builds/updateGameHistory-4966676834684c346c63-build.zip"
         },
         "uploadLichessPgns": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -92,11 +92,15 @@
         },
         "updateLichessPlayerRatings": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateLichessPlayerRatings-444c72514d514e532b6b-build.zip"
+          "s3Key": "amplify-builds/updateLichessPlayerRatings-6376725455415a66716c-build.zip"
         },
         "updateChesscomRatings": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateChesscomRatings-714b2f466d682f433068-build.zip"
+          "s3Key": "amplify-builds/updateChesscomRatings-776738797a624c396574-build.zip"
+        },
+        "getLichessStatuses": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/getLichessStatuses-6564786f764469787970-build.zip"
         }
       }
     }

@@ -6,7 +6,7 @@ import OpenRapidPlay from "../../assets/img/dave-barlow-vs-gary-corcoran.jpg";
 import OpenCongress from "../../assets/img/june-congress-round-4.jpg";
 import QuickSearch from "../FAQs/QuickSearch";
 import { prettyDate } from "../../utils/DateFormating";
-import { classNames, borderColor700 } from "../../utils/Classes";
+import { classNames, borderColorVarious } from "../../utils/Classes";
 
 function truncate(str, n) {
   return str.length > n ? str.substr(0, n - 1) + " ..." : str;
@@ -246,11 +246,12 @@ export default function EventDetailsSlideOut(props) {
                         id="slide-over-heading"
                         className="text-2xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-3xl sm:leading-none"
                       >
-                        Event details
+                        {eventDetails.name || eventDetails.type?.name}
                       </h2>
                       <div className="ml-3 h-7 flex items-center">
                         <button
-                          className="bg-white z-100 rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-teal-500"
+                          autoFocus={false}
+                          className="bg-white z-50 rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-teal-500"
                           onClick={() =>
                             setIsSlideOutOpen((state) => ({
                               ...state,
@@ -270,24 +271,12 @@ export default function EventDetailsSlideOut(props) {
                   <div className="mb-4">
                     <div className="pb-1 sm:pb-6">
                       <div>
-                        <div className="relative h-52">
-                          <div className="">
+                        <div className={classNames(borderColorVarious(eventDetails.type?.color), "border-4 relative h-52 rounded-md")}>
                             <img
-                              className={classNames(
-                                borderColor700(eventDetails.type?.color),
-                                `absolute h-full w-full object-cover border-2`
-                              )}
+                              className="border-gray-200 border-4 absolute h-full w-full object-cover "
                               src={selectImage(eventDetails.type?.eventType)}
                               alt="Playing Hall"
                             />
-                          </div>
-                        </div>
-                        <div className="mt-2 px-4 sm:flex sm:items-end sm:px-6 text-center">
-                          <div className="flex items-center">
-                            <h3 className="font-bold text-xl text-gray-900 sm:text-2xl text-center">
-                              {eventDetails.name || eventDetails.type?.name}
-                            </h3>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -295,7 +284,7 @@ export default function EventDetailsSlideOut(props) {
                       <dl className="space-y-4 px-2 sm:px-6 sm:space-y-4">
                         <div>
                           <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
-                            <i className="fad fa-info text-teal-500 mr-1"></i>{" "}
+                            <i className="fas fa-info-square text-gray-900 mr-1"></i>{" "}
                             Description
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
@@ -308,7 +297,7 @@ export default function EventDetailsSlideOut(props) {
                         </div>
                         <div>
                           <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
-                            <i className="fad fa-map-pin text-teal-500 mr-1"></i>{" "}
+                            <i className="fad fa-map-pin text-gray-900 mr-1"></i>{" "}
                             Location
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
@@ -317,7 +306,7 @@ export default function EventDetailsSlideOut(props) {
                         </div>
                         <div>
                           <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
-                            <i className="fad fa-chess-clock text-teal-500 mr-1"></i>{" "}
+                            <i className="fad fa-chess-clock text-gray-900 mr-1"></i>{" "}
                             Time Control
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
@@ -326,7 +315,7 @@ export default function EventDetailsSlideOut(props) {
                         </div>
                         <div>
                           <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
-                            <i className="fad fa-calendar-alt text-teal-500 mr-1"></i>{" "}
+                            <i className="fad fa-calendar-alt text-gray-900 mr-1"></i>{" "}
                             Date
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
@@ -340,7 +329,7 @@ export default function EventDetailsSlideOut(props) {
                         <div>
                           {eventDetails.entries?.items.length > 0 ? (
                             <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
-                              <i className="fad fa-users mr-1"></i> Entries
+                              <i className="fad fa-users mr-1 text-gray-900"></i> Entries
                             </dt>
                           ) : (
                             ""

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import Table from "./index"; // new
+import Table from "./index";
 import GameViewerModal from "../Modal/GameViewerModal";
 
-export default function GameTable({ games, memberId }) {
+export default function EventGameTable({ games, memberId }) {
   const [modalState, setModalState] = useState({
     pgn: "",
     open: false,
@@ -21,7 +21,7 @@ export default function GameTable({ games, memberId }) {
     });
   };
 
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: "id",
@@ -32,7 +32,7 @@ export default function GameTable({ games, memberId }) {
         accessor: "liChessUrl",
       },
       {
-        Header: () => (<div className="mx-auto">Game</div>),
+        Header: () => <div className="mx-auto">Game</div>,
         accessor: "pgn",
         Cell: (props) => {
           if (props.cell.value) {
@@ -60,29 +60,29 @@ export default function GameTable({ games, memberId }) {
         ),
       },
       {
-        Header: () => (<div className="mx-auto">Rating</div>),
+        Header: () => <div className="mx-auto">Rating</div>,
         accessor: "whiteRating",
         Cell: (props) => (
           <div className="text-center text-sm">{props.cell.value}</div>
-        )
+        ),
       },
       {
-        Header: () => (<div className="mx-auto">Result</div>),
+        Header: () => <div className="mx-auto">Result</div>,
         accessor: "result",
         Cell: (props) => {
-          const result = props.cell.value
-          if(result.includes("0.5")) {
-            return <div className="text-center">½-½</div>
+          const result = props.cell.value;
+          if (result.includes("0.5")) {
+            return <div className="text-center">½-½</div>;
           }
-          return <div className="text-center">{result}</div>
-        }
+          return <div className="text-center">{result}</div>;
+        },
       },
       {
-        Header: () => (<div className="mx-auto">Rating</div>),
+        Header: () => <div className="mx-auto">Rating</div>,
         accessor: "blackRating",
         Cell: (props) => (
           <div className="text-center text-sm">{props.cell.value}</div>
-        )
+        ),
       },
       {
         Header: "Black",
@@ -100,8 +100,10 @@ export default function GameTable({ games, memberId }) {
         Header: "Date",
         accessor: "date",
         Cell: (props) => (
-          <span className="text-sm">{ moment(props.cell.value).format("Do MMM YYYY") }</span>
-        )
+          <span className="text-sm">
+            {moment(props.cell.value).format("Do MMM YYYY")}
+          </span>
+        ),
       },
     ],
     []
@@ -121,7 +123,7 @@ export default function GameTable({ games, memberId }) {
     );
   };
 
-  const data = React.useMemo(() => {
+  const data = useMemo(() => {
     if (games.length > 0) {
       return games
         .reduce((prev, game) => {
@@ -142,7 +144,7 @@ export default function GameTable({ games, memberId }) {
               black: game.blackMember.name,
               date: new Date(game.date),
               type: game.type,
-              liChessUrl: game.liChessUrl
+              liChessUrl: game.liChessUrl,
             },
           ];
         }, [])
@@ -156,11 +158,9 @@ export default function GameTable({ games, memberId }) {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <main className="max-w-5xl">
-        <div className="mt-6">
-          {data && <Table columns={columns} data={data} />}
-        </div>
+        <div className="mt-6">{data && <Table {...{ columns, data }} />}</div>
       </main>
-      <GameViewerModal {...modalState} closeModal={closeModal} />
+      <GameViewerModal {...{ ...modalState, closeModal }} />
     </div>
   );
 }

@@ -1,12 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowSmDownIcon,
-  ArrowSmUpIcon,
-  ArrowNarrowLeftIcon,
-} from "@heroicons/react/solid";
+import { ArrowSmDownIcon, ArrowSmUpIcon } from "@heroicons/react/solid";
 
-function Stats(props) {
+export default function Stats(props) {
   const { ratingData, eventData, gameData } = props;
 
   return (
@@ -19,8 +15,6 @@ function Stats(props) {
     </div>
   );
 }
-
-export default Stats;
 
 function EventsSummary({ title, data }) {
   const total = data.past + data.future;
@@ -89,7 +83,7 @@ function GamesSummary({ title, data }) {
             </Link>
           )}
         </div>
-        
+
         <div className="relative m-auto xl:m-0 flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-teal-100 text-teal-700 mb-3 xl:ml-2 mt-6 xl:mr-2">
           Standard
           <span className="absolute text-teal-500 ml-2 right-2">
@@ -121,7 +115,6 @@ function RatingSummary({ title, data }) {
 
   const Diff = ({ current, previous }) => {
     const change = (current - previous).toFixed(0);
-
     const diff = isNaN(change) ? "blank" : change;
 
     if (diff > 0) {
@@ -150,23 +143,15 @@ function RatingSummary({ title, data }) {
 
     if (diff === 0) {
       return (
-        <p className="ml-4 xl:ml-0 flex text-xs items-baseline text-gray-700">
-          <ArrowNarrowLeftIcon
-            className="self-center flex-shrink-0 h-4 w-4 text-gray-700 -mt-1 xl:-mt-5"
-            aria-hidden="true"
-          />
-          0
+        <p className="mt-2 xl:ml-0 flex text-xs items-baseline text-gray-400">
+          <i className="fas fa-equals text-gray-400 -mt-1 xl:-mt-5 ml-1"></i>
         </p>
       );
     }
 
     return (
-      <p className="ml-2 xl:ml-0 flex text-xs items-baseline text-gray-700">
-        <ArrowNarrowLeftIcon
-          className="self-center flex-shrink-0 h-4 w-4 text-gray-700 -mt-1 xl:-mt-5"
-          aria-hidden="true"
-        />
-        0
+      <p className="mt-2 xl:ml-0 flex text-xs items-baseline text-gray-400">
+        <i className="fas fa-equals text-gray-400 -mt-1 xl:-mt-5 ml-1"></i>
       </p>
     );
   };
@@ -187,7 +172,7 @@ function RatingSummary({ title, data }) {
         <p className="xl:hidden inline-flex text-center items-center px-2 py-0 rounded text-xs text-gray-500">
           Standard
         </p>
-        <div className="text-1xl lg:text-4xl xl:flex font-semibold text-black dark:text-white m-auto xl:m-0">
+        <div className="text-1xl lg:text-2xl 2xl:text-4xl xl:flex font-semibold text-black dark:text-white m-auto xl:m-0">
           {currentStandard}{" "}
           <div className="flex items-center justify-center">
             <Diff current={currentStandard} previous={previousStandard} />
@@ -196,7 +181,7 @@ function RatingSummary({ title, data }) {
         <p className="xl:hidden inline-flex text-center items-center px-2 py-0 rounded text-xs text-gray-500">
           Rapid
         </p>
-        <div className="text-1xl lg:text-4xl xl:flex font-semibold text-black dark:text-white m-auto xl:m-0">
+        <div className="text-1xl lg:text-2xl 2xl:text-4xl xl:flex font-semibold text-black dark:text-white m-auto xl:m-0">
           {currentRapid}{" "}
           <div className="flex items-center justify-center">
             <Diff current={currentRapid} previous={previousRapid} />

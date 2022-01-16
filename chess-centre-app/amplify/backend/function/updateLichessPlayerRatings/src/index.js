@@ -1,8 +1,6 @@
-
 const getMemberHandles = require("./getMemberHandles").getMemberHandles;
 const getLichessInfo = require("./getLichessInfo").getLichessInfo;
 const updateMemberRecord = require("./updateMemberRecord").updateMemberRecord;
-
 
 exports.handler = async (event) => {
 
@@ -18,37 +16,39 @@ exports.handler = async (event) => {
             body: JSON.stringify({ error: "No lichess handles found!"}),
         };
     }
+    
+    console.log(memberHandles.length);
+    
+    for(const member of memberHandles) {
+        
+        const bullet = member?.liChessInfo?.perfs?.bullet?.rating;
+        const blitz = member?.liChessInfo?.perfs?.blitz?.rating;
+        const rapid = member?.liChessInfo?.perfs?.rapid?.rating;
+     
+        const response = await getLichessInfo(member.liChessUsername);
+        const liChessInfo = JSON.parse(response);
+        
+        if(bullet) liChessInfo.perfs.bullet["prev"] = bullet;
+        if(blitz) liChessInfo.perfs.blitz["prev"] = blitz;
+        if(rapid) liChessInfo.perfs.rapid["prev"] = rapid;
 
-    const lichessData = await Promise.all(memberHandles.map(async m => {
-        const info = await getLichessInfo(m.liChessUsername);
-        if(info) {
-            console.log("POST: updating record for", m.name);
-            await updateMemberRecord(m.id, info);
+        
+        if(liChessInfo) {
+            console.log("POST: updating record for", member.name);
+            await updateMemberRecord(member.id, liChessInfo);
             return true;
         } else {
-            console.log("unable to update record for", m.name);
+            console.log("unable to update record for", member.name);
             return false;
         }
-    }));
-
-    if(lichessData) {
-        return {
-            statusCode: 200,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
-            }, 
-            body: JSON.stringify("done"),
-        };
-    } else {
-        return {
-            statusCode: 200,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
-            }, 
-            body: JSON.stringify({ error: "Something went wrong!"}),
-        };
     }
-};
 
+    return {
+        statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*"
+        }, 
+        body: JSON.stringify("done"),
+    };
+};

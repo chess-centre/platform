@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: "/register",
-    component: lazy(() => import("../pages/Auth/CreateAccount")),
+    component: lazy(() => import("../pages/Auth/Register")),
     exact: true,
     isPrivate: false,
   },
@@ -72,16 +72,6 @@ const routes = [
     isPrivate: false
   },
   {
-    path: "/events/bdca/bob-burns/:id",
-    component: lazy(() => import("../pages/Events/BobBurns")),
-    isPrivate: false
-  },
-  {
-    path: "/events/bdca/bob-burns",
-    component: lazy(() => import("../pages/Events/BobBurns")),
-    isPrivate: false
-  },
-  {
     path: "/events",
     component: lazy(() => import("../pages/Home/Events")),
     isPrivate: false,
@@ -89,6 +79,11 @@ const routes = [
   {
     path: "/membership",
     component: lazy(() => import("../pages/Home/Membership")),
+    isPrivate: false,
+  },
+  {
+    path: "/more-info",
+    component: lazy(() => import("../pages/Home/MoreInfo")),
     isPrivate: false,
   },
   {

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
@@ -28,6 +28,9 @@ export default function Events() {
   const [selectedEventType, setSelectedEventType] = useState("all");
 
   useMemo(() => {
+
+    window.scrollTo(0, 0);
+
     if (data) {
       const availableTypes = data.reduce(
         (pre, { type: { eventType, canRegister } }) => {
@@ -46,6 +49,10 @@ export default function Events() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, eventType]);
+
+  useEffect(() => {
+    document.title = "The Chess Centre | Events"
+  }, []);
 
   return (
     <div>

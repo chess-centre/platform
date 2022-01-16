@@ -23,6 +23,7 @@ const stripePromise = loadStripe(STRIPE_KEY);
 const Page404 = lazy(() => import("./pages/Error/404"));
 
 export default function App() {
+
   useEffect(() => {
     if (process.env.NODE_ENV === "production") {
       ReactGA.pageview(window.location.pathname + window.location.search);

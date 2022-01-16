@@ -11,10 +11,9 @@ export default function SupportContactModal(props) {
   const { open, closeModal } = props;
 
   return (
-    <>
-      <Modal isOpen={open} onClose={() => closeModal()}>
+      <Modal isOpen={open} onClose={closeModal}>
         <ModalBody>
-          <div className="pt-6">
+          <div className="pt-4">
             <div className="flow-root bg-gray-50 rounded-lg px-5 pb-8">
               <div className="relative">
                 <h3 className="mt-2 text-lg font-medium text-gray-900 tracking-tight">
@@ -22,7 +21,7 @@ export default function SupportContactModal(props) {
                 </h3>
                 <p className="mt-3 text-sm text-gray-500">
                   We aim to respond and resolve your issues as
-                  quickly as possible.
+                  quickly as possible (usually within 24 hours).
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
                   <i className="fad fa-credit-card"></i> <br />
@@ -30,7 +29,7 @@ export default function SupportContactModal(props) {
                   <span className="font-semibold">
                     paid membership
                   </span>
-                  , this can mostly be resolved via the "subscription" tab under
+                  , these can mostly be resolved via the "subscription" tab under
                   your <Link className="font-semibold text-teal-500 hover:text-teal-700" to="profile">profile</Link>.
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
@@ -48,19 +47,19 @@ export default function SupportContactModal(props) {
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
                   <i className="fad fa-ambulance"></i> <br />
-                  If you are really struggling and need assistance,
+                  However, if you are really struggling and just need assistance,
                   please don't hesitate to{" "}
                   <a
                     className="font-semibold text-teal-500 hover:text-teal-700"
-                    href="mailto:support@chesscentre.online"
+                    href="mailto:support@chesscentre.online?subject=Help!"
                   >
                     contact us
                   </a>
                   .
                 </p>
                 <p className="mt-3 text-sm text-gray-500">
-                  Unfortunately, we have no official support team - as
-                  everyone is a volunteer ❤️ so, please bear with us!
+                  Unfortunately, we have no official support team (as
+                  everyone is a volunteer ❤️) so please bear with us!
                 </p>
               </div>
             </div>
@@ -72,6 +71,5 @@ export default function SupportContactModal(props) {
           </Button>
         </ModalFooter>
       </Modal>
-    </>
   );
 }

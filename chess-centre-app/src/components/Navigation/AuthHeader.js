@@ -19,7 +19,7 @@ export const getMember = /* GraphQL */ `
   }
 `;
 
-function Header() {
+export default function Header() {
   const { user: { attributes: {
     given_name,
     sub
@@ -89,5 +89,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

@@ -1,6 +1,6 @@
 import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
@@ -43,6 +43,7 @@ const getEvent = /* GraphQL */ `
 
 export default function JuniorRapidplayEvent() {
   const { id } = useParams();
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState();
   const [defaultPrice, setDefaultPrice] = useState();
@@ -51,19 +52,28 @@ export default function JuniorRapidplayEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
+    document.title = "The Chess Centre | Junior Rapidplay";
+
     const fetchEvent = async () => {
       setIsLoading(true);
       try {
-        const response = await API.graphql({ query: getEvent, variables: { id }, authMode: "AWS_IAM" }).catch(
-          (error) => {
-            console.log("Error fetching event.", id);
-            console.log(error.response);
-          }
-        );
-        if(response && response.data) {
+        const response = await API.graphql({
+          query: getEvent,
+          variables: { id },
+          authMode: "AWS_IAM",
+        }).catch((error) => {
+          console.log("Error fetching event.", id);
+          console.log(error.response);
+        });
+        if (response && response.data) {
           const {
             data: {
-              getEvent: { startDate, entryCount, isLive, type: { defaultPrice, maxEntries } = {} } = {},
+              getEvent: {
+                startDate,
+                entryCount,
+                isLive,
+                type: { defaultPrice, maxEntries } = {},
+              } = {},
             } = {},
           } = response;
           setStartDate(startDate);
@@ -77,7 +87,6 @@ export default function JuniorRapidplayEvent() {
         console.log(error);
         setIsLoading(false);
       }
-
     };
     fetchEvent();
   }, [id, startDate, defaultPrice]);
@@ -143,10 +152,10 @@ export default function JuniorRapidplayEvent() {
                   <li>25 mins per player on the clock</li>
                   <li>All games will be ECF rapidplay rated.</li>
                   {defaultPrice && <li>Entry fee £{defaultPrice}</li>}
-                  <li>Entries are currently limited to 18 players.</li> 
+                  <li>Entries are currently limited to 18 players.</li>
                 </ul>
               </div>
-                {!isLoading && entryCount && entryCount > 0 && (
+              {!isLoading && entryCount && entryCount > 0 && (
                 <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 my-4">
                   <div className="flex">
                     <div className="flex-shrink-0">
@@ -156,7 +165,7 @@ export default function JuniorRapidplayEvent() {
                       <p className="text-sm text-yellow-700 sm:mt-2">
                         There is currently {entryCount}{" "}
                         {entryCount === 1 ? "entry" : "entries"}.
-                        <br className="block sm:hidden"/>
+                        <br className="block sm:hidden" />
                         <Link
                           to={`/app/events?show_info=${id}`}
                           className="font-medium underline text-yellow-700 hover:text-yellow-600 sm:ml-2"
@@ -170,12 +179,12 @@ export default function JuniorRapidplayEvent() {
               )}
               <VenueInfo />
               <div className="text-sm text-left mt-6 hidden sm:block">
-                <Link
+                <button
                   className="text-teal-600 hover:text-teal-500"
-                  to="/events"
+                  onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back
-                </Link>
+                </button>
               </div>
             </div>
             <div className="mt-12 relative text-base max-w-prose mx-auto lg:mt-0 lg:max-w-none">
@@ -212,17 +221,22 @@ export default function JuniorRapidplayEvent() {
                   fill="url(#bedc54bc-7371-44a2-a2bc-dc68d819ae60)"
                 />
               </svg>
-              <RoundTimes eventId={id} eventType="junior-rapidplay" isFull={isFull} isLive={isLive} />
+              <RoundTimes
+                eventId={id}
+                eventType="junior-rapidplay"
+                isFull={isFull}
+                isLive={isLive}
+              />
               <div className="mt-5">
                 <TravelInformation eventType="junior-rapidplay" eventId={id} />
               </div>
               <div className="text-sm text-center mt-6 sm:hidden">
-                <Link
+                <button
                   className="text-teal-600 hover:text-teal-500"
-                  to="/events"
+                  onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back
-                </Link>
+                </button>
               </div>
             </div>
           </div>

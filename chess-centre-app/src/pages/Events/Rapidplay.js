@@ -1,6 +1,6 @@
 import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
@@ -44,6 +44,7 @@ const getEvent = /* GraphQL */ `
 
 export default function RapidplayEvent() {
   const { id } = useParams();
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState();
   const [defaultPrice, setDefaultPrice] = useState();
@@ -52,6 +53,8 @@ export default function RapidplayEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
+    document.title = "The Chess Centre | Rapidplay";
+
     const fetchEvent = async () => {
       setIsLoading(true);
       const response = await API.graphql({
@@ -124,13 +127,17 @@ export default function RapidplayEvent() {
 
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-              Want to test yourself, but don&#8217;t have time for a full weekend
-              tournament? Then look no further, as our 1 day, 5 round Rapidplay
-              tournaments are ideal for new and returning players who want to
-              “scratch their competitive itch”, but in a more condensed and
-              faster format of the game.
+              Want to test yourself, but don&#8217;t have time for a full
+              weekend tournament? Then look no further, as our 1 day, 5 round
+              Rapidplay tournaments are ideal for new and returning players who
+              want to “scratch their competitive itch”, but in a more condensed
+              and faster format of the game.
             </p>
-            <img alt="Gawain Ako - Blitz Chess" className="mt-4 mx-auto rounded-full w-44 sm:w-52 border-4 border-teal-500" src={KevinWinterRapid} />
+            <img
+              alt="Gawain Ako - Blitz Chess"
+              className="mt-4 mx-auto rounded-full w-44 sm:w-52 border-4 border-teal-500"
+              src={KevinWinterRapid}
+            />
           </div>
 
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
@@ -181,15 +188,15 @@ export default function RapidplayEvent() {
               )}
               <VenueInfo />
               <div className="text-sm text-left mt-6 hidden sm:block">
-                <Link
+                <button
                   className="text-teal-600 hover:text-teal-500"
-                  to="/events"
+                  onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back
-                </Link>
+                </button>
               </div>
             </div>
-            
+
             <div className="mt-12 relative text-base max-w-prose mx-auto md:-mt-32 lg:max-w-none">
               <svg
                 className="hidden sm:block absolute top-0 right-0 -mt-20 -mr-20 lg:top-auto lg:right-auto lg:bottom-1/2 lg:left-1/2 lg:mt-0 lg:mr-0 xl:top-0 xl:right-0 xl:-mt-20 xl:-mr-20"
@@ -224,23 +231,23 @@ export default function RapidplayEvent() {
                   fill="url(#bedc54bc-7371-44a2-a2bc-dc68d819ae60)"
                 />
               </svg>
-                <RoundTimes
-                  eventId={id}
-                  eventType="rapidplay"
-                  isFull={isFull}
-                  isLive={isLive}
-                />
+              <RoundTimes
+                eventId={id}
+                eventType="rapidplay"
+                isFull={isFull}
+                isLive={isLive}
+              />
               <div className="mt-8">
                 <TravelInformation eventType="rapidplay" eventId={id} />
               </div>
 
               <div className="text-sm text-center mt-6 sm:hidden">
-                <Link
+                <button
                   className="text-teal-600 hover:text-teal-500"
-                  to="/events"
+                  onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back
-                </Link>
+                </button>
               </div>
             </div>
           </div>

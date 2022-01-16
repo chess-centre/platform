@@ -3,7 +3,7 @@ const env = process.env.ENV;
 const region = process.env.REGION;
 const SES = new AWS.SES({ region: region });
 
-async function sendMembershipEmailInternal({ email, name, stripeEmail, price }) {
+async function sendMembershipEmailInternal({ email, name, stripeEmail, price, stripeFriendlyProductName }) {
   console.log("Sending internal membership email to us:", name, email, env);
 
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
@@ -26,6 +26,8 @@ async function sendMembershipEmailInternal({ email, name, stripeEmail, price }) 
         <p>Email: ${email}</p>
         <p>Payment Email: ${stripeEmail}</p>
         <p>Price: £${price / 100}</p>
+        <p>Type: ${stripeFriendlyProductName}</p>
+        ${email !== stripeEmail && `<p><span style="color: #FF0000;">Be aware:</span> The account email and the strip email differ!</p>`}
         `
       }
       }

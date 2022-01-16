@@ -11,7 +11,7 @@ import Loading from "../../assets/img/loading.svg";
 import SpecialLoading from "../../assets/img/special-loading.gif";
 import JuniorMemberSignUpModal from "../../components/Modal/JuniorMemberSignUpModal";
 
-function Login(props) {
+function Register(props) {
   const [isSpecialLoading, setIsSpecialLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
@@ -24,6 +24,9 @@ function Login(props) {
   const dispatch = useAuthDispatch();
 
   useEffect(() => {
+
+    document.title = "The Chess Centre | Register";
+
     const isFormValid = () => {
       if (!email) return false;
       if (!firstName) return false;
@@ -177,7 +180,7 @@ function Login(props) {
               <div className="mb-4 text-right text-xs font-semibold text-gray-700 dark:text-gray-200">
                 Signing up a junior member?{" "}
                 <span
-                  className="text-teal-600 dark:text-teal-400 hover:underline"
+                  className="text-teal-600 dark:text-teal-400 hover:underline cursor-pointer"
                   onClick={openModal}
                 >
                   Help
@@ -342,4 +345,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default Register;

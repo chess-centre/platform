@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import AppEvents from "../../components/Events/AppEvents";
 import { isPaidMember } from "../../context/Auth";
 
@@ -6,6 +6,9 @@ function Events() {
   const [isPaid, setIsPaid] = useState(false);
 
   useEffect(() => {
+    
+    document.title = "The Chess Centre | Events";
+
     async function fetchMember() {
       const membershipStatus = await isPaidMember();
       setIsPaid(membershipStatus);
@@ -33,7 +36,7 @@ function Events() {
         </div>
       </div>
 
-      <main className="mt-5 grid grid-col-1 lg:grid-cols-2 xl:grid-cols-3">
+      <main>
         <AppEvents />
       </main>
     </>

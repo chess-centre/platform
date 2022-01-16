@@ -1,10 +1,7 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { classNames } from "../../utils/Classes";
 
 export default function ProfileDropDown(props) {
   const { signOut, avatarUrl } = props;
@@ -14,10 +11,14 @@ export default function ProfileDropDown(props) {
         <>
           <div>
             <Menu.Button className="inline-flex justify-center w-full rounded-full border border-teal-600 shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-teal-500">
-              
-                {
-                  avatarUrl ? (<img className="rounded-full h-8 w-8" src={avatarUrl} alt="Avatar" />) : (
-                    <span className="inline-block relative h-8 w-8 rounded-full">
+              {avatarUrl ? (
+                <img
+                  className="rounded-full h-8 w-8"
+                  src={avatarUrl}
+                  alt="Avatar"
+                />
+              ) : (
+                <span className="inline-block relative h-8 w-8 rounded-full">
                   <svg
                     className="h-full w-full text-gray-300 rounded-full"
                     fill="currentColor"
@@ -25,9 +26,8 @@ export default function ProfileDropDown(props) {
                   >
                     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
-                  </span>)
-              }
-             
+                </span>
+              )}
             </Menu.Button>
           </div>
 

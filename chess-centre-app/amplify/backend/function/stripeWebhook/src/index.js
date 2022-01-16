@@ -22,6 +22,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 const region = process.env.REGION;
 const appsyncUrl = process.env.API_PLATFORMCHESSCENTREAPP_GRAPHQLAPIENDPOINTOUTPUT;
 const memberTable = process.env.API_PLATFORMCHESSCENTREAPP_MEMBERTABLE_NAME;
+const planTable = process.env.API_PLATFORMCHESSCENTREAPP_PLANTABLE_NAME;
 const endpoint = new urlParse(appsyncUrl).hostname.toString();
 
 
@@ -168,18 +169,19 @@ async function handleCheckoutSessionCompletedSubscription(id, customer, price, s
         id
         name
         email
+        stripeFriendlyProductName
       }
     }
   `;
 
   const {
     data: {
-      getMember: { email, name },
+      getMember: { email, name, stripeFriendlyProductName },
     },
   } = await executeGraphql(getMember, {
     memberId
   });
-
+  
   // Go ahead and set this since we know they should be considered
   // a paid member; we'll get a more specific date from subsequent
   // webhook events.
@@ -203,8 +205,12 @@ async function handleCheckoutSessionCompletedSubscription(id, customer, price, s
     name,
     email,
     stripeEmail,
-    price
-  }
+    price,
+    stripeFriendlyProductName
+  };
+
+  console.log("Email params passed", emailParams);
+
   await sendMembershipEmailToMember(emailParams);
   await sendMembershipEmailInternal(emailParams);
 }
@@ -287,7 +293,7 @@ async function handleCustomerSubscriptionEvent(data) {
     );
     return;
   }
-
+  
   const queryParams = {
     TableName: memberTable,
     IndexName: "stripe",
@@ -304,21 +310,34 @@ async function handleCustomerSubscriptionEvent(data) {
   // checkout completed event. Not sure what else we could do
   // here. We'll get subsequent events that fill the gaps.
   if (!member) return;
-
+  
   console.log(`Found Member with stripeCustomerId=${customer}:`);
   console.log(JSON.stringify(member));
 
   const { id } = member;
+  
+  // TODO: should be a query by 1 item, not a scan:
+  const {
+    Items: plans
+  } = await dynamodb.scan({
+      TableName: planTable
+  }).promise();
+
+  if(!plans) return;
+
+  const { key } = plans.find(p => p.stripeProductId === product);
+  console.log(`Found plan name, bespokely called stripeFriendlyProductName=${key}:`);
 
   const updateParams = {
     TableName: memberTable,
     Key: { id },
     UpdateExpression:
-      "set stripeCurrentPeriodEnd = :current_period_end, stripePriceId = :price, stripeProductId = :product",
+      "set stripeCurrentPeriodEnd = :current_period_end, stripePriceId = :price, stripeProductId = :product, stripeFriendlyProductName = :planName",
     ExpressionAttributeValues: {
       ":current_period_end": current_period_end * 1000,
       ":price": price,
       ":product": product,
+      ":planName": key
     },
   };
 
@@ -348,7 +367,7 @@ async function executeGraphql(query, variables) {
       });
       response.on("end", () => {
         resolve(JSON.parse(data.toString()));
-      })
+      });
       response.on("error", reject);
     });
 

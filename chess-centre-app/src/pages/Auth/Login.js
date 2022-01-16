@@ -66,6 +66,9 @@ function Login(props) {
   };
 
   useEffect(() => {
+
+    document.title = "The Chess Centre | Login";
+
     const userEmail = window.localStorage.getItem("email");
     if (userEmail) {
       setEmail(userEmail);

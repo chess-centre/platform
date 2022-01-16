@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import API from "@aws-amplify/api";
+import { useAuthState } from "../../context/Auth";
 import ECFPlayerTable from "../../components/Table/ECFPlayerTable";
 import LichessPlayerTable from "../../components/Table/LichessPlayerTable";
 import ChesscomPlayerTable from "../../components/Table/ChesscomPlayerTable";
-import BetaSlideOut from "../../components/SlideOut/BetaSlideOut";
 import { classNames } from "../../utils/Classes";
 
 export const listMembers = /* GraphQL */ `
@@ -39,24 +39,48 @@ export const listMembers = /* GraphQL */ `
 `;
 
 export default function Players() {
-  const [tabs, setTabs] = useState([
-    { name: "ECF", ref: "ecf", colour: "bg-teal-700", current: true },
-    { name: "Lichess", ref: "lichess", colour: "bg-purple-800", current: false },
-    { name: "Chess.com", ref: "chesscom", colour: "bg-yellow-600", current: false },
-  ]);
-  const [selectedTab, setSelectedTab] = useState({ ref: "ecf", colour: "bg-teal-700"});
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [ecfPlayers, setECFPlayers] = useState([]);
-  const [lichessPlayers, setLichessPlayers] = useState([]);
-  const [chesscomPlayers, setChesscomPlayers] = useState([]);
+  const { user } = useAuthState();
+  const [state, setState] = useState({
+    isLoading: false,
+    isError: false,
+    ecfPlayers: [],
+    lichessPlayers: [],
+    lichessStatuses: [],
+    chesscomPlayers: [],
+    tabs: [
+      {
+        name: "ECF",
+        ref: "ecf",
+        colour: "bg-teal-700",
+        current: true,
+      },
+      {
+        name: "Lichess",
+        ref: "lichess",
+        colour: "bg-purple-800",
+        current: false,
+      },
+      {
+        name: "Chess.com",
+        ref: "chesscom",
+        colour: "bg-yellow-600",
+        current: false,
+      },
+    ],
+    selectedTab: {
+      ref: "ecf",
+      colour: "bg-teal-700"
+    }
+  })
 
-  const [slideState, setIsSlideOutOpen] = useState({
-    open: false,
-    eventDetails: {},
-  });
+  const diffCheck = (current, previous) => {
+    if (current > previous) return 1;
+    if (current < previous) return -1;
+    return 0;
+  };
 
-  const lichessPlayerData = (players) => {
+  const lichessPlayerData = (players, lichessStatuses) => {
+
     if (players && players.length > 0) {
       const filtered = players
         .filter((m) => !!m.liChessUsername)
@@ -65,28 +89,43 @@ export default function Players() {
             ? JSON.parse(member.liChessInfo)
             : undefined;
 
+          const isOnline = lichessStatuses.find(s => s.id === member.liChessUsername.toLowerCase());
+
           return [
             ...players,
             {
               id: member.id,
               rank: (index += 1),
+              isOnline: isOnline?.online,
               name: member.name,
               handle: member.liChessUsername,
               total: parsedLichess?.count?.all || 0,
               puzzleRating: parsedLichess?.perfs?.puzzle?.rating,
-              lichessBlitz: parsedLichess?.perfs?.blitz?.rating,
+              bulletDiff: diffCheck(
+                parsedLichess?.perfs?.bullet?.rating,
+                parsedLichess?.perfs?.bullet?.prev
+              ),
+              blitzDiff: diffCheck(
+                parsedLichess?.perfs?.blitz?.rating,
+                parsedLichess?.perfs?.blitz?.prev
+              ),
+              rapidDiff: diffCheck(
+                parsedLichess?.perfs?.rapid?.rating,
+                parsedLichess?.perfs?.rapid?.prev
+              ),
               lichessBullet: parsedLichess?.perfs?.bullet?.rating,
+              lichessBlitz: parsedLichess?.perfs?.blitz?.rating,
               lichessRapid: parsedLichess?.perfs?.rapid?.rating,
-              lastUpdated: member.lichessLastUpdated
+              lastUpdated: member.lichessLastUpdated,
             },
           ];
         }, [])
         .sort((a, b) => b.lichessBlitz - a.lichessBlitz)
         .map((player, i) => {
           player.rank = i + 1;
-          return {...player }
+          return { ...player };
         });
-      setLichessPlayers(filtered);
+      setState(state => ({...state, lichessPlayers: [...filtered], lichessStatuses }));
     }
   };
 
@@ -106,19 +145,31 @@ export default function Players() {
               name: member.name,
               handle: member.chesscomUsername,
               tactics: parsedChesscom?.tactics?.highest?.rating,
+              bulletDiff: diffCheck(
+                parsedChesscom?.chess_bullet?.last?.rating,
+                parsedChesscom?.chess_bullet?.last?.prev
+              ),
+              blitzDiff: diffCheck(
+                parsedChesscom?.chess_blitz?.last?.rating,
+                parsedChesscom?.chess_blitz?.last?.prev
+              ),
+              rapidDiff: diffCheck(
+                parsedChesscom?.chess_rapid?.last?.rating,
+                parsedChesscom?.chess_rapid?.last?.prev
+              ),
               chesscomBlitz: parsedChesscom?.chess_blitz?.last?.rating,
               chesscomBullet: parsedChesscom?.chess_bullet?.last?.rating,
               chesscomRapid: parsedChesscom?.chess_rapid?.last?.rating,
-              lastUpdated: member.chesscomLastUpdated
+              lastUpdated: member.chesscomLastUpdated,
             },
           ];
         }, [])
         .sort((a, b) => b.chesscomBlitz - a.chesscomBlitz)
         .map((player, i) => {
           player.rank = i + 1;
-          return {...player }
+          return { ...player };
         });
-      setChesscomPlayers(filtered);
+      setState(state => ({...state, chesscomPlayers: [...filtered]}));
     }
   };
 
@@ -138,48 +189,91 @@ export default function Players() {
               ? undefined
               : member.ecfRapid
             : undefined;
+
+          const form = member.gameInfo
+            ? JSON.parse(member.gameInfo)?.formStats
+            : [];
+          const formCount = form?.reduce((p, c) => p + c, 0) || 0;
+
+          while (form.length < 6) {
+            form.unshift("");
+          }
+
           return [
             ...players,
             {
               id: member.id,
+              formArray: form,
               rank: (index += 1),
               name: member.name,
               club: member.club,
+              form: formCount,
               standard,
               rapid,
             },
           ];
         }, []);
-      setECFPlayers(filtered);
+      setState(state => ({...state, ecfPlayers: [...filtered]}));
     }
   };
 
   const handleSelectedTab = ({ ref, colour }) => {
-    setTabs((state) => [
-      ...state.map((s) => ({
-        ...s,
-        current: s.ref === ref,
-      })),
-    ]);
-    setSelectedTab({ ref, colour });
+    setState(state => (
+      {...state, 
+        selectedTab: { ref, colour },
+        tabs: [
+          ...state.tabs.map(tab => ({
+            ...tab,
+            current: tab.ref === ref
+          }))
+        ]
+      }))
   };
 
   const renderTable = ({ ref, colour }) => {
     switch (ref) {
       case "ecf":
-        return <ECFPlayerTable players={ecfPlayers} {...{colour}} />;
+        return (
+          <ECFPlayerTable
+            userId={user.attributes.sub}
+            players={state.ecfPlayers}
+            {...{ colour }}
+          />
+        );
       case "lichess":
-        return <LichessPlayerTable players={lichessPlayers} {...{colour}} />;
+        return (
+          <LichessPlayerTable
+            userId={user.attributes.sub}
+            players={state.lichessPlayers}
+            statuses={state.lichessStatuses}
+            {...{ colour }}
+
+          />
+        );
       case "chesscom":
-        return <ChesscomPlayerTable players={chesscomPlayers} {...{colour}} />;
+        return (
+          <ChesscomPlayerTable
+            userId={user.attributes.sub}
+            players={state.chesscomPlayers}
+            {...{ colour }}
+          />
+        );
       default:
-        return <ECFPlayerTable players={ecfPlayers} {...{colour}} />;
+        return (
+          <ECFPlayerTable
+            userId={user.attributes.sub}
+            players={state.ecfPlayers}
+            {...{ colour }}
+          />
+        );
     }
   };
 
   useEffect(() => {
+    document.title = "The Chess Centre | Players";
+
     const fetchRatedPlayers = async () => {
-      setIsLoading(true);
+      setState(state => ({...state, isLoading: true, isError: false }));
       const {
         data: {
           listMembers: { items: playersList },
@@ -190,36 +284,37 @@ export default function Players() {
         variables: { limit: 500, filter: { ecfId: { ne: null } } },
         authMode: "AWS_IAM",
       });
-      ecfPlayerData(playersList);
-      lichessPlayerData(playersList);
-      chesscomPlayerData(playersList);
-      setIsLoading(false);
-      setIsError(false);
+
+      if(state.selectedTab.ref === "ecf") {
+        ecfPlayerData(playersList);
+      }
+
+      if(state.selectedTab.ref === "chesscom") {
+        chesscomPlayerData(playersList);
+      }
+
+      if(state.selectedTab.ref === "lichess") {
+        const fetchStatuses = async () => await API.get("lichess", "/statuses");
+        const lichessStatuses = await fetchStatuses();
+        lichessPlayerData(playersList, lichessStatuses);
+      }
+      setState(state => ({...state, isLoading: false, isError: false }));
     };
 
     try {
       fetchRatedPlayers();
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
-      setIsError(true);
+      setState(state => ({...state, isLoading: false, isError: true }));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTab]);
+  }, [state.selectedTab]);
 
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <i className="fas fa-chess-king text-teal-600"></i> Players
-        <div className="inline-flex align-top top-2">
-          <span
-            onClick={() => setIsSlideOutOpen({ open: true })}
-            className="ml-2 cursor-pointer items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-blue-100 text-blue-800 top-2"
-          >
-            BETA
-          </span>
-        </div>
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
@@ -231,15 +326,15 @@ export default function Players() {
 
       <div className="grid grid-cols-1">
         <div className="mt-4 mb-2">
-          <RatingTypeTabs {...{ tabs, handleSelectedTab }} />
+          <RatingTypeTabs {...{ tabs: state.tabs, handleSelectedTab }} />
         </div>
 
-        {!isLoading && !isError && <div>{renderTable(selectedTab)}</div>}
+        {!state.isLoading && !state.isError && <div>{renderTable(state.selectedTab)}</div>}
 
-        {isLoading && (
+        {state.isLoading && (
           <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
             <span className="animate-pulse">
-              <i className="aninmal-pulse fal fa-chess-clock fa-10x text-teal-500 opacity-50"></i>
+              <i className="aninmal-pulse fal fa-chess-clock fa-10x text-gray-400 opacity-50"></i>
             </span>
             <p className="mt-2 block text-sm font-medium text-gray-600">
               Loading players...
@@ -247,7 +342,7 @@ export default function Players() {
           </div>
         )}
 
-        {isError && (
+        {state.isError && (
           <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
             <span>
               <i className="aninmal-pulse fal fa-exclamation-square fa-10x text-orange-400 opacity-50"></i>
@@ -259,11 +354,6 @@ export default function Players() {
           </div>
         )}
       </div>
-
-      <BetaSlideOut
-        slideState={slideState}
-        setIsSlideOutOpen={setIsSlideOutOpen}
-      ></BetaSlideOut>
     </div>
   );
 }

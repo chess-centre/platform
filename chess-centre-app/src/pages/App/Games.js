@@ -1,6 +1,6 @@
 import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { useMember } from "../../api/member";
 import GameTable from "../../components/Table/GameTable";
 import PerformanceStats from "../../components/RatingProfile/PerformanceStats";
@@ -153,6 +153,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
 
 export default function GamesView() {
   const { memberId } = useParams();
+  const history = useHistory();
   const { isLoading, error, data } = useMember();
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [isErrorGame, setIsErrorGame] = useState(false);
@@ -228,7 +229,13 @@ export default function GamesView() {
     setIsErrorGame(false);
   };
 
+  const handleGoBack = () => {
+    return history.goBack();
+  }
+
   useEffect(() => {
+    document.title = "The Chess Centre | Games";
+
     try {
       if (memberId) {
         setPlayerId(memberId);
@@ -263,28 +270,23 @@ export default function GamesView() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-chess-king text-teal-600"></i> Games
+        <i className="fas fa-chess-king text-teal-600"></i> Games{" "}
+        <span className="text-sm text-gray-500">by player</span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
           {playerName && (
-            <h1 className="text-sm text-left text-gray-500">
-              Individual results for{" "}
-              <span className="text-orange-brand font-medium">
+            <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
+              <p className="ml-2 mt-1 text-md text-gray-500 truncate">
                 {playerName}
-              </span>
-            </h1>
+              </p>
+            </div>
           )}
         </div>
       </div>
 
       <div className="mt-2 max-w-3xl mx-auto grid grid-cols-1 gap-4 lg:max-w-full lg:grid-flow-col-dense xl:grid-cols-3">
-        <section className="hidden xl:block col-span-1 mt-5">
-          {games && games.length > 0 && (
-            <PerformanceStats playerInfo={currentUserInfo} {...{ games, openModal, avatarUrl, setAvatar }} />
-          )}
-        </section>
-        <section className="space-y-6 lg:col-start-1 lg:col-span-2">
+        <section className="space-y-6 lg:col-span-2">
           <dl className="grid grid-cols-1">
             {!isLoading && !isLoadingGames && !error && !isErrorGame && (
               <div>
@@ -299,6 +301,9 @@ export default function GamesView() {
                     </span>
                     <p className="mt-2 block text-sm font-medium text-gray-600">
                       No games yet.
+                    </p>
+                    <p className="mt-2 text-teal-500 text-sm font-medium hover:opacity-90 cursor-pointer" onClick={handleGoBack}>
+                      <i className="fas fa-long-arrow-alt-left mr-1"></i> Go back
                     </p>
                     {playerName && currentUser && (
                       <p className="mt-2 block text-sm font-medium text-gray-600">
@@ -330,9 +335,9 @@ export default function GamesView() {
               </div>
             )}
             {(isLoading || isLoadingGames) && (
-              <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+              <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-10 text-center">
                 <span className="animate-pulse">
-                  <i className="aninmal-pulse fal fa-chess-board fa-10x text-teal-500 opacity-50"></i>
+                  <i className="aninmal-pulse fal fa-chess-board fa-10x text-gray-400 opacity-50"></i>
                 </span>
                 <p className="mt-2 block text-sm font-medium text-gray-600">
                   Loading games...
@@ -352,6 +357,44 @@ export default function GamesView() {
               </div>
             )}
           </dl>
+        </section>
+        <section className="hidden xl:block col-span-1 mt-5">
+          {!isLoading && !isLoadingGames && !error && !isErrorGame && (
+            <>
+              {games && games.length > 0 ? (
+                <PerformanceStats
+                  playerInfo={currentUserInfo}
+                  {...{ games, openModal, avatarUrl, setAvatar }}
+                />
+              ) : (
+                <div className="relative mt-1 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+                  <span>
+                    <i className="far fa-user-ninja fa-6x text-teal-500"></i>
+                  </span>
+                  <p className="mt-4 block text-sm font-medium text-gray-600">
+                    No overview profile
+                  </p>
+                  <p className="mt-6">
+                    <i className="far fal fa-chart-bar fa-3x text-teal-500"></i>
+                  </p>
+                </div>
+              )}
+            </>
+          )}
+
+          {(isLoading || isLoadingGames) && (
+            <div className="relative mt-1 block w-full border-2 border-gray-300 border-dashed rounded-sm p-10 text-center">
+              <span className="animate-pulse">
+                <i className="aninmal-pulse fal fa-user fa-10x text-gray-400 opacity-50"></i>
+              </span>
+              <p className="mt-4 block text-sm font-medium text-gray-600">
+                Loading overview profile...
+              </p>
+              <p className="mt-6">
+                <i className="aninmal-pulse fal fa-chart-bar fa-3x text-gray-400 opacity-50"></i>
+              </p>
+            </div>
+          )}
         </section>
         <AddMyProfileImageModal
           open={isOpenModal}

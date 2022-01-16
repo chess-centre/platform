@@ -1,85 +1,11 @@
 import React, { useState, useMemo } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { GridCard } from "./shared/GridCard";
+import { ListCard } from "./shared/ListCard";
 import FilterMenu from "./FilterMenu";
 import ToggleView from "./ToggleView";
 import TabMonths from "./TabMonths";
-import {
-  prettyDate,
-  getDay,
-  getMonth,
-  getDayStr,
-} from "../../utils/DateFormating";
-import { classNames, bgColor700 } from "../../utils/Classes";
+import { classNames } from "../../utils/Classes";
 import { useEventsLite } from "../../api/events";
-
-function GridCard({ event }) {
-
-  const history = useHistory();
-
-  const handleClick = () => {
-    history.push(`${event.url}/${event.id}`);
-  };
-
-  return (
-    <div
-      onClick={handleClick}
-      className={
-        "relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-gray-200 hover:bg-gray-50 cursor-pointer"
-      }
-    >
-      <div
-        className={classNames(
-          bgColor700(event.color),
-          "absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
-        )}
-      ></div>
-      <header>
-        <h3 className="h4 font-red-hat-display mb-1">{event.name}</h3>
-      </header>
-      <div className="text-gray-600 flex-grow mb-5">
-        <div>
-          <p className="sm:inline mr-1 text-sm text-teal-700">
-            <i className="fad fa-calendar-alt mr-1"></i>
-            <span className="inline">
-              {prettyDate(event.startDate, event.endDate)}
-            </span>{" "}
-          </p>
-          {event.time && event.time !== "various" && (
-            <p className="sm:inline text-sm text-teal-700">
-              <i className="fad fa-clock mr-1"></i>
-              <span className="inline">{event.time}</span>{" "}
-            </p>
-          )}
-          {event.rounds && (
-            <p className="sm:inline text-sm text-teal-700">
-              <i className="fad fa-flag mr-1"></i>
-              <span className="inline">{event.rounds} rounds</span>{" "}
-            </p>
-          )}
-        </div>
-        <p className="text-gray-900 font-thin text-base">{event.description}</p>
-      </div>
-      <div
-        className={
-          "absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"
-        }
-      >
-        {event.url && (
-          <div className="text-center align-middle">
-            <div className="text-x text-teal-500 hover:underline cursor-pointer">
-              <a
-                className="inline-flex items-center text-teal-500 "
-                href={`${event.url}/${event.id}`}
-              >
-                More Info
-              </a>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 function GridCalendar({
   isLoading,
@@ -112,10 +38,10 @@ function GridCalendar({
                     className="flex items-center justify-between font-medium text-gray-500 w-20 py-3 pr-2 text-left focus:outline-none"
                     onClick={() => setSelectedMonth(month)}
                   >
-                    <span className="block w-12 truncate">
+                    <span className="block">
                       {new Date(2000, month, 1).toLocaleString("default", {
-                        month: "long",
-                      })}
+                        month: "short",
+                      })} ...
                     </span>
                     <span
                       className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full ${
@@ -189,108 +115,6 @@ function GridCalendar({
   );
 }
 
-function ListCard({ event }) {
-  const history = useHistory();
-
-  const handleClick = () => {
-    history.push(`${event.url}/${event.id}`);
-  };
-
-  return (
-    <li key={event.id} className="col-span-1 flex mb-3 sm:ml-28 z-0">
-      <div
-        className={
-          event.endDate && event.startDate !== event.endDate
-            ? `relative min-w-16 text-center sm:text-left bg-white px-1 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
-            : `relative min-w-16 text-center sm:text-left bg-white px-4 sm:pb-3 sm:pt-2 sm:px-6 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
-        }
-      >
-        <div>
-          <p className="text-xs font-base sm:text-lg text-gray-900 mt-2 sm:mt-0 text-center">
-            {getMonth(event.startDate)}
-          </p>
-        </div>
-        <div className="items-baseline pb-4 sm:pb-0 sm:text-center">
-          {event.endDate && event.startDate !== event.endDate ? (
-            <>
-              <p className="font-semibold text-lg sm:text-lg text-gray-900 m-auto sm:m-0">
-                {`${getDay(event.startDate)}-${getDay(event.endDate)}`}
-              </p>
-              <p className="font-thin text-xs sm:text-sm text-gray-900 m-auto mb-1">
-                {`${getDayStr(event.startDate)} & ${getDayStr(event.endDate)}`}
-              </p>
-            </>
-          ) : (
-            <>
-              <p className="font-semibold text-2xl sm:text-3xl text-gray-900 m-auto sm:m-0">
-                {getDay(event.startDate)}
-              </p>
-              <p className="font-thin text-xs sm:text-sm text-gray-900 m-auto mb-0">
-                {getDayStr(event.startDate)}
-              </p>
-            </>
-          )}
-
-          <div
-            className={classNames(
-              bgColor700(event.color),
-              "absolute bottom-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-b-lg"
-            )}
-          ></div>
-        </div>
-      </div>
-      <div
-        onClick={handleClick}
-        className=
-          "hover:bg-gray-50 relative cursor-pointer z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
-      >
-        <div className="px-4 sm:px-6 py-2 sm:py-0 text-sm truncate">
-          <p className="sm:text-2xl sm:font-medium font-bold text-lg">
-            {event.name}
-          </p>
-          <p className="mr-1 mb-1 text-gray-900 font-thin truncate">
-            {event.description}
-          </p>
-          <div className="text-gray-600 flex-grow">
-            <div>
-              {event.time && (
-                <p className="inline text-sm text-teal-700 mr-2">
-                  <i className="fad fa-clock mr-1"></i>
-                  <span className="inline">{event.time}</span>{" "}
-                </p>
-              )}
-              {event.rounds && (
-                <p className="inline text-sm text-teal-700">
-                  <i className="fad fa-flag mr-1"></i>
-                  <span className="inline">{event.rounds} rounds</span>{" "}
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-        <div
-          className={classNames(
-            bgColor700(event.color),
-            "absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"
-          )}
-        ></div>
-        {event.url ? (
-          <div className="flex-shrink-0 pr-2">
-            <Link
-              to={`${event.url}/${event.id}`}
-              className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
-            justify-center text-gray-400 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
-            >
-              <span className="text-teal-500">
-                <i className="fas fa-info"></i>
-              </span>
-            </Link>
-          </div>
-        ) : null}
-      </div>
-    </li>
-  );
-}
 
 function ListCalendar({
   isLoading,
@@ -403,24 +227,30 @@ export default function Calendar() {
               {calenderView === "list" && (
                 <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex m-auto">
                   <TabMonths
-                    selectedMonth={selectedMonth}
-                    months={months}
-                    setSelectedMonth={setSelectedMonth}
+                    {...{
+                      selectedMonth,
+                      months,
+                      setSelectedMonth,
+                    }}
                   />
                 </div>
               )}
               <div className="absolute right-0 top-16 sm:top-8 text-center sm:mt-6 sm:text-right">
                 <span className="relative z-10 inline-flex">
                   <ToggleView
-                    calendarView={calenderView}
-                    handleViewSwitch={handleViewSwitch}
+                    {...{
+                      calenderView,
+                      handleViewSwitch,
+                    }}
                   />
                   <FilterMenu
-                    filters={filters}
-                    setFilters={setFilters}
                     selected={selectedMenuFilter}
                     setSelected={setSelectedMenuFilter}
-                    setAllDeselected={setAllDeselected}
+                    {...{
+                      filters,
+                      setFilters,
+                      setAllDeselected,
+                    }}
                   />
                 </span>
               </div>
@@ -428,27 +258,31 @@ export default function Calendar() {
           </div>
           {calenderView === "grid" ? (
             <GridCalendar
-              filters={filters}
               filtersSelected={selectedMenuFilter}
-              isLoading={isLoading}
-              error={error}
-              data={data}
-              months={months}
-              setSelectedMonth={setSelectedMonth}
               selected={selectedMonth}
-              allDeselected={allDeselected}
+              {...{
+                filters,
+                isLoading,
+                error,
+                data,
+                months,
+                setSelectedMonth,
+                allDeselected,
+              }}
             />
           ) : (
             <ListCalendar
-              filters={filters}
               filtersSelected={selectedMenuFilter}
-              isLoading={isLoading}
-              error={error}
-              data={data}
-              months={months}
-              setSelectedMonth={setSelectedMonth}
               selected={selectedMonth}
-              allDeselected={allDeselected}
+              {...{
+                filters,
+                isLoading,
+                error,
+                data,
+                months,
+                setSelectedMonth,
+                allDeselected,
+              }}
             />
           )}
         </div>

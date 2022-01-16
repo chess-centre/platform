@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory, useLocation } from "react-router";
+import { useState, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import queryString from "query-string";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
@@ -22,6 +22,10 @@ export default function FAQs() {
     const search = searchQuery(location.search, query);
     history.replace({ pathname: location.pathname, search });
   };
+
+  useEffect(() => {
+    document.title = "The Chess Centre | FAQs"
+  }, []);
 
   return (
     <div>

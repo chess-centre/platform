@@ -1,6 +1,6 @@
 import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
@@ -44,6 +44,7 @@ const getEvent = /* GraphQL */ `
 
 export default function BlitzEvent() {
   const { id } = useParams();
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
   const [startDate, setStartDate] = useState();
   const [defaultPrice, setDefaultPrice] = useState();
@@ -52,6 +53,8 @@ export default function BlitzEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
+    document.title = "The Chess Centre | Blitz";
+
     const fetchEvent = async () => {
       setIsLoading(true);
       const response = await API.graphql({
@@ -180,12 +183,12 @@ export default function BlitzEvent() {
               )}
               <VenueInfo />
               <div className="text-sm text-left mt-6 hidden sm:block">
-                <Link
+                <button
                   className="text-teal-600 hover:text-teal-500"
-                  to="/events"
+                  onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back
-                </Link>
+                </button>
               </div>
             </div>
             <div className="mt-12 relative text-base max-w-prose mx-auto md:-mt-60 lg:max-w-none">
@@ -232,12 +235,12 @@ export default function BlitzEvent() {
                 <TravelInformation eventType="blitz" eventId={id} />
               </div>
               <div className="text-sm text-center mt-6 sm:hidden">
-                <Link
+                <button
                   className="text-teal-600 hover:text-teal-500"
-                  to="/events"
+                  onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back
-                </Link>
+                </button>
               </div>
             </div>
           </div>
