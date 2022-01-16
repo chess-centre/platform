@@ -40,6 +40,10 @@ const LandingNav = (props) => {
     };
     if (user && user.userConfirmed) {
       setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+      localStorage.removeItem("currentUser");
+      localStorage.removeItem("token");
     }
     getCurrentUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
