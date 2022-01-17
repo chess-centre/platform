@@ -5,12 +5,12 @@ import {
   withGoogleMap,
   withScriptjs,
 } from "react-google-maps";
-import Logo from "../../assets/img/logo-map-pin-teal.svg";
+import Logo from "../../assets/img/festival-map-pin.svg";
 
 const GoogleMap = withScriptjs(
   withGoogleMap((props) => (
     <GMap
-      defaultZoom={18}
+      defaultZoom={17.5}
       defaultCenter={{
         lat: 53.92429665159249,
         lng: -1.821591459945466,

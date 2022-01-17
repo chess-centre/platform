@@ -11,5 +11,9 @@ export const getPlayerGames = async (id) => {
   return response;
 };
 
+export const getECFPlayer = async (name) => {
+  const response = await API.get("player", `/player/search/${name}`);
+  return response;
+}
 
 

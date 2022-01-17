@@ -2,6 +2,9 @@ import { Tab } from "@headlessui/react";
 import { useEffect, Fragment } from "react";
 import FestivalMap from "../../components/Map/FestivalMap";
 import EntriesTable from "../../components/EntriesTable/table";
+import Rounds from "../../components/RoundTimes/Rounds";
+import { rounds } from "../../api/data.roundTimes";
+import FestivalHero from "../../assets/img/festival_hero.jpg";
 
 const festival = {
   name: "Ilkley Chess Festival",
@@ -27,6 +30,9 @@ function classNames(...classes) {
 }
 
 export default function Festival() {
+
+  const event = rounds.find(({ type }) => type === "festival");
+
   useEffect(() => {
     document.title = "The Chess Centre | Festival";
   }, []);
@@ -40,7 +46,7 @@ export default function Festival() {
           <div className="lg:row-end-1 lg:col-span-4">
             <div className="aspect-w-4 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden">
               <img
-                src={festival.imageSrc}
+                src={FestivalHero}
                 alt="hero"
                 className="object-center object-cover"
               />
@@ -154,7 +160,19 @@ export default function Festival() {
                       )
                     }
                   >
-                    Event Info
+                    Details
+                  </Tab>
+                  <Tab
+                    className={({ selected }) =>
+                      classNames(
+                        selected
+                          ? "border-teal-600 text-teal-600"
+                          : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
+                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                      )
+                    }
+                  >
+                    Schedule
                   </Tab>
                   <Tab
                     className={({ selected }) =>
@@ -183,20 +201,30 @@ export default function Festival() {
                 </Tab.List>
               </div>
               <Tab.Panels as={Fragment}>
-                <Tab.Panel className="-mb-10">
-
-
+                <Tab.Panel className="-mb-10 py-5">
+                  <div className="relative">
+                    <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
+                      <p>There will be four sections for our main event.</p>
+                      <ul>
+                        <li>5 Rounds</li>
+                        <li>60 mins per player on the clock</li>
+                        <li>All games will be ECF standard play rated.</li>
+                        <li>Entry fee £30</li>
+                      </ul>
+                    </div>
+                  </div>
                 </Tab.Panel>
 
-                <Tab.Panel
-                  as="dl"
-                  className="text-sm text-gray-500"
-                >
+                <Tab.Panel as="dl" className="text-sm text-gray-500 py-5">
+                    <Schedule event={event} />
+                </Tab.Panel>
+
+                <Tab.Panel as="dl" className="text-sm text-gray-500">
+                  Entries
                   {/* <EntriesTable eventId="23424" eventType="standard" /> */}
-
                 </Tab.Panel>
 
-                <Tab.Panel className="pt-10"></Tab.Panel>
+                <Tab.Panel className="pt-10">FAQs</Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
           </div>
@@ -204,4 +232,56 @@ export default function Festival() {
       </div>
     </div>
   );
+}
+
+
+const Schedule = ({ event }) => {
+  return (
+    <table className="mx-auto sm:mx-2 min-w-full divide-y divide-gray-200">
+    <tbody className="bg-white divide-y divide-gray-200">
+      {event &&
+        event.rounds.map(({ round, time, day }, key) => {
+          return (
+            <Fragment key={key}>
+              <tr key={key}>
+                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  Round {round}
+                </td>
+                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {day}
+                </td>
+                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {time}
+                </td>
+              </tr>
+              {event.break && event.break.afterRound === round && (
+                <tr>
+                  <td
+                    colSpan="3"
+                    className="py-2 text-center whitespace-nowrap text-xs font-medium text-gray-400"
+                  >
+                    Lunch Break
+                  </td>
+                </tr>
+              )}
+            </Fragment>
+          );
+        })}
+      {event && event.prizeGiving && (
+        <tr>
+          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+            Prize Ceremony
+          </td>
+          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            {event.prizeGiving.day}
+          </td>
+          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <span className="">{event.prizeGiving.time}</span>
+            <i className="ml-4 -mt-2 text-teal-600 fas fa-trophy-alt fa-2x"></i>
+          </td>
+        </tr>
+      )}
+    </tbody>
+  </table>
+  )
 }
