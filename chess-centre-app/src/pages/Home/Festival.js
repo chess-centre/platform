@@ -30,7 +30,6 @@ function classNames(...classes) {
 }
 
 export default function Festival() {
-
   const event = rounds.find(({ type }) => type === "festival");
 
   useEffect(() => {
@@ -51,7 +50,7 @@ export default function Festival() {
             </div>
           </div>
 
-          <div className="max-w-2xl mx-auto mt-14 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
+          <div className="max-w-2xl text-center sm:text-left mx-auto mt-4 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
             <div className="flex flex-col-reverse">
               <div className="mt-4">
                 <h1 className="text-3xl font-extrabold tracking-tight  text-teal-brand sm:text-5xl">
@@ -79,12 +78,8 @@ export default function Festival() {
 
             <div className="border-t border-gray-200 mt-10 pt-10">
               <h3 className="text-sm font-medium text-gray-900">Prizes</h3>
-              <div className="mt-4 prose prose-sm text-gray-500">
-                <ul>
-                  {festival.prizes.map((prize) => (
-                    <li key={prize}>{prize}</li>
-                  ))}
-                </ul>
+              <div className="mt-4 sm:mx-0">
+                <Prizes />
               </div>
             </div>
 
@@ -100,7 +95,7 @@ export default function Festival() {
               <FestivalMap />
             </div>
 
-            <div className="border-t border-gray-200 mt-10 pt-10">
+            <div className="hidden sm:block border-t border-gray-200 mt-10 pt-10">
               <h3 className="text-sm font-medium text-gray-900">Share</h3>
               <ul className="flex items-center space-x-6 mt-4">
                 <li>
@@ -213,7 +208,7 @@ export default function Festival() {
                 </Tab.Panel>
 
                 <Tab.Panel as="dl" className="text-sm text-gray-500 py-5">
-                    <Schedule event={event} />
+                  <Schedule event={event} />
                 </Tab.Panel>
 
                 <Tab.Panel as="dl" className="text-sm text-gray-500">
@@ -225,60 +220,142 @@ export default function Festival() {
               </Tab.Panels>
             </Tab.Group>
           </div>
+          <div className="block sm:hidden border-t border-gray-200 mt-10 pt-4">
+            <h3 className="text-sm font-medium text-gray-900">Share</h3>
+            <ul className="flex items-center space-x-6 mt-4">
+              <li>
+                <a
+                  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchesscentre.online%2Ffestival%2F&amp;src=sdkpreparse"
+                  className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
+                >
+                  <span className="sr-only">Share on Facebook</span>
+                  <svg
+                    className="w-5 h-5"
+                    aria-hidden="true"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fchesscentre.online%2Ffestival&text=Checkout%20the%20Ilkley%20Chess%20Festival%2C%2016th-18th%20Sept"
+                  className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
+                >
+                  <span className="sr-only">Share on Twitter</span>
+                  <svg
+                    className="w-5 h-5"
+                    aria-hidden="true"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-
 const Schedule = ({ event }) => {
   return (
     <table className="mx-auto sm:mx-2 min-w-full divide-y divide-gray-200">
-    <tbody className="bg-white divide-y divide-gray-200">
-      {event &&
-        event.rounds.map(({ round, time, day }, key) => {
-          return (
-            <Fragment key={key}>
-              <tr key={key}>
-                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  Round {round}
-                </td>
-                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {day}
-                </td>
-                <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {time}
-                </td>
-              </tr>
-              {event.break && event.break.afterRound === round && (
-                <tr>
-                  <td
-                    colSpan="3"
-                    className="py-2 text-center whitespace-nowrap text-xs font-medium text-gray-400"
-                  >
-                    Lunch Break
+      <tbody className="bg-white divide-y divide-gray-200">
+        {event &&
+          event.rounds.map(({ round, time, day }, key) => {
+            return (
+              <Fragment key={key}>
+                <tr key={key}>
+                  <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    Round {round}
+                  </td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {day}
+                  </td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {time}
                   </td>
                 </tr>
-              )}
-            </Fragment>
-          );
-        })}
-      {event && event.prizeGiving && (
+                {event.break && event.break.afterRound === round && (
+                  <tr>
+                    <td
+                      colSpan="3"
+                      className="py-2 text-center whitespace-nowrap text-xs font-medium text-gray-400"
+                    >
+                      Lunch Break
+                    </td>
+                  </tr>
+                )}
+              </Fragment>
+            );
+          })}
+        {event && event.prizeGiving && (
+          <tr>
+            <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              Prize Ceremony
+            </td>
+            <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {event.prizeGiving.day}
+            </td>
+            <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <span className="">{event.prizeGiving.time}</span>
+              <i className="ml-4 -mt-2 text-teal-600 fas fa-trophy-alt fa-2x"></i>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  );
+};
+
+const Prizes = () => {
+  return (
+    <table className="mx-auto sm:mx-2 min-w-full divide-y divide-gray-200">
+      <tbody className="bg-white divide-y divide-gray-200">
         <tr>
           <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-            Prize Ceremony
+            1st Prize
           </td>
           <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            {event.prizeGiving.day}
+            £300.00
           </td>
           <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-            <span className="">{event.prizeGiving.time}</span>
-            <i className="ml-4 -mt-2 text-teal-600 fas fa-trophy-alt fa-2x"></i>
+            <i className="fas fa-trophy-alt text-yellow-400 text-lg"></i>
           </td>
         </tr>
-      )}
-    </tbody>
-  </table>
-  )
-}
+        <tr>
+          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+            2nd Prize
+          </td>
+          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            £150.00
+          </td>
+          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <i className="fas fa-trophy-alt text-gray-400 text-lg"></i>
+          </td>
+        </tr>
+        <tr>
+          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+            3rd Prize
+          </td>
+          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            £75.00
+          </td>
+          <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <i className="fas fa-trophy-alt text-yellow-800 text-lg"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  );
+};

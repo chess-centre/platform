@@ -18,6 +18,8 @@ function FestivalRegister(props) {
     email: "",
     ecfId: "",
     section: "",
+    byes: [],
+    price: "30"
   });
 
   const [stepState, setStepState] = useState([
@@ -125,12 +127,12 @@ function FestivalRegister(props) {
         </div>
         <Steps {...{ stepState }} />
         {currentStep === 0 && (
-          <AccountInfo {...{ handleUpdateStep, setPotentialPlayer }} />
+          <AccountInfo {...{ handleUpdateStep, setPotentialPlayer, setFormState }} />
         )}
         {currentStep === 1 && (
-          <EntryInfo {...{ handleUpdateStep, potentialPlayer }} />
+          <EntryInfo {...{ handleUpdateStep, potentialPlayer, setFormState }} />
         )}
-        {currentStep === 2 && <ConfirmInfo {...{ handleUpdateStep }} />}
+        {currentStep === 2 && <ConfirmInfo {...{ handleUpdateStep, formState }} />}
       </div>
     </div>
   );
@@ -138,7 +140,7 @@ function FestivalRegister(props) {
 
 export default FestivalRegister;
 
-const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
+const AccountInfo = ({ handleUpdateStep, setPotentialPlayer, setFormState }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [accountEmail, setAccountEmail] = useState("");
   const [isEmailError, setEmailError] = useState(false);
@@ -171,7 +173,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
       setLastNameError(true);
       valid = false;
     } else {
-      setLastNameError(true);
+      setLastNameError(false);
     }
 
     if(!ValidateEmail(accountEmail)) {
@@ -196,6 +198,14 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
     if (response?.success) {
       setPotentialPlayer(response.players);
     }
+
+    setFormState(s => ({
+      ...s,
+      firstName: accountFirstName,
+      lastName: accountLastName,
+      email: accountEmail
+    }));
+
     setIsLoading(false);
     handleUpdateStep(1);
   };
@@ -224,7 +234,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
             />
           </div>
           {isFirstNameError && (
-            <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
               Invalid first name field
             </span>
           )}
@@ -250,7 +260,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
             />
           </div>
           {isLastNameError && (
-            <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
               Invalid last name field
             </span>
           )}
@@ -301,8 +311,45 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
   );
 };
 
-const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
+const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState }) => {
   const [selectedECFId, setSelectedECFId] = useState("");
+  const [selectedSection, setSelectedSection] = useState("Open");
+  const [selectedRoundOne, setSelectedRoundOne] = useState(false);
+  const [selectedRoundTwo, setSelectedRoundTwo] = useState(false);
+  const [selectedRoundThree, setSelectedRoundThree] = useState(false);
+  const [selectedRoundFour, setSelectedRoundFour] = useState(false);
+
+
+  const handleNextClick = () => {
+    const byes = [];
+
+    if(selectedRoundOne) {
+      byes.push(1);
+    }
+
+    if(selectedRoundTwo) {
+      byes.push(2);
+    }
+
+    if(selectedRoundThree) {
+      byes.push(3);
+    }
+
+    if(selectedRoundFour) {
+      byes.push(4)
+    }
+
+    setFormState(s => ({
+      ...s,
+      section: selectedSection,
+      ecfId: selectedECFId,
+      byes: [...byes]
+    }))
+
+    handleUpdateStep(2)
+
+  }
+
 
   return (
     <div className="mt-10">
@@ -313,14 +360,15 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
         <div className="sm:col-span-1">
           <label
             htmlFor="section"
-            className="block text-sm font-medium text-white"
+            className="block text-sm font-medium text-blue-brand"
           >
             Section
           </label>
           <select
+            onChange={e => setSelectedSection(e.target.value)}
             id="section"
             name="section"
-            className="mt-1 block w-full text-lg pl-3 pr-10 py-3 font-bold text-teal-600 border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 rounded-md"
+            className="mt-1 block w-full text-lg pl-3 pr-10 py-3 text-teal-600 border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 rounded-md"
             defaultValue="Open"
           >
             <option>Open</option>
@@ -332,9 +380,9 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
         <div className="sm:col-span-1">
           <label
             htmlFor="ecf-id"
-            className="block text-sm font-medium text-white"
+            className="block text-sm font-medium text-blue-brand"
           >
-            ECF ID <span className="font-normal text-gray-300">(optional)</span>
+            ECF ID <span className="font-normal text-gray-500">(optional)</span>
           </label>
           <div className="mt-1">
             <input
@@ -345,18 +393,21 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
               defaultValue={selectedECFId}
               onChange={(e) => setSelectedECFId(e.currentTarget.value)}
               autoComplete="ecf-id"
-              className="py-3 px-4 block w-full shadow-sm font-bold text-teal-600 focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+              className="py-3 px-4 block w-full shadow-sm text-teal-600 focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
             />
           </div>
         </div>
         <div className="space-y-5 sm:col-span-2 inline-flex space-x-5">
-          <legend className="block text-sm font-medium text-white">
+          <legend className="block text-sm font-medium text-blue-brand">
             Half Point Bye(s){" "}
-            <span className="font-normal text-gray-300">(optional)</span>
+            <span className="font-normal text-gray-500">(optional)</span>
           </legend>
           <div className="relative flex items-start">
             <div className="flex items-center h-5">
               <input
+                value={selectedRoundOne}
+                defaultValue={selectedRoundOne}
+                onChange={(e) => setSelectedRoundOne(e.currentTarget.checked)}
                 id="round-one"
                 name="round-one"
                 type="checkbox"
@@ -364,7 +415,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
               />
             </div>
             <div className="ml-3 text-sm">
-              <label htmlFor="comments" className="font-medium text-white">
+              <label htmlFor="comments" className="font-medium text-blue-brand">
                 Round 1
               </label>
             </div>
@@ -372,6 +423,9 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
           <div className="relative flex items-start">
             <div className="flex items-center h-5">
               <input
+                value={selectedRoundTwo}
+                defaultValue={selectedRoundTwo}
+                onChange={(e) => setSelectedRoundTwo(e.currentTarget.checked)}
                 id="round-two"
                 name="round-two"
                 type="checkbox"
@@ -379,7 +433,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
               />
             </div>
             <div className="ml-3 text-sm">
-              <label htmlFor="candidates" className="font-medium text-white">
+              <label htmlFor="candidates" className="font-medium text-blue-brand">
                 Round 2
               </label>
             </div>
@@ -387,6 +441,9 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
           <div className="relative flex items-start">
             <div className="flex items-center h-5">
               <input
+                value={selectedRoundThree}
+                defaultValue={selectedRoundThree}
+                onChange={(e) => setSelectedRoundThree(e.currentTarget.checked)}
                 id="round-three"
                 name="round-three"
                 type="checkbox"
@@ -394,7 +451,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
               />
             </div>
             <div className="ml-3 text-sm">
-              <label htmlFor="offers" className="font-medium text-white">
+              <label htmlFor="offers" className="font-medium text-blue-brand">
                 Round 3
               </label>
             </div>
@@ -402,6 +459,9 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
           <div className="relative flex items-start">
             <div className="flex items-center h-5">
               <input
+                value={selectedRoundFour}
+                defaultValue={selectedRoundFour}
+                onChange={(e) => setSelectedRoundFour(e.currentTarget.checked)}
                 id="round-four"
                 name="round-four"
                 type="checkbox"
@@ -409,7 +469,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
               />
             </div>
             <div className="ml-3 text-sm">
-              <label htmlFor="offers" className="font-medium text-white">
+              <label htmlFor="offers" className="font-medium text-blue-brand">
                 Round 4
               </label>
             </div>
@@ -417,7 +477,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
         </div>
         <div className="sm:col-span-2">
           <button
-            onClick={() => handleUpdateStep(2)}
+            onClick={() => handleNextClick()}
             className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
             Next
@@ -426,7 +486,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
         <div className="sm:col-span-2">
           <button
             onClick={() => handleUpdateStep(0)}
-            className="w-full inline-flex items-center justify-center shadow-sm text-sm text-white hover:underline"
+            className="w-full inline-flex items-center justify-center shadow-sm text-sm text-blue-brand hover:underline"
           >
             back
           </button>
@@ -436,7 +496,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer }) => {
   );
 };
 
-const ConfirmInfo = ({ handleUpdateStep }) => {
+const ConfirmInfo = ({ handleUpdateStep, formState }) => {
   const [agreed, setAgreed] = useState(false);
 
   return (
@@ -445,7 +505,7 @@ const ConfirmInfo = ({ handleUpdateStep }) => {
         <div className="sm:col-span-2">
           <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:px-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
+              <h3 className="text-lg leading-6 font-medium text-blue-brand">
                 Entry
               </h3>
             </div>
@@ -455,38 +515,46 @@ const ConfirmInfo = ({ handleUpdateStep }) => {
                   <dt className="text-sm font-medium text-gray-500">
                     Full name
                   </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Matthew D Webb
+                  <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
+                    { formState.firstName }{" "}{ formState.lastName }
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
                     Email Address
                   </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    matthew@webb.com
+                  <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
+                    { formState.email }
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">Section</dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    Open
+                  <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
+                   { formState.section }
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
                     ECF Rating
                   </dt>
-                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    2598
+                  <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
+                    { formState.ecfId }
+                  </dd>
+                </div>
+                <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">
+                    Byes
+                  </dt>
+                  <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
+                    { formState.byes.join(", ") }
                   </dd>
                 </div>
               </dl>
             </div>
           </div>
-          <div className="text-6xl text-center text-white font-bold mt-4"></div>
-          <div className="text-6xl text-center text-white font-bold mt-4">
-            £20
+          <div className="text-6xl text-center text-blue-brand font-bold mt-4"></div>
+          <div className="text-6xl text-center text-blue-brand font-bold mt-4">
+            £{ formState.price }
           </div>
         </div>
         <div className="sm:col-span-2">
@@ -511,13 +579,13 @@ const ConfirmInfo = ({ handleUpdateStep }) => {
               </Switch>
             </div>
             <div className="ml-3">
-              <p className="mt-1 text-sm text-gray-200">
+              <p className="mt-1 text-sm text-blue-brand">
                 By selecting this, you agree to the{" "}
-                <a href="/" className="font-medium text-gray-100 underline">
+                <a href="/" className="font-medium text-teal-700 hover:underline">
                   Privacy Policy
                 </a>{" "}
                 and{" "}
-                <a href="/" className="font-medium text-gray-100 underline">
+                <a href="/" className="font-medium text-teal-700 hover:underline">
                   Terms &#x26; Conditions
                 </a>
                 .
@@ -533,10 +601,10 @@ const ConfirmInfo = ({ handleUpdateStep }) => {
             Pay
           </button>
         </div>
-        <div className="sm:col-span-2 -mt-4">
+        <div className="sm:col-span-2">
           <button
             onClick={() => handleUpdateStep(1)}
-            className="w-full inline-flex items-center justify-center text-sm text-gray-300 hover:underline"
+            className="w-full inline-flex items-center justify-center text-sm text-blue-brand hover:underline"
           >
             back
           </button>
@@ -634,8 +702,8 @@ const RatingRadio = ({ potentialPlayer, setSelectedECFId }) => {
 
   return (
     <RadioGroup value={selected} onChange={handleSelected}>
-      <RadioGroup.Label className="block text-sm font-medium text-white mb-2">
-        ECF database search (select)
+      <RadioGroup.Label className="block text-sm font-medium text-blue-brand mb-2">
+        Quick search (select if relevant)
       </RadioGroup.Label>
       <div className="bg-white rounded-md -space-y-px">
         {potentialPlayer.map((player, playerIdx) => (

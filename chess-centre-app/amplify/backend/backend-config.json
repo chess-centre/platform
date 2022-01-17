@@ -184,6 +184,20 @@
           ]
         }
       ]
+    },
+    "players": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "searchECFPlayer",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "function": {
@@ -335,6 +349,11 @@
       "service": "Lambda"
     },
     "getLichessStatuses": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "searchECFPlayer": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
