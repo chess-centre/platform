@@ -1,0 +1,186 @@
+.form-input:focus,
+.form-textarea:focus,
+.form-multiselect:focus,
+.form-select:focus,
+.form-checkbox:focus,
+.form-radio:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.hamburger svg > *:nth-child(1), .hamburger svg > *:nth-child(2), .hamburger svg > *:nth-child(3) {
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+.hamburger svg > *:nth-child(1) {
+  -webkit-transition: y 0.075s 0.12s ease, opacity 0.075s ease, -webkit-transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: y 0.075s 0.12s ease, opacity 0.075s ease, -webkit-transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: y 0.075s 0.12s ease, opacity 0.075s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: y 0.075s 0.12s ease, opacity 0.075s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19), -webkit-transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger svg > *:nth-child(2) {
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transition-duration: 0.075s;
+          transition-duration: 0.075s;
+  -webkit-transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger svg > *:nth-child(3) {
+  -webkit-transition: y 0.075s 0.12s ease, -webkit-transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: y 0.075s 0.12s ease, -webkit-transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: y 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  transition: y 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19), -webkit-transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger.active svg > *:nth-child(1) {
+  opacity: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  y: 11;
+  -webkit-transition: y 0.075s ease, opacity 0.075s 0.12s ease, -webkit-transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: y 0.075s ease, opacity 0.075s 0.12s ease, -webkit-transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: y 0.075s ease, opacity 0.075s 0.12s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: y 0.075s ease, opacity 0.075s 0.12s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.hamburger.active svg > *:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transition-delay: 0.12s;
+          transition-delay: 0.12s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+          transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.hamburger.active svg > *:nth-child(3) {
+  y: 11;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: y 0.075s ease, -webkit-transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: y 0.075s ease, -webkit-transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: y 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: y 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.form-switch input[type="checkbox"].light-switch + label {
+  @apply bg-teal-500;
+}
+
+.dark .form-switch input[type="checkbox"].light-switch + label > span:first-child {
+  left: 22px;
+}
+
+.carousel.swiper-container {
+  @apply overflow-visible;
+}
+
+.carousel .swiper-slide img {
+  opacity: 0.32;
+}
+
+.carousel .swiper-slide > div > div {
+  @apply opacity-0;
+}
+
+.carousel .swiper-slide.swiper-slide-active, .carousel .swiper-slide.swiper-slide-duplicate-active {
+  @apply shadow-2xl;
+}
+
+.carousel .swiper-slide.swiper-slide-active img, .carousel .swiper-slide.swiper-slide-duplicate-active img {
+  @apply opacity-100;
+}
+
+.carousel .swiper-slide.swiper-slide-active > div > div, .carousel .swiper-slide.swiper-slide-duplicate-active > div > div {
+  @apply opacity-100;
+}
+
+.translate-z-0 {
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+}
+
+.tags-animation {
+  -webkit-animation: tagsmove 30000ms linear infinite;
+          animation: tagsmove 30000ms linear infinite;
+}
+
+.tags-1 {
+  -webkit-animation-delay: -3000ms;
+          animation-delay: -3000ms;
+}
+
+.tags-2 {
+  -webkit-animation-delay: -4800ms;
+          animation-delay: -4800ms;
+}
+
+.tags-3 {
+  -webkit-animation-delay: -6900ms;
+          animation-delay: -6900ms;
+}
+
+.tags-4 {
+  -webkit-animation-delay: -8100ms;
+          animation-delay: -8100ms;
+}
+
+.tags-5 {
+  -webkit-animation-delay: -13200ms;
+          animation-delay: -13200ms;
+}
+
+.tags-6 {
+  -webkit-animation-delay: -16500ms;
+          animation-delay: -16500ms;
+}
+
+.tags-7 {
+  -webkit-animation-delay: -18900ms;
+          animation-delay: -18900ms;
+}
+
+.tags-8 {
+  -webkit-animation-delay: -21900ms;
+          animation-delay: -21900ms;
+}
+
+.tags-9 {
+  -webkit-animation-delay: -22800ms;
+          animation-delay: -22800ms;
+}
+
+.tags-10 {
+  -webkit-animation-delay: -24000ms;
+          animation-delay: -24000ms;
+}
+
+@-webkit-keyframes tagsmove {
+  from {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  to {
+    -webkit-transform: translateX(768px);
+            transform: translateX(768px);
+  }
+}
+
+@keyframes tagsmove {
+  from {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  to {
+    -webkit-transform: translateX(768px);
+            transform: translateX(768px);
+  }
+}
+/*# sourceMappingURL=theme.css.map */

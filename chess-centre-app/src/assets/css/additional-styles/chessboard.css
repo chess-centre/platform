@@ -1,0 +1,90 @@
+.moves {
+  font-weight: 300 !important;
+  font-size: 0.875rem !important;
+  text-align: left !important;
+  padding: 4px !important;
+  -ms-grid-columns: 0em !important;
+      grid-template-columns: 0em !important;
+  width: auto !important;
+}
+
+.last-move {
+  background-color: rgba(84, 153, 171, 0.8) !important;
+}
+
+.whole.layout-left {
+  display: unset !important;
+  text-align: center !important;
+}
+
+.cg-wrap.coords-inner {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.whole.viewMode.layout-left .buttons {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.pgnvjs.layout-top .buttons {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 5px !important;
+}
+
+i.pgnvbutton:hover,
+svg.pgnvbutton:hover {
+  background-color: #03545e !important;
+  border-radius: 6px !important;
+  border: 0 !important;
+}
+
+.moves .move a.yellow {
+  color: #f0802b !important;
+  font-weight: bold !important;
+  background-color: transparent !important;
+}
+
+.moves .move a:hover {
+  color: #f0802b !important;
+  background-color: rgba(250, 250, 250, 0.95) !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+}
+
+i.pgnvbutton,
+svg.pgnvbutton {
+  cursor: pointer !important;
+  color: #fff !important;
+  border-radius: 6px !important;
+  border: 0 !important;
+  background-color: #047481 !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.blackHeader,
+.whiteHeader {
+  color: #1d1d20 !important;
+  margin: 2px !important;
+  text-align: center !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  font-weight: 500 !important;
+}
+
+.result {
+  font-weight: 500 !important;
+}
+
+.layout-top {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+/*# sourceMappingURL=chessboard.css.map */

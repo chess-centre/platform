@@ -5,6 +5,11 @@ const routes = [
     name: "Dashboard",
   },
   {
+    path: "/app/Newsfeed",
+    icon: "NewspaperIcon",
+    name: "News feed",
+  },
+  {
     path: "/app/events",
     icon: "GlobeIcon",
     name: "Events",

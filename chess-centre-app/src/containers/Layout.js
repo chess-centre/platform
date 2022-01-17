@@ -12,6 +12,10 @@ const routes = [
     component: lazy(() => import("../pages/App/Dashboard")),
   },
   {
+    path: "/Newsfeed",
+    component: lazy(() => import("../pages/App/Newsfeed")),
+  },
+  {
     path: "/events",
     component: lazy(() => import("../pages/App/Events")),
   },
