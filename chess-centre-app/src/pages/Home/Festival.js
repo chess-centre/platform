@@ -1,8 +1,8 @@
 import { Tab } from "@headlessui/react";
+import { Link } from "react-router-dom";
 import { useEffect, Fragment } from "react";
 import FestivalMap from "../../components/Map/FestivalMap";
 import EntriesTable from "../../components/EntriesTable/table";
-import Rounds from "../../components/RoundTimes/Rounds";
 import { rounds } from "../../api/data.roundTimes";
 import FestivalHero from "../../assets/img/festival_hero.jpg";
 
@@ -40,9 +40,7 @@ export default function Festival() {
   return (
     <div className="bg-white">
       <div className="mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        {/* Product */}
         <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
-          {/* Product image */}
           <div className="lg:row-end-1 lg:col-span-4">
             <div className="aspect-w-4 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden">
               <img
@@ -53,7 +51,6 @@ export default function Festival() {
             </div>
           </div>
 
-          {/* Product details */}
           <div className="max-w-2xl mx-auto mt-14 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
             <div className="flex flex-col-reverse">
               <div className="mt-4">
@@ -72,12 +69,12 @@ export default function Festival() {
             <p className="text-gray-500 mt-6">{festival.description}</p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4">
-              <button
-                type="button"
+              <Link
+                to="/register/festival"
                 className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-teal-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
               >
                 Enter Now
-              </button>
+              </Link>
             </div>
 
             <div className="border-t border-gray-200 mt-10 pt-10">

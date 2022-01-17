@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ValidateEmail from "../../utils/ValidateEmail";
 import { CheckIcon } from "@heroicons/react/solid";
 import Logo from "../../assets/img/logo.svg";
@@ -18,8 +19,6 @@ function FestivalRegister(props) {
     ecfId: "",
     section: "",
   });
-
-  const updateFormState = ()
 
   const [stepState, setStepState] = useState([
     { id: "01", name: "Account info", href: "#", status: "current" },
@@ -45,7 +44,7 @@ function FestivalRegister(props) {
   };
 
   return (
-    <div className="bg-blue-brand h-full py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+    <div className="bg-gray-50 h-full py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
       <div className="relative max-w-xl mx-auto">
         <svg
           className="absolute left-full transform translate-x-1/2"
@@ -69,7 +68,7 @@ function FestivalRegister(props) {
                 y={0}
                 width={4}
                 height={4}
-                className="text-gray-600"
+                className="text-gray-200"
                 fill="currentColor"
               />
             </pattern>
@@ -117,10 +116,10 @@ function FestivalRegister(props) {
           <img alt="logo" src={Logo} className="max-h-32" />
         </div>
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-extrabold text-teal-brand sm:text-4xl">
-            Ilkley Chess Festival
-          </h2>
-          <p className="mt-4 text-lg leading-6 text-gray-200 font-bold">
+          <h1 className="text-3xl font-extrabold tracking-tight  text-teal-brand sm:text-5xl">
+            <span className="text-orange-brand">Ilkley</span> Chess Festival
+          </h1>
+          <p className="mt-4 text-lg leading-6 text-blue-brand font-bold">
             Entry form
           </p>
         </div>
@@ -151,24 +150,46 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
   const [isLastNameError, setLastNameError] = useState(false);
 
   const isValid = () => {
+
+    let valid = true;
+
     if (!accountEmail) {
       setEmailError(true);
-      return false;
+      valid = false;
+    } else {
+      setEmailError(false);
     }
+
     if (!accountFirstName) {
       setFirstNameError(true);
-      return false;
+      valid = false;
+    } else {
+      setFirstNameError(false);
     }
+
     if (!accountLastName) {
       setLastNameError(true);
-      return false;
+      valid = false;
+    } else {
+      setLastNameError(true);
     }
-    return ValidateEmail(accountEmail);
+
+    if(!ValidateEmail(accountEmail)) {
+      setEmailError(true);
+      valid = false;
+    } else {
+      setEmailError(false);
+    }
+
+    return valid;
   };
 
   const handleNextClick = async () => {
     setIsLoading(true);
-    if (!isValid()) return;
+    if (!isValid()) {
+      setIsLoading(false);
+      return;
+    } 
     const response = await getECFPlayer(
       `${accountFirstName} ${accountLastName}`
     );
@@ -185,7 +206,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
         <div>
           <label
             htmlFor="first-name"
-            className="block text-sm font-medium text-white"
+            className="block text-sm font-medium text-blue-brand"
           >
             First name
           </label>
@@ -211,7 +232,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
         <div>
           <label
             htmlFor="last-name"
-            className="block text-sm font-medium text-white"
+            className="block text-sm font-medium text-blue-brand"
           >
             Last name
           </label>
@@ -237,7 +258,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
         <div className="sm:col-span-2">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-white"
+            className="block text-sm font-medium text-blue-brand"
           >
             Email
           </label>
@@ -266,6 +287,14 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer }) => {
           >
             {isLoading ? "Loading..." : "Next"}
           </button>
+        </div>
+        <div className="sm:col-span-2">
+          <Link
+            to="/festival"
+            className="w-full inline-flex items-center justify-center text-sm text-blue-brand hover:underline"
+          >
+            back
+          </Link>
         </div>
       </div>
     </div>
@@ -439,9 +468,7 @@ const ConfirmInfo = ({ handleUpdateStep }) => {
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Section
-                  </dt>
+                  <dt className="text-sm font-medium text-gray-500">Section</dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                     Open
                   </dd>
@@ -458,7 +485,9 @@ const ConfirmInfo = ({ handleUpdateStep }) => {
             </div>
           </div>
           <div className="text-6xl text-center text-white font-bold mt-4"></div>
-          <div className="text-6xl text-center text-white font-bold mt-4">£20</div>
+          <div className="text-6xl text-center text-white font-bold mt-4">
+            £20
+          </div>
         </div>
         <div className="sm:col-span-2">
           <div className="flex items-start text-center">
@@ -522,7 +551,7 @@ const Steps = ({ stepState }) => {
 
   return (
     <nav aria-label="Progress">
-      <ol className="border bg-gray-200 rounded-md divide-y divide-teal-600 md:flex md:divide-y-0">
+      <ol className="border bg-gray-50 rounded-md divide-y divide-teal-600 md:flex md:divide-y-0">
         {steps.map((step, stepIdx) => (
           <li key={step.name} className="relative md:flex-1 md:flex">
             {step.status === "complete" ? (

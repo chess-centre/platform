@@ -25,7 +25,7 @@ const routes = [
     isPrivate: false,
   },
   {
-    path: "/register/festival/:section",
+    path: "/register/festival",
     component: lazy(() => import("../pages/Auth/FestivalRegister")),
     exact: true,
     isPrivate: false,
