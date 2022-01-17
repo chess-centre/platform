@@ -1,17 +1,18 @@
 import { Link, useHistory } from "react-router-dom";
-import {
-  getDay,
-  getMonth,
-  getDayStr,
-} from "../../../utils/DateFormating";
+import { getDay, getMonth, getDayStr } from "../../../utils/DateFormating";
 import { classNames, bgColor700 } from "../../../utils/Classes";
-
 
 export function ListCard({ event }) {
   const history = useHistory();
 
-  const handleClick = () => {
-    history.push(`${event.url}/${event.id}`);
+  const handleClick = (url) => {
+    if (url) {
+      history.push(`${url}/${event.id}`);
+    } else if (event.isLive) {
+      // nice fallback
+      history.push("/broadcast/live");
+    } 
+    // Well, we don't have a page so... do nothing, duh!
   };
 
   return (
@@ -19,8 +20,8 @@ export function ListCard({ event }) {
       <div
         className={
           event.endDate && event.startDate !== event.endDate
-            ? `relative min-w-16 text-center sm:text-left bg-white px-1 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
-            : `relative min-w-16 text-center sm:text-left bg-white px-4 sm:pb-3 sm:pt-2 sm:px-6 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
+            ? `px-1 relative min-w-16 text-center sm:text-left bg-white sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
+            : `px-4 relative min-w-16 text-center sm:text-left bg-white sm:pb-3 sm:pt-2 sm:px-6 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 border border-gray-200 border-b-0 shadow-lg`
         }
       >
         <div>
@@ -58,8 +59,11 @@ export function ListCard({ event }) {
         </div>
       </div>
       <div
-        onClick={handleClick}
-        className="hover:bg-gray-50 relative cursor-pointer z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
+        onClick={() => handleClick(event.url)}
+        className={classNames(
+          (event.url || event.isLive) && "hover:bg-gray-50",
+          "relative cursor-pointer z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
+        )}
       >
         <div className="px-4 sm:px-6 py-2 sm:py-0 text-sm truncate">
           <p className="sm:text-2xl sm:font-medium font-bold text-lg">
@@ -91,7 +95,8 @@ export function ListCard({ event }) {
             "absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"
           )}
         ></div>
-        {event.url ? (
+
+        {event.url && (
           <div className="flex-shrink-0 pr-2">
             <Link
               to={`${event.url}/${event.id}`}
@@ -103,7 +108,21 @@ export function ListCard({ event }) {
               </span>
             </Link>
           </div>
-        ) : null}
+        )}
+
+        {!event.url && event.isLive && (
+          <div className="flex-shrink-0 pr-2">
+            <Link
+              to="/broadcast/live"
+              className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
+            justify-center text-gray-400 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
+            >
+              <span className="text-red-700">
+                <i className="fas fa-broadcast-tower"></i>
+              </span>
+            </Link>
+          </div>
+        )}
       </div>
     </li>
   );
