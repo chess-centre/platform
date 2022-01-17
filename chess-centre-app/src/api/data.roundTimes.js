@@ -1,6 +1,42 @@
 // Could be CMS controlled:
 export const rounds = [
   {
+    type: "festival",
+    eventStart: "9:30",
+    eventEnd: "14:30",
+    rounds: [
+      {
+        round: 1,
+        day: "Friday",
+        time: "19:00 - 23:00",
+      },
+      {
+        round: 2,
+        day: "Saturday",
+        time: "09:30 - 13:30",
+      },
+      {
+        round: 3,
+        day: "Saturday",
+        time: "14:15 - 18:15",
+      },
+      {
+        round: 4,
+        day: "Sunday",
+        time: "09:30 - 13:30",
+      },
+      {
+        round: 5,
+        day: "Sunday",
+        time: "14:15 - 18:15",
+      },
+    ],
+    prizeGiving: {
+      time: "18:30",
+      day: "Sunday",
+    },
+  },
+  {
     type: "congress",
     eventStart: "9:30",
     eventEnd: "14:30",

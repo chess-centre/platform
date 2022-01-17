@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/player/search/{name}": {
+      "name": "/player/search/{name}",
+      "lambdaFunction": "searchECFPlayer",
+      "permissions": {
+        "setting": "protected",
+        "auth": [
+          "read"
+        ],
+        "guest": [
+          "read"
+        ]
+      }
+    }
+  }
+}
