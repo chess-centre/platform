@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 import ValidateEmail from "../../utils/ValidateEmail";
 import { CheckIcon } from "@heroicons/react/solid";
-import Logo from "../../assets/img/logo.svg";
+import FestivalBuilding from "../../assets/img/festival_building.png";
 import { Switch, RadioGroup } from "@headlessui/react";
 import { getECFPlayer } from "../../api/profile/chess";
 
@@ -19,11 +20,11 @@ function FestivalRegister(props) {
     ecfId: "",
     section: "",
     byes: [],
-    price: "30"
+    price: "30",
   });
 
   const [stepState, setStepState] = useState([
-    { id: "01", name: "Account info", href: "#", status: "current" },
+    { id: "01", name: "Account Info", href: "#", status: "current" },
     { id: "02", name: "Entry details", href: "#", status: "upcoming" },
     { id: "03", name: "Payment", href: "#", status: "upcoming" },
   ]);
@@ -46,7 +47,7 @@ function FestivalRegister(props) {
   };
 
   return (
-    <div className="bg-gray-50 h-full py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
+    <div className="bg-gray-50 h-full py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-2">
       <div className="relative max-w-xl mx-auto">
         <svg
           className="absolute left-full transform translate-x-1/2"
@@ -115,7 +116,13 @@ function FestivalRegister(props) {
           />
         </svg>
         <div className="text-center flex items-center justify-center mb-2">
-          <img alt="logo" src={Logo} className="max-h-32" />
+          <Link to="/festival">
+            <img
+              alt="featival building"
+              src={FestivalBuilding}
+              className="max-w-md"
+            />
+          </Link>
         </div>
         <div className="text-center mb-8">
           <h1 className="text-3xl font-extrabold tracking-tight  text-teal-brand sm:text-5xl">
@@ -127,12 +134,16 @@ function FestivalRegister(props) {
         </div>
         <Steps {...{ stepState }} />
         {currentStep === 0 && (
-          <AccountInfo {...{ handleUpdateStep, setPotentialPlayer, setFormState }} />
+          <AccountInfo
+            {...{ handleUpdateStep, setPotentialPlayer, setFormState, formState }}
+          />
         )}
         {currentStep === 1 && (
-          <EntryInfo {...{ handleUpdateStep, potentialPlayer, setFormState }} />
+          <EntryInfo {...{ handleUpdateStep, potentialPlayer, setFormState, formState }} />
         )}
-        {currentStep === 2 && <ConfirmInfo {...{ handleUpdateStep, formState }} />}
+        {currentStep === 2 && (
+          <ConfirmInfo {...{ handleUpdateStep, formState }} />
+        )}
       </div>
     </div>
   );
@@ -140,19 +151,23 @@ function FestivalRegister(props) {
 
 export default FestivalRegister;
 
-const AccountInfo = ({ handleUpdateStep, setPotentialPlayer, setFormState }) => {
+const AccountInfo = ({
+  handleUpdateStep,
+  setPotentialPlayer,
+  setFormState,
+  formState
+}) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [accountEmail, setAccountEmail] = useState("");
+  const [accountEmail, setAccountEmail] = useState(formState.email);
   const [isEmailError, setEmailError] = useState(false);
 
-  const [accountFirstName, setAccountFirstName] = useState("");
+  const [accountFirstName, setAccountFirstName] = useState(formState.firstName);
   const [isFirstNameError, setFirstNameError] = useState(false);
 
-  const [accountLastName, setAccountLastName] = useState("");
+  const [accountLastName, setAccountLastName] = useState(formState.lastName);
   const [isLastNameError, setLastNameError] = useState(false);
 
   const isValid = () => {
-
     let valid = true;
 
     if (!accountEmail) {
@@ -176,7 +191,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer, setFormState }) => 
       setLastNameError(false);
     }
 
-    if(!ValidateEmail(accountEmail)) {
+    if (!ValidateEmail(accountEmail)) {
       setEmailError(true);
       valid = false;
     } else {
@@ -191,7 +206,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer, setFormState }) => 
     if (!isValid()) {
       setIsLoading(false);
       return;
-    } 
+    }
     const response = await getECFPlayer(
       `${accountFirstName} ${accountLastName}`
     );
@@ -199,11 +214,11 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer, setFormState }) => 
       setPotentialPlayer(response.players);
     }
 
-    setFormState(s => ({
+    setFormState((s) => ({
       ...s,
       firstName: accountFirstName,
       lastName: accountLastName,
-      email: accountEmail
+      email: accountEmail,
     }));
 
     setIsLoading(false);
@@ -225,6 +240,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer, setFormState }) => 
               type="text"
               name="first-name"
               id="first-name"
+              defaultValue={accountFirstName}
               onChange={(event) =>
                 setAccountFirstName(event.currentTarget.value)
               }
@@ -253,6 +269,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer, setFormState }) => 
               id="last-name"
               autoComplete="family-name"
               required
+              defaultValue={accountLastName}
               onChange={(event) =>
                 setAccountLastName(event.currentTarget.value)
               }
@@ -277,6 +294,7 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer, setFormState }) => 
               id="email"
               name="email"
               type="email"
+              defaultValue={accountEmail}
               onChange={(event) => setAccountEmail(event.currentTarget.value)}
               autoComplete="email"
               required
@@ -311,52 +329,52 @@ const AccountInfo = ({ handleUpdateStep, setPotentialPlayer, setFormState }) => 
   );
 };
 
-const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState }) => {
-  const [selectedECFId, setSelectedECFId] = useState("");
-  const [selectedSection, setSelectedSection] = useState("Open");
-  const [selectedRoundOne, setSelectedRoundOne] = useState(false);
-  const [selectedRoundTwo, setSelectedRoundTwo] = useState(false);
-  const [selectedRoundThree, setSelectedRoundThree] = useState(false);
-  const [selectedRoundFour, setSelectedRoundFour] = useState(false);
-
+const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState }) => {
+  const [selectedECFId, setSelectedECFId] = useState(formState.ecfId);
+  const [selectedSection, setSelectedSection] = useState(formState.section || "Open");
+  const [selectedRoundOne, setSelectedRoundOne] = useState(!!formState?.byes?.find(rd => rd === 1) || false);
+  const [selectedRoundTwo, setSelectedRoundTwo] = useState(!!formState?.byes?.find(rd => rd === 2) || false);
+  const [selectedRoundThree, setSelectedRoundThree] = useState(!!formState?.byes?.find(rd => rd === 3) || false);
+  const [selectedRoundFour, setSelectedRoundFour] = useState(!!formState?.byes?.find(rd => rd === 4) || false);
 
   const handleNextClick = () => {
     const byes = [];
 
-    if(selectedRoundOne) {
+    if (selectedRoundOne) {
       byes.push(1);
     }
 
-    if(selectedRoundTwo) {
+    if (selectedRoundTwo) {
       byes.push(2);
     }
 
-    if(selectedRoundThree) {
+    if (selectedRoundThree) {
       byes.push(3);
     }
 
-    if(selectedRoundFour) {
-      byes.push(4)
+    if (selectedRoundFour) {
+      byes.push(4);
     }
 
-    setFormState(s => ({
+    setFormState((s) => ({
       ...s,
       section: selectedSection,
       ecfId: selectedECFId,
-      byes: [...byes]
-    }))
+      byes: [...byes],
+    }));
 
-    handleUpdateStep(2)
-
-  }
-
+    handleUpdateStep(2);
+  };
 
   return (
     <div className="mt-10">
       <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-        <div className="sm:col-span-2">
-          <RatingRadio {...{ potentialPlayer, setSelectedECFId }} />
-        </div>
+        {potentialPlayer && potentialPlayer.length > 0 && (
+          <div className="sm:col-span-2">
+            <RatingRadio {...{ potentialPlayer, setSelectedECFId }} />
+          </div>
+        )}
+
         <div className="sm:col-span-1">
           <label
             htmlFor="section"
@@ -365,11 +383,12 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState }) => {
             Section
           </label>
           <select
-            onChange={e => setSelectedSection(e.target.value)}
+            onChange={(e) => setSelectedSection(e.target.value)}
+            defaultValue={selectedSection}
             id="section"
             name="section"
             className="mt-1 block w-full text-lg pl-3 pr-10 py-3 text-teal-600 border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 rounded-md"
-            defaultValue="Open"
+            
           >
             <option>Open</option>
             <option>Major</option>
@@ -389,7 +408,6 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState }) => {
               type="text"
               name="ecf-id"
               id="ecf-id"
-              value={selectedECFId}
               defaultValue={selectedECFId}
               onChange={(e) => setSelectedECFId(e.currentTarget.value)}
               autoComplete="ecf-id"
@@ -405,8 +423,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState }) => {
           <div className="relative flex items-start">
             <div className="flex items-center h-5">
               <input
-                value={selectedRoundOne}
-                defaultValue={selectedRoundOne}
+                defaultChecked={selectedRoundOne}
                 onChange={(e) => setSelectedRoundOne(e.currentTarget.checked)}
                 id="round-one"
                 name="round-one"
@@ -423,8 +440,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState }) => {
           <div className="relative flex items-start">
             <div className="flex items-center h-5">
               <input
-                value={selectedRoundTwo}
-                defaultValue={selectedRoundTwo}
+                defaultChecked={selectedRoundTwo}
                 onChange={(e) => setSelectedRoundTwo(e.currentTarget.checked)}
                 id="round-two"
                 name="round-two"
@@ -433,7 +449,10 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState }) => {
               />
             </div>
             <div className="ml-3 text-sm">
-              <label htmlFor="candidates" className="font-medium text-blue-brand">
+              <label
+                htmlFor="candidates"
+                className="font-medium text-blue-brand"
+              >
                 Round 2
               </label>
             </div>
@@ -441,8 +460,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState }) => {
           <div className="relative flex items-start">
             <div className="flex items-center h-5">
               <input
-                value={selectedRoundThree}
-                defaultValue={selectedRoundThree}
+                defaultChecked={selectedRoundThree}
                 onChange={(e) => setSelectedRoundThree(e.currentTarget.checked)}
                 id="round-three"
                 name="round-three"
@@ -459,8 +477,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState }) => {
           <div className="relative flex items-start">
             <div className="flex items-center h-5">
               <input
-                value={selectedRoundFour}
-                defaultValue={selectedRoundFour}
+                defaultChecked={selectedRoundFour}
                 onChange={(e) => setSelectedRoundFour(e.currentTarget.checked)}
                 id="round-four"
                 name="round-four"
@@ -516,7 +533,7 @@ const ConfirmInfo = ({ handleUpdateStep, formState }) => {
                     Full name
                   </dt>
                   <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
-                    { formState.firstName }{" "}{ formState.lastName }
+                    {formState.firstName} {formState.lastName}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -524,29 +541,27 @@ const ConfirmInfo = ({ handleUpdateStep, formState }) => {
                     Email Address
                   </dt>
                   <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
-                    { formState.email }
+                    {formState.email}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">Section</dt>
                   <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
-                   { formState.section }
+                    {formState.section}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">
-                    ECF Rating
+                    ECF Id
                   </dt>
                   <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
-                    { formState.ecfId }
+                    {formState.ecfId}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                  <dt className="text-sm font-medium text-gray-500">
-                    Byes
-                  </dt>
+                  <dt className="text-sm font-medium text-gray-500">Byes</dt>
                   <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
-                    { formState.byes.join(", ") }
+                    {formState.byes.join(", ")}
                   </dd>
                 </div>
               </dl>
@@ -554,7 +569,7 @@ const ConfirmInfo = ({ handleUpdateStep, formState }) => {
           </div>
           <div className="text-6xl text-center text-blue-brand font-bold mt-4"></div>
           <div className="text-6xl text-center text-blue-brand font-bold mt-4">
-            £{ formState.price }
+            £{formState.price}
           </div>
         </div>
         <div className="sm:col-span-2">
@@ -581,11 +596,17 @@ const ConfirmInfo = ({ handleUpdateStep, formState }) => {
             <div className="ml-3">
               <p className="mt-1 text-sm text-blue-brand">
                 By selecting this, you agree to the{" "}
-                <a href="/" className="font-medium text-teal-700 hover:underline">
+                <a
+                  href="/"
+                  className="font-medium text-teal-700 hover:underline"
+                >
                   Privacy Policy
                 </a>{" "}
                 and{" "}
-                <a href="/" className="font-medium text-teal-700 hover:underline">
+                <a
+                  href="/"
+                  className="font-medium text-teal-700 hover:underline"
+                >
                   Terms &#x26; Conditions
                 </a>
                 .
@@ -619,51 +640,53 @@ const Steps = ({ stepState }) => {
 
   return (
     <nav aria-label="Progress">
-      <ol className="border bg-gray-50 rounded-md divide-y divide-teal-600 md:flex md:divide-y-0">
+      <ol className="rounded-md flex md:divide-y-0">
         {steps.map((step, stepIdx) => (
           <li key={step.name} className="relative md:flex-1 md:flex">
             {step.status === "complete" ? (
               <div className="group flex items-center w-full">
-                <span className="px-6 py-4 flex items-center text-sm font-medium">
+                <span className="px-1 sm:px-6 py-4 flex items-center text-sm font-medium">
                   <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center bg-teal-600 rounded-full group-hover:bg-teal-800">
                     <CheckIcon
                       className="w-6 h-6 text-white"
                       aria-hidden="true"
                     />
                   </span>
-                  <span className="ml-4 text-sm font-medium text-teal-600">
+                  <span className="ml-2 sm:ml-4 text-xs sm:text-sm font-medium text-teal-600">
                     {step.name}
                   </span>
                 </span>
               </div>
             ) : step.status === "current" ? (
-              <div
-                className="px-6 py-4 flex items-center text-sm font-medium"
-                aria-current="step"
-              >
-                <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-teal-600 rounded-full">
-                  <span className="text-teal-600">{step.id}</span>
-                </span>
-                <span className="ml-4 text-sm font-medium text-teal-600">
-                  {step.name}
+              <div className="group flex items-center">
+                <span
+                  className="px-1 sm:px-6 py-4 flex items-center text-sm font-medium"
+                  aria-current="step"
+                >
+                  <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-teal-600 rounded-full">
+                    <span className="text-teal-600">{step.id}</span>
+                  </span>
+                  <span className="ml-2 sm:ml-4 text-xs sm:text-sm font-medium text-teal-600">
+                    {step.name}
+                  </span>
                 </span>
               </div>
             ) : (
               <div className="group flex items-center">
-                <span className="px-6 py-4 flex items-center text-sm font-medium">
+                <span className="px-1 sm:px-6 py-4 flex items-center text-sm font-medium">
                   <span className="flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full group-hover:border-gray-400">
                     <span className="text-gray-500 group-hover:text-gray-900">
                       {step.id}
                     </span>
                   </span>
-                  <span className="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">
+                  <span className="ml-2 sm:ml-4 text-xs sm:text-sm font-medium text-gray-500 group-hover:text-gray-900">
                     {step.name}
                   </span>
                 </span>
               </div>
             )}
 
-            {stepIdx !== steps.length - 1 ? (
+            {stepIdx !== steps.length - 1 && (
               <>
                 {/* Arrow separator for lg screens and up */}
                 <div
@@ -671,7 +694,7 @@ const Steps = ({ stepState }) => {
                   aria-hidden="true"
                 >
                   <svg
-                    className="h-full w-full text-gray-400"
+                    className="h-full w-full text-teal-brand"
                     viewBox="0 0 22 80"
                     fill="none"
                     preserveAspectRatio="none"
@@ -685,7 +708,7 @@ const Steps = ({ stepState }) => {
                   </svg>
                 </div>
               </>
-            ) : null}
+            )}
           </li>
         ))}
       </ol>
@@ -703,7 +726,8 @@ const RatingRadio = ({ potentialPlayer, setSelectedECFId }) => {
   return (
     <RadioGroup value={selected} onChange={handleSelected}>
       <RadioGroup.Label className="block text-sm font-medium text-blue-brand mb-2">
-        Quick search (select if relevant)
+        Quick ECF search{" "}
+        <span className="font-normal text-gray-500">(select if relevant)</span>
       </RadioGroup.Label>
       <div className="bg-white rounded-md -space-y-px">
         {potentialPlayer.map((player, playerIdx) => (
@@ -752,7 +776,30 @@ const RatingRadio = ({ potentialPlayer, setSelectedECFId }) => {
                       "block text-sm"
                     )}
                   >
-                    {player.club_name}
+                    <div className="flex gap-2 w-fill text-blue-brand font-medium">
+                      {player.club_name && (
+                        <div>
+                          Club:{" "}
+                          <span className="font-normal">
+                            {player.club_name}
+                          </span>
+                        </div>
+                      )}
+                      {player.category && (
+                        <div>
+                          Membership:{" "}
+                          <span className="font-normal">{player.category}</span>
+                        </div>
+                      )}
+                      {player.date_last_game && (
+                        <div>
+                          Last Game:{" "}
+                          <span className="font-normal">
+                            {moment(player.date_last_game).format("Do MMM YY")}
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </RadioGroup.Description>
                 </div>
               </>
