@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import ValidateEmail from "../../utils/ValidateEmail";
+import ValidateEmail from "../../../utils/ValidateEmail";
 import { CheckIcon } from "@heroicons/react/solid";
-import FestivalBuilding from "../../assets/img/festival_building.png";
+import FestivalBuilding from "../../../assets/img/festival_building.png";
 import { Switch, RadioGroup } from "@headlessui/react";
-import { getECFPlayer } from "../../api/profile/chess";
+import { getECFPlayer } from "../../../api/profile/chess";
+import { FestivalReducer, initialState } from "./reducer";
+import { loginUser, signUpUser } from "./authentication";
+import { getMemberBySub } from "../../../api/member";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -18,15 +21,23 @@ function FestivalRegister(props) {
     lastName: "",
     email: "",
     ecfId: "",
+    existingUser: false,
     section: "",
     byes: [],
     price: "30",
   });
 
+  useEffect(() => {
+
+    
+    console.log("rendering...", formState)
+
+  }, []);
+
   const [stepState, setStepState] = useState([
-    { id: "01", name: "Account Info", href: "#", status: "current" },
-    { id: "02", name: "Entry details", href: "#", status: "upcoming" },
-    { id: "03", name: "Payment", href: "#", status: "upcoming" },
+    { id: "01", name: "Account", href: "#", status: "current" },
+    { id: "02", name: "Entry", href: "#", status: "upcoming" },
+    { id: "03", name: "Confirm", href: "#", status: "upcoming" },
   ]);
   const [currentStep, setCurrentStep] = useState(0);
   const handleUpdateStep = (step) => {
@@ -120,7 +131,7 @@ function FestivalRegister(props) {
             <img
               alt="featival building"
               src={FestivalBuilding}
-              className="max-w-md"
+              className=" max-w-xs sm:max-w-md"
             />
           </Link>
         </div>
@@ -144,6 +155,9 @@ function FestivalRegister(props) {
         {currentStep === 2 && (
           <ConfirmInfo {...{ handleUpdateStep, formState }} />
         )}
+        {/* {currentStep === 3 && !formState.existingUser && (
+          <CreatePasswordForm {...{ handleUpdateStep, formState }} />
+        )} */}
       </div>
     </div>
   );
@@ -157,15 +171,23 @@ const AccountInfo = ({
   setFormState,
   formState
 }) => {
+  const [signInFlow, setSignInFlow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [accountEmail, setAccountEmail] = useState(formState.email);
+  const [accountEmail, setAccountEmail] = useState("");
   const [isEmailError, setEmailError] = useState(false);
 
-  const [accountFirstName, setAccountFirstName] = useState(formState.firstName);
+  const [accountFirstName, setAccountFirstName] = useState("");
   const [isFirstNameError, setFirstNameError] = useState(false);
 
-  const [accountLastName, setAccountLastName] = useState(formState.lastName);
+  const [accountLastName, setAccountLastName] = useState("");
   const [isLastNameError, setLastNameError] = useState(false);
+
+  useEffect(() => {
+
+    
+    console.log("rendering...", formState)
+
+  }, []);
 
   const isValid = () => {
     let valid = true;
@@ -201,6 +223,10 @@ const AccountInfo = ({
     return valid;
   };
 
+  const switchToSignIn = () => {
+    setSignInFlow(true);
+  }
+
   const handleNextClick = async () => {
     setIsLoading(true);
     if (!isValid()) {
@@ -225,106 +251,119 @@ const AccountInfo = ({
     handleUpdateStep(1);
   };
 
-  return (
-    <div className="mt-10">
-      <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-        <div>
-          <label
-            htmlFor="first-name"
-            className="block text-sm font-medium text-blue-brand"
-          >
-            First name
-          </label>
-          <div className="mt-1">
-            <input
-              type="text"
-              name="first-name"
-              id="first-name"
-              defaultValue={accountFirstName}
-              onChange={(event) =>
-                setAccountFirstName(event.currentTarget.value)
-              }
-              autoComplete="given-name"
-              required
-              className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
-            />
-          </div>
-          {isFirstNameError && (
-            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-              Invalid first name field
-            </span>
-          )}
+  const SignUpFlow = () => {
+    return (<div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+      <div>
+        <label
+          htmlFor="first-name"
+          className="block text-sm font-medium text-blue-brand"
+        >
+          First name
+        </label>
+        <div className="mt-1">
+          <input
+            type="text"
+            name="first-name"
+            id="first-name"
+            defaultValue={formState.firstName}
+            onChange={(event) => {
+              console.log("wtf")
+              setAccountFirstName(event.currentTarget.value)
+            }
+              
+            }
+            autoComplete="given-name"
+            required
+            className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+          />
         </div>
-        <div>
-          <label
-            htmlFor="last-name"
-            className="block text-sm font-medium text-blue-brand"
-          >
-            Last name
-          </label>
-          <div className="mt-1">
-            <input
-              type="text"
-              name="last-name"
-              id="last-name"
-              autoComplete="family-name"
-              required
-              defaultValue={accountLastName}
-              onChange={(event) =>
-                setAccountLastName(event.currentTarget.value)
-              }
-              className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
-            />
-          </div>
-          {isLastNameError && (
-            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-              Invalid last name field
-            </span>
-          )}
-        </div>
-        <div className="sm:col-span-2">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-blue-brand"
-          >
-            Email
-          </label>
-          <div className="mt-1">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              defaultValue={accountEmail}
-              onChange={(event) => setAccountEmail(event.currentTarget.value)}
-              autoComplete="email"
-              required
-              className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
-            />
-          </div>
-          {isEmailError && (
-            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-              Invalid email field
-            </span>
-          )}
-        </div>
-
-        <div className="sm:col-span-2 mt-10">
-          <button
-            onClick={handleNextClick}
-            className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-          >
-            {isLoading ? "Loading..." : "Next"}
-          </button>
-        </div>
-        <div className="sm:col-span-2">
-          <Link
-            to="/festival"
-            className="w-full inline-flex items-center justify-center text-sm text-blue-brand hover:underline"
-          >
-            back
-          </Link>
-        </div>
+        {isFirstNameError && (
+          <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            Invalid first name field
+          </span>
+        )}
       </div>
+      <div>
+        <label
+          htmlFor="last-name"
+          className="block text-sm font-medium text-blue-brand"
+        >
+          Last name
+        </label>
+        <div className="mt-1">
+          <input
+            type="text"
+            name="last-name"
+            id="last-name"
+            autoComplete="family-name"
+            required
+            defaultValue={formState.lastName}
+            onChange={(event) =>
+              setAccountLastName(event.currentTarget.value)
+            }
+            className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+          />
+        </div>
+        {isLastNameError && (
+          <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            Invalid last name field
+          </span>
+        )}
+      </div>
+      <div className="sm:col-span-2">
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-blue-brand"
+        >
+          Email
+        </label>
+        <div className="mt-1">
+          <input
+            id="email"
+            name="email"
+            type="email"
+            defaultValue={formState.email}
+            onChange={(event) => setAccountEmail(event.currentTarget.value)}
+            autoComplete="email"
+            required
+            className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+          />
+        </div>
+        {isEmailError && (
+          <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+            Invalid email field
+          </span>
+        )}
+      </div>
+
+      <div className="sm:col-span-2 mt-10">
+        <button
+          onClick={handleNextClick}
+          className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+        >
+          {isLoading ? "Loading..." : "Next"}
+        </button>
+      </div>
+      <div className="sm:col-span-2">
+        <Link
+          to="/festival"
+          className="w-full inline-flex items-center justify-center text-sm text-blue-brand hover:underline"
+        >
+          back
+        </Link>
+      </div>
+    </div>)
+  }
+
+  return (
+    <div className="mt-10 mb-20">
+      <div className="text-sm text-center font-medium text-blue-brand mb-8">
+        Already have an account? <button onClick={() => switchToSignIn()}>Sign In</button>
+      </div>
+      {signInFlow ? <SignInFlow
+        handleUpdateStep={handleUpdateStep}
+        setFormState={setFormState}
+        formState={formState} /> : <SignUpFlow />}
     </div>
   );
 };
@@ -388,7 +427,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState 
             id="section"
             name="section"
             className="mt-1 block w-full text-lg pl-3 pr-10 py-3 text-teal-600 border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 rounded-md"
-            
+
           >
             <option>Open</option>
             <option>Major</option>
@@ -415,7 +454,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState 
             />
           </div>
         </div>
-        <div className="space-y-5 sm:col-span-2 inline-flex space-x-5">
+        <div className="space-y-5 col-span-1 sm:col-span-2 sm:inline-flex space-x-5">
           <legend className="block text-sm font-medium text-blue-brand">
             Half Point Bye(s){" "}
             <span className="font-normal text-gray-500">(optional)</span>
@@ -619,7 +658,7 @@ const ConfirmInfo = ({ handleUpdateStep, formState }) => {
             onClick={() => handleUpdateStep(3)}
             className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
-            Pay
+            Confirm
           </button>
         </div>
         <div className="sm:col-span-2">
@@ -640,7 +679,7 @@ const Steps = ({ stepState }) => {
 
   return (
     <nav aria-label="Progress">
-      <ol className="rounded-md flex md:divide-y-0">
+      <ol className="relative rounded-md mx-auto flex md:divide-y-0">
         {steps.map((step, stepIdx) => (
           <li key={step.name} className="relative md:flex-1 md:flex">
             {step.status === "complete" ? (
@@ -810,3 +849,241 @@ const RatingRadio = ({ potentialPlayer, setSelectedECFId }) => {
     </RadioGroup>
   );
 };
+
+const SignInFlow = ({ handleUpdateStep, setFormState, formState }) => {
+  const [user, dispatch] = useReducer(FestivalReducer, initialState);
+  const [isLoading, setIsLoading] = useState(false);
+  const [accountEmail, setAccountEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSignInError, setIsSignInError] = useState(false);
+  const [isEmailError, setIsEmailError] = useState(false);
+  const [signInError, setSignInError] = useState("");
+
+  const handleSignIn = async () => {
+
+    if (!accountEmail || !password) {
+      return;
+    }
+    setIsLoading(true);
+    const loggedInUser = await loginUser(dispatch, accountEmail, password);
+    if (loggedInUser) {
+      const member = await getMemberBySub(loggedInUser.attributes.sub);
+      const sectionChecker = (rating) => {
+        switch (rating) {
+          case rating <= 1500:
+            return "Minor";
+          case rating <= 1750:
+            return "Intermediate";
+          case rating <= 2000:
+            return "Major";
+          case rating > 2000:
+            return "Open";
+          default:
+            return "Open"
+        }
+      }
+      setFormState(s => {
+        return {
+          ...s,
+          firstName: loggedInUser.attributes.given_name,
+          lastName: loggedInUser.attributes.family_name,
+          ecfId: member.ecfId,
+          ecfRating: member.ecfRating,
+          email: member.email,
+          existingUser: true,
+          section: sectionChecker(Number(member.ecfRating))
+        }
+      });
+      handleUpdateStep(1);
+    } else {
+      console.log("what is the user?", user);
+    }
+    setIsLoading(false);
+  }
+
+  return (
+    <div className="mt-10">
+      <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+        <div className="sm:col-span-2">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-blue-brand"
+          >
+            Email
+          </label>
+          <div className="mt-1">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              onChange={(event) => setAccountEmail(event.currentTarget.value)}
+              autoComplete="email"
+              required
+              className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+            />
+          </div>
+          {isEmailError && (
+            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+              Invalid email field
+            </span>
+          )}
+        </div>
+
+        <div className="sm:col-span-2">
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-blue-brand"
+          >
+            Password
+          </label>
+          <div className="mt-1">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              onChange={(event) => setPassword(event.currentTarget.value)}
+              autoComplete="email"
+              required
+              className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+            />
+          </div>
+          {isSignInError && (
+            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+              {signInError}
+            </span>
+          )}
+        </div>
+        <div className="sm:col-span-2 mt-10">
+          <button
+            onClick={handleSignIn}
+            disabled={isLoading}
+            className={classNames(isLoading && "disabled", " w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500")}
+          >
+            {isLoading ? "Loading..." : "Sign In"}
+          </button>
+        </div>
+        <div className="sm:col-span-2">
+          <Link
+            to="/festival"
+            className="w-full inline-flex items-center justify-center text-sm text-blue-brand hover:underline"
+          >
+            back
+          </Link>
+        </div>
+      </div>
+    </div>)
+}
+
+// const CreatePasswordForm = ({ handleUpdateStep, formState }) => {
+//   const [user, dispatch] = useReducer(FestivalReducer, initialState);
+//   const [password, setPassword] = useState("");
+//   const [passwordConfirm, setPasswordConfirm] = useState("");
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [isSignInError, setIsSignInError] = useState(false);
+//   const [isError, setIsError] = useState(false);
+//   const [signInError, setSignInError] = useState("");
+//   const [processState, setProcessState] = useState({
+//     account: "Created Chess Centre Account",
+//     aComplete: false,
+//     entry: "Verified entry details",
+//     eComplete: false,
+//     payement: "Proceeding to payment screen...",
+//     pComplete: false
+//   });
+
+
+//   const handleItAll = async () => {
+
+//     if((!password || !passwordConfirm) || password !== passwordConfirm) {
+//       setIsError(true);
+//       setSignInError("Password details invalid");
+//       return;
+//     }
+
+//     const user = await signUpUser(dispatch, formState.email, password);
+//     console.log(user);
+//     setProcessState(s => {
+//       return {
+//         ...s,
+//         aComplete: true
+//       }
+//     });
+//     // GET Latest ECF data and add it to member.
+
+//   }
+
+
+//   return (
+//     <div className="mt-10">
+//       <div className="text-sm text-center font-medium text-blue-brand mb-8">
+//         Create your password for your account entry
+//       </div>
+//       <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+//         <div className="sm:col-span-2">
+//           <label
+//             htmlFor="password"
+//             className="block text-sm font-medium text-blue-brand"
+//           >
+//             Password
+//           </label>
+//           <div className="mt-1">
+//             <input
+//               id="password"
+//               name="password"
+//               type="password"
+//               onChange={(event) => setPassword(event.currentTarget.value)}
+//               autoComplete="email"
+//               required
+//               className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+//             />
+//           </div>
+//           {isSignInError && (
+//             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+//               {signInError}
+//             </span>
+//           )}
+//         </div>
+
+//         <div className="sm:col-span-2">
+//           <label
+//             htmlFor="password_confirm"
+//             className="block text-sm font-medium text-blue-brand"
+//           >
+//             Confirm Password
+//           </label>
+//           <div className="mt-1">
+//             <input
+//               id="password_confirm"
+//               name="password_confirm"
+//               type="password"
+//               onChange={(event) => setPasswordConfirm(event.currentTarget.value)}
+//               autoComplete="email"
+//               required
+//               className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+//             />
+//           </div>
+//           {isSignInError && (
+//             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+//               {signInError}
+//             </span>
+//           )}
+//         </div>
+//         <div className="sm:col-span-2 mt-10">
+//           <button
+//             disabled={isLoading}
+//             onClick={handleItAll}
+//             className={classNames(isLoading && "disabled", " w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500")}
+//           >
+//             {isLoading ? "Loading..." : "Pay"}
+//           </button>
+//         </div>
+//         <div>
+
+//         </div>
+//         <div className="sm:col-span-2">
+//            back
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }

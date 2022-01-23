@@ -125,12 +125,10 @@ function Register(props) {
         );
         if (response) {
           setIsSpecialLoading(true);
-          setTimeout(() => {
-            props.history.push(
-              `/register/confirm/${email}${props.location.search}`
-            );
-            setIsSpecialLoading(false);
-          }, 0);
+          props.history.push(
+            `/register/confirm/${email}${props.location.search}`
+          );
+
         } // if there's no response, the action dispatched a contextual error already
       } catch (error) {
         dispatch({ type: "LOGIN_ERROR", error });

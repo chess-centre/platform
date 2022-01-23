@@ -39,9 +39,21 @@ export const useMember = () => {
       data: { getMember: member }
     } = await API.graphql({
       query: getMember,
-      variables:  { id: user.attributes.sub },
+      variables: { id: user.attributes.sub },
       authMode: "AWS_IAM",
     });
     return member;
   });
+};
+
+export const getMemberBySub = async (id) => {
+  console.log('getMemberBySub', id);
+  const {
+    data: { getMember: member }
+  } = await API.graphql({
+    query: getMember,
+    variables: { id },
+    authMode: "AWS_IAM",
+  });
+  return member;
 };
