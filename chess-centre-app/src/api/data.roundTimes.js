@@ -209,4 +209,54 @@ export const rounds = [
       day: "Saturday",
     },
   },
+  {
+    type: "norm",
+    rounds: [
+      {
+        round: 1,
+        day: "Wednesday",
+        time: "18:30 - 22:30",
+      },
+      {
+        round: 2,
+        day: "Thursday",
+        time: "10:00 - 14:00",
+      },
+      {
+        round: 3,
+        day: "Thursday",
+        time: "15:00 - 19:00",
+      },
+      {
+        round: 4,
+        day: "Friday",
+        time: "10:00 - 14:00",
+      },
+      {
+        round: 5,
+        day: "Friday",
+        time: "15:00 - 19:00",
+      },
+      {
+        round: 6,
+        day: "Saturday",
+        time: "15:00 - 19:00",
+      },
+      {
+        round: 7,
+        day: "Saturday",
+        time: "15:00 - 19:00",
+      },
+      {
+        round: 8,
+        day: "Sunday",
+        time: "15:00 - 19:00",
+      },
+      {
+        round: 9,
+        day: "Sunday",
+        time: "15:00 - 19:00",
+      }
+    ]
+  }
 ];
