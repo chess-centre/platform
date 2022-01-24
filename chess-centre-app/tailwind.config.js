@@ -9,7 +9,7 @@ module.exports = windmill({
   darkMode: false,
   theme: {
     extend: {
-      sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      sans: [defaultTheme.fontFamily.sans],
       boxShadow: {
         "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.08)",
       },
@@ -56,6 +56,9 @@ module.exports = windmill({
         },
         teal: {
           brand: "#5499ab"
+        },
+        blue: {
+          brand: "#2b374b"
         }
       },
       spacing: {
