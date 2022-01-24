@@ -128,10 +128,10 @@ export default function NormEvent() {
                     </div>
 
                     <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
-                        <p className="text-center prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
+                        <p className="text-left prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
                             The Chess Centre is delighted to host it's first International Master (IM) Norm event!
                         </p>
-                        <p className="mt-6 text-center prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
+                        <p className="mt-6 text-left prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
                             Here are the players doing battle:
                         </p>
                         <div className="mt-6 text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
@@ -162,13 +162,12 @@ export default function NormEvent() {
                             </div>
                             <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                                 <h3>Live Games</h3>
-                                <p className="text-center prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
+                                <p className="text-left prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
                                     We will be broadcasting the live games during the event across multiple platforms.
                                 </p>
                                 <ul>
                                     <li>Chess24</li>
                                     <li>ChessBomb</li>
-                                    <li>lichess</li>
                                 </ul>
                             </div>
                             <div className="text-sm text-left mt-6 hidden sm:block">
