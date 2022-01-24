@@ -1,94 +1,66 @@
-import API from "@aws-amplify/api";
-import React, { useEffect, useState } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
-import VenueInfo from "../../components/Facilities";
-import { prettyLongDate } from "../../utils/DateFormating";
-import GawainAkoBlitz from "../../assets/img/gawain-ako.jpg";
 
-const getEvent = /* GraphQL */ `
-  query GetEvent($id: ID!) {
-    getEvent(id: $id) {
-      id
-      name
-      description
-      rounds
-      time
-      startDate
-      endDate
-      maxEntries
-      entryCount
-      complete
-      cancelled
-      isLive
-      active
-      type {
-        id
-        name
-        description
-        url
-        color
-        time
-        maxEntries
-        timeControl
-        eventType
-        defaultPrice
-        canRegister
-      }
-    }
-  }
-`;
+
+const players = [
+    {
+        fed: "🇰🇷",
+        name: "Jose Camacho-Collados",
+        title: "IM",
+        rating: 2400
+    }, {
+        fed: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+        name: "Jonah Willow",
+        title: "FM",
+        rating: 2360
+    }, {
+        fed: "🇳🇱",
+        name: "Yichen Han",
+        title: "FM",
+        rating: 2347
+    }, {
+        fed: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+        name: "David Eggleston",
+        title: "IM",
+        rating: 2343
+    }, {
+        fed: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+        name: "Paul Macklin",
+        title: "FM",
+        rating: 2341
+    }, {
+        fed: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+        name: "William Claridge-Hansen",
+        title: "FM",
+        rating: 2340
+    }, {
+        fed: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+        name: "Iain Gourlay",
+        title: "FM",
+        rating: 2318
+    }, {
+        fed: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+        name: "Stephen Mannion",
+        title: "IM",
+        rating: 2271
+    }, {
+        fed: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+        name: "Shreyas Royal",
+        title: "FM",
+        rating: 2243
+    }, {
+        fed: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+        name: "Adam Ashton",
+        title: "FM",
+        rating: 2379
+    },
+]
 
 export default function NormEvent() {
     const { id } = useParams();
     const history = useHistory();
-    const [isLoading, setIsLoading] = useState(false);
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
-    const [defaultPrice, setDefaultPrice] = useState();
-    const [entryCount, setEntryCount] = useState(0);
-    const [isFull, setIsFull] = useState(false);
-    const [isLive, setIsLive] = useState(false);
-
-    useEffect(() => {
-        
-        document.title = "The Chess Centre | IM Norm Seekers";
-
-        const fetchEvent = async () => {
-            setIsLoading(true);
-            const response = await API.graphql({
-                query: getEvent,
-                variables: { id },
-                authMode: "AWS_IAM",
-            }).catch((error) => {
-                console.log("Error fetching event.", id);
-                console.log(error.response);
-            });
-            if (response && response.data) {
-                const {
-                    data: {
-                        getEvent: {
-                            startDate,
-                            endDate,
-                            maxEntries,
-                            isLive,
-                        } = {},
-                    } = {},
-                } = response;
-
-                setStartDate(startDate);
-                setEndDate(endDate);
-                setDefaultPrice(defaultPrice);
-                setEntryCount(entryCount);
-                setIsFull(entryCount >= maxEntries);
-                setIsLive(isLive);
-            }
-            setIsLoading(false);
-        };
-        fetchEvent();
-    }, [id, startDate, endDate, defaultPrice]);
 
     return (
         <div>
@@ -106,25 +78,11 @@ export default function NormEvent() {
                             EJCOA Invitational
                         </h2>
                         <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                            International Master Event
+                            IM Norm Event
                         </p>
                         <p className="mt-2 text-2xl leading-8 font-extrabold tracking-tight text-gray-500 sm:text-2xl">
                             Weds 23rd Feb - Sun 27th Feb
                         </p>
-                        {!isLoading && isLive && (
-                            <div className="mt-3">
-                                <a
-                                    href="/broadcast/live"
-                                    className={`inline-flex items-center px-16 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-700 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400`}
-                                >
-                                    <span className="flex relative h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full rounded-full bg-orange-500 opacity-75"></span>
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
-                                    </span>{" "}
-                                    <span className="ml-2">Watch Here</span>
-                                </a>
-                            </div>
-                        )}
                     </div>
 
                     <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
@@ -135,18 +93,50 @@ export default function NormEvent() {
                             Here are the players doing battle:
                         </p>
                         <div className="mt-6 text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
-                            <ol className="prose prose-teal text-gray-500">
-                                <li>IM Jose Camacho-Collados (KOR, 2400)</li>
-                                <li>FM Jonah Willow (ENG, 2360)</li>
-                                <li>FM Yichen Han (NED, 2347)</li>
-                                <li>IM David Eggleston (ENG, 2343)</li>
-                                <li>FM Paul Macklin (ENG, 2341)</li>
-                                <li>FM William Claridge-Hansen (ENG, 2340)</li>
-                                <li>FM Iain Gourlay (SCO, 2318)</li>
-                                <li>IM Stephen Mannion (SCO, 2271)</li>
-                                <li>FM Shreyas Royal (ENG, 2243)</li>
-                                <li>FM Adam Ashton (ENG, 2379)</li>
-                            </ol>
+
+                            <table className="min-w-full divide-y divide-gray-200">
+                                <thead className="bg-gray-100">
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            className="px-2 py-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            FED
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            NAME
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            TITLE
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        >
+                                            RATING
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-200">
+                                    {players.sort((a, b) => b.rating - a.rating).map((player) => (
+                                        <tr className="hover:bg-yellow-50" key={player.name}>
+                                            <td className="px-2 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{player.fed}</td>
+                                            <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-500">{player.name}</td>
+                                            <td className="px-2 py-3 whitespace-nowrap text-sm text-center">
+                                                {player.title === "IM" && <span className="text-yellow-500">{player.title}</span>}
+                                                {player.title === "FM" && <span className="text-orange-900">{player.title}</span>}
+                                            </td>
+                                            <td className="px-2 py-3 whitespace-nowrap text-sm text-teal-500 text-center">{player.rating}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
@@ -159,6 +149,12 @@ export default function NormEvent() {
                                         60 mins plus 30 second increment per player on the clock
                                     </li>
                                 </ul>
+                                <h3>What is a Norm?</h3>
+                                <div>
+                                    <p>A norm is a high level of performance in a chess tournament achieved against other titled players.</p>
+                                    <p>The level of performance is typically measured in tournament performance rating above a certain threshold (for instance, 2400 for IM).</p>
+                                    <p>Several norms are among the requirements to receive a title such as Grandmaster (GM) or International Master (IM) from FIDE.</p>
+                                </div>
                             </div>
                             <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                                 <h3>Live Games</h3>
@@ -216,8 +212,8 @@ export default function NormEvent() {
                             <RoundTimes
                                 eventId={id}
                                 eventType="norm"
-                                isFull={isFull}
-                                isLive={isLive}
+                                isFull={false}
+                                isLive={false}
                             />
                             <div className="text-sm text-center mt-6 sm:hidden">
                                 <button
