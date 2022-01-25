@@ -48,3 +48,6 @@ amplifytools.xcconfig
 
 # local testing
 test.js
+.eslintcache
+.eslintcache*
+build-storybook.log
