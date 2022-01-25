@@ -1,12 +1,13 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
+import { borderColor600 } from "tailwind-dynamic-classes";
 import JuniorRapidPlay from "../../assets/img/junior-rapidplay.jpg";
 import OpenRapidPlay from "../../assets/img/dave-barlow-vs-gary-corcoran.jpg";
 import OpenCongress from "../../assets/img/june-congress-round-4.jpg";
 import QuickSearch from "../FAQs/QuickSearch";
 import { prettyDate } from "../../utils/DateFormating";
-import { classNames, borderColorVarious } from "../../utils/Classes";
+import { classNames } from "../../utils/Classes";
 
 function truncate(str, n) {
   return str.length > n ? str.substr(0, n - 1) + " ..." : str;
@@ -271,7 +272,7 @@ export default function EventDetailsSlideOut(props) {
                   <div className="mb-4">
                     <div className="pb-1 sm:pb-6">
                       <div>
-                        <div className={classNames(borderColorVarious(eventDetails.type?.color), "border-4 relative h-52 rounded-md")}>
+                        <div className={classNames(borderColor600[eventDetails.type?.color], "border-4 relative h-52 rounded-md")}>
                             <img
                               className="border-gray-200 border-4 absolute h-full w-full object-cover "
                               src={selectImage(eventDetails.type?.eventType)}
