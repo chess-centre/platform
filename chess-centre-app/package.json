@@ -32,6 +32,7 @@
     "react-children-utilities": "^2.5.0",
     "react-country-flag": "^2.3.0",
     "react-dom": "^17.0.1",
+    "react-flagkit": "^2.0.4",
     "react-ga": "^3.3.0",
     "react-google-maps": "^9.4.5",
     "react-query": "^3.15.0",

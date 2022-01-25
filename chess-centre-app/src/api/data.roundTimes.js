@@ -240,7 +240,7 @@ export const rounds = [
       {
         round: 6,
         day: "Saturday",
-        time: "15:00 - 19:00",
+        time: "10:00 - 14:00",
       },
       {
         round: 7,
@@ -250,7 +250,7 @@ export const rounds = [
       {
         round: 8,
         day: "Sunday",
-        time: "15:00 - 19:00",
+        time: "10:00 - 14:00",
       },
       {
         round: 9,
