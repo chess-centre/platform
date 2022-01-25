@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { classNames, bgColor700 } from "../../utils/Classes";
+import { bgColor700 } from "tailwind-dynamic-classes";
+import { classNames } from "../../utils/Classes";
 
 const EventHeader = ({ type, icon, name, description }) => {
   const getColor = (type) => {
@@ -115,7 +116,7 @@ export default function EventCard({
     >
       <div
         className={classNames(
-          bgColor700(color),
+          bgColor700[color],
           "absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
         )}
       ></div>
