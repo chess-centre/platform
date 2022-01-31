@@ -159,13 +159,27 @@ export default function Festival() {
                 <Tab.Panel className="-mb-10 py-5">
                   <div className="relative">
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
-                      <p>There will be four sections for our main event.</p>
-                      <ul>
-                        <li>5 Rounds</li>
-                        <li>60 mins per player on the clock</li>
-                        <li>All games will be ECF standard play rated.</li>
-                        <li>Entry fee £30</li>
+                      <h2>Sections</h2>
+                      <ul className="font-medium text-blue-brand">
+                        <li>Open</li>
+                        <li>Major{" "}
+                          <span className="text-gray-600 text-sm font-normal">(ECF 2000 and under)</span>
+                        </li>
+                        <li>Intermediate{" "}
+                          <span className="ext-gray-600 text-sm font-normal">(ECF 1750 and under)</span>
+                        </li>
+                        <li>Minor{" "}
+                          <span className="ext-gray-600 text-sm font-normal">(ECF 1500 and under)</span>
+                        </li>
                       </ul>
+                      <p className="text-sm">Unrated players will be inelible for prizes in any section but the open.</p>
+                      <h3>Event Structure</h3>
+                      <ul className="font-medium text-blue-brand">
+                        <li>Rounds: <span className="text-teal-600">5</span>{" "} <span className="text-gray-600 text-sm font-normal">see schedule</span></li>
+                        <li>Time Control: <span className="text-teal-600">90 mins per player + 10 second increment.</span></li>
+                        <li>Entry fee: <span className="text-teal-600">£30</span></li>
+                      </ul>
+                      <p className="text-sm">Standard ECF rules apply. All games will be submited to the ECF for offical rating calculation.</p>
                     </div>
                   </div>
                 </Tab.Panel>
@@ -174,9 +188,16 @@ export default function Festival() {
                   <Schedule event={event} />
                 </Tab.Panel>
 
-                <Tab.Panel as="dl" className="text-sm text-gray-500">
-                  Entries
-                  {/* <EntriesTable eventId="23424" eventType="standard" /> */}
+                <Tab.Panel as="dl" className="text-sm text-gray-500 py-5">
+                  <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
+                    <h2>Entries</h2>
+                    <ul className="font-medium text-blue-brand">
+                      <li>Total: <span className="text-teal-600">0</span>{" "}</li>
+                    </ul>
+                    {/* <EntriesTable eventId="23424" eventType="standard" /> */}
+                  </div>
+
+
                 </Tab.Panel>
 
                 <Tab.Panel className="pt-10">FAQs</Tab.Panel>
@@ -239,7 +260,7 @@ const Schedule = ({ event }) => {
             return (
               <Fragment key={key}>
                 <tr key={key}>
-                  <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-0 sm:px-0 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     Round {round}
                   </td>
                   <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -264,7 +285,7 @@ const Schedule = ({ event }) => {
           })}
         {event && event.prizeGiving && (
           <tr>
-            <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+            <td className="px-0 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
               Prize Ceremony
             </td>
             <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">

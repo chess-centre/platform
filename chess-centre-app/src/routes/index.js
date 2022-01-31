@@ -24,12 +24,12 @@ const routes = [
     exact: true,
     isPrivate: false,
   },
-  // {
-  //   path: "/register/festival",
-  //   component: lazy(() => import("../pages/Auth/FestivalRegister")),
-  //   exact: true,
-  //   isPrivate: false,
-  // },
+  {
+    path: "/register/festival",
+    component: lazy(() => import("../pages/Auth/FestivalEntry/FestivalRegister")),
+    exact: true,
+    isPrivate: false,
+  },
   {
     path: "/forgot-password",
     component: lazy(() => import("../pages/Auth/ForgotPassword")),
