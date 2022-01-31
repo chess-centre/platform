@@ -1,22 +1,38 @@
-import React, { useState, useReducer, useEffect } from "react";
+import API from "@aws-amplify/api";
+import React, { useState, useReducer } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import ValidateEmail from "../../../utils/ValidateEmail";
+import { useStripe } from "@stripe/react-stripe-js";
 import { CheckIcon } from "@heroicons/react/solid";
 import FestivalBuilding from "../../../assets/img/festival_building.png";
 import { Switch, RadioGroup } from "@headlessui/react";
 import { getECFPlayer } from "../../../api/profile/chess";
 import { FestivalReducer, initialState } from "./reducer";
-import { loginUser, signUpUser } from "./authentication";
+import { FestivalProvider, useFestivalContext } from "../../../context/FestivalContext";
+import { loginUser, signUpUser, confirmEmail } from "./authentication";
 import { getMemberBySub } from "../../../api/member";
+
+const [
+  ONE_ACCOUNT_INFO,
+  TWO_ENTRY_DETAILS,
+  THREE_CONFIRM_INFO,
+  FOUR_PASSWORD_INPUT,
+  FIVE_CONFIRM_EMAIL_CODE
+] = [0, 1, 2, 3, 4];
+
+function getFieldError(value) {
+  if (!value) return 'field is required'
+  return null
+}
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 function FestivalRegister(props) {
+  const [user, dispatch] = useReducer(FestivalReducer, initialState);
   const [potentialPlayer, setPotentialPlayer] = useState([]);
-  const [formState, setFormState] = useState({
+  const [globalFormState, setGlobalFormState] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -26,18 +42,10 @@ function FestivalRegister(props) {
     byes: [],
     price: "30",
   });
-
-  useEffect(() => {
-
-    
-    console.log("rendering...", formState)
-
-  }, []);
-
   const [stepState, setStepState] = useState([
     { id: "01", name: "Account", href: "#", status: "current" },
     { id: "02", name: "Entry", href: "#", status: "upcoming" },
-    { id: "03", name: "Confirm", href: "#", status: "upcoming" },
+    { id: "03", name: "Submit / Pay", href: "#", status: "upcoming" },
   ]);
   const [currentStep, setCurrentStep] = useState(0);
   const handleUpdateStep = (step) => {
@@ -58,108 +66,114 @@ function FestivalRegister(props) {
   };
 
   return (
-    <div className="bg-gray-50 h-full py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-2">
-      <div className="relative max-w-xl mx-auto">
-        <svg
-          className="absolute left-full transform translate-x-1/2"
-          width={404}
-          height={404}
-          fill="none"
-          viewBox="0 0 404 404"
-          aria-hidden="true"
-        >
-          <defs>
-            <pattern
-              id="85737c0e-0916-41d7-917f-596dc7edfa27"
-              x={0}
-              y={0}
-              width={20}
-              height={20}
-              patternUnits="userSpaceOnUse"
-            >
-              <rect
-                x={0}
-                y={0}
-                width={4}
-                height={4}
-                className="text-gray-200"
-                fill="currentColor"
-              />
-            </pattern>
-          </defs>
-          <rect
+    <FestivalProvider>
+      <div className="bg-gray-50 h-full py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-2">
+        <div className="relative max-w-xl mx-auto">
+          <svg
+            className="absolute left-full transform translate-x-1/2"
             width={404}
             height={404}
-            fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)"
-          />
-        </svg>
-        <svg
-          className="absolute right-full bottom-0 transform -translate-x-1/2"
-          width={404}
-          height={404}
-          fill="none"
-          viewBox="0 0 404 404"
-          aria-hidden="true"
-        >
-          <defs>
-            <pattern
-              id="85737c0e-0916-41d7-917f-596dc7edfa27"
-              x={0}
-              y={0}
-              width={20}
-              height={20}
-              patternUnits="userSpaceOnUse"
-            >
-              <rect
+            fill="none"
+            viewBox="0 0 404 404"
+            aria-hidden="true"
+          >
+            <defs>
+              <pattern
+                id="85737c0e-0916-41d7-917f-596dc7edfa27"
                 x={0}
                 y={0}
-                width={4}
-                height={4}
-                className="text-gray-600"
-                fill="currentColor"
-              />
-            </pattern>
-          </defs>
-          <rect
-            width={404}
-            height={404}
-            fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)"
-          />
-        </svg>
-        <div className="text-center flex items-center justify-center mb-2">
-          <Link to="/festival">
-            <img
-              alt="featival building"
-              src={FestivalBuilding}
-              className=" max-w-xs sm:max-w-md"
+                width={20}
+                height={20}
+                patternUnits="userSpaceOnUse"
+              >
+                <rect
+                  x={0}
+                  y={0}
+                  width={4}
+                  height={4}
+                  className="text-gray-200"
+                  fill="currentColor"
+                />
+              </pattern>
+            </defs>
+            <rect
+              width={404}
+              height={404}
+              fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)"
             />
-          </Link>
+          </svg>
+          <svg
+            className="absolute right-full bottom-0 transform -translate-x-1/2"
+            width={404}
+            height={404}
+            fill="none"
+            viewBox="0 0 404 404"
+            aria-hidden="true"
+          >
+            <defs>
+              <pattern
+                id="85737c0e-0916-41d7-917f-596dc7edfa27"
+                x={0}
+                y={0}
+                width={20}
+                height={20}
+                patternUnits="userSpaceOnUse"
+              >
+                <rect
+                  x={0}
+                  y={0}
+                  width={4}
+                  height={4}
+                  className="text-gray-600"
+                  fill="currentColor"
+                />
+              </pattern>
+            </defs>
+            <rect
+              width={404}
+              height={404}
+              fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)"
+            />
+          </svg>
+          <div className="text-center flex items-center justify-center mb-2">
+            <Link to="/festival">
+              <img
+                alt="featival building"
+                src={FestivalBuilding}
+                className=" max-w-xs sm:max-w-md"
+              />
+            </Link>
+          </div>
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-extrabold tracking-tight  text-teal-brand sm:text-5xl">
+              <span className="text-orange-brand">Ilkley</span> Chess Festival
+            </h1>
+            <p className="mt-4 text-lg leading-6 text-blue-brand font-bold">
+              Entry form
+            </p>
+          </div>
+
+          <Steps {...{ stepState }} />
+
+          {currentStep === ONE_ACCOUNT_INFO && (
+            <AccountInfo {...{ handleUpdateStep, setPotentialPlayer, setGlobalFormState, globalFormState, dispatch }} />
+          )}
+          {currentStep === TWO_ENTRY_DETAILS && (
+            <EntryInfo {...{ handleUpdateStep, potentialPlayer, setGlobalFormState, globalFormState, dispatch }} />
+          )}
+          {currentStep === THREE_CONFIRM_INFO && (
+            <ConfirmInfo {...{ handleUpdateStep, globalFormState, dispatch }} />
+          )}
+          {currentStep === FOUR_PASSWORD_INPUT && !globalFormState.existingUser && (
+            <CreatePasswordForm {...{ handleUpdateStep, setGlobalFormState, globalFormState, dispatch }} />
+          )}
+          {currentStep === FIVE_CONFIRM_EMAIL_CODE && !globalFormState.existingUser && (
+            <ConfirmationAccountEmail {...{ handleUpdateStep, setGlobalFormState, globalFormState, dispatch }} />
+          )}
+
         </div>
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-extrabold tracking-tight  text-teal-brand sm:text-5xl">
-            <span className="text-orange-brand">Ilkley</span> Chess Festival
-          </h1>
-          <p className="mt-4 text-lg leading-6 text-blue-brand font-bold">
-            Entry form
-          </p>
-        </div>
-        <Steps {...{ stepState }} />
-        {currentStep === 0 && (
-          <AccountInfo
-            {...{ handleUpdateStep, setPotentialPlayer, setFormState, formState }}
-          />
-        )}
-        {currentStep === 1 && (
-          <EntryInfo {...{ handleUpdateStep, potentialPlayer, setFormState, formState }} />
-        )}
-        {currentStep === 2 && (
-          <ConfirmInfo {...{ handleUpdateStep, formState }} />
-        )}
-        {/* {currentStep === 3 && !formState.existingUser && (
-          <CreatePasswordForm {...{ handleUpdateStep, formState }} />
-        )} */}
       </div>
-    </div>
+    </FestivalProvider>
   );
 }
 
@@ -168,91 +182,54 @@ export default FestivalRegister;
 const AccountInfo = ({
   handleUpdateStep,
   setPotentialPlayer,
-  setFormState,
-  formState
+  setGlobalFormState,
+  globalFormState,
+  dispatch
 }) => {
+
   const [signInFlow, setSignInFlow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [accountEmail, setAccountEmail] = useState("");
-  const [isEmailError, setEmailError] = useState(false);
-
-  const [accountFirstName, setAccountFirstName] = useState("");
-  const [isFirstNameError, setFirstNameError] = useState(false);
-
-  const [accountLastName, setAccountLastName] = useState("");
-  const [isLastNameError, setLastNameError] = useState(false);
-
-  useEffect(() => {
-
-    
-    console.log("rendering...", formState)
-
-  }, []);
-
-  const isValid = () => {
-    let valid = true;
-
-    if (!accountEmail) {
-      setEmailError(true);
-      valid = false;
-    } else {
-      setEmailError(false);
-    }
-
-    if (!accountFirstName) {
-      setFirstNameError(true);
-      valid = false;
-    } else {
-      setFirstNameError(false);
-    }
-
-    if (!accountLastName) {
-      setLastNameError(true);
-      valid = false;
-    } else {
-      setLastNameError(false);
-    }
-
-    if (!ValidateEmail(accountEmail)) {
-      setEmailError(true);
-      valid = false;
-    } else {
-      setEmailError(false);
-    }
-
-    return valid;
-  };
+  const [isError, setError] = useState(false);
 
   const switchToSignIn = () => {
     setSignInFlow(true);
   }
 
-  const handleNextClick = async () => {
+  async function handleSubmit(event) {
+    setError(true);
     setIsLoading(true);
-    if (!isValid()) {
-      setIsLoading(false);
-      return;
-    }
-    const response = await getECFPlayer(
-      `${accountFirstName} ${accountLastName}`
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const fieldValues = Object.fromEntries(formData.entries());
+    const formIsValid = Object.values(fieldValues).every(
+      (value) => !getFieldError(value),
     );
-    if (response?.success) {
-      setPotentialPlayer(response.players);
+
+    if (formIsValid) {
+      setGlobalFormState((s) => ({
+        ...s,
+        ...fieldValues
+      }));
+
+      const response = await getECFPlayer(
+        `${fieldValues.firstName} ${fieldValues.lastName}`
+      );
+      if (response?.success) {
+        setPotentialPlayer(response.players);
+      } else {
+        console.log(response);
+      }
+      setIsLoading(false);
+      handleUpdateStep(TWO_ENTRY_DETAILS);
+    } else {
+      setIsLoading(false);
+      setError(true);
     }
+  }
 
-    setFormState((s) => ({
-      ...s,
-      firstName: accountFirstName,
-      lastName: accountLastName,
-      email: accountEmail,
-    }));
-
-    setIsLoading(false);
-    handleUpdateStep(1);
-  };
 
   const SignUpFlow = () => {
-    return (<div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+    return (<form noValidate onSubmit={handleSubmit} className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
       <div>
         <label
           htmlFor="first-name"
@@ -263,25 +240,13 @@ const AccountInfo = ({
         <div className="mt-1">
           <input
             type="text"
-            name="first-name"
-            id="first-name"
-            defaultValue={formState.firstName}
-            onChange={(event) => {
-              console.log("wtf")
-              setAccountFirstName(event.currentTarget.value)
-            }
-              
-            }
+            name="firstName"
+            id="firstName"
             autoComplete="given-name"
             required
             className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
           />
         </div>
-        {isFirstNameError && (
-          <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-            Invalid first name field
-          </span>
-        )}
       </div>
       <div>
         <label
@@ -293,22 +258,12 @@ const AccountInfo = ({
         <div className="mt-1">
           <input
             type="text"
-            name="last-name"
-            id="last-name"
+            name="lastName"
+            id="lastName"
             autoComplete="family-name"
-            required
-            defaultValue={formState.lastName}
-            onChange={(event) =>
-              setAccountLastName(event.currentTarget.value)
-            }
             className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
           />
         </div>
-        {isLastNameError && (
-          <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-            Invalid last name field
-          </span>
-        )}
       </div>
       <div className="sm:col-span-2">
         <label
@@ -322,23 +277,25 @@ const AccountInfo = ({
             id="email"
             name="email"
             type="email"
-            defaultValue={formState.email}
-            onChange={(event) => setAccountEmail(event.currentTarget.value)}
             autoComplete="email"
             required
             className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
           />
         </div>
-        {isEmailError && (
-          <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-            Invalid email field
-          </span>
-        )}
+
       </div>
 
-      <div className="sm:col-span-2 mt-10">
+      {isError && (
+        <div className="sm:col-span-2 mx-auto">
+          <span className="text-center items-center font-medium tracking-wide text-red-500 text-xs">
+            Oops, please check you have filled out all the fields correctly.
+          </span>
+        </div>
+      )}
+
+      <div className="sm:col-span-2 mt-6">
         <button
-          onClick={handleNextClick}
+          type="submit"
           className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
         >
           {isLoading ? "Loading..." : "Next"}
@@ -352,29 +309,32 @@ const AccountInfo = ({
           back
         </Link>
       </div>
-    </div>)
+    </form>)
   }
 
   return (
     <div className="mt-10 mb-20">
       <div className="text-sm text-center font-medium text-blue-brand mb-8">
-        Already have an account? <button onClick={() => switchToSignIn()}>Sign In</button>
+        Already have an account? <button className="text-teal-600 font-medium hover:underline" onClick={() => switchToSignIn()}>Sign In</button>
       </div>
       {signInFlow ? <SignInFlow
-        handleUpdateStep={handleUpdateStep}
-        setFormState={setFormState}
-        formState={formState} /> : <SignUpFlow />}
+        {...{
+          handleUpdateStep,
+          setGlobalFormState,
+          globalFormState,
+          dispatch
+        }} /> : <SignUpFlow />}
     </div>
   );
 };
 
-const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState }) => {
-  const [selectedECFId, setSelectedECFId] = useState(formState.ecfId);
-  const [selectedSection, setSelectedSection] = useState(formState.section || "Open");
-  const [selectedRoundOne, setSelectedRoundOne] = useState(!!formState?.byes?.find(rd => rd === 1) || false);
-  const [selectedRoundTwo, setSelectedRoundTwo] = useState(!!formState?.byes?.find(rd => rd === 2) || false);
-  const [selectedRoundThree, setSelectedRoundThree] = useState(!!formState?.byes?.find(rd => rd === 3) || false);
-  const [selectedRoundFour, setSelectedRoundFour] = useState(!!formState?.byes?.find(rd => rd === 4) || false);
+const EntryInfo = ({ handleUpdateStep, potentialPlayer, setGlobalFormState, globalFormState }) => {
+  const [selectedECFId, setSelectedECFId] = useState(globalFormState.ecfId);
+  const [selectedSection, setSelectedSection] = useState(globalFormState.section || "Open");
+  const [selectedRoundOne, setSelectedRoundOne] = useState(!!globalFormState?.byes?.find(rd => rd === 1) || false);
+  const [selectedRoundTwo, setSelectedRoundTwo] = useState(!!globalFormState?.byes?.find(rd => rd === 2) || false);
+  const [selectedRoundThree, setSelectedRoundThree] = useState(!!globalFormState?.byes?.find(rd => rd === 3) || false);
+  const [selectedRoundFour, setSelectedRoundFour] = useState(!!globalFormState?.byes?.find(rd => rd === 4) || false);
 
   const handleNextClick = () => {
     const byes = [];
@@ -395,14 +355,14 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState 
       byes.push(4);
     }
 
-    setFormState((s) => ({
+    setGlobalFormState((s) => ({
       ...s,
       section: selectedSection,
       ecfId: selectedECFId,
       byes: [...byes],
     }));
 
-    handleUpdateStep(2);
+    handleUpdateStep(THREE_CONFIRM_INFO);
   };
 
   return (
@@ -410,7 +370,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState 
       <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
         {potentialPlayer && potentialPlayer.length > 0 && (
           <div className="sm:col-span-2">
-            <RatingRadio {...{ potentialPlayer, setSelectedECFId }} />
+              <RatingRadio {...{ potentialPlayer, setSelectedECFId }} />
           </div>
         )}
 
@@ -470,7 +430,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState 
                 className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
               />
             </div>
-            <div className="ml-3 text-sm">
+            <div className="ml-3 text-xs">
               <label htmlFor="comments" className="font-medium text-blue-brand">
                 Round 1
               </label>
@@ -487,7 +447,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState 
                 className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
               />
             </div>
-            <div className="ml-3 text-sm">
+            <div className="ml-3 text-xs">
               <label
                 htmlFor="candidates"
                 className="font-medium text-blue-brand"
@@ -507,7 +467,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState 
                 className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
               />
             </div>
-            <div className="ml-3 text-sm">
+            <div className="ml-3 text-xs">
               <label htmlFor="offers" className="font-medium text-blue-brand">
                 Round 3
               </label>
@@ -524,7 +484,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState 
                 className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
               />
             </div>
-            <div className="ml-3 text-sm">
+            <div className="ml-3 text-xs">
               <label htmlFor="offers" className="font-medium text-blue-brand">
                 Round 4
               </label>
@@ -541,8 +501,8 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState 
         </div>
         <div className="sm:col-span-2">
           <button
-            onClick={() => handleUpdateStep(0)}
-            className="w-full inline-flex items-center justify-center shadow-sm text-sm text-blue-brand hover:underline"
+            onClick={() => handleUpdateStep(ONE_ACCOUNT_INFO)}
+            className="w-full inline-flex items-center justify-center text-sm text-blue-brand hover:underline"
           >
             back
           </button>
@@ -552,7 +512,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setFormState, formState 
   );
 };
 
-const ConfirmInfo = ({ handleUpdateStep, formState }) => {
+const ConfirmInfo = ({ handleUpdateStep, globalFormState }) => {
   const [agreed, setAgreed] = useState(false);
 
   return (
@@ -572,7 +532,7 @@ const ConfirmInfo = ({ handleUpdateStep, formState }) => {
                     Full name
                   </dt>
                   <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
-                    {formState.firstName} {formState.lastName}
+                    {globalFormState.firstName} {globalFormState.lastName}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -580,13 +540,13 @@ const ConfirmInfo = ({ handleUpdateStep, formState }) => {
                     Email Address
                   </dt>
                   <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
-                    {formState.email}
+                    {globalFormState.email}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">Section</dt>
                   <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
-                    {formState.section}
+                    {globalFormState.section}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -594,21 +554,20 @@ const ConfirmInfo = ({ handleUpdateStep, formState }) => {
                     ECF Id
                   </dt>
                   <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
-                    {formState.ecfId}
+                    {globalFormState.ecfId}
                   </dd>
                 </div>
                 <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">Byes</dt>
                   <dd className="mt-1 text-sm text-blue-brand sm:mt-0 sm:col-span-2">
-                    {formState.byes.join(", ")}
+                    {globalFormState.byes.join(", ")}
                   </dd>
                 </div>
               </dl>
             </div>
           </div>
-          <div className="text-6xl text-center text-blue-brand font-bold mt-4"></div>
           <div className="text-6xl text-center text-blue-brand font-bold mt-4">
-            £{formState.price}
+            £{globalFormState.price} <span className="text-xs -ml-3 text-gray-400">entry fee</span>
           </div>
         </div>
         <div className="sm:col-span-2">
@@ -655,7 +614,7 @@ const ConfirmInfo = ({ handleUpdateStep, formState }) => {
         </div>
         <div className="sm:col-span-2">
           <button
-            onClick={() => handleUpdateStep(3)}
+            onClick={() => handleUpdateStep(FOUR_PASSWORD_INPUT)}
             className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
             Confirm
@@ -663,7 +622,7 @@ const ConfirmInfo = ({ handleUpdateStep, formState }) => {
         </div>
         <div className="sm:col-span-2">
           <button
-            onClick={() => handleUpdateStep(1)}
+            onClick={() => handleUpdateStep(TWO_ENTRY_DETAILS)}
             className="w-full inline-flex items-center justify-center text-sm text-blue-brand hover:underline"
           >
             back
@@ -768,7 +727,7 @@ const RatingRadio = ({ potentialPlayer, setSelectedECFId }) => {
         Quick ECF search{" "}
         <span className="font-normal text-gray-500">(select if relevant)</span>
       </RadioGroup.Label>
-      <div className="bg-white rounded-md -space-y-px">
+      <div className="bg-white rounded-md -space-y-px max-h-60 overflow-y-scroll">
         {potentialPlayer.map((player, playerIdx) => (
           <RadioGroup.Option
             key={playerIdx}
@@ -850,22 +809,224 @@ const RatingRadio = ({ potentialPlayer, setSelectedECFId }) => {
   );
 };
 
-const SignInFlow = ({ handleUpdateStep, setFormState, formState }) => {
-  const [user, dispatch] = useReducer(FestivalReducer, initialState);
+const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch }) => {
+
   const [isLoading, setIsLoading] = useState(false);
-  const [accountEmail, setAccountEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isSignInError, setIsSignInError] = useState(false);
-  const [isEmailError, setIsEmailError] = useState(false);
-  const [signInError, setSignInError] = useState("");
+  const [isError, setIsError] = useState(false);
 
-  const handleSignIn = async () => {
+  const handleSubmit = async (event) => {
 
-    if (!accountEmail || !password) {
+    setIsLoading(true);
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const fieldValues = Object.fromEntries(formData.entries());
+    const formIsValid = Object.values(fieldValues).every(
+      (value) => !getFieldError(value),
+    );
+    const passwordValid = formIsValid && (fieldValues.password !== fieldValues.passwordConfirm);
+
+    if (passwordValid) {
+      const user = await signUpUser(dispatch,
+        globalFormState.email,
+        fieldValues.password,
+        globalFormState.firstName,
+        globalFormState.lastName
+      );
+      if (user) {
+        handleUpdateStep(FIVE_CONFIRM_EMAIL_CODE);
+      }
+    } else {
+      setIsLoading(false);
+      setIsError(true);
+    }
+  }
+
+  return (
+    <form noValidate onSubmit={handleSubmit} className="mt-10">
+      <div className="text-sm text-center font-medium text-blue-brand mb-8">
+        Create your password for your account entry
+      </div>
+      <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+        <div className="sm:col-span-2">
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-blue-brand"
+          >
+            Password
+          </label>
+          <div className="mt-1">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="email"
+              required
+              className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+            />
+          </div>
+        </div>
+
+        <div className="sm:col-span-2">
+          <label
+            htmlFor="password_confirm"
+            className="block text-sm font-medium text-blue-brand"
+          >
+            Confirm Password
+          </label>
+          <div className="mt-1">
+            <input
+              id="password_confirm"
+              name="password_confirm"
+              type="password"
+              autoComplete="email"
+              required
+              className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+            />
+          </div>
+
+        </div>
+        {isError && (
+          <div className="sm:col-span-2 mt-10">
+            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+              The passwords must match. Please use at least 1 number and 1 upper case letter.
+            </span>
+          </div>
+        )}
+        <div className="sm:col-span-2 mt-10">
+          <button
+            disabled={isLoading}
+            type="submit"
+            className={classNames(isLoading && "disabled", " w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500")}
+          >
+            {isLoading ? "Loading..." : "Create"}
+          </button>
+        </div>
+        <div>
+
+        </div>
+        <div className="sm:col-span-2">
+          <button
+            onClick={() => handleUpdateStep(THREE_CONFIRM_INFO)}
+            className="w-full inline-flex items-center justify-center text-sm text-blue-brand hover:underline"
+          >
+            back
+          </button>
+        </div>
+      </div>
+    </form>
+  )
+}
+
+const ConfirmationAccountEmail = ({ handleUpdateStep, globalFormState, dispatch }) => {
+
+  const stripe = useStripe();
+  const { eventId, loadingEvent } = useFestivalContext()
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const handleSubmit = async (event) => {
+    setIsLoading(true);
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const fieldValues = Object.fromEntries(formData.entries());
+    const formIsValid = Object.values(fieldValues).every(
+      (value) => !getFieldError(value),
+    );
+
+    if (formIsValid) {
+
+      console.log(globalFormState.email, fieldValues.code);
+
+      const response = await confirmEmail(dispatch, globalFormState.email, fieldValues.code);
+      if (response) {
+        const result = await register(eventId, stripe);
+      }
+    } else {
+      setIsError(true);
+      console.log("form not valid");
+    }
+  }
+
+  return (
+    <form noValidate onSubmit={handleSubmit} className="mt-10">
+      <div className="text-sm text-center font-medium text-blue-brand mb-8">
+        Sorry, last thing. We've sent you a confirmation code. Grab that from your email and paste here!
+      </div>
+      <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+        <div className="sm:col-span-2">
+          <label
+            htmlFor="code"
+            className="block text-sm font-medium text-blue-brand"
+          >
+            Confirmation Code
+          </label>
+          <div className="mt-1">
+            <input
+              id="code"
+              name="code"
+              type="code"
+              autoComplete="email"
+              required
+              className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+            />
+          </div>
+          {isError && (
+            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+              Something went wrong. This code isn't accepted.
+            </span>
+          )}
+        </div>
+
+        <div className="sm:col-span-2 mt-10">
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={classNames(isLoading && "disabled", " w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500")}
+          >
+            {isLoading ? "Loading..." : "Pay"}
+          </button>
+        </div>
+        <div>
+
+        </div>
+        <div className="sm:col-span-2">
+          <button
+            onClick={() => handleUpdateStep(FOUR_PASSWORD_INPUT)}
+            className="w-full inline-flex items-center justify-center text-sm text-blue-brand hover:underline"
+          >
+            back
+          </button>
+        </div>
+      </div>
+    </form>
+  )
+}
+
+/**
+ * EXISTING USER FLOW
+ */
+const SignInFlow = ({ handleUpdateStep, setGlobalFormState, globalFormState, dispatch }) => {
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setError] = useState(false);
+
+  const handleSubmit = async (event) => {
+
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const fieldValues = Object.fromEntries(formData.entries());
+    const formIsValid = Object.values(fieldValues).every(
+      (value) => !getFieldError(value),
+    );
+
+    if (!formIsValid) {
+      setError(true);
       return;
     }
+
+    setError(false);
     setIsLoading(true);
-    const loggedInUser = await loginUser(dispatch, accountEmail, password);
+    const loggedInUser = await loginUser(dispatch, fieldValues.email, fieldValues.password);
     if (loggedInUser) {
       const member = await getMemberBySub(loggedInUser.attributes.sub);
       const sectionChecker = (rating) => {
@@ -882,7 +1043,7 @@ const SignInFlow = ({ handleUpdateStep, setFormState, formState }) => {
             return "Open"
         }
       }
-      setFormState(s => {
+      setGlobalFormState(s => {
         return {
           ...s,
           firstName: loggedInUser.attributes.given_name,
@@ -894,15 +1055,15 @@ const SignInFlow = ({ handleUpdateStep, setFormState, formState }) => {
           section: sectionChecker(Number(member.ecfRating))
         }
       });
-      handleUpdateStep(1);
+      handleUpdateStep(TWO_ENTRY_DETAILS);
     } else {
-      console.log("what is the user?", user);
+      setError(true);
     }
     setIsLoading(false);
   }
 
   return (
-    <div className="mt-10">
+    <form noValidate onSubmit={handleSubmit} className="mt-10">
       <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
         <div className="sm:col-span-2">
           <label
@@ -916,17 +1077,11 @@ const SignInFlow = ({ handleUpdateStep, setFormState, formState }) => {
               id="email"
               name="email"
               type="email"
-              onChange={(event) => setAccountEmail(event.currentTarget.value)}
               autoComplete="email"
               required
               className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
             />
           </div>
-          {isEmailError && (
-            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-              Invalid email field
-            </span>
-          )}
         </div>
 
         <div className="sm:col-span-2">
@@ -941,21 +1096,22 @@ const SignInFlow = ({ handleUpdateStep, setFormState, formState }) => {
               id="password"
               name="password"
               type="password"
-              onChange={(event) => setPassword(event.currentTarget.value)}
               autoComplete="email"
               required
               className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
             />
           </div>
-          {isSignInError && (
-            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-              {signInError}
-            </span>
-          )}
         </div>
-        <div className="sm:col-span-2 mt-10">
+        {isError && (
+          <div className="sm:col-span-2 mt-10">
+            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+              Oops, something went wrong. Please make sure your login details are correct.
+            </span>
+          </div>
+        )}
+        <div className="sm:col-span-2 mt-6">
           <button
-            onClick={handleSignIn}
+            type="submit"
             disabled={isLoading}
             className={classNames(isLoading && "disabled", " w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500")}
           >
@@ -971,119 +1127,23 @@ const SignInFlow = ({ handleUpdateStep, setFormState, formState }) => {
           </Link>
         </div>
       </div>
-    </div>)
+    </form>)
 }
 
-// const CreatePasswordForm = ({ handleUpdateStep, formState }) => {
-//   const [user, dispatch] = useReducer(FestivalReducer, initialState);
-//   const [password, setPassword] = useState("");
-//   const [passwordConfirm, setPasswordConfirm] = useState("");
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [isSignInError, setIsSignInError] = useState(false);
-//   const [isError, setIsError] = useState(false);
-//   const [signInError, setSignInError] = useState("");
-//   const [processState, setProcessState] = useState({
-//     account: "Created Chess Centre Account",
-//     aComplete: false,
-//     entry: "Verified entry details",
-//     eComplete: false,
-//     payement: "Proceeding to payment screen...",
-//     pComplete: false
-//   });
 
-
-//   const handleItAll = async () => {
-
-//     if((!password || !passwordConfirm) || password !== passwordConfirm) {
-//       setIsError(true);
-//       setSignInError("Password details invalid");
-//       return;
-//     }
-
-//     const user = await signUpUser(dispatch, formState.email, password);
-//     console.log(user);
-//     setProcessState(s => {
-//       return {
-//         ...s,
-//         aComplete: true
-//       }
-//     });
-//     // GET Latest ECF data and add it to member.
-
-//   }
-
-
-//   return (
-//     <div className="mt-10">
-//       <div className="text-sm text-center font-medium text-blue-brand mb-8">
-//         Create your password for your account entry
-//       </div>
-//       <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-//         <div className="sm:col-span-2">
-//           <label
-//             htmlFor="password"
-//             className="block text-sm font-medium text-blue-brand"
-//           >
-//             Password
-//           </label>
-//           <div className="mt-1">
-//             <input
-//               id="password"
-//               name="password"
-//               type="password"
-//               onChange={(event) => setPassword(event.currentTarget.value)}
-//               autoComplete="email"
-//               required
-//               className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
-//             />
-//           </div>
-//           {isSignInError && (
-//             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-//               {signInError}
-//             </span>
-//           )}
-//         </div>
-
-//         <div className="sm:col-span-2">
-//           <label
-//             htmlFor="password_confirm"
-//             className="block text-sm font-medium text-blue-brand"
-//           >
-//             Confirm Password
-//           </label>
-//           <div className="mt-1">
-//             <input
-//               id="password_confirm"
-//               name="password_confirm"
-//               type="password"
-//               onChange={(event) => setPasswordConfirm(event.currentTarget.value)}
-//               autoComplete="email"
-//               required
-//               className="py-3 px-4 block w-full shadow-sm focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
-//             />
-//           </div>
-//           {isSignInError && (
-//             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-//               {signInError}
-//             </span>
-//           )}
-//         </div>
-//         <div className="sm:col-span-2 mt-10">
-//           <button
-//             disabled={isLoading}
-//             onClick={handleItAll}
-//             className={classNames(isLoading && "disabled", " w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500")}
-//           >
-//             {isLoading ? "Loading..." : "Pay"}
-//           </button>
-//         </div>
-//         <div>
-
-//         </div>
-//         <div className="sm:col-span-2">
-//            back
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
+const register = async (eventId, stripe, section) => {
+  try {
+    const redirectTo = `${window.location.origin}/festival`;
+    const { sessionId } = await API.post("public", "/event/register", {
+      body: {
+        eventId,
+        section,
+        successUrl: redirectTo,
+        cancelUrl: redirectTo,
+      },
+    });
+    await stripe.redirectToCheckout({ sessionId });
+  } catch (error) {
+    console.log(error);
+  }
+};

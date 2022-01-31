@@ -248,8 +248,8 @@ export default function AppEvents() {
 
           {isLoading && (
             <>
-              {[...new Array(9)].map((_, key) => (
-                <SkelectonAppEventCard key={key} />
+              {[...new Array(9).keys()].map((k) => (
+                <SkelectonAppEventCard key={k} />
               ))}
             </>
           )}
