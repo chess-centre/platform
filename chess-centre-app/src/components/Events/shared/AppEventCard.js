@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { bgColor700 } from "tailwind-dynamic-classes";
 import Register from "../Register";
 import { prettyDate } from "../../../utils/DateFormating";
-import { classNames, bgColor700 } from "../../../utils/Classes";
+import { classNames } from "../../../utils/Classes";
 
 export function SkelectonAppEventCard() {
   return (
@@ -98,7 +99,7 @@ export function EventCard(props) {
     >
       <div
         className={classNames(
-          bgColor700(type.color),
+          bgColor700[type.color],
           "absolute left-0 z-10 inset-y-0 py-1 px-1.5 text-xs rounded-l-lg"
         )}
       ></div>

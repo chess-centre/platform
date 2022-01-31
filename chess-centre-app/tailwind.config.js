@@ -1,4 +1,5 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
 const windmill = require("@windmill/react-ui/config");
 
 module.exports = windmill({
@@ -14,6 +15,7 @@ module.exports = windmill({
         "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.08)",
       },
       colors: {
+        ...colors,
         gray: {
           50: "#FAFAFA",
           100: "#F4F4F5",

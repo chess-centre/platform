@@ -32,6 +32,7 @@
     "react-children-utilities": "^2.5.0",
     "react-country-flag": "^2.3.0",
     "react-dom": "^17.0.1",
+    "react-flagkit": "^2.0.4",
     "react-ga": "^3.3.0",
     "react-google-maps": "^9.4.5",
     "react-query": "^3.15.0",
@@ -41,6 +42,7 @@
     "react-transition-group": "^4.4.1",
     "swiper": "^6.8.4",
     "table": "^6.7.5",
+    "tailwind-dynamic-classes": "^1.0.3",
     "uuid": "^8.3.2"
   },
   "scripts": {
