@@ -97,11 +97,6 @@ const routes = [
     component: lazy(() => import("../pages/Home/MoreInfo")),
     isPrivate: false,
   },
-  // {
-  //   path: "/festival",
-  //   component: lazy(() => import("../pages/Home/Festival")),
-  //   isPrivate: false,
-  // },
   {
     path: "/faqs",
     component: lazy(() => import("../pages/Home/FAQs")),
