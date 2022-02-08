@@ -13,6 +13,7 @@ export async function loginUser(dispatch, email, password) {
 
   const user = await Auth.signIn(email, password).catch((error) => {
     dispatch({ type: "LOGIN_ERROR", error: error.message });
+    throw new Error(error.message);
   });
 
   if (user) {
@@ -52,6 +53,7 @@ export async function signUpUser(
     return;
   } catch (error) {
     dispatch({ type: "LOGIN_ERROR", error: error.message });
+    throw new Error(error.message);
   }
 }
 

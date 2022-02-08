@@ -370,7 +370,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setGlobalFormState, glob
       <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
         {potentialPlayer && potentialPlayer.length > 0 && (
           <div className="sm:col-span-2">
-              <RatingRadio {...{ potentialPlayer, setSelectedECFId }} />
+            <RatingRadio {...{ potentialPlayer, setSelectedECFId }} />
           </div>
         )}
 
@@ -513,7 +513,26 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setGlobalFormState, glob
 };
 
 const ConfirmInfo = ({ handleUpdateStep, globalFormState }) => {
+
+  const stripe = useStripe();
+  const { eventId, loadingEvent } = useFestivalContext();
   const [agreed, setAgreed] = useState(false);
+
+  const handleConfirmSubmit = async () => {
+    if (globalFormState.existingUser) {
+
+      console.log(eventId, loadingEvent);
+
+      
+      const regResult = await register(eventId, stripe, globalFormState.section);
+
+      console.log(regResult);
+      // Once registration is complete we want to
+      updateEntryInfo(eventId, globalFormState.memberId, globalFormState.byes);
+    } else {
+      handleUpdateStep(FOUR_PASSWORD_INPUT);
+    }
+  }
 
   return (
     <div className="mt-10">
@@ -570,51 +589,10 @@ const ConfirmInfo = ({ handleUpdateStep, globalFormState }) => {
             £{globalFormState.price} <span className="text-xs -ml-3 text-gray-400">entry fee</span>
           </div>
         </div>
-        <div className="sm:col-span-2">
-          <div className="flex items-start text-center">
-            <div className="flex-shrink-0">
-              <Switch
-                checked={agreed}
-                onChange={setAgreed}
-                className={classNames(
-                  agreed ? "bg-teal-600" : "bg-gray-200",
-                  "relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-                )}
-              >
-                <span className="sr-only">Agree to policies</span>
-                <span
-                  aria-hidden="true"
-                  className={classNames(
-                    agreed ? "translate-x-5" : "translate-x-0",
-                    "inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
-                  )}
-                />
-              </Switch>
-            </div>
-            <div className="ml-3">
-              <p className="mt-1 text-sm text-blue-brand">
-                By selecting this, you agree to the{" "}
-                <a
-                  href="/"
-                  className="font-medium text-teal-700 hover:underline"
-                >
-                  Privacy Policy
-                </a>{" "}
-                and{" "}
-                <a
-                  href="/"
-                  className="font-medium text-teal-700 hover:underline"
-                >
-                  Terms &#x26; Conditions
-                </a>
-                .
-              </p>
-            </div>
-          </div>
-        </div>
+
         <div className="sm:col-span-2">
           <button
-            onClick={() => handleUpdateStep(FOUR_PASSWORD_INPUT)}
+            onClick={() => handleConfirmSubmit()}
             className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
             Confirm
@@ -813,6 +791,7 @@ const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch }) => 
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (event) => {
 
@@ -826,15 +805,25 @@ const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch }) => 
     const passwordValid = formIsValid && (fieldValues.password !== fieldValues.passwordConfirm);
 
     if (passwordValid) {
-      const user = await signUpUser(dispatch,
-        globalFormState.email,
-        fieldValues.password,
-        globalFormState.firstName,
-        globalFormState.lastName
-      );
-      if (user) {
-        handleUpdateStep(FIVE_CONFIRM_EMAIL_CODE);
+      console.log("password valid");
+      console.log("creating user");
+      try {
+        const user = await signUpUser(dispatch,
+          globalFormState.email,
+          fieldValues.password,
+          globalFormState.firstName,
+          globalFormState.lastName
+        )
+        console.log("user", user);
+        if (user) {
+          handleUpdateStep(FIVE_CONFIRM_EMAIL_CODE);
+        }
+      } catch (error) {
+        setErrorMessage(error.message);
+        setIsLoading(false);
+        setIsError(true);
       }
+
     } else {
       setIsLoading(false);
       setIsError(true);
@@ -845,6 +834,9 @@ const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch }) => 
     <form noValidate onSubmit={handleSubmit} className="mt-10">
       <div className="text-sm text-center font-medium text-blue-brand mb-8">
         Create your password for your account entry
+      </div>
+      <div className="text-md text-center font-bold text-blue-brand mb-8">
+        {globalFormState.email}
       </div>
       <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
         <div className="sm:col-span-2">
@@ -886,13 +878,13 @@ const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch }) => 
 
         </div>
         {isError && (
-          <div className="sm:col-span-2 mt-10">
+          <div className="sm:col-span-2 mt-2">
             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-              The passwords must match. Please use at least 1 number and 1 upper case letter.
+              {errorMessage ? errorMessage : "The passwords must match. Please use at least 1 number and 1 upper case letter."}
             </span>
           </div>
         )}
-        <div className="sm:col-span-2 mt-10">
+        <div className="sm:col-span-2 mt-2">
           <button
             disabled={isLoading}
             type="submit"
@@ -920,7 +912,7 @@ const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch }) => 
 const ConfirmationAccountEmail = ({ handleUpdateStep, globalFormState, dispatch }) => {
 
   const stripe = useStripe();
-  const { eventId, loadingEvent } = useFestivalContext()
+  const { eventId, loadingEvent } = useFestivalContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -1005,10 +997,12 @@ const ConfirmationAccountEmail = ({ handleUpdateStep, globalFormState, dispatch 
 /**
  * EXISTING USER FLOW
  */
-const SignInFlow = ({ handleUpdateStep, setGlobalFormState, globalFormState, dispatch }) => {
+const SignInFlow = ({ handleUpdateStep, setGlobalFormState, dispatch }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [user, setUser] = useState("");
 
   const handleSubmit = async (event) => {
 
@@ -1026,8 +1020,15 @@ const SignInFlow = ({ handleUpdateStep, setGlobalFormState, globalFormState, dis
 
     setError(false);
     setIsLoading(true);
-    const loggedInUser = await loginUser(dispatch, fieldValues.email, fieldValues.password);
+    const loggedInUser = await loginUser(dispatch, fieldValues.email, fieldValues.password).catch(e => {
+      setError(true);
+      setErrorMessage(e.message);
+      setIsLoading(false);
+    });
     if (loggedInUser) {
+      setUser(loggedInUser);
+      setErrorMessage("");
+      setError(false);
       const member = await getMemberBySub(loggedInUser.attributes.sub);
       const sectionChecker = (rating) => {
         switch (rating) {
@@ -1052,6 +1053,8 @@ const SignInFlow = ({ handleUpdateStep, setGlobalFormState, globalFormState, dis
           ecfRating: member.ecfRating,
           email: member.email,
           existingUser: true,
+          memberId: member.id,
+          // set best guess section default:
           section: sectionChecker(Number(member.ecfRating))
         }
       });
@@ -1103,13 +1106,15 @@ const SignInFlow = ({ handleUpdateStep, setGlobalFormState, globalFormState, dis
           </div>
         </div>
         {isError && (
-          <div className="sm:col-span-2 mt-10">
+          <div className="sm:col-span-2 mt-2">
             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-              Oops, something went wrong. Please make sure your login details are correct.
+              {errorMessage ?
+                errorMessage :
+                "Oops, something went wrong. Please make sure your login details are correct."}
             </span>
           </div>
         )}
-        <div className="sm:col-span-2 mt-6">
+        <div className="sm:col-span-2 mt-2">
           <button
             type="submit"
             disabled={isLoading}
@@ -1131,13 +1136,14 @@ const SignInFlow = ({ handleUpdateStep, setGlobalFormState, globalFormState, dis
 }
 
 
-const register = async (eventId, stripe, section) => {
+const register = async (eventId, stripe, section, byes) => {
   try {
     const redirectTo = `${window.location.origin}/festival`;
     const { sessionId } = await API.post("public", "/event/register", {
       body: {
         eventId,
         section,
+        byes,
         successUrl: redirectTo,
         cancelUrl: redirectTo,
       },
@@ -1147,3 +1153,66 @@ const register = async (eventId, stripe, section) => {
     console.log(error);
   }
 };
+
+
+// TODO: export to new file
+const listEntrys = /* GraphQL */ `
+  query ListEntrys(
+    $filter: ModelEntryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        eventId
+        memberId
+      }
+    }
+  }
+`;
+
+const updateEntry = /* GraphQL */ `
+  mutation UpdateEntry(
+    $input: UpdateEntryInput!
+    $condition: ModelEntryConditionInput
+  ) {
+    updateEntry(input: $input, condition: $condition) {
+      id
+      eventId
+      memberId
+    }
+  }
+`;
+
+
+const updateEntryInfo = async (eventId, memberId, roundByes) => {
+  const fetchFestivalEntry = async () => {
+    try {
+      const {
+        data: {
+          listEntrys: { items },
+        },
+      } = await API.graphql({
+        query: listEntrys,
+        variables: {
+          eventId,
+          memberId
+        },
+        authMode: "AWS_IAM",
+      });
+      if (items) {
+        return items[0].id
+      }
+
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+  const entryId = await fetchFestivalEntry(eventId, memberId);
+
+  console.log(entryId);
+
+  // TODO: update the entry with the section:
+  // - model needs to be updated to allow section type
+}
