@@ -42,6 +42,13 @@
         ]
       },
       "lambdaFunction": "eventRegister"
+    },
+    "/event/register/festival": {
+      "name": "/event/register/festival",
+      "lambdaFunction": "eventRegisterFestival",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

@@ -491,6 +491,8 @@ export const getGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -793,6 +795,8 @@ export const getGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -1043,6 +1047,8 @@ export const getGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -1298,6 +1304,8 @@ export const listGames = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -1462,6 +1470,8 @@ export const listGames = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -1563,6 +1573,8 @@ export const listGames = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -1774,6 +1786,8 @@ export const listGamesByEvent = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -1938,6 +1952,8 @@ export const listGamesByEvent = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -2039,6 +2055,8 @@ export const listGamesByEvent = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -2250,6 +2268,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -2414,6 +2434,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -2515,6 +2537,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -2726,6 +2750,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -2890,6 +2916,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -2991,6 +3019,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -3200,6 +3230,8 @@ export const syncGames = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -3364,6 +3396,8 @@ export const syncGames = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -3465,6 +3499,8 @@ export const syncGames = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -3889,6 +3925,8 @@ export const syncMembers = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -4149,6 +4187,8 @@ export const getMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -4313,6 +4353,8 @@ export const getMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -4414,6 +4456,8 @@ export const getMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -4455,6 +4499,8 @@ export const getMember = /* GraphQL */ `
           id
           eventId
           memberId
+          section
+          byes
           _version
           _deleted
           _lastChangedAt
@@ -4823,6 +4869,8 @@ export const listMembers = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -5163,6 +5211,8 @@ export const getEvent = /* GraphQL */ `
           id
           eventId
           memberId
+          section
+          byes
           _version
           _deleted
           _lastChangedAt
@@ -5479,6 +5529,8 @@ export const listEvents = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -5751,6 +5803,8 @@ export const listEventsActive = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -6019,6 +6073,8 @@ export const syncEvents = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -6095,6 +6151,8 @@ export const getEntry = /* GraphQL */ `
       id
       eventId
       memberId
+      section
+      byes
       _version
       _deleted
       _lastChangedAt
@@ -6337,6 +6395,8 @@ export const getEntry = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -6587,6 +6647,8 @@ export const getEntry = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -6666,6 +6728,8 @@ export const listEntrys = /* GraphQL */ `
         id
         eventId
         memberId
+        section
+        byes
         _version
         _deleted
         _lastChangedAt
@@ -6825,6 +6889,8 @@ export const listEntrys = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -6926,6 +6992,8 @@ export const listEntrys = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -6959,6 +7027,8 @@ export const syncEntries = /* GraphQL */ `
         id
         eventId
         memberId
+        section
+        byes
         _version
         _deleted
         _lastChangedAt
@@ -7118,6 +7188,8 @@ export const syncEntries = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -7219,6 +7291,8 @@ export const syncEntries = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
