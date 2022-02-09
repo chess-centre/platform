@@ -783,6 +783,20 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "section": {
+                    "name": "section",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "byes": {
+                    "name": "byes",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "event": {
                     "name": "event",
                     "isArray": false,
@@ -1241,5 +1255,5 @@ export const schema = {
             }
         }
     },
-    "version": "bd1d495723e56b54363005eaca19aaa1"
+    "version": "31015a762b3f792a1a3e5283f448aebe"
 };

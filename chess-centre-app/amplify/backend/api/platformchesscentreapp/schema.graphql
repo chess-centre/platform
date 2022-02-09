@@ -134,6 +134,8 @@ type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   id: ID!
   eventId: ID!
   memberId: ID!
+  section: String,
+  byes: String,
   event: Event @connection(fields: ["eventId"])
   member: Member @connection(fields: ["memberId"])
 }

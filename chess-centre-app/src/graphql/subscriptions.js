@@ -425,6 +425,8 @@ export const onCreateGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -727,6 +729,8 @@ export const onCreateGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -977,6 +981,8 @@ export const onCreateGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -1310,6 +1316,8 @@ export const onUpdateGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -1612,6 +1620,8 @@ export const onUpdateGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -1862,6 +1872,8 @@ export const onUpdateGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -2195,6 +2207,8 @@ export const onDeleteGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -2497,6 +2511,8 @@ export const onDeleteGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -2747,6 +2763,8 @@ export const onDeleteGame = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -3119,6 +3137,8 @@ export const onCreateMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -3283,6 +3303,8 @@ export const onCreateMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -3384,6 +3406,8 @@ export const onCreateMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -3425,6 +3449,8 @@ export const onCreateMember = /* GraphQL */ `
           id
           eventId
           memberId
+          section
+          byes
           _version
           _deleted
           _lastChangedAt
@@ -3739,6 +3765,8 @@ export const onUpdateMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -3903,6 +3931,8 @@ export const onUpdateMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -4004,6 +4034,8 @@ export const onUpdateMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -4045,6 +4077,8 @@ export const onUpdateMember = /* GraphQL */ `
           id
           eventId
           memberId
+          section
+          byes
           _version
           _deleted
           _lastChangedAt
@@ -4359,6 +4393,8 @@ export const onDeleteMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -4523,6 +4559,8 @@ export const onDeleteMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -4624,6 +4662,8 @@ export const onDeleteMember = /* GraphQL */ `
               id
               eventId
               memberId
+              section
+              byes
               _version
               _deleted
               _lastChangedAt
@@ -4665,6 +4705,8 @@ export const onDeleteMember = /* GraphQL */ `
           id
           eventId
           memberId
+          section
+          byes
           _version
           _deleted
           _lastChangedAt
@@ -5059,6 +5101,8 @@ export const onCreateEvent = /* GraphQL */ `
           id
           eventId
           memberId
+          section
+          byes
           _version
           _deleted
           _lastChangedAt
@@ -5453,6 +5497,8 @@ export const onUpdateEvent = /* GraphQL */ `
           id
           eventId
           memberId
+          section
+          byes
           _version
           _deleted
           _lastChangedAt
@@ -5847,6 +5893,8 @@ export const onDeleteEvent = /* GraphQL */ `
           id
           eventId
           memberId
+          section
+          byes
           _version
           _deleted
           _lastChangedAt
@@ -5977,6 +6025,8 @@ export const onCreateEntry = /* GraphQL */ `
       id
       eventId
       memberId
+      section
+      byes
       _version
       _deleted
       _lastChangedAt
@@ -6219,6 +6269,8 @@ export const onCreateEntry = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -6469,6 +6521,8 @@ export const onCreateEntry = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -6543,6 +6597,8 @@ export const onUpdateEntry = /* GraphQL */ `
       id
       eventId
       memberId
+      section
+      byes
       _version
       _deleted
       _lastChangedAt
@@ -6785,6 +6841,8 @@ export const onUpdateEntry = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -7035,6 +7093,8 @@ export const onUpdateEntry = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -7109,6 +7169,8 @@ export const onDeleteEntry = /* GraphQL */ `
       id
       eventId
       memberId
+      section
+      byes
       _version
       _deleted
       _lastChangedAt
@@ -7351,6 +7413,8 @@ export const onDeleteEntry = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt
@@ -7601,6 +7665,8 @@ export const onDeleteEntry = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             _version
             _deleted
             _lastChangedAt

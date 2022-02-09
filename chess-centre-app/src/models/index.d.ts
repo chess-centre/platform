@@ -107,6 +107,8 @@ export declare class EventType {
 
 export declare class Entry {
   readonly id: string;
+  readonly section?: string;
+  readonly byes?: string;
   readonly event?: Event;
   readonly member?: Member;
   constructor(init: ModelInit<Entry>);

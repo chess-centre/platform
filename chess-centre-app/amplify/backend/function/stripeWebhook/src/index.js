@@ -216,9 +216,9 @@ async function handleCheckoutSessionCompletedSubscription(id, customer, price, s
 }
 
 async function handleCheckoutSessionCompletedPayment(id) {
-  const [memberId, eventId] = id.split("#");
+  const [memberId, eventId, section, byes] = id.split("#");
   
-  console.log("memberId", memberId, "eventId", eventId);
+  console.log("memberId", memberId, "eventId", eventId, "section", section, "byes", byes);
 
   const {
     data: {
@@ -241,10 +241,12 @@ async function handleCheckoutSessionCompletedPayment(id) {
     mutation createEntry(
       $eventId: ID!
       $memberId: ID!
+      $section: String,
+      $byes: String,
       $entryCount: Int!
       $_version: Int!
     ) {
-      createEntry(input: { eventId: $eventId, memberId: $memberId }) {
+      createEntry(input: { eventId: $eventId, memberId: $memberId, section: $section, byes: $byes }) {
         id
       }
       updateEvent(
