@@ -78,7 +78,7 @@ exports.handler = async (event) => {
   const [memberId] = identity.cognitoAuthenticationProvider
     .split(":")
     .slice(-1);
-  const { eventId, successUrl, cancelUrl } = JSON.parse(body);
+    const { eventId, successUrl, cancelUrl, section, byes } = JSON.parse(body);
 
   console.log(`eventId: ${eventId}, memberId: ${memberId}`);
   
@@ -139,7 +139,7 @@ exports.handler = async (event) => {
       // is redirected to the success page.
       success_url: `${successUrl}?session_id={CHECKOUT_SESSION_ID}&event_payment_success=true`,
       cancel_url: cancelUrl,
-      client_reference_id: `${memberId}#${eventId}`,
+      client_reference_id: `${memberId}#${eventId}#${section}#${byes}`,
       customer: stripeCustomerId || undefined,
     });
 

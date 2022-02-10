@@ -1,4 +1,5 @@
 import API from "@aws-amplify/api";
+import { Auth } from "aws-amplify";
 import React, { useState, useReducer } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
@@ -196,7 +197,7 @@ const AccountInfo = ({
   }
 
   async function handleSubmit(event) {
-    setError(true);
+    setError(false);
     setIsLoading(true);
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -219,8 +220,9 @@ const AccountInfo = ({
       } else {
         console.log(response);
       }
-      setIsLoading(false);
+
       handleUpdateStep(TWO_ENTRY_DETAILS);
+      setIsLoading(false);
     } else {
       setIsLoading(false);
       setError(true);
@@ -517,19 +519,20 @@ const ConfirmInfo = ({ handleUpdateStep, globalFormState }) => {
   const stripe = useStripe();
   const { eventId, loadingEvent } = useFestivalContext();
   const [agreed, setAgreed] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleConfirmSubmit = async () => {
+    setIsLoading(true);
     if (globalFormState.existingUser) {
-
-      console.log(eventId, loadingEvent);
-
-      
-      const regResult = await register(eventId, stripe, globalFormState.section);
-
-      console.log(regResult);
-      // Once registration is complete we want to
-      updateEntryInfo(eventId, globalFormState.memberId, globalFormState.byes);
+      const regResult = await register(eventId, stripe, globalFormState.section, globalFormState.byes?.join(""))
+      .catch(e => {
+        setIsError(true);
+        setIsLoading(false);
+      });
+      setIsLoading(false);
     } else {
+      setIsLoading(false);
       handleUpdateStep(FOUR_PASSWORD_INPUT);
     }
   }
@@ -590,12 +593,21 @@ const ConfirmInfo = ({ handleUpdateStep, globalFormState }) => {
           </div>
         </div>
 
+        {isError && (
+          <div className="sm:col-span-2 mt-2">
+            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+              Oops, something went wrong. You may need to go back one step.
+            </span>
+          </div>
+        )}
+
         <div className="sm:col-span-2">
           <button
+            disabled={isLoading}
             onClick={() => handleConfirmSubmit()}
             className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           >
-            Confirm
+            {isLoading ? "Redirecting, please wait..." : "Confirm"}
           </button>
         </div>
         <div className="sm:col-span-2">
@@ -616,7 +628,7 @@ const Steps = ({ stepState }) => {
 
   return (
     <nav aria-label="Progress">
-      <ol className="relative rounded-md mx-auto flex md:divide-y-0">
+      <ol className="relative rounded-md mx-auto flex items-center">
         {steps.map((step, stepIdx) => (
           <li key={step.name} className="relative md:flex-1 md:flex">
             {step.status === "complete" ? (
@@ -929,12 +941,21 @@ const ConfirmationAccountEmail = ({ handleUpdateStep, globalFormState, dispatch 
 
       console.log(globalFormState.email, fieldValues.code);
 
-      const response = await confirmEmail(dispatch, globalFormState.email, fieldValues.code);
-      if (response) {
-        const result = await register(eventId, stripe);
+      const response = await confirmEmail(dispatch, globalFormState.email, fieldValues.code)
+        .catch(e => {
+          setIsError(true);
+          setIsLoading(false);
+        });
+      if (response && !isError) {
+        await register(eventId, stripe, globalFormState.section, globalFormState.byes?.join(""))
+          .catch(e => {
+            setIsError(true);
+            setIsLoading(false);
+          });
       }
     } else {
       setIsError(true);
+      setIsLoading(false);
       console.log("form not valid");
     }
   }
@@ -1138,12 +1159,16 @@ const SignInFlow = ({ handleUpdateStep, setGlobalFormState, dispatch }) => {
 
 const register = async (eventId, stripe, section, byes) => {
   try {
+
+    const { id } = await Auth.currentUserInfo();
+
     const redirectTo = `${window.location.origin}/festival`;
     const { sessionId } = await API.post("public", "/event/register", {
       body: {
         eventId,
         section,
         byes,
+        cognitoId: id,
         successUrl: redirectTo,
         cancelUrl: redirectTo,
       },
@@ -1151,68 +1176,7 @@ const register = async (eventId, stripe, section, byes) => {
     await stripe.redirectToCheckout({ sessionId });
   } catch (error) {
     console.log(error);
+    throw new Error(error);
   }
 };
 
-
-// TODO: export to new file
-const listEntrys = /* GraphQL */ `
-  query ListEntrys(
-    $filter: ModelEntryFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        eventId
-        memberId
-      }
-    }
-  }
-`;
-
-const updateEntry = /* GraphQL */ `
-  mutation UpdateEntry(
-    $input: UpdateEntryInput!
-    $condition: ModelEntryConditionInput
-  ) {
-    updateEntry(input: $input, condition: $condition) {
-      id
-      eventId
-      memberId
-    }
-  }
-`;
-
-
-const updateEntryInfo = async (eventId, memberId, roundByes) => {
-  const fetchFestivalEntry = async () => {
-    try {
-      const {
-        data: {
-          listEntrys: { items },
-        },
-      } = await API.graphql({
-        query: listEntrys,
-        variables: {
-          eventId,
-          memberId
-        },
-        authMode: "AWS_IAM",
-      });
-      if (items) {
-        return items[0].id
-      }
-
-    } catch (error) {
-      console.log("Error", error);
-    }
-  };
-  const entryId = await fetchFestivalEntry(eventId, memberId);
-
-  console.log(entryId);
-
-  // TODO: update the entry with the section:
-  // - model needs to be updated to allow section type
-}
