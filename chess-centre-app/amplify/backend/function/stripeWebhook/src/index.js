@@ -260,6 +260,8 @@ async function handleCheckoutSessionCompletedPayment(id) {
   const data = await executeGraphql(createEntry, {
     eventId,
     memberId,
+    section,
+    byes,
     entryCount,
     _version,
   });
