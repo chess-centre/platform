@@ -59,13 +59,19 @@ export async function signUpUser(
 
 export async function confirmEmail(dispatch, email, code) {
   dispatch({ type: "CONFIRM_EMAIL_PENDING" });
+
+
   const success = await Auth.confirmSignUp(email, code, {}).catch((error) => {
     dispatch({ type: "CONFIRM_EMAIL_ERROR", error: error.message });
-    return;
+    throw new Error(error.message);
   });
 
-  if (success) dispatch({ type: "CONFIRM_EMAIL_SUCCESS" });
-  return success;
+  if (success) {
+    dispatch({ type: "CONFIRM_EMAIL_SUCCESS" })
+    return success;
+  }
+
+
 }
 
 export async function resendActivationCode(email) {

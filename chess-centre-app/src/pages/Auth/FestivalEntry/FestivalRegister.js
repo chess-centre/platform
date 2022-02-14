@@ -1,12 +1,12 @@
 import API from "@aws-amplify/api";
 import { Auth } from "aws-amplify";
-import React, { useState, useReducer } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useStripe } from "@stripe/react-stripe-js";
 import { CheckIcon } from "@heroicons/react/solid";
 import FestivalBuilding from "../../../assets/img/festival_building.png";
-import { Switch, RadioGroup } from "@headlessui/react";
+import { RadioGroup } from "@headlessui/react";
 import { getECFPlayer } from "../../../api/profile/chess";
 import { FestivalReducer, initialState } from "./reducer";
 import { FestivalProvider, useFestivalContext } from "../../../context/FestivalContext";
@@ -42,6 +42,7 @@ function FestivalRegister(props) {
     section: "",
     byes: [],
     price: "30",
+    sub: ""
   });
   const [stepState, setStepState] = useState([
     { id: "01", name: "Account", href: "#", status: "current" },
@@ -65,6 +66,12 @@ function FestivalRegister(props) {
     setStepState(updatedSteps);
     setCurrentStep(step);
   };
+
+  useEffect(() => {
+    // TODO: do a user check upfront and then direct the user to correct entry flow i.e step 2.
+    const logout = async () => await Auth.signOut();
+    logout();
+  }, [])
 
   return (
     <FestivalProvider>
@@ -364,7 +371,7 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setGlobalFormState, glob
       byes: [...byes],
     }));
 
-    handleUpdateStep(THREE_CONFIRM_INFO);
+    handleUpdateStep(FOUR_PASSWORD_INPUT);
   };
 
   return (
@@ -526,10 +533,10 @@ const ConfirmInfo = ({ handleUpdateStep, globalFormState }) => {
     setIsLoading(true);
     if (globalFormState.existingUser) {
       const regResult = await register(eventId, stripe, globalFormState.section, globalFormState.byes?.join(""))
-      .catch(e => {
-        setIsError(true);
-        setIsLoading(false);
-      });
+        .catch(e => {
+          setIsError(true);
+          setIsLoading(false);
+        });
       setIsLoading(false);
     } else {
       setIsLoading(false);
@@ -630,7 +637,7 @@ const Steps = ({ stepState }) => {
     <nav aria-label="Progress">
       <ol className="relative rounded-md mx-auto flex items-center">
         {steps.map((step, stepIdx) => (
-          <li key={step.name} className="relative md:flex-1 md:flex">
+          <li key={step.name} className="relative flex-1 flex">
             {step.status === "complete" ? (
               <div className="group flex items-center w-full">
                 <span className="px-1 sm:px-6 py-4 flex items-center text-sm font-medium">
@@ -799,7 +806,7 @@ const RatingRadio = ({ potentialPlayer, setSelectedECFId }) => {
   );
 };
 
-const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch }) => {
+const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch, setGlobalFormState }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -826,8 +833,9 @@ const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch }) => 
           globalFormState.firstName,
           globalFormState.lastName
         )
-        console.log("user", user);
         if (user) {
+          console.log(user);
+          setGlobalFormState(s => ({ ...s, sub: user.userSub }))
           handleUpdateStep(FIVE_CONFIRM_EMAIL_CODE);
         }
       } catch (error) {
@@ -924,9 +932,10 @@ const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch }) => 
 const ConfirmationAccountEmail = ({ handleUpdateStep, globalFormState, dispatch }) => {
 
   const stripe = useStripe();
-  const { eventId, loadingEvent } = useFestivalContext();
+  const { eventId } = useFestivalContext();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (event) => {
     setIsLoading(true);
@@ -938,32 +947,55 @@ const ConfirmationAccountEmail = ({ handleUpdateStep, globalFormState, dispatch 
     );
 
     if (formIsValid) {
+      console.log('Form is valid');
 
-      console.log(globalFormState.email, fieldValues.code);
+      try {
+        const response = await confirmEmail(dispatch, globalFormState.email, fieldValues.code)
 
-      const response = await confirmEmail(dispatch, globalFormState.email, fieldValues.code)
-        .catch(e => {
+        if (response && !isError) {
+          console.log("global state", globalFormState);
+          await register(eventId, stripe, globalFormState.section, globalFormState.byes?.join(""), globalFormState.sub)
+            .catch(e => {
+              setIsError(true);
+              setIsLoading(false);
+            });
+        } else {
           setIsError(true);
           setIsLoading(false);
-        });
-      if (response && !isError) {
-        await register(eventId, stripe, globalFormState.section, globalFormState.byes?.join(""))
+        }
+
+      } catch (error) {
+        console.log("confirm exception!", error.message, typeof error.message);
+        if (error?.message?.includes("Current status is CONFIRMED")) {
+          console.log("already confirmed");
+          setIsError(false);  
+          setIsLoading(true);
+          setErrorMessage("");
+          await register(eventId, stripe, globalFormState.section, globalFormState.byes?.join(""), globalFormState.sub)
           .catch(e => {
+            console.log(e);
             setIsError(true);
             setIsLoading(false);
           });
+        } else {
+          setIsError(true);
+          setIsLoading(false);
+          setErrorMessage("This code is not valid. Please try again.");
+          return;
+        }
       }
+
     } else {
       setIsError(true);
       setIsLoading(false);
-      console.log("form not valid");
+      console.log("Form not valid, probably no code input.", fieldValues);
     }
   }
 
   return (
     <form noValidate onSubmit={handleSubmit} className="mt-10">
       <div className="text-sm text-center font-medium text-blue-brand mb-8">
-        Sorry, last thing. We've sent you a confirmation code. Grab that from your email and paste here!
+        Verify your account email.
       </div>
       <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
         <div className="sm:col-span-2">
@@ -985,7 +1017,7 @@ const ConfirmationAccountEmail = ({ handleUpdateStep, globalFormState, dispatch 
           </div>
           {isError && (
             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-              Something went wrong. This code isn't accepted.
+              {errorMessage ? errorMessage : "Something went wrong. This code isn't accepted."}
             </span>
           )}
         </div>
@@ -1157,18 +1189,16 @@ const SignInFlow = ({ handleUpdateStep, setGlobalFormState, dispatch }) => {
 }
 
 
-const register = async (eventId, stripe, section, byes) => {
+const register = async (eventId, stripe, section, byes, sub) => {
   try {
-
-    const { id } = await Auth.currentUserInfo();
-
+    const userInfo = await Auth.currentUserCredentials();
     const redirectTo = `${window.location.origin}/festival`;
     const { sessionId } = await API.post("public", "/event/register", {
       body: {
         eventId,
         section,
         byes,
-        cognitoId: id,
+        cognitoId: userInfo?.id || sub,
         successUrl: redirectTo,
         cancelUrl: redirectTo,
       },
