@@ -9,6 +9,9 @@ module.exports = windmill({
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false,
   theme: {
+    listStyleType: {
+      none: 'none'
+    },
     extend: {
       sans: [defaultTheme.fontFamily.sans],
       boxShadow: {

@@ -31,7 +31,7 @@ function classNames(...classes) {
 }
 
 function FestivalRegister(props) {
-  const [user, dispatch] = useReducer(FestivalReducer, initialState);
+  const [, dispatch] = useReducer(FestivalReducer, initialState);
   const [potentialPlayer, setPotentialPlayer] = useState([]);
   const [globalFormState, setGlobalFormState] = useState({
     firstName: "",
@@ -524,15 +524,14 @@ const EntryInfo = ({ handleUpdateStep, potentialPlayer, setGlobalFormState, glob
 const ConfirmInfo = ({ handleUpdateStep, globalFormState }) => {
 
   const stripe = useStripe();
-  const { eventId, loadingEvent } = useFestivalContext();
-  const [agreed, setAgreed] = useState(false);
+  const { eventId } = useFestivalContext();
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleConfirmSubmit = async () => {
     setIsLoading(true);
     if (globalFormState.existingUser) {
-      const regResult = await register(eventId, stripe, globalFormState.section, globalFormState.byes?.join(""))
+      await register(eventId, stripe, globalFormState.section, globalFormState.byes?.join(""))
         .catch(e => {
           setIsError(true);
           setIsLoading(false);
@@ -1055,7 +1054,7 @@ const SignInFlow = ({ handleUpdateStep, setGlobalFormState, dispatch }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [user, setUser] = useState("");
+  const [, setUser] = useState("");
 
   const handleSubmit = async (event) => {
 
