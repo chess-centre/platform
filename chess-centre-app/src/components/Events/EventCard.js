@@ -14,6 +14,10 @@ const EventHeader = ({ type, icon, name, description }) => {
         return "text-blue-500";
       case "blitz":
         return "text-yellow-400";
+      case "igs-junior": 
+        return "text-pink-500";
+      case "festival": 
+        return "text-blue-500";
       default:
         return "text-yellow-500";
     }
@@ -110,6 +114,9 @@ export default function EventCard({
   isLive,
   isFull,
 }) {
+
+  console.log("color", bgColor700[color]);
+
   return (
     <div
       className={`relative m-2 rounded-lg shadow-lg divide-y divide-gray-100 max-w-xs bg-white`}

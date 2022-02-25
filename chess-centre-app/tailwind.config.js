@@ -57,13 +57,25 @@ module.exports = windmill({
         },
         // BRAND COLORS:
         orange: {
-          brand: "#f0802b"
+          brand: "#f0802b",
+          ...colors.orange
         },
         teal: {
-          brand: "#5499ab"
+          brand: "#5499ab",
+          '50': '#edfafa',
+          '100': '#d5f5f6',
+          '200': '#afecef',
+          '300': '#7edce2',
+          '400': '#16bdca',
+          '500': '#0694a2',
+          '600': '#047481',
+          '700': '#036672',
+          '800': '#05505c',
+          '900': '#014451'
         },
         blue: {
-          brand: "#2b374b"
+          brand: "#2b374b",
+          ...colors.blue
         }
       },
       spacing: {
