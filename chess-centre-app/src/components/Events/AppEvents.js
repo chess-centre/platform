@@ -154,7 +154,7 @@ function useEvents() {
 export default function AppEvents() {
   const { user } = useAuthState();
   const { search } = useLocation();
-  const { eventId, session_id, event_payment_success, show_info } = queryString.parse(
+  const { eventId, session_id, event_payment_success, show_info, section, byes } = queryString.parse(
     search
   );
   const stripe = useStripe();
@@ -185,6 +185,8 @@ export default function AppEvents() {
           eventId,
           successUrl: redirectTo,
           cancelUrl: redirectTo,
+          section: section ? section : null,
+          byes: byes ? byes : null
         },
       });
       await stripe.redirectToCheckout({ sessionId });
