@@ -32,6 +32,7 @@ const listEventsActive = /* GraphQL */ `
         cancelled
         isLive
         active
+        multipleSections
         type {
           id
           name
@@ -122,6 +123,7 @@ const listEventsActiveLite = /* GraphQL */ `
         active
         createdAt
         updatedAt
+        multipleSections
         type {
           id
           name

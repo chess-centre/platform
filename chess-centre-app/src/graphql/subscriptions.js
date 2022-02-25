@@ -357,6 +357,7 @@ export const onCreateGame = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -481,6 +482,7 @@ export const onCreateGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -661,6 +663,7 @@ export const onCreateGame = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -785,6 +788,7 @@ export const onCreateGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -811,6 +815,7 @@ export const onCreateGame = /* GraphQL */ `
         isLive
         isLiveUrl
         active
+        multipleSections
         _version
         _deleted
         _lastChangedAt
@@ -947,6 +952,7 @@ export const onCreateGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -1037,6 +1043,7 @@ export const onCreateGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -1248,6 +1255,7 @@ export const onUpdateGame = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -1372,6 +1380,7 @@ export const onUpdateGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -1552,6 +1561,7 @@ export const onUpdateGame = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -1676,6 +1686,7 @@ export const onUpdateGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -1702,6 +1713,7 @@ export const onUpdateGame = /* GraphQL */ `
         isLive
         isLiveUrl
         active
+        multipleSections
         _version
         _deleted
         _lastChangedAt
@@ -1838,6 +1850,7 @@ export const onUpdateGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -1928,6 +1941,7 @@ export const onUpdateGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -2139,6 +2153,7 @@ export const onDeleteGame = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -2263,6 +2278,7 @@ export const onDeleteGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -2443,6 +2459,7 @@ export const onDeleteGame = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -2567,6 +2584,7 @@ export const onDeleteGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -2593,6 +2611,7 @@ export const onDeleteGame = /* GraphQL */ `
         isLive
         isLiveUrl
         active
+        multipleSections
         _version
         _deleted
         _lastChangedAt
@@ -2729,6 +2748,7 @@ export const onDeleteGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -2819,6 +2839,7 @@ export const onDeleteGame = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -3100,6 +3121,7 @@ export const onCreateMember = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -3266,6 +3288,7 @@ export const onCreateMember = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -3330,6 +3353,7 @@ export const onCreateMember = /* GraphQL */ `
           isLive
           isLiveUrl
           active
+          multipleSections
           _version
           _deleted
           _lastChangedAt
@@ -3531,6 +3555,7 @@ export const onCreateMember = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -3728,6 +3753,7 @@ export const onUpdateMember = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -3894,6 +3920,7 @@ export const onUpdateMember = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -3958,6 +3985,7 @@ export const onUpdateMember = /* GraphQL */ `
           isLive
           isLiveUrl
           active
+          multipleSections
           _version
           _deleted
           _lastChangedAt
@@ -4159,6 +4187,7 @@ export const onUpdateMember = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -4356,6 +4385,7 @@ export const onDeleteMember = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -4522,6 +4552,7 @@ export const onDeleteMember = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -4586,6 +4617,7 @@ export const onDeleteMember = /* GraphQL */ `
           isLive
           isLiveUrl
           active
+          multipleSections
           _version
           _deleted
           _lastChangedAt
@@ -4787,6 +4819,7 @@ export const onDeleteMember = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -4848,6 +4881,7 @@ export const onCreateEvent = /* GraphQL */ `
       isLive
       isLiveUrl
       active
+      multipleSections
       _version
       _deleted
       _lastChangedAt
@@ -5036,6 +5070,7 @@ export const onCreateEvent = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -5183,6 +5218,7 @@ export const onCreateEvent = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -5244,6 +5280,7 @@ export const onUpdateEvent = /* GraphQL */ `
       isLive
       isLiveUrl
       active
+      multipleSections
       _version
       _deleted
       _lastChangedAt
@@ -5432,6 +5469,7 @@ export const onUpdateEvent = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -5579,6 +5617,7 @@ export const onUpdateEvent = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -5640,6 +5679,7 @@ export const onDeleteEvent = /* GraphQL */ `
       isLive
       isLiveUrl
       active
+      multipleSections
       _version
       _deleted
       _lastChangedAt
@@ -5828,6 +5868,7 @@ export const onDeleteEvent = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -5975,6 +6016,7 @@ export const onDeleteEvent = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -6201,6 +6243,7 @@ export const onCreateEntry = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -6325,6 +6368,7 @@ export const onCreateEntry = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -6351,6 +6395,7 @@ export const onCreateEntry = /* GraphQL */ `
         isLive
         isLiveUrl
         active
+        multipleSections
         _version
         _deleted
         _lastChangedAt
@@ -6487,6 +6532,7 @@ export const onCreateEntry = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -6577,6 +6623,7 @@ export const onCreateEntry = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -6773,6 +6820,7 @@ export const onUpdateEntry = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -6897,6 +6945,7 @@ export const onUpdateEntry = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -6923,6 +6972,7 @@ export const onUpdateEntry = /* GraphQL */ `
         isLive
         isLiveUrl
         active
+        multipleSections
         _version
         _deleted
         _lastChangedAt
@@ -7059,6 +7109,7 @@ export const onUpdateEntry = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -7149,6 +7200,7 @@ export const onUpdateEntry = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -7345,6 +7397,7 @@ export const onDeleteEntry = /* GraphQL */ `
             isLive
             isLiveUrl
             active
+            multipleSections
             _version
             _deleted
             _lastChangedAt
@@ -7469,6 +7522,7 @@ export const onDeleteEntry = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -7495,6 +7549,7 @@ export const onDeleteEntry = /* GraphQL */ `
         isLive
         isLiveUrl
         active
+        multipleSections
         _version
         _deleted
         _lastChangedAt
@@ -7631,6 +7686,7 @@ export const onDeleteEntry = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt
@@ -7721,6 +7777,7 @@ export const onDeleteEntry = /* GraphQL */ `
               isLive
               isLiveUrl
               active
+              multipleSections
               _version
               _deleted
               _lastChangedAt

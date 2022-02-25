@@ -82,6 +82,7 @@ export function EventCard(props) {
     allowedToRegister,
     full,
     isLive,
+    multipleSections,
     registered,
     maxEntries,
     entryCount,
@@ -94,7 +95,7 @@ export function EventCard(props) {
 
   return (
     <section
-      key={id}
+      key={eventId}
       className="relative sm:mr-3 mb-3 rounded-lg border shadow-2xl"
     >
       <div
@@ -146,7 +147,7 @@ export function EventCard(props) {
             <div className="flex-initial flex-nowrap">
               <div className="text-right">
                 {allowedToRegister ? (
-                  <Register id={id} register={register} />
+                  <Register id={id} register={register} multipleSections={multipleSections} />
                 ) : (
                   <>
                     <p className="text-sm text-gray-700 mr-2">

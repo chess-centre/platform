@@ -585,6 +585,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "multipleSections": {
+                    "name": "multipleSections",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "results": {
                     "name": "results",
                     "isArray": true,
@@ -1255,5 +1262,5 @@ export const schema = {
             }
         }
     },
-    "version": "31015a762b3f792a1a3e5283f448aebe"
+    "version": "ccf5088209ca4eeee9f80e0eec342931"
 };

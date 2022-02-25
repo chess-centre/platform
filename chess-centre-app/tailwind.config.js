@@ -58,7 +58,16 @@ module.exports = windmill({
         // BRAND COLORS:
         orange: {
           brand: "#f0802b",
-          ...colors.orange
+          '50': '#fff8f1',
+          '100': '#feecdc',
+          '200': '#fcd9bd',
+          '300': '#fdba8c',
+          '400': '#ff8a4c',
+          '500': '#ff5a1f',
+          '600': '#d03801',
+          '700': '#b43403',
+          '800': '#8a2c0d',
+          '900': '#771d1d',
         },
         teal: {
           brand: "#5499ab",
@@ -75,7 +84,16 @@ module.exports = windmill({
         },
         blue: {
           brand: "#2b374b",
-          ...colors.blue
+          '50': '#ebf5ff',
+          '100': '#e1effe',
+          '200': '#c3ddfd',
+          '300': '#a4cafe',
+          '400': '#76a9fa',
+          '500': '#3f83f8',
+          '600': '#1c64f2',
+          '700': '#1a56db',
+          '800': '#1e429f',
+          '900': '#233876',
         }
       },
       spacing: {

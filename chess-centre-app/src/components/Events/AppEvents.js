@@ -42,8 +42,7 @@ const listEventsActive = /* GraphQL */ `
         cancelled
         isLive
         active
-        createdAt
-        updatedAt
+        multipleSections
         type {
           id
           name
@@ -67,12 +66,9 @@ const listEventsActive = /* GraphQL */ `
             updatedAt
             member {
               id
-              about
               fideId
               ecfId
-              username
               name
-              email
               ecfRating
               ecfRapid
               ecfMembership
@@ -80,31 +76,6 @@ const listEventsActive = /* GraphQL */ `
               club
               gender
               membershipType
-              gameInfo
-              ratingInfo
-              liChessUsername
-              liChessInfo
-              chesscomUsername
-              chesscomInfo
-              createdAt
-              updatedAt
-            }
-            event {
-              id
-              name
-              description
-              rounds
-              time
-              startDate
-              endDate
-              maxEntries
-              entryCount
-              complete
-              cancelled
-              isLive
-              active
-              createdAt
-              updatedAt
             }
           }
         }
@@ -177,15 +148,16 @@ export default function AppEvents() {
     });
   };
 
-  const register = async (eventId) => {
+  const register = async (eventId, confirmSection) => {
     try {
       const redirectTo = `${window.location.origin}/app/events`;
+      const selectedSection = section ? section : confirmSection ? confirmSection : null;
       const { sessionId } = await API.post("public", "/event/register", {
         body: {
           eventId,
           successUrl: redirectTo,
           cancelUrl: redirectTo,
-          section: section ? section : null,
+          section: selectedSection,
           byes: byes ? byes : null
         },
       });
@@ -241,7 +213,7 @@ export default function AppEvents() {
             data &&
             data.map(event => {
               return (
-                <EventCard {...{ ...event, eventId, register, showModal, setIsSlideOutOpen }} />
+                <EventCard key={event.id} {...{ ...event, eventId, register, showModal, setIsSlideOutOpen }} />
               );
             }
             )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { bgColor700 } from "tailwind-dynamic-classes";
 import { classNames } from "../../utils/Classes";
@@ -14,10 +14,8 @@ const EventHeader = ({ type, icon, name, description }) => {
         return "text-blue-500";
       case "blitz":
         return "text-yellow-400";
-      case "igs-junior": 
+      case "junior": 
         return "text-pink-500";
-      case "festival": 
-        return "text-blue-500";
       default:
         return "text-yellow-500";
     }
@@ -60,7 +58,11 @@ const EventPrice = ({ isLive, isFull, defaultPrice }) => {
   );
 };
 
-const RegisterButton = ({ id, isLive, isFull }) => {
+const RegisterButton = ({ id, isLive, isFull, showSections }) => {
+
+  const [section, setSection] = useState("open");
+  const registerUrl = `/register?eventId=${id}${showSections ? "&section=" + section : ""}`
+
   return (
     <>
       {isLive && (
@@ -90,12 +92,36 @@ const RegisterButton = ({ id, isLive, isFull }) => {
         </button>
       )}
       {!isLive && !isFull && (
+        <>
+        <div>
+        {
+            showSections &&
+            <div className="my-4">
+              <label htmlFor="section" className="block text-xs text-gray-500 text-center">
+                Select your section
+              </label>
+              <select
+                onChange={e => setSection(e.target.value.toLocaleLowerCase())}
+                id="section"
+                name="section"
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
+                defaultValue="Open"
+              >
+                <option>Open</option>
+                <option>Major</option>
+                <option>Intermediate</option>
+                <option>Minor</option>
+              </select>
+            </div>
+          }
+        </div>
         <Link
-          to={`/register?eventId=${id}`}
+          to={registerUrl}
           className="mt-6 block w-full bg-gray-800 border border-gray-800 rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-gray-900"
         >
           <span>Register Now</span>
         </Link>
+        </>
       )}
     </>
   );
@@ -113,9 +139,8 @@ export default function EventCard({
   url,
   isLive,
   isFull,
+  multipleSections
 }) {
-
-  console.log("color", bgColor700[color]);
 
   return (
     <div
@@ -139,7 +164,7 @@ export default function EventCard({
           isFull={isFull}
           isLive={isLive}
         />
-        <RegisterButton id={id} isFull={isFull} isLive={isLive} />
+        <RegisterButton id={id} isFull={isFull} isLive={isLive} showSections={multipleSections} />
       </div>
       <div className="pt-6 pb-8 px-6">
         <h3 className="text-xs font-medium text-teal-700 tracking-wide uppercase">
