@@ -129,7 +129,7 @@ export default function JuniorCustomEvent() {
                         <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">
                             The Chess Centre brings to you our <span className="font-semibold">1st Junior Congress</span> held at the Ilkley Grammar School.
                         </p>
-
+                        <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">This event is open to all juniors under the age of 18 as at 1st September 2022.</p>
                         <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                             <h3>Sections</h3>
                             <ul>
@@ -138,6 +138,7 @@ export default function JuniorCustomEvent() {
                                 <li>Intermediate (1200 and below)</li>
                                 <li>Minor (1000 and below)</li>
                             </ul>
+                            <p className="italic">Players with fewer than 15 competitive games may enter any section, irrespect of rating.</p>
                         </p>
                     </div>
                     {!isLoading && entryCount && entryCount > 0 && (

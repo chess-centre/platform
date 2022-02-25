@@ -197,6 +197,7 @@ export default function Events() {
                           entryCount,
                           isLive,
                           isFull,
+                          multipleSections
                         },
                         key
                       ) => {
@@ -214,6 +215,7 @@ export default function Events() {
                               description={description}
                               isLive={isLive}
                               isFull={isFull}
+                              multipleSections={multipleSections}
                               details={[
                                 {
                                   icon: "fad fa-calendar-alt",

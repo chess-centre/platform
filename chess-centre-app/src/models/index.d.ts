@@ -83,6 +83,7 @@ export declare class Event {
   readonly isLive?: boolean;
   readonly isLiveUrl?: string;
   readonly active?: string;
+  readonly multipleSections?: boolean;
   readonly results?: (Result | null)[];
   constructor(init: ModelInit<Event>);
   static copyOf(source: Event, mutator: (draft: MutableModel<Event>) => MutableModel<Event> | void): Event;
