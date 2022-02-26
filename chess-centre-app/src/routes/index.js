@@ -26,7 +26,7 @@ const routes = [
   },
   // {
   //   path: "/register/festival",
-  //   component: lazy(() => import("../pages/Auth/FestivalRegister")),
+  //   component: lazy(() => import("../pages/Auth/FestivalEntry/FestivalRegister")),
   //   exact: true,
   //   isPrivate: false,
   // },
@@ -63,6 +63,11 @@ const routes = [
     isPrivate: false
   },
   {
+    path: "/events/igs-junior/:id",
+    component: lazy(() => import("../pages/Events/JuniorCustom")),
+    isPrivate: false
+  },
+  {
     path: "/events/congress/:id",
     component: lazy(() => import("../pages/Events/Congress")),
     isPrivate: false
@@ -82,6 +87,12 @@ const routes = [
     component: lazy(() => import("../pages/Events/Blitz")),
     isPrivate: false
   },
+  // {
+  //   path: "/festival",
+  //   component: lazy(() => import("../pages/Home/Festival")),
+  //   exact: true,
+  //   isPrivate: false,
+  // },
   {
     path: "/events",
     component: lazy(() => import("../pages/Home/Events")),
@@ -97,11 +108,6 @@ const routes = [
     component: lazy(() => import("../pages/Home/MoreInfo")),
     isPrivate: false,
   },
-  // {
-  //   path: "/festival",
-  //   component: lazy(() => import("../pages/Home/Festival")),
-  //   isPrivate: false,
-  // },
   {
     path: "/faqs",
     component: lazy(() => import("../pages/Home/FAQs")),

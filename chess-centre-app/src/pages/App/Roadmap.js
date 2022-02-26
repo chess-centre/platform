@@ -4,12 +4,75 @@ import { TechRoadmap } from "../../components/Roadmap/TechRoadmap";
 
 export default function AppRoadmap() {
 
+  const brandColors = [
+    "bg-blue-50",
+    "bg-blue-100",
+    "bg-blue-200",
+    "bg-blue-300",
+    "bg-blue-400",
+    "bg-blue-500",
+    "bg-blue-600",
+    "bg-blue-700",
+    "bg-blue-800",
+    "bg-blue-900",
+    "bg-teal-50",
+    "bg-teal-100",
+    "bg-teal-200",
+    "bg-teal-300",
+    "bg-teal-400",
+    "bg-teal-500",
+    "bg-teal-600",
+    "bg-teal-700",
+    "bg-teal-800",
+    "bg-teal-900",
+    "bg-orange-50",
+    "bg-orange-100",
+    "bg-orange-200",
+    "bg-orange-300",
+    "bg-orange-400",
+    "bg-orange-500",
+    "bg-orange-600",
+    "bg-orange-700",
+    "bg-orange-800",
+    "bg-orange-900",
+    "border-blue-50",
+    "border-blue-100",
+    "border-blue-200",
+    "border-blue-300",
+    "border-blue-400",
+    "border-blue-500",
+    "border-blue-600",
+    "border-blue-700",
+    "border-blue-800",
+    "border-blue-900",
+    "border-teal-50",
+    "border-teal-100",
+    "border-teal-200",
+    "border-teal-300",
+    "border-teal-400",
+    "border-teal-500",
+    "border-teal-600",
+    "border-teal-700",
+    "border-teal-800",
+    "border-teal-900",
+    "border-orange-50",
+    "border-orange-100",
+    "border-orange-200",
+    "border-orange-300",
+    "border-orange-400",
+    "border-orange-500",
+    "border-orange-600",
+    "border-orange-700",
+    "border-orange-800",
+    "border-orange-900"
+  ];
+
   useEffect(() => {
     document.title = "The Chess Centre | Roadmap";
   }, []);
 
   return (
-    <div className="">
+    <div>
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <span className="text-teal-600"><i className="fad fa-road"></i></span> Roadmap
       </h1>
@@ -24,29 +87,32 @@ export default function AppRoadmap() {
         </div>
       </div>
       <div className="bg-white sm:mt-6 max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 rounded-lg shadow-xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 mt-10 py-6 sm:py-10">
-            <div>
-              <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
-                The Centre
-              </h2>
-              <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">
-                Things we are working on in the centre to make your experience
-                as fantasic as possible.
-              </p>
-              <CentreRoadmap />
-            </div>
-            <div>
-              <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
-                The Platform
-              </h2>
-              <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">
-                Our technical road map, how we're improving the online
-                experience for all our members.
-              </p>
-              <TechRoadmap />
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 mt-10 py-6 sm:py-10">
+          <div>
+            <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
+              The Centre
+            </h2>
+            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">
+              Things we are working on in the centre to make your experience
+              as fantasic as possible.
+            </p>
+            <CentreRoadmap />
+          </div>
+          <div>
+            <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
+              The Platform
+            </h2>
+            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">
+              Our technical road map, how we're improving the online
+              experience for all our members.
+            </p>
+            <TechRoadmap />
           </div>
         </div>
+      </div>
+      <div>
+        {brandColors.map(c => <span className={c}></span>)}
+      </div>
     </div>
   );
 };

@@ -585,6 +585,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "multipleSections": {
+                    "name": "multipleSections",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "results": {
                     "name": "results",
                     "isArray": true,
@@ -781,6 +788,20 @@ export const schema = {
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "section": {
+                    "name": "section",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "byes": {
+                    "name": "byes",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "event": {
@@ -1241,5 +1262,5 @@ export const schema = {
             }
         }
     },
-    "version": "bd1d495723e56b54363005eaca19aaa1"
+    "version": "ccf5088209ca4eeee9f80e0eec342931"
 };

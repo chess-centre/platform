@@ -42,6 +42,7 @@
     "react-transition-group": "^4.4.1",
     "swiper": "^6.8.4",
     "table": "^6.7.5",
+    "tailwind-dynamic-classes": "^1.0.3",
     "uuid": "^8.3.2"
   },
   "scripts": {

@@ -58,7 +58,7 @@ const theme = {
   // Modal
   modal: {
     base:
-      "w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl",
+      "w-full md:w-2/3 px-2 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl",
   },
   // ModalBody
   modalBody: {
@@ -67,7 +67,7 @@ const theme = {
   // ModalFooter
   modalFooter: {
     base:
-      "flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800",
+      "flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-100 dark:bg-gray-800",
   },
   // ModalHeader
   modalHeader: {

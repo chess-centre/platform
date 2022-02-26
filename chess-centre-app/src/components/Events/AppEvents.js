@@ -42,8 +42,7 @@ const listEventsActive = /* GraphQL */ `
         cancelled
         isLive
         active
-        createdAt
-        updatedAt
+        multipleSections
         type {
           id
           name
@@ -63,16 +62,15 @@ const listEventsActive = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             createdAt
             updatedAt
             member {
               id
-              about
               fideId
               ecfId
-              username
               name
-              email
               ecfRating
               ecfRapid
               ecfMembership
@@ -80,31 +78,6 @@ const listEventsActive = /* GraphQL */ `
               club
               gender
               membershipType
-              gameInfo
-              ratingInfo
-              liChessUsername
-              liChessInfo
-              chesscomUsername
-              chesscomInfo
-              createdAt
-              updatedAt
-            }
-            event {
-              id
-              name
-              description
-              rounds
-              time
-              startDate
-              endDate
-              maxEntries
-              entryCount
-              complete
-              cancelled
-              isLive
-              active
-              createdAt
-              updatedAt
             }
           }
         }
@@ -154,7 +127,7 @@ function useEvents() {
 export default function AppEvents() {
   const { user } = useAuthState();
   const { search } = useLocation();
-  const { eventId, session_id, event_payment_success, show_info } = queryString.parse(
+  const { eventId, session_id, event_payment_success, show_info, section, byes } = queryString.parse(
     search
   );
   const stripe = useStripe();
@@ -177,14 +150,17 @@ export default function AppEvents() {
     });
   };
 
-  const register = async (eventId) => {
+  const register = async (eventId, confirmSection) => {
     try {
       const redirectTo = `${window.location.origin}/app/events`;
+      const selectedSection = section ? section : confirmSection ? confirmSection : null;
       const { sessionId } = await API.post("public", "/event/register", {
         body: {
           eventId,
           successUrl: redirectTo,
           cancelUrl: redirectTo,
+          section: selectedSection,
+          byes: byes ? byes : null
         },
       });
       await stripe.redirectToCheckout({ sessionId });
@@ -210,7 +186,7 @@ export default function AppEvents() {
 
   useEffect(() => {
     if (eventId /* user has logged in via register button */) {
-      register(eventId);
+      register(eventId, section);
     }
     if (
       event_payment_success &&
@@ -239,7 +215,7 @@ export default function AppEvents() {
             data &&
             data.map(event => {
               return (
-                <EventCard {...{ ...event, eventId, register, showModal, setIsSlideOutOpen }} />
+                <EventCard key={event.id} {...{ ...event, eventId, register, showModal, setIsSlideOutOpen }} />
               );
             }
             )}
@@ -248,8 +224,8 @@ export default function AppEvents() {
 
           {isLoading && (
             <>
-              {[...new Array(9)].map((_, key) => (
-                <SkelectonAppEventCard key={key} />
+              {[...new Array(9).keys()].map((k) => (
+                <SkelectonAppEventCard key={k} />
               ))}
             </>
           )}

@@ -125,12 +125,10 @@ function Register(props) {
         );
         if (response) {
           setIsSpecialLoading(true);
-          setTimeout(() => {
-            props.history.push(
-              `/register/confirm/${email}${props.location.search}`
-            );
-            setIsSpecialLoading(false);
-          }, 0);
+          props.history.push(
+            `/register/confirm/${email}${props.location.search}`
+          );
+
         } // if there's no response, the action dispatched a contextual error already
       } catch (error) {
         dispatch({ type: "LOGIN_ERROR", error });
@@ -178,7 +176,7 @@ function Register(props) {
                 Register
               </h1>
               <div className="mb-4 text-right text-xs font-semibold text-gray-700 dark:text-gray-200">
-                Signing up a junior member?{" "}
+                Creating a junior account?{" "}
                 <span
                   className="text-teal-600 dark:text-teal-400 hover:underline cursor-pointer"
                   onClick={openModal}

@@ -88,6 +88,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "eventRegisterFestival",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     },
@@ -354,6 +362,11 @@
       "service": "Lambda"
     },
     "searchECFPlayer": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "eventRegisterFestival": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

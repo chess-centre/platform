@@ -1,6 +1,7 @@
 import { Link, useHistory } from "react-router-dom";
+import { bgColor700 } from "tailwind-dynamic-classes";
 import { getDay, getMonth, getDayStr } from "../../../utils/DateFormating";
-import { classNames, bgColor700 } from "../../../utils/Classes";
+import { classNames } from "../../../utils/Classes";
 
 export function ListCard({ event }) {
   const history = useHistory();
@@ -52,7 +53,7 @@ export function ListCard({ event }) {
 
           <div
             className={classNames(
-              bgColor700(event.color),
+              bgColor700[event.color],
               "absolute bottom-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-b-lg"
             )}
           ></div>
@@ -91,7 +92,7 @@ export function ListCard({ event }) {
         </div>
         <div
           className={classNames(
-            bgColor700(event.color),
+            bgColor700[event.color],
             "absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"
           )}
         ></div>

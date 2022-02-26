@@ -17,6 +17,7 @@ const sendMembershipEmailInternal = require("./sendEmail").sendMembershipEmailIn
 const sendMembershipEmailToMember = require("./sendEmail").sendMembershipEmailToMember;
 const sendRegisteredEventEmailToMember = require("./sendEmail").sendRegisteredEventEmailToMember;
 const sendRegisteredEventEmailInternal = require("./sendEmail").sendRegisteredEventEmailInternal;
+const sendRegisteredEventEmailToMemberJuniorCustom = require("./sendEmail").sendRegisteredEventEmailToMemberJuniorCustom;
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const region = process.env.REGION;
@@ -216,16 +217,16 @@ async function handleCheckoutSessionCompletedSubscription(id, customer, price, s
 }
 
 async function handleCheckoutSessionCompletedPayment(id) {
-  const [memberId, eventId] = id.split("#");
+  const [memberId, eventId, section, byes] = id.split("#");
   
-  console.log("memberId", memberId, "eventId", eventId);
+  console.log("memberId", memberId, "eventId", eventId, "section", section, "byes", byes);
 
   const {
     data: {
       getEvent: {
         startDate,
         arrivalTime,
-        type: { name: eventName, eventType },
+        type: { name: eventName, eventType, url: landingPageUrl },
         entries: { items: entries },
         _version,
       },
@@ -241,10 +242,12 @@ async function handleCheckoutSessionCompletedPayment(id) {
     mutation createEntry(
       $eventId: ID!
       $memberId: ID!
+      $section: String,
+      $byes: String,
       $entryCount: Int!
       $_version: Int!
     ) {
-      createEntry(input: { eventId: $eventId, memberId: $memberId }) {
+      createEntry(input: { eventId: $eventId, memberId: $memberId, section: $section, byes: $byes }) {
         id
       }
       updateEvent(
@@ -258,6 +261,8 @@ async function handleCheckoutSessionCompletedPayment(id) {
   const data = await executeGraphql(createEntry, {
     eventId,
     memberId,
+    section,
+    byes,
     entryCount,
     _version,
   });
@@ -271,10 +276,20 @@ async function handleCheckoutSessionCompletedPayment(id) {
     eventName,
     startDate,
     eventType,
-    entries
+    entries,
+    section,
+    byes,
+    landingPageUrl
   };
 
-  await sendRegisteredEventEmailToMember(params).catch(err => console.log("sendRegisteredEventEmailToMember", err));
+  // TODO: As "eventType" is not a reliable means to idenify this bespoke event. Refactor required to support multiple location types.
+  if(eventName.includes("IGS Junior")) {
+    await sendRegisteredEventEmailToMemberJuniorCustom(params).catch(err => console.log("sendRegisteredEventEmailToMember", err));
+  } else {
+    await sendRegisteredEventEmailToMember(params).catch(err => console.log("sendRegisteredEventEmailToMember", err));
+  }
+
+  
   await sendRegisteredEventEmailInternal(params).catch(err => console.log("sendRegisteredEventEmailInternal", err));
 }
 

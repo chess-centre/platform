@@ -1,8 +1,9 @@
 import { useHistory, Link } from "react-router-dom";
+import { bgColor700 } from "tailwind-dynamic-classes";
 import {
   prettyDate,
 } from "../../../utils/DateFormating";
-import { classNames, bgColor700 } from "../../../utils/Classes";
+import { classNames } from "../../../utils/Classes";
 
 
 export function GridCard({ event }) {
@@ -26,7 +27,7 @@ export function GridCard({ event }) {
     >
       <div
         className={classNames(
-          bgColor700(event.color),
+          bgColor700[event.color],
           "absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
         )}
       ></div>

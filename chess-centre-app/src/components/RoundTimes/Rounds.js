@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { rounds } from "../../api/data.roundTimes";
 
 export default function Rounds(props) {
-  const { eventId, eventType, removeStyles, isFull, isLive } = props;
+  const { eventId, eventType, removeStyles, isFull, isLive, showSections } = props;
   const event = rounds.find(({ type }) => type === eventType);
+  const [section, setSection] = useState("open");
+
+  const registerUrl = `/register?eventId=${eventId}${showSections ? "&section=" + section : ""}`
 
   return (
     <div
@@ -61,6 +64,28 @@ export default function Rounds(props) {
               )}
             </tbody>
           </table>
+
+          {
+            showSections &&
+            <div className="my-4">
+              <label htmlFor="section" className="block text-sm font-medium text-gray-700 text-center">
+                Select your section
+              </label>
+              <select
+                onChange={e => setSection(e.target.value.toLocaleLowerCase())}
+                id="section"
+                name="section"
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
+                defaultValue="Open"
+              >
+                <option>Open</option>
+                <option>Major</option>
+                <option>Intermediate</option>
+                <option>Minor</option>
+              </select>
+            </div>
+          }
+
           {isFull && (
             <div className="text-sm text-gray-400 text-center bg-gray-100 py-2 rounded-lg">
               Event Full
@@ -78,7 +103,7 @@ export default function Rounds(props) {
               {!isFull && !isLive && (
                 <div className="rounded-md shadow mx-auto w-full">
                   <Link
-                    to={`/register?eventId=${eventId}`}
+                    to={registerUrl}
                     className="w-full flex items-center justify-center px-12 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700"
                   >
                     Register

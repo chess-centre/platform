@@ -258,5 +258,46 @@ export const rounds = [
         time: "15:00 - 19:00",
       }
     ]
-  }
+  },
+  {
+    type: "junior",
+    eventStart: "9:30",
+    eventEnd: "16:00",
+    rounds: [
+      {
+        round: 1,
+        day: "Saturday",
+        time: "10:00 - 10:50",
+      },
+      {
+        round: 2,
+        day: "Saturday",
+        time: "11:00 - 11:50",
+      },
+      {
+        round: 3,
+        day: "Saturday",
+        time: "12:00 - 12:50",
+      },
+      {
+        round: 4,
+        day: "Saturday",
+        time: "13:00 - 13:50",
+      },
+      {
+        round: 5,
+        day: "Saturday",
+        time: "14:00 - 14:50",
+      },
+      {
+        round: 6,
+        day: "Saturday",
+        time: "15:00 - 15:50",
+      },
+    ],
+    prizeGiving: {
+      time: "16:00",
+      day: "Saturday",
+    },
+  },
 ];

@@ -127,6 +127,7 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   isLive: Boolean
   isLiveUrl: String
   active: String
+  multipleSections: Boolean
   results: [Result] @connection(keyName: "byEvent", fields: ["id"])
 }
 
@@ -134,6 +135,8 @@ type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   id: ID!
   eventId: ID!
   memberId: ID!
+  section: String,
+  byes: String,
   event: Event @connection(fields: ["eventId"])
   member: Member @connection(fields: ["memberId"])
 }

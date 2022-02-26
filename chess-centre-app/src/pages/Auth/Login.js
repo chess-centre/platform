@@ -35,7 +35,11 @@ function Login(props) {
       if (parsed.plan) {
         await subscribe(dispatch, parsed.plan, stripe);
       } else if (parsed.eventId) {
-        props.history.push(`/app/events?eventId=${parsed.eventId}`);
+        let section = "";
+        if (parsed.section && parsed.section !== "undefined") {
+          section = `&section=${parsed.section}`;
+        }
+        props.history.push(`/app/events?eventId=${parsed.eventId}${section}`);
       } else {
         if (props.history?.location?.state?.from) {
           const { pathname, search } = props.history.location.state.from;
