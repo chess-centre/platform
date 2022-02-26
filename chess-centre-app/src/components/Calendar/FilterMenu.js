@@ -36,7 +36,7 @@ export default function FilterMenu(props) {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button
-            className={classNames(someSelected ? 'text-teal-600 bg-gray-50' : 'text-gray-500 bg-white hover:bg-gray-50', `ml-2 relative inline-flex items-center px-2 py-2 shadow-md 
+            className={classNames(someSelected ? 'text-teal-600 bg-gray-100' : 'text-gray-500 bg-white hover:bg-gray-50', `ml-2 relative inline-flex items-center px-2 py-2 shadow-md 
                       rounded-md border border-gray-300 text-sm ring-teal-500
                        focus:z-10 focus:outline-none 
                       focus:ring-1 focus:ring-teal-500 focus:border-teal-500`)}

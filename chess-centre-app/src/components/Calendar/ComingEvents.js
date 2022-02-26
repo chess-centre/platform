@@ -4,8 +4,24 @@ import { ListCard } from "./shared/ListCard";
 import FilterMenu from "./FilterMenu";
 import ToggleView from "./ToggleView";
 import TabMonths from "./TabMonths";
+import moment from "moment";
 import { classNames } from "../../utils/Classes";
 import { useEventsLite } from "../../api/events";
+
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
 
 function GridCalendar({
   isLoading,
@@ -16,6 +32,7 @@ function GridCalendar({
   setSelectedMonth,
   filters,
   allDeselected,
+  isEndMonth
 }) {
   return (
     <div>
@@ -82,7 +99,7 @@ function GridCalendar({
                       {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                       {data.filter(
                         (data) => new Date(data.startDate).getMonth() === month
-                      ).length === 0 && <GridComingSoonCard />}
+                      ).length === 0 && (isEndMonth ? <GridComingSoonCard /> : <GridNoEventsRemaining month={monthNames[selected]} />) }
                     </div>
                   </div>
                 );
@@ -123,6 +140,7 @@ function ListCalendar({
   selected,
   filters,
   allDeselected,
+  isEndMonth
 }) {
   return (
     <>
@@ -146,7 +164,7 @@ function ListCalendar({
                 {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                 {data.filter(
                   (event) => new Date(event.startDate).getMonth() === selected
-                ).length === 0 && <ListComingSoonCard />}
+                  ).length === 0 && (isEndMonth ? <ListComingSoonCard /> : <ListNoEventsRemaining month={monthNames[selected]} />) }
               </ul>
             </>
           )}
@@ -182,7 +200,7 @@ function ListCalendar({
 export default function Calendar() {
   const { isLoading, error, data } = useEventsLite();
   const defaultView = window.innerWidth > 600 ? "grid" : "list";
-  const [calenderView, setCalenderView] = useState(defaultView);
+  const [calendarView, setCalendarView] = useState(defaultView);
   const [selectedMenuFilter, setSelectedMenuFilter] = useState(false);
   const [allDeselected, setAllDeselected] = useState(false);
   const [filters, setFilters] = useState({});
@@ -190,11 +208,12 @@ export default function Calendar() {
   const currentMonth = today.getMonth();
   const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
   const nextNextMonth = nextMonth + 1;
+  const endMonth = nextNextMonth;
   const months = [currentMonth, nextMonth, nextNextMonth];
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
 
   const handleViewSwitch = (view) => {
-    setCalenderView(view);
+    setCalendarView(view);
   };
 
   useMemo(() => {
@@ -224,7 +243,7 @@ export default function Calendar() {
                 </span>{" "}
                 Coming up next
               </div>
-              {calenderView === "list" && (
+              {calendarView === "list" && (
                 <div className="absolute sm:left-28 ml-1 z-0 top-16 sm:top-14 inline-flex m-auto">
                   <TabMonths
                     {...{
@@ -239,7 +258,7 @@ export default function Calendar() {
                 <span className="relative z-10 inline-flex">
                   <ToggleView
                     {...{
-                      calenderView,
+                      calendarView,
                       handleViewSwitch,
                     }}
                   />
@@ -256,10 +275,11 @@ export default function Calendar() {
               </div>
             </div>
           </div>
-          {calenderView === "grid" ? (
+          {calendarView === "grid" ? (
             <GridCalendar
               filtersSelected={selectedMenuFilter}
               selected={selectedMonth}
+              isEndMonth={endMonth === selectedMonth}
               {...{
                 filters,
                 isLoading,
@@ -274,6 +294,7 @@ export default function Calendar() {
             <ListCalendar
               filtersSelected={selectedMenuFilter}
               selected={selectedMonth}
+              isEndMonth={endMonth === selectedMonth}
               {...{
                 filters,
                 isLoading,
@@ -309,6 +330,22 @@ function ListComingSoonCard() {
   );
 }
 
+function ListNoEventsRemaining({ month }) {
+  return (
+    <li className=" col-span-1 flex mb-3 sm:ml-28 px-1">
+      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+        <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate rounded-l-lg">
+          <h3 className="font-red-hat-display text-xl mb-1 text-gray-500">Events Complete</h3>
+          <p className="text-teal-500 text-sm mb-1">
+            All events for {month ? month : "this month"} are now finished. <span className="font-semibold">Try next months...{" "}</span>
+          </p>
+        </div>
+        <div className="bg-gray-300 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
+      </div>
+    </li>
+  );
+}
+
 function GridComingSoonCard() {
   return (
     <li
@@ -330,6 +367,38 @@ function GridComingSoonCard() {
         <div></div>
         <p className="text-gray-900 font-thin text-base text-center">
           Our latest events will be published here soon. Watch this space.
+        </p>
+      </div>
+      <div
+        className={
+          "absolute bottom-0 bg-gray-100 inset-x-0 px-4 py-1 sm:px-6 border-b text-xs rounded-b-xl"
+        }
+      ></div>
+    </li>
+  );
+}
+
+function GridNoEventsRemaining({ month }) {
+  return (
+    <li
+      className={
+        "relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
+      }
+    >
+      <div
+        className={
+          "bg-gray-300 absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
+        }
+      ></div>
+      <header>
+        <h3 className="h4 font-red-hat-display mb-1 text-center text-gray-500">
+         Events Complete
+        </h3>
+      </header>
+      <div className="text-gray-600 flex-grow mb-5">
+        <div></div>
+        <p className="text-teal-500 text-md text-center">
+          All events for {month ? month : "this month"} are now finished. <span className="font-semibold">Try next months...{" "}</span>
         </p>
       </div>
       <div
