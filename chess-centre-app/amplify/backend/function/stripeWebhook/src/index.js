@@ -226,7 +226,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
       getEvent: {
         startDate,
         arrivalTime,
-        type: { name: eventName, eventType, url: landingPageUrl },
+        type: { name: eventName, eventType },
         entries: { items: entries },
         _version,
       },
@@ -278,9 +278,10 @@ async function handleCheckoutSessionCompletedPayment(id) {
     eventType,
     entries,
     section,
-    byes,
-    landingPageUrl
+    byes
   };
+
+  console.log("Params", params);
 
   // TODO: As "eventType" is not a reliable means to idenify this bespoke event. Refactor required to support multiple location types.
   if(eventName.includes("IGS Junior")) {
