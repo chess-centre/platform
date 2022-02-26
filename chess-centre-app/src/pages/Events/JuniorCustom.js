@@ -127,18 +127,18 @@ export default function JuniorCustomEvent() {
                     </div>
                     <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
                         <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">
-                            The Chess Centre brings to you our <span className="font-semibold">1st Junior Congress</span> held at the Ilkley Grammar School.
+                            The Chess Centre brings to you our <span className="font-semibold">1st Junior Rapidplay</span> held at the Ilkley Grammar School.
                         </p>
-                        <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">This event is open to all juniors under the age of 18 as at 1st September 2022.</p>
-                        <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+                        <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">This event is open to all juniors under the age of 18 as at 1st September 2021.</p>
+                        <p className="prose prose-teal text-teal-600 mx-auto lg:max-w-none text-justify">
                             <h3>Sections</h3>
                             <ul>
                                 <li>Open</li>
-                                <li>Major (1450 and below)</li>
-                                <li>Intermediate (1200 and below)</li>
-                                <li>Minor (1000 and below)</li>
+                                <li>Major <span className="text-xs text-gray-500">(1450 ECF and below)</span></li>
+                                <li>Intermediate <span className="text-xs text-gray-500">(1200 ECF and below)</span></li>
+                                <li>Minor <span className="text-xs text-gray-500">(1000 ECF and below)</span></li>
                             </ul>
-                            <p className="italic">Players with fewer than 15 competitive games may enter any section, irrespect of rating.</p>
+                            <p className="italic text-gray-500 text-xs">Players with fewer than 15 competitive games may enter any section, irrespective of rating.</p>
                         </p>
                     </div>
                     {!isLoading && entryCount && entryCount > 0 && (
@@ -197,7 +197,7 @@ export default function JuniorCustomEvent() {
                                 </div>
                             </div>
                             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify my-4">
-                                <p className="italic">Entries will close on the evening of <span className="font-semibold">Thursday 19th May</span></p>
+                                <p className="italic text-xs">Entries will close on the evening of <span className="font-semibold">Thursday 19th May</span></p>
                                 <h3>Address</h3>
                                 <p>Ilkley Grammar School, Armitage Hall, LS29 8TH</p>
                                 <p className="text-xs italic text-gray-500 -mt-10">Entrance via Springs Lane</p>
