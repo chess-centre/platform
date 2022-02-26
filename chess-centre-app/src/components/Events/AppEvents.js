@@ -186,7 +186,6 @@ export default function AppEvents() {
 
   useEffect(() => {
     if (eventId /* user has logged in via register button */) {
-      console.log("EventId", eventId, "Section", section);
       register(eventId, section);
     }
     if (

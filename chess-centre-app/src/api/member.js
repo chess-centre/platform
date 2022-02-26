@@ -47,7 +47,6 @@ export const useMember = () => {
 };
 
 export const getMemberBySub = async (id) => {
-  console.log('getMemberBySub', id);
   const {
     data: { getMember: member }
   } = await API.graphql({

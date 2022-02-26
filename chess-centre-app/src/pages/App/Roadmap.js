@@ -34,8 +34,38 @@ export default function AppRoadmap() {
     "bg-orange-600",
     "bg-orange-700",
     "bg-orange-800",
-    "bg-orange-900"
-  ]
+    "bg-orange-900",
+    "border-blue-50",
+    "border-blue-100",
+    "border-blue-200",
+    "border-blue-300",
+    "border-blue-400",
+    "border-blue-500",
+    "border-blue-600",
+    "border-blue-700",
+    "border-blue-800",
+    "border-blue-900",
+    "border-teal-50",
+    "border-teal-100",
+    "border-teal-200",
+    "border-teal-300",
+    "border-teal-400",
+    "border-teal-500",
+    "border-teal-600",
+    "border-teal-700",
+    "border-teal-800",
+    "border-teal-900",
+    "border-orange-50",
+    "border-orange-100",
+    "border-orange-200",
+    "border-orange-300",
+    "border-orange-400",
+    "border-orange-500",
+    "border-orange-600",
+    "border-orange-700",
+    "border-orange-800",
+    "border-orange-900"
+  ];
 
   useEffect(() => {
     document.title = "The Chess Centre | Roadmap";
@@ -57,32 +87,32 @@ export default function AppRoadmap() {
         </div>
       </div>
       <div className="bg-white sm:mt-6 max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 rounded-lg shadow-xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 mt-10 py-6 sm:py-10">
-            <div>
-              <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
-                The Centre
-              </h2>
-              <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">
-                Things we are working on in the centre to make your experience
-                as fantasic as possible.
-              </p>
-              <CentreRoadmap />
-            </div>
-            <div>
-              <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
-                The Platform
-              </h2>
-              <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">
-                Our technical road map, how we're improving the online
-                experience for all our members.
-              </p>
-              <TechRoadmap />
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 mt-10 py-6 sm:py-10">
+          <div>
+            <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
+              The Centre
+            </h2>
+            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">
+              Things we are working on in the centre to make your experience
+              as fantasic as possible.
+            </p>
+            <CentreRoadmap />
+          </div>
+          <div>
+            <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
+              The Platform
+            </h2>
+            <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">
+              Our technical road map, how we're improving the online
+              experience for all our members.
+            </p>
+            <TechRoadmap />
           </div>
         </div>
-        <div>
-          { brandColors.map(c => <span className={c}></span>)}
-        </div>
+      </div>
+      <div>
+        {brandColors.map(c => <span className={c}></span>)}
+      </div>
     </div>
   );
 };
