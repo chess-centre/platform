@@ -130,7 +130,7 @@ export default function JuniorCustomEvent() {
                             The Chess Centre brings to you our <span className="font-semibold">1st Junior Rapidplay</span> held at the Ilkley Grammar School.
                         </p>
                         <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">This event is open to all juniors under the age of 18 as at 1st September 2021.</p>
-                        <p className="prose prose-teal text-teal-600 mx-auto lg:max-w-none text-justify">
+                        <div className="prose prose-teal text-teal-600 mx-auto lg:max-w-none text-justify">
                             <h3>Sections</h3>
                             <ul>
                                 <li>Open</li>
@@ -139,7 +139,7 @@ export default function JuniorCustomEvent() {
                                 <li>Minor <span className="text-xs text-gray-500">(1000 ECF and below)</span></li>
                             </ul>
                             <p className="italic text-gray-500 text-xs">Players with fewer than 15 competitive games may enter any section, irrespective of rating.</p>
-                        </p>
+                        </div>
                     </div>
                     {!isLoading && entryCount && entryCount > 0 && (
                         <div className="relative mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
@@ -196,7 +196,7 @@ export default function JuniorCustomEvent() {
                                     </div>
                                 </div>
                             </div>
-                            <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify my-4">
+                            <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify my-4">
                                 <p className="italic text-xs">Entries will close on the evening of <span className="font-semibold">Thursday 19th May</span></p>
                                 <h3>Address</h3>
                                 <p>Ilkley Grammar School, Armitage Hall, LS29 8TH</p>
@@ -204,7 +204,7 @@ export default function JuniorCustomEvent() {
                                 <div className="max-h-96">
                                     <img className="object-cover shadow-lg rounded-lg" src={IlkleyGrammar} alt="Ilkley Grammar School" />
                                 </div>
-                            </p>
+                            </div>
                             <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                                 <h4>Parental notes</h4>
                                 <p>

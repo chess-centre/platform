@@ -6,6 +6,21 @@ import { getDay, getMonth, getDayStr } from "../../utils/DateFormating";
 import { classNames } from "../../utils/Classes";
 import { useEventsLite } from "../../api/events";
 
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
 function ListCard({ event }) {
   return (
     <li key={event.id} className="col-span-1 flex mb-3 z-0">
@@ -93,6 +108,7 @@ function ListCalendar({
   selected,
   filters,
   allDeselected,
+  isEndMonth
 }) {
   return (
     <>
@@ -116,7 +132,7 @@ function ListCalendar({
                 {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                 {data.filter(
                   (event) => new Date(event.startDate).getMonth() === selected
-                ).length === 0 && <ListComingSoonCard />}
+                ).length === 0 && (isEndMonth ? <ListComingSoonCard /> : <ListNoEventsRemaining month={monthNames[selected]} />) }
               </ul>
             </>
           )}
@@ -158,6 +174,7 @@ export default function Calendar() {
   const currentMonth = today.getMonth();
   const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
   const nextNextMonth = nextMonth + 1;
+  const endMonth = nextNextMonth;
   const months = [currentMonth, nextMonth, nextNextMonth];
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
 
@@ -190,6 +207,7 @@ export default function Calendar() {
           <div className="right-0 top-6 text-center sm:text-right">
             <span className="relative z-10 inline-flex">
               <FilterMenu
+                selected={selectedMenuFilter}
                 setSelected={setSelectedMenuFilter}
                 {...{
                   filters,
@@ -204,6 +222,7 @@ export default function Calendar() {
       <ListCalendar
         filtersSelected={selectedMenuFilter}
         selected={selectedMonth}
+        isEndMonth={endMonth === selectedMonth}
         {...{
           filters,
           isLoading,
@@ -231,6 +250,22 @@ function ListComingSoonCard() {
           </p>
         </div>
         <div className="bg-teal-500 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
+      </div>
+    </li>
+  );
+}
+
+function ListNoEventsRemaining({ month }) {
+  return (
+    <li className=" col-span-1 flex mb-3 px-1">
+      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+        <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate rounded-l-lg">
+          <h3 className="font-red-hat-display text-xl mb-1 text-gray-500">Events Complete</h3>
+          <p className="text-teal-500 text-sm mb-1">
+            All events for {month ? month : "this month"} are now finished. <span className="font-semibold">Try next months...{" "}</span>
+          </p>
+        </div>
+        <div className="bg-gray-300 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
       </div>
     </li>
   );
