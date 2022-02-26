@@ -225,6 +225,7 @@ export function EventCard(props) {
                     maxEntries,
                     entryCount,
                     rounds,
+                    multipleSections
                   },
                 })
               }

@@ -62,6 +62,8 @@ const listEventsActive = /* GraphQL */ `
             id
             eventId
             memberId
+            section
+            byes
             createdAt
             updatedAt
             member {
@@ -184,7 +186,8 @@ export default function AppEvents() {
 
   useEffect(() => {
     if (eventId /* user has logged in via register button */) {
-      register(eventId);
+      console.log("EventId", eventId, "Section", section);
+      register(eventId, section);
     }
     if (
       event_payment_success &&
