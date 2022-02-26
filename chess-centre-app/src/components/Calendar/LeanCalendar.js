@@ -207,6 +207,7 @@ export default function Calendar() {
           <div className="right-0 top-6 text-center sm:text-right">
             <span className="relative z-10 inline-flex">
               <FilterMenu
+                selected={selectedMenuFilter}
                 setSelected={setSelectedMenuFilter}
                 {...{
                   filters,
