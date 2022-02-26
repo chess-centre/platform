@@ -102,7 +102,7 @@ async function sendRegisteredEventEmailToMember({ email, name, eventName, eventT
   return SES.sendEmail(params).promise();
 }
 
-async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, eventName, eventType, eventId, startDate, arrivalTime, section, landingPageUrl }) {
+async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, eventName, eventType, eventId, startDate, arrivalTime, section }) {
   console.log("Sending member registration email to:", name, email, eventName);
   const params = {
     Source: "The Chess Centre <support@chesscentre.online>",
@@ -126,10 +126,10 @@ async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, event
         <p>🏫 Event location: <span style="color: #047481;">Ilkley Grammar School, Armitage Hall, LS29 8TH</span></p>
         <p style="font-style: italic;">Entrance via Springs Lane</p>
         <p>ℹ️ More details can be found here:
-          <a href="https://www.chesscentre.online/${landingPageUrl}/${eventId}">chesscentre.online/${eventType}</a>
+          <a href="https://www.chesscentre.online/events/igs-junior/${eventId}">chesscentre.online/${eventType}</a>
         </p>
         <p>If you have any questions or need to withdraw your entry, please email us at: 
-          <h href="mailto:info@chesscentre.online?subject=${eventName}%20|%20Entry%20Enquiry%20(${name})">info@chesscentre.online</a>
+          <a href="mailto:info@chesscentre.online?subject=${eventName}%20|%20Entry%20Enquiry%20(${name})">info@chesscentre.online</a>
         </p>
         <p>We look forward to seeing you soon! 🚀</p>
         <p></p>
@@ -143,7 +143,7 @@ async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, event
   return SES.sendEmail(params).promise();
 }
 
-async function sendRegisteredEventEmailInternal({ email, name, eventName, eventType, eventId, startDate, entries }) {
+async function sendRegisteredEventEmailInternal({ email, name, eventName, eventType, eventId, startDate, entries, section }) {
   console.log("Sending internal registration email to:", name, email, eventName, env);
 
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
@@ -172,6 +172,7 @@ async function sendRegisteredEventEmailInternal({ email, name, eventName, eventT
         </style>
         <h3 style="color: #047481">♟️ The Chess Centre</h2>
         <p>Entry Name: ${name}</p>
+        ${section && `<p>Section: ${section}</p>`}
         <p>Event: ${eventName}</p>
         <p>Date: ${formatDate(startDate)}</p>
         <p>Total Entries: ${entries.length + 1}</p>
