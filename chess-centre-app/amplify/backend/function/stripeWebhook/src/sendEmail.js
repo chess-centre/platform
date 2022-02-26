@@ -117,14 +117,15 @@ async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, event
       Body: {
         Text: { Data: `Hi ${name},\r\n Thank you for registering for our ${eventName} on ${startDate}.` },
         Html: { Data: `
-        <p>Hello ${name} (or parent / guardian of) 👋</p>
-        <p>Thank you for registering for our <strong>${eventName}</strong>, section: ${section}.</p> 
+        <p>👋 Hello ${name} <span style="color: #6e6e76;">(or parent / guardian of)</span></p>
+        <p>Thank you for registering for our <strong>${eventName}</strong>.</p>
         <p>The key details for this event:</p>
         <p>📅 Date: ${formatDate(startDate)}</p>
         ${arrivalTime ? `<p>⌚ Arrival Time: ${arrivalTime}</p>` : ""}
+        <p>🤓 Section entered: ${section}</p> 
         <p>🏫 Event location: <span style="color: #047481;">Ilkley Grammar School, Armitage Hall, LS29 8TH</span></p>
-        <p style="font-style: italic; color: #047481;">Entrance via Springs Lane</p>
-        <p>More details can be found here:
+        <p style="font-style: italic;">Entrance via Springs Lane</p>
+        <p>ℹ️ More details can be found here:
           <a href="https://www.chesscentre.online/${landingPageUrl}/${eventId}">chesscentre.online/${eventType}</a>
         </p>
         <p>If you have any questions or need to withdraw your entry, please email us at: 
@@ -133,7 +134,7 @@ async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, event
         <p>We look forward to seeing you soon! 🚀</p>
         <p></p>
         <p style="color: #047481">This event was brought to you by The Chess Centre, Ilkley ❤️</p>
-        <p style="color: #9da4a5;font-size:10px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
+        <p style="color: #9da4a5;font-size:12px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
         `
       }
       }

@@ -260,7 +260,7 @@ export const rounds = [
     ]
   },
   {
-    type: "igs-junior",
+    type: "junior",
     eventStart: "9:30",
     eventEnd: "16:00",
     rounds: [

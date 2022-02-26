@@ -7,7 +7,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
 import { prettyLongDate } from "../../utils/DateFormating";
-import IlkleyGrammar from "../../assets/img/ilkley_grammar.jpg";
+import IlkleyGrammar from "../../assets/img/ilkley_grammar.jpeg";
 
 const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
@@ -199,18 +199,20 @@ export default function JuniorCustomEvent() {
                             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify my-4">
                                 <p className="italic">Entries will close on the evening of <span className="font-semibold">Thursday 19th May</span></p>
                                 <h3>Address</h3>
-                                <p>Ilkley Grammar School, Armitage Hall, Entrance Via Springs Lane, LS29 8TH</p>
+                                <p>Ilkley Grammar School, Armitage Hall, LS29 8TH</p>
+                                <p className="text-xs italic text-gray-500 -mt-10">Entrance via Springs Lane</p>
                                 <div className="max-h-96">
                                     <img className="object-cover shadow-lg rounded-lg" src={IlkleyGrammar} alt="Ilkley Grammar School" />
                                 </div>
                             </p>
                             <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-                                <h4>Parental Notes:</h4>
+                                <h4>Parental notes</h4>
                                 <p>
                                     The organisers are only responsible for juniors in the playing hall. We
                                     strongly recommend juniors are supervised when they are not playing.
                                 </p>
                                 <p>
+                                   <i className="fas fa-camera-retro text-2xl text-teal-700"></i>{" "}
                                     It is a condition of entry that photographs may be taken and used for
                                     publicity. If you do not wish photographs of your child to be used you must tell
                                     us on the day. Photos may appear on our Chess Centre website or associated social media pages (Facebook, Instagram, etc).
@@ -261,7 +263,7 @@ export default function JuniorCustomEvent() {
                             </svg>
                             <RoundTimes
                                 eventId={id}
-                                eventType="igs-junior"
+                                eventType="junior"
                                 isFull={isFull}
                                 isLive={isLive}
                                 showSections={true}
