@@ -7,7 +7,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
 import { prettyLongDate } from "../../utils/DateFormating";
-import IlkleyGrammar from "../../assets/img/ilkley_grammar.jpeg";
+import IlkleyGrammar from "../../assets/img/ilkley-grammar.jpg";
 
 const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
