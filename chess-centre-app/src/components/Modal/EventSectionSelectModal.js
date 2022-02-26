@@ -7,7 +7,6 @@ export default function EventSectionSelectionModal(props) {
     const [section, setSection] = useState("open");
 
     const confirmRegister = async () => {
-        console.log("section", section);
         setIsLoadingSignUp(true);
         await handleRegister(eventId, section);
         closeModal();

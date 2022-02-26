@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { borderColor600 } from "tailwind-dynamic-classes";
@@ -16,8 +16,11 @@ function truncate(str, n) {
 function EntriesTable(data) {
   const { user, eventDetails } = data;
   const sub = user.attributes.sub;
-  const isRapid = eventDetails?.name?.includes("Rapidplay");
+  const isRapid = eventDetails?.name?.includes("Rapidplay") || eventDetails?.name?.includes("IGS") ;
   const isBlitz = eventDetails?.name?.includes("Blitz");
+
+  const [selectedSection, handleSelectionSelect] = useState("open");
+
 
   const tableData = () => {
     /**
@@ -72,20 +75,21 @@ function EntriesTable(data) {
     /**
      * Returns a clean list of table data which has a pre defined sort integar on the rating object
      */
-    if(eventDetails.entries?.items && eventDetails.entries?.items.length > 0) {
+    if (eventDetails.entries?.items && eventDetails.entries?.items.length > 0) {
       return eventDetails.entries.items.reduce((list, entry) => {
-        if(entry && entry.member) {
+        if (entry && entry.member) {
           const row = {
             id: entry.member.id,
             name: entry.member.name,
             club: entry.member.club ? truncate(entry.member.club, 12) : "",
             rating: getRating(entry.member),
+            section: entry.section
           };
           list.push(row);
         }
         return list;
       }, []);
-      
+
     } else {
       return [];
     }
@@ -93,36 +97,42 @@ function EntriesTable(data) {
 
   return (
     <div>
+      {
+        eventDetails.multipleSections && <div className="my-4">
+        <SectionTabs handleSelectionSelect={handleSelectionSelect} />
+      </div>
+      }
+
       <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2 rounded w-full">
         <thead className="bg-gray-100 border-b-2 rounded-lg">
           <tr>
             <th
               scope="col"
-              className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
             >
               Seed
             </th>
             <th
               scope="col"
-              className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase"
             >
               Name
             </th>
             <th
               scope="col"
-              className="hidden sm:block px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="hidden sm:block px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
             >
               Club
             </th>
             <th
               scope="col"
-              className="relative px-2 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="relative px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
             >
               Rating
             </th>
             <th
               scope="col"
-              className="relative px-1 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="relative px-1 py-2 text-center text-xs font-medium text-gray-500 uppercase"
             >
               Alt
             </th>
@@ -131,6 +141,13 @@ function EntriesTable(data) {
         <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
           {tableData()
             .sort((a, b) => b.rating.sort - a.rating.sort)
+            .filter(row => {
+              if(eventDetails?.multipleSections) {
+                return row.section === selectedSection
+              } else { 
+                return true 
+              };
+            })
             .map(({ name, rating, club, id }, key) => {
               const isEven = key % 2 === 0;
               return (
@@ -198,18 +215,79 @@ function EntriesTable(data) {
   );
 }
 
+function SectionTabs(props) {
+
+  const { handleSelectionSelect } = props;
+
+  const [sections, setSections] = useState([
+    { name: 'Open', current: true },
+    { name: 'Major', current: false },
+    { name: 'Intermediate', current: false },
+    { name: 'Minor', current: false },
+  ]);
+
+  const updateSectionSelected = (section) => {
+    setSections(currentState => {
+      return [
+        ...currentState.map(c => {
+          return {
+            ...c,
+            current: section === c.name?.toLowerCase()
+          }
+        })
+      ]
+    });
+
+    if (handleSelectionSelect && typeof handleSelectionSelect === "function") {
+      handleSelectionSelect(section);
+    }
+  }
+
+  return (
+    <div>
+      <nav className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200" aria-label="Sections">
+        {sections.map((section, tabIdx) => (
+          <div
+            onClick={() => updateSectionSelected(section.name.toLocaleLowerCase())}
+            key={section.name}
+            className={classNames(
+              section.current ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700',
+              tabIdx === 0 ? 'rounded-l-lg' : '',
+              tabIdx === section.length - 1 ? 'rounded-r-lg' : '',
+              'group relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-xs font-medium text-center hover:bg-gray-50 focus:z-10 cursor-pointer'
+            )}
+            aria-current={section.current ? 'page' : undefined}
+          >
+            <span>{section.name}</span>
+            <span
+              aria-hidden="true"
+              className={classNames(
+                section.current ? 'bg-teal-500' : 'bg-transparent',
+                'absolute inset-x-0 bottom-0 h-0.5'
+              )}
+            />
+          </div>
+        ))}
+      </nav>
+    </div>
+  )
+}
+
 export default function EventDetailsSlideOut(props) {
   const { slideState, user, setIsSlideOutOpen } = props;
   const { open, eventDetails } = slideState;
 
   function selectImage(type) {
+
+    if (type?.includes("junior")) {
+      return JuniorRapidPlay;
+    }
+
     switch (type) {
       case "congress":
         return OpenCongress;
       case "rapidplay":
         return OpenRapidPlay;
-      case "junior-rapidplay":
-        return JuniorRapidPlay;
       default:
         return OpenCongress;
     }
@@ -273,11 +351,11 @@ export default function EventDetailsSlideOut(props) {
                     <div className="pb-1 sm:pb-6">
                       <div>
                         <div className={classNames(borderColor600[eventDetails.type?.color], "border-4 relative h-52 rounded-md")}>
-                            <img
-                              className="border-gray-200 border-4 absolute h-full w-full object-cover "
-                              src={selectImage(eventDetails.type?.eventType)}
-                              alt="Playing Hall"
-                            />
+                          <img
+                            className="border-gray-200 border-4 absolute h-full w-full object-cover "
+                            src={selectImage(eventDetails.type?.eventType)}
+                            alt="Playing Hall"
+                          />
                         </div>
                       </div>
                     </div>
@@ -344,7 +422,7 @@ export default function EventDetailsSlideOut(props) {
                             )}
                           </dd>
                         </div>
-                      </dl>                      
+                      </dl>
                     </div>
                     <div className="px-4 sm:flex sm:items-end sm:px-6 mb-2">
                       <div className="sm:flex-1">
@@ -365,7 +443,7 @@ export default function EventDetailsSlideOut(props) {
                       </div>
                     </div>
                     <div className="text-right mr-2 -mt-10">
-                        <QuickSearch tag="events" />
+                      <QuickSearch tag="events" />
                     </div>
                   </div>
                 </div>
