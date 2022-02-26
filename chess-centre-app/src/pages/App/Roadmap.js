@@ -4,12 +4,45 @@ import { TechRoadmap } from "../../components/Roadmap/TechRoadmap";
 
 export default function AppRoadmap() {
 
+  const brandColors = [
+    "bg-blue-50",
+    "bg-blue-100",
+    "bg-blue-200",
+    "bg-blue-300",
+    "bg-blue-400",
+    "bg-blue-500",
+    "bg-blue-600",
+    "bg-blue-700",
+    "bg-blue-800",
+    "bg-blue-900",
+    "bg-teal-50",
+    "bg-teal-100",
+    "bg-teal-200",
+    "bg-teal-300",
+    "bg-teal-400",
+    "bg-teal-500",
+    "bg-teal-600",
+    "bg-teal-700",
+    "bg-teal-800",
+    "bg-teal-900",
+    "bg-orange-50",
+    "bg-orange-100",
+    "bg-orange-200",
+    "bg-orange-300",
+    "bg-orange-400",
+    "bg-orange-500",
+    "bg-orange-600",
+    "bg-orange-700",
+    "bg-orange-800",
+    "bg-orange-900"
+  ]
+
   useEffect(() => {
     document.title = "The Chess Centre | Roadmap";
   }, []);
 
   return (
-    <div className="">
+    <div>
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <span className="text-teal-600"><i className="fad fa-road"></i></span> Roadmap
       </h1>
@@ -46,6 +79,9 @@ export default function AppRoadmap() {
               <TechRoadmap />
             </div>
           </div>
+        </div>
+        <div>
+          { brandColors.map(c => <span className={c}></span>)}
         </div>
     </div>
   );

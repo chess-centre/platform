@@ -16,7 +16,7 @@ function truncate(str, n) {
 function EntriesTable(data) {
   const { user, eventDetails } = data;
   const sub = user.attributes.sub;
-  const isRapid = eventDetails?.name?.includes("Rapidplay") || eventDetails?.name?.includes("IGS") ;
+  const isRapid = eventDetails?.name?.includes("Rapidplay") || eventDetails?.name?.includes("IGS");
   const isBlitz = eventDetails?.name?.includes("Blitz");
 
   const [selectedSection, handleSelectionSelect] = useState("open");
@@ -99,8 +99,8 @@ function EntriesTable(data) {
     <div>
       {
         eventDetails.multipleSections && <div className="my-4">
-        <SectionTabs handleSelectionSelect={handleSelectionSelect} />
-      </div>
+          <SectionTabs handleSelectionSelect={handleSelectionSelect} />
+        </div>
       }
 
       <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2 rounded w-full">
@@ -142,10 +142,10 @@ function EntriesTable(data) {
           {tableData()
             .sort((a, b) => b.rating.sort - a.rating.sort)
             .filter(row => {
-              if(eventDetails?.multipleSections) {
+              if (eventDetails?.multipleSections) {
                 return row.section === selectedSection
-              } else { 
-                return true 
+              } else {
+                return true
               };
             })
             .map(({ name, rating, club, id }, key) => {
@@ -380,7 +380,12 @@ export default function EventDetailsSlideOut(props) {
                             Location
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                            Unit 8, Crescent Court, Ilkely, LS29 8DE
+                            {
+                              eventDetails.name?.includes("IGS") ?
+                                "Ilkley Grammar School, Armitage Hall, LS29 8TH"
+                                : "Unit 8, Crescent Court, Ilkely, LS29 8DE"
+                            }
+
                           </dd>
                         </div>
                         <div>
