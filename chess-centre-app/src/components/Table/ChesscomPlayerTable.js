@@ -17,6 +17,12 @@ export default function ChesscomPlayersTable({ players, colour }) {
     }
   };
 
+  const numberWithCommas = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  const handleOpenProfile = (url) => {
+    window.open(url, "_blank").focus();
+  };
+
 
   const columns = React.useMemo(
     () => [
@@ -41,6 +47,11 @@ export default function ChesscomPlayersTable({ players, colour }) {
         show: false,
       },
       {
+        Header: "chesscomUrl",
+        accessor: "chesscomUrl",
+        show: false,
+      },
+      {
         Header: "#",
         accessor: "rank",
       },
@@ -49,8 +60,23 @@ export default function ChesscomPlayersTable({ players, colour }) {
         accessor: "name"
       },
       {
-        Header: "Handle",
-        accessor: "handle"
+        Header: () => <div className="mx-auto">Games</div>,
+        accessor: "total",
+        Cell: (props) => (
+          <div className="font-medium text-sm text-center">
+            {numberWithCommas(props.cell.value)}
+          </div>
+        ),
+      },
+      {
+        Header: "Bullet",
+        accessor: "chesscomBullet",
+        Cell: (props) => (
+          <div className="text-sm text-gray-500">
+            {props.cell.value && DiffArrow(props.row.values.bulletDiff)}
+            {props.cell.value}
+          </div>
+        ),
       },
       {
         Header: "Blitz",
@@ -62,17 +88,6 @@ export default function ChesscomPlayersTable({ players, colour }) {
           </div>
         ),
       },
-
-      {
-        Header: "Bullet",
-        accessor: "chesscomBullet",
-        Cell: (props) => (
-          <div className="text-sm text-gray-500">
-            {props.cell.value && DiffArrow(props.row.values.bulletDiff)}
-            {props.cell.value}
-          </div>
-        ),
-      }, 
       {
         Header: "Rapid",
         accessor: "chesscomRapid",
@@ -89,6 +104,20 @@ export default function ChesscomPlayersTable({ players, colour }) {
         Cell: (props) => (
           <div className="text-gray-500 text-sm text-center">{props.cell.value}</div>
         ),
+      },
+      {
+        Header: "Handle",
+        accessor: "handle",
+        Cell: (props) => (
+            <div
+              onClick={() => handleOpenProfile(props.row.values.chesscomUrl)}
+              className={`w-full text-center items-center px-2.5 py-1 border border-gray-200 
+              shadow-sm text-xs rounded text-teal-600 bg-white hover:bg-gray-50 
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer`}
+            >
+              @{props.cell.value}
+            </div>
+        )
       },
       {
         Header: "Last Updated",

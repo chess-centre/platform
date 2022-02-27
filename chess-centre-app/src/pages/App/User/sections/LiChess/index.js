@@ -26,7 +26,7 @@ export default function LiChessFetch({
         setBullet(parsed.perfs.bullet?.rating?.toString() || "");
         setRapid(parsed.perfs.rapid?.rating?.toString() || "");
       } catch (error) {
-        console.log(error);
+        console.log("Error", error);
       }
     }
     if (lichessLastUpdated) {
@@ -57,7 +57,7 @@ export default function LiChessFetch({
       }
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
+      console.log("Error", error);
       setIsFetching(false);
     }
   };

@@ -252,7 +252,7 @@ export default function GamesView() {
         setCurrentUser(true);
       }
     } catch (error) {
-      console.log(error);
+      console.log("Error", error);
       setIsLoadingGames(false);
       setIsErrorGame(true);
     }

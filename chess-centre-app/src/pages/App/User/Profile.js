@@ -85,12 +85,12 @@ export default function Profile() {
   
     const getProfileData = async () => {
       setIsLoadingProfile(true);
-      await getMemberInfo().catch(e => console.log(e));
+      await getMemberInfo().catch(error => console.log("Error", error));
       await getCustomerPortal();
       setIsLoadingProfile(false);
     };
 
-    getProfileData().catch((error) => {
+    getProfileData().catch(() => {
       setIsLoadingProfile(false);
     });
 

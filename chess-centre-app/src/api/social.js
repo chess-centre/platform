@@ -8,8 +8,8 @@ export const useInstagram = ({ count, tag }) => {
         count,
         tag,
       },
-    }).catch((e) => {
-      console.log("error", e);
+    }).catch((error) => {
+      console.log("Error", error);
       return;
     });
     return response;

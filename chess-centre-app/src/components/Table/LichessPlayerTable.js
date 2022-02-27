@@ -31,6 +31,8 @@ export default function LichessPlayersTable({ userId, players, colour, statuses 
     }
   };
 
+  const numberWithCommas = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   const columns = useMemo(
     () => [
       {
@@ -73,13 +75,12 @@ export default function LichessPlayersTable({ userId, players, colour, statuses 
           );
         },
       },
-
       {
         Header: () => <div className="mx-auto">Games</div>,
         accessor: "total",
         Cell: (props) => (
           <div className="font-medium text-sm text-center">
-            {props.cell.value}
+            {numberWithCommas(props.cell.value)}
           </div>
         ),
       },
@@ -130,7 +131,7 @@ export default function LichessPlayersTable({ userId, players, colour, statuses 
             <button
               onClick={() => openModal({ handle: props.cell.value })}
               type="button"
-              className="inline-flex items-center px-2.5 py-1 border border-gray-200 shadow text-xs font-medium rounded text-gray-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+              className="w-full text-center items-center px-2.5 py-1 border border-gray-200 shadow-sm text-xs rounded text-teal-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             >
               @{props.cell.value}
             </button>
