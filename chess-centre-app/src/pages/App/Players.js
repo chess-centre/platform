@@ -212,7 +212,7 @@ export default function Players() {
             : [];
           const formCount = form?.reduce((p, c) => p + c, 0) || 0;
 
-          while (form.length < 5) {
+          while (form.length < 6) {
             form.unshift("");
           }
 

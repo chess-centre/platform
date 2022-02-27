@@ -87,7 +87,7 @@ export default function ECFPlayersTable({ players, colour }) {
         Header: () => <div>Standard</div>,
         accessor: "standard",
         Cell: (props) => (
-          <div className="text-gray-700 font-semibold text-sm">
+          <div className="text-gray-700 font-semibold text-sm ml-5">
             {props.cell.value}
           </div>
         ),
@@ -96,7 +96,7 @@ export default function ECFPlayersTable({ players, colour }) {
         Header: () => <div>Rapid</div>,
         accessor: "rapid",
         Cell: (props) => (
-          <div className="text-gray-700 font-semibold text-sm">
+          <div className="text-gray-700 font-semibold text-sm ml-5">
             {props.cell.value}
           </div>
         ),
