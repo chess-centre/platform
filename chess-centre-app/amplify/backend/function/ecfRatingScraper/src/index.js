@@ -60,14 +60,15 @@ exports.handler = async (event) => {
                 Key: {
                     id: member.id
                 },
-                UpdateExpression: "set ecfRating=:standard, ecfRapid=:rapid, gender=:gender, fideId=:fide, club=:club, ecfMembership=:membership",
+                UpdateExpression: "set ecfRating=:standard, ecfRapid=:rapid, gender=:gender, fideId=:fide, club=:club, ecfMembership=:membership, ecfLastUpdated=:updated",
                 ExpressionAttributeValues: {
                     ":standard": member.standard?.revised_rating || null,
                     ":rapid": member.rapid?.revised_rating || null,
                     ":gender": member.gender,
                     ":club": member.club_name,
                     ":fide": member?.FIDE_no || null,
-                    ":membership": member.category
+                    ":membership": member.category,
+                    ":updated": Date.now()
                 },
                 ReturnValues: "UPDATED_NEW"
             };
