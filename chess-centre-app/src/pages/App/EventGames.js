@@ -112,7 +112,7 @@ export default function EventGamesView() {
     try {
       fetchGames(eventId);
     } catch (error) {
-      console.log(error);
+      console.log("Error", error);
       setIsLoadingGames(false);
       setIsErrorGame(true);
     }

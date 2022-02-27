@@ -62,9 +62,9 @@ function CongressEvent() {
           query: getEvent,
           variables: { id },
           authMode: "AWS_IAM",
-        }).catch((e) => {
+        }).catch((error) => {
           console.log("Error fetching event.", id);
-          console.log(e);
+          console.log(error);
         });
         if (response && response.data) {
           const {
@@ -89,7 +89,7 @@ function CongressEvent() {
       };
       fetchEvent();
     } catch (error) {
-      console.log(error);
+      console.log("Error", error);
       setIsLoading(false);
     }
   }, [id, startDate, defaultPrice]);

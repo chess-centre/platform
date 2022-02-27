@@ -63,15 +63,15 @@ export default function Players() {
       {
         name: "Chess.com",
         ref: "chesscom",
-        colour: "bg-yellow-600",
+        colour: "bg-yellow-700",
         current: false,
       },
     ],
     selectedTab: {
       ref: "ecf",
-      colour: "bg-teal-700"
-    }
-  })
+      colour: "bg-teal-700",
+    },
+  });
 
   const diffCheck = (current, previous) => {
     if (current > previous) return 1;
@@ -79,8 +79,15 @@ export default function Players() {
     return 0;
   };
 
-  const lichessPlayerData = (players, lichessStatuses) => {
+  const calculateTotalGames = (obj) => {
+    const sum = (g) => (g ? g.win + g.loss + g.draw : 0);
+    const bulletGames = obj.chess_bullet?.record || 0;
+    const blitzGames = obj.chess_blitz?.record || 0;
+    const rapidGames = obj.chess_rapid?.record || 0;
+    return sum(bulletGames) + sum(blitzGames) + sum(rapidGames);
+  };
 
+  const lichessPlayerData = (players, lichessStatuses) => {
     if (players && players.length > 0) {
       const filtered = players
         .filter((m) => !!m.liChessUsername)
@@ -89,7 +96,9 @@ export default function Players() {
             ? JSON.parse(member.liChessInfo)
             : undefined;
 
-          const isOnline = lichessStatuses.find(s => s.id === member.liChessUsername.toLowerCase());
+          const isOnline = lichessStatuses.find(
+            (s) => s.id === member.liChessUsername.toLowerCase()
+          );
 
           return [
             ...players,
@@ -125,7 +134,11 @@ export default function Players() {
           player.rank = i + 1;
           return { ...player };
         });
-      setState(state => ({...state, lichessPlayers: [...filtered], lichessStatuses }));
+      setState((state) => ({
+        ...state,
+        lichessPlayers: [...filtered],
+        lichessStatuses,
+      }));
     }
   };
 
@@ -138,13 +151,17 @@ export default function Players() {
             ? JSON.parse(member.chesscomInfo)
             : undefined;
 
+          const totalGames = calculateTotalGames(parsedChesscom);
+
           return [
             ...players,
             {
               id: member.id,
               name: member.name,
               handle: member.chesscomUsername,
+              chesscomUrl: parsedChesscom?.url,
               tactics: parsedChesscom?.tactics?.highest?.rating,
+              total: totalGames,
               bulletDiff: diffCheck(
                 parsedChesscom?.chess_bullet?.last?.rating,
                 parsedChesscom?.chess_bullet?.last?.prev
@@ -169,7 +186,7 @@ export default function Players() {
           player.rank = i + 1;
           return { ...player };
         });
-      setState(state => ({...state, chesscomPlayers: [...filtered]}));
+      setState((state) => ({ ...state, chesscomPlayers: [...filtered] }));
     }
   };
 
@@ -195,7 +212,7 @@ export default function Players() {
             : [];
           const formCount = form?.reduce((p, c) => p + c, 0) || 0;
 
-          while (form.length < 6) {
+          while (form.length < 5) {
             form.unshift("");
           }
 
@@ -213,21 +230,21 @@ export default function Players() {
             },
           ];
         }, []);
-      setState(state => ({...state, ecfPlayers: [...filtered]}));
+      setState((state) => ({ ...state, ecfPlayers: [...filtered] }));
     }
   };
 
   const handleSelectedTab = ({ ref, colour }) => {
-    setState(state => (
-      {...state, 
-        selectedTab: { ref, colour },
-        tabs: [
-          ...state.tabs.map(tab => ({
-            ...tab,
-            current: tab.ref === ref
-          }))
-        ]
-      }))
+    setState((state) => ({
+      ...state,
+      selectedTab: { ref, colour },
+      tabs: [
+        ...state.tabs.map((tab) => ({
+          ...tab,
+          current: tab.ref === ref,
+        })),
+      ],
+    }));
   };
 
   const renderTable = ({ ref, colour }) => {
@@ -247,7 +264,6 @@ export default function Players() {
             players={state.lichessPlayers}
             statuses={state.lichessStatuses}
             {...{ colour }}
-
           />
         );
       case "chesscom":
@@ -273,7 +289,7 @@ export default function Players() {
     document.title = "The Chess Centre | Players";
 
     const fetchRatedPlayers = async () => {
-      setState(state => ({...state, isLoading: true, isError: false }));
+      setState((state) => ({ ...state, isLoading: true, isError: false }));
       const {
         data: {
           listMembers: { items: playersList },
@@ -285,27 +301,27 @@ export default function Players() {
         authMode: "AWS_IAM",
       });
 
-      if(state.selectedTab.ref === "ecf") {
+      if (state.selectedTab.ref === "ecf") {
         ecfPlayerData(playersList);
       }
 
-      if(state.selectedTab.ref === "chesscom") {
+      if (state.selectedTab.ref === "chesscom") {
         chesscomPlayerData(playersList);
       }
 
-      if(state.selectedTab.ref === "lichess") {
+      if (state.selectedTab.ref === "lichess") {
         const fetchStatuses = async () => await API.get("lichess", "/statuses");
         const lichessStatuses = await fetchStatuses();
         lichessPlayerData(playersList, lichessStatuses);
       }
-      setState(state => ({...state, isLoading: false, isError: false }));
+      setState((state) => ({ ...state, isLoading: false, isError: false }));
     };
 
     try {
       fetchRatedPlayers();
     } catch (error) {
-      console.log(error);
-      setState(state => ({...state, isLoading: false, isError: true }));
+      console.log("Error", error);
+      setState((state) => ({ ...state, isLoading: false, isError: true }));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -329,7 +345,9 @@ export default function Players() {
           <RatingTypeTabs {...{ tabs: state.tabs, handleSelectedTab }} />
         </div>
 
-        {!state.isLoading && !state.isError && <div>{renderTable(state.selectedTab)}</div>}
+        {!state.isLoading && !state.isError && (
+          <div>{renderTable(state.selectedTab)}</div>
+        )}
 
         {state.isLoading && (
           <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">

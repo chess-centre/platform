@@ -27,7 +27,7 @@ export default function ChesscomFetch({
         setBullet(parsed?.chess_bullet?.last?.rating.toString() || "");
         setRapid(parsed?.chess_rapid?.last?.rating.toString() || "");
       } catch (error) {
-        console.log(error);
+        console.log("Error", error);
       }
     }
     if (chesscomLastUpdated) {
@@ -59,7 +59,7 @@ export default function ChesscomFetch({
       }
       setIsFetching(false);
     } catch (error) {
-      console.log(error);
+      console.log("Error", error);
       setIsFetching(false);
     }
   };

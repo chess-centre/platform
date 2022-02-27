@@ -42,46 +42,69 @@ export default function ECFPlayersTable({ players, colour }) {
                 switch (r) {
                   case 1:
                     return (
-                      <div key={key} className="shadow-lg bg-green-600 hover:bg-green-500 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm">W</div>
+                      <div
+                        key={key}
+                        className="shadow-lg bg-green-600 hover:bg-green-500 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm"
+                      >
+                        W
+                      </div>
                     );
                   case 0:
                     return (
-                      <div key={key} className="shadow-lg bg-red-700 hover:bg-red-600 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm">L</div>
+                      <div
+                        key={key}
+                        className="shadow-lg bg-red-600 hover:bg-red-500 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm"
+                      >
+                        L
+                      </div>
                     );
                   case 0.5:
                     return (
-                      <div key={key} className="shadow-lg bg-yellow-500 hover:bg-yellow-400 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm">D</div>
+                      <div
+                        key={key}
+                        className="shadow-lg bg-yellow-600 hover:bg-yellow-500 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm"
+                      >
+                        D
+                      </div>
                     );
                   default:
-                    return <div key={key} className="shadow-lg bg-gray-400 text-gray-200 text-sx text-center min-w-5 rounded-sm cursor-default">-</div>;
+                    return (
+                      <div
+                        key={key}
+                        className="shadow-lg bg-gray-400 text-gray-200 text-sx text-center min-w-5 rounded-sm cursor-default"
+                      >
+                        -
+                      </div>
+                    );
                 }
-              })}{" "}<span className="sr-only">form</span>
+              })}{" "}
+              <span className="sr-only">form</span>
             </div>
           );
         },
       },
       {
-        Header: "Club",
-        accessor: "club",
-      },
-      {
-        Header: () => <div className="mx-auto">Standard</div>,
+        Header: () => <div>Standard</div>,
         accessor: "standard",
         Cell: (props) => (
-          <div className="text-center text-gray-700 text-sm">
+          <div className="text-gray-700 font-semibold text-sm">
             {props.cell.value}
           </div>
         ),
       },
       {
-        Header: () => <div className="mx-auto">Rapid</div>,
+        Header: () => <div>Rapid</div>,
         accessor: "rapid",
         Cell: (props) => (
-          <div className="text-center text-gray-700 text-sm">
+          <div className="text-gray-700 font-semibold text-sm">
             {props.cell.value}
           </div>
         ),
       },
+      {
+        Header: "Club",
+        accessor: "club",
+      }
     ],
     []
   );
