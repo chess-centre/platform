@@ -99,7 +99,7 @@ function GridCalendar({
                       {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                       {data.filter(
                         (data) => new Date(data.startDate).getMonth() === month
-                      ).length === 0 && (isEndMonth ? <GridComingSoonCard /> : <GridNoEventsRemaining month={selected} />) }
+                      ).length === 0 && (isEndMonth ? <GridComingSoonCard /> : <GridNoEventsRemaining month={selected} setSelectedMonth={setSelectedMonth} />) }
                     </div>
                   </div>
                 );
@@ -140,7 +140,8 @@ function ListCalendar({
   selected,
   filters,
   allDeselected,
-  isEndMonth
+  isEndMonth,
+  setSelectedMonth
 }) {
   return (
     <>
@@ -164,7 +165,7 @@ function ListCalendar({
                 {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                 {data.filter(
                   (event) => new Date(event.startDate).getMonth() === selected
-                  ).length === 0 && (isEndMonth ? <ListComingSoonCard /> : <ListNoEventsRemaining month={selected} />) }
+                  ).length === 0 && (isEndMonth ? <ListComingSoonCard /> : <ListNoEventsRemaining month={selected} setSelectedMonth={setSelectedMonth} />) }
               </ul>
             </>
           )}
@@ -406,7 +407,7 @@ function GridNoEventsRemaining({ month, setSelectedMonth }) {
       <div className="text-gray-600 flex-grow mb-5">
         <div></div>
         <p className="text-teal-500 text-md text-center">
-          All events for {monthNames[month]} are now finished. <span className="font-semibold">Try next months...{" "}</span>
+          All events for {monthNames[month]} are now finished. <span className="font-semibold text-gray-700">Try next months...{" "}</span>
         </p>
       </div>
       <div
