@@ -99,7 +99,7 @@ function GridCalendar({
                       {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                       {data.filter(
                         (data) => new Date(data.startDate).getMonth() === month
-                      ).length === 0 && (isEndMonth ? <GridComingSoonCard /> : <GridNoEventsRemaining month={monthNames[selected]} />) }
+                      ).length === 0 && (isEndMonth ? <GridComingSoonCard /> : <GridNoEventsRemaining month={selected} />) }
                     </div>
                   </div>
                 );
@@ -164,7 +164,7 @@ function ListCalendar({
                 {/* TODO: refactor. Here we drop in a placeholder to cover when no future events have been published. */}
                 {data.filter(
                   (event) => new Date(event.startDate).getMonth() === selected
-                  ).length === 0 && (isEndMonth ? <ListComingSoonCard /> : <ListNoEventsRemaining month={monthNames[selected]} />) }
+                  ).length === 0 && (isEndMonth ? <ListComingSoonCard /> : <ListNoEventsRemaining month={selected} />) }
               </ul>
             </>
           )}
@@ -330,15 +330,19 @@ function ListComingSoonCard() {
   );
 }
 
-function ListNoEventsRemaining({ month }) {
+function ListNoEventsRemaining({ month, setSelectedMonth }) {
+
+  const nextMonth = month >= 11 ? 0 : month + 1;
+
   return (
-    <li className=" col-span-1 flex mb-3 sm:ml-28 px-1">
+    <li onClick={() => setSelectedMonth(nextMonth)} className=" col-span-1 flex mb-3 sm:ml-28 px-1 cursor-pointer">
       <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
         <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate rounded-l-lg">
           <h3 className="font-red-hat-display text-xl mb-1 text-gray-500">Events Complete</h3>
           <p className="text-teal-500 text-sm mb-1">
-            All events for {month ? month : "this month"} are now finished. <span className="font-semibold">Try next months...{" "}</span>
+            All events for {monthNames[month]} are now finished.
           </p>
+          <p className="text-gray-700 text-sm mb-1"><span className="font-semibold">Try next months...{" "}</span></p>
         </div>
         <div className="bg-gray-300 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
       </div>
@@ -378,11 +382,15 @@ function GridComingSoonCard() {
   );
 }
 
-function GridNoEventsRemaining({ month }) {
+function GridNoEventsRemaining({ month, setSelectedMonth }) {
+
+  const nextMonth = month >= 11 ? 0 : month + 1;
+
   return (
     <li
+      onClick={() => setSelectedMonth(nextMonth)} 
       className={
-        "relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300"
+        "relative z-0 pt-6 pl-6 pb-4 pr-4 shadow-2xl flex flex-col rounded-xl border-b border-l border-r border-light-blue-300 cursor-pointer"
       }
     >
       <div
@@ -398,7 +406,7 @@ function GridNoEventsRemaining({ month }) {
       <div className="text-gray-600 flex-grow mb-5">
         <div></div>
         <p className="text-teal-500 text-md text-center">
-          All events for {month ? month : "this month"} are now finished. <span className="font-semibold">Try next months...{" "}</span>
+          All events for {monthNames[month]} are now finished. <span className="font-semibold">Try next months...{" "}</span>
         </p>
       </div>
       <div
