@@ -152,7 +152,7 @@ export default function EventCard({
           "absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
         )}
       ></div>
-      <div className="p-6 px-10">
+      <div className="p-6 px-8">
         <EventHeader
           icon={icon}
           name={name}
@@ -166,7 +166,7 @@ export default function EventCard({
         />
         <RegisterButton id={id} isFull={isFull} isLive={isLive} showSections={multipleSections} />
       </div>
-      <div className="pt-6 pb-8 px-6">
+      <div className="py-4 px-6">
         <h3 className="text-xs font-medium text-teal-700 tracking-wide uppercase">
           Details
         </h3>

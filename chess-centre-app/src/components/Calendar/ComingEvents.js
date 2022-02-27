@@ -4,7 +4,6 @@ import { ListCard } from "./shared/ListCard";
 import FilterMenu from "./FilterMenu";
 import ToggleView from "./ToggleView";
 import TabMonths from "./TabMonths";
-import moment from "moment";
 import { classNames } from "../../utils/Classes";
 import { useEventsLite } from "../../api/events";
 

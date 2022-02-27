@@ -85,7 +85,7 @@ export default function JuniorCustomEvent() {
                 }
                 setIsLoading(false);
             } catch (error) {
-                console.log(error);
+                console.log("Error", error);
                 setIsLoading(false);
             }
         };
@@ -187,6 +187,7 @@ export default function JuniorCustomEvent() {
                                                 All entries <span className="underline">must</span> have an ECF membership. New members can create a FREE Junior silver membership
                                                 {" "}<a
                                                     target="_blank"
+                                                    rel="noreferrer"
                                                     href={`https://www.englishchess.org.uk/ecf-membership-rates-and-joining-details/`}
                                                     className="font-medium underline text-yellow-700 hover:text-yellow-600 sm:ml-2"
                                                 >click here
