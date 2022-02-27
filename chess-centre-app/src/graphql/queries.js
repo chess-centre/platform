@@ -333,6 +333,7 @@ export const getGame = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -393,6 +394,7 @@ export const getGame = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -477,6 +479,7 @@ export const getGame = /* GraphQL */ `
         chesscomInfo
         chesscomLastUpdated
         lichessLastUpdated
+        ecfLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -522,6 +525,7 @@ export const getGame = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -639,6 +643,7 @@ export const getGame = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -699,6 +704,7 @@ export const getGame = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -783,6 +789,7 @@ export const getGame = /* GraphQL */ `
         chesscomInfo
         chesscomLastUpdated
         lichessLastUpdated
+        ecfLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -828,6 +835,7 @@ export const getGame = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -958,6 +966,7 @@ export const getGame = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -992,6 +1001,7 @@ export const getGame = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1083,6 +1093,7 @@ export const getGame = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1214,6 +1225,7 @@ export const listGames = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1248,6 +1260,7 @@ export const listGames = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1297,6 +1310,7 @@ export const listGames = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -1381,6 +1395,7 @@ export const listGames = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1415,6 +1430,7 @@ export const listGames = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1464,6 +1480,7 @@ export const listGames = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -1699,6 +1716,7 @@ export const listGamesByEvent = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1733,6 +1751,7 @@ export const listGamesByEvent = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1782,6 +1801,7 @@ export const listGamesByEvent = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -1866,6 +1886,7 @@ export const listGamesByEvent = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1900,6 +1921,7 @@ export const listGamesByEvent = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -1949,6 +1971,7 @@ export const listGamesByEvent = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -2184,6 +2207,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2218,6 +2242,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2267,6 +2292,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -2351,6 +2377,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2385,6 +2412,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2434,6 +2462,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -2669,6 +2698,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2703,6 +2733,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2752,6 +2783,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -2836,6 +2868,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2870,6 +2903,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -2919,6 +2953,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -3152,6 +3187,7 @@ export const syncGames = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3186,6 +3222,7 @@ export const syncGames = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3235,6 +3272,7 @@ export const syncGames = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -3319,6 +3357,7 @@ export const syncGames = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3353,6 +3392,7 @@ export const syncGames = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -3402,6 +3442,7 @@ export const syncGames = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -3789,6 +3830,7 @@ export const syncMembers = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -3849,6 +3891,7 @@ export const syncMembers = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -3933,6 +3976,7 @@ export const syncMembers = /* GraphQL */ `
         chesscomInfo
         chesscomLastUpdated
         lichessLastUpdated
+        ecfLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -3978,6 +4022,7 @@ export const syncMembers = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -4114,6 +4159,7 @@ export const getMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -4148,6 +4194,7 @@ export const getMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -4197,6 +4244,7 @@ export const getMember = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -4281,6 +4329,7 @@ export const getMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -4315,6 +4364,7 @@ export const getMember = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -4364,6 +4414,7 @@ export const getMember = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -4511,6 +4562,7 @@ export const getMember = /* GraphQL */ `
       chesscomInfo
       chesscomLastUpdated
       lichessLastUpdated
+      ecfLastUpdated
       _version
       _deleted
       _lastChangedAt
@@ -4578,6 +4630,7 @@ export const getMember = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -4739,6 +4792,7 @@ export const listMembers = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -4799,6 +4853,7 @@ export const listMembers = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -4883,6 +4938,7 @@ export const listMembers = /* GraphQL */ `
         chesscomInfo
         chesscomLastUpdated
         lichessLastUpdated
+        ecfLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -4928,6 +4984,7 @@ export const listMembers = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -5087,6 +5144,7 @@ export const getEvent = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5147,6 +5205,7 @@ export const getEvent = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5295,6 +5354,7 @@ export const getEvent = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -5469,6 +5529,7 @@ export const listEvents = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -5503,6 +5564,7 @@ export const listEvents = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -5594,6 +5656,7 @@ export const listEvents = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -5746,6 +5809,7 @@ export const listEventsActive = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -5780,6 +5844,7 @@ export const listEventsActive = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -5871,6 +5936,7 @@ export const listEventsActive = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6019,6 +6085,7 @@ export const syncEvents = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6053,6 +6120,7 @@ export const syncEvents = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6144,6 +6212,7 @@ export const syncEvents = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6279,6 +6348,7 @@ export const getEntry = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -6339,6 +6409,7 @@ export const getEntry = /* GraphQL */ `
             chesscomInfo
             chesscomLastUpdated
             lichessLastUpdated
+            ecfLastUpdated
             _version
             _deleted
             _lastChangedAt
@@ -6423,6 +6494,7 @@ export const getEntry = /* GraphQL */ `
         chesscomInfo
         chesscomLastUpdated
         lichessLastUpdated
+        ecfLastUpdated
         _version
         _deleted
         _lastChangedAt
@@ -6468,6 +6540,7 @@ export const getEntry = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6598,6 +6671,7 @@ export const getEntry = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6632,6 +6706,7 @@ export const getEntry = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6723,6 +6798,7 @@ export const getEntry = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6839,6 +6915,7 @@ export const listEntrys = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6873,6 +6950,7 @@ export const listEntrys = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -6922,6 +7000,7 @@ export const listEntrys = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt
@@ -7140,6 +7219,7 @@ export const syncEntries = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -7174,6 +7254,7 @@ export const syncEntries = /* GraphQL */ `
               chesscomInfo
               chesscomLastUpdated
               lichessLastUpdated
+              ecfLastUpdated
               _version
               _deleted
               _lastChangedAt
@@ -7223,6 +7304,7 @@ export const syncEntries = /* GraphQL */ `
           chesscomInfo
           chesscomLastUpdated
           lichessLastUpdated
+          ecfLastUpdated
           _version
           _deleted
           _lastChangedAt

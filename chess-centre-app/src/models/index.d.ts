@@ -145,6 +145,7 @@ export declare class Member {
   readonly chesscomInfo?: string;
   readonly chesscomLastUpdated?: number;
   readonly lichessLastUpdated?: number;
+  readonly ecfLastUpdated?: number;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
 }
