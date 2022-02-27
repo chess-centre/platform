@@ -1,10 +1,25 @@
-import React from "react";
-import { classNames } from "../../../../utils/Classes"
-
+import React, { useState, useEffect } from "react";
+import moment from "moment";
+import { classNames } from "../../../../utils/Classes";
 
 export default function ChessProfile(props) {
+  const {
+    fideId,
+    ecfId,
+    ecfRating,
+    ecfRapid,
+    ecfMembership,
+    ecfLastUpdated,
+  } = props;
 
-  const { fideId, ecfId, ecfRating, ecfRapid, ecfMembership } = props;
+  const [lastUpdated, setLastUpdated] = useState(Date.now());
+
+  useEffect(() => {
+    if (ecfLastUpdated) {
+      console.log("updated!");
+      setLastUpdated(ecfLastUpdated);
+    }
+  }, [ecfLastUpdated]);
 
   return (
     <div>
@@ -22,7 +37,7 @@ export default function ChessProfile(props) {
 
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6 sm:col-span-3 gap-6">
-              <div className="">
+              <div>
                 <label
                   htmlFor="ecf_id"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -79,7 +94,6 @@ export default function ChessProfile(props) {
                   </div>
                 </div>
               </div>
-
             </div>
 
             <div className="col-span-6 sm:col-span-3">
@@ -115,13 +129,21 @@ export default function ChessProfile(props) {
               </div>
               <div className="col-span-2 sm:col-span-3">
                 <div className="inline-flex mt-6 sm:mt-14">
-                  <div className="text-gray-700 text-sm font-medium mr-2">ECF Member status:</div>
-                  <div className="-mt-1"><EcfMembershipStatus status={ecfMembership} /></div>
+                  <div className="text-gray-700 text-sm font-medium mr-2">
+                    ECF Member status:
+                  </div>
+                  <div className="-mt-1">
+                    <EcfMembershipStatus status={ecfMembership} />
+                  </div>
                 </div>
               </div>
             </div>
-
           </div>
+          {lastUpdated && (
+            <div className="text-right text-xs text-gray-300 italic">
+              Last updated: {moment(lastUpdated).format("Do MMM YY @ HH:mm")}{" "}
+            </div>
+          )}
         </div>
 
         <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text- sm:text-right text-xs sm:px-6 border-t border-gray-50 dark:border-gray-700 italic text-center">
@@ -146,11 +168,17 @@ export default function ChessProfile(props) {
 const EcfMembershipStatus = ({ status }) => {
   const label = (txtColor, bgColor, text) => {
     return (
-      <span className={classNames(txtColor, bgColor, `items-center px-2.5 py-0.5 rounded-md text-sm font-medium`)}>
+      <span
+        className={classNames(
+          txtColor,
+          bgColor,
+          `items-center px-2.5 py-0.5 rounded-md text-sm font-medium`
+        )}
+      >
         {text}
       </span>
-    )
-  }
+    );
+  };
   switch (status) {
     case "ECF SUPPORTER":
       return label("text-blue-800", "bg-blue-100", status);
@@ -163,6 +191,6 @@ const EcfMembershipStatus = ({ status }) => {
     case "PLATINUM":
       return label("text-pink-800", "bg-pink-100", status);
     default:
-      return label("text-gray-400", "bg-gray-50", status ? status : "None")
+      return label("text-gray-400", "bg-gray-50", status ? status : "None");
   }
-}
+};

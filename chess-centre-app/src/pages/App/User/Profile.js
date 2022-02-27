@@ -30,6 +30,7 @@ export const getMember = /* GraphQL */ `
       stripeCurrentPeriodEnd
       stripePriceId
       stripeProductId
+      ecfLastUpdated
       liChessUsername
       liChessInfo
       lichessLastUpdated
