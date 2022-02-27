@@ -63,7 +63,7 @@ export default function ChesscomPlayersTable({ players, colour }) {
         Header: () => <div className="mx-auto">Games</div>,
         accessor: "total",
         Cell: (props) => (
-          <div className="font-medium text-sm text-center">
+          <div className="font-medium text-sm text-right mr-5">
             {numberWithCommas(props.cell.value)}
           </div>
         ),
