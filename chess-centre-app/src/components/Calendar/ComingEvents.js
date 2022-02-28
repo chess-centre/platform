@@ -4,23 +4,9 @@ import { ListCard } from "./shared/ListCard";
 import FilterMenu from "./FilterMenu";
 import ToggleView from "./ToggleView";
 import TabMonths from "./TabMonths";
+import { monthNames } from "../../utils/DateFormating";
 import { classNames } from "../../utils/Classes";
 import { useEventsLite } from "../../api/events";
-
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
 
 function GridCalendar({
   isLoading,

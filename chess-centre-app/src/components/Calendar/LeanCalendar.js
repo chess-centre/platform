@@ -1,27 +1,24 @@
+import { useHistory } from "react-router-dom";
 import React, { useState, useMemo } from "react";
 import { bgColor700 } from "tailwind-dynamic-classes";
 import FilterMenu from "./FilterMenu";
 import TabMonths from "./TabMonths";
-import { getDay, getMonth, getDayStr } from "../../utils/DateFormating";
+import { getDay, getMonth, getDayStr, monthNames } from "../../utils/DateFormating";
 import { classNames } from "../../utils/Classes";
 import { useEventsLite } from "../../api/events";
 
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
-
 function ListCard({ event }) {
+
+  const history = useHistory();
+
+  const handleClick = () => {
+    if (event.isLive) {
+      history.push("/broadcast/live");
+    } else if (event.type.canRegister) {
+      history.push(`/app/events?show_info=${event.id}`);
+    }
+  };
+
   return (
     <li key={event.id} className="col-span-1 flex mb-3 z-0">
       <div
@@ -65,7 +62,11 @@ function ListCard({ event }) {
           ></div>
         </div>
       </div>
-      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+      <div
+       onClick={() => handleClick(event.url)}
+       className={classNames(
+         (event.type.canRegister || event.isLive) && "hover:bg-gray-50 cursor-pointer", "relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow"
+         )}>
         <div className="px-4 sm:px-6 py-2 sm:py-0 text-sm ">
           <p className="sm:text-2xl sm:font-medium font-bold text-lg">
             {event.name}
@@ -257,12 +258,10 @@ function ListComingSoonCard() {
 }
 
 function ListNoEventsRemaining({ month, setSelectedMonth }) {
-  
   const nextMonth = month >= 11 ? 0 : month + 1;
-
   return (
     <li onClick={() => setSelectedMonth(nextMonth)} className="col-span-1 flex mb-3 px-1 cursor-pointer">
-      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white rounded-lg truncate shadow">
+      <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white hover:bg-gray-50 rounded-lg truncate shadow">
         <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate rounded-l-lg">
           <h3 className="font-red-hat-display text-xl mb-1 text-gray-500">Events Complete</h3>
           <p className="text-teal-500 text-sm mb-1">
