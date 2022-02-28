@@ -84,7 +84,7 @@
         },
         "ecfRatingScraper": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfRatingScraper-577978744c6f56516e4d-build.zip"
+          "s3Key": "amplify-builds/ecfRatingScraper-31734f5157576a6c395a-build.zip"
         },
         "getInstagramFeed": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",

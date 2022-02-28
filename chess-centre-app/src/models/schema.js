@@ -1096,6 +1096,13 @@ export const schema = {
                     "type": "Float",
                     "isRequired": false,
                     "attributes": []
+                },
+                "ecfLastUpdated": {
+                    "name": "ecfLastUpdated",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -1262,5 +1269,5 @@ export const schema = {
             }
         }
     },
-    "version": "ccf5088209ca4eeee9f80e0eec342931"
+    "version": "32f648775868247b739ebc89c8b89951"
 };

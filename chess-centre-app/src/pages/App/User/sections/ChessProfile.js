@@ -146,7 +146,7 @@ export default function ChessProfile(props) {
           )}
         </div>
 
-        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text- sm:text-right text-xs sm:px-6 border-t border-gray-50 dark:border-gray-700 italic text-center">
+        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-right text-xs sm:px-6 border-t border-gray-50 dark:border-gray-700 italic">
           <span>
             These fields will be automatically populated once you have an
             official rating with the{" "}
