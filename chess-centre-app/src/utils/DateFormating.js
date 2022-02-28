@@ -46,3 +46,18 @@ function formatDoubleDateMoment(start, end) {
   return `${moment(start).format("ddd Do")}, ${moment(end).format("ddd Do MMM")}`
 }
 
+export const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
