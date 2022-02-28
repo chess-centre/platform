@@ -1,6 +1,8 @@
+import API from "@aws-amplify/api";
 import { Tab } from "@headlessui/react";
-import { Link } from "react-router-dom";
-import { useEffect, Fragment } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, Fragment, useState } from "react";
+import LandingNav from "../../components/Navigation/LandingNav";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
 import EntriesTable from "../../components/EntriesTable/table";
@@ -17,16 +19,117 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const getEvent = /* GraphQL */ `
+  query GetEvent($id: ID!) {
+    getEvent(id: $id) {
+      id
+      name
+      description
+      rounds
+      time
+      startDate
+      endDate
+      maxEntries
+      entryCount
+      complete
+      cancelled
+      isLive
+      isLiveUrl
+      active
+      multipleSections
+      type {
+        id
+        name
+        description
+        url
+        color
+        time
+        maxEntries
+        timeControl
+        eventType
+        defaultPrice
+        canRegister
+      }
+      entries {
+        items {
+          id
+          eventId
+          memberId
+          section
+          byes
+          member {
+            id
+            fideId
+            ecfId
+            name
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+          }
+        }
+      }
+    }
+  }
+`;
+
 export default function Festival() {
+  const { id } = useParams();
   const event = rounds.find(({ type }) => type === "festival");
+  const [section, setSection] = useState("open");
+  const [selectedRoundOne, setSelectedRoundOne] = useState(false);
+  const [selectedRoundTwo, setSelectedRoundTwo] = useState(false);
+  const [selectedRoundThree, setSelectedRoundThree] = useState(false);
+  const [selectedRoundFour, setSelectedRoundFour] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [eventEntries, setEventEntries] = useState({});
+
+  const generateUrl = () => {
+    const sectionStr = `&section=${section}`;
+    const r1 = selectedRoundOne ? "1" : "";
+    const r2 = selectedRoundTwo ? "2" : "";
+    const r3 = selectedRoundThree ? "3" : "";
+    const r4 = selectedRoundFour ? "4" : "";
+    const byes = `${r1}${r2}${r3}${r4}`;
+    const byesStr = byes ? `&byes=${byes}` : "";
+
+    return `/register?eventId=${id}${sectionStr}${byesStr}`;
+  };
 
   useEffect(() => {
     document.title = "The Chess Centre | Festival";
-  }, []);
+
+    const fetchEvent = async () => {
+      setIsLoading(true);
+      const response = await API.graphql({
+        query: getEvent,
+        variables: { id },
+        authMode: "AWS_IAM",
+      }).catch((error) => {
+        console.log("Error fetching event.", id);
+        console.log(error.response);
+      });
+      if (response && response.data) {
+        const {
+          data: {
+            getEvent: entries,
+          },
+        } = response;
+        setEventEntries(entries);
+      }
+      setIsLoading(false);
+    };
+    fetchEvent();
+  }, [id]);
 
   return (
     <div className="relative bg-white">
-      <div className="mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className=" bg-gray-50 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
+        <LandingNav />
+      </div>
+      <div className="mx-auto py-10 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
           <div className="lg:row-end-1 lg:col-span-4">
             <div className="aspect-w-4 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden">
@@ -50,19 +153,7 @@ export default function Festival() {
                 </p>
               </div>
             </div>
-
-            <p className="text-gray-500 mt-6">{festival.description}</p>
-
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4">
-              <Link
-                to="/register/festival"
-                className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-teal-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
-              >
-                Enter Now
-              </Link>
-            </div>
-
-            <div className="border-t border-gray-200 mt-10 pt-10">
+            <div className="border-t border-gray-200 mt-6 pt-6 mb-4">
               <h3 className="text-lg font-medium text-gray-900">
                 Prizes{" "}
                 <span className="text-sm text-gray-500">for all sections</span>
@@ -71,10 +162,144 @@ export default function Festival() {
                 <Prizes />
               </div>
             </div>
+            <div className="border-t border-gray-200">
+              <div className="mt-8 mx-6">
+                <label
+                  htmlFor="section"
+                  className="block text-xs text-gray-500 text-center mb-2"
+                >
+                  Select your section
+                </label>
+                <select
+                  onChange={(e) => setSection(e.target.value.toLowerCase())}
+                  id="section"
+                  name="section"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-md border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
+                  defaultValue="Open"
+                >
+                  <option>Open</option>
+                  <option>Major</option>
+                  <option>Intermediate</option>
+                  <option>Minor</option>
+                </select>
+              </div>
+            </div>
+            <div
+              htmlFor="byes"
+              className="block text-xs text-gray-500 text-center mt-6"
+            >
+              Half point byes
+            </div>
+            <div className="sm:inline-flex sm:space-x-6 sm:ml-10 ml-24 mt-4">
+              <div className="relative flex items-start mb-6">
+                <div className="flex items-center h-5">
+                  <input
+                    defaultChecked={selectedRoundOne}
+                    onChange={(e) =>
+                      setSelectedRoundOne(e.currentTarget.checked)
+                    }
+                    id="round-two"
+                    name="round-two"
+                    type="checkbox"
+                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                  />
+                </div>
+                <div className="ml-3 text-xs">
+                  <label
+                    htmlFor="candidates"
+                    className="font-medium text-blue-brand"
+                  >
+                    Round 1
+                  </label>
+                </div>
+              </div>
+              <div className="relative flex items-start mb-6 sm:mb-0">
+                <div className="flex items-center h-5">
+                  <input
+                    defaultChecked={selectedRoundTwo}
+                    onChange={(e) =>
+                      setSelectedRoundTwo(e.currentTarget.checked)
+                    }
+                    id="round-two"
+                    name="round-two"
+                    type="checkbox"
+                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                  />
+                </div>
+                <div className="ml-3 text-xs">
+                  <label
+                    htmlFor="candidates"
+                    className="font-medium text-blue-brand"
+                  >
+                    Round 2
+                  </label>
+                </div>
+              </div>
+              <div className="relative flex items-start mb-6 sm:mb-0">
+                <div className="flex items-center h-5">
+                  <input
+                    defaultChecked={selectedRoundThree}
+                    onChange={(e) =>
+                      setSelectedRoundThree(e.currentTarget.checked)
+                    }
+                    id="round-three"
+                    name="round-three"
+                    type="checkbox"
+                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                  />
+                </div>
+                <div className="ml-3 text-xs">
+                  <label
+                    htmlFor="offers"
+                    className="font-medium text-blue-brand"
+                  >
+                    Round 3
+                  </label>
+                </div>
+              </div>
+              <div className="relative flex items-start mb-6 sm:mb-0">
+                <div className="flex items-center h-5">
+                  <input
+                    defaultChecked={selectedRoundFour}
+                    onChange={(e) =>
+                      setSelectedRoundFour(e.currentTarget.checked)
+                    }
+                    id="round-four"
+                    name="round-four"
+                    type="checkbox"
+                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                  />
+                </div>
+                <div className="ml-3 text-xs">
+                  <label
+                    htmlFor="offers"
+                    className="font-medium text-blue-brand"
+                  >
+                    Round 4
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className="text-center">
+              <span className="text-5xl font-extrabold text-gray-900 mr-1">
+                £30
+              </span>
+              <span className="text-base font-medium text-gray-500">
+                entry fee
+              </span>
+            </div>
+            <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4">
+              <Link
+                to={generateUrl()}
+                className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-teal-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
+              >
+                Enter Now
+              </Link>
+            </div>
 
             <div className="border-t border-gray-200 mt-10 pt-10">
-              <div className="grid grid-cols-2">
-                <div>
+              <div className="grid grid-cols-1 sm:grid-cols-2">
+                <div className="order-2 sm:order-1">
                   <h3 className="text-lg font-medium text-gray-900">
                     Location
                   </h3>
@@ -86,7 +311,7 @@ export default function Festival() {
                     Ilkley, LS29 8HB
                   </p>
                 </div>
-                <div>
+                <div className="order-1 sm:order-2">
                   <img
                     className="w-6/7 -mt-6"
                     alt="festival building"
@@ -141,18 +366,6 @@ export default function Festival() {
                   >
                     Entries
                   </Tab>
-                  <Tab
-                    className={({ selected }) =>
-                      classNames(
-                        selected
-                          ? "border-teal-600 text-teal-600"
-                          : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
-                      )
-                    }
-                  >
-                    FAQs
-                  </Tab>
                 </Tab.List>
               </div>
               <Tab.Panels as={Fragment}>
@@ -162,24 +375,59 @@ export default function Festival() {
                       <h2>Sections</h2>
                       <ul className="font-medium text-blue-brand">
                         <li>Open</li>
-                        <li>Major{" "}
-                          <span className="text-gray-600 text-sm font-normal">(ECF 2000 and under)</span>
+                        <li>
+                          Major{" "}
+                          <span className="text-gray-600 text-sm font-normal">
+                            (ECF 2000 and under)
+                          </span>
                         </li>
-                        <li>Intermediate{" "}
-                          <span className="ext-gray-600 text-sm font-normal">(ECF 1750 and under)</span>
+                        <li>
+                          Intermediate{" "}
+                          <span className="ext-gray-600 text-sm font-normal">
+                            (ECF 1750 and under)
+                          </span>
                         </li>
-                        <li>Minor{" "}
-                          <span className="ext-gray-600 text-sm font-normal">(ECF 1500 and under)</span>
+                        <li>
+                          Minor{" "}
+                          <span className="ext-gray-600 text-sm font-normal">
+                            (ECF 1500 and under)
+                          </span>
                         </li>
                       </ul>
-                      <p className="text-sm">Unrated players will be inelible for prizes in any section but the open.</p>
+                      <p className="text-sm">
+                        Unrated players will only be eligible for prizes in the
+                        open section.
+                      </p>
                       <h3>Event Structure</h3>
                       <ul className="font-medium text-blue-brand">
-                        <li>Rounds: <span className="text-teal-600">5</span>{" "} <span className="text-gray-600 text-sm font-normal">see schedule</span></li>
-                        <li>Time Control: <span className="text-teal-600">90 mins per player + 10 second increment.</span></li>
-                        <li>Entry fee: <span className="text-teal-600">£30</span></li>
+                        <li>
+                          Rounds: <span className="text-teal-600">5</span>{" "}
+                          <span className="text-gray-600 text-sm font-normal">
+                            see schedule
+                          </span>
+                        </li>
+                        <li>
+                          Time Control:{" "}
+                          <span className="text-teal-600 text-md">
+                            90{" "}
+                            <span className="text-sm text-gray-600 font-normal">
+                              mins per player
+                            </span>{" "}
+                            + 10{" "}
+                            <span className="text-sm text-gray-600 font-normal">
+                              second increment
+                            </span>
+                            .
+                          </span>
+                        </li>
+                        <li>
+                          Entry fee: <span className="text-teal-600">£30</span>
+                        </li>
                       </ul>
-                      <p className="text-sm">Standard ECF rules apply. All games will be submited to the ECF for offical rating calculation.</p>
+                      <p className="text-sm">
+                        Standard ECF rules apply. All games will be submited to
+                        the ECF for offical rating calculation.
+                      </p>
                     </div>
                   </div>
                 </Tab.Panel>
@@ -191,16 +439,12 @@ export default function Festival() {
                 <Tab.Panel as="dl" className="text-sm text-gray-500 py-5">
                   <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
                     <h2>Entries</h2>
-                    <ul className="font-medium text-blue-brand">
-                      <li>Total: <span className="text-teal-600">0</span>{" "}</li>
-                    </ul>
-                    {/* <EntriesTable eventId="23424" eventType="standard" /> */}
+
+                    {!isLoading && eventEntries && (
+                      <EntriesTable eventDetails={eventEntries} />
+                    )}
                   </div>
-
-
                 </Tab.Panel>
-
-                <Tab.Panel className="pt-10">FAQs</Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
           </div>

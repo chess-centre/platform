@@ -92,6 +92,7 @@ export function EventCard(props) {
     setIsSlideOutOpen
   } = props;
 
+  const showByes = type?.eventType?.includes("festival");
 
   return (
     <section
@@ -147,7 +148,7 @@ export function EventCard(props) {
             <div className="flex-initial flex-nowrap">
               <div className="text-right">
                 {allowedToRegister ? (
-                  <Register id={id} register={register} multipleSections={multipleSections} />
+                  <Register id={id} register={register} multipleSections={multipleSections} showByes={showByes} />
                 ) : (
                   <>
                     <p className="text-sm text-gray-700 mr-2">
