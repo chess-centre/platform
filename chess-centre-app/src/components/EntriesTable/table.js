@@ -196,7 +196,7 @@ function SectionTabs(props) {
   return (
     <div>
       <nav
-        className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"
+        className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200 sm:mx-2 sm:border"
         aria-label="Sections"
       >
         {sections.map((section, tabIdx) => (

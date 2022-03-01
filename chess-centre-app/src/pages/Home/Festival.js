@@ -113,9 +113,7 @@ export default function Festival() {
       });
       if (response && response.data) {
         const {
-          data: {
-            getEvent: entries,
-          },
+          data: { getEvent: entries },
         } = response;
         setEventEntries(entries);
       }
@@ -142,6 +140,7 @@ export default function Festival() {
           </div>
 
           <div className="max-w-2xl text-center sm:text-left mx-auto mt-4 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
+            {/* TITLE */}
             <div className="flex flex-col-reverse">
               <div className="mt-4">
                 <h1 className="text-3xl font-extrabold tracking-tight  text-teal-brand sm:text-5xl">
@@ -153,6 +152,8 @@ export default function Festival() {
                 </p>
               </div>
             </div>
+
+            {/* PRIZES */}
             <div className="border-t border-gray-200 mt-6 pt-6 mb-4">
               <h3 className="text-lg font-medium text-gray-900">
                 Prizes{" "}
@@ -162,141 +163,13 @@ export default function Festival() {
                 <Prizes />
               </div>
             </div>
-            <div className="border-t border-gray-200">
-              <div className="mt-8 mx-6">
-                <label
-                  htmlFor="section"
-                  className="block text-xs text-gray-500 text-center mb-2"
-                >
-                  Select your section
-                </label>
-                <select
-                  onChange={(e) => setSection(e.target.value.toLowerCase())}
-                  id="section"
-                  name="section"
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-md border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
-                  defaultValue="Open"
-                >
-                  <option>Open</option>
-                  <option>Major</option>
-                  <option>Intermediate</option>
-                  <option>Minor</option>
-                </select>
-              </div>
-            </div>
-            <div
-              htmlFor="byes"
-              className="block text-xs text-gray-500 text-center mt-6"
-            >
-              Half point byes
-            </div>
-            <div className="sm:inline-flex sm:space-x-6 sm:ml-10 ml-24 mt-4">
-              <div className="relative flex items-start mb-6">
-                <div className="flex items-center h-5">
-                  <input
-                    defaultChecked={selectedRoundOne}
-                    onChange={(e) =>
-                      setSelectedRoundOne(e.currentTarget.checked)
-                    }
-                    id="round-two"
-                    name="round-two"
-                    type="checkbox"
-                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
-                  />
-                </div>
-                <div className="ml-3 text-xs">
-                  <label
-                    htmlFor="candidates"
-                    className="font-medium text-blue-brand"
-                  >
-                    Round 1
-                  </label>
-                </div>
-              </div>
-              <div className="relative flex items-start mb-6 sm:mb-0">
-                <div className="flex items-center h-5">
-                  <input
-                    defaultChecked={selectedRoundTwo}
-                    onChange={(e) =>
-                      setSelectedRoundTwo(e.currentTarget.checked)
-                    }
-                    id="round-two"
-                    name="round-two"
-                    type="checkbox"
-                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
-                  />
-                </div>
-                <div className="ml-3 text-xs">
-                  <label
-                    htmlFor="candidates"
-                    className="font-medium text-blue-brand"
-                  >
-                    Round 2
-                  </label>
-                </div>
-              </div>
-              <div className="relative flex items-start mb-6 sm:mb-0">
-                <div className="flex items-center h-5">
-                  <input
-                    defaultChecked={selectedRoundThree}
-                    onChange={(e) =>
-                      setSelectedRoundThree(e.currentTarget.checked)
-                    }
-                    id="round-three"
-                    name="round-three"
-                    type="checkbox"
-                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
-                  />
-                </div>
-                <div className="ml-3 text-xs">
-                  <label
-                    htmlFor="offers"
-                    className="font-medium text-blue-brand"
-                  >
-                    Round 3
-                  </label>
-                </div>
-              </div>
-              <div className="relative flex items-start mb-6 sm:mb-0">
-                <div className="flex items-center h-5">
-                  <input
-                    defaultChecked={selectedRoundFour}
-                    onChange={(e) =>
-                      setSelectedRoundFour(e.currentTarget.checked)
-                    }
-                    id="round-four"
-                    name="round-four"
-                    type="checkbox"
-                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
-                  />
-                </div>
-                <div className="ml-3 text-xs">
-                  <label
-                    htmlFor="offers"
-                    className="font-medium text-blue-brand"
-                  >
-                    Round 4
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div className="text-center">
-              <span className="text-5xl font-extrabold text-gray-900 mr-1">
-                £30
-              </span>
-              <span className="text-base font-medium text-gray-500">
-                entry fee
-              </span>
-            </div>
-            <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4">
-              <Link
-                to={generateUrl()}
-                className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-teal-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
-              >
-                Enter Now
-              </Link>
+
+            {/* ENTRY FORM */}
+            <div className="hidden sm:block">
+              <EntryForm id={id} />
             </div>
 
+            {/* LOCATION */}
             <div className="border-t border-gray-200 mt-10 pt-10">
               <div className="grid grid-cols-1 sm:grid-cols-2">
                 <div className="order-2 sm:order-1">
@@ -322,11 +195,10 @@ export default function Festival() {
 
               <FestivalMap />
             </div>
-
-            <SocialSharing />
           </div>
 
-          <div className="w-full max-w-2xl mx-auto mt-16 lg:max-w-none lg:mt-0 lg:col-span-4">
+          {/* MORE DETAILS */}
+          <div className="w-full max-w-2xl mx-auto sm:mt-16 mt-6 lg:max-w-none lg:mt-0 lg:col-span-4">
             <Tab.Group as="div">
               <div className="border-b border-gray-200">
                 <Tab.List className="-mb-px flex space-x-8">
@@ -447,47 +319,11 @@ export default function Festival() {
                 </Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
-          </div>
-          <div className="block sm:hidden border-t border-gray-200 mt-10 pt-4">
-            <h3 className="text-sm font-medium text-gray-900">Share</h3>
-            <ul className="flex items-center space-x-6 mt-4">
-              <li>
-                <a
-                  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchesscentre.online%2Ffestival%2F&amp;src=sdkpreparse"
-                  className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
-                >
-                  <span className="sr-only">Share on Facebook</span>
-                  <svg
-                    className="w-5 h-5"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fchesscentre.online%2Ffestival&text=Checkout%20the%20Ilkley%20Chess%20Festival%2C%2016th-18th%20Sept"
-                  className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
-                >
-                  <span className="sr-only">Share on Twitter</span>
-                  <svg
-                    className="w-5 h-5"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
-                  </svg>
-                </a>
-              </li>
-            </ul>
+            {/* ENTRY FORM */}
+            <div className="block sm:hidden mt-12">
+              <EntryForm id={id} />
+            </div>
+            
           </div>
         </div>
       </div>
@@ -599,48 +435,148 @@ const Prizes = () => {
   );
 };
 
-const SocialSharing = () => {
+const EntryForm = ({ id }) => {
+  const [section, setSection] = useState("open");
+  const [selectedRoundOne, setSelectedRoundOne] = useState(false);
+  const [selectedRoundTwo, setSelectedRoundTwo] = useState(false);
+  const [selectedRoundThree, setSelectedRoundThree] = useState(false);
+  const [selectedRoundFour, setSelectedRoundFour] = useState(false);
+
+  const generateUrl = () => {
+    const sectionStr = `&section=${section}`;
+    const r1 = selectedRoundOne ? "1" : "";
+    const r2 = selectedRoundTwo ? "2" : "";
+    const r3 = selectedRoundThree ? "3" : "";
+    const r4 = selectedRoundFour ? "4" : "";
+    const byes = `${r1}${r2}${r3}${r4}`;
+    const byesStr = byes ? `&byes=${byes}` : "";
+    return `/register?eventId=${id}${sectionStr}${byesStr}`;
+  };
+
   return (
-    <div className="hidden sm:block border-t border-gray-200 mt-10 pt-10">
-      <h3 className="text-sm font-medium text-gray-900">Share</h3>
-      <ul className="flex items-center space-x-6 mt-4">
-        <li>
-          <a
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchesscentre.online%2Ffestival%2F&amp;src=sdkpreparse"
-            className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
+    <div>
+      <div className="border-t border-gray-200">
+        <div className="mt-8 mx-6">
+          <label
+            htmlFor="section"
+            className="block text-sm text-gray-700 text-center mb-2"
           >
-            <span className="sr-only">Share on Facebook</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z"
-                clipRule="evenodd"
+            Select your section
+          </label>
+          <select
+            onChange={(e) => setSection(e.target.value.toLowerCase())}
+            id="section"
+            name="section"
+            className="mt-1 block w-full pl-3 pr-10 py-2 text-md border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
+            defaultValue="Open"
+          >
+            <option>Open</option>
+            <option>Major</option>
+            <option>Intermediate</option>
+            <option>Minor</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="relative mx-auto">
+        <div
+          htmlFor="byes"
+          className="block text-sm text-gray-800 text-center mt-6 mb-4"
+        >
+          Half point byes{" "}
+          <span className="text-gray-500 text-xs">(optional)</span>
+        </div>
+
+        <div className="grid place-items-center grid-cols-1 sm:grid-cols-4 mt-2 mb-4">
+          <div className="flex items-start mb-6 sm:mb-0">
+            <div className="flex items-center h-5">
+              <input
+                defaultChecked={selectedRoundOne}
+                onChange={(e) => setSelectedRoundOne(e.currentTarget.checked)}
+                id="round-two"
+                name="round-two"
+                type="checkbox"
+                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
               />
-            </svg>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fchesscentre.online%2Ffestival&text=Checkout%20the%20Ilkley%20Chess%20Festival%2C%2016th-18th%20Sept"
-            className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
-          >
-            <span className="sr-only">Share on Twitter</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
-            </svg>
-          </a>
-        </li>
-      </ul>
+            </div>
+            <div className="ml-3 text-xs">
+              <label
+                htmlFor="candidates"
+                className="font-medium text-blue-brand"
+              >
+                Round 1
+              </label>
+            </div>
+          </div>
+          <div className="flex items-start mb-6 sm:mb-0">
+            <div className="flex items-center h-5">
+              <input
+                defaultChecked={selectedRoundTwo}
+                onChange={(e) => setSelectedRoundTwo(e.currentTarget.checked)}
+                id="round-two"
+                name="round-two"
+                type="checkbox"
+                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+              />
+            </div>
+            <div className="ml-3 text-xs">
+              <label
+                htmlFor="candidates"
+                className="font-medium text-blue-brand"
+              >
+                Round 2
+              </label>
+            </div>
+          </div>
+          <div className="flex items-start mb-6 sm:mb-0">
+            <div className="flex items-center h-5">
+              <input
+                defaultChecked={selectedRoundThree}
+                onChange={(e) => setSelectedRoundThree(e.currentTarget.checked)}
+                id="round-three"
+                name="round-three"
+                type="checkbox"
+                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+              />
+            </div>
+            <div className="ml-3 text-xs">
+              <label htmlFor="offers" className="font-medium text-blue-brand">
+                Round 3
+              </label>
+            </div>
+          </div>
+          <div className="flex items-start mb-6 sm:mb-0">
+            <div className="flex items-center h-5">
+              <input
+                defaultChecked={selectedRoundFour}
+                onChange={(e) => setSelectedRoundFour(e.currentTarget.checked)}
+                id="round-four"
+                name="round-four"
+                type="checkbox"
+                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+              />
+            </div>
+            <div className="ml-3 text-xs">
+              <label htmlFor="offers" className="font-medium text-blue-brand">
+                Round 4
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="text-center">
+        <span className="text-5xl font-extrabold text-gray-900 mr-1">£30</span>
+        <span className="text-base font-medium text-gray-500">entry fee</span>
+      </div>
+      <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4">
+        <Link
+          to={generateUrl()}
+          className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-teal-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
+        >
+          Enter Now
+        </Link>
+      </div>
     </div>
   );
 };
