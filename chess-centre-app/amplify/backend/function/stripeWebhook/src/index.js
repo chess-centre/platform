@@ -18,6 +18,7 @@ const sendMembershipEmailToMember = require("./sendEmail").sendMembershipEmailTo
 const sendRegisteredEventEmailToMember = require("./sendEmail").sendRegisteredEventEmailToMember;
 const sendRegisteredEventEmailInternal = require("./sendEmail").sendRegisteredEventEmailInternal;
 const sendRegisteredEventEmailToMemberJuniorCustom = require("./sendEmail").sendRegisteredEventEmailToMemberJuniorCustom;
+const sendRegisteredEventEmailToMemberFestival = require("./sendEmail").sendRegisteredEventEmailToMemberFestival;
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const region = process.env.REGION;
@@ -285,12 +286,13 @@ async function handleCheckoutSessionCompletedPayment(id) {
 
   // TODO: As "eventType" is not a reliable means to idenify this bespoke event. Refactor required to support multiple location types.
   if(eventName.includes("IGS Junior")) {
-    await sendRegisteredEventEmailToMemberJuniorCustom(params).catch(err => console.log("sendRegisteredEventEmailToMember", err));
+    await sendRegisteredEventEmailToMemberJuniorCustom(params).catch(err => console.log("sendRegisteredEventEmailToMemberJunior", err));
+  } else if (eventName.toLowerCase().includes("festival")) {
+    await sendRegisteredEventEmailToMemberFestival(params).catch(err => console.log("sendRegisteredEventEmailToMemberFestival", err));
   } else {
     await sendRegisteredEventEmailToMember(params).catch(err => console.log("sendRegisteredEventEmailToMember", err));
   }
 
-  
   await sendRegisteredEventEmailInternal(params).catch(err => console.log("sendRegisteredEventEmailInternal", err));
 }
 
