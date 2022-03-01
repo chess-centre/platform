@@ -66,7 +66,7 @@ const RegisterButton = ({ id, isLive, isFull, showSections, eventType }) => {
   let registerUrl = `/register?eventId=${id}${showSections ? "&section=" + section : ""}`;
 
   if(eventType.includes("festival")) {
-    registerUrl = `/festival/${id}`;
+    registerUrl = `/events/festival/${id}`;
   }
 
   return (
