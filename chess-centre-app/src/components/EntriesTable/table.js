@@ -155,7 +155,7 @@ export default function EntriesTable(data) {
                     {rating.value}
                   </td>
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
-                    {byes?.split("").join(",")}
+                    {byes ? byes !== "null" && byes?.split("").join(",") : ""}
                   </td>
                 </tr>
               );
