@@ -6,6 +6,8 @@ import Main from "../containers/Main";
 import ThemedSuspense from "../components/ThemedSuspense";
 import { SidebarContext } from "../context/SidebarContext";
 
+
+
 const routes = [
   {
     path: "/dashboard",

@@ -1,5 +1,5 @@
 import React, { lazy, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastProvider } from "react-toast-notifications";
 import { AuthProvider } from "./context/Auth";
@@ -14,6 +14,7 @@ if (process.env.NODE_ENV === "production") {
   const trackingId = "UA-194757154-1";
   ReactGA.initialize(trackingId);
 }
+const FESTIVAL_ID = process.env.REACT_APP_FESTIVAL_ID || "8142eecc-cebc-401f-ae7c-ce90be22798c";
 
 const queryClient = new QueryClient();
 const STRIPE_KEY =
@@ -47,6 +48,7 @@ export default function App() {
                       exact={route.exact}
                     />
                   ))}
+                  <Redirect exact from="/festival" to={`/events/festival/${FESTIVAL_ID}`} />
                   <Route component={Page404} />
                 </Switch>
               </Router>
