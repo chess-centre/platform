@@ -58,7 +58,7 @@ const theme = {
   // Modal
   modal: {
     base:
-      "w-full md:w-2/3 px-2 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl",
+      "w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl",
   },
   // ModalBody
   modalBody: {
