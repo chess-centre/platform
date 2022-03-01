@@ -2,7 +2,7 @@ import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { CheckCircleIcon } from '@heroicons/react/solid';
-import { ExclamationIcon } from '@heroicons/react/solid'
+import { ExclamationIcon } from '@heroicons/react/solid';
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
@@ -149,7 +149,7 @@ export default function JuniorCustomEvent() {
                                         <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
                                     </div>
                                     <div className="ml-3">
-                                        <p className="text-sm font-medium text-green-800">There is currently {entryCount}{" "}
+                                        <p className="text-sm font-medium text-green-800">There are currently {entryCount}{" "}
                                             {entryCount === 1 ? "entry" : "entries"}.
                                             <br className="block sm:hidden" />
                                             <Link

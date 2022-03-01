@@ -2,6 +2,7 @@ import API from "@aws-amplify/api";
 import { Tab } from "@headlessui/react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, Fragment, useState } from "react";
+import { ExclamationIcon } from "@heroicons/react/solid";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
@@ -78,25 +79,8 @@ const getEvent = /* GraphQL */ `
 export default function Festival() {
   const { id } = useParams();
   const event = rounds.find(({ type }) => type === "festival");
-  const [section, setSection] = useState("open");
-  const [selectedRoundOne, setSelectedRoundOne] = useState(false);
-  const [selectedRoundTwo, setSelectedRoundTwo] = useState(false);
-  const [selectedRoundThree, setSelectedRoundThree] = useState(false);
-  const [selectedRoundFour, setSelectedRoundFour] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [eventEntries, setEventEntries] = useState({});
-
-  const generateUrl = () => {
-    const sectionStr = `&section=${section}`;
-    const r1 = selectedRoundOne ? "1" : "";
-    const r2 = selectedRoundTwo ? "2" : "";
-    const r3 = selectedRoundThree ? "3" : "";
-    const r4 = selectedRoundFour ? "4" : "";
-    const byes = `${r1}${r2}${r3}${r4}`;
-    const byesStr = byes ? `&byes=${byes}` : "";
-
-    return `/register?eventId=${id}${sectionStr}${byesStr}`;
-  };
 
   useEffect(() => {
     document.title = "The Chess Centre | Festival";
@@ -245,42 +229,71 @@ export default function Festival() {
                   <div className="relative">
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
                       <h2>Sections</h2>
-                      <ul className="font-medium text-blue-brand">
+                      <ul className="font-medium text-teal-brand">
                         <li>Open</li>
                         <li>
                           Major{" "}
-                          <span className="text-gray-600 text-sm font-normal">
-                            (ECF 2000 and under)
+                          <span className="text-xs text-gray-500">
+                            (2000 ECF and below)
                           </span>
                         </li>
                         <li>
                           Intermediate{" "}
-                          <span className="ext-gray-600 text-sm font-normal">
-                            (ECF 1750 and under)
+                          <span className="text-xs text-gray-500">
+                            (1750 ECF and below)
                           </span>
                         </li>
                         <li>
                           Minor{" "}
-                          <span className="ext-gray-600 text-sm font-normal">
-                            (ECF 1500 and under)
+                          <span className="text-xs text-gray-500">
+                            (1500 ECF and below)
                           </span>
                         </li>
                       </ul>
                       <p className="text-sm">
-                        Unrated players will only be eligible for prizes in the
-                        open section.
+                        Unrated players will not be eligible for section
+                        specific grading prizes.
                       </p>
-                      <h3>Event Structure</h3>
-                      <ul className="font-medium text-blue-brand">
+                    </div>
+                    <div className="rounded-md bg-yellow-50 p-4 my-4 hidden sm:block">
+                      <div className="flex">
+                        <div className="flex-shrink-0">
+                          <ExclamationIcon
+                            className="h-5 w-5 text-yellow-400"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <div className="ml-3">
+                          <h3 className="text-sm font-medium text-yellow-800">
+                            ECF Membership Required
+                          </h3>
+                          <div className="mt-2 text-sm text-yellow-700">
+                            <p>
+                              All entries{" "}
+                              <span className="italic">should</span> have an ECF membership, create yours here:{" "}
+                              <a
+                                target="_blank"
+                                rel="noreferrer"
+                                href={`https://www.englishchess.org.uk/ecf-membership-rates-and-joining-details/`}
+                                className="font-medium underline text-yellow-700 hover:text-yellow-600"
+                              >ECF Membership</a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify mt-4">
+                      <h2>Event Structure</h2>
+                      <ul className="font-medium text-teal-brand">
                         <li>
-                          Rounds: <span className="text-teal-600">5</span>{" "}
+                          Rounds: <span className="text-blue-brand">5</span>{" "}
                           <span className="text-gray-600 text-sm font-normal">
                             see schedule
                           </span>
                         </li>
                         <li>
                           Time Control:{" "}
-                          <span className="text-teal-600 text-md">
+                          <span className="text-blue-brand text-md">
                             90{" "}
                             <span className="text-sm text-gray-600 font-normal">
                               mins per player
@@ -293,7 +306,8 @@ export default function Festival() {
                           </span>
                         </li>
                         <li>
-                          Entry fee: <span className="text-teal-600">£30</span>
+                          Entry fee:{" "}
+                          <span className="text-blue-brand">£30</span>
                         </li>
                       </ul>
                       <p className="text-sm">
@@ -323,7 +337,6 @@ export default function Festival() {
             <div className="block sm:hidden mt-12">
               <EntryForm id={id} />
             </div>
-            
           </div>
         </div>
       </div>
