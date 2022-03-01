@@ -9,6 +9,8 @@ import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
 import GamesSignUp from "../../components/CTA/SignUp";
 import Integrations from "../../components/Integrations";
+import FestivalCTA from "../../components/Festival/HomePageCTA";
+
 
 import { useLiveGameState } from "../../context/LiveGameContext";
 
@@ -17,7 +19,7 @@ const Home = () => {
   const { eventInfo, isLoading } = useLiveGameState();
 
   useEffect(() => {
-    document.title = "The Chess Centre | Welcome"
+    document.title = "The Chess Centre | Welcome";
   }, []);
 
   return (
@@ -148,9 +150,7 @@ const Home = () => {
                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
                               <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
                             </span>{" "}
-                            <span className="ml-2">
-                              Live Games
-                            </span>
+                            <span className="ml-2">Live Games</span>
                           </Link>
                         </div>
                       </div>
@@ -159,13 +159,14 @@ const Home = () => {
                 })
               ) : (
                 <div className="mt-4">
-                  <div className="text-gray-400 mb-2 text-xs">
-                    <i className="fal fa-spinner-third fa-spin fa-fw"></i><br />
+                  <div className="text-gray-300 mb-2 text-xs">
+                    <i className="fal fa-spinner-third fa-spin fa-fw"></i>
+                    <br />
                     checking for live games
                   </div>
                 </div>
               )}
-             </div>
+            </div>
           </main>
         </div>
       </div>
@@ -183,9 +184,10 @@ const Home = () => {
         </div>
       </div>
 
+      <FestivalCTA />
       <ComingEvents />
       <GamesSignUp />
-      <FAQs /> 
+      <FAQs />
       <FindUs />
       <DownloadPWA />
       <Integrations />
