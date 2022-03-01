@@ -36,10 +36,14 @@ function Login(props) {
         await subscribe(dispatch, parsed.plan, stripe);
       } else if (parsed.eventId) {
         let section = "";
+        let byes = "";
         if (parsed.section && parsed.section !== "undefined") {
           section = `&section=${parsed.section}`;
         }
-        props.history.push(`/app/events?eventId=${parsed.eventId}${section}`);
+        if(parsed.byes && parsed.byes !== "undefined") {
+          byes = `&byes=${parsed.byes}`;
+        }
+        props.history.push(`/app/events?eventId=${parsed.eventId}${section}${byes}`);
       } else {
         if (props.history?.location?.state?.from) {
           const { pathname, search } = props.history.location.state.from;

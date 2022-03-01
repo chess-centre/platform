@@ -24,12 +24,6 @@ const routes = [
     exact: true,
     isPrivate: false,
   },
-  // {
-  //   path: "/register/festival",
-  //   component: lazy(() => import("../pages/Auth/FestivalEntry/FestivalRegister")),
-  //   exact: true,
-  //   isPrivate: false,
-  // },
   {
     path: "/forgot-password",
     component: lazy(() => import("../pages/Auth/ForgotPassword")),
@@ -87,12 +81,12 @@ const routes = [
     component: lazy(() => import("../pages/Events/Blitz")),
     isPrivate: false
   },
-  // {
-  //   path: "/festival",
-  //   component: lazy(() => import("../pages/Home/Festival")),
-  //   exact: true,
-  //   isPrivate: false,
-  // },
+  {
+    path: "/events/festival/:id",
+    component: lazy(() => import("../pages/Home/Festival")),
+    exact: true,
+    isPrivate: false,
+  },
   {
     path: "/events",
     component: lazy(() => import("../pages/Home/Events")),

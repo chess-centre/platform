@@ -184,7 +184,7 @@ function CongressEvent() {
                     </div>
                     <div className="ml-3">
                       <p className="text-sm text-yellow-700 sm:mt-2">
-                        There is currently {entryCount}{" "}
+                        There are currently {entryCount}{" "}
                         {entryCount === 1 ? "entry" : "entries"}.
                         <br className="block sm:hidden" />
                         <Link

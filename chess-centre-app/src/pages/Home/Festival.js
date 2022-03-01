@@ -1,6 +1,9 @@
+import API from "@aws-amplify/api";
 import { Tab } from "@headlessui/react";
-import { Link } from "react-router-dom";
-import { useEffect, Fragment } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, Fragment, useState } from "react";
+import { ExclamationIcon } from "@heroicons/react/solid";
+import LandingNav from "../../components/Navigation/LandingNav";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
 import EntriesTable from "../../components/EntriesTable/table";
@@ -17,16 +20,98 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const getEvent = /* GraphQL */ `
+  query GetEvent($id: ID!) {
+    getEvent(id: $id) {
+      id
+      name
+      description
+      rounds
+      time
+      startDate
+      endDate
+      maxEntries
+      entryCount
+      complete
+      cancelled
+      isLive
+      isLiveUrl
+      active
+      multipleSections
+      type {
+        id
+        name
+        description
+        url
+        color
+        time
+        maxEntries
+        timeControl
+        eventType
+        defaultPrice
+        canRegister
+      }
+      entries {
+        items {
+          id
+          eventId
+          memberId
+          section
+          byes
+          member {
+            id
+            fideId
+            ecfId
+            name
+            ecfRating
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+          }
+        }
+      }
+    }
+  }
+`;
+
 export default function Festival() {
+  const { id } = useParams();
   const event = rounds.find(({ type }) => type === "festival");
+  const [isLoading, setIsLoading] = useState(false);
+  const [eventEntries, setEventEntries] = useState({});
 
   useEffect(() => {
     document.title = "The Chess Centre | Festival";
-  }, []);
+
+    const fetchEvent = async () => {
+      setIsLoading(true);
+      const response = await API.graphql({
+        query: getEvent,
+        variables: { id },
+        authMode: "AWS_IAM",
+      }).catch((error) => {
+        console.log("Error fetching event.", id);
+        console.log(error.response);
+      });
+      if (response && response.data) {
+        const {
+          data: { getEvent: entries },
+        } = response;
+        setEventEntries(entries);
+      }
+      setIsLoading(false);
+    };
+    fetchEvent();
+  }, [id]);
 
   return (
     <div className="relative bg-white">
-      <div className="mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className=" bg-gray-50 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
+        <LandingNav />
+      </div>
+      <div className="mx-auto py-10 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
           <div className="lg:row-end-1 lg:col-span-4">
             <div className="aspect-w-4 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden">
@@ -39,6 +124,7 @@ export default function Festival() {
           </div>
 
           <div className="max-w-2xl text-center sm:text-left mx-auto mt-4 sm:mt-16 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
+            {/* TITLE */}
             <div className="flex flex-col-reverse">
               <div className="mt-4">
                 <h1 className="text-3xl font-extrabold tracking-tight  text-teal-brand sm:text-5xl">
@@ -51,18 +137,8 @@ export default function Festival() {
               </div>
             </div>
 
-            <p className="text-gray-500 mt-6">{festival.description}</p>
-
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4">
-              <Link
-                to="/register/festival"
-                className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-teal-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
-              >
-                Enter Now
-              </Link>
-            </div>
-
-            <div className="border-t border-gray-200 mt-10 pt-10">
+            {/* PRIZES */}
+            <div className="border-t border-gray-200 mt-6 pt-6 mb-4">
               <h3 className="text-lg font-medium text-gray-900">
                 Prizes{" "}
                 <span className="text-sm text-gray-500">for all sections</span>
@@ -72,9 +148,15 @@ export default function Festival() {
               </div>
             </div>
 
+            {/* ENTRY FORM */}
+            <div className="hidden sm:block">
+              <EntryForm id={id} />
+            </div>
+
+            {/* LOCATION */}
             <div className="border-t border-gray-200 mt-10 pt-10">
-              <div className="grid grid-cols-2">
-                <div>
+              <div className="grid grid-cols-1 sm:grid-cols-2">
+                <div className="order-2 sm:order-1">
                   <h3 className="text-lg font-medium text-gray-900">
                     Location
                   </h3>
@@ -86,7 +168,7 @@ export default function Festival() {
                     Ilkley, LS29 8HB
                   </p>
                 </div>
-                <div>
+                <div className="order-1 sm:order-2">
                   <img
                     className="w-6/7 -mt-6"
                     alt="festival building"
@@ -97,11 +179,10 @@ export default function Festival() {
 
               <FestivalMap />
             </div>
-
-            <SocialSharing />
           </div>
 
-          <div className="w-full max-w-2xl mx-auto mt-16 lg:max-w-none lg:mt-0 lg:col-span-4">
+          {/* MORE DETAILS */}
+          <div className="w-full max-w-2xl mx-auto sm:mt-16 mt-6 lg:max-w-none lg:mt-0 lg:col-span-4">
             <Tab.Group as="div">
               <div className="border-b border-gray-200">
                 <Tab.List className="-mb-px flex space-x-8">
@@ -141,18 +222,6 @@ export default function Festival() {
                   >
                     Entries
                   </Tab>
-                  <Tab
-                    className={({ selected }) =>
-                      classNames(
-                        selected
-                          ? "border-teal-600 text-teal-600"
-                          : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
-                      )
-                    }
-                  >
-                    FAQs
-                  </Tab>
                 </Tab.List>
               </div>
               <Tab.Panels as={Fragment}>
@@ -160,26 +229,91 @@ export default function Festival() {
                   <div className="relative">
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
                       <h2>Sections</h2>
-                      <ul className="font-medium text-blue-brand">
+                      <ul className="font-medium text-teal-brand">
                         <li>Open</li>
-                        <li>Major{" "}
-                          <span className="text-gray-600 text-sm font-normal">(ECF 2000 and under)</span>
+                        <li>
+                          Major{" "}
+                          <span className="text-xs text-gray-500">
+                            (2000 ECF and below)
+                          </span>
                         </li>
-                        <li>Intermediate{" "}
-                          <span className="ext-gray-600 text-sm font-normal">(ECF 1750 and under)</span>
+                        <li>
+                          Intermediate{" "}
+                          <span className="text-xs text-gray-500">
+                            (1750 ECF and below)
+                          </span>
                         </li>
-                        <li>Minor{" "}
-                          <span className="ext-gray-600 text-sm font-normal">(ECF 1500 and under)</span>
+                        <li>
+                          Minor{" "}
+                          <span className="text-xs text-gray-500">
+                            (1500 ECF and below)
+                          </span>
                         </li>
                       </ul>
-                      <p className="text-sm">Unrated players will be inelible for prizes in any section but the open.</p>
-                      <h3>Event Structure</h3>
-                      <ul className="font-medium text-blue-brand">
-                        <li>Rounds: <span className="text-teal-600">5</span>{" "} <span className="text-gray-600 text-sm font-normal">see schedule</span></li>
-                        <li>Time Control: <span className="text-teal-600">90 mins per player + 10 second increment.</span></li>
-                        <li>Entry fee: <span className="text-teal-600">£30</span></li>
+                      <p className="text-sm">
+                        Unrated players will not be eligible for section
+                        specific grading prizes.
+                      </p>
+                    </div>
+                    <div className="rounded-md bg-yellow-50 p-4 my-4 hidden sm:block">
+                      <div className="flex">
+                        <div className="flex-shrink-0">
+                          <ExclamationIcon
+                            className="h-5 w-5 text-yellow-400"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <div className="ml-3">
+                          <h3 className="text-sm font-medium text-yellow-800">
+                            ECF Membership Required
+                          </h3>
+                          <div className="mt-2 text-sm text-yellow-700">
+                            <p>
+                              All entries{" "}
+                              <span className="italic">should</span> have an ECF membership, create yours here:{" "}
+                              <a
+                                target="_blank"
+                                rel="noreferrer"
+                                href={`https://www.englishchess.org.uk/ecf-membership-rates-and-joining-details/`}
+                                className="font-medium underline text-yellow-700 hover:text-yellow-600"
+                              >ECF Membership</a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify mt-4">
+                      <h2>Event Structure</h2>
+                      <ul className="font-medium text-teal-brand">
+                        <li>
+                          Rounds: <span className="text-blue-brand">5</span>{" "}
+                          <span className="text-gray-600 text-sm font-normal">
+                            see schedule
+                          </span>
+                        </li>
+                        <li>
+                          Time Control:{" "}
+                          <span className="text-blue-brand text-md">
+                            90{" "}
+                            <span className="text-sm text-gray-600 font-normal">
+                              mins per player
+                            </span>{" "}
+                            + 10{" "}
+                            <span className="text-sm text-gray-600 font-normal">
+                              second increment
+                            </span>
+                            .
+                          </span>
+                        </li>
+                        <li>
+                          Entry fee:{" "}
+                          <span className="text-blue-brand">£30</span>
+                        </li>
                       </ul>
-                      <p className="text-sm">Standard ECF rules apply. All games will be submited to the ECF for offical rating calculation.</p>
+                      <p className="text-sm">
+                        Standard ECF rules apply. All games will be submited to
+                        the ECF for offical rating calculation.
+                      </p>
                     </div>
                   </div>
                 </Tab.Panel>
@@ -191,59 +325,18 @@ export default function Festival() {
                 <Tab.Panel as="dl" className="text-sm text-gray-500 py-5">
                   <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
                     <h2>Entries</h2>
-                    <ul className="font-medium text-blue-brand">
-                      <li>Total: <span className="text-teal-600">0</span>{" "}</li>
-                    </ul>
-                    {/* <EntriesTable eventId="23424" eventType="standard" /> */}
+
+                    {!isLoading && eventEntries && (
+                      <EntriesTable eventDetails={eventEntries} />
+                    )}
                   </div>
-
-
                 </Tab.Panel>
-
-                <Tab.Panel className="pt-10">FAQs</Tab.Panel>
               </Tab.Panels>
             </Tab.Group>
-          </div>
-          <div className="block sm:hidden border-t border-gray-200 mt-10 pt-4">
-            <h3 className="text-sm font-medium text-gray-900">Share</h3>
-            <ul className="flex items-center space-x-6 mt-4">
-              <li>
-                <a
-                  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchesscentre.online%2Ffestival%2F&amp;src=sdkpreparse"
-                  className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
-                >
-                  <span className="sr-only">Share on Facebook</span>
-                  <svg
-                    className="w-5 h-5"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fchesscentre.online%2Ffestival&text=Checkout%20the%20Ilkley%20Chess%20Festival%2C%2016th-18th%20Sept"
-                  className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
-                >
-                  <span className="sr-only">Share on Twitter</span>
-                  <svg
-                    className="w-5 h-5"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
-                  </svg>
-                </a>
-              </li>
-            </ul>
+            {/* ENTRY FORM */}
+            <div className="block sm:hidden mt-12">
+              <EntryForm id={id} />
+            </div>
           </div>
         </div>
       </div>
@@ -355,48 +448,148 @@ const Prizes = () => {
   );
 };
 
-const SocialSharing = () => {
+const EntryForm = ({ id }) => {
+  const [section, setSection] = useState("open");
+  const [selectedRoundOne, setSelectedRoundOne] = useState(false);
+  const [selectedRoundTwo, setSelectedRoundTwo] = useState(false);
+  const [selectedRoundThree, setSelectedRoundThree] = useState(false);
+  const [selectedRoundFour, setSelectedRoundFour] = useState(false);
+
+  const generateUrl = () => {
+    const sectionStr = `&section=${section}`;
+    const r1 = selectedRoundOne ? "1" : "";
+    const r2 = selectedRoundTwo ? "2" : "";
+    const r3 = selectedRoundThree ? "3" : "";
+    const r4 = selectedRoundFour ? "4" : "";
+    const byes = `${r1}${r2}${r3}${r4}`;
+    const byesStr = byes ? `&byes=${byes}` : "";
+    return `/register?eventId=${id}${sectionStr}${byesStr}`;
+  };
+
   return (
-    <div className="hidden sm:block border-t border-gray-200 mt-10 pt-10">
-      <h3 className="text-sm font-medium text-gray-900">Share</h3>
-      <ul className="flex items-center space-x-6 mt-4">
-        <li>
-          <a
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchesscentre.online%2Ffestival%2F&amp;src=sdkpreparse"
-            className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
+    <div>
+      <div className="border-t border-gray-200">
+        <div className="mt-8 mx-6">
+          <label
+            htmlFor="section"
+            className="block text-sm text-gray-700 text-center mb-2"
           >
-            <span className="sr-only">Share on Facebook</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M20 10c0-5.523-4.477-10-10-10S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z"
-                clipRule="evenodd"
+            Select your section
+          </label>
+          <select
+            onChange={(e) => setSection(e.target.value.toLowerCase())}
+            id="section"
+            name="section"
+            className="mt-1 block w-full pl-3 pr-10 py-2 text-md border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
+            defaultValue="Open"
+          >
+            <option>Open</option>
+            <option>Major</option>
+            <option>Intermediate</option>
+            <option>Minor</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="relative mx-auto">
+        <div
+          htmlFor="byes"
+          className="block text-sm text-gray-800 text-center mt-6 mb-4"
+        >
+          Half point byes{" "}
+          <span className="text-gray-500 text-xs">(optional)</span>
+        </div>
+
+        <div className="grid place-items-center grid-cols-1 sm:grid-cols-4 mt-2 mb-4">
+          <div className="flex items-start mb-6 sm:mb-0">
+            <div className="flex items-center h-5">
+              <input
+                defaultChecked={selectedRoundOne}
+                onChange={(e) => setSelectedRoundOne(e.currentTarget.checked)}
+                id="round-two"
+                name="round-two"
+                type="checkbox"
+                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
               />
-            </svg>
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fchesscentre.online%2Ffestival&text=Checkout%20the%20Ilkley%20Chess%20Festival%2C%2016th-18th%20Sept"
-            className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-gray-500"
-          >
-            <span className="sr-only">Share on Twitter</span>
-            <svg
-              className="w-5 h-5"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
-            </svg>
-          </a>
-        </li>
-      </ul>
+            </div>
+            <div className="ml-3 text-xs">
+              <label
+                htmlFor="candidates"
+                className="font-medium text-blue-brand"
+              >
+                Round 1
+              </label>
+            </div>
+          </div>
+          <div className="flex items-start mb-6 sm:mb-0">
+            <div className="flex items-center h-5">
+              <input
+                defaultChecked={selectedRoundTwo}
+                onChange={(e) => setSelectedRoundTwo(e.currentTarget.checked)}
+                id="round-two"
+                name="round-two"
+                type="checkbox"
+                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+              />
+            </div>
+            <div className="ml-3 text-xs">
+              <label
+                htmlFor="candidates"
+                className="font-medium text-blue-brand"
+              >
+                Round 2
+              </label>
+            </div>
+          </div>
+          <div className="flex items-start mb-6 sm:mb-0">
+            <div className="flex items-center h-5">
+              <input
+                defaultChecked={selectedRoundThree}
+                onChange={(e) => setSelectedRoundThree(e.currentTarget.checked)}
+                id="round-three"
+                name="round-three"
+                type="checkbox"
+                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+              />
+            </div>
+            <div className="ml-3 text-xs">
+              <label htmlFor="offers" className="font-medium text-blue-brand">
+                Round 3
+              </label>
+            </div>
+          </div>
+          <div className="flex items-start mb-6 sm:mb-0">
+            <div className="flex items-center h-5">
+              <input
+                defaultChecked={selectedRoundFour}
+                onChange={(e) => setSelectedRoundFour(e.currentTarget.checked)}
+                id="round-four"
+                name="round-four"
+                type="checkbox"
+                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+              />
+            </div>
+            <div className="ml-3 text-xs">
+              <label htmlFor="offers" className="font-medium text-blue-brand">
+                Round 4
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="text-center">
+        <span className="text-5xl font-extrabold text-gray-900 mr-1">£30</span>
+        <span className="text-base font-medium text-gray-500">entry fee</span>
+      </div>
+      <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4">
+        <Link
+          to={generateUrl()}
+          className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-teal-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
+        >
+          Enter Now
+        </Link>
+      </div>
     </div>
   );
 };

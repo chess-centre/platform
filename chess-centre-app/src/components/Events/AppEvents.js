@@ -150,17 +150,18 @@ export default function AppEvents() {
     });
   };
 
-  const register = async (eventId, confirmSection) => {
+  const register = async (eventId, confirmSection, confirmByes) => {
     try {
       const redirectTo = `${window.location.origin}/app/events`;
       const selectedSection = section ? section : confirmSection ? confirmSection : null;
+      const byesSelection = byes ? byes : confirmByes ? confirmByes : null;
       const { sessionId } = await API.post("public", "/event/register", {
         body: {
           eventId,
           successUrl: redirectTo,
           cancelUrl: redirectTo,
           section: selectedSection,
-          byes: byes ? byes : null
+          byes: byesSelection
         },
       });
       await stripe.redirectToCheckout({ sessionId });
@@ -186,7 +187,7 @@ export default function AppEvents() {
 
   useEffect(() => {
     if (eventId /* user has logged in via register button */) {
-      register(eventId, section);
+      register(eventId, section, byes);
     }
     if (
       event_payment_success &&

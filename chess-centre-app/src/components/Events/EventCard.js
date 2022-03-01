@@ -12,6 +12,8 @@ const EventHeader = ({ type, icon, name, description }) => {
         return "text-orange-500";
       case "congress":
         return "text-blue-500";
+      case "festival":
+        return "text-blue-500";
       case "blitz":
         return "text-yellow-400";
       case "junior": 
@@ -58,10 +60,14 @@ const EventPrice = ({ isLive, isFull, defaultPrice }) => {
   );
 };
 
-const RegisterButton = ({ id, isLive, isFull, showSections }) => {
+const RegisterButton = ({ id, isLive, isFull, showSections, eventType }) => {
 
   const [section, setSection] = useState("open");
-  const registerUrl = `/register?eventId=${id}${showSections ? "&section=" + section : ""}`
+  let registerUrl = `/register?eventId=${id}${showSections ? "&section=" + section : ""}`;
+
+  if(eventType.includes("festival")) {
+    registerUrl = `/events/festival/${id}`;
+  }
 
   return (
     <>
@@ -95,13 +101,13 @@ const RegisterButton = ({ id, isLive, isFull, showSections }) => {
         <>
         <div>
         {
-            showSections &&
+          showSections && eventType !== "festival" &&
             <div className="my-4">
               <label htmlFor="section" className="block text-xs text-gray-500 text-center">
                 Select your section
               </label>
               <select
-                onChange={e => setSection(e.target.value.toLocaleLowerCase())}
+                onChange={e => setSection(e.target.value.toLowerCase())}
                 id="section"
                 name="section"
                 className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
@@ -164,7 +170,7 @@ export default function EventCard({
           isFull={isFull}
           isLive={isLive}
         />
-        <RegisterButton id={id} isFull={isFull} isLive={isLive} showSections={multipleSections} />
+        <RegisterButton id={id} isFull={isFull} isLive={isLive} eventType={type} showSections={multipleSections} />
       </div>
       <div className="py-4 px-6">
         <h3 className="text-xs font-medium text-teal-700 tracking-wide uppercase">

@@ -29,7 +29,7 @@ const GoogleMap = withScriptjs(
 
 const FestivalMap = () => {
   return (
-    <div className="">
+    <div className="mt-6">
       <GoogleMap
         googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnoxH8i-1VmO6KVg3VomCsv3l8tOfObOI"
         loadingElement={<div style={{ height: `100%` }} />}

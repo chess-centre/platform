@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import EventSectionSelectionModal from "../Modal/EventSectionSelectModal";
 
 export default function Register(props) {
-  const { register, id, multipleSections } = props;
+  const { register, id, multipleSections, showByes } = props;
   const [isLoadingSignUp, setIsLoadingSignUp] = useState(false);
   const [modelOpen, setModalOpen] = useState(false);
-  const handleRegister = async (id, section) => {
+  const handleRegister = async (id, section, byes) => {
     setIsLoadingSignUp(true);
     await Auth.currentUserCredentials();
-    await register(id, section);
+    await register(id, section, byes);
     setIsLoadingSignUp(false);
   };
 
@@ -42,7 +42,7 @@ export default function Register(props) {
             `Sign up`
           )}
         </Button>}
-      <EventSectionSelectionModal eventId={id} handleRegister={handleRegister} open={modelOpen} closeModal={closeModal} />
+      <EventSectionSelectionModal showByes={showByes} eventId={id} handleRegister={handleRegister} open={modelOpen} closeModal={closeModal} />
     </>
   );
 }
