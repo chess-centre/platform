@@ -143,7 +143,7 @@ async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, event
   return SES.sendEmail(params).promise();
 }
 
-async function sendRegisteredEventEmailToMemberFestival({ email, name, eventName, eventType, eventId, startDate, arrivalTime, section }) {
+async function sendRegisteredEventEmailToMemberFestival({ email, name, eventName, eventType, eventId, startDate, endDate, section }) {
   console.log("Sending member registration email to:", name, email, eventName);
   const params = {
     Source: "The Chess Centre <support@chesscentre.online>",
@@ -158,10 +158,10 @@ async function sendRegisteredEventEmailToMemberFestival({ email, name, eventName
       Body: {
         Text: { Data: `Hi ${name},\r\n Thank you for registering for our ${eventName} on ${startDate}.` },
         Html: { Data: `
-        <p>👋 Hello ${name} <span style="color: #6e6e76;">(or parent / guardian of)</span></p>
+        <p>👋 Hello ${name}</p>
         <p>Thank you for registering for our <strong>${eventName}</strong>.</p>
-        <p>The key details for this event:</p>
-        <p>📅 Date: ${formatDate(startDate)}</p>
+        <p>The key details for this event:</p>  
+        <p>📅 Date: ${formatDate(startDate)} - ${formatDate(endDate)}</p>
         <p>🤓 Section entered: ${section}</p> 
         <p>🏫 Event location: <span style="color: #047481;">King's Hall & Winter Garden, Station Road, Ilkley, LS29 8HB</span></p>
         <p>ℹ️ More details can be found here:
@@ -172,7 +172,7 @@ async function sendRegisteredEventEmailToMemberFestival({ email, name, eventName
         </p>
         <p>We look forward to seeing you soon! 🚀</p>
         <p></p>
-        <p style="color: #047481">This event was brought to you by The Chess Centre, Ilkley ❤️</p>
+        <p>This event was brought to you by <span style="color: #047481"><strong>The Chess Centre</strong></span>, Ilkley ❤️</p>
         <p style="color: #9da4a5;font-size:12px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
         `
       }

@@ -226,6 +226,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
     data: {
       getEvent: {
         startDate,
+        endDate,
         arrivalTime,
         type: { name: eventName, eventType },
         entries: { items: entries },
@@ -276,6 +277,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
     name,
     eventName,
     startDate,
+    endDate,
     eventType,
     entries,
     section,
