@@ -198,7 +198,7 @@ function SectionTabs(props) {
         ...currentState.map((c) => {
           return {
             ...c,
-            current: section.includes === c.name?.toLowerCase(),
+            current: section.includes(c.name?.toLowerCase())
           };
         }),
       ];
