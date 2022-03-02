@@ -98,10 +98,9 @@ export default function Festival() {
           data: { getEvent: entries },
         } = response;
         setEventEntries(entries);
-        if(entries?.entries?.items) {
+        if (entries?.entries?.items) {
           setEntriesCount(entries?.entries?.items.length);
         }
-        
       }
       setIsLoading(false);
     };
@@ -194,7 +193,7 @@ export default function Festival() {
                         selected
                           ? "border-teal-600 text-teal-600"
                           : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm focus:ring-transparent"
                       )
                     }
                   >
@@ -206,7 +205,7 @@ export default function Festival() {
                         selected
                           ? "border-teal-600 text-teal-600"
                           : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm focus:ring-transparent"
                       )
                     }
                   >
@@ -218,7 +217,7 @@ export default function Festival() {
                         selected
                           ? "border-teal-600 text-teal-600"
                           : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
-                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm"
+                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm focus:ring-transparent"
                       )
                     }
                   >
@@ -227,7 +226,7 @@ export default function Festival() {
                 </Tab.List>
               </div>
               <Tab.Panels as={Fragment}>
-                <Tab.Panel className="-mb-10 py-5">
+                <Tab.Panel className="-mb-10 py-5 focus:ring-transparent">
                   <div className="relative">
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
                       <h2>Sections</h2>
@@ -271,14 +270,16 @@ export default function Festival() {
                           </h3>
                           <div className="mt-2 text-sm text-yellow-700">
                             <p>
-                              All entries{" "}
-                              <span className="italic">should</span> have an ECF membership, create yours here:{" "}
+                              All entries <span className="italic">should</span>{" "}
+                              have an ECF membership, create yours here:{" "}
                               <a
                                 target="_blank"
                                 rel="noreferrer"
                                 href={`https://www.englishchess.org.uk/ecf-membership-rates-and-joining-details/`}
                                 className="font-medium underline text-yellow-700 hover:text-yellow-600"
-                              >ECF Membership</a>
+                              >
+                                ECF Membership
+                              </a>
                             </p>
                           </div>
                         </div>
@@ -320,16 +321,28 @@ export default function Festival() {
                   </div>
                 </Tab.Panel>
 
-                <Tab.Panel as="dl" className="text-sm text-gray-500 py-5">
+                <Tab.Panel as="dl" className="text-sm text-gray-500 py-5 focus:ring-transparent">
                   <Schedule event={event} />
                 </Tab.Panel>
 
-                <Tab.Panel as="dl" className="text-sm text-gray-500 py-5">
+                <Tab.Panel as="dl" className="text-sm text-gray-500 py-5 focus:ring-transparent">
                   <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
-                    <h2>Entries <span className="text-gray-500 font-medium text-sm">( {entriesCount} )</span></h2>
+                    <h2>
+                      Entries{" "}
+                      <span className="text-gray-500 font-medium text-sm">
+                        ( {entriesCount} )
+                      </span>
+                    </h2>
 
                     {!isLoading && eventEntries && (
                       <EntriesTable eventDetails={eventEntries} />
+                    )}
+
+                    {isLoading && (
+                      <div className="text-gray-300 italic text-center">
+                        <i className="fas fa-spinner-third fa-spin fa-fw text-teal-500"></i>{" "}
+                        fetching entry details ...
+                      </div>
                     )}
                   </div>
                 </Tab.Panel>
