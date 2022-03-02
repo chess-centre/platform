@@ -222,7 +222,7 @@ function SectionTabs(props) {
   const [sections, setSections] = useState([
     { name: 'Open', current: true },
     { name: 'Major', current: false },
-    { name: 'Intermediate', current: false },
+    { name: 'Inter', current: false },
     { name: 'Minor', current: false },
   ]);
 
@@ -232,7 +232,7 @@ function SectionTabs(props) {
         ...currentState.map(c => {
           return {
             ...c,
-            current: section === c.name?.toLowerCase()
+            current: section.includes(c.name?.toLowerCase())
           }
         })
       ]
