@@ -143,7 +143,7 @@ function EntriesTable(data) {
             .sort((a, b) => b.rating.sort - a.rating.sort)
             .filter(row => {
               if (eventDetails?.multipleSections) {
-                return row.section === selectedSection
+                return row.section.includes(selectedSection);
               } else {
                 return true
               };
@@ -248,7 +248,7 @@ function SectionTabs(props) {
       <nav className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200" aria-label="Sections">
         {sections.map((section, tabIdx) => (
           <div
-            onClick={() => updateSectionSelected(section.name.toLocaleLowerCase())}
+            onClick={() => updateSectionSelected(section.name.toLowerCase())}
             key={section.name}
             className={classNames(
               section.current ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700',
