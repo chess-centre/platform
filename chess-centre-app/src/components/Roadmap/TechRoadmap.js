@@ -85,10 +85,10 @@ export const TechRoadmap = () => {
           <div className="flex items-center mb-1">
             <div className="bg-teal-500 rounded-full h-4 w-4"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-blue-200 text-blue-700 p-1 rounded  leading-none">
-                BETA
+              <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+                Complete
               </span>
-              <span className="font-thin">v2.2.0-beta</span>
+              <span className="font-thin">v2.2.0</span>
             </div>
           </div>
           <div className="ml-12">
@@ -97,6 +97,23 @@ export const TechRoadmap = () => {
               <li>Performance Ratings <br /> <Issue issue="473" /></li>
               <li>Image Gallery <br /> <Issue issue="468" /></li>
               <li>Enhanced FAQs <br /> <Issue issue="453" /></li>
+            </ul>
+          </div>
+        </li>
+        <li className="mb-2">
+          <div className="flex items-center mb-1">
+            <div className="bg-teal-500 rounded-full h-4 w-4"></div>
+            <div className="flex-1 ml-4 font-medium">
+              <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+                Complete
+              </span>
+              <span className="font-thin">v2.2.0</span>
+            </div>
+          </div>
+          <div className="ml-12">
+            <ul className="list-disc ml-5">
+              <li>Festival - multi section event <br /> <Issue issue="457" />, <Issue issue="588" /></li>
+              <li>Junior - multi section event <br /> <Issue issue="571" /></li>
             </ul>
           </div>
         </li>
@@ -114,13 +131,12 @@ export const TechRoadmap = () => {
             <ul className="list-disc ml-5">
               <li>Event Crosstable / Results <br /><Issue issue="475" /></li>
               <li>Latest News <br /><Issue issue="312" /></li>
-              <li>Chess Festival Launch <br /><Issue issue="457" /></li>
             </ul>
           </div>
         </li>
         <li className="mb-2">
         <div className="flex items-center mb-1">
-            <div className="bg-teal-700 rounded-full h-4 w-4 z-0"></div>
+            <div className="bg-blue-800 rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
               <span className="mr-2 bg-blue-200 text-black p-1 rounded  leading-none">
                 Discuss
@@ -131,8 +147,6 @@ export const TechRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li>Junior - lesson resources</li>
-              <li>FB event integration</li>
-              <li>Eventbite event integration</li>
             </ul>
             <br />
             <ul className="ml-1">   
