@@ -6,8 +6,9 @@ import { ExclamationIcon } from "@heroicons/react/solid";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
-import EntriesTable from "../../components/EntriesTable/table";
+import EntriesTable from "../../components/EntriesTable/festivalTable";
 import { rounds } from "../../api/data.roundTimes";
+import { classNames } from "../../utils/Classes";
 import FestivalHero from "../../assets/img/festival_hero.jpg";
 
 const festival = {
@@ -15,10 +16,6 @@ const festival = {
   date: "September 16th - 18th, 2022",
   datetime: "2022-09-16",
 };
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
 
 const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
@@ -81,6 +78,7 @@ export default function Festival() {
   const event = rounds.find(({ type }) => type === "festival");
   const [isLoading, setIsLoading] = useState(false);
   const [eventEntries, setEventEntries] = useState({});
+  const [entriesCount, setEntriesCount] = useState(0);
 
   useEffect(() => {
     document.title = "The Chess Centre | Festival";
@@ -100,6 +98,10 @@ export default function Festival() {
           data: { getEvent: entries },
         } = response;
         setEventEntries(entries);
+        if(entries?.entries?.items) {
+          setEntriesCount(entries?.entries?.items.length);
+        }
+        
       }
       setIsLoading(false);
     };
@@ -324,7 +326,7 @@ export default function Festival() {
 
                 <Tab.Panel as="dl" className="text-sm text-gray-500 py-5">
                   <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
-                    <h2>Entries</h2>
+                    <h2>Entries <span className="text-gray-500 font-medium text-sm">( {entriesCount} )</span></h2>
 
                     {!isLoading && eventEntries && (
                       <EntriesTable eventDetails={eventEntries} />

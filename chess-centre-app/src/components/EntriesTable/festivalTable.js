@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { classNames } from "../../utils/Classes";
 
-function truncate(str, n) {
-  return str.length > n ? str.substr(0, n - 1) + " ..." : str;
-}
-
 export default function EntriesTable(data) {
   const { eventDetails } = data;
   const isRapid =
@@ -66,7 +62,7 @@ export default function EntriesTable(data) {
           const row = {
             id: entry.member.id,
             name: entry.member.name,
-            club: entry.member.club ? truncate(entry.member.club, 12) : "",
+            club: entry.member.club,
             rating: getRating(entry.member),
             section: entry.section,
             byes: entry.byes
@@ -80,6 +76,22 @@ export default function EntriesTable(data) {
     }
   };
 
+  const getSectionInfo = () => {
+    
+    switch (selectedSection) {
+      case "open":
+        return <li>Open to all</li>;
+      case "major":
+        return <li>ECF 2000 and below</li>;
+      case "inter":
+        return <li>ECF 1750 and below</li>;
+      case "minor":
+        return <li>ECF 1500 and below</li>;
+      default:
+        return <li>Open to all</li>;
+    }
+  }
+
   return (
     <div>
       {eventDetails.multipleSections && (
@@ -88,7 +100,11 @@ export default function EntriesTable(data) {
         </div>
       )}
 
-      <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2 rounded w-full">
+      <ul className="my-2 sm:mx-2 text-sm text-teal-700">
+        { getSectionInfo() }
+      </ul>
+
+      <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 rounded w-full">
         <thead className="bg-gray-100 border-b-2 rounded-lg">
           <tr>
             <th
@@ -128,7 +144,7 @@ export default function EntriesTable(data) {
             .sort((a, b) => b.rating.sort - a.rating.sort)
             .filter((row) => {
               if (eventDetails?.multipleSections) {
-                return row.section === selectedSection;
+                return row.section.includes(selectedSection);
               } else {
                 return true;
               }
@@ -148,7 +164,7 @@ export default function EntriesTable(data) {
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {name}
                   </td>
-                  <td className="hidden sm:block px-2 pl-4 py-2 whitespace-nowrap text-xs text-gray-600">
+                  <td className="hidden sm:block truncate px-2 pl-4 py-2 whitespace-nowrap text-xs text-gray-600">
                     {club}
                   </td>
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
@@ -182,7 +198,7 @@ function SectionTabs(props) {
         ...currentState.map((c) => {
           return {
             ...c,
-            current: section === c.name?.toLowerCase(),
+            current: section.includes === c.name?.toLowerCase(),
           };
         }),
       ];
@@ -202,7 +218,7 @@ function SectionTabs(props) {
         {sections.map((section, tabIdx) => (
           <div
             onClick={() =>
-              updateSectionSelected(section.name.toLocaleLowerCase())
+              updateSectionSelected(section.name.toLowerCase())
             }
             key={section.name}
             className={classNames(
