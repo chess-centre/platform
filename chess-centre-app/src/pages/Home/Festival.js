@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, Fragment, useState } from "react";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import LandingNav from "../../components/Navigation/LandingNav";
+import FooterLanding from "../../components/Footer/LandingFooter";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
 import EntriesTable from "../../components/EntriesTable/festivalTable";
@@ -355,6 +356,7 @@ export default function Festival() {
           </div>
         </div>
       </div>
+      <FooterLanding />
     </div>
   );
 }

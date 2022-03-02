@@ -59,7 +59,6 @@ export const CentreRoadmap = () => {
             <ul className="list-disc ml-5">
               <li><span className="text-teal-600 text-sm">July 2021</span></li>
               <li>&#x2022; Alcohol license approval 🍺</li>
-              <li>&#x2022; Donated Chess Sets to School ♟️</li>
               <li>&#x2022; First live game broadcast 📺</li>
             </ul>
           </div>
@@ -76,7 +75,7 @@ export const CentreRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li><span className="text-teal-600 text-sm">August 2021</span></li>
-              <li>&#x2022; Donated Chess Sets to School ♟️</li>
+              <li>&#x2022; Donated Chess Sets to Schools ♟️</li>
             </ul>
           </div>
         </li>
@@ -108,7 +107,7 @@ export const CentreRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li><span className="text-teal-600 text-sm">February 2022</span></li>
-              <li>First IM Norm Event</li>
+              <li>&#x2022; First IM Norm Event</li>
             </ul>
           </div>
         </li>
@@ -155,7 +154,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="list-disc ml-5">
-              <li>Second Venue 🌱</li>
+              <li>&#x2022; Second Venue 🌱</li>
             </ul>
           </div>
         </li>
