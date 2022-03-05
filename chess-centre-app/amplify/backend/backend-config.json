@@ -24,6 +24,22 @@
         }
       ],
       "customAuth": false
+    },
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ]
     }
   },
   "api": {
@@ -206,6 +222,34 @@
           ]
         }
       ]
+    },
+    "admin": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "memberUpdateECFId",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "auth",
+          "resourceName": "platformchesscentreapp",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "auth",
+          "resourceName": "userPoolGroups",
+          "attributes": [
+            "adminsGroupRole"
+          ]
+        }
+      ]
     }
   },
   "function": {
@@ -367,6 +411,11 @@
       "service": "Lambda"
     },
     "eventRegisterFestival": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "memberUpdateECFId": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

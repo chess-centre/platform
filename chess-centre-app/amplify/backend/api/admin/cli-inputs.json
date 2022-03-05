@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "paths": {
+    "/addECFId": {
+      "name": "/addECFId",
+      "lambdaFunction": "memberUpdateECFId",
+      "permissions": {
+        "groups": {
+          "admins": [
+            "update"
+          ]
+        },
+        "setting": "private"
+      }
+    }
+  }
+}

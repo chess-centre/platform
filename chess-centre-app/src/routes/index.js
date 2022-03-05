@@ -161,7 +161,7 @@ const routes = [
     component: lazy(() => import("../pages/Broadcast/Live")),
     exact: true,
     isPrivate: false,
-  },
+  }
 ];
 
 export default routes;
