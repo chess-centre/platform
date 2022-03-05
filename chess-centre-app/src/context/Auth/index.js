@@ -8,6 +8,7 @@ import {
   resendActivationCode,
   isPaidMember,
   subscribe,
+  isAdmin
 } from "./actions";
 import { AuthProvider, useAuthDispatch, useAuthState } from "./context";
 
@@ -24,4 +25,5 @@ export {
   logout,
   isPaidMember,
   subscribe,
+  isAdmin
 };

@@ -134,6 +134,17 @@ export async function subscribe(dispatch, plan, stripe) {
   dispatch({ type: "STOP_LOADING" });
 }
 
+export async function isAdmin() {
+  const user = await Auth.currentAuthenticatedUser();
+  if (user) {
+    const groups = user?.signInUserSession?.accessToken?.payload['cognito:groups'];
+    if (groups && Array.isArray(groups) && groups[0] === "adminUsers") {
+      return true;
+    }
+  }
+  return false;
+}
+
 export async function isPaidMember(existing) {
   const getGroups = (user) => {
     return user.signInUserSession.idToken.payload["cognito:groups"];

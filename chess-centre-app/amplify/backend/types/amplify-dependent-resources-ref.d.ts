@@ -11,6 +11,9 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientIDWeb": "string",
             "AppClientID": "string",
             "CreatedSNSRole": "string"
+        },
+        "userPoolGroups": {
+            "adminsGroupRole": "string"
         }
     },
     "api": {
@@ -49,6 +52,11 @@ export type AmplifyDependentResourcesAttributes = {
             "ApiId": "string"
         },
         "players": {
+            "RootUrl": "string",
+            "ApiName": "string",
+            "ApiId": "string"
+        },
+        "admin": {
             "RootUrl": "string",
             "ApiName": "string",
             "ApiId": "string"
@@ -189,6 +197,18 @@ export type AmplifyDependentResourcesAttributes = {
             "LambdaExecutionRole": "string"
         },
         "eventRegisterFestival": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "memberECFUpdate": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "memberUpdateECFId": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",

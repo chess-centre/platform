@@ -11,13 +11,13 @@ export default function AccountProfile(props) {
     email: "",
     email_verified: false,
     given_name: "",
-    family_name: "",
+    family_name: ""
   });
 
   useEffect(() => {
     const fetchCognitoUser = async () => {
       const {
-        attributes: { email, email_verified },
+        attributes: { email, email_verified }
       } = await Auth.currentAuthenticatedUser();
       const given_name = props.name?.split(" ")[0] || "";
       const family_name = props.name?.split(" ")[1] || "";
@@ -27,6 +27,7 @@ export default function AccountProfile(props) {
         email_verified,
         given_name,
         family_name,
+
       }));
     };
     fetchCognitoUser();
