@@ -220,6 +220,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "memberECFUpdate",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     },
@@ -411,6 +419,11 @@
       "service": "Lambda"
     },
     "eventRegisterFestival": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "memberECFUpdate": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
