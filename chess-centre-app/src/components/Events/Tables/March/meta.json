@@ -1,0 +1,292 @@
+{
+  "name": "March Rapidplay 2022",
+  "settings": {
+    "currentRound": 2,
+    "showAll": false,
+    "showPreviousRound": false,
+    "nextRoundTime": "Round 3 starts @ 12:00pm"
+  },
+  "players": [
+    {
+      "section": "one",
+      "title": "Division 1",
+      "entries": [
+        {
+          "id": 1,
+          "name": "Peter Shaw",
+          "ratingInfo": {
+            "rating": 2264
+          }
+        },
+        {
+          "id": 2,
+          "name": "Luke Gostelow",
+          "ratingInfo": {
+            "rating": 1895
+          }
+        },
+        {
+          "id": 3,
+          "name": "Jon Duckham",
+          "ratingInfo": {
+            "rating": 1802
+          }
+        },
+        {
+          "id": 4,
+          "name": "Kevin Winter",
+          "ratingInfo": {
+            "rating": 1771
+          }
+        },
+    
+        {
+          "id": 5,
+          "name": "Paul Butterworth",
+          "ratingInfo": {
+            "rating": 1735
+          }
+        },
+        {
+          "id": 6,
+          "name": "Owen Robson",
+          "ratingInfo": {
+            "rating": 1729
+          }
+        }
+      ]
+    },
+    {
+      "section": "two",
+      "title": "Division 2",
+      "entries": [
+        {
+          "id": 1,
+          "name": "Glenn Mulholland",
+          "ratingInfo": {
+            "rating": 1700
+          }
+        },
+        {
+          "id": 2,
+          "name": "Kieran Dickson",
+          "ratingInfo": {
+            "rating": 1662
+          }
+        },
+        {
+          "id": 3,
+          "name": "John Tate",
+          "ratingInfo": {
+            "rating": 1628
+          }
+        },
+        {
+          "id": 4,
+          "name": "John Holliday",
+          "ratingInfo": {
+            "rating": 1604
+          }
+        },
+    
+        {
+          "id": 5,
+          "name": "Mary Lockey",
+          "ratingInfo": {
+            "rating": 1479
+          }
+        },
+        {
+          "id": 6,
+          "name": "Emlyn Hauber",
+          "ratingInfo": {
+            "rating": 1395
+          }
+        }
+      ]
+    },
+    {
+      "section": "three",
+      "title": "Division 3",
+      "entries": [
+        {
+          "id": 1,
+          "name": "Donna Chadwick",
+          "ratingInfo": {
+            "rating": 1372
+          }
+        },
+        {
+          "id": 2,
+          "name": "Steve Collins",
+          "ratingInfo": {
+            "rating": 1239
+          }
+        },
+        {
+          "id": 3,
+          "name": "Alessandro Taylor",
+          "ratingInfo": {
+            "rating": ""
+          }
+        },
+        {
+          "id": 4,
+          "name": "Chris Patrick",
+          "ratingInfo": {
+            "rating": ""
+          }
+        },
+    
+        {
+          "id": 5,
+          "name": "George Turner",
+          "ratingInfo": {
+            "rating": ""
+          }
+        },
+        {
+          "id": 6,
+          "name": "William Burke",
+          "ratingInfo": {
+            "rating": ""
+          }
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "section": "one",
+      "scores": [
+        {
+          "round": 1,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "round": 2,
+          "pairResults": [
+            [],
+            [],
+            []]
+        },
+        {
+          "round": 3,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "round": 4,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "round": 5,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "section": "two",
+      "scores": [
+        {
+          "round": 1,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "round": 2,
+          "pairResults": [
+            [],
+            [],
+            []]
+        },
+        {
+          "round": 3,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "round": 4,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "round": 5,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        }
+      ]
+    },
+    {
+      "section": "three",
+      "scores": [
+        {
+          "round": 1,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "round": 2,
+          "pairResults": [
+            [],
+            [],
+            []]
+        },
+        {
+          "round": 3,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "round": 4,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        },
+        {
+          "round": 5,
+          "pairResults": [
+            [],
+            [],
+            []
+          ]
+        }
+      ]
+    }
+  ]
+}

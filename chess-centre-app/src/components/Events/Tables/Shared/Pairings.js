@@ -1,14 +1,15 @@
 export const PairingsTable = ({ format, players, results, indexer }) => {
   const { round, pairings } = format;
   return (
-    <div className="">
+    <div>
       <table className="w-full divide-y divide-gray-200 table-auto border-gray-300 border">
-        <thead className="bg-teal-500 dark:bg-gray-800">
+        <thead className="bg-teal-brand dark:bg-gray-800">
           <tr>
             <th
               scope="col"
               className="px-2 py-2 text-center text-xs font-medium text-gray-100 dark:text-gray-300 uppercase tracking-wider"
-            ></th>
+            >Brd.
+            </th>
             <th
               scope="col"
               className="flex-grow-0 w-80 px-2 sm:px-4 py-2 text-center text-xs font-medium text-gray-100 dark:text-gray-300 uppercase tracking-wider"
@@ -40,11 +41,9 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
             <td className="px-2"></td>
           </tr>
           {pairings.map((p, key) => {
-            const [white, black] = results.find(
-              (r) => r.round === round
-            ).pairResults[key];
-            const whitePlayer = players.find((player) => player.seed === p[0]);
-            const blackPlayer = players.find((player) => player.seed === p[1]);
+            const [white, black] = results.find(r => r.round === round).pairResults[key];
+            const whitePlayer = players.find(player => player.seed === p[0]);
+            const blackPlayer = players.find(player => player.seed === p[1]);
             return (
               <tr key={key} className="bg-white dark:bg-gray-800">
                 <td className="bg-gray-100 px-2 py-3 border-r text-xs">
@@ -57,7 +56,7 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
                     <span className="text-sx font-normal">TBC</span>
                   )}{" "}
                   <br />
-                  <span className="font-thin text-pink-700 text-sm">
+                  <span className="font-thin text-black text-sm">
                     {whitePlayer.ratingInfo.rating === "blank"
                       ? ""
                       : whitePlayer.ratingInfo.rating
@@ -79,7 +78,7 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
                     <span className="text-sx font-normal">TBC</span>
                   )}{" "}
                   <br />
-                  <span className="font-thin text-pink-700 text-sm">
+                  <span className="font-thin text-black text-sm">
                     {blackPlayer.ratingInfo.rating === "blank" ? (
                       <span className="text-white">Blank</span>
                     ) : blackPlayer.ratingInfo.rating ? (
