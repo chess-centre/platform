@@ -1,8 +1,7 @@
 export const Standings = ({ roundByRound, division, icon }) => {
-  console.log(icon);
   return (
     <>
-      <div className="bg-cool-gray-900 py-4 border-2 border-gray-700  sm:leading-none shadow-md">
+      <div className="bg-cool-gray-900 py-4 border-2 border-teal-600 sm:leading-none shadow-md rounded-lg">
         <p>
           <i className={`${icon} text-teal-400 text-6xl`}></i>
         </p>
@@ -11,7 +10,7 @@ export const Standings = ({ roundByRound, division, icon }) => {
         </h3>
       </div>
 
-      <div className="inline-block border border-cool-gray-900 shadow-2xl">
+      <div className="inline-block border border-cool-gray-900 shadow-lg">
         <table className="w-full divide-y divide-cool-gray-900">
           <thead className="bg-orange-brand">
             <tr>
@@ -59,7 +58,7 @@ export const Standings = ({ roundByRound, division, icon }) => {
                 return (
                   <tr
                     key={key}
-                    className={isEven ? "bg-cool-gray-800" : "bg-cool-gray-900"}
+                    className={isEven ? "bg-cool-gray-800 hover:bg-pink-900 hover:opacity-90" : "bg-cool-gray-900 hover:bg-pink-900 hover:opacity-90"}
                   >
                     <td className="border-r border-cool-gray-700 px-1 py-2 text-xs whitespace-nowrap text-center text-gray-50">
                       {key + 1}
@@ -83,7 +82,7 @@ export const Standings = ({ roundByRound, division, icon }) => {
                           r ? (
                             <div key={idx} className="px-2 w-7">
                               {r === 0.5 ? (
-                                <span className="text-gray-500">½</span>
+                                <span className="text-orange-300">½</span>
                               ) : (
                                 <span className="text-green-500">{r}</span>
                               )}
