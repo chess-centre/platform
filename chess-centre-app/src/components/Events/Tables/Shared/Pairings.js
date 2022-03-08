@@ -2,29 +2,29 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
   const { round, pairings } = format;
   return (
     <div>
-      <table className="w-full divide-y divide-cool-gray-900 table-auto border-cool-gray-900 border">
-        <thead className="bg-teal-brand">
+      <table className="w-full divide-y divide-cool-gray-900 table-auto border-cool-gray-900 border shadow-lg">
+        <thead className="bg-teal-700">
           <tr>
             <th
               scope="col"
-              className="px-1 py-2 text-center text-xs font-medium text-teal-900 uppercase tracking-wider"
+              className="px-1 py-2 text-center text-xs font-medium text-teal-400 uppercase tracking-wider"
             >Brd.
             </th>
             <th
               scope="col"
-              className="flex-grow-0 w-80 px-2 sm:px-4 py-2 text-center text-xs font-medium text-teal-900 uppercase tracking-wider"
+              className="flex-grow-0 w-80 px-2 sm:px-4 py-2 text-center text-xs font-medium text-teal-400 uppercase tracking-wider"
             >
               White
             </th>
             <th
               scope="col"
-              className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-teal-900 uppercase tracking-wider"
+              className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-teal-400 uppercase tracking-wider"
             >
               Vs
             </th>
             <th
               scope="col"
-              className="flex-grow-0 w-80 px-4 sm:px-6 py-3 text-center text-xs font-medium text-teal-900 uppercase tracking-wider"
+              className="flex-grow-0 w-80 px-4 sm:px-6 py-3 text-center text-xs font-medium text-teal-400 uppercase tracking-wider"
             >
               Black
             </th>
@@ -49,7 +49,7 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
               <tr key={key} className={isEven ? "bg-cool-gray-800" : "bg-cool-gray-900"}>
                 <td className={isEven ? "bg-cool-gray-800 px-2 py-3 border-r border-cool-gray-700 text-xs text-white" 
                                       : "bg-cool-gray-900 px-2 py-3 border-r border-cool-gray-700 text-xs text-white"}>
-                  {key + 1 + indexer}
+                  {(indexer * 3) + 1 + key}
                 </td>
                 <td className="flex-grow-0 max-w-full px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-white">
                   {whitePlayer.name ? (
