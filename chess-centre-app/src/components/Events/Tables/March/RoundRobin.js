@@ -49,14 +49,14 @@ const SixPlayerPairings = [
 const addSeeding = (players) =>
   players.map((player, idx) => ({ ...player, seed: idx + 1 }));
 
-export default function Rapidplay({ title, entries, results, settings }) {
+export default function Rapidplay({ title, entries, results, settings, icon }) {
   const players = addSeeding(entries);
 
   const { roundByRound } = resultCheck(SixPlayerPairings, players, results);
 
   return (
-    <div className="grid grid-cols-1 gap-2 mt-2">
-      <Standings roundByRound={roundByRound} division={title}></Standings>
+    <div className="grid grid-cols-1 gap-4 mt-2">
+      <Standings roundByRound={roundByRound} division={title} icon={icon}></Standings>
 
       {!settings.showAll &&
         SixPlayerPairings.slice(

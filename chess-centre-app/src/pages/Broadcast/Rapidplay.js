@@ -12,10 +12,10 @@ import {
 
 const Viewer = () => {
   return (
-    <div className="presentation-background h-full grid grid-rows-1 grid-flow-col gap-4 px-20 pt-8 pb-10">
+    <div className="bg-cool-gray-700 h-full grid grid-rows-1 grid-flow-col px-10 pt-4 pb-10">
       <div className="text-center">
-        <div className="bg-white py-4 relative border-2 border-gray-300 shadow-lg">
-          <h2 className="tracking-tight text-gray-300 text-lg leading-none">
+        <div className=" bg-cool-gray-50 py-4 relative border-4 border-teal-600 shadow-lg rounded-md">
+          <h2 className="tracking-tight text-gray-400 text-lg leading-none">
             Welcome to
           </h2>
           <div>
@@ -32,10 +32,10 @@ const Viewer = () => {
           </div>
         </div>
         <div className="grid grid-cols-3 mt-4 gap-8">
-          {players.map(({ entries, section, title }) => {
+          {players.map(({ entries, section, title, icon }) => {
             const resulst = results.find((r) => r.section === section).scores;
             return (
-              <RoundRobin title={title} entries={entries} results={resulst} settings={settings} />
+              <RoundRobin title={title} entries={entries} results={resulst} settings={settings} icon={icon} />
             );
           })}
         </div>
