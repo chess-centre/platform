@@ -1,4 +1,4 @@
-export const Standings = ({ roundByRound, division, icon }) => {
+export const Standings = ({ roundByRound, division, icon, settings }) => {
   return (
     <>
       <div className="bg-cool-gray-900 py-4 border-2 border-teal-600 sm:leading-none shadow-md rounded-lg">
@@ -36,7 +36,7 @@ export const Standings = ({ roundByRound, division, icon }) => {
                 scope="col"
                 className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-orange-900  uppercase tracking-wider"
               >
-                Rd by Rd
+                Round by Round
               </th>
               <th
                 scope="col"
@@ -78,9 +78,11 @@ export const Standings = ({ roundByRound, division, icon }) => {
                     </td>
                     <td className="px-4 sm:px-6 py-2 whitespace-nowrap font-medium text-sm text-gray-700">
                       <div className="flex">
-                        {data.rounds.map((r, idx) =>
-                          r ? (
-                            <div key={idx} className="px-2 w-7">
+                        {data.rounds.slice(0, settings.currentRound).map((r, idx) => {
+                          const isLive = (idx + 1) === settings.currentRound && settings.roundLive;
+                          const isFutureRound = (idx + 1) > settings.currentRound 
+                          return r ? (
+                            <div key={idx} className="px-2 w-8">
                               {r === 0.5 ? (
                                 <span className="text-orange-300">½</span>
                               ) : (
@@ -88,12 +90,16 @@ export const Standings = ({ roundByRound, division, icon }) => {
                               )}
                             </div>
                           ) : r === 0 ? (
-                            <div key={idx} className="px-2 w-7">
+                            <div key={idx} className="px-2 w-8">
                               <span className="text-red-500">{r}</span>
                             </div>
                           ) : (
-                            ""
-                          )
+                            <div key={idx} className="px-2 w-8">
+                              {isLive ? 
+                                 <span className="text-orange-brand animate-pulse">Live</span>
+                                 : isFutureRound ? "": "x" }
+                            </div>
+                          ) }
                         )}
                       </div>
                     </td>

@@ -1,10 +1,19 @@
 {
   "name": "March Rapidplay 2022",
   "settings": {
-    "currentRound": 1,
+    "currentRound": 4,
+    "totalRounds": 5,
+    "roundLive": true,
     "showAll": false,
     "showPreviousRound": false,
-    "nextRoundTime": "Round 3 starts @ 12:00pm"
+    "nextRoundTime": {
+      "1": "10:00am",
+      "2": "11:00am",
+      "3": "12:30pm",
+      "4": "1:30pm",
+      "5": "2:30pm"
+    },
+    "prizeGiving": "3:30pm"
   },
   "players": [
     {
@@ -166,7 +175,7 @@
           "round": 1,
           "pairResults": [
             [1,0],
-            [0.5,0.5],
+            [0.5, 0.5],
             [0,1]
           ]
         },
@@ -175,7 +184,8 @@
           "pairResults": [
             [0.5,0.5],
             [1,0],
-            [1,0]]
+            [0,1]
+          ]
         },
         {
           "round": 3,
@@ -188,17 +198,17 @@
         {
           "round": 4,
           "pairResults": [
-            [0.5,0.5],
-            [0.5,0.5],
-            [1,0]
+            [],
+            [],
+            []
           ]
         },
         {
           "round": 5,
           "pairResults": [
-            [1,0],
-            [0,1],
-            [1,0]
+            [],
+            [],
+            []
           ]
         }
       ]
@@ -233,16 +243,16 @@
           "round": 4,
           "pairResults": [
             [1,0],
-            [1,0],
-            [1,0]
+            [],
+            []
           ]
         },
         {
           "round": 5,
           "pairResults": [
-            [1,0],
-            [0,1],
-            [1,0]
+            [],
+            [],
+            []
           ]
         }
       ]
@@ -276,17 +286,17 @@
         {
           "round": 4,
           "pairResults": [
-            [0,1],
-            [1,0],
-            [1,0]
+            [],
+            [],
+            []
           ]
         },
         {
           "round": 5,
           "pairResults": [
-            [1,0],
-            [0.5,0.5],
-            [1,0]
+            [],
+            [],
+            []
           ]
         }
       ]

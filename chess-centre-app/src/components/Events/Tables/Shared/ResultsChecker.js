@@ -1,6 +1,6 @@
-export const resultCheck = (boardPairings, players, results) => {
+export const resultCheck = (boardPairings, players, results, settings) => {
   const resultBySeed = [];
-  boardPairings.forEach(({ round, pairings }) => {
+  boardPairings.slice(0, settings.currentRound).forEach(({ round, pairings }) => {
     const pairingResults = results.find((r) => r.round === round).pairResults;
     pairings.forEach((board, index) => {
       const whitePlayer = board[0];

@@ -52,11 +52,11 @@ const addSeeding = (players) =>
 export default function Rapidplay({ title, entries, results, settings, icon, boards }) {
   const players = addSeeding(entries);
 
-  const { roundByRound } = resultCheck(SixPlayerPairings, players, results);
+  const { roundByRound } = resultCheck(SixPlayerPairings, players, results, settings);
 
   return (
     <div className="grid grid-cols-1 gap-3 mt-2">
-      <Standings roundByRound={roundByRound} division={title} icon={icon}></Standings>
+      <Standings roundByRound={roundByRound} division={title} icon={icon} settings={settings}></Standings>
 
       {!settings.showAll &&
         SixPlayerPairings.slice(
@@ -68,6 +68,7 @@ export default function Rapidplay({ title, entries, results, settings, icon, boa
             players={players}
             results={results}
             indexer={boards}
+            settings={settings}
           />
         ))}
 
@@ -78,6 +79,7 @@ export default function Rapidplay({ title, entries, results, settings, icon, boa
             players={players}
             results={results}
             indexer={boards}
+            settings={settings}
           />
         ))}
     </div>
