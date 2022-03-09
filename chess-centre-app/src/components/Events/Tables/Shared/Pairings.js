@@ -1,5 +1,6 @@
-export const PairingsTable = ({ format, players, results, indexer }) => {
+export const PairingsTable = ({ format, players, results, indexer, settings }) => {
   const { round, pairings } = format;
+  const isLive = round === settings.currentRound && settings.roundLive;
   return (
     <div>
       <table className="w-full divide-y divide-cool-gray-900 table-auto border-cool-gray-900 border shadow-lg">
@@ -71,7 +72,7 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
                     ? `${white === 0.5 ? "½" : white} - ${
                         black === 0.5 ? "½" : black
                       }`
-                    : "? - ?"}
+                    : isLive ? <span className="text-orange-brand animate-pulse">Live</span> : "? - ?"}
                 </td>
                 <td className="flex-grow-0 max-w-full px-2 pl-4 sm:px-4 py-2 whitespace-nowrap text-center text-md font-medium text-white">
                   {blackPlayer.name ? (
