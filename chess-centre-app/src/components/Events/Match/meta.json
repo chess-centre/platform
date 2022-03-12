@@ -1,0 +1,147 @@
+{
+  "name": "North vs South",
+  "settings": {
+    "currentRound": 1,
+    "totalRounds": 1,
+    "roundLive": true
+  },
+  "teams": {
+    "homeTeam": {
+      "venue": "home",
+      "name": "The Chess Centre",
+      "icon": "fad fa-chess-queen",
+      "players": [
+        {
+          "id": 1,
+          "name": "Matthew Webb",
+          "rating": 2535
+        },
+        {
+          "id": 2,
+          "name": "Peter Shaw",
+          "rating": 2189
+        },
+        {
+          "id": 3,
+          "name": "Andrew Bak",
+          "rating": 2043
+        },
+        {
+          "id": 4,
+          "name": "Andrew Wainwright",
+          "rating": 2030
+        },
+
+        {
+          "id": 5,
+          "name": "James Hall",
+          "rating": 1918
+        },
+        {
+          "id": 6,
+          "name": "Gary Corcoran",
+          "rating": 1841
+        },
+        {
+          "id": 7,
+          "name": "Paul Butterworth",
+          "rating": 1785
+        },
+        {
+          "id": 8,
+          "name": "Olegs Kungurovs",
+          "rating": 1741
+        },
+        {
+          "id": 9,
+          "name": "Nigel Redmond",
+          "rating": 1649
+        },
+        {
+          "id": 10,
+          "name": "Billy Forsyth",
+          "rating": ""
+        }
+      ]
+    },
+    "awayTeam": {
+      "venue": "away",
+      "name": "Hammersmith",
+      "icon": "fad fa-chess-queen",
+      "players": [
+        {
+          "id": 1,
+          "name": "Alistair Hill",
+          "rating": 2249
+        },
+        {
+          "id": 2,
+          "name": "Carsten Pedersen",
+
+          "rating": 2219
+        },
+        {
+          "id": 3,
+          "name": "Chris Skulte",
+          "rating": 2151
+        },
+        {
+          "id": 4,
+          "name": "Christof Brixel",
+          "rating": 2063
+        },
+
+        {
+          "id": 5,
+          "name": "Alex Freeland",
+          "rating": 2057
+        },
+        {
+          "id": 6,
+          "name": "Gaston Franco",
+          "rating": 2022
+        },
+        {
+          "id": 7,
+          "name": "John White",
+          "rating": 1775
+        },
+        {
+          "id": 8,
+          "name": "Charlie Sturt",
+          "rating": 1671
+        },
+        {
+          "id": 9,
+          "name": "Frank Valle",
+
+          "rating": 1542
+        },
+        {
+          "id": 10,
+          "name": "Charlie Rigby",
+
+          "rating": 1410
+        }
+      ]
+    }
+  },
+  "results": [
+    {
+      "round": 1,
+      "pairResults": [
+        [], 
+        [], 
+        [],
+        [],
+        [],
+        
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  ]
+}
