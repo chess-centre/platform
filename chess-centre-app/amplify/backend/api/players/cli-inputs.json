@@ -13,6 +13,16 @@
           "read"
         ]
       }
+    },
+    "/player/update": {
+      "name": "/player/update",
+      "lambdaFunction": "memberECFUpdate",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "update"
+        ]
+      }
     }
   }
 }

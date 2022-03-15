@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API, Auth } from "aws-amplify";
+import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
 import QuickSearch from "../../../components/FAQs/QuickSearch";
 import { ChessProfile, AccountProfile, IntegrationProfile } from "./sections";

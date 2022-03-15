@@ -151,7 +151,7 @@ const routes = [
   },
   {
     path: "/internal/match",
-    component: lazy(() => import("../pages/Broadcast/InternalChallenge")),
+    component: lazy(() => import("../pages/Broadcast/TeamMatch")),
     exact: true,
     isPrivate: false,
     isAdmin: true

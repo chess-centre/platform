@@ -15,7 +15,8 @@
     },
     "categories": {
       "auth": {
-        "platformchesscentreapp": {}
+        "platformchesscentreapp": {},
+        "userPoolGroups": {}
       },
       "function": {
         "stripeCheckout": {
@@ -113,6 +114,10 @@
         "memberUpdateECFId": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
           "s3Key": "amplify-builds/memberUpdateECFId-337975354b6746394b66-build.zip"
+        },
+        "memberECFUpdate": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/memberECFUpdate-39445251313037704831-build.zip"
         }
       }
     }
