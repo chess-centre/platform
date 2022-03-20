@@ -138,7 +138,7 @@ export async function isAdmin() {
   const user = await Auth.currentAuthenticatedUser();
   if (user) {
     const groups = user?.signInUserSession?.accessToken?.payload['cognito:groups'];
-    if (groups && Array.isArray(groups) && groups[0] === "adminUsers") {
+    if (groups && Array.isArray(groups) && groups[0].includes("admin")) {
       return true;
     }
   }

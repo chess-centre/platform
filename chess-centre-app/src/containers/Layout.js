@@ -64,9 +64,16 @@ const routes = [
     path: "/games/event/:eventId",
     component: lazy(() => import("../pages/App/EventGames")),
   },
+  // Admin Views (lightly protect using cognito groups on the client)
   {
     path: "/event-manager",
-    component: lazy(() => import("../pages/Admin/EventManager"))
+    component: lazy(() => import("../pages/Admin/EventManager/ListEvents")),
+    isAdmin: true
+  },
+  {
+    path: "/event-manager/:eventId",
+    component: lazy(() => import("../pages/Admin/EventManager")),
+    isAdmin: true
   },
   {
     path: "/admin/:id",

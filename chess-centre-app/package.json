@@ -14,6 +14,10 @@
     "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.4.0",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.41",
+    "@types/react-dom": "^17.0.14",
     "@windmill/react-ui": "^0.5.1",
     "aos": "^3.0.0-beta.6",
     "aws-amplify": "^3.3.23",
@@ -43,6 +47,7 @@
     "swiper": "^6.8.4",
     "table": "^6.7.5",
     "tailwind-dynamic-classes": "^1.0.3",
+    "typescript": "^4.6.2",
     "uuid": "^8.3.2"
   },
   "scripts": {
