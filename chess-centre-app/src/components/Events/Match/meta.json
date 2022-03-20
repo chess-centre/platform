@@ -82,34 +82,34 @@
         },
         {
           "id": 3,
-          "name": "Chris Skulte",
-          "rating": 2151
-        },
-        {
-          "id": 4,
           "name": "Christof Brixel",
           "rating": 2063
         },
 
         {
-          "id": 5,
+          "id": 4,
           "name": "Alex Freeland",
           "rating": 2057
         },
         {
-          "id": 6,
+          "id": 5,
           "name": "Gaston Franco",
           "rating": 2022
         },
         {
-          "id": 7,
+          "id": 6,
           "name": "John White",
           "rating": 1775
         },
         {
-          "id": 8,
+          "id": 7,
           "name": "Charlie Sturt",
           "rating": 1671
+        },
+        {
+          "id": 8,
+          "name": "John Holliday",
+          "rating": 1702
         },
         {
           "id": 9,
@@ -130,17 +130,17 @@
     {
       "round": 1,
       "pairResults": [
-        [], 
-        [], 
-        [],
-        [],
-        [],
+        [1,0], 
+        [1,0], 
+        [1,0],
+        [0.5,0.5],
+        [0,1],
         
-        [],
-        [],
-        [],
-        [],
-        []
+        [0,1],
+        [1,0],
+        [1,0],
+        [1,0],
+        [0,1]
       ]
     }
   ]
