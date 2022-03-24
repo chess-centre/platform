@@ -107,7 +107,16 @@ export const useEvents = () => {
   });
 };
 
-
+const preparePlayerData = (players) => {
+  // Transforms member object to a shallow player record for event pairing:
+  return players.reduce((pre, cur) => {
+    return [...pre, {
+      id: cur.memberId,
+      name: cur.member.name,
+      rating: cur.member.ecfRating
+    }];
+  }, []);
+}
 
 export default function ListEvents() {
   const { data } = useEvents();
@@ -115,18 +124,11 @@ export default function ListEvents() {
 
   const createEvent = (eventDetails) => {
     const meta = new ManagedEventFactory(eventDetails);
-
-    console.log("added!");
-    console.log(JSON.parse(meta.eventToJson()));
-
-    meta.setIndividualResult(1, 1, 1, [1, 0]);
-    meta.setIndividualResult(1, 1, 2, [0.5, 0.5]);
-
+    console.log(meta.eventState())
   };
 
   useEffect(() => {
     document.title = "The Chess Centre | Event Manager";
-
   }, []);
 
   return (
@@ -149,15 +151,20 @@ export default function ListEvents() {
       </div>
       <div className="grid grid-cols-3 gap-2 py-6">
         {data &&
-          data.map((evt) => {
+          data.map((event) => {
             return (
-              <div key={evt.id} className="text-sm border border-gray-200 bg-white p-2 shadow rounded-lg">
-                <div>Name: {evt.name}</div>
-                <div>Id: {evt.id}</div>
-                <div>Date: {evt.startDate}</div>
-                <div>Entries: {evt.entryCount}</div>
+              <div
+                key={event.id}
+                className="text-sm border border-gray-200 bg-white p-2 shadow rounded-lg"
+              >
+                <div>Name: {event.name}</div>
+                <div>Id: {event.id}</div>
+                <div>Date: {event.startDate}</div>
+                <div>Entries: {event.entryCount}</div>
                 <button
-                  onClick={() => createEvent({ eventId: evt.id, name: evt.name })}
+                  onClick={() =>
+                    createEvent({ eventId: event.id, name: event.name, players: preparePlayerData(event.entries.items) })
+                  }
                   type="button"
                   className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md shadow-sm text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
                 >
@@ -165,10 +172,12 @@ export default function ListEvents() {
                 </button>
                 <div>
                   <ol>
-                    {evt.entries?.items?.map((e) => {
+                    {event.entries?.items?.map((e) => {
                       return (
-                        <li>
-                          <div>{e.member?.name} {e.memberId}</div>
+                        <li key={e.memberId}>
+                          <div>
+                            {e.memberId} {e.member?.name} 
+                          </div>
                         </li>
                       );
                     })}

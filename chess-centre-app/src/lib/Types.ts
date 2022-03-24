@@ -35,7 +35,7 @@ export interface ManagedEvent {
   settings: Settings;
   players: Player[];
   pairings: Pairing[];
-  results: Result[];
+  results: SectionResults[];
 }
 
 export type Pairing = {
@@ -55,7 +55,7 @@ export type Result = {
   pairResults: [number | null, number | null][];
 };
 
-export type Section = {
+export type SectionResults = {
   section: number;
   scores: Result[];
 };

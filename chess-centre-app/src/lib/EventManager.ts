@@ -2,7 +2,7 @@ import {
   Meta,
   Settings,
   Player,
-  Section,
+  SectionResults,
   Pairing,
   Result,
   Structure,
@@ -10,13 +10,30 @@ import {
   ManagedEvent,
 } from "./Types";
 
+const _defaults = {
+  settings: {
+    eventStructure: Structure.RoundRobin,
+    sections: 3,
+    currentRound: 1,
+    totalRounds: 5,
+    roundLive: false,
+    showAll: false,
+    showPreviousRound: false,
+  },
+  meta: {
+    description: "",
+    prizeGiving: "",
+    nextRoundTime: {},
+  },
+};
+
 export class ManagedEventFactory {
   private readonly _name: string;
   private readonly _eventId: string;
   private readonly _meta: Meta;
   private _settings: Settings;
   private _players: Player[];
-  private _results: Section[] | undefined;
+  private _results: SectionResults[];
   private _pairings: Pairing[];
   private _stored: Boolean = false;
 
@@ -27,7 +44,7 @@ export class ManagedEventFactory {
         round: index + 1,
         pairResults: [],
       }));
-    const sections: Section[] = new Array(this._settings.sections)
+    const sections: SectionResults[] = new Array(this._settings.sections)
       .fill({})
       .map((_, index) => ({
         section: index + 1,
@@ -36,61 +53,43 @@ export class ManagedEventFactory {
     return sections;
   }
 
-  private fetchFromLocalStorage(key: string) {
-    if (window.localStorage) {
-      return window.localStorage.getItem(key);
+  private fetchFromStorage(): ManagedEvent | null {
+    if (this._eventId) {
+      const eventData = window.localStorage.getItem(this._eventId);
+      if (eventData) {
+        this._stored = true;
+        const storedData: ManagedEvent = JSON.parse(eventData);
+        return storedData;
+      } else {
+        return null;
+      }
     } else {
       return null;
     }
   }
 
   private save() {
-    if(window.localStorage && this._eventId) {
-      console.log("Saving!", this._eventId, this.eventToJson());
-      window.localStorage.setItem(this._eventId, this.eventToJson());
+    if (this._eventId) {
+      window.localStorage.setItem(this._eventId, this.eventStateToJson());
     }
   }
 
   private generatePairings() {
-    if(this._settings.eventStructure === Structure.RoundRobin) {
+    if (this._settings.eventStructure === Structure.RoundRobin) {
       this._pairings = SixPlayerPairings;
       this._stored = true;
     }
   }
 
   constructor(data: ManagedEvent) {
-    // if (data.eventId) {
-    //   const eventData = this.fetchFromLocalStorage(data.eventId);
-    //   if (eventData) {
-    //     this._stored = true;
-    //     const storedData: ManagedEvent = JSON.parse(eventData);
-    //     data = {
-    //       ...data,
-    //       ...storedData,
-    //     };
-    //   }
-    // }
-    
+    const { settings, meta } = _defaults;
     this._name = data.name;
     this._eventId = data.eventId;
-    this._meta = {
-      description: data.meta?.description || "",
-      prizeGiving: "", //
-      nextRoundTime: {}, //
-    };
-    this._settings = {
-      eventStructure: Structure.RoundRobin,
-      sections: data.settings?.sections || 3,
-      currentRound: data.settings?.currentRound || 1,
-      totalRounds: data.settings?.totalRounds || 5,
-      roundLive: false,
-      showAll: false,
-      showPreviousRound: false,
-    };
+    this._meta = Object.assign({}, meta, data.meta);
+    this._settings = Object.assign({}, settings, data.settings);
     this._players = data.players || [];
     this._pairings = data.pairings || [];
     this._results = this.resultDefaults();
-
     this.generatePairings();
     this.save();
   }
@@ -157,7 +156,7 @@ export class ManagedEventFactory {
 
   setSectionPairings(sectionName: SectionName, pairingList: Pairing[]): void {}
 
-  eventToJson(): string {
+  eventStateToJson(): string {
     const obj = {
       name: this._name,
       meta: this._meta,
@@ -167,6 +166,18 @@ export class ManagedEventFactory {
       results: this._results,
     };
     return JSON.stringify(obj);
+  }
+
+  eventState(): ManagedEvent {
+    return { 
+      eventId: this._eventId,
+      name: this._name,
+      meta: this._meta,
+      settings: this._settings,
+      players: this._players,
+      pairings: this._pairings,
+      results: this._results,
+    }
   }
 }
 
