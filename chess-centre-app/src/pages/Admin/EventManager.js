@@ -31,7 +31,6 @@ export default function EventManager() {
     document.title = "The Chess Centre | Event Manager";
 
     if (!localStorage.getItem("live-event")) {
-      console.log("updating local storage");
       localStorage.setItem("live-event", JSON.stringify(data));
     }
 

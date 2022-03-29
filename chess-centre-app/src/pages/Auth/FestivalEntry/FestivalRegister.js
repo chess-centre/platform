@@ -823,8 +823,6 @@ const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch, setGl
     const passwordValid = formIsValid && (fieldValues.password !== fieldValues.passwordConfirm);
 
     if (passwordValid) {
-      console.log("password valid");
-      console.log("creating user");
       try {
         const user = await signUpUser(dispatch,
           globalFormState.email,
@@ -833,7 +831,6 @@ const CreatePasswordForm = ({ handleUpdateStep, globalFormState, dispatch, setGl
           globalFormState.lastName
         )
         if (user) {
-          console.log(user);
           setGlobalFormState(s => ({ ...s, sub: user.userSub }))
           handleUpdateStep(FIVE_CONFIRM_EMAIL_CODE);
         }
@@ -946,13 +943,10 @@ const ConfirmationAccountEmail = ({ handleUpdateStep, globalFormState, dispatch 
     );
 
     if (formIsValid) {
-      console.log('Form is valid');
-
       try {
         const response = await confirmEmail(dispatch, globalFormState.email, fieldValues.code)
 
         if (response && !isError) {
-          console.log("global state", globalFormState);
           await register(eventId, stripe, globalFormState.section, globalFormState.byes?.join(""), globalFormState.sub)
             .catch(e => {
               setIsError(true);
@@ -964,9 +958,7 @@ const ConfirmationAccountEmail = ({ handleUpdateStep, globalFormState, dispatch 
         }
 
       } catch (error) {
-        console.log("confirm exception!", error.message, typeof error.message);
         if (error?.message?.includes("Current status is CONFIRMED")) {
-          console.log("already confirmed");
           setIsError(false);  
           setIsLoading(true);
           setErrorMessage("");
@@ -987,7 +979,6 @@ const ConfirmationAccountEmail = ({ handleUpdateStep, globalFormState, dispatch 
     } else {
       setIsError(true);
       setIsLoading(false);
-      console.log("Form not valid, probably no code input.", fieldValues);
     }
   }
 
