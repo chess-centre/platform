@@ -50,9 +50,16 @@ const Viewer = () => {
                 </h2>
               </div>
               <dl className="mt-2 text-center sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-20">
-                <div className="flex flex-col">
-
-                  {!isLastRound &&
+                <div className="flex flex-col -mt-6">
+                  {!isLastRound && !isLive &&
+                    <>
+                      <dt className="order-1 mt-2 text-lg leading-6 font-medium text-gray-400">Next Round</dt>
+                      <dd className="order-2 text-5xl font-extrabold text-white">
+                        {settings.nextRoundTime[settings.currentRound]}
+                      </dd>
+                    </>
+                  }
+                  {!isLastRound && isLive &&
                     <>
                       <dt className="order-1 mt-2 text-lg leading-6 font-medium text-gray-400">Next Round</dt>
                       <dd className="order-2 text-5xl font-extrabold text-white">
@@ -60,7 +67,6 @@ const Viewer = () => {
                       </dd>
                     </>
                   }
-
                   {isLastRound && isLive &&
                     <>
                       <dt className="order-1 mt-2 text-lg leading-6 font-medium text-gray-400">Last Round</dt>
@@ -69,23 +75,20 @@ const Viewer = () => {
                       </dd>
                     </>
                   }
-
                   {isLastRound && !isLive &&
                     <>
-                      <dt className="order-1 mt-2 text-lg leading-6 font-medium text-gray-400">Event Complete</dt>
+                      <dt className="order-1 mt-2 text-lg leading-6 font-medium text-gray-400">Last Round</dt>
                       <dd className="order-2 text-3xl font-extrabold text-gray-600">
-                        All Games Complete
+                        Complete
                       </dd>
                     </>
                   }
-
-
                 </div>
                 <div className="flex flex-col">
                   <dt className="order-1 mt-2 text-lg leading-6 font-medium text-gray-400">Live Games</dt>
                   <dd className="order-2 text-2xl font-extrabold text-teal-400 mt-1">chesscentre.online</dd>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col -mt-6">
                   <dt className="order-1 mt-2 text-lg leading-6 font-medium text-gray-400">Prize Giving</dt>
                   <dd className="order-2 text-5xl font-extrabold text-white">{settings.prizeGiving} </dd>
                 </div>
