@@ -115,6 +115,10 @@ export default function GameTable({ games, memberId }) {
         },
       },
       {
+        Header: "Round",
+        accessor: "round",
+      },
+      {
         Header: "Event",
         accessor: "event",
         Cell: (props) => (
@@ -195,6 +199,7 @@ export default function GameTable({ games, memberId }) {
               rating: rating === "0" ? undefined : rating,
               result: resultType(game.result, colour),
               colour,
+              round: game.round,
               event: game.eventName,
               date: new Date(game.date),
               type: game.type,
@@ -202,7 +207,12 @@ export default function GameTable({ games, memberId }) {
             },
           ];
         }, [])
-        .sort((a, b) => b.date - a.date);
+        .sort((a, b) => {
+          if(b.eventId === a.eventId) {
+            return b.round - a.round
+          }
+          return b.date - a.date;
+        });
     } else {
       return undefined;
     }

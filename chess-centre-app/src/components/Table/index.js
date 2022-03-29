@@ -179,13 +179,12 @@ function Table({ columns, data, searchPlaceholder = "games...", colour="bg-teal-
         hiddenColumns: ["id", "liChessUrl", "chesscomUrl", "eventId", "formArray", "bulletDiff", "blitzDiff", "rapidDiff", "isOnline"]
       }
     },
-    useFilters, // useFilters!
+    useFilters,
     useGlobalFilter,
     useSortBy,
     usePagination
   );
 
-  // Render the UI for your table
   return (
     <>
       <div className="sm:gap-x-2">
@@ -216,8 +215,6 @@ function Table({ columns, data, searchPlaceholder = "games...", colour="bg-teal-
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
-                    // Add the sorting props to control sorting. For this example
-                    // we can add them into the header props
                     <th
                       scope="col"
                       className={classNames(colour, "group px-2 py-3 text-center text-xs font-medium text-gray-100 uppercase")}

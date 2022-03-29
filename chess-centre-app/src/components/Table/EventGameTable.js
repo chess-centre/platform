@@ -97,6 +97,10 @@ export default function EventGameTable({ games, memberId }) {
         ),
       },
       {
+        Header: "Round",
+        accessor: "round",
+      },
+      {
         Header: "Date",
         accessor: "date",
         Cell: (props) => (
@@ -127,15 +131,10 @@ export default function EventGameTable({ games, memberId }) {
     if (games.length > 0) {
       return games
         .reduce((prev, game) => {
-          const opponent =
-            game.whiteMember.id === memberId
-              ? game.blackMember
-              : game.whiteMember;
-
           return [
             ...prev,
             {
-              id: opponent.id,
+              id: game.eventId,
               pgn: game.pgnStr,
               white: game.whiteMember.name,
               whiteRating: game.whiteRating,
@@ -144,11 +143,17 @@ export default function EventGameTable({ games, memberId }) {
               black: game.blackMember.name,
               date: new Date(game.date),
               type: game.type,
+              round: game.round,
               liChessUrl: game.liChessUrl,
             },
           ];
         }, [])
-        .sort((a, b) => b.date - a.date);
+        .sort((a, b) => {
+          if(b.id === a.id) {
+            return b.round - a.round
+          }
+          return b.date - a.date;
+        });
     } else {
       return undefined;
     }
