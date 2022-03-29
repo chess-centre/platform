@@ -71,15 +71,14 @@ export default function Admin() {
     console.log(selectedMemberId, ecfId);
 
     if (selectedMemberId && ecfId) {
-      console.log("fetching...");
       const response = await API.put("admin", "/addECFId", {
         body: {
           ecfId,
           memberId: selectedMemberId,
           adminId: id
         }
-      }).catch(e => {
-        console.log("caught error");
+      }).catch(error => {
+        console.log("Error", error);
         setIsUpdatingECF(false);
       });
       setIsUpdatingECF(false);

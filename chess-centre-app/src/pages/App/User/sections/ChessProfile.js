@@ -16,7 +16,6 @@ export default function ChessProfile(props) {
 
   useEffect(() => {
     if (ecfLastUpdated) {
-      console.log("updated!");
       setLastUpdated(ecfLastUpdated);
     }
   }, [ecfLastUpdated]);

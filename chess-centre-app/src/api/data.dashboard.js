@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const getTotalGameCount = (type, gameInfo) => {
   const data = gameInfo ? JSON.parse(gameInfo).history : [];
   return data.reduce((pre, month) => {
@@ -6,13 +8,20 @@ export const getTotalGameCount = (type, gameInfo) => {
   }, 0);
 };
 
-const getMonthByMonthGameCount = (type, data) => {
-  return data.reduce((pre, month) => {
-    if (month[type]) {
-      return [...pre, month[type]];
-    } else return [...pre, 0]
+const bluePrint = () => {
+  const months = new Array(5).fill({ month: "" });
+  return months.map((_, index) => {
+    return {
+      month: moment().subtract(index, "months").format("MMMM"),
+    }
+  })
+}
 
-  }, []);
+const getMonthByMonthGameCount = (type, data) => {
+  return bluePrint().map(m => {
+    const games = data.find(d => d.month === m.month);
+    return games?.[type] || 0;
+  }).reverse();
 };
 
 const getMonthByMonthRating = (type, data) => {
@@ -23,10 +32,9 @@ const getMonthByMonthRating = (type, data) => {
   }, []).reverse();
 };
 
-const getMonths = (data) => {
-  return data.reduce((pre, { month }) => {
-    return [...pre, month]
-  }, []);
+const getMonths = () => {
+  const months = new Array(5).fill(null);
+  return months.map((_, index) => moment().subtract(index, "months").format("MMMM")).reverse();
 }
 
 export const RatingProgressChart = (
@@ -34,7 +42,7 @@ export const RatingProgressChart = (
 ) => {
 
   const data = ratingInfo ? JSON.parse(ratingInfo) : [];
-  const months = getMonths(data).reverse();
+  const months = getMonths();
   const longPlayRatings = getMonthByMonthRating("standard", data);
   const rapidplayRatings = getMonthByMonthRating("rapid", data);
 
@@ -96,8 +104,8 @@ export const RatingProgressChart = (
 
 export const GamesChart = (gameInfo) => {
 
-  const data = gameInfo ? JSON.parse(gameInfo).history.reverse() : [];
-  const months = getMonths(data);
+  const data = gameInfo ? JSON.parse(gameInfo).history : [];
+  const months = getMonths();
   const standardGamesCount = getMonthByMonthGameCount("standard", data);
   const rapidGamesCount = getMonthByMonthGameCount("rapid", data);
 
