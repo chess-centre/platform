@@ -8,6 +8,7 @@ const EMAIL_ADDRESS = "email_address";
 
 export default function AccountProfile(props) {
   const [user, setUser] = useState({
+    id: "",
     email: "",
     email_verified: false,
     given_name: "",
@@ -17,17 +18,17 @@ export default function AccountProfile(props) {
   useEffect(() => {
     const fetchCognitoUser = async () => {
       const {
-        attributes: { email, email_verified }
+        attributes: { email, email_verified, sub }
       } = await Auth.currentAuthenticatedUser();
       const given_name = props.name?.split(" ")[0] || "";
       const family_name = props.name?.split(" ")[1] || "";
       setUser((s) => ({
         ...s,
+        id: sub,
         email,
         email_verified,
         given_name,
         family_name,
-
       }));
     };
     fetchCognitoUser();
@@ -170,12 +171,12 @@ export default function AccountProfile(props) {
           )}
         </div>
       </div>
-      <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-xs sm:px-6 border-t border-gray-50 dark:border-gray-700 italic">
+      <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-xs sm:text-sm sm:px-6 border-t border-gray-50 dark:border-gray-700 italic">
         <div className="text-right">
           Need to update these details?{" "}
           <a
             className="text-teal-600 hover:text-teal-500"
-            href="mailto:support@chesscentre.online"
+            href={`mailto:support@chesscentre.online?subject=Account%20Update%20(MemberId:%20${user.id})`}
           >
             support@chesscentre.online
           </a>

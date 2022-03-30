@@ -94,7 +94,7 @@ export default function ChesscomFetch({
                 id="chesscomUsername"
                 defaultValue={username}
                 className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 text-xs sm:text-sm border-gray-300"
-                placeholder="MagnusCarlsen"
+                placeholder="add your username"
               />
             </div>
             <button

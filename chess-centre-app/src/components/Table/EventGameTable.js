@@ -131,10 +131,15 @@ export default function EventGameTable({ games, memberId }) {
     if (games.length > 0) {
       return games
         .reduce((prev, game) => {
+          const opponent =
+          game.whiteMember.id === memberId
+            ? game.blackMember
+            : game.whiteMember;
           return [
             ...prev,
             {
-              id: game.eventId,
+              id: opponent.id,
+              eventId: game.eventId,
               pgn: game.pgnStr,
               white: game.whiteMember.name,
               whiteRating: game.whiteRating,
@@ -149,7 +154,7 @@ export default function EventGameTable({ games, memberId }) {
           ];
         }, [])
         .sort((a, b) => {
-          if(b.id === a.id) {
+          if(b.eventId === a.eventId) {
             return b.round - a.round
           }
           return b.date - a.date;

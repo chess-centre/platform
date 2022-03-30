@@ -92,7 +92,7 @@ export default function LiChessFetch({
                 id="liChessUsername"
                 defaultValue={username}
                 className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 text-xs sm:text-sm border-gray-300"
-                placeholder="DrNykterstein"
+                placeholder="add your username"
               />
             </div>
             <button
