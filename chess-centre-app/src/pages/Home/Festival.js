@@ -373,7 +373,7 @@ export default function Festival() {
                         <span className="font-bold">Withdraw entry</span>
                         <br />
                         If you are unable to make this event, please <a className="text-teal-600 hover:underline" href="mailto:support@chesscentre.online?subject=Withdraw%20Festival%20Entry">contact us</a> as soon as possible so we can process any refund.
-                        Unfortunatelye, those who withdraw on the day or fail to attend will not be eligible for refunds as we will offer their place to other players.
+                        Unfortunately, those who withdraw on the day or fail to attend will not be eligible for refunds as we will offer your place to other players.
                       </li>
                     </ul>
                   </div>

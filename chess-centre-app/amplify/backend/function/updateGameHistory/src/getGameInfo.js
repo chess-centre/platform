@@ -68,7 +68,12 @@ function genGameHistory(games) {
 }
 
 function getFormStats(memberId, games) {
-    return games.sort((a, b) => new Date(a.date) - new Date(b.date)).reduce((pre, cur) => {
+    return games.sort((a, b) => {
+      if(a.eventId === b.eventId) {
+        return b.round - a.round;
+      }
+      return new Date(a.date) - new Date(b.date);
+    }).reduce((pre, cur) => {
       if(cur.whiteMemberId === memberId) {
         if(cur.result === "1-0") pre.push(1);
         if(cur.result === "0.5-0.5") pre.push(0.5);

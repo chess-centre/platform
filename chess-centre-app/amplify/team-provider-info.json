@@ -77,7 +77,7 @@
         },
         "updateGameHistory": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateGameHistory-4966676834684c346c63-build.zip"
+          "s3Key": "amplify-builds/updateGameHistory-534e756569414c634958-build.zip"
         },
         "uploadLichessPgns": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
