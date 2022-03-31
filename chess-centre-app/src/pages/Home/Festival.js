@@ -224,6 +224,18 @@ export default function Festival() {
                   >
                     Entries
                   </Tab>
+                  <Tab
+                    className={({ selected }) =>
+                      classNames(
+                        selected
+                          ? "border-teal-600 text-teal-600"
+                          : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
+                        "whitespace-nowrap py-6 border-b-2 font-medium text-sm focus:ring-transparent"
+                      )
+                    }
+                  >
+                    FAQs
+                  </Tab>
                 </Tab.List>
               </div>
               <Tab.Panels as={Fragment}>
@@ -306,7 +318,6 @@ export default function Festival() {
                             <span className="text-sm text-gray-600 font-normal">
                               second increment
                             </span>
-                            .
                           </span>
                         </li>
                         <li>
@@ -345,6 +356,26 @@ export default function Festival() {
                         fetching entry details ...
                       </div>
                     )}
+                  </div>
+                </Tab.Panel>
+                <Tab.Panel as="dl" className="text-sm text-gray-500 py-5 focus:ring-transparent">
+                  <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
+                    <h2>FAQs</h2>
+                    <ul>
+                      <li>
+                        <span className="font-bold">Missing my ECF rating</span>
+                        <br />
+                        We collect and automatically update your ECF ratings daily, if we are unable to determine this when you created your account we will contact you to confirm. Otherwise, leave it with us, your rating will appear within 24 hours of your entry!
+                      </li>
+                    </ul>
+                    <ul>
+                      <li>
+                        <span className="font-bold">Withdraw entry</span>
+                        <br />
+                        If you are unable to make this event, please <a className="text-teal-600 hover:underline" href="mailto:support@chesscentre.online?subject=Withdraw%20Festival%20Entry">contact us</a> know as soon as possible so we can process your refund.
+                        On the day withdrawal or failure to attend will not be eligible for refunds as we offer your place to other players.
+                      </li>
+                    </ul>
                   </div>
                 </Tab.Panel>
               </Tab.Panels>
