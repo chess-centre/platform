@@ -359,7 +359,7 @@ export default function Festival() {
                   </div>
                 </Tab.Panel>
                 <Tab.Panel as="dl" className="text-sm text-gray-500 py-5 focus:ring-transparent">
-                  <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
+                  <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                     <h2>FAQs</h2>
                     <ul>
                       <li>
@@ -372,8 +372,8 @@ export default function Festival() {
                       <li>
                         <span className="font-bold">Withdraw entry</span>
                         <br />
-                        If you are unable to make this event, please <a className="text-teal-600 hover:underline" href="mailto:support@chesscentre.online?subject=Withdraw%20Festival%20Entry">contact us</a> know as soon as possible so we can process your refund.
-                        On the day withdrawal or failure to attend will not be eligible for refunds as we offer your place to other players.
+                        If you are unable to make this event, please <a className="text-teal-600 hover:underline" href="mailto:support@chesscentre.online?subject=Withdraw%20Festival%20Entry">contact us</a> as soon as possible so we can process any refund.
+                        Unfortunatelye, those who withdraw on the day or fail to attend will not be eligible for refunds as we will offer their place to other players.
                       </li>
                     </ul>
                   </div>
