@@ -72,8 +72,10 @@ function getFormStats(memberId, games) {
       if(a.eventId === b.eventId) {
         return b.round - a.round;
       }
-      return new Date(a.date) - new Date(b.date);
-    }).reduce((pre, cur) => {
+      return new Date(b.date) - new Date(a.date);
+    })
+    .slice(0, 6)
+    .reduce((pre, cur) => {
       if(cur.whiteMemberId === memberId) {
         if(cur.result === "1-0") pre.push(1);
         if(cur.result === "0.5-0.5") pre.push(0.5);
@@ -85,7 +87,7 @@ function getFormStats(memberId, games) {
         if(cur.result === "1-0") pre.push(0);
       }
       return [...pre];
-    }, []);
+    }, []).reverse();
 }
 
 function genGameStats(whiteGames, blackGames) {
