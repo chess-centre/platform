@@ -153,7 +153,7 @@ export function SelectColumnFilter({
   );
 }
 
-function Table({ columns, data, searchPlaceholder = "games...", colour="bg-teal-700" }) {
+function Table({ columns, data, searchPlaceholder = "games...", colour = "bg-teal-700" }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -176,7 +176,19 @@ function Table({ columns, data, searchPlaceholder = "games...", colour="bg-teal-
       columns,
       data,
       initialState: {
-        hiddenColumns: ["id", "liChessUrl", "chesscomUrl", "eventId", "formArray", "bulletDiff", "blitzDiff", "rapidDiff", "isOnline"]
+        hiddenColumns: [
+          "id",
+          "liChessUrl",
+          "chesscomUrl",
+          "eventId",
+          "formArray",
+          "bulletDiff",
+          "blitzDiff",
+          "rapidDiff",
+          "isOnline",
+          "standardChange",
+          "rapidChange"
+        ]
       }
     },
     useFilters,

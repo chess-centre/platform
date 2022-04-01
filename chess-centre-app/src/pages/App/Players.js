@@ -190,6 +190,19 @@ export default function Players() {
     }
   };
 
+  const ratingChange = (data, type) => {
+    try {
+      const sorted = JSON.parse(data).sort((a, b) => new Date(b.date) - new Date(a.date));
+      if (sorted && sorted.length > 1) {
+        return Number(sorted[0][type] - sorted[1][type]);
+      } else {
+        return 0;
+      }
+    } catch (error) {
+      return 0;
+    }
+  }
+
   const ecfPlayerData = (players) => {
     if (players && players.length > 0) {
       const filtered = players
@@ -201,11 +214,13 @@ export default function Players() {
               ? undefined
               : member.ecfRating
             : undefined;
+          const standardChange = ratingChange(member.ratingInfo, "standard");
           const rapid = member.ecfRapid
             ? member.ecfRapid === "0"
               ? undefined
               : member.ecfRapid
             : undefined;
+          const rapidChange = ratingChange(member.ratingInfo, "rapid");
 
           const form = member.gameInfo
             ? JSON.parse(member.gameInfo)?.formStats
@@ -226,7 +241,9 @@ export default function Players() {
               club: member.club,
               form: formCount,
               standard,
+              standardChange,
               rapid,
+              rapidChange
             },
           ];
         }, []);

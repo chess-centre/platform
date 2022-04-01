@@ -14,6 +14,9 @@ module.exports = windmill({
     },
     extend: {
       sans: [defaultTheme.fontFamily.sans],
+      fontSize: {
+        'xxs': '.5rem',
+      },
       boxShadow: {
         "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.08)",
       },
