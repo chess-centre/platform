@@ -16,6 +16,16 @@ export default function ECFPlayersTable({ players, colour }) {
         show: false,
       },
       {
+        Header: "standardChange",
+        accessor: "standardChange",
+        show: false,
+      },
+      {
+        Header: "rapidChange",
+        accessor: "rapidChange",
+        show: false,
+      },
+      {
         Header: "#",
         accessor: "rank",
       },
@@ -87,8 +97,16 @@ export default function ECFPlayersTable({ players, colour }) {
         Header: () => <div>Standard</div>,
         accessor: "standard",
         Cell: (props) => (
-          <div className="text-gray-700 font-semibold text-sm ml-5">
+          <div className="relative text-gray-700 text-left font-semibold text-sm ml-2">
             {props.cell.value}
+            {
+              props.row.values.standardChange > 0 &&
+              <span className="absolute text-xxs ml-1 -top-2 text-green-500">{props.row.values.standardChange}</span>
+            }
+            {
+              props.row.values.standardChange < 0 &&
+              <span className="absolute text-xxs ml-1 -top-2 text-red-600">{props.row.values.standardChange}</span>
+            }
           </div>
         ),
       },
@@ -96,8 +114,15 @@ export default function ECFPlayersTable({ players, colour }) {
         Header: () => <div>Rapid</div>,
         accessor: "rapid",
         Cell: (props) => (
-          <div className="text-gray-700 font-semibold text-sm ml-5">
+          <div className="relative text-gray-700 text-left font-semibold text-sm ml-2">
             {props.cell.value}
+            {
+              props.row.values.rapidChange > 0 &&
+              <span className="absolute text-xxs ml-1 -top-2 text-green-500">{props.row.values.rapidChange}</span>
+            }
+            { props.row.values.rapidChange < 0 &&
+              <span className="absolute text-xxs ml-1 -top-2 text-red-600">{props.row.values.rapidChange}</span>
+            }
           </div>
         ),
       },
