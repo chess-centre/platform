@@ -15,10 +15,6 @@ export const TechRoadmap = () => {
   return (
     <div className="relative sm:w-1/2 m-8 text-sm sm:text-base">
       <div
-        className="border-r-2 border-orange-brand absolute h-full top-0"
-        style={{ left: "7.5px" }}
-      ></div>
-      <div
         className="border-r-2 border-teal-500 absolute h-full top-2"
         style={{ left: "7.5px" }}
       ></div>
@@ -65,9 +61,9 @@ export const TechRoadmap = () => {
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
-            <div className="bg-teal-500 rounded-full h-4 w-4"></div>
+            <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+              <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
                 Complete
               </span>
               <span className="font-thin">v2.0.0</span>
@@ -83,7 +79,7 @@ export const TechRoadmap = () => {
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
-            <div className="bg-teal-500 rounded-full h-4 w-4"></div>
+            <div className="bg-orange-brandrounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
               <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
                 Complete
@@ -102,7 +98,7 @@ export const TechRoadmap = () => {
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
-            <div className="bg-teal-500 rounded-full h-4 w-4"></div>
+            <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
               <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
                 Complete
@@ -119,7 +115,7 @@ export const TechRoadmap = () => {
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
-            <div className="bg-teal-500 rounded-full h-4 w-4"></div>
+            <div className="bg-yellow-300 rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
               <span className="mr-2 bg-yellow-200 text-black p-1 rounded  leading-none">
                 Soon
@@ -136,9 +132,9 @@ export const TechRoadmap = () => {
         </li>
         <li className="mb-2">
         <div className="flex items-center mb-1">
-            <div className="bg-blue-800 rounded-full h-4 w-4 z-0"></div>
+            <div className="bg-teal-600 rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-blue-200 text-black p-1 rounded  leading-none">
+              <span className="mr-2 bg-teal-200 text-teal-700 p-1 rounded  leading-none">
                 Discuss
               </span>
               <span className="font-thin">v3.0.0</span>
