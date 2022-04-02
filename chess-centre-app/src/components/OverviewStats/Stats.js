@@ -129,7 +129,7 @@ function GamesSummaryDesktop({ title, data }) {
           </div>
           <div className="text-left text-2xl gap-2 mb-3 mt-2 font-semibold text-black">
             <div className="relative flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-teal-100 text-teal-700">
-              Standard {standard}
+              Standard
               <span className="absolute text-teal-500 ml-2 right-2">
                 {standard}
               </span>
