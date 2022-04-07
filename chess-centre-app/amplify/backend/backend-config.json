@@ -258,6 +258,20 @@
           ]
         }
       ]
+    },
+    "events": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "getEvents",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
     }
   },
   "function": {
@@ -429,6 +443,11 @@
       "service": "Lambda"
     },
     "memberUpdateECFId": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "getEvents": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

@@ -1,5 +1,3 @@
-
-
 const https = require('https');
 
 exports.handler = async (event) => {
@@ -48,11 +46,11 @@ exports.handler = async (event) => {
     let error = false;
     let errorMessage = "";
     const info = await getECFPlayerInfo().catch(e => { error = true; errorMessage = e.message; });
-    const rating = await getECFPlayerRating().catch(e => { error = true; errorMessage = e.message; });;
+    const rating = await getECFPlayerRating().catch(e => { error = true; errorMessage = e.message; });
 
     const data = {
-        info,
-        rating
+        info: JSON.parse(info),
+        rating: JSON.parse(rating)
     };
     console.log(data);
 
@@ -61,7 +59,8 @@ exports.handler = async (event) => {
             statusCode: 200,
             headers: {
                 "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
+                "Access-Control-Allow-Headers": "*",
+                "Content-Type":"Application/json"
             }, 
             body: JSON.stringify(data),
         };
@@ -76,12 +75,12 @@ exports.handler = async (event) => {
             body: JSON.stringify({ error: errorMessage })
         };
         return response;
-    };
+    }
 };
 
 function formatDate() {
     const today = new Date();
     const lastDayOfPreviousMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-    const format = lastDayOfPreviousMonth.toISOString()
-    return format.slice(0, 10);;
-  }
+    const format = lastDayOfPreviousMonth.toISOString();
+    return format.slice(0, 10);
+}
