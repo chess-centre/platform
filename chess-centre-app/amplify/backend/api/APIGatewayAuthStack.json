@@ -34,6 +34,9 @@
     },
     "admin": {
       "Type": "String"
+    },
+    "events": {
+      "Type": "String"
     }
   },
   "Conditions": {
