@@ -122,6 +122,11 @@ const routes = [
     component: lazy(() => import("../components/Roadmap")),
     isPrivate: false,
   },
+  {
+    path: "/developer",
+    component: lazy(() => import("../pages/Home/Developer")),
+    isPrivate: false,
+  },
   // Authenticated Routes (see `src/containers/Layout` for nested routes)
   {
     path: "/app",

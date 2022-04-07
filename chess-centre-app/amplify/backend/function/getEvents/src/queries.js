@@ -17,7 +17,7 @@ exports.getLatestEvents = async () => {
     TableName: API_EVENT_TABLE_NAME, 
     IndexName: "eventsByActive",
     KeyConditionExpression: "#active = :active and #startDate >= :dateStr",
-    ProjectionExpression: "#id, #eventName, description, rounds, #eventTime, #eventType, startDate, endDate, isLive, isLiveUrl, complete, cancelled, entryCount, maxEntries",
+    ProjectionExpression: "#id, #eventName, description, rounds, #eventTime, #eventType, eventTypeId, startDate, endDate, isLive, isLiveUrl, complete, cancelled, entryCount, maxEntries",
     ExpressionAttributeNames: {
       "#id": "id",
       "#eventName": "name",
@@ -30,7 +30,7 @@ exports.getLatestEvents = async () => {
   }).promise();
 
   return items?.Items?.reduce((events, item) => {
-    const eventType = eventTypes?.Items?.find(type => type.id === item.eventTypeId);
+    const eventType = eventTypes?.Items?.find(({id}) => id === item.eventTypeId);
     const currentEvent = {
       // merge eventTypes with event information:
       ...eventType,

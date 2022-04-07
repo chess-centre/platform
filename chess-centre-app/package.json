@@ -40,6 +40,7 @@
     "react-table": "^7.7.0",
     "react-toast-notifications": "^2.4.3",
     "react-transition-group": "^4.4.1",
+    "swagger-ui-react": "^4.10.3",
     "swiper": "^6.8.4",
     "table": "^6.7.5",
     "tailwind-dynamic-classes": "^1.0.3",

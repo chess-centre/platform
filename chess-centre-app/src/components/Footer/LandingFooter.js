@@ -20,10 +20,10 @@ const LandingFooter = () => {
           </div>
           <div className="px-3 sm:px-6 py-2">
             <Link
-              to="/code-of-conduct"
+              to="/developer"
               className="text-sm sm:text-base text-gray-500 hover:text-teal-brand"
             >
-              Code of Conduct
+              Developer
             </Link>
           </div>
           <div className="px-3 sm:px-6 py-2">
