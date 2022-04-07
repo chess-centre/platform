@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
 const getLatestEvents = require("./queries").getLatestEvents;
+const getEvent = require("./queries").getEvent;
 const app = express();
 app.use(bodyParser.json());
 app.use(awsServerlessExpressMiddleware.eventContext());
@@ -23,11 +24,14 @@ app.get('/events', async function(req, res) {
   }
 });
 
-app.get('/events/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
+app.get('/events/:id', async function(req, res) {
+  try {
+    const event = await getEvent(req.params.id);
+    res.json({success: true, event, url: req.url});
+  } catch (error) {
+    res.json({success: false, event: {}, url: req.url});
+  }
 });
-
 
 app.listen(3000, function() {
     console.log("App started");
