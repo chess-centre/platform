@@ -18,7 +18,7 @@ const Developer = () => {
           <LandingNav />
         </div>
 
-        <SwaggerUI url="http://chess-center-swagger-doc.s3.eu-west-1.amazonaws.com/swagger.json" />
+        <SwaggerUI url="/swagger.json" />
 
         <FooterLanding></FooterLanding>
       </div>

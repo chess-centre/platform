@@ -1,0 +1,235 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Upcoming event data from the Chess Centre platform",
+    "version" : "v1",
+    "title" : "API",
+    "contact" : {
+      "name" : "Matthew Webb",
+      "email" : "support@chesscentre.online"
+    },
+    "license" : {
+      "name" : "MIT"
+    }
+  },
+  "host" : "api.chesscentre.online",
+  "tags" : [ {
+    "name" : "Events"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/events" : {
+      "get" : {
+        "summary" : "Upcoming list of Chess Centre event items",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "x-amazon-apigateway-any-method" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "EventsResponseSchema"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/EventsResponseSchema"
+            }
+          }
+        }
+      }
+    },
+    "/events/{id}" : {
+      "get" : {
+        "summary" : "Single Chess Center event item",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "x-amazon-apigateway-any-method" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "EventResponseSchema"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/EventResponseSchema"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "EventsResponseSchema" : {
+      "type" : "object",
+      "required" : [ "events", "success", "url" ],
+      "properties" : {
+        "success" : {
+          "type" : "boolean"
+        },
+        "events" : {
+          "type" : "array",
+          "items" : {
+            "properties" : {
+              "success" : {
+                "type" : "boolean"
+              },
+              "url" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "description" : {
+                "type" : "string"
+              },
+              "maxEntries" : {
+                "type" : "number"
+              },
+              "startDate" : {
+                "type" : "string"
+              },
+              "endDate" : {
+                "type" : "string"
+              },
+              "eventTypeId" : {
+                "type" : "string"
+              },
+              "entryCount" : {
+                "type" : "number"
+              },
+              "rounds" : {
+                "type" : "number"
+              },
+              "timeControl" : {
+                "type" : "string"
+              },
+              "isLiveUrl" : {
+                "type" : "string"
+              },
+              "isLive" : {
+                "type" : "boolean"
+              },
+              "cancelled" : {
+                "type" : "boolean"
+              },
+              "complete" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        },
+        "url" : {
+          "type" : "string"
+        }
+      },
+      "title" : "Events"
+    },
+    "EventResponseSchema" : {
+      "type" : "object",
+      "required" : [ "events", "success", "url" ],
+      "title" : "Event",
+      "properties" : {
+        "success" : {
+          "type" : "boolean"
+        },
+        "event" : {
+          "type" : "object",
+          "properties" : {
+            "url" : {
+              "type" : "string"
+            },
+            "id" : {
+              "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "description" : {
+              "type" : "string"
+            },
+            "maxEntries" : {
+              "type" : "number"
+            },
+            "startDate" : {
+              "type" : "string"
+            },
+            "endDate" : {
+              "type" : "string"
+            },
+            "eventTypeId" : {
+              "type" : "string"
+            },
+            "entryCount" : {
+              "type" : "number"
+            },
+            "rounds" : {
+              "type" : "number"
+            },
+            "timeControl" : {
+              "type" : "string"
+            },
+            "isLiveUrl" : {
+              "type" : "string"
+            },
+            "isLive" : {
+              "type" : "boolean"
+            },
+            "cancelled" : {
+              "type" : "boolean"
+            },
+            "complete" : {
+              "type" : "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+}
