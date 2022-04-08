@@ -13,40 +13,13 @@
     }
   },
   "host" : "api.chesscentre.online",
-  "tags" : [ {
-    "name" : "Events"
-  } ],
   "schemes" : [ "https" ],
   "paths" : {
     "/events" : {
       "get" : {
+        "tags": ["Events"],
         "summary" : "Upcoming list of Chess Centre event items",
         "consumes" : [ "application/json" ],
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "type" : "string"
-              },
-              "Access-Control-Allow-Methods" : {
-                "type" : "string"
-              },
-              "Access-Control-Allow-Headers" : {
-                "type" : "string"
-              }
-            }
-          }
-        }
-      },
-      "x-amazon-apigateway-any-method" : {
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "EventsResponseSchema"
-        } ],
         "responses" : {
           "200" : {
             "description" : "200 response",
@@ -59,6 +32,7 @@
     },
     "/events/{id}" : {
       "get" : {
+        "tags": ["Events"],
         "summary" : "Single Chess Center event item",
         "consumes" : [ "application/json" ],
         "parameters" : [ {
@@ -66,30 +40,6 @@
           "in" : "path",
           "required" : true,
           "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "headers" : {
-              "Access-Control-Allow-Origin" : {
-                "type" : "string"
-              },
-              "Access-Control-Allow-Methods" : {
-                "type" : "string"
-              },
-              "Access-Control-Allow-Headers" : {
-                "type" : "string"
-              }
-            }
-          }
-        }
-      },
-      "x-amazon-apigateway-any-method" : {
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "EventResponseSchema"
         } ],
         "responses" : {
           "200" : {
