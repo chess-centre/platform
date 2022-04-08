@@ -6,10 +6,11 @@ exports.getLatestEvents = async () => {
 
   const eventTypes = await dynamodb.scan({
     TableName: API_EVENT_TYPE_TABLE_NAME,
-    ProjectionExpression: "#eventName, description, timeControl, eventType, maxEntries, #eventTime",
+    ProjectionExpression: "#id, #eventName, description, timeControl, eventType, maxEntries, #eventTime",
     ExpressionAttributeNames: {
       "#eventName": "name",
       "#eventTime": "time",
+      "#id": "id"
     }
   }).promise();
 
