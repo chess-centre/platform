@@ -16,26 +16,24 @@ function truncate(str, n) {
 function EntriesTable(data) {
   const { user, eventDetails } = data;
   const sub = user.attributes.sub;
-  const isRapid = eventDetails?.name?.includes("Rapidplay") || eventDetails?.name?.includes("IGS");
+  const isRapid =
+    eventDetails?.name?.includes("Rapidplay") ||
+    eventDetails?.name?.includes("IGS");
   const isBlitz = eventDetails?.name?.includes("Blitz");
 
   const [selectedSection, handleSelectionSelect] = useState("open");
-
 
   const tableData = () => {
     /**
      * Calculates which rating should be listed dependant upon the data we have on a player.
      */
     const getRating = ({ ecfRating, ecfRapid, estimatedRating }) => {
-
       const standard = ecfRating ? parseInt(ecfRating, 10) : 0;
       const rapid = ecfRapid ? parseInt(ecfRapid, 10) : 0;
 
       if (isBlitz) {
-        if (rapid)
-          return { value: rapid, sort: rapid, key: "" };
-        if (standard)
-          return { value: standard, sort: standard, key: "S" };
+        if (rapid) return { value: rapid, sort: rapid, key: "" };
+        if (standard) return { value: standard, sort: standard, key: "S" };
         if (estimatedRating)
           return {
             value: estimatedRating,
@@ -45,10 +43,8 @@ function EntriesTable(data) {
         return { value: "unrated", sort: 0, key: "" };
       }
       if (isRapid) {
-        if (rapid)
-          return { value: rapid, sort: rapid, key: "" };
-        if (standard)
-          return { value: standard, sort: standard, key: "S" };
+        if (rapid) return { value: rapid, sort: rapid, key: "" };
+        if (standard) return { value: standard, sort: standard, key: "S" };
         if (estimatedRating)
           return {
             value: estimatedRating,
@@ -58,10 +54,8 @@ function EntriesTable(data) {
         return { value: "unrated", sort: 0, key: "" };
         // Standard Rating
       } else {
-        if (standard)
-          return { value: standard, sort: standard, key: "" };
-        if (rapid)
-          return { value: rapid, sort: rapid, key: "R" };
+        if (standard) return { value: standard, sort: standard, key: "" };
+        if (rapid) return { value: rapid, sort: rapid, key: "R" };
         if (estimatedRating)
           return {
             value: estimatedRating,
@@ -83,13 +77,12 @@ function EntriesTable(data) {
             name: entry.member.name,
             club: entry.member.club ? truncate(entry.member.club, 12) : "",
             rating: getRating(entry.member),
-            section: entry.section
+            section: entry.section,
           };
           list.push(row);
         }
         return list;
       }, []);
-
     } else {
       return [];
     }
@@ -97,11 +90,11 @@ function EntriesTable(data) {
 
   return (
     <div>
-      {
-        eventDetails.multipleSections && <div className="my-4">
+      {eventDetails.multipleSections && (
+        <div className="my-4">
           <SectionTabs handleSelectionSelect={handleSelectionSelect} />
         </div>
-      }
+      )}
 
       <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2 rounded w-full">
         <thead className="bg-gray-100 border-b-2 rounded-lg">
@@ -141,12 +134,12 @@ function EntriesTable(data) {
         <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
           {tableData()
             .sort((a, b) => b.rating.sort - a.rating.sort)
-            .filter(row => {
+            .filter((row) => {
               if (eventDetails?.multipleSections) {
                 return row.section.includes(selectedSection);
               } else {
-                return true
-              };
+                return true;
+              }
             })
             .map(({ name, rating, club, id }, key) => {
               const isEven = key % 2 === 0;
@@ -216,61 +209,65 @@ function EntriesTable(data) {
 }
 
 function SectionTabs(props) {
-
   const { handleSelectionSelect } = props;
 
   const [sections, setSections] = useState([
-    { name: 'Open', current: true },
-    { name: 'Major', current: false },
-    { name: 'Inter', current: false },
-    { name: 'Minor', current: false },
+    { name: "Open", current: true },
+    { name: "Major", current: false },
+    { name: "Inter", current: false },
+    { name: "Minor", current: false },
   ]);
 
   const updateSectionSelected = (section) => {
-    setSections(currentState => {
+    setSections((currentState) => {
       return [
-        ...currentState.map(c => {
+        ...currentState.map((c) => {
           return {
             ...c,
-            current: section.includes(c.name?.toLowerCase())
-          }
-        })
-      ]
+            current: section.includes(c.name?.toLowerCase()),
+          };
+        }),
+      ];
     });
 
     if (handleSelectionSelect && typeof handleSelectionSelect === "function") {
       handleSelectionSelect(section);
     }
-  }
+  };
 
   return (
     <div>
-      <nav className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200" aria-label="Sections">
+      <nav
+        className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"
+        aria-label="Sections"
+      >
         {sections.map((section, tabIdx) => (
           <div
             onClick={() => updateSectionSelected(section.name.toLowerCase())}
             key={section.name}
             className={classNames(
-              section.current ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700',
-              tabIdx === 0 ? 'rounded-l-lg' : '',
-              tabIdx === section.length - 1 ? 'rounded-r-lg' : '',
-              'group relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-xs font-medium text-center hover:bg-gray-50 focus:z-10 cursor-pointer'
+              section.current
+                ? "text-gray-900"
+                : "text-gray-500 hover:text-gray-700",
+              tabIdx === 0 ? "rounded-l-lg" : "",
+              tabIdx === section.length - 1 ? "rounded-r-lg" : "",
+              "group relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-xs font-medium text-center hover:bg-gray-50 focus:z-10 cursor-pointer"
             )}
-            aria-current={section.current ? 'page' : undefined}
+            aria-current={section.current ? "page" : undefined}
           >
             <span>{section.name}</span>
             <span
               aria-hidden="true"
               className={classNames(
-                section.current ? 'bg-teal-500' : 'bg-transparent',
-                'absolute inset-x-0 bottom-0 h-0.5'
+                section.current ? "bg-teal-500" : "bg-transparent",
+                "absolute inset-x-0 bottom-0 h-0.5"
               )}
             />
           </div>
         ))}
       </nav>
     </div>
-  )
+  );
 }
 
 export default function EventDetailsSlideOut(props) {
@@ -278,7 +275,6 @@ export default function EventDetailsSlideOut(props) {
   const { open, eventDetails } = slideState;
 
   function selectImage(type) {
-
     if (type?.includes("junior")) {
       return JuniorRapidPlay;
     }
@@ -291,6 +287,17 @@ export default function EventDetailsSlideOut(props) {
       default:
         return OpenCongress;
     }
+  }
+
+  // TODO: add address information to event details:
+  function addressLookup(name) {
+    if (name?.includes("IGS")) {
+      return "Ilkley Grammar School, Armitage Hall, LS29 8TH";
+    }
+    if (name?.includes("Festival")) {
+      return "King's Hall & Winter Garden, Station Road, Ilkley, LS29 8HB";
+    }
+    return "Unit 8, Crescent Court, Ilkely, LS29 8DE";
   }
 
   return (
@@ -350,7 +357,14 @@ export default function EventDetailsSlideOut(props) {
                   <div className="mb-4">
                     <div className="pb-1 sm:pb-6">
                       <div>
-                        <div className={classNames(borderColor600[eventDetails.type?.color], "border-4 relative h-52 rounded-md")}>
+                        <div
+                          className={classNames(
+                            eventDetails.type?.color === "blue"
+                              ? "border-blue-brand"
+                              : borderColor600[eventDetails.type?.color],
+                            "border-4 relative h-52 rounded-md"
+                          )}
+                        >
                           <img
                             className="border-gray-200 border-4 absolute h-full w-full object-cover "
                             src={selectImage(eventDetails.type?.eventType)}
@@ -380,12 +394,7 @@ export default function EventDetailsSlideOut(props) {
                             Location
                           </dt>
                           <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                            {
-                              eventDetails.name?.includes("IGS") ?
-                                "Ilkley Grammar School, Armitage Hall, LS29 8TH"
-                                : "Unit 8, Crescent Court, Ilkely, LS29 8DE"
-                            }
-
+                            {addressLookup(eventDetails?.name)}
                           </dd>
                         </div>
                         <div>
@@ -413,7 +422,8 @@ export default function EventDetailsSlideOut(props) {
                         <div>
                           {eventDetails.entries?.items.length > 0 ? (
                             <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
-                              <i className="fad fa-users mr-1 text-gray-900"></i> Entries
+                              <i className="fad fa-users mr-1 text-gray-900"></i>{" "}
+                              Entries
                             </dt>
                           ) : (
                             ""

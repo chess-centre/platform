@@ -333,11 +333,17 @@ export default function Festival() {
                   </div>
                 </Tab.Panel>
 
-                <Tab.Panel as="dl" className="text-sm text-gray-500 py-5 focus:ring-transparent">
+                <Tab.Panel as="dl" className="text-gray-500 py-5 focus:ring-transparent">
+                  <div className="prose prose-blue mb-4">
+                    <h2>Schedule</h2>
+                  </div>
                   <Schedule event={event} />
                 </Tab.Panel>
 
-                <Tab.Panel as="dl" className="text-sm text-gray-500 py-5 focus:ring-transparent">
+                <Tab.Panel
+                  as="dl"
+                  className="text-sm text-gray-500 py-5 focus:ring-transparent"
+                >
                   <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
                     <h2>
                       Entries{" "}
@@ -358,22 +364,42 @@ export default function Festival() {
                     )}
                   </div>
                 </Tab.Panel>
-                <Tab.Panel as="dl" className="text-sm text-gray-500 py-5 focus:ring-transparent">
+                <Tab.Panel
+                  as="dl"
+                  className="text-sm text-gray-500 py-5 focus:ring-transparent"
+                >
                   <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
                     <h2>FAQs</h2>
                     <ul>
                       <li>
-                        <span className="font-bold">Missing my ECF rating</span>
+                        <span className="font-bold text-teal-600">
+                          Missing my ECF rating
+                        </span>
                         <br />
-                        We collect and automatically update your ECF ratings daily, if we are unable to determine this when you created your account we will contact you to confirm. Otherwise, leave it with us, your rating will appear within 24 hours of your entry!
+                        We automatically search and check ECF rating data upon
+                        account registration. If we are unable to accurately
+                        determine your ECF rating (if you have one) we will
+                        contact you. Otherwise, leave it with us, your rating
+                        will appear within a few hours of any event entry!
                       </li>
                     </ul>
                     <ul>
                       <li>
-                        <span className="font-bold">Withdraw entry</span>
+                        <span className="font-bold text-teal-600">
+                          Withdraw entry
+                        </span>
                         <br />
-                        If you are unable to make this event, please <a className="text-teal-600 hover:underline" href="mailto:support@chesscentre.online?subject=Withdraw%20Festival%20Entry">contact us</a> as soon as possible so we can process any refund.
-                        Unfortunately, those who withdraw on the day or fail to attend will not be eligible for refunds as we will offer your place to other players.
+                        If you are unable to make this event, please{" "}
+                        <a
+                          className="text-teal-600 hover:underline"
+                          href="mailto:support@chesscentre.online?subject=Withdraw%20Festival%20Entry"
+                        >
+                          contact us
+                        </a>{" "}
+                        as soon as possible so we can process any refund.
+                        Unfortunately, those who withdraw on the day or fail to
+                        attend will not be eligible for refunds as we offer your
+                        place to other players.
                       </li>
                     </ul>
                   </div>

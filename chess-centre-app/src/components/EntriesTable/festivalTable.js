@@ -178,6 +178,7 @@ export default function EntriesTable(data) {
             })}
         </tbody>
       </table>
+      <p className="text-center italic text-xs">Ratings are automatically checked against the ECF database, you may intially see "unrated" while we verify your info.</p>
     </div>
   );
 }

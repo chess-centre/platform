@@ -12,7 +12,11 @@ import IntegrationsMobileExample from "../../assets/img/integrations-mobile-exam
 export default function MoreInfo() {
   useEffect(() => {
     document.title = "The Chess Centre | More Info";
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
   }, []);
 
   return (

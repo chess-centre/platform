@@ -101,7 +101,7 @@ export function EventCard(props) {
     >
       <div
         className={classNames(
-          bgColor700[type.color],
+          type.color === "blue" ? "bg-blue-brand" : bgColor700[type.color],
           "absolute left-0 z-10 inset-y-0 py-1 px-1.5 text-xs rounded-l-lg"
         )}
       ></div>

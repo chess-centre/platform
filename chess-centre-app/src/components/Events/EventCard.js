@@ -13,7 +13,7 @@ const EventHeader = ({ type, icon, name, description }) => {
       case "congress":
         return "text-blue-500";
       case "festival":
-        return "text-blue-500";
+        return "text-blue-brand";
       case "blitz":
         return "text-yellow-400";
       case "junior": 
@@ -154,7 +154,7 @@ export default function EventCard({
     >
       <div
         className={classNames(
-          bgColor700[color],
+          color === "blue" ? "bg-blue-brand" : bgColor700[color],
           "absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
         )}
       ></div>
