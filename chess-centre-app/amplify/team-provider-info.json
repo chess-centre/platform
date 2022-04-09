@@ -25,7 +25,7 @@
         },
         "stripeWebhook": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeWebhook-4833616a4f6c75504e34-build.zip"
+          "s3Key": "amplify-builds/stripeWebhook-70473272474835306d51-build.zip"
         },
         "platformchesscentreappPostConfirmation": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -121,7 +121,7 @@
         },
         "getEvents": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/getEvents-58574c6f725552685847-build.zip"
+          "s3Key": "amplify-builds/getEvents-64567053305934516c4d-build.zip"
         }
       }
     }

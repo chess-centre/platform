@@ -161,9 +161,10 @@ async function sendRegisteredEventEmailToMemberFestival({ email, name, eventName
         <p>👋 Hello ${name}</p>
         <p>Thank you for registering for our <strong>${eventName}</strong>.</p>
         <p>The key details for this event:</p>  
-        <p>📅 Date: ${formatDate(startDate)} - ${formatDate(endDate)}</p>
-        <p>🤓 Section entered: ${section}</p> 
-        <p>🏫 Event location: <span style="color: #047481;">King's Hall & Winter Garden, Station Road, Ilkley, LS29 8HB</span></p>
+        <p>📅 <strong>Date:</strong> ${formatDate(startDate)} - ${formatDate(endDate)}</p>
+        <p>🤓 <strong>Section entered:</strong> ${section}</p>
+        <p>🏫 <strong>Event location:</strong> <span style="color: #047481;">King's Hall & Winter Garden, Station Road, Ilkley, LS29 8HB</span></p>
+        <p>📊 <strong>ECF rating:</strong> Newly registered accounts will have their rating automatically checked (if you have one).<p>
         <p>ℹ️ More details can be found here:
           <a href="https://www.chesscentre.online/events/festival/${eventId}">chesscentre.online/${eventType}</a>
         </p>

@@ -363,17 +363,17 @@ export default function Festival() {
                     <h2>FAQs</h2>
                     <ul>
                       <li>
-                        <span className="font-bold">Missing my ECF rating</span>
+                        <span className="font-bold text-teal-600">Missing my ECF rating</span>
                         <br />
-                        We collect and automatically update your ECF ratings daily, if we are unable to determine this when you created your account we will contact you to confirm. Otherwise, leave it with us, your rating will appear within 24 hours of your entry!
+                        We automatically search and check ECF rating data upon account registration. If we are unable to accurately determine your ECF rating (if you have one) we will contact you. Otherwise, leave it with us, your rating will appear within a few hours of any event entry!
                       </li>
                     </ul>
                     <ul>
                       <li>
-                        <span className="font-bold">Withdraw entry</span>
+                        <span className="font-bold text-teal-600">Withdraw entry</span>
                         <br />
                         If you are unable to make this event, please <a className="text-teal-600 hover:underline" href="mailto:support@chesscentre.online?subject=Withdraw%20Festival%20Entry">contact us</a> as soon as possible so we can process any refund.
-                        Unfortunately, those who withdraw on the day or fail to attend will not be eligible for refunds as we will offer your place to other players.
+                        Unfortunately, those who withdraw on the day or fail to attend will not be eligible for refunds as we offer your place to other players.
                       </li>
                     </ul>
                   </div>
