@@ -124,7 +124,7 @@ function Membership() {
                   <div className="text-center text-sm font-normal text-gray-900 space-y-2">
                     <h2 className="mt-4 text-2xl font-extrabold">Still deciding?</h2>
                     <p>Come pay us a visit and see what we've got to offer. There is no charge for your first few visits and no obligation to sign-up.</p>
-                    <div><Link to="/faqs" className="text-teal-500 hover:underline hover:text-teal-700 text-lg">FAQs</Link></div>
+                    <div><Link to="/faqs?tag=membership" className="text-teal-500 hover:underline hover:text-teal-700 text-lg">FAQs</Link></div>
                   </div>
                 </div>
               </div>
