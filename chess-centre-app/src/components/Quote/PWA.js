@@ -41,11 +41,11 @@ function DownloadPWA() {
                   <p className="mt-2 font-medium text-white">#notforprofit</p>
                 </div>
                 <footer className="mt-6">
-                  <p className="text-base font-medium text-white">
-                    Matt Webb
+                  <p className="text-base font-medium text-gray-200">
+                    Matt &amp; Andy
                   </p>
-                  <p className="text-base font-md text-gray-100">
-                    Co-Founder @ <span className="font-bold text-gray-900"><i className="fak fa-chess-centre"></i> The Chess Centre </span>
+                  <p className="text-base font-md text-gray-50">
+                    Co-Founders @ <span className="font-bold text-gray-900"><i className="fak fa-chess-centre"></i> The Chess Centre </span>
                   </p>
                 </footer>
               </blockquote>

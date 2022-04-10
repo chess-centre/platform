@@ -100,9 +100,10 @@ const Developer = () => {
             </div>
           </div>
         </div>
-        <div className="py-2">
+        <div className="py-2 sm:px-32">
           <SwaggerUI url="/swagger.json" />
         </div>
+        
         <FooterLanding />
       </div>
     </div>
