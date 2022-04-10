@@ -6,3 +6,7 @@
     max-width: 100% !important;
   }
 }
+
+.swagger-ui .scheme-container {
+  box-shadow: none;
+}

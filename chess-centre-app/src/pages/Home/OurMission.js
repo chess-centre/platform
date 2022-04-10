@@ -4,9 +4,8 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 
 function OurMission() {
-
   useEffect(() => {
-    document.title = "The Chess Centre | Our Mission"
+    document.title = "The Chess Centre | Our Mission";
   }, []);
 
   return (
@@ -106,7 +105,10 @@ function OurMission() {
                   </p>
                   <p>
                     We,{" "}
-                    <Link to="/about" className="text-teal-500 hover:text-teal-700">
+                    <Link
+                      to="/about"
+                      className="text-teal-500 hover:text-teal-700"
+                    >
                       the founders
                     </Link>
                     , having played Chess from an early age have benefitted from
@@ -116,10 +118,10 @@ function OurMission() {
                   </p>
                   <p>
                     The Chess Centre is open to all, it is not a game that
-                    discriminates, it is universal and welcomes anyone
-                    who wants to learn and play. The Chess Centre provides a
-                    range of opportunities for those who share these aims to
-                    meet, socialise and enjoy playing Chess.
+                    discriminates, it is universal and welcomes anyone who wants
+                    to learn and play. The Chess Centre provides a range of
+                    opportunities for those who share these aims to meet,
+                    socialise and enjoy playing Chess.
                   </p>
                 </div>
                 <div className="mt-6 prose prose-lg text-gray-700 lg:mt-0">
@@ -143,18 +145,16 @@ function OurMission() {
                   </p>
                 </div>
                 <div></div>
-
               </div>
               <div className="lg:grid lg:grid-cols-1 lg:gap-6">
-                <div className="object-center mt-10 sm:-mt-10">
-                <Link
-                  to="/register"
-                  className="sm:float-right flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
-                >
-                  Join us
-                </Link>
+                <div className="object-center text-center mt-10 sm:-mt-10">
+                  <Link
+                    to="/roadmap"
+                    className="sm:float-right flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
+                  >
+                    Our Roadmap
+                  </Link>
                 </div>
-
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ export default function SignUp() {
     <div className="bg-white">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="bg-teal-700 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
-          <div className="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
+          <div className="pt-10 pb-4 sm:pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
             <div className="lg:self-center">
               <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
                 <i className="fal fa-analytics"></i><span className="block">Track your progress</span>
@@ -22,7 +22,7 @@ export default function SignUp() {
               </Link>
               <Link
                 to="/more-info"
-                className="ml-2 mt-8 px-5 py-3 inline-flex items-center text-base font-medium text-gray-200 hover:text-white"
+                className="ml-2 mt-4 sm:mt-8 px-5 py-3 inline-flex items-center text-base font-medium text-gray-50 hover:text-white"
               >
                 More info
               </Link>
@@ -30,7 +30,7 @@ export default function SignUp() {
           </div>
           <div className="-mt-6 aspect-w-2 aspect-h-1">
             <img
-              className="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top xl:translate-x-10 lg:translate-y-20"
+              className="transform translate-x-6 translate-y-6 rounded-md sm:object-scale-down object-left-top xl:translate-x-10 lg:translate-y-20"
               src={GamesExample}
               alt="App screenshot"
             />
