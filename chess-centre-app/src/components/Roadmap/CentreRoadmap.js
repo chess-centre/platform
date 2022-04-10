@@ -28,7 +28,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
             <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+              <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
                 Complete
               </span>
             </div>
@@ -46,7 +46,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-            <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+            <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
                 Complete
               </span>
             </div>
@@ -54,7 +54,7 @@ export const CentreRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li><span className="text-teal-600 text-sm">July 2021</span></li>
-              <li>&#x2022; Alcohol license approval 🍺</li>
+              <li>&#x2022; License approval 🍺</li>
               <li>&#x2022; First live game broadcast 📺</li>
             </ul>
           </div>
@@ -63,7 +63,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-            <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+            <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
                 Complete
               </span>
             </div>
@@ -71,7 +71,7 @@ export const CentreRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li><span className="text-teal-600 text-sm">August 2021</span></li>
-              <li>&#x2022; Donated Chess Sets to Schools ♟️</li>
+              <li>&#x2022; Donated Chess sets to Schools ♟️</li>
             </ul>
           </div>
         </li>
@@ -79,7 +79,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+              <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
                 Complete
               </span>
             </div>
@@ -95,7 +95,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-green-200 text-black p-1 rounded  leading-none">
+              <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
                 Complete
               </span>
             </div>
@@ -111,7 +111,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-pink-700 rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-pink-200 text-pink-700 p-1 rounded  leading-none">
+              <span className="mr-2 bg-pink-200 text-pink-700 p-1 rounded leading-none">
                 Launched
               </span>
             </div>
@@ -119,8 +119,10 @@ export const CentreRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li><span className="text-teal-600 text-sm">March 2022</span></li>
-              <li>&#x2022; Launch Club Championship</li>
+              <li>&#x2022; Launch Club Championship 🏆</li>
               <li>&#x2022; Ilkley Chess Festival 🚀</li>
+              <li><span className="text-teal-600 text-sm">April 2022</span></li>
+              <li>&#x2022; Ilkley Grammar School Congress 🤓</li>
             </ul>
           </div>
         </li>
@@ -128,7 +130,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-yellow-300 rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-yellow-200 text-black p-1 rounded  leading-none">
+              <span className="mr-2 bg-yellow-200 text-black p-1 rounded leading-none">
                 Soon
               </span>
             </div>
@@ -136,6 +138,7 @@ export const CentreRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li>&#x2022; Launch new Wharfdale league</li>
+              <li>&#x2022; New member only benefits ❤️</li>
             </ul>
           </div>
         </li>
@@ -143,7 +146,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
             <div className="bg-teal-600 rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-teal-200 text-teal-700 p-1 rounded  leading-none">
+              <span className="mr-2 bg-teal-200 text-teal-700 p-1 rounded leading-none">
                 Discuss
               </span>
             </div>
@@ -155,7 +158,6 @@ export const CentreRoadmap = () => {
           </div>
         </li>
       </ul>
-      <br />
     </div>
   );
 };
