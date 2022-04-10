@@ -97,6 +97,7 @@ module.exports = windmill({
         // BRAND COLORS:
         orange: {
           brand: "#f0802b",
+          flyer: "#f58436",
           50: "#fff8f1",
           100: "#feecdc",
           200: "#fcd9bd",
@@ -122,7 +123,7 @@ module.exports = windmill({
           900: "#014451",
         },
         blue: {
-          brand: "#2b374b",
+          brand: "#022b3d",
           50: "#ebf5ff",
           100: "#e1effe",
           200: "#c3ddfd",

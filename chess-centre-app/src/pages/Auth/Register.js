@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
-import ImageLarge from "../../assets/img/bar.jpg";
-import ImageSmall from "../../assets/img/junior-rapidplay.jpg";
+import ImageLarge from "../../assets/img/festival-register.jpg";
+import ImageSmall from "../../assets/img/festival-register-small.jpg";
 import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
 import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal.js";
@@ -140,34 +140,35 @@ function Register(props) {
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
-        <div className="flex flex-col overflow-y-auto md:flex-row">
-          <div className="h-22 md:h-auto md:w-1/2">
+        <div className="flex flex-col overflow-y-auto md:flex-row"> 
+          <div className="md:w-1/2 bg-blue-brand sm:py-6">
+            <h2 className="hidden sm:block text-orange-flyer font-thin text-center text-3xl">Coming soon...</h2>
             <img
               aria-hidden="true"
-              className="hidden object-cover w-full h-full sm:block"
+              className="hidden sm:block object-scale-down w-full h-full -mt-6"
               src={ImageLarge}
-              alt="Office"
+              alt="Festival"
             />
             <img
               aria-hidden="true"
-              className="sm:hidden object-cover object-bottom w-full h-36"
+              className="block sm:hidden  object-scale-down w-full h-18"
               src={ImageSmall}
-              alt="Office"
+              alt="Festival"
             />{" "}
           </div>
-          <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+          <main className="flex items-center justify-center p-4 sm:p-12 md:w-1/2">
             <div className="w-full">
-              <Link to="/">
+              <Link to="/" className="hidden sm:block">
                 {isSpecialLoading ? (
                   <img
                     src={SpecialLoading}
-                    className="object-contain h-24 w-full md:h-44"
+                    className="object-contain h-24 w-full md:h-40"
                     alt="Creating Account"
                   />
                 ) : (
                   <img
                     src={Logo}
-                    className="object-contain h-20 w-full md:h-36"
+                    className="object-contain h-20 w-full md:h-32"
                     alt="The Chess Centre"
                   />
                 )}
@@ -313,9 +314,9 @@ function Register(props) {
                 </p>
               </div>
 
-              <hr className="my-8" />
+              <hr className="my-6" />
 
-              <p className="mt-2">
+              <p>
                 <Link
                   className="text-sm font-medium text-teal-600 dark:text-teal-400 hover:underline"
                   to={`/login${props.location.search}`}
