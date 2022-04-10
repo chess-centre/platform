@@ -56,8 +56,7 @@ const About = () => {
                       </p>
                       <p className="mb-2">
                         When not building our digital Chess Centre experience,
-                        Matt is a Lead Engineer working for a Leading Global
-                        Investment Bank. He enjoys spending time with his Nieces
+                        Matt is a Head of Software Engineering within the retail industry. He enjoys spending time with his Nieces
                         &#38; Nephews and also travelling to Las Vegas to play
                         in the World Series of Poker.
                       </p>

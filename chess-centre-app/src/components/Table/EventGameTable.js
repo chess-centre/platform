@@ -99,6 +99,7 @@ export default function EventGameTable({ games, memberId }) {
       {
         Header: "Round",
         accessor: "round",
+        Cell: (props) => <div className="text-center">{props.cell.value}</div>
       },
       {
         Header: "Date",
