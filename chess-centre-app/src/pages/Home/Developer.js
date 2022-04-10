@@ -1,7 +1,7 @@
 import { useEffect } from "react";
+import SwaggerUI from "swagger-ui-react";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import LandingNav from "../../components/Navigation/LandingNav";
-import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
 import "../../assets/css/swagger-custom.css";
 
