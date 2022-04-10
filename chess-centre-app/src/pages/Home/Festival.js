@@ -7,7 +7,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
-import EntriesTable from "../../components/EntriesTable/FestivalTable";
+import EntriesTable from "../../components/EntriesTable/festivalTable";
 import { rounds } from "../../api/data.roundTimes";
 import { classNames } from "../../utils/Classes";
 import FestivalHero from "../../assets/img/festival_hero.jpg";
