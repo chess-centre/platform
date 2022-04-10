@@ -65,7 +65,7 @@ export default function EntriesTable(data) {
             club: entry.member.club,
             rating: getRating(entry.member),
             section: entry.section,
-            byes: entry.byes
+            byes: entry.byes,
           };
           list.push(row);
         }
@@ -77,7 +77,6 @@ export default function EntriesTable(data) {
   };
 
   const getSectionInfo = () => {
-    
     switch (selectedSection) {
       case "open":
         return <li>Open to all</li>;
@@ -90,7 +89,7 @@ export default function EntriesTable(data) {
       default:
         return <li>Open to all</li>;
     }
-  }
+  };
 
   return (
     <div>
@@ -100,9 +99,7 @@ export default function EntriesTable(data) {
         </div>
       )}
 
-      <ul className="my-2 sm:mx-2 text-sm text-teal-700">
-        { getSectionInfo() }
-      </ul>
+      <ul className="my-2 sm:mx-2 text-sm text-teal-700">{getSectionInfo()}</ul>
 
       <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 rounded w-full">
         <thead className="bg-gray-100 border-b-2 rounded-lg">
@@ -152,12 +149,7 @@ export default function EntriesTable(data) {
             .map(({ name, rating, club, byes }, key) => {
               const isEven = key % 2 === 0;
               return (
-                <tr
-                  key={key}
-                  className={
-                    isEven ? "bg-gray-50" : ""
-                  }
-                >
+                <tr key={key} className={isEven ? "bg-gray-50" : ""}>
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                     {key + 1}
                   </td>
@@ -178,7 +170,10 @@ export default function EntriesTable(data) {
             })}
         </tbody>
       </table>
-      <p className="text-center italic text-xs">Ratings are automatically checked against the ECF database, you may intially see "unrated" while we verify your info.</p>
+      <p className="text-center italic text-xs">
+        Ratings are automatically checked against the ECF database, you may
+        initially see "unrated" while we verify your info.
+      </p>
     </div>
   );
 }
@@ -199,7 +194,7 @@ function SectionTabs(props) {
         ...currentState.map((c) => {
           return {
             ...c,
-            current: section.includes(c.name?.toLowerCase())
+            current: section.includes(c.name?.toLowerCase()),
           };
         }),
       ];
@@ -218,9 +213,7 @@ function SectionTabs(props) {
       >
         {sections.map((section, tabIdx) => (
           <div
-            onClick={() =>
-              updateSectionSelected(section.name.toLowerCase())
-            }
+            onClick={() => updateSectionSelected(section.name.toLowerCase())}
             key={section.name}
             className={classNames(
               section.current

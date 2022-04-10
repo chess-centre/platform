@@ -1,4 +1,4 @@
-export default () => {
+export default function Embedded() {
     return (<div className="relative max-w-6xl mx-auto px-4 sm:px-28" >
         <div className="pt-4 pb-0 sm:py-10" >
             <div className="aspect-w-16 aspect-h-9" >

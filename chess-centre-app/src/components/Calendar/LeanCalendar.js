@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import React, { useState, useMemo } from "react";
+import moment from "moment";
 import { bgColor700 } from "tailwind-dynamic-classes";
 import FilterMenu from "./FilterMenu";
 import TabMonths from "./TabMonths";
@@ -182,7 +183,13 @@ export default function Calendar() {
 
   useMemo(() => {
     if (data) {
-      const availableTypes = data.reduce((pre, { type: { eventType } }) => {
+      const availableTypes = data
+      .filter(d => {
+        const currentDate = new Date(d.startDate);
+        const cutOffDate = moment().add(2, 'month').endOf('month');
+        return currentDate < cutOffDate;
+      })
+      .reduce((pre, { type: { eventType } }) => {
         const type = eventType?.includes("junior") ? "junior" : eventType;
         return {
           ...pre,

@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import moment from "moment";
 import { GridCard } from "./shared/GridCard";
 import { ListCard } from "./shared/ListCard";
 import FilterMenu from "./FilterMenu";
@@ -204,7 +205,13 @@ export default function Calendar() {
 
   useMemo(() => {
     if (data) {
-      const availableTypes = data.reduce((pre, { type: { eventType } }) => {
+      const availableTypes = data
+      .filter(d => {
+        const currentDate = new Date(d.startDate);
+        const cutOffDate = moment().add(2, 'month').endOf('month');
+        return currentDate < cutOffDate;
+      })
+      .reduce((pre, { type: { eventType } }) => {
         const type = eventType?.includes("junior") ? "junior" : eventType;
         return {
           ...pre,
