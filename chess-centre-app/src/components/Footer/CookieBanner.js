@@ -54,7 +54,7 @@ const CookieBanner = () => {
               <div className="mr-1 sm:mr-3 w-auto">
                 <button
                   onClick={() => setCookieModalOpen(true)}
-                  className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-xs sm:text-sm font-medium text-white bg-teal-500 hover:bg-teal-700"
+                  className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-xs sm:text-sm font-medium text-white bg-teal-500 hover:bg-teal-700 cursor-pointer"
                 >
                   Learn More
                 </button>
@@ -63,7 +63,7 @@ const CookieBanner = () => {
               <div className="mr-1 sm:mr-3 w-auto">
                 <button 
                   onClick={() => acceptCookies()}
-                  className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-xs sm:text-sm font-medium text-teal-600 bg-white hover:bg-teal-50">
+                  className="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-xs sm:text-sm font-medium text-teal-600 bg-white hover:bg-teal-50 cursor-pointer">
                   Accept
                 </button>
               </div>
@@ -71,7 +71,7 @@ const CookieBanner = () => {
                 <button
                   onClick={() => setCookieBannerHidden(true)}
                   type="button"
-                  className="-mr-1 flex p-2 rounded-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2"
+                  className="-mr-1 flex p-2 rounded-md hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-white sm:-mr-2 cursor-pointer"
                 >
                   <span className="sr-only">Dismiss</span>
                   <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
