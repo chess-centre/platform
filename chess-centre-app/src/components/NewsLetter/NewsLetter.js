@@ -167,7 +167,7 @@ export default function NewsLetter() {
                     <div className="mt-4 sm:mt-0 sm:ml-3">
                       <button
                         type="submit"
-                        className="block w-full rounded-md border border-transparent px-5 py-3 bg-teal-500 text-base font-medium text-white shadow hover:bg-teal-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-600 sm:px-10"
+                        className="block w-full rounded-md border border-transparent px-5 py-3 bg-teal-500 text-base font-medium text-white shadow hover:bg-teal-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-600 sm:px-10 cursor-pointer"
                       >
                         Notify me
                       </button>
