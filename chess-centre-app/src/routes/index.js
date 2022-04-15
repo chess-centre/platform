@@ -142,7 +142,7 @@ const routes = [
   },
   {
     path: "/internal/broadcast",
-    component: lazy(() => import("../pages/Broadcast/Rapidplay")),
+    component: lazy(() => import("../pages/Broadcast/SingleSwiss")),
     exact: true,
     isPrivate: false,
     isAdmin: true

@@ -1,10 +1,12 @@
 {
   "name": "March Rapidplay 2022",
   "settings": {
+    "type": "RoundRobin",
     "currentRound": 5,
     "totalRounds": 5,
     "roundLive": false,
     "showAll": false,
+    "showOpponentPairing": true,
     "showPreviousRound": false,
     "nextRoundTime": {
       "1": "10:00am",
