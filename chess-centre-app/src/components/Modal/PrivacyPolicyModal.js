@@ -674,7 +674,7 @@ function PrivacyPolicyModal() {
           </div>
         </ModalBody>
         <ModalFooter>
-          <Button className="w-full sm:w-auto" onClick={() => closeModal(true)}>
+          <Button className="w-full sm:w-auto cursor-pointer" onClick={() => closeModal(true)}>
             Accept
           </Button>
         </ModalFooter>
