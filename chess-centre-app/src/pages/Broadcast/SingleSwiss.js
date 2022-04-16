@@ -27,7 +27,7 @@ const SingleSwiss = () => {
             Welcome to the 1st dedicated, not for profit, chess centre in the UK
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-10">
+        <div className="grid grid-cols-1 gap-10 mt-4">
           {players.map(({ entries, section, title, icon }, index) => {
             const result = results.find((r) => r.section === section).scores;
             return (
@@ -58,7 +58,7 @@ const SingleSwiss = () => {
                   {!isLastRound && !isLive && (
                     <>
                       <dt className="order-1 mt-2 text-lg leading-6 font-medium text-gray-400">
-                        Next Round
+                        Round Starts
                       </dt>
                       <dd className="order-2 text-5xl font-extrabold text-white">
                         {settings.nextRoundTime[settings.currentRound]}

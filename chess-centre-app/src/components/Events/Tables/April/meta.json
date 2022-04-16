@@ -2,12 +2,12 @@
   "name": "April Rapidplay 2022",
   "settings": {
     "type": "Swiss",
-    "currentRound": 3,
+    "currentRound": 5,
     "totalRounds": 5,
-    "roundLive": true,
+    "roundLive": false,
     "showAll": false,
-    "showOpponentPairing": true,
-    "showPairingColors": true,
+    "showOpponentPairing": false,
+    "showPairingColors": false,
     "showPreviousRound": false,
     "nextRoundTime": {
       "1": "10:00am",
@@ -20,13 +20,14 @@
   },
   "players": [
     {
-      "section": "one",
+      "section": "swiss",
       "title": "5 Round Swiss",
       "icon": "fad fa-chess-king",
       "entries": [
         {
           "id": 1,
           "name": "Mariana Mosnegutu",
+          "title": "WIM",
           "ratingInfo": {
             "rating": 2266
           }
@@ -61,49 +62,49 @@
         },
         {
           "id": 6,
+          "name": "Andrew Wainwright",
+          "ratingInfo": {
+            "rating": 1725
+          }
+        },
+        {
+          "id": 7,
           "name": "John Tate",
           "ratingInfo": {
             "rating": 1590
           }
         },
         {
-          "id": 7,
+          "id": 8,
           "name": "John Moxham",
           "ratingInfo": {
             "rating": 1443
           }
         },
         {
-          "id": 8,
+          "id": 9,
           "name": "John Light",
           "ratingInfo": {
             "rating": 1428
           }
         },
         {
-          "id": 9,
+          "id": 10,
           "name": "Steve Collins",
           "ratingInfo": {
             "rating": 1400
           }
         },
         {
-          "id": 10,
+          "id": 11,
           "name": "Donna Chadwick",
           "ratingInfo": {
             "rating": 1382
           }
         },
         {
-          "id": 11,
-          "name": "Andy Mata",
-          "ratingInfo": {
-            "rating": ""
-          }
-        },
-        {
           "id": 12,
-          "name": "Bye",
+          "name": "Andy Mata",
           "ratingInfo": {
             "rating": ""
           }
@@ -115,168 +116,69 @@
     {
       "round": 1,
       "pairings": [
-        [1, 6],
-        [7, 2],
-        [3, 8],
-        [9, 4],
-        [5, 10],
-        [11, 12]
+        [1, 7],
+        [8, 2],
+        [3, 9],
+        [10, 4],
+        [5, 11],
+        [12, 6]
       ]
     },
     {
       "round": 2,
       "pairings": [
-        [4, 1],
-        [2, 5],
-        [6, 3],
-        [10, 7],
-        [8, 11],
-        [12, 9]
+        [2,3],
+        [4,1],
+        [12,5],
+        [6,10],
+        [7,8],
+        [9,11]
       ]
     },
     {
       "round": 3,
       "pairings": [
+        [3, 12],
         [5, 4],
-        [1, 3],
-        [7, 11],
-        [9, 6],
-        [10, 2],
-        [8, 12]
+        [1, 6],
+        [7, 2],
+        [10, 9],
+        [11, 8]
       ]
     },
     {
       "round": 4,
-      "pairings": [[], [], [], [], [], []]
+      "pairings": [[4,12], [2,1], [6,3], [8,5], [9,7], [11,10]]
     },
     {
       "round": 5,
-      "pairings": [[], [], [], [], [], []]
+      "pairings": [[2,4], [12,1], [3,5], [9,6], [10,8], [7,11]]
+      
     }
   ],
   "results": [
     {
-      "section": "one",
+      "section": "swiss",
       "scores": [
         {
           "round": 1,
-          "pairResults": [
-            [1, 0],
-            [0, 1],
-            [1, 0],
-            [0, 1],
-            [1, 0],
-            [1, 0]
-          ]
+          "pairResults": [[1,0], [0,1], [1,0], [0,1], [1,0], [1,0]]
         },
         {
           "round": 2,
-          "pairResults": [
-            [1, 0],
-            [1, 0],
-            [0.5, 0.5],
-            [0, 1],
-            [1, 0],
-            [0, 1]
-          ]
+          "pairResults": [[0,1], [1,0], [1,0], [1,0], [1,0], [1,0]]
         },
         {
           "round": 3,
-          "pairResults": [[], [], [], [], [], []]
+          "pairResults": [[0,1], [0,1], [1,0], [0,1], [1,0], [0,1]]
         },
         {
           "round": 4,
-          "pairResults": [[], [], [], [], [], []]
+          "pairResults": [[1,0], [0.5, 0.5], [0.5,0.5], [0,1], [1,0], [1,0]]
         },
         {
           "round": 5,
-          "pairResults": [[], [], [], [], [], []]
-        }
-      ]
-    },
-    {
-      "section": "two",
-      "scores": [
-        {
-          "round": 1,
-          "pairResults": [
-            [1, 0],
-            [1, 0],
-            [0, 1]
-          ]
-        },
-        {
-          "round": 2,
-          "pairResults": [
-            [0.5, 0.5],
-            [0, 1],
-            [1, 0]
-          ]
-        },
-        {
-          "round": 3,
-          "pairResults": [
-            [0, 1],
-            [0, 1],
-            [1, 0]
-          ]
-        },
-        {
-          "round": 4,
-          "pairResults": [
-            [1, 0],
-            [1, 0],
-            [0, 1]
-          ]
-        },
-        {
-          "round": 5,
-          "pairResults": [
-            [1, 0],
-            [0.5, 0.5],
-            [0, 1]
-          ]
-        }
-      ]
-    },
-    {
-      "section": "three",
-      "scores": [
-        {
-          "round": 1,
-          "pairResults": [
-            [0, 1],
-            [0, 1],
-            [1, 0]
-          ]
-        },
-        {
-          "round": 2,
-          "pairResults": [
-            [0, 1],
-            [1, 0],
-            [0, 1]
-          ]
-        },
-        {
-          "round": 3,
-          "pairResults": [
-            [0.5, 0.5],
-            [0, 1],
-            [0, 1]
-          ]
-        },
-        {
-          "round": 4,
-          "pairResults": [
-            [0, 1],
-            [1, 0],
-            [0, 1]
-          ]
-        },
-        {
-          "round": 5,
-          "pairResults": [[], [1, 0], [1, 0]]
+          "pairResults": [[0,1], [0,1], [0.5,0.5], [0,1], [0,1], [1,0]]
         }
       ]
     }
