@@ -18,10 +18,17 @@ export const Standings = ({ roundByRound, division, icon, settings }) => {
         <h3 className="text-white font-bold text-md mt-2">{division}</h3>
         {settings.type === "Swiss" &&
           Object.entries(settings.nextRoundTime).map(([round, time]) => (
-            <div className="gap-2 text-white mt-6">
-              <p className="p-2 font-bold text-2xl text-teal-600">
-                Round {round}
-              </p>
+            <div className=" text-white mt-8">
+              <div class="relative justify-center">
+                {settings.currentRound === Number(round) && (
+                  <span class="absolute left-12 top-3">
+                    <i className="fas fa-arrow-right text-2xl text-orange-brand"></i>
+                  </span>
+                )}
+                <div class="font-bold text-2xl text-teal-600">
+                  Round {round}
+                </div>
+              </div>
               <p>{time}</p>
             </div>
           ))}
