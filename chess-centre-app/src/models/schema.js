@@ -1013,6 +1013,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "ecfRapidPartial": {
+                    "name": "ecfRapidPartial",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "ecfRatingPartial": {
+                    "name": "ecfRatingPartial",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "estimatedRating": {
                     "name": "estimatedRating",
                     "isArray": false,
@@ -1269,5 +1283,5 @@ export const schema = {
             }
         }
     },
-    "version": "32f648775868247b739ebc89c8b89951"
+    "version": "ff711cc0c64f57540a4989e85d3f3e2a"
 };
