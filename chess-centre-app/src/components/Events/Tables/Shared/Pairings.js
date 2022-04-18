@@ -1,6 +1,7 @@
 export const PairingsTable = ({ format, players, results, indexer, settings }) => {
   const { round, pairings } = format;
   const isLive = round === settings.currentRound && settings.roundLive;
+  
   return (
     <div>
       <table className="w-full divide-y divide-cool-gray-900 table-auto border-cool-gray-900 border shadow-lg">
@@ -33,7 +34,7 @@ export const PairingsTable = ({ format, players, results, indexer, settings }) =
         </thead>
         <tbody className="bg-gray-800">
           <tr className="border border-r border-cool-gray-900">
-            {/* using colSpan=3 here means the header VS doesn't align center with the Round */}
+            {/* using colSpan=3 here means the header "VS" doesn't align center with the Round */}
             <td className="px-2 py-3"></td>
             <td className="px-2 sm:px-6 py-3"></td>
             <td className="px-2 py-1 text-center text-xs sm:text-sm font-medium text-gray-100">

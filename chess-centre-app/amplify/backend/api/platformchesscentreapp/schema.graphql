@@ -95,6 +95,8 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   ecfRating: String
   ecfRapid: String
   ecfMembership: String
+  ecfRapidPartial: Boolean,
+  ecfRatingPartial: Boolean,
   estimatedRating: String
   club: String
   gender: String

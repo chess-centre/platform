@@ -3,54 +3,49 @@ import { classNames } from "../../utils/Classes";
 
 export default function EntriesTable(data) {
   const { eventDetails } = data;
-  const isRapid =
-    eventDetails?.name?.includes("Rapidplay") ||
-    eventDetails?.name?.includes("IGS");
-  const isBlitz = eventDetails?.name?.includes("Blitz");
-
   const [selectedSection, handleSelectionSelect] = useState("open");
 
   const tableData = () => {
     /**
      * Calculates which rating should be listed dependant upon the data we have on a player.
      */
-    const getRating = ({ ecfRating, ecfRapid, estimatedRating }) => {
+    const getRating = ({
+      ecfRating,
+      ecfRapid,
+      estimatedRating,
+      ecfRatingPartial = false,
+      ecfRapidPartial = false,
+    }) => {
       const standard = ecfRating ? parseInt(ecfRating, 10) : 0;
       const rapid = ecfRapid ? parseInt(ecfRapid, 10) : 0;
 
-      if (isBlitz) {
-        if (rapid) return { value: rapid, sort: rapid, key: "" };
-        if (standard) return { value: standard, sort: standard, key: "S" };
-        if (estimatedRating)
-          return {
-            value: estimatedRating,
-            sort: Number(estimatedRating),
-            key: "E",
-          };
-        return { value: "unrated", sort: 0, key: "" };
+      if (standard) {
+        return {
+          value: standard,
+          sort: standard,
+          isPartial: ecfRatingPartial,
+          key: "",
+        };
       }
-      if (isRapid) {
-        if (rapid) return { value: rapid, sort: rapid, key: "" };
-        if (standard) return { value: standard, sort: standard, key: "S" };
-        if (estimatedRating)
-          return {
-            value: estimatedRating,
-            sort: Number(estimatedRating),
-            key: "E",
-          };
-        return { value: "unrated", sort: 0, key: "" };
-        // Standard Rating
-      } else {
-        if (standard) return { value: standard, sort: standard, key: "" };
-        if (rapid) return { value: rapid, sort: rapid, key: "R" };
-        if (estimatedRating)
-          return {
-            value: estimatedRating,
-            sort: Number(estimatedRating),
-            key: "E",
-          };
-        return { value: "unrated", sort: 0, key: "" };
+
+      if (rapid) {
+        return {
+          value: rapid,
+          sort: rapid,
+          isPartial: ecfRapidPartial,
+          key: "R",
+        };
       }
+
+      if (estimatedRating) {
+        return {
+          value: estimatedRating,
+          isPartial: ecfRatingPartial,
+          sort: Number(estimatedRating),
+          key: "E",
+        };
+      }
+      return { value: "unrated", sort: 0, key: "" };
     };
 
     /**
@@ -59,11 +54,12 @@ export default function EntriesTable(data) {
     if (eventDetails.entries?.items && eventDetails.entries?.items.length > 0) {
       return eventDetails.entries.items.reduce((list, entry) => {
         if (entry && entry.member) {
+          const rating = getRating(entry.member);
           const row = {
             id: entry.member.id,
             name: entry.member.name,
             club: entry.member.club,
-            rating: getRating(entry.member),
+            rating,
             section: entry.section,
             byes: entry.byes,
           };
@@ -160,7 +156,13 @@ export default function EntriesTable(data) {
                     {club}
                   </td>
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
-                    {rating.value}
+                    {rating.isPartial ? (
+                      <span className="italic text-gray-500 ml-2">
+                        {rating.value} <span className="text-orange-500">*</span>
+                      </span>
+                    ) : (
+                      <span>{rating.value}</span>
+                    )}
                   </td>
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
                     {byes ? byes !== "null" && byes?.split("").join(",") : ""}
@@ -170,9 +172,13 @@ export default function EntriesTable(data) {
             })}
         </tbody>
       </table>
-      <p className="text-center italic text-xs">
+      <p className="text-center italic text-xs text-teal-600">
         Ratings are automatically checked against the ECF database, you may
         initially see "unrated" while we verify your info.
+      </p>
+      <p className="text-center italic text-xs">
+       <span className="text-orange-500">*</span> Indicates a partial rating and is therefore eligible to enter any
+        section until an official full rating is published.
       </p>
     </div>
   );

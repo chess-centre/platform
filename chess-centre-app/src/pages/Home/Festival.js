@@ -61,7 +61,9 @@ const getEvent = /* GraphQL */ `
             fideId
             ecfId
             name
+            ecfRatingPartial
             ecfRating
+            ecfRapidPartial
             ecfRapid
             ecfMembership
             estimatedRating
@@ -333,7 +335,10 @@ export default function Festival() {
                   </div>
                 </Tab.Panel>
 
-                <Tab.Panel as="dl" className="text-gray-500 py-5 focus:ring-transparent">
+                <Tab.Panel
+                  as="dl"
+                  className="text-gray-500 py-5 focus:ring-transparent"
+                >
                   <div className="prose prose-blue mb-4">
                     <h2>Schedule</h2>
                   </div>
@@ -375,31 +380,70 @@ export default function Festival() {
                         <span className="font-bold text-teal-600">
                           Missing my ECF rating
                         </span>
-                        <br />
-                        We automatically search and check ECF rating data upon
-                        account registration. If we are unable to accurately
-                        determine your ECF rating (if you have one) we will
-                        contact you. Otherwise, leave it with us, your rating
-                        will appear within a few hours of any event entry!
+                        <p>
+                          We automatically search and check ECF rating data upon
+                          account registration. If we are unable to accurately
+                          determine your ECF rating (if you have one) we will
+                          contact you. Otherwise, leave it with us, your rating
+                          will appear within a few hours of any event entry!
+                        </p>
                       </li>
-                    </ul>
-                    <ul>
                       <li>
                         <span className="font-bold text-teal-600">
                           Withdraw entry
                         </span>
-                        <br />
-                        If you are unable to make this event, please{" "}
-                        <a
-                          className="text-teal-600 hover:underline"
-                          href="mailto:support@chesscentre.online?subject=Withdraw%20Festival%20Entry"
-                        >
-                          contact us
-                        </a>{" "}
-                        as soon as possible so we can process any refund.
-                        Unfortunately, those who withdraw on the day or fail to
-                        attend will not be eligible for refunds as we offer your
-                        place to other players.
+                        <p>
+                          If you are unable to make this event, please{" "}
+                          <a
+                            className="text-teal-600 hover:underline"
+                            href="mailto:support@chesscentre.online?subject=Withdraw%20Festival%20Entry"
+                          >
+                            contact us
+                          </a>{" "}
+                          as soon as possible so we can process any refund.
+                          Unfortunately, those who withdraw on the day or fail
+                          to attend will not be eligible for refunds as we offer
+                          your place to other players.
+                        </p>
+                      </li>
+                      <li>
+                        <span className="font-bold text-teal-600">
+                          Rating list
+                        </span>
+                        <p>
+                          We will use the latest ECF ratings published on the{" "}
+                          <span className="font-bold">1st September 2022</span>{" "}
+                          for this event, this may mean entries have to switch
+                          sections if their rating jumps beyond the specified
+                          rating cap. We will contact all players where this
+                          occurs but will automatically move players up to the
+                          next eligible section.
+                        </p>
+                      </li>
+                      <li>
+                        <span className="font-bold text-teal-600">
+                          Anti-Cheating{" "}
+                          <span className="text-red-600 font-medium text-sm">
+                            (TBC)
+                          </span>
+                        </span>
+                        <p>
+                          We are working with an official FIDE registered
+                          tournament arbiter to provide clear guidance for
+                          electronic devices.
+                        </p>
+                        <p>
+                          <span className="font-bold">ECF</span>{" "}
+                          <a href="https://www.englishchess.org.uk/wp-content/uploads/2019/12/Anti-Cheating-Document.pdf">
+                            anti-cheating policy
+                          </a>
+                        </p>
+                        <p>
+                          <span className="font-bold">FIDE</span>{" "}
+                          <a href="https://www.fide.com/FIDE/handbook/Anti%20Cheating%20Guidelines.pdf">
+                            anti-cheating guidelines
+                          </a>
+                        </p>
                       </li>
                     </ul>
                   </div>

@@ -255,6 +255,8 @@ export const onCreateGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -316,6 +318,8 @@ export const onCreateGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -401,6 +405,8 @@ export const onCreateGame = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        ecfRapidPartial
+        ecfRatingPartial
         estimatedRating
         club
         gender
@@ -447,6 +453,8 @@ export const onCreateGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -565,6 +573,8 @@ export const onCreateGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -626,6 +636,8 @@ export const onCreateGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -711,6 +723,8 @@ export const onCreateGame = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        ecfRapidPartial
+        ecfRatingPartial
         estimatedRating
         club
         gender
@@ -757,6 +771,8 @@ export const onCreateGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -888,6 +904,8 @@ export const onCreateGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -923,6 +941,8 @@ export const onCreateGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -1015,6 +1035,8 @@ export const onCreateGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -1164,6 +1186,8 @@ export const onUpdateGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -1225,6 +1249,8 @@ export const onUpdateGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -1310,6 +1336,8 @@ export const onUpdateGame = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        ecfRapidPartial
+        ecfRatingPartial
         estimatedRating
         club
         gender
@@ -1356,6 +1384,8 @@ export const onUpdateGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -1474,6 +1504,8 @@ export const onUpdateGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -1535,6 +1567,8 @@ export const onUpdateGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -1620,6 +1654,8 @@ export const onUpdateGame = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        ecfRapidPartial
+        ecfRatingPartial
         estimatedRating
         club
         gender
@@ -1666,6 +1702,8 @@ export const onUpdateGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -1797,6 +1835,8 @@ export const onUpdateGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -1832,6 +1872,8 @@ export const onUpdateGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -1924,6 +1966,8 @@ export const onUpdateGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -2073,6 +2117,8 @@ export const onDeleteGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -2134,6 +2180,8 @@ export const onDeleteGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -2219,6 +2267,8 @@ export const onDeleteGame = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        ecfRapidPartial
+        ecfRatingPartial
         estimatedRating
         club
         gender
@@ -2265,6 +2315,8 @@ export const onDeleteGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -2383,6 +2435,8 @@ export const onDeleteGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -2444,6 +2498,8 @@ export const onDeleteGame = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -2529,6 +2585,8 @@ export const onDeleteGame = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        ecfRapidPartial
+        ecfRatingPartial
         estimatedRating
         club
         gender
@@ -2575,6 +2633,8 @@ export const onDeleteGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -2706,6 +2766,8 @@ export const onDeleteGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -2741,6 +2803,8 @@ export const onDeleteGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -2833,6 +2897,8 @@ export const onDeleteGame = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -3082,6 +3148,8 @@ export const onCreateMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -3117,6 +3185,8 @@ export const onCreateMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -3167,6 +3237,8 @@ export const onCreateMember = /* GraphQL */ `
           ecfRating
           ecfRapid
           ecfMembership
+          ecfRapidPartial
+          ecfRatingPartial
           estimatedRating
           club
           gender
@@ -3252,6 +3324,8 @@ export const onCreateMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -3287,6 +3361,8 @@ export const onCreateMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -3337,6 +3413,8 @@ export const onCreateMember = /* GraphQL */ `
           ecfRating
           ecfRapid
           ecfMembership
+          ecfRapidPartial
+          ecfRatingPartial
           estimatedRating
           club
           gender
@@ -3485,6 +3563,8 @@ export const onCreateMember = /* GraphQL */ `
       ecfRating
       ecfRapid
       ecfMembership
+      ecfRapidPartial
+      ecfRatingPartial
       estimatedRating
       club
       gender
@@ -3553,6 +3633,8 @@ export const onCreateMember = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -3722,6 +3804,8 @@ export const onUpdateMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -3757,6 +3841,8 @@ export const onUpdateMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -3807,6 +3893,8 @@ export const onUpdateMember = /* GraphQL */ `
           ecfRating
           ecfRapid
           ecfMembership
+          ecfRapidPartial
+          ecfRatingPartial
           estimatedRating
           club
           gender
@@ -3892,6 +3980,8 @@ export const onUpdateMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -3927,6 +4017,8 @@ export const onUpdateMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -3977,6 +4069,8 @@ export const onUpdateMember = /* GraphQL */ `
           ecfRating
           ecfRapid
           ecfMembership
+          ecfRapidPartial
+          ecfRatingPartial
           estimatedRating
           club
           gender
@@ -4125,6 +4219,8 @@ export const onUpdateMember = /* GraphQL */ `
       ecfRating
       ecfRapid
       ecfMembership
+      ecfRapidPartial
+      ecfRatingPartial
       estimatedRating
       club
       gender
@@ -4193,6 +4289,8 @@ export const onUpdateMember = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -4362,6 +4460,8 @@ export const onDeleteMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -4397,6 +4497,8 @@ export const onDeleteMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -4447,6 +4549,8 @@ export const onDeleteMember = /* GraphQL */ `
           ecfRating
           ecfRapid
           ecfMembership
+          ecfRapidPartial
+          ecfRatingPartial
           estimatedRating
           club
           gender
@@ -4532,6 +4636,8 @@ export const onDeleteMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -4567,6 +4673,8 @@ export const onDeleteMember = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -4617,6 +4725,8 @@ export const onDeleteMember = /* GraphQL */ `
           ecfRating
           ecfRapid
           ecfMembership
+          ecfRapidPartial
+          ecfRatingPartial
           estimatedRating
           club
           gender
@@ -4765,6 +4875,8 @@ export const onDeleteMember = /* GraphQL */ `
       ecfRating
       ecfRapid
       ecfMembership
+      ecfRapidPartial
+      ecfRatingPartial
       estimatedRating
       club
       gender
@@ -4833,6 +4945,8 @@ export const onDeleteMember = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -5025,6 +5139,8 @@ export const onCreateEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -5086,6 +5202,8 @@ export const onCreateEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -5235,6 +5353,8 @@ export const onCreateEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -5427,6 +5547,8 @@ export const onUpdateEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -5488,6 +5610,8 @@ export const onUpdateEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -5637,6 +5761,8 @@ export const onUpdateEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -5829,6 +5955,8 @@ export const onDeleteEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -5890,6 +6018,8 @@ export const onDeleteEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -6039,6 +6169,8 @@ export const onDeleteEvent = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -6207,6 +6339,8 @@ export const onCreateEntry = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -6268,6 +6402,8 @@ export const onCreateEntry = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -6353,6 +6489,8 @@ export const onCreateEntry = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        ecfRapidPartial
+        ecfRatingPartial
         estimatedRating
         club
         gender
@@ -6399,6 +6537,8 @@ export const onCreateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -6530,6 +6670,8 @@ export const onCreateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -6565,6 +6707,8 @@ export const onCreateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -6657,6 +6801,8 @@ export const onCreateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -6791,6 +6937,8 @@ export const onUpdateEntry = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -6852,6 +7000,8 @@ export const onUpdateEntry = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -6937,6 +7087,8 @@ export const onUpdateEntry = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        ecfRapidPartial
+        ecfRatingPartial
         estimatedRating
         club
         gender
@@ -6983,6 +7135,8 @@ export const onUpdateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -7114,6 +7268,8 @@ export const onUpdateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -7149,6 +7305,8 @@ export const onUpdateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -7241,6 +7399,8 @@ export const onUpdateEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -7375,6 +7535,8 @@ export const onDeleteEntry = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -7436,6 +7598,8 @@ export const onDeleteEntry = /* GraphQL */ `
             ecfRating
             ecfRapid
             ecfMembership
+            ecfRapidPartial
+            ecfRatingPartial
             estimatedRating
             club
             gender
@@ -7521,6 +7685,8 @@ export const onDeleteEntry = /* GraphQL */ `
         ecfRating
         ecfRapid
         ecfMembership
+        ecfRapidPartial
+        ecfRatingPartial
         estimatedRating
         club
         gender
@@ -7567,6 +7733,8 @@ export const onDeleteEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -7698,6 +7866,8 @@ export const onDeleteEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -7733,6 +7903,8 @@ export const onDeleteEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
@@ -7825,6 +7997,8 @@ export const onDeleteEntry = /* GraphQL */ `
               ecfRating
               ecfRapid
               ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
               estimatedRating
               club
               gender
