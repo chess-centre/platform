@@ -27,42 +27,102 @@ function EntriesTable(data) {
     /**
      * Calculates which rating should be listed dependant upon the data we have on a player.
      */
-    const getRating = ({ ecfRating, ecfRapid, estimatedRating }) => {
+    const getRating = ({
+      ecfRating,
+      ecfRapid,
+      estimatedRating,
+      ecfRatingPartial = false,
+      ecfRapidPartial = false,
+    }) => {
       const standard = ecfRating ? parseInt(ecfRating, 10) : 0;
       const rapid = ecfRapid ? parseInt(ecfRapid, 10) : 0;
 
       if (isBlitz) {
-        if (rapid) return { value: rapid, sort: rapid, key: "" };
-        if (standard) return { value: standard, sort: standard, key: "S" };
+        if (rapid)
+          return {
+            value: rapid,
+            sort: rapid,
+            isPartial: ecfRapidPartial,
+            key: "",
+          };
+        if (standard)
+          return {
+            value: standard,
+            sort: standard,
+            isPartial: ecfRatingPartial,
+            key: "S",
+          };
         if (estimatedRating)
           return {
             value: estimatedRating,
             sort: Number(estimatedRating),
+            isPartial: ecfRatingPartial,
             key: "E",
           };
-        return { value: "unrated", sort: 0, key: "" };
+        return {
+          value: "unrated",
+          sort: 0,
+          isPartial: ecfRatingPartial,
+          key: "",
+        };
       }
       if (isRapid) {
-        if (rapid) return { value: rapid, sort: rapid, key: "" };
-        if (standard) return { value: standard, sort: standard, key: "S" };
+        if (rapid)
+          return {
+            value: rapid,
+            sort: rapid,
+            isPartial: ecfRapidPartial,
+            key: "",
+          };
+        if (standard)
+          return {
+            value: standard,
+            sort: standard,
+            isPartial: ecfRatingPartial,
+            key: "S",
+          };
         if (estimatedRating)
           return {
             value: estimatedRating,
             sort: Number(estimatedRating),
+            isPartial: ecfRatingPartial,
             key: "E",
           };
-        return { value: "unrated", sort: 0, key: "" };
+        return {
+          value: "unrated",
+          sort: 0,
+          isPartial: ecfRatingPartial,
+          key: "",
+        };
         // Standard Rating
       } else {
-        if (standard) return { value: standard, sort: standard, key: "" };
-        if (rapid) return { value: rapid, sort: rapid, key: "R" };
+        if (standard)
+          return {
+            value: standard,
+            sort: standard,
+            isPartial: ecfRatingPartial,
+            key: "",
+          };
+        if (rapid)
+          return {
+            value: rapid,
+            sort: rapid,
+            isPartial: ecfRapidPartial,
+            key: "R",
+          };
         if (estimatedRating)
           return {
             value: estimatedRating,
             sort: Number(estimatedRating),
+            isPartial: ecfRatingPartial,
             key: "E",
           };
-        return { value: "unrated", sort: 0, key: "" };
+        return {
+          value: "unrated",
+          sort: 0,
+          isPartial: ecfRatingPartial,
+          key: "",
+        };
       }
     };
 
@@ -72,11 +132,12 @@ function EntriesTable(data) {
     if (eventDetails.entries?.items && eventDetails.entries?.items.length > 0) {
       return eventDetails.entries.items.reduce((list, entry) => {
         if (entry && entry.member) {
+          const rating = getRating(entry.member);
           const row = {
             id: entry.member.id,
             name: entry.member.name,
             club: entry.member.club ? truncate(entry.member.club, 12) : "",
-            rating: getRating(entry.member),
+            rating,
             section: entry.section,
           };
           list.push(row);
@@ -160,7 +221,14 @@ function EntriesTable(data) {
                     {club}
                   </td>
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
-                    {rating.value}
+                    {rating.isPartial ? (
+                      <span className="italic text-gray-500 ml-2">
+                        {rating.value}{" "}
+                        <span className="text-orange-500">*</span>
+                      </span>
+                    ) : (
+                      <span>{rating.value}</span>
+                    )}
                   </td>
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
                     {rating.key}
@@ -190,18 +258,21 @@ function EntriesTable(data) {
         <p className="mb-2">Alt Key</p>
         {isRapid || isBlitz ? (
           <p className="ml-2">
-            <span className="font-bold text-teal-700">S</span> - standard ECF
+            <span className="font-bold text-teal-700">S</span> = Standard ECF
             rating used
           </p>
         ) : (
           <p className="ml-2">
-            <span className="font-bold text-teal-700">R</span> - rapidplay ECF
+            <span className="font-bold text-teal-700">R</span> = Rapidplay ECF
             rating used
           </p>
         )}
         <p className="ml-2">
-          <span className="font-bold text-teal-700">E</span> - estimated rating
+          <span className="font-bold text-teal-700">E</span> = Estimated rating
           is used
+        </p>
+        <p className="ml-2 italic">
+          <span className="text-orange-500">* </span> = Partial rating
         </p>
       </div>
     </div>
@@ -420,22 +491,21 @@ export default function EventDetailsSlideOut(props) {
                         </div>
 
                         <div>
-                          {eventDetails.entries?.items.length > 0 ? (
-                            <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
-                              <i className="fad fa-users mr-1 text-gray-900"></i>{" "}
-                              Entries
-                            </dt>
-                          ) : (
-                            ""
+                          {eventDetails.entries?.items.length > 0 && (
+                            <>
+                              <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                                <i className="fad fa-users mr-1 text-gray-900"></i>{" "}
+                                Entries{" "}
+                                <span className="text-gray-500 text-xs">{`( ${eventDetails.entries?.items.length} )`}</span>
+                              </dt>
+                              <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
+                                <EntriesTable
+                                  user={user}
+                                  eventDetails={eventDetails}
+                                />
+                              </dd>
+                            </>
                           )}
-                          <dd className="mt-1 text-sm text-gray-900 sm:col-span-2">
-                            {eventDetails.entries?.items.length > 0 && (
-                              <EntriesTable
-                                user={user}
-                                eventDetails={eventDetails}
-                              />
-                            )}
-                          </dd>
                         </div>
                       </dl>
                     </div>
