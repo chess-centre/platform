@@ -71,7 +71,9 @@ const listEventsActive = /* GraphQL */ `
               fideId
               ecfId
               name
+              ecfRatingPartial
               ecfRating
+              ecfRapidPartial
               ecfRapid
               ecfMembership
               estimatedRating
