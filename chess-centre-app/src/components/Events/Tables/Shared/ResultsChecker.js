@@ -3,8 +3,6 @@ import Game from "./Game";
 
 export const generateGames = (boardPairings, players, results, info) => {
 
-  console.log("generating games")
-
   return boardPairings.map(({ round, pairings }) => {
 
     const pairingResults = results[0].scores.find((r) => r.round === round).pairResults;

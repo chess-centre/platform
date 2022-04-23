@@ -72,25 +72,25 @@ export default function GameTable({ games, memberId }) {
         ),
       },
       {
-        Header: "Result",
+        Header: () => <div className="mx-auto">Result</div>,
         accessor: "result",
         Cell: (props) => {
           switch (props.cell.value) {
             case "win":
               return (
-                <div className="shadow-lg bg-green-600 hover:bg-green-500 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm">Win</div>
+                <div className="mx-auto bg-green-600 hover:bg-green-500 text-white text-sx text-center w-7 cursor-pointer rounded-sm">W</div>
               );
             case "loss":
               return (
-                <div className="shadow-lg bg-red-700 hover:bg-red-600 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm">Loss</div>
+                <div className="mx-auto bg-red-700 hover:bg-red-600 text-white text-sx text-center w-7 cursor-pointer rounded-sm">L</div>
               );
             case "draw":
               return (
-                <div className="shadow-lg bg-yellow-500 hover:bg-yellow-400 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm">Draw</div>
+                <div className="mx-auto bg-yellow-500 hover:bg-yellow-400 text-white text-sx text-center w-7 cursor-pointer rounded-sm">D</div>
               );
             default:
               return (
-                <div className="shadow-lg bg-gray-50 hover:bg-gray-100 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm"></div>
+                <div className="mx-auto bg-gray-50 hover:bg-gray-100 text-white text-sx text-center w-7 cursor-pointer rounded-sm"></div>
               );
           }
         },
@@ -115,7 +115,7 @@ export default function GameTable({ games, memberId }) {
         },
       },
       {
-        Header: "Round",
+        Header: () => <div className="mx-auto">Round</div>,
         accessor: "round",
         Cell: (props) => <div className="text-center">{props.cell.value}</div>
       },
@@ -150,9 +150,9 @@ export default function GameTable({ games, memberId }) {
         <button
           onClick={() => showModal(pgn, liChessUrl)}
           type="button"
-          className="inline-flex items-center p-1 border border-transparent rounded-full shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          className="inline-flex items-center px-2.5 py-1 border border-transparent rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
         >
-          <i className="fas fa-chess-queen"></i>
+          <i className="fas fa-chess-king"></i>
         </button>
       </div>
     );
@@ -226,7 +226,7 @@ export default function GameTable({ games, memberId }) {
         <div className="mt-6">
           {data && <Table {...{ columns, data }} />}
         </div>
-        <div className="mt-4 sm:mt-4 text-right sm:text-left">
+        <div className="mt-4 sm:mt-4 text-right">
           <QuickSearch tag="games" />
         </div>
       </main>

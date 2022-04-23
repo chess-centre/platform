@@ -117,6 +117,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           ecfId
           username
           name
+          gameInfo
           ecfRating
           ecfRapid
           ecfMembership
@@ -135,6 +136,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           ecfId
           username
           name
+          gameInfo
           ecfRating
           ecfRapid
           ecfMembership

@@ -41,11 +41,15 @@ exports.getGameInfo = async (memberId) => {
   const history = genGameHistory(games);
   const stats = genGameStats(asWhitePlayer, asBlackPlayer);
   const formStats = getFormStats(memberId, games);
+  const formStatsRapid = getFormStatsByType(memberId, games, "rapid");
+  const formStatsStandard = getFormStatsByType(memberId, games, "standard");
             
   return {
     stats,
     history,
-    formStats
+    formStats,
+    formStatsRapid,
+    formStatsStandard
   };
 };
 
@@ -89,6 +93,31 @@ function getFormStats(memberId, games) {
       return [...pre];
     }, []).reverse();
 }
+
+function getFormStatsByType(memberId, games, type) {
+  return games.sort((a, b) => {
+    if(a.eventId === b.eventId) {
+      return b.round - a.round;
+    }
+    return new Date(b.date) - new Date(a.date);
+  })
+  .filter((game) => game.type === type)
+  .slice(0, 10)
+  .reduce((pre, cur) => {
+    if(cur.whiteMemberId === memberId) {
+      if(cur.result === "1-0") pre.push(1);
+      if(cur.result === "0.5-0.5") pre.push(0.5);
+      if(cur.result === "0-1") pre.push(0);
+    }
+    if(cur.blackMemberId === memberId) {
+      if(cur.result === "0-1") pre.push(1);
+      if(cur.result === "0.5-0.5") pre.push(0.5);
+      if(cur.result === "1-0") pre.push(0);
+    }
+    return [...pre];
+  }, []).reverse();
+}
+
 
 function genGameStats(whiteGames, blackGames) {
 

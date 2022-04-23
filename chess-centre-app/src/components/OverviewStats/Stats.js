@@ -70,7 +70,7 @@ function EventsSummaryMobile({ title, data }) {
   const total = data.past + data.future;
 
   return (
-    <div className="block lg:hidden relative text-center xl:text-left bg-white dark:bg-gray-800 px-4 xl:pb-12 xl:pt-6 xl:px-6 shadow rounded-lg xl:overflow-hidden">
+    <div className="block lg:hidden relative text-center xl:text-left bg-white px-4 xl:pb-12 xl:pt-6 xl:px-6 shadow rounded-lg overflow-hidden">
       <div className="mb-2">
         <div className="xl:absolute p-2">
           <span className="text-teal-500 text-3xl">
@@ -97,7 +97,7 @@ function EventsSummaryMobile({ title, data }) {
             {data.future}
           </span>
         </p>
-        <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 xl:px-6  border-t border-gray-100"></div>
+        <div className="absolute bottom-0 inset-x-0 bg-gray-50 dark:bg-gray-800 px-4 py-2 xl:px-6 border-t border-gray-100"></div>
       </div>
     </div>
   );
