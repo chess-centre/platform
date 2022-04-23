@@ -68,7 +68,6 @@ export default function Admin() {
 
   const updateECFIdForMember = async () => {
     setIsUpdatingECF(true);
-    console.log(selectedMemberId, ecfId);
 
     if (selectedMemberId && ecfId) {
       const response = await API.put("admin", "/addECFId", {
@@ -82,7 +81,6 @@ export default function Admin() {
         setIsUpdatingECF(false);
       });
       setIsUpdatingECF(false);
-      console.log(response);
     }
   }
 

@@ -10,8 +10,6 @@ const initialState = {
   performanceRating: 0,
 };
 
-
-
 export default function PerformanceStats({
   playerInfo,
   games,
@@ -33,7 +31,7 @@ export default function PerformanceStats({
     <div className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
       <div className="flex-1 flex flex-col p-4">
         <h3 className="text-gray-500 text-sm font-medium">
-          <div className="mb-2">Results Overview</div>
+          <div className="mb-2">Overview</div>
         </h3>
 
         {avatarUrl ? (
@@ -57,7 +55,9 @@ export default function PerformanceStats({
               Standard
             </div>
             <div className="text-lg font-medium">
-              {playerInfo?.ecfRating || <span className="text-gray-500 font-normal">Unrated</span>}
+              {playerInfo?.ecfRating || (
+                <span className="text-gray-500 font-normal">Unrated</span>
+              )}
             </div>
             <PerformanceCard
               playerInfo={playerInfo}
@@ -71,7 +71,9 @@ export default function PerformanceStats({
               Rapid
             </div>
             <div className="text-lg font-medium">
-              {playerInfo?.ecfRapid || <span className="text-gray-500 font-normal">Unrated</span>}
+              {playerInfo?.ecfRapid || (
+                <span className="text-gray-500 font-normal">Unrated</span>
+              )}
             </div>
             <PerformanceCard
               playerInfo={playerInfo}
@@ -90,6 +92,8 @@ export default function PerformanceStats({
 
 const PerformanceCard = ({ playerInfo, games, type }) => {
   const [stats, setStats] = useState(initialState);
+  const [rating, setRating] = useState(0);
+  const [formArray, setFormArray] = useState([]);
 
   useEffect(() => {
     if (games && games.length > 0) {
@@ -100,17 +104,38 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
       );
       setStats(() => ({ ...calculations }));
     }
+
+    if (type === "rapid") {
+      setRating(playerInfo.ecfRapid);
+    }
+
+    if (type === "standard") {
+      setRating(playerInfo.ecfRating);
+    }
+
+    if (playerInfo.gameInfo) {
+      if (type === "standard") {
+        const form = JSON.parse(playerInfo.gameInfo)?.formStatsStandard || [];
+        setFormArray(form);
+      }
+      if (type === "rapid") {
+        const form = JSON.parse(playerInfo.gameInfo)?.formStatsRapid || [];
+        setFormArray(form);
+      }
+    }
   }, [games, playerInfo, type]);
 
   return (
     <dl className="mt-2 flex-grow flex flex-col justify-between text-gray-600">
       <dt className="text-sm font-medium">Games</dt>
       <dd className="text-lg font-medium text-teal-600">{stats.games}</dd>
+      <dt className="text-sm font-medium">Points</dt>
+      <dd className="text-lg font-medium text-teal-600">{stats.points}</dd>
       <dt className="text-sm font-medium">Perf. Rating</dt>
       <dd className="m-3">
         {stats &&
         stats.performanceRating &&
-        stats.performanceRating >= playerInfo.ecfRating ? (
+        stats.performanceRating >= rating ? (
           <span className="px-6 py-1 text-green-800 text-lg font-medium bg-green-100 rounded-lg">
             {stats.performanceRating}
           </span>
@@ -126,14 +151,23 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
           {stats.averageRating}
         </span>
       </dd>
-      <div className="text-xs text-gray-500 mb-2 mt-2">Unrated games {stats.unratedGames}</div>
+
+      {Boolean(formArray.length) && (
+        <>
+          <dt className="text-sm font-medium">Form</dt>
+          <dd className="text-xs text-center mx-auto">
+            <FormTimeLine form={formArray} />
+          </dd>
+        </>
+      )}
+      <div className="text-xs text-gray-500 mb-2 mt-2">
+        Unrated games {stats.unratedGames}
+      </div>
     </dl>
   );
 };
 
-
 const calculatePerformanceRating = (id, games, type) => {
-
   let countUnratedGames = 0;
 
   const maxOpponentRating = (rating = 1500, opponentRating) => {
@@ -149,14 +183,14 @@ const calculatePerformanceRating = (id, games, type) => {
 
   const stats = games
     .filter((game) => game.type === type)
-    .filter(game => {
-        if (game.whiteMemberId === id && !Boolean(game.blackRating)) {
-          countUnratedGames++;
-          return false;
-        } else if (game.blackMemberId === id && !Boolean(game.whiteRating)) {
-          countUnratedGames++;
-          return false;
-        }
+    .filter((game) => {
+      if (game.whiteMemberId === id && !Boolean(game.blackRating)) {
+        countUnratedGames++;
+        return false;
+      } else if (game.blackMemberId === id && !Boolean(game.whiteRating)) {
+        countUnratedGames++;
+        return false;
+      }
       return true;
     })
     .reduce(
@@ -237,4 +271,55 @@ const calculatePerformanceRating = (id, games, type) => {
   // accounts for the discrepency:
   stats.unratedGames = countUnratedGames;
   return stats;
+};
+
+const FormTimeLine = ({ form }) => {
+  const Result = ({ r, key }) => {
+    switch (r) {
+      case 1:
+        return (
+          <div
+            key={key}
+            className="bg-green-600 hover:bg-green-500 text-white text-sx text-center cursor-pointer rounded-sm w-3 py-0.5"
+          >
+            W
+          </div>
+        );
+      case 0:
+        return (
+          <div
+            key={key}
+            className=" bg-red-600 hover:bg-red-500 text-white text-sx text-center cursor-pointer rounded-sm w-3 py-0.5"
+          >
+            L
+          </div>
+        );
+      case 0.5:
+        return (
+          <div
+            key={key}
+            className=" bg-yellow-600 hover:bg-yellow-500 text-white text-sx text-center cursor-pointer rounded-sm w-3 py-0.5"
+          >
+            D
+          </div>
+        );
+      default:
+        return (
+          <div
+            key={key}
+            className=" bg-gray-400 text-gray-200 text-sx text-center rounded-sm cursor-default w-3 py-0.5"
+          >
+            -
+          </div>
+        );
+    }
+  };
+
+  return (
+    <div className="flex gap-1 my-2">
+      {form.slice(0, 7).map((r, key) => (
+        <Result r={r} key={key} />
+      ))}
+    </div>
+  );
 };

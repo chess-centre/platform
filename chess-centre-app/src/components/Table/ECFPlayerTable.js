@@ -1,9 +1,9 @@
-import React from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import Table from "./index";
 
 export default function ECFPlayersTable({ players, colour }) {
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: "id",
