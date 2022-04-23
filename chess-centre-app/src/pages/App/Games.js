@@ -33,6 +33,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
         round
         result
         pgnStr
+        type
         liChessUrl
         createdAt
         updatedAt
@@ -105,6 +106,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
         round
         result
         pgnStr
+        type
         liChessUrl
         createdAt
         updatedAt
@@ -286,7 +288,7 @@ export default function GamesView() {
       </div>
 
       <div className="mt-2 max-w-3xl mx-auto grid grid-cols-1 gap-4 lg:max-w-full lg:grid-flow-col-dense xl:grid-cols-3">
-        <section className="space-y-6 lg:col-span-2">
+        <section className="lg:col-span-2 order-2 lg:order-2">
           <dl className="grid grid-cols-1">
             {!isLoading && !isLoadingGames && !error && !isErrorGame && (
               <div>
@@ -358,7 +360,7 @@ export default function GamesView() {
             )}
           </dl>
         </section>
-        <section className="hidden xl:block col-span-1 mt-5">
+        <section className="col-span-1 order-1 lg:order-1 mt-5">
           {!isLoading && !isLoadingGames && !error && !isErrorGame && (
             <>
               {games && games.length > 0 ? (

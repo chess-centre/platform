@@ -51,3 +51,4 @@ test.js
 .eslintcache
 .eslintcache*
 build-storybook.log
+/src/api/mocks/

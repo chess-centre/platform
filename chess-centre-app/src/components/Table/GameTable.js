@@ -187,8 +187,8 @@ export default function GameTable({ games, memberId }) {
               ? game.blackMember
               : game.whiteMember;
           const colour = game.whiteMember.id === memberId ? "white" : "black";
-          const rating =
-            game.type === "standard" ? opponent.ecfRating : opponent.ecfRapid;
+          // flip to opponent rating:
+          const rating = game.whiteMember.id === memberId ? game.blackRating : game.whiteRating;
 
           return [
             ...prev,
@@ -221,7 +221,7 @@ export default function GameTable({ games, memberId }) {
   }, [games]);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className=" bg-gray-50 text-gray-900">
       <main className="max-w-5xl">
         <div className="mt-6">
           {data && <Table {...{ columns, data }} />}
