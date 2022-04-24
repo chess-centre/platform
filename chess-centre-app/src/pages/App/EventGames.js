@@ -34,8 +34,6 @@ export const listGamesByEvent = /* GraphQL */ `
         type
         pgnStr
         liChessUrl
-        createdAt
-        updatedAt
         whiteMember {
           id
           fideId
@@ -57,22 +55,6 @@ export const listGamesByEvent = /* GraphQL */ `
           ecfRapid
           estimatedRating
           club
-        }
-        event {
-          id
-          name
-          rounds
-          startDate
-          endDate
-          maxEntries
-          entryCount
-          complete
-          cancelled
-          isLive
-          isLiveUrl
-          active
-          createdAt
-          updatedAt
         }
       }
       nextToken
