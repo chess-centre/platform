@@ -213,7 +213,6 @@ export default function GamesView() {
     if (items && items.length > 0) {
       setCurrentUserInfo(items[0].blackMember);
     }
-
     return items;
   };
 
