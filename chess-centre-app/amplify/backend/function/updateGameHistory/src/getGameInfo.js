@@ -102,7 +102,7 @@ function getFormStatsByType(memberId, games, type) {
     return new Date(b.date) - new Date(a.date);
   })
   .filter((game) => game.type === type)
-  .slice(0, 10)
+  .slice(0, 7)
   .reduce((pre, cur) => {
     if(cur.whiteMemberId === memberId) {
       if(cur.result === "1-0") pre.push(1);

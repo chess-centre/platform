@@ -178,6 +178,8 @@ function Table({ columns, data, searchPlaceholder = "games...", colour = "bg-tea
       initialState: {
         hiddenColumns: [
           "id",
+          "whiteMemberId",
+          "blackMemberId",
           "liChessUrl",
           "chesscomUrl",
           "eventId",

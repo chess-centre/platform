@@ -55,14 +55,20 @@ export default function GameTable({ games, memberId }) {
       {
         Header: "Opponent",
         accessor: "name",
-        Cell: (props) => (
-          <Link
-            className="text-teal-600"
-            to={`/app/games/${props.row.values.id}`}
-          >
-            {props.cell.value}
-          </Link>
-        ),
+        Cell: (props) => {
+          if (props.row.values.id) {
+            return (
+              <Link
+                className="text-teal-600"
+                to={`/app/games/${props.row.values.id}`}
+              >
+                {props.cell.value}
+              </Link>
+            );
+          } else {
+            return <span>{props.cell.value}</span>;
+          }
+        },
       },
       {
         Header: () => <div className="mx-auto">Rating</div>,
@@ -78,15 +84,21 @@ export default function GameTable({ games, memberId }) {
           switch (props.cell.value) {
             case "win":
               return (
-                <div className="mx-auto bg-green-600 hover:bg-green-500 text-white text-sx text-center w-7 cursor-pointer rounded-sm">W</div>
+                <div className="mx-auto bg-green-600 hover:bg-green-500 text-white text-sx text-center w-7 cursor-pointer rounded-sm">
+                  W
+                </div>
               );
             case "loss":
               return (
-                <div className="mx-auto bg-red-700 hover:bg-red-600 text-white text-sx text-center w-7 cursor-pointer rounded-sm">L</div>
+                <div className="mx-auto bg-red-700 hover:bg-red-600 text-white text-sx text-center w-7 cursor-pointer rounded-sm">
+                  L
+                </div>
               );
             case "draw":
               return (
-                <div className="mx-auto bg-yellow-500 hover:bg-yellow-400 text-white text-sx text-center w-7 cursor-pointer rounded-sm">D</div>
+                <div className="mx-auto bg-yellow-500 hover:bg-yellow-400 text-white text-sx text-center w-7 cursor-pointer rounded-sm">
+                  D
+                </div>
               );
             default:
               return (
@@ -117,7 +129,7 @@ export default function GameTable({ games, memberId }) {
       {
         Header: () => <div className="mx-auto">Round</div>,
         accessor: "round",
-        Cell: (props) => <div className="text-center">{props.cell.value}</div>
+        Cell: (props) => <div className="text-center">{props.cell.value}</div>,
       },
       {
         Header: "Event",
@@ -182,21 +194,32 @@ export default function GameTable({ games, memberId }) {
     if (games.length > 0) {
       return games
         .reduce((prev, game) => {
-          const opponent =
-            game.whiteMember.id === memberId
-              ? game.blackMember
-              : game.whiteMember;
-          const colour = game.whiteMember.id === memberId ? "white" : "black";
+          let opponentName = "unknown";
+          let opponentId = "";
+
+          if(game.whiteMemberId === memberId) {
+            opponentName = game.blackName;
+            opponentId =  game.blackMemberId;
+          }
+          if(game.blackMemberId === memberId) {
+            opponentName = game.whiteName;
+            opponentId = game.whiteMemberId;
+          }
+
+          const colour = game.whiteMemberId === memberId ? "white" : "black";
           // flip to opponent rating:
-          const rating = game.whiteMember.id === memberId ? game.blackRating : game.whiteRating;
+          const rating =
+            game.whiteMemberId === memberId
+              ? game.blackRating
+              : game.whiteRating;
 
           return [
             ...prev,
             {
-              id: opponent.id,
+              id: opponentId,
               pgn: game.pgnStr,
               eventId: game.eventId,
-              name: opponent.name,
+              name: opponentName,
               rating: rating === "0" ? undefined : rating,
               result: resultType(game.result, colour),
               colour,
@@ -209,8 +232,8 @@ export default function GameTable({ games, memberId }) {
           ];
         }, [])
         .sort((a, b) => {
-          if(b.eventId === a.eventId) {
-            return b.round - a.round
+          if (b.eventId === a.eventId) {
+            return b.round - a.round;
           }
           return b.date - a.date;
         });
@@ -223,9 +246,7 @@ export default function GameTable({ games, memberId }) {
   return (
     <div className=" bg-gray-50 text-gray-900">
       <main className="max-w-5xl">
-        <div className="mt-6">
-          {data && <Table {...{ columns, data }} />}
-        </div>
+        <div className="mt-6">{data && <Table {...{ columns, data }} />}</div>
         <div className="mt-4 sm:mt-4 text-right">
           <QuickSearch tag="games" />
         </div>

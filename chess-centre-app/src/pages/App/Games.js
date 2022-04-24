@@ -28,8 +28,10 @@ export const listGamesByWhiteMember = /* GraphQL */ `
         date
         whiteMemberId
         whiteRating
+        whiteName
         blackMemberId
         blackRating
+        blackName
         round
         result
         pgnStr
@@ -49,11 +51,6 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           ecfMembership
           estimatedRating
           club
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          chesscomLastUpdated
         }
         blackMember {
           id
@@ -67,11 +64,6 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           ecfMembership
           estimatedRating
           club
-          liChessUsername
-          liChessInfo
-          chesscomUsername
-          chesscomInfo
-          chesscomLastUpdated
         }
       }
       nextToken
@@ -100,9 +92,12 @@ export const listGamesByBlackMember = /* GraphQL */ `
         whiteMemberId
         eventName
         date
+        whiteMemberId
         whiteRating
+        whiteName
         blackMemberId
         blackRating
+        blackName
         round
         result
         pgnStr

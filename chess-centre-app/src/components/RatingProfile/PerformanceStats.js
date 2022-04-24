@@ -320,7 +320,7 @@ const FormTimeLine = ({ form }) => {
 
   return (
     <div className="flex gap-1 my-2">
-      {form.slice(0, 7).map((r, key) => (
+      {form.map((r, key) => (
         <Result r={r} key={key} />
       ))}
     </div>
