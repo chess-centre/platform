@@ -20,7 +20,10 @@ export default function AppCalendar() {
           </p>
         </div>
       </div>
-      <Calendar />
+      <div className="mb-6">
+        <Calendar />
+      </div>
+      
     </div>
   );
 }

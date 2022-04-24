@@ -10,17 +10,17 @@ export default function ProfileDropDown(props) {
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="inline-flex justify-center w-full rounded-full border border-teal-600 shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-teal-500">
+            <Menu.Button className="inline-flex justify-center w-full rounded-lg border-2 border-teal-500 shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-teal-500">
               {avatarUrl ? (
                 <img
-                  className="rounded-full h-8 w-8"
+                  className="rounded-md h-8 w-8"
                   src={avatarUrl}
                   alt="Avatar"
                 />
               ) : (
-                <span className="inline-block relative h-8 w-8 rounded-full">
+                <span className="inline-block relative h-8 w-8 rounded-lg">
                   <svg
-                    className="h-full w-full text-gray-300 rounded-full"
+                    className="h-full w-full text-gray-300 rounded-lg"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
