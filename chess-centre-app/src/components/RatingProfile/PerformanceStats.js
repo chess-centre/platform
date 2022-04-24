@@ -283,7 +283,7 @@ const FormTimeLine = ({ form }) => {
         return (
           <div
             key={key}
-            className="bg-green-600 hover:bg-green-500 text-white text-sx text-center cursor-pointer rounded-sm w-3 py-0.5"
+            className="bg-green-600 hover:bg-green-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5"
           >
             W
           </div>
@@ -292,7 +292,7 @@ const FormTimeLine = ({ form }) => {
         return (
           <div
             key={key}
-            className=" bg-red-600 hover:bg-red-500 text-white text-sx text-center cursor-pointer rounded-sm w-3 py-0.5"
+            className=" bg-red-600 hover:bg-red-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5"
           >
             L
           </div>
@@ -301,7 +301,7 @@ const FormTimeLine = ({ form }) => {
         return (
           <div
             key={key}
-            className=" bg-yellow-600 hover:bg-yellow-500 text-white text-sx text-center cursor-pointer rounded-sm w-3 py-0.5"
+            className=" bg-yellow-600 hover:bg-yellow-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5"
           >
             D
           </div>
@@ -310,7 +310,7 @@ const FormTimeLine = ({ form }) => {
         return (
           <div
             key={key}
-            className=" bg-gray-400 text-gray-200 text-sx text-center rounded-sm cursor-default w-3 py-0.5"
+            className=" bg-gray-400 text-gray-200 text-sx text-center rounded-sm cursor-default w-3.5 py-0.5"
           >
             -
           </div>
