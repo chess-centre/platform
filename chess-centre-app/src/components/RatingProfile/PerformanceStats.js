@@ -95,6 +95,7 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
   const [rating, setRating] = useState(0);
   const [formArray, setFormArray] = useState([]);
 
+
   useEffect(() => {
     if (games && games.length > 0) {
       const calculations = calculatePerformanceRating(
@@ -113,15 +114,17 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
       setRating(playerInfo.ecfRating);
     }
 
+    const formStats = (prop) => {
+      const form = JSON.parse(playerInfo.gameInfo)[prop] || [];
+      while (form.length < 7) {
+        form.unshift("");
+      }
+      setFormArray(form);
+    }
+
     if (playerInfo.gameInfo) {
-      if (type === "standard") {
-        const form = JSON.parse(playerInfo.gameInfo)?.formStatsStandard || [];
-        setFormArray(form);
-      }
-      if (type === "rapid") {
-        const form = JSON.parse(playerInfo.gameInfo)?.formStatsRapid || [];
-        setFormArray(form);
-      }
+      const prop = type === "standard" ? "formStatsStandard" : "formStatsRapid";
+      formStats(prop)
     }
   }, [games, playerInfo, type]);
 
@@ -197,8 +200,8 @@ const calculatePerformanceRating = (id, games, type) => {
       (stats, game) => {
         if (game.whiteMemberId === id) {
           const opponentRating = maxOpponentRating(
-            game.whiteRating || 1500,
-            game.blackRating || 1500
+            game.whiteRating || 1600,
+            game.blackRating || 1600
           );
 
           stats.games += 1;
@@ -221,8 +224,8 @@ const calculatePerformanceRating = (id, games, type) => {
         }
         if (game.blackMemberId === id) {
           const opponentRating = maxOpponentRating(
-            game.blackRating || 1500,
-            game.whiteRating || 1500
+            game.blackRating || 1600,
+            game.whiteRating || 1600
           );
           stats.games += 1;
           stats.ratings.push(game.whiteRating);
@@ -317,7 +320,7 @@ const FormTimeLine = ({ form }) => {
 
   return (
     <div className="flex gap-1 my-2">
-      {form.slice(3, 10).map((r, key) => (
+      {form.slice(0, 7).map((r, key) => (
         <Result r={r} key={key} />
       ))}
     </div>
