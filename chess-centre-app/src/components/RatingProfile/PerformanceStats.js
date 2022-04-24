@@ -170,7 +170,7 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
 const calculatePerformanceRating = (id, games, type) => {
   let countUnratedGames = 0;
 
-  const maxOpponentRating = (rating = 1500, opponentRating) => {
+  const maxOpponentRating = (rating, opponentRating) => {
     const diff = opponentRating - rating;
     if (diff > 400) {
       return rating + 400;
@@ -197,8 +197,8 @@ const calculatePerformanceRating = (id, games, type) => {
       (stats, game) => {
         if (game.whiteMemberId === id) {
           const opponentRating = maxOpponentRating(
-            game.whiteRating,
-            game.blackRating
+            game.whiteRating || 1500,
+            game.blackRating || 1500
           );
 
           stats.games += 1;
@@ -221,8 +221,8 @@ const calculatePerformanceRating = (id, games, type) => {
         }
         if (game.blackMemberId === id) {
           const opponentRating = maxOpponentRating(
-            game.blackRating,
-            game.whiteRating
+            game.blackRating || 1500,
+            game.whiteRating || 1500
           );
           stats.games += 1;
           stats.ratings.push(game.whiteRating);
@@ -317,7 +317,7 @@ const FormTimeLine = ({ form }) => {
 
   return (
     <div className="flex gap-1 my-2">
-      {form.slice(0, 7).map((r, key) => (
+      {form.slice(3, 10).map((r, key) => (
         <Result r={r} key={key} />
       ))}
     </div>
