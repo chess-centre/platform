@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import ImageLarge from "../../assets/img/festival-register.jpg";
 import ImageSmall from "../../assets/img/festival-register-small.jpg";
 import Logo from "../../assets/img/logo.svg";
-import { Label, Input, Button } from "@windmill/react-ui";
 import {
   loginUser,
   subscribe,
@@ -161,18 +160,21 @@ function Login(props) {
               </div>
 
               <div className="relative inline-flex w-full">
-                <Label className="mt-6" check>
-                  <Input
+                <div className="mt-6" check>
+                  <input
                     type="checkbox"
                     disabled={loading}
+                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
                     defaultChecked={isChecked}
                     onChange={(e) => handleRememberMe(e.target.checked)}
                   />
-                  <span className="ml-2">Remember me</span>
-                </Label>
+                  <span className="ml-2 text-sm">Remember me</span>
+                </div>
 
-                <Button
-                  className="absolute mt-4 right-0"
+                <button
+                  className="absolute mt-4 right-0 inline-flex items-center px-4 py-2 border border-transparent shadow text-sm leading-4 
+                  font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
+                  focus:ring-offset-2 focus:ring-teal-500"
                   onClick={signIn}
                   disabled={loading}
                 >
@@ -181,7 +183,7 @@ function Login(props) {
                       <div className="flex">
                         <img
                           alt="Loading"
-                          className="h-5 w-5 mr-3"
+                          className="h-4 w-4 mr-3"
                           src={Loading}
                         />{" "}
                         <span className="inline-block align-middle text-sm font-thin">
@@ -192,7 +194,7 @@ function Login(props) {
                   ) : (
                     "Login"
                   )}
-                </Button>
+                </button>
               </div>
 
               <div className={errorMessage ? "my-2 text-centre" : ""}>

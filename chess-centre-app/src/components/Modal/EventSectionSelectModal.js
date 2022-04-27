@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, ModalBody, ModalFooter, Button } from "@windmill/react-ui";
+import { Modal, ModalBody, ModalFooter } from "@windmill/react-ui";
 
 export default function EventSectionSelectionModal(props) {
   const { handleRegister, eventId, open, closeModal, showByes } = props;
@@ -154,7 +154,7 @@ export default function EventSectionSelectionModal(props) {
         )}
       </ModalBody>
       <ModalFooter>
-        <Button
+        <button
           className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           onClick={() => confirmRegister()}
         >
@@ -166,7 +166,7 @@ export default function EventSectionSelectionModal(props) {
           ) : (
             `Confirm & Pay`
           )}
-        </Button>
+        </button>
       </ModalFooter>
     </Modal>
   );

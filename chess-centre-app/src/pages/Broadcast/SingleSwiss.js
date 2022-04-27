@@ -1,13 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
 import Swiss from "../../components/Events/Tables/April/Swiss";
 import Logo from "../../assets/img/logo-dark-theme.png";
-import {
+import data from "../../components/Events/Tables/April/meta.json";
+
+const {
   name,
   players,
   results,
   settings,
   pairings,
-} from "../../components/Events/Tables/April/meta.json";
+} = data;
 
 const SingleSwiss = () => {
   const isLastRound = settings.currentRound >= settings.totalRounds;

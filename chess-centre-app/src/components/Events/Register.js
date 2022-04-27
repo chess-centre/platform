@@ -1,5 +1,4 @@
 import { Auth } from "aws-amplify";
-import { Button } from "@windmill/react-ui";
 import React, { useState } from "react";
 import EventSectionSelectionModal from "../Modal/EventSectionSelectModal";
 
@@ -26,12 +25,12 @@ export default function Register(props) {
     <>
       {multipleSections ?
         <>
-          <Button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             onClick={() => openSectionSelectionModal(id)}>
             Sign up
-          </Button>
+          </button>
         </> :
-        <Button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+        <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           onClick={() => handleRegister(id)}>
           {isLoadingSignUp ? (
             <div className="flex">
@@ -41,7 +40,7 @@ export default function Register(props) {
           ) : (
             `Sign up`
           )}
-        </Button>}
+        </button>}
       <EventSectionSelectionModal showByes={showByes} eventId={id} handleRegister={handleRegister} open={modelOpen} closeModal={closeModal} />
     </>
   );

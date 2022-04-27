@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalFooter, Button } from "@windmill/react-ui";
+import { Modal, ModalBody, ModalFooter } from "@windmill/react-ui";
 import PGNViewer from "../ChessBoard/ChessBoard";
 
 export default function GameViewerModal({ open, closeModal, pgn, liChessUrl }) {
@@ -38,9 +38,14 @@ export default function GameViewerModal({ open, closeModal, pgn, liChessUrl }) {
         )}
 
         {!liChessUrl && (
-          <Button className="m-auto w-full sm:mx-20 mb-2" onClick={closeModal}>
+          <button
+            className={`m-auto w-full sm:mx-20 mb-2 inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
+          font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
+          focus:ring-offset-2 focus:ring-teal-500`}
+            onClick={closeModal}
+          >
             Close
-          </Button>
+          </button>
         )}
       </ModalFooter>
     </Modal>

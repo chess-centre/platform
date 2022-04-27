@@ -1,8 +1,10 @@
 import Logo from "../../assets/img/logo-dark-theme.png";
-import { name, teams, results } from "../../components/Events/Match/meta.json";
 import { MatchTable } from "../../components/Events/Tables/Shared/MatchTable";
 import HomeLogo from "../../assets/img/logo.png";
 import AwayLogo from "../../assets/img/hammership-logo.png";
+import data from "../../components/Events/Match/meta.json";
+
+const { name, teams, results } = data;
 
 const TeamMatch = () => {
   return (

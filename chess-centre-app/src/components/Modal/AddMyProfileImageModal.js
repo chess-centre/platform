@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Modal,
-  ModalBody,
-  ModalFooter,
-  Button,
-  ModalHeader,
-} from "@windmill/react-ui";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "@windmill/react-ui";
 import ChesscomFetch from "../../pages/App/User/sections/Chesscom";
 
 export default function AddMyProfileImageModel({
@@ -37,9 +31,14 @@ export default function AddMyProfileImageModel({
         <ChesscomFetch {...{ ...currentUserInfo, setAvatar }} />
       </ModalBody>
       <ModalFooter className="py-2">
-        <Button className="w-full sm:w-auto mb-2" onClick={closeModal}>
+        <button
+          className={`w-full sm:w-auto mb-2 inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
+                font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
+                focus:ring-offset-2 focus:ring-teal-500`}
+          onClick={closeModal}
+        >
           Close
-        </Button>
+        </button>
       </ModalFooter>
     </Modal>
   );
