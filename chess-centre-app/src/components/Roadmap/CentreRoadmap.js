@@ -64,7 +64,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
+              <span className="mr-2 bg-green-200 text-green-800 p-1 rounded leading-none">
                 Complete
               </span>
             </div>
@@ -80,7 +80,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
+              <span className="mr-2 bg-green-200 text-green-800 p-1 rounded leading-none">
                 Complete
               </span>
             </div>
@@ -96,7 +96,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-            <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
+            <span className="mr-2 bg-green-200 text-green-800 p-1 rounded leading-none">
                 Complete
               </span>
             </div>
@@ -112,7 +112,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
           <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-            <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
+            <span className="mr-2 bg-green-200 text-green-800 p-1 rounded leading-none">
                 Complete
               </span>
             </div>
@@ -129,7 +129,7 @@ export const CentreRoadmap = () => {
           <div className="flex items-center mb-1">
             <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-green-200 text-black p-1 rounded leading-none">
+              <span className="mr-2 bg-green-200 text-green-800 p-1 rounded leading-none">
                 Complete
               </span>
             </div>

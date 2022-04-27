@@ -13,6 +13,7 @@
     "@windmill/react-ui": "^0.5.1",
     "aos": "^3.0.0-beta.6",
     "aws-amplify": "^4.3.20",
+    "babel-loader": "^8.2.5",
     "chart.js": "^2.9.4",
     "google-map-react": "^2.1.9",
     "lodash.debounce": "^4.0.8",
@@ -55,7 +56,11 @@
   "eslintConfig": {
     "extends": [
       "react-app",
+      "react-hooks",
       "react-app/jest"
+    ],
+    "plugins": [
+      "react-hooks"
     ],
     "overrides": [
       {
@@ -99,6 +104,7 @@
     "chromatic": "^6.3.4",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
+    "eslint-config-react-app": "^7.0.1",
     "postcss": "^8.4.12",
     "postcss-cli": "^8.3.1",
     "prettier": "2.2.1",

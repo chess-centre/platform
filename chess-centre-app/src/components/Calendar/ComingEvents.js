@@ -47,7 +47,7 @@ function GridCalendar({
                       })} ...
                     </span>
                     <span
-                      className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full ${
+                      className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full z-10 ${
                         selected === month &&
                         (isEven ? "bg-teal-brand " : "bg-orange-brand ")
                       }`}
