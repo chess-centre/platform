@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import Image from "../../assets/img/chess-players.jpg";
-import { Button } from "@windmill/react-ui";
 import {
   useAuthDispatch,
   userPasswordForgotSubmit,
@@ -146,13 +145,15 @@ function ForgotPassword(props) {
                   </div>
                 </>
               )}
-              <Button
+              <button
                 onClick={forget ? passwordForgotSubmit : passwordForgot}
                 block
-                className="mt-4"
+                className="mt-4 inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
+                font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
+                focus:ring-offset-2 focus:ring-teal-500"
               >
                 {forget ? "Submit Password" : "Recover password"}
-              </Button>
+              </button>
 
               <div className={errorMessage ? "my-2 text-centre" : "hidden"}>
                 <p

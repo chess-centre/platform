@@ -46,60 +46,58 @@ const usefulLinks = [
 
 function UsefulLinksTable() {
   return (
-    <div className="flex flex-col">
-      <div className="-my-2 overflow-x-auto lg:-mx-8">
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          <div className="shadow overflow-hidden border-b border-gray-200 rounded-lg">
-            <table className="divide-y divide-gray-200">
-              <thead className="bg-teal-700">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
-                  >
-                    Name
-                  </th>
-                  <th
-                    scope="col"
-                    className="hidden sm:block px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
-                  >
-                    Description
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
-                  >
-                    Visit
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {usefulLinks.map(
-                  ({ name, description, url, displayUrl }, key) => (
-                    <tr key={key}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {name}
-                      </td>
-                      <td className="hidden sm:block px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {description}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <a
-                          className="text-teal-500 hover:text-teal-700 hover:underline"
-                          target="_blank"
-                          rel="noreferrer"
-                          alt="Chess Site"
-                          href={url}
-                        >
-                          {displayUrl}
-                        </a>
-                      </td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
+    <div className="inline-block min-w-lg">
+      <div className="inline-block min-w-full">
+        <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+          <table className="divide-y divide-gray-200">
+            <thead className="bg-teal-700">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
+                >
+                  Name
+                </th>
+                <th
+                  scope="col"
+                  className="hidden sm:block px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
+                >
+                  Description
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-50 uppercase tracking-wider"
+                >
+                  Visit
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {usefulLinks.map(
+                ({ name, description, url, displayUrl }, key) => (
+                  <tr key={key}>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {name}
+                    </td>
+                    <td className="hidden sm:block px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {description}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <a
+                        className="text-teal-500 hover:text-teal-700 hover:underline"
+                        target="_blank"
+                        rel="noreferrer"
+                        alt="Chess Site"
+                        href={url}
+                      >
+                        {displayUrl}
+                      </a>
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -107,7 +105,6 @@ function UsefulLinksTable() {
 }
 
 export default function Juniors() {
-
   useEffect(() => {
     document.title = "The Chess Centre | Juniors";
   }, []);
@@ -136,7 +133,6 @@ export default function Juniors() {
       <div className="mt-8 sm:mt-4 text-right sm:text-left">
         <QuickSearch tag="juniors" />
       </div>
-      
     </>
   );
 }

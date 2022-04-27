@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
 import ImageLarge from "../../assets/img/festival-register.jpg";
 import ImageSmall from "../../assets/img/festival-register-small.jpg";
-import { Input, Label, Button } from "@windmill/react-ui";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
 import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal.js";
 import ValidateEmail from "../../utils/ValidateEmail";
@@ -24,7 +23,6 @@ function Register(props) {
   const dispatch = useAuthDispatch();
 
   useEffect(() => {
-
     document.title = "The Chess Centre | Register";
 
     const isFormValid = () => {
@@ -128,7 +126,6 @@ function Register(props) {
           props.history.push(
             `/register/confirm/${email}${props.location.search}`
           );
-
         } // if there's no response, the action dispatched a contextual error already
       } catch (error) {
         dispatch({ type: "LOGIN_ERROR", error });
@@ -140,9 +137,11 @@ function Register(props) {
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
-        <div className="flex flex-col overflow-y-auto md:flex-row"> 
+        <div className="flex flex-col overflow-y-auto md:flex-row">
           <div className="md:w-1/2 bg-blue-brand sm:py-6">
-            <h2 className="hidden sm:block text-orange-flyer font-thin text-center text-3xl">Coming soon...</h2>
+            <h2 className="hidden sm:block text-orange-flyer font-thin text-center text-3xl">
+              Coming soon...
+            </h2>
             <img
               aria-hidden="true"
               className="hidden sm:block object-scale-down w-full h-full -mt-6"
@@ -274,33 +273,35 @@ function Register(props) {
                 />
               </div>
 
-              <Label className="mt-6" check>
-                <Input
+              <div className="mt-4" check>
+                <input
                   type="checkbox"
                   checked={isChecked}
                   disabled={loading}
+                  className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
                   onChange={(e) => setPrivacyPolicyStatus(e.target.checked)}
                 />
-                <span className="ml-2">
+                <span className="ml-2 text-xs">
                   I agree to the <PrivacyPolicyModal />
                 </span>
-              </Label>
+              </div>
 
-              {loading ? (
-                <Button disabled={"disabled"} block className="mt-4">
-                  <img alt="Loading" className="h-5 w-5" src={Loading} />
-                  <span className="mx-2">Creating account ...</span>
-                </Button>
-              ) : (
-                <Button
-                  onClick={signUp}
-                  disabled={!isSubmitButtonActive && "disabled"}
-                  block
-                  className="mt-4"
-                >
-                  <span className="mx-2">Create account</span>
-                </Button>
-              )}
+              <button
+                onClick={signUp}
+                disabled={!isSubmitButtonActive && "disabled"}
+                block
+                className="mt-4 w-full items-center px-3 py-3 mx-auto shadow text-sm leading-4 
+                  font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
+                  focus:ring-offset-2 focus:ring-teal-500"
+              >
+                {loading && (
+                  <div className="inline-flex">
+                    <img alt="Loading" className="h-4 w-4" src={Loading} />
+                    <span className="mx-2">Creating account ...</span>
+                  </div>
+                )}
+                {!loading && <span className="mx-2">Create account</span>}
+              </button>
 
               <div className={errorMessage ? "my-2 text-centre" : "hidden"}>
                 <p

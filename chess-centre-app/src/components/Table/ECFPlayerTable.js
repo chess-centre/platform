@@ -54,7 +54,7 @@ export default function ECFPlayersTable({ players, colour }) {
                     return (
                       <div
                         key={key}
-                        className="shadow-lg bg-green-600 hover:bg-green-500 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm"
+                        className="shadow-lg bg-green-600 hover:bg-green-500 text-white text-sx text-center w-5 cursor-pointer rounded-sm"
                       >
                         W
                       </div>
@@ -63,7 +63,7 @@ export default function ECFPlayersTable({ players, colour }) {
                     return (
                       <div
                         key={key}
-                        className="shadow-lg bg-red-600 hover:bg-red-500 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm"
+                        className="shadow-lg bg-red-600 hover:bg-red-500 text-white text-sx text-center w-5 cursor-pointer rounded-sm"
                       >
                         L
                       </div>
@@ -72,7 +72,7 @@ export default function ECFPlayersTable({ players, colour }) {
                     return (
                       <div
                         key={key}
-                        className="shadow-lg bg-yellow-600 hover:bg-yellow-500 text-white text-sx text-center min-w-5 cursor-pointer rounded-sm"
+                        className="shadow-lg bg-yellow-600 hover:bg-yellow-500 text-white text-sx text-center w-5 cursor-pointer rounded-sm"
                       >
                         D
                       </div>
@@ -81,7 +81,7 @@ export default function ECFPlayersTable({ players, colour }) {
                     return (
                       <div
                         key={key}
-                        className="shadow-lg bg-gray-400 text-gray-200 text-sx text-center min-w-5 rounded-sm cursor-default"
+                        className="shadow-lg bg-gray-400 text-gray-200 text-sx text-center w-5 rounded-sm cursor-default"
                       >
                         -
                       </div>

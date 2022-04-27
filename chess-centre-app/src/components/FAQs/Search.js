@@ -34,7 +34,7 @@ export const Search = ({ searchTerm, setSearchTerm, selectedTags, setSelectedTag
               defaultValue={searchTerm}
               autoComplete="off"
               id="search"
-              className="focus:border-teal-500 block w-full pl-10 sm:text-sm border-teal-500 rounded-md"
+              className="focus:outline-none focus:border-teal-600 focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 block w-full pl-10 sm:text-sm border-teal-500 rounded-md"
               placeholder="Search questions..."
             />
           </div>
