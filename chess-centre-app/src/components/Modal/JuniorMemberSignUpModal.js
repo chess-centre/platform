@@ -84,7 +84,7 @@ export default function RoundTimesModal(props) {
         </div>
       </ModalBody>
       <ModalFooter>
-        <button className={`w-full sm:w-auto mb-2 inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
+        <button className={`w-full mb-2 items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
                 font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
                 focus:ring-offset-2 focus:ring-teal-500`} onClick={closeModal}>
           Close
