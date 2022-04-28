@@ -80,6 +80,7 @@ export default function Admin() {
         console.log("Error", error);
         setIsUpdatingECF(false);
       });
+      console.log("GET", response);
       setIsUpdatingECF(false);
     }
   }
@@ -112,7 +113,7 @@ export default function Admin() {
         <div className="rounded-md bg-sky-100 p-4 mb-2 mt-2 border">
           <div className="flex">
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-sky-600">... with great power comes great responsibility</h3>
+              <h3 className="text-sm font-medium text-sky-600">Remember, with great power comes great responsibility</h3>
             </div>
           </div>
         </div>

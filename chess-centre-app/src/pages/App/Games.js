@@ -213,8 +213,11 @@ export default function GamesView() {
 
   const fetchAllGames = async (id) => {
     setIsLoadingGames(true);
-    const whiteGames = await fetchWhiteGames(id);
-    const blackGames = await fetchBlackGames(id);
+
+    const [whiteGames, blackGames] = await Promise.all([
+      fetchWhiteGames(id),
+      fetchBlackGames(id),
+    ]);
 
     if (whiteGames[0]?.whiteMember?.name) {
       setPlayerName(whiteGames[0]?.whiteMember?.name);
@@ -229,7 +232,7 @@ export default function GamesView() {
 
   const handleGoBack = () => {
     return history.goBack();
-  }
+  };
 
   useEffect(() => {
     document.title = "The Chess Centre | Games";
@@ -300,8 +303,12 @@ export default function GamesView() {
                     <p className="mt-2 block text-sm font-medium text-gray-600">
                       No games yet.
                     </p>
-                    <p className="mt-2 text-teal-500 text-sm font-medium hover:opacity-90 cursor-pointer" onClick={handleGoBack}>
-                      <i className="fas fa-long-arrow-alt-left mr-1"></i> Go back
+                    <p
+                      className="mt-2 text-teal-500 text-sm font-medium hover:opacity-90 cursor-pointer"
+                      onClick={handleGoBack}
+                    >
+                      <i className="fas fa-long-arrow-alt-left mr-1"></i> Go
+                      back
                     </p>
                     {playerName && currentUser && (
                       <p className="mt-2 block text-sm font-medium text-gray-600">
