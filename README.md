@@ -93,7 +93,7 @@ $ git fetch && git checkout develop
 Install dependencies
 
 ```bash
-$ yarn install
+$ npm install
 ```
 
 At this point you now have everything you need for the frontend UI, now you need the `AWS Amplify` backend.
@@ -125,7 +125,7 @@ You will now have a development environment! 🥳
 Finally, start the project:
 
 ```bash
-$ yarn start # default port 3000
+$ npm start # default port 3000
 ```
 
 ### Environments
@@ -150,10 +150,6 @@ The front-end app uses `create-react-app` and `tailwindcss`. The backend is enti
 ### Testing
 
 See our published storybook [here](https://61df76f187afd2003a044a06-gaxeydksrb.chromatic.com/?path=/story/introduction--page)
-
-- Jest (todo)
-- React Testing Library (todo)
-- Cypress (todo)
 
 ### Architecture
 
