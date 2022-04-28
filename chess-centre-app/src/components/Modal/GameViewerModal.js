@@ -21,7 +21,7 @@ export default function GameViewerModal({ open, closeModal, pgn, liChessUrl }) {
         {liChessUrl && (
           <div className="relative m-auto inline-flex gap-3">
             <a
-              className="inline-flex m-auto w-full whitespace-nowrap items-center px-10 py-2 border shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+              className="m-auto w-full whitespace-nowrap items-center px-10 py-2 border shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               target="_blank"
               rel="noreferrer"
               href={liChessUrl}
@@ -39,7 +39,7 @@ export default function GameViewerModal({ open, closeModal, pgn, liChessUrl }) {
 
         {!liChessUrl && (
           <button
-            className={`m-auto w-full sm:mx-20 mb-2 inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
+            className={`m-auto sm:mx-20 mb-2 items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
           font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
           focus:ring-offset-2 focus:ring-teal-500`}
             onClick={closeModal}
