@@ -134,34 +134,6 @@ const routes = [
     isPrivate: true,
   },
   {
-    path: "/internal/live/:id",
-    component: lazy(() => import("../pages/Broadcast/Viewer")),
-    exact: true,
-    isPrivate: false,
-    isAdmin: true
-  },
-  {
-    path: "/internal/broadcast",
-    component: lazy(() => import("../pages/Broadcast/SingleSwiss")),
-    exact: true,
-    isPrivate: false,
-    isAdmin: true
-  },
-  {
-    path: "/internal/live",
-    component: lazy(() => import("../pages/Broadcast/Internal")),
-    exact: true,
-    isPrivate: false,
-    isAdmin: true
-  },
-  {
-    path: "/internal/match",
-    component: lazy(() => import("../pages/Broadcast/TeamMatch")),
-    exact: true,
-    isPrivate: false,
-    isAdmin: true
-  },
-  {
     path: "/broadcast/live",
     component: lazy(() => import("../pages/Broadcast/Live")),
     exact: true,

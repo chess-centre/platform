@@ -65,10 +65,6 @@ const routes = [
     component: lazy(() => import("../pages/App/EventGames")),
   },
   {
-    path: "/event-manager",
-    component: lazy(() => import("../pages/Admin/EventManager"))
-  },
-  {
     path: "/admin/:id",
     component: lazy(() => import("../pages/Admin")),
     isAdmin: true
