@@ -1,28 +1,12 @@
-const colors = require("tailwindcss/colors");
-const defaultTheme = require("tailwindcss/defaultTheme");
-const windmill = require("@windmill/react-ui/config");
-
-module.exports = windmill({
-  corePlugins: {
-    ringColor: true,
-  },
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  darkMode: false,
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    listStyleType: {
-      none: "none",
-    },
     extend: {
-      sans: [defaultTheme.fontFamily.sans],
       fontSize: {
         'xxxs': '.45rem',
         'xxs': '.5rem'
       },
-      boxShadow: {
-        "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.08)",
-      },
       colors: {
-        ...colors,
         gray: {
           50: "#FAFAFA",
           100: "#F4F4F5",
@@ -46,18 +30,6 @@ module.exports = windmill({
           700: "#6B46C1",
           800: "#553C9A",
           900: "#44337A",
-        },
-        pink: {
-          50: "#FFF5F7",
-          100: "#FFEBEF",
-          200: "#FED7E2",
-          300: "#FBB6CE",
-          400: "#F687B3",
-          500: "#ED64A6",
-          600: "#D53F8C",
-          700: "#B83280",
-          800: "#97266D",
-          900: "#702459",
         },
         red: {
           50: "#fdf2f2",
@@ -137,59 +109,12 @@ module.exports = windmill({
           900: "#233876",
         },
       },
-      spacing: {
-        128: "32rem",
-        "9/16": "56.25%",
-        "3/4": "75%",
-        "1/1": "100%",
-      },
-      inset: {
-        "1/2": "50%",
-        full: "100%",
-      },
-      letterSpacing: {
-        tighter: "-0.02em",
-        tight: "-0.01em",
-        normal: "0",
-        wide: "0.01em",
-        wider: "0.02em",
-        widest: "0.4em",
-      },
-      minWidth: {
-        10: "2.5rem",
-      },
-      scale: {
-        98: ".98",
-      },
-      animation: {
-        float: "float 5s ease-in-out infinite",
-        "spin-slow": "spin 3s linear infinite",
-      },
-      keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10%)" },
-        },
-      },
-      zIndex: {
-        "-1": "-1",
-        "-10": "-10",
-        100: "100",
-      },
-    },
-  },
-  variants: {
-    extend: {
-      backgroundOpacity: ["dark"],
-      display: ["dark"],
-      opacity: ["dark"],
-      rotate: ["group-hover"],
-      translate: ["group-hover"],
     },
   },
   plugins: [
     require("@tailwindcss/forms"),
-    require("@tailwindcss/aspect-ratio"),
-    require("@tailwindcss/typography"),
-  ],
-});
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp')
+  ]
+};

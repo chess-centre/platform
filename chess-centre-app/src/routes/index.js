@@ -31,7 +31,7 @@ const routes = [
   },
   {
     path: "/our-mission",
-    component: lazy(() => import("../pages/Home/OurMission")),
+    component: lazy(() => import("../pages/Home/OurMission.tsx")),
     isPrivate: false,
   },
   {
@@ -132,34 +132,6 @@ const routes = [
     path: "/app",
     component: lazy(() => import("../containers/Layout")),
     isPrivate: true,
-  },
-  {
-    path: "/internal/live/:id",
-    component: lazy(() => import("../pages/Broadcast/Viewer")),
-    exact: true,
-    isPrivate: false,
-    isAdmin: true
-  },
-  {
-    path: "/internal/broadcast",
-    component: lazy(() => import("../pages/Broadcast/SingleSwiss")),
-    exact: true,
-    isPrivate: false,
-    isAdmin: true
-  },
-  {
-    path: "/internal/live",
-    component: lazy(() => import("../pages/Broadcast/Internal")),
-    exact: true,
-    isPrivate: false,
-    isAdmin: true
-  },
-  {
-    path: "/internal/match",
-    component: lazy(() => import("../pages/Broadcast/TeamMatch")),
-    exact: true,
-    isPrivate: false,
-    isAdmin: true
   },
   {
     path: "/broadcast/live",
