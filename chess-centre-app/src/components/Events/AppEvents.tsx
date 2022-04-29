@@ -8,8 +8,8 @@ import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
 import RoundTimesModal from "../Modal/RoundTimesModal";
 import { EventCard, NoEventListed, SkelectonAppEventCard } from "./shared/AppEventCard";
-import PaymentCompleteModal from "../../components/Modal/PaymentCompleteModal";
-import EventDetailsSlideOut from "../../components/SlideOut/EventDetailsSlideOut";
+import PaymentCompleteModal from "../Modal/PaymentCompleteModal";
+import EventDetailsSlideOut from "../SlideOut/EventDetailsSlideOut";
 
 const listEventsActive = /* GraphQL */ `
   query ListEventsActive(
