@@ -152,7 +152,7 @@ export default function AppEvents() {
     });
   };
 
-  const register = async (eventId, confirmSection, confirmByes) => {
+  const register = async (eventId: string, confirmSection, confirmByes) => {
     try {
       const redirectTo = `${window.location.origin}/app/events`;
       const selectedSection = section ? section : confirmSection ? confirmSection : null;

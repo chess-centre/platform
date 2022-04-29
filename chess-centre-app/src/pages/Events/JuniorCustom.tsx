@@ -253,7 +253,7 @@ export default function JuniorCustomEvent() {
                 </p>
                 <h3>Address</h3>
                 <p>Ilkley Grammar School, Armitage Hall, LS29 8TH</p>
-                <p className="text-xs italic text-gray-500 -mt-10">
+                <p className="text-xs italic text-gray-500">
                   Entrance via Springs Lane
                 </p>
                 <div className="max-h-96">
