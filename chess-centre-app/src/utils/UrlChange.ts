@@ -1,4 +1,4 @@
-export const searchQuery = (currentQuery, newQuery) => {
+export const searchQuery = (currentQuery, newQuery: [string, string]) => {
   const params = new URLSearchParams(currentQuery);
   if(newQuery) {
     for(const [key, value] of Object.entries(newQuery)) {
