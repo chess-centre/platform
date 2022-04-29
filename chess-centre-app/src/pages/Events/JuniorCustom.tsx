@@ -62,10 +62,7 @@ export default function JuniorCustomEvent() {
           query: getEvent,
           variables: { id },
           authMode: "AWS_IAM",
-        }).catch((error) => {
-          console.log("Error fetching event.", id);
-          console.log(error.response);
-        });
+        })
         if (response && response.data) {
           const {
             data: {

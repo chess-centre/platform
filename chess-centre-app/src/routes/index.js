@@ -31,7 +31,7 @@ const routes = [
   },
   {
     path: "/our-mission",
-    component: lazy(() => import("../pages/Home/OurMission")),
+    component: lazy(() => import("../pages/Home/OurMission.tsx")),
     isPrivate: false,
   },
   {

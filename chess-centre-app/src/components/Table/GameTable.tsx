@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import QuickSearch from "../../components/FAQs/QuickSearch";
+import QuickSearch from "../FAQs/QuickSearch";
 import Table from "./index";
 import GameViewerModal from "../Modal/GameViewerModal";
 

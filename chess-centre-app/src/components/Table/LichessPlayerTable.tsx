@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import moment from "moment";
 import Table from "./index";
-import ChallengePlayerModal from "../../components/Modal/ChallengePlayerModal";
+import ChallengePlayerModal from "../Modal/ChallengePlayerModal";
 
 export default function LichessPlayersTable({ userId, players, colour, statuses }) {
 

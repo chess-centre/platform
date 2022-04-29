@@ -2,7 +2,7 @@ import React, { useContext, Suspense, useEffect, useState, lazy } from "react";
 import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Navigation/AuthHeader";
-import Main from "../containers/Main";
+import Main from "./Main";
 import ThemedSuspense from "../components/ThemedSuspense";
 import { SidebarContext } from "../context/SidebarContext";
 import { isAdmin } from "../context/Auth";

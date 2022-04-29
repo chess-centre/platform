@@ -4,7 +4,7 @@ import Logo from "../../assets/img/logo.svg";
 import ImageLarge from "../../assets/img/festival-register.jpg";
 import ImageSmall from "../../assets/img/festival-register-small.jpg";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
-import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal.js";
+import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal";
 import ValidateEmail from "../../utils/ValidateEmail";
 import Loading from "../../assets/img/loading.svg";
 import SpecialLoading from "../../assets/img/special-loading.gif";
