@@ -327,7 +327,7 @@ export default function Players() {
       }
 
       if (state.selectedTab.ref === "lichess") {
-        const fetchStatuses = async () => await API.get("lichess", "/statuses");
+        const fetchStatuses = async () => await API.get("lichess", "/statuses", null);
         const lichessStatuses = await fetchStatuses();
         lichessPlayerData(playersList, lichessStatuses);
       }

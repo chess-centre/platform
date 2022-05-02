@@ -2,7 +2,7 @@ import { Auth } from "aws-amplify";
 import React, { useState } from "react";
 import EventSectionSelectionModal from "../Modal/EventSectionSelectModal";
 
-export default function Register(props) {
+export default function Register(props: any) {
   const { register, id, multipleSections, showByes } = props;
   const [isLoadingSignUp, setIsLoadingSignUp] = useState(false);
   const [modelOpen, setModalOpen] = useState(false);
@@ -25,12 +25,12 @@ export default function Register(props) {
     <>
       {multipleSections ?
         <>
-          <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             onClick={() => openSectionSelectionModal(id)}>
             Sign up
           </button>
         </> :
-        <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+        <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           onClick={() => handleRegister(id)}>
           {isLoadingSignUp ? (
             <div className="flex">

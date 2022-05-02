@@ -151,14 +151,14 @@ export function EventCard(props) {
                   <Register id={id} register={register} multipleSections={multipleSections} showByes={showByes} />
                 ) : (
                   <>
-                    <p className="text-sm text-gray-700 mr-2">
+                    <p className="text-sm text-gray-700">
                       {registered && !isLive && !full && (
-                        <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                        <span className="inline-flex items-center px-3 py-1.5 rounded-md border border-yellow-300 text-sm font-medium bg-yellow-100 text-yellow-800">
                           Entered
                         </span>
                       )}
                       {full && !isLive && !registered && (
-                        <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                        <span className="inline-flex items-center px-3 py-1.5 rounded-md border border-yellow-300 text-sm font-medium bg-yellow-100 text-yellow-800">
                           Full
                         </span>
                       )}
@@ -167,7 +167,7 @@ export function EventCard(props) {
                       <Link
                         to="/broadcast/live"
                         className={`inline-flex items-center px-2 2xl:px-2.5 py-1.5 
-                      border border-transparent text-sm font-medium rounded-lg shadow-sm text-white
+                      border border-transparent text-sm font-medium rounded-md shadow-sm text-white
                        bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600`}
                       >
                         <span className="hidden 2xl:flex relative h-2 w-2">

@@ -157,87 +157,91 @@ function EntriesTable(data) {
         </div>
       )}
 
-      <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 sm:mt-2 rounded w-full">
-        <thead className="bg-gray-100 border-b-2 rounded-lg">
-          <tr>
-            <th
-              scope="col"
-              className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
-            >
-              Seed
-            </th>
-            <th
-              scope="col"
-              className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase"
-            >
-              Name
-            </th>
-            <th
-              scope="col"
-              className="hidden sm:block px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
-            >
-              Club
-            </th>
-            <th
-              scope="col"
-              className="relative px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
-            >
-              Rating
-            </th>
-            <th
-              scope="col"
-              className="relative px-1 py-2 text-center text-xs font-medium text-gray-500 uppercase"
-            >
-              Alt
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
-          {tableData()
-            .sort((a, b) => b.rating.sort - a.rating.sort)
-            .filter((row) => {
-              if (eventDetails?.multipleSections) {
-                return row.section.includes(selectedSection);
-              } else {
-                return true;
-              }
-            })
-            .map(({ name, rating, club, id }, key) => {
-              const isEven = key % 2 === 0;
-              return (
-                <tr
-                  key={key}
-                  className={
-                    id === sub ? "bg-yellow-50" : isEven ? "bg-gray-50" : ""
-                  }
-                >
-                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
-                    {key + 1}
-                  </td>
-                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {name}
-                  </td>
-                  <td className="hidden sm:block px-2 pl-4 py-2 whitespace-nowrap text-xs text-gray-600">
-                    {club}
-                  </td>
-                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
-                    {rating.isPartial ? (
-                      <span className="italic text-gray-500 ml-2">
-                        {rating.value}{" "}
-                        <span className="text-orange-500">*</span>
-                      </span>
-                    ) : (
-                      <span>{rating.value}</span>
-                    )}
-                  </td>
-                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
-                    {rating.key}
-                  </td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto mb-4">
+        <table className="table-auto m-auto border border-gray-100 mt-0 sm:mt-2 rounded w-full">
+          <thead className="bg-gray-100 border-b-2 rounded-lg">
+            <tr>
+              <th
+                scope="col"
+                className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+              >
+                Seed
+              </th>
+              <th
+                scope="col"
+                className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase"
+              >
+                Name
+              </th>
+
+              <th
+                scope="col"
+                className="relative px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+              >
+                Rating
+              </th>
+              <th
+                scope="col"
+                className="hidden sm:block px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+              >
+                Club
+              </th>
+              <th
+                scope="col"
+                className="relative px-1 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+              >
+                Alt
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
+            {tableData()
+              .sort((a, b) => b.rating.sort - a.rating.sort)
+              .filter((row) => {
+                if (eventDetails?.multipleSections) {
+                  return row.section.includes(selectedSection);
+                } else {
+                  return true;
+                }
+              })
+              .map(({ name, rating, club, id }, key) => {
+                const isEven = key % 2 === 0;
+                return (
+                  <tr
+                    key={key}
+                    className={
+                      id === sub ? "bg-yellow-50" : isEven ? "bg-gray-50" : ""
+                    }
+                  >
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                      {key + 1}
+                    </td>
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {name}
+                    </td>
+
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                      {rating.isPartial ? (
+                        <span className="italic text-gray-500 ml-2">
+                          {rating.value}{" "}
+                          <span className="text-orange-500">*</span>
+                        </span>
+                      ) : (
+                        <span>{rating.value}</span>
+                      )}
+                    </td>
+                    <td className="hidden sm:block px-2 pl-4 py-2 whitespace-nowrap text-xs text-gray-600">
+                      {club}
+                    </td>
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
+                      {rating.key}
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
       <div className="text-xs text-gray-400 border border-dashed p-4">
         {isBlitz ? (
           <p className="mb-2">
