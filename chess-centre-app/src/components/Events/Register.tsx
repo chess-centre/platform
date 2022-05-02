@@ -1,9 +1,8 @@
 import { Auth } from "aws-amplify";
-import { AnySoaRecord } from "dns";
 import React, { useState } from "react";
 import EventSectionSelectionModal from "../Modal/EventSectionSelectModal";
 
-export default function Register(props: AnySoaRecord) {
+export default function Register(props: any) {
   const { register, id, multipleSections, showByes } = props;
   const [isLoadingSignUp, setIsLoadingSignUp] = useState(false);
   const [modelOpen, setModalOpen] = useState(false);
