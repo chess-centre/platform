@@ -5,7 +5,7 @@ interface SectionType {
 
 export const juniorSections: SectionType[] = [
     { name: "Open", ratingBand: undefined },
-    { name: "Intermediate", ratingBand: "(1450 and below)" },
+    { name: "Intermediate", ratingBand: "(1200 and below)" },
     { name: "Minor", ratingBand: "(1000 and below)" }
 ];
 
