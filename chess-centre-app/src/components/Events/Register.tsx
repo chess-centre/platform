@@ -1,9 +1,10 @@
 import { Auth } from "aws-amplify";
 import React, { useState } from "react";
 import EventSectionSelectionModal from "../Modal/EventSectionSelectModal";
+import { juniorSections, standardSections } from "../../api/sections";
 
 export default function Register(props: any) {
-  const { register, id, multipleSections, showByes } = props;
+  const { register, id, multipleSections, showByes, isJunior } = props;
   const [isLoadingSignUp, setIsLoadingSignUp] = useState(false);
   const [modelOpen, setModalOpen] = useState(false);
   const handleRegister = async (id, section, byes) => {
@@ -20,6 +21,8 @@ export default function Register(props: any) {
   const closeModal = () => {
     setModalOpen(false);
   }
+
+  const sections = isJunior ? juniorSections : standardSections
 
   return (
     <>
@@ -41,7 +44,14 @@ export default function Register(props: any) {
             `Sign up`
           )}
         </button>}
-      <EventSectionSelectionModal showByes={showByes} eventId={id} handleRegister={handleRegister} open={modelOpen} closeModal={closeModal} />
+      <EventSectionSelectionModal 
+        showByes={showByes} 
+        eventId={id} 
+        handleRegister={handleRegister} 
+        open={modelOpen} 
+        closeModal={closeModal} 
+        sections={sections}
+        />
     </>
   );
 }

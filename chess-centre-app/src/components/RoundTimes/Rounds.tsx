@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { rounds } from "../../api/data.roundTimes";
 
 export default function Rounds(props) {
-  const { eventId, eventType, removeStyles, isFull, isLive, showSections } = props;
+  const { eventId, eventType, removeStyles, isFull, isLive, showSections, sections } = props;
   const event = rounds.find(({ type }) => type === eventType);
   const [section, setSection] = useState("open");
 
@@ -78,10 +78,11 @@ export default function Rounds(props) {
                 className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
                 defaultValue="Open"
               >
-                <option>Open</option>
-                <option>Major</option>
-                <option>Intermediate</option>
-                <option>Minor</option>
+                { sections && sections.map(({ name, ratingBand }) => (
+                  <option value={name}>
+                      {name} {ratingBand}
+                  </option>)
+                )}
               </select>
             </div>
           }

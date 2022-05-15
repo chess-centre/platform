@@ -20,6 +20,12 @@ function EntriesTable(data) {
     eventDetails?.name?.includes("Rapidplay") ||
     eventDetails?.name?.includes("IGS");
   const isBlitz = eventDetails?.name?.includes("Blitz");
+  const isJunior = eventDetails?.name?.includes("Junior");
+  const sectionOverrides = isJunior ? [
+    { name: "Open", current: true },
+    { name: "Intermediate", current: false },
+    { name: "Minor", current: false },
+  ]: undefined
 
   const [selectedSection, handleSelectionSelect] = useState("open");
 
@@ -153,7 +159,7 @@ function EntriesTable(data) {
     <div>
       {eventDetails.multipleSections && (
         <div className="my-4">
-          <SectionTabs handleSelectionSelect={handleSelectionSelect} />
+          <SectionTabs handleSelectionSelect={handleSelectionSelect} sectionOverrides={sectionOverrides} />
         </div>
       )}
 
@@ -284,14 +290,16 @@ function EntriesTable(data) {
 }
 
 function SectionTabs(props) {
-  const { handleSelectionSelect } = props;
+  const { handleSelectionSelect, sectionOverrides } = props;
 
-  const [sections, setSections] = useState([
+  const initialSections = sectionOverrides && sectionOverrides.length > 0 ? sectionOverrides : [
     { name: "Open", current: true },
     { name: "Major", current: false },
     { name: "Inter", current: false },
     { name: "Minor", current: false },
-  ]);
+  ];
+
+  const [sections, setSections] = useState(initialSections);
 
   const updateSectionSelected = (section) => {
     setSections((currentState) => {
@@ -325,7 +333,7 @@ function SectionTabs(props) {
                 ? "text-gray-900"
                 : "text-gray-500 hover:text-gray-700",
               tabIdx === 0 ? "rounded-l-lg" : "",
-              tabIdx === section.length - 1 ? "rounded-r-lg" : "",
+              tabIdx === sections.length - 1 ? "rounded-r-lg" : "",
               "group relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-xs font-medium text-center hover:bg-gray-50 focus:z-10 cursor-pointer"
             )}
             aria-current={section.current ? "page" : undefined}
@@ -345,7 +353,7 @@ function SectionTabs(props) {
   );
 }
 
-export default function EventDetailsSlideOut(props) {
+export default function EventDetailsSlideOut(props: any) {
   const { slideState, user, setIsSlideOutOpen } = props;
   const { open, eventDetails } = slideState;
 
