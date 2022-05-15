@@ -7,6 +7,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
 import { prettyLongDate } from "../../utils/DateFormating";
+import { juniorSections } from "../../api/sections";
 import IlkleyGrammar from "../../assets/img/ilkley-grammar.jpg";
 
 const getEvent = /* GraphQL */ `
@@ -136,12 +137,6 @@ export default function JuniorCustomEvent() {
               <h3>Sections</h3>
               <ul>
                 <li>Open</li>
-                <li>
-                  Major{" "}
-                  <span className="text-xs text-gray-500">
-                    (1450 ECF and below)
-                  </span>
-                </li>
                 <li>
                   Intermediate{" "}
                   <span className="text-xs text-gray-500">
@@ -329,6 +324,7 @@ export default function JuniorCustomEvent() {
                 isFull={isFull}
                 isLive={isLive}
                 showSections={true}
+                sections={juniorSections}
               />
               <div className="text-sm text-center mt-6 sm:hidden">
                 <button

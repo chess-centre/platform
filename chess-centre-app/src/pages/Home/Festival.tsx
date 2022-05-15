@@ -5,6 +5,7 @@ import { useEffect, Fragment, useState } from "react";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
+import { standardSections } from "../../api/sections";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
 import EntriesTable from "../../components/EntriesTable/festivalTable";
@@ -572,6 +573,7 @@ const EntryForm = ({ id }) => {
   const [selectedRoundTwo, setSelectedRoundTwo] = useState(false);
   const [selectedRoundThree, setSelectedRoundThree] = useState(false);
   const [selectedRoundFour, setSelectedRoundFour] = useState(false);
+  const sections = standardSections;
 
   const generateUrl = () => {
     const sectionStr = `&section=${section}`;
@@ -601,10 +603,11 @@ const EntryForm = ({ id }) => {
             className="mt-1 block w-full pl-3 pr-10 py-2 text-md border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
             defaultValue="Open"
           >
-            <option>Open</option>
-            <option>Major</option>
-            <option>Intermediate</option>
-            <option>Minor</option>
+            {sections && sections.map(({ name, ratingBand }) => (
+              <option value={name}>
+                {name} {ratingBand}
+              </option>)
+            )}
           </select>
         </div>
       </div>

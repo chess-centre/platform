@@ -93,6 +93,7 @@ export function EventCard(props) {
   } = props;
 
   const showByes = type?.eventType?.includes("festival");
+  const isJunior = name?.includes("Junior");
 
   return (
     <section
@@ -148,7 +149,7 @@ export function EventCard(props) {
             <div className="flex-initial flex-nowrap">
               <div className="text-right">
                 {allowedToRegister ? (
-                  <Register id={id} register={register} multipleSections={multipleSections} showByes={showByes} />
+                  <Register id={id} register={register} multipleSections={multipleSections} showByes={showByes} isJunior={isJunior} />
                 ) : (
                   <>
                     <p className="text-sm text-gray-700">

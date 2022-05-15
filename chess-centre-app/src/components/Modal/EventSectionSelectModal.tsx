@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, ModalBody, ModalFooter } from "@windmill/react-ui";
 
 export default function EventSectionSelectionModal(props) {
-  const { handleRegister, eventId, open, closeModal, showByes } = props;
+  const { handleRegister, eventId, open, closeModal, showByes, sections } = props;
   const [isLoadingSignUp, setIsLoadingSignUp] = useState(false);
   const [section, setSection] = useState("open");
   const [selectedRoundOne, setSelectedRoundOne] = useState(false);
@@ -44,10 +44,11 @@ export default function EventSectionSelectionModal(props) {
               className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
               defaultValue="Open"
             >
-              <option>Open</option>
-              <option>Major</option>
-              <option>Intermediate</option>
-              <option>Minor</option>
+              { sections && sections.map(({ name, ratingBand }) => (
+                  <option value={name}>
+                      {name} {ratingBand}
+                  </option>)
+                )}
             </select>
           </div>
         </div>
@@ -55,7 +56,6 @@ export default function EventSectionSelectionModal(props) {
           <div>
             {" "}
             <div
-              htmlFor="byes"
               className="block text-md text-teal-700 text-center mt-8"
             >
               Half point byes
