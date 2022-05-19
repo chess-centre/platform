@@ -52,6 +52,7 @@ export default function JuniorCustomEvent() {
   const [entryCount, setEntryCount] = useState(0);
   const [isFull, setIsFull] = useState(false);
   const [isLive, setIsLive] = useState(false);
+  const [isClosed, setIsClosed] = useState(false);
 
   useEffect(() => {
     document.title = "The Chess Centre | IGS Junior Event";
@@ -71,6 +72,7 @@ export default function JuniorCustomEvent() {
                 startDate,
                 entryCount,
                 isLive,
+                complete,
                 type: { defaultPrice, maxEntries } = {},
               } = {},
             } = {},
@@ -79,6 +81,7 @@ export default function JuniorCustomEvent() {
           setDefaultPrice(defaultPrice);
           setEntryCount(entryCount);
           setIsFull(entryCount >= maxEntries);
+          setIsClosed(complete);
           setIsLive(isLive);
         }
         setIsLoading(false);
@@ -323,6 +326,7 @@ export default function JuniorCustomEvent() {
                 eventType="junior"
                 isFull={isFull}
                 isLive={isLive}
+                isClosed={isClosed}
                 showSections={true}
                 sections={juniorSections}
               />
