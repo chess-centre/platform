@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { rounds } from "../../api/data.roundTimes";
 
-export default function Rounds(props) {
-  const { eventId, eventType, removeStyles, isFull, isLive, showSections, sections } = props;
+export default function Rounds(props: any) {
+  const { eventId, eventType, removeStyles, isFull, isLive, isClosed, showSections, sections } = props;
   const event = rounds.find(({ type }) => type === eventType);
   const [section, setSection] = useState("open");
 
-  const registerUrl = `/register?eventId=${eventId}${showSections ? "&section=" + section : ""}`
+  const registerUrl = `/register?eventId=${eventId}${showSections ? "&section=" + section : ""}`;
+
+  console.log(`Event status: isLive ${isLive}, isFull ${isFull}, isClosed ${isClosed}`);
 
   return (
     <div
@@ -78,9 +80,9 @@ export default function Rounds(props) {
                 className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
                 defaultValue="Open"
               >
-                { sections && sections.map(({ name, ratingBand }) => (
+                {sections && sections.map(({ name, ratingBand }) => (
                   <option value={name}>
-                      {name} {ratingBand}
+                    {name} {ratingBand}
                   </option>)
                 )}
               </select>
@@ -92,16 +94,23 @@ export default function Rounds(props) {
               Event Full
             </div>
           )}
+
+          {!isFull && isClosed && (
+            <div className="text-sm text-gray-400 text-center bg-gray-100 py-2 rounded-lg">
+              Entries Closed
+            </div>
+          )}
+
           {eventId && !removeStyles && (
             <div className="flex text-base max-w-prose mb-2 mt-2">
-              {isFull && !isLive && (
+              {isFull || isClosed && !isLive && (
                 <div className="mx-auto w-full">
                   <div className="shadow  w-full flex items-center justify-center px-12 py-2 border border-transparent text-base font-medium rounded-md text-white bg-orange-600 ">
                     Closed
                   </div>
                 </div>
               )}
-              {!isFull && !isLive && (
+              {!isFull && !isLive && !isClosed && (
                 <div className="rounded-md shadow mx-auto w-full">
                   <Link
                     to={registerUrl}
