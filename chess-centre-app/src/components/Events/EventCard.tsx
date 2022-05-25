@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { bgColor700 } from "tailwind-dynamic-classes";
+import { juniorSections, standardSections } from "../../api/sections";
 import { classNames } from "../../utils/Classes";
 
 const EventHeader = ({ type, icon, name, description }) => {
@@ -60,7 +61,7 @@ const EventPrice = ({ isLive, isFull, defaultPrice }) => {
   );
 };
 
-const RegisterButton = ({ id, isLive, isFull, showSections, eventType }) => {
+const RegisterButton = ({ id, isLive, isFull, showSections, sections, eventType }) => {
 
   const [section, setSection] = useState("open");
   let registerUrl = `/register?eventId=${id}${showSections ? "&section=" + section : ""}`;
@@ -113,10 +114,11 @@ const RegisterButton = ({ id, isLive, isFull, showSections, eventType }) => {
                 className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
                 defaultValue="Open"
               >
-                <option>Open</option>
-                <option>Major</option>
-                <option>Intermediate</option>
-                <option>Minor</option>
+                { sections && sections.map(({ name, ratingBand }) => (
+                  <option value={name}>
+                      {name} {ratingBand}
+                  </option>)
+                )}
               </select>
             </div>
           }
@@ -148,6 +150,9 @@ export default function EventCard({
   multipleSections
 }) {
 
+  const isJunior = name.includes("Junior");
+  const sections = isJunior ? juniorSections : standardSections
+
   return (
     <div
       className={`relative m-2 rounded-lg shadow-lg divide-y divide-gray-100 max-w-xs bg-white`}
@@ -170,7 +175,14 @@ export default function EventCard({
           isFull={isFull}
           isLive={isLive}
         />
-        <RegisterButton id={id} isFull={isFull} isLive={isLive} eventType={type} showSections={multipleSections} />
+        <RegisterButton 
+          id={id} 
+          isFull={isFull} 
+          isLive={isLive} 
+          eventType={type} 
+          showSections={multipleSections} 
+          sections={sections} 
+        />
       </div>
       <div className="py-4 px-6">
         <h3 className="text-xs font-medium text-teal-700 tracking-wide uppercase">

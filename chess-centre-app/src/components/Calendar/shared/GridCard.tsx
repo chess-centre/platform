@@ -32,7 +32,7 @@ export function GridCard({ event }) {
         )}
       ></div>
       <header>
-        <h3 className="h4 font-red-hat-display mb-1">{event.name}</h3>
+        <h3 className="text-xl font-bold mb-1">{event.name}</h3>
       </header>
       <div className="text-gray-600 flex-grow mb-5">
         <div>

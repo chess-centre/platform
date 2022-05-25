@@ -140,7 +140,7 @@ $ npm start # default port 3000
 
 The front-end app uses `create-react-app` and `tailwindcss`. The backend is entirely serverless using AWS (see Architecture).
 
-- JavaScript
+- JavaScript / TypeScript
 - React
 - Tailwind CSS
 - GraphQL

@@ -7,6 +7,7 @@ import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import RoundTimes from "../../components/RoundTimes/Rounds";
 import { prettyLongDate } from "../../utils/DateFormating";
+import { juniorSections } from "../../api/sections";
 import IlkleyGrammar from "../../assets/img/ilkley-grammar.jpg";
 
 const getEvent = /* GraphQL */ `
@@ -51,6 +52,7 @@ export default function JuniorCustomEvent() {
   const [entryCount, setEntryCount] = useState(0);
   const [isFull, setIsFull] = useState(false);
   const [isLive, setIsLive] = useState(false);
+  const [isClosed, setIsClosed] = useState(false);
 
   useEffect(() => {
     document.title = "The Chess Centre | IGS Junior Event";
@@ -70,6 +72,7 @@ export default function JuniorCustomEvent() {
                 startDate,
                 entryCount,
                 isLive,
+                complete,
                 type: { defaultPrice, maxEntries } = {},
               } = {},
             } = {},
@@ -78,6 +81,7 @@ export default function JuniorCustomEvent() {
           setDefaultPrice(defaultPrice);
           setEntryCount(entryCount);
           setIsFull(entryCount >= maxEntries);
+          setIsClosed(complete);
           setIsLive(isLive);
         }
         setIsLoading(false);
@@ -136,12 +140,6 @@ export default function JuniorCustomEvent() {
               <h3>Sections</h3>
               <ul>
                 <li>Open</li>
-                <li>
-                  Major{" "}
-                  <span className="text-xs text-gray-500">
-                    (1450 ECF and below)
-                  </span>
-                </li>
                 <li>
                   Intermediate{" "}
                   <span className="text-xs text-gray-500">
@@ -328,7 +326,9 @@ export default function JuniorCustomEvent() {
                 eventType="junior"
                 isFull={isFull}
                 isLive={isLive}
+                isClosed={isClosed}
                 showSections={true}
+                sections={juniorSections}
               />
               <div className="text-sm text-center mt-6 sm:hidden">
                 <button
