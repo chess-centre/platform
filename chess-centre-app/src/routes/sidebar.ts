@@ -5,14 +5,19 @@ const routes = [
     name: "Dashboard",
   },
   {
+    path: "/app/calendar",
+    icon: "CalendarIcon",
+    name: "Calendar",
+  },
+  {
     path: "/app/events",
     icon: "GlobeIcon",
     name: "Events",
   },
   {
-    path: "/app/calendar",
-    icon: "CalendarIcon",
-    name: "Calendar",
+    path: "/app/results",
+    icon: "TrophyIcon",
+    name: "Results",
   },
   {
     path: "/app/players",
@@ -23,16 +28,6 @@ const routes = [
     path: "/app/games",
     icon: "PuzzleIcon",
     name: "Games",
-  },
-  {
-    path: "/app/juniors",
-    icon: "AcademicIcon",
-    name: "Juniors",
-  },
-  {
-    path: "/app/gallery",
-    icon: "PhotographIcon",
-    name: "Gallery",
   },
   {
     path: "/app/faqs",
