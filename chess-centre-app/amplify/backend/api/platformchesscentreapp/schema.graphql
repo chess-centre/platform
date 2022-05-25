@@ -1,4 +1,4 @@
-type MailingList @model @auth(rules: [{allow: private}]) {
+type MailingList @model @auth(rules: [{allow: public}]) {
   id: ID!
   email: String!
   enabled: Boolean!

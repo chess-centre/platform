@@ -33,10 +33,6 @@ const routes = [
     component: lazy(() => import("../pages/App/Juniors")),
   },
   {
-    path: "/gallery",
-    component: lazy(() => import("../pages/App/Gallery")),
-  },
-  {
     path: "/faqs",
     component: lazy(() => import("../pages/App/FAQs")),
   },

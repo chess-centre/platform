@@ -90,14 +90,14 @@ export default function Players() {
   const lichessPlayerData = (players, lichessStatuses) => {
     if (players && players.length > 0) {
       const filtered = players
-        .filter((m) => !!m.liChessUsername)
+        .filter((m: any) => !!m.liChessUsername)
         .reduce((players, member, index) => {
           const parsedLichess = member.liChessInfo
             ? JSON.parse(member.liChessInfo)
             : undefined;
 
           const isOnline = lichessStatuses.find(
-            (s) => s.id === member.liChessUsername.toLowerCase()
+            (s: any) => s.id === member.liChessUsername.toLowerCase()
           );
 
           return [
@@ -129,8 +129,8 @@ export default function Players() {
             },
           ];
         }, [])
-        .sort((a, b) => b.lichessBlitz - a.lichessBlitz)
-        .map((player, i) => {
+        .sort((a: any, b: any) => b.lichessBlitz - a.lichessBlitz)
+        .map((player: any, i: number) => {
           player.rank = i + 1;
           return { ...player };
         });
@@ -142,11 +142,11 @@ export default function Players() {
     }
   };
 
-  const chesscomPlayerData = (players) => {
+  const chesscomPlayerData = (players: any) => {
     if (players && players.length > 0) {
       const filtered = players
-        .filter((m) => !!m.chesscomUsername)
-        .reduce((players, member) => {
+        .filter((m: any) => !!m.chesscomUsername)
+        .reduce((players: any, member: any) => {
           const parsedChesscom = member.chesscomInfo
             ? JSON.parse(member.chesscomInfo)
             : undefined;
@@ -181,7 +181,7 @@ export default function Players() {
             },
           ];
         }, [])
-        .sort((a, b) => b.chesscomBlitz - a.chesscomBlitz)
+        .sort((a: any, b: any) => b.chesscomBlitz - a.chesscomBlitz)
         .map((player, i) => {
           player.rank = i + 1;
           return { ...player };
@@ -269,7 +269,6 @@ export default function Players() {
       case "ecf":
         return (
           <ECFPlayerTable
-            userId={user.attributes.sub}
             players={state.ecfPlayers}
             {...{ colour }}
           />
@@ -286,7 +285,6 @@ export default function Players() {
       case "chesscom":
         return (
           <ChesscomPlayerTable
-            userId={user.attributes.sub}
             players={state.chesscomPlayers}
             {...{ colour }}
           />
@@ -294,7 +292,6 @@ export default function Players() {
       default:
         return (
           <ECFPlayerTable
-            userId={user.attributes.sub}
             players={state.ecfPlayers}
             {...{ colour }}
           />
