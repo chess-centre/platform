@@ -15,14 +15,15 @@ export default function Buses({ eventId, eventType }) {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const { departures, name } = await API.post("travel", `/bus/${eventId}`, {
+        const response = await API.post("travel", `/bus/${eventId}`, {
           body: {
             eventStart,
-            eventEnd
-          }
+            eventEnd,
+          },
         });
+        const { departures, name } = JSON.parse(response);
         setTrainInfo(departures);
-        setBusRoadName(name);    
+        setBusRoadName(name);
       } catch (error) {
         setIsError(true);
       }
@@ -34,12 +35,15 @@ export default function Buses({ eventId, eventType }) {
   return (
     <div className="mt-4 p-2 text-sm">
       <h1 className="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-200 text-left">
-         Departures <span className="text-xs text-gray-500">from Ilkley</span> <i className="fad fa-map-signs text-teal-500"></i>
+        Departures <span className="text-xs text-gray-500">from Ilkley</span>{" "}
+        <i className="fad fa-map-signs text-teal-500"></i>
       </h1>
       {busInfo && !isLoading && (
         <div>
           <div className="overflow-auto">
-            <h4 className="text-sm text-gray-500 font-medium ml-1 mb-2">{ busRoadName }</h4>
+            <h4 className="text-sm text-gray-500 font-medium ml-1 mb-2">
+              {busRoadName}
+            </h4>
             <table className="m-auto w-full divide-y divide-gray-200">
               <thead className="bg-gray-50 divide-y divide-gray-200 dark:border-gray-800">
                 <tr>
@@ -74,7 +78,9 @@ export default function Buses({ eventId, eventType }) {
                         {busInfo[buses][0].direction}
                       </td>
                       <td className="px-2 py-2 whitespace-nowrap text-sm text-gray-900">
-                        {busInfo[buses].map(({ aimed }) => aimed.departure.time).join(", ")}
+                        {busInfo[buses]
+                          .map(({ aimed }) => aimed.departure.time)
+                          .join(", ")}
                       </td>
                     </tr>
                   );
@@ -83,15 +89,20 @@ export default function Buses({ eventId, eventType }) {
             </table>
           </div>
           <div className="mt-2 text-center text-xs text-gray-400 italic sm:mr-4">
-            Real-time feed provided by <a href="https://www.transportapi.com/" target="_blank" rel="noreferrer">transportapi.com</a>
+            Real-time feed provided by{" "}
+            <a
+              href="https://www.transportapi.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              transportapi.com
+            </a>
           </div>
         </div>
       )}
 
       {isLoading && (
-        <div
-          className="relative block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center"
-        >
+        <div className="relative block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
           <span>
             <i className="animate-bounce fal fa-bus fa-3x sm:fa-8x text-gray-200"></i>
           </span>
@@ -101,7 +112,7 @@ export default function Buses({ eventId, eventType }) {
         </div>
       )}
 
-{isError && (
+      {isError && (
         <div className="relative block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
           <span>
             <i className="fal fa-bus fa-3x sm:fa-8x text-red-800"></i>

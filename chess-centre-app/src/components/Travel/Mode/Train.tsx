@@ -14,13 +14,14 @@ export default function Trains({ eventId, eventType }) {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const { departures } = await API.post("travel", `/train/${eventId}`, {
+        const response = await API.post("travel", `/train/${eventId}`, {
           body: {
             eventStart,
             eventEnd,
           },
         });
-        setTrainInfo(departures.all.slice(0, 6));
+        const { departures } = JSON.parse(response);
+        setTrainInfo(departures?.all?.slice(0, 6));
       } catch (error) {
         setIsError(true);
       }

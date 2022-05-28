@@ -207,7 +207,7 @@ export default function Calendar() {
     if (data) {
       const availableTypes = data
       .filter(d => {
-        const currentDate = new Date(d.startDate);
+        const currentDate = moment(new Date(d.startDate));
         const cutOffDate = moment().add(2, 'month').endOf('month');
         return currentDate < cutOffDate;
       })
