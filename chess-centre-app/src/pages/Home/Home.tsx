@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { useAuthState } from "../../context/Auth";
 import LandingNav from "../../components/Navigation/LandingNav";
-import ComingEvents from "../../components/Calendar/ComingEvents";
+import Calendar from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
@@ -173,7 +173,7 @@ const Home = () => {
       </div>
       <EmbeddedVideo />
       <FestivalCTA />
-      <ComingEvents />
+      <Calendar />
       <GamesSignUp />
       <FAQs />
       <FindUs />

@@ -9,8 +9,6 @@ export default function Rounds(props: any) {
 
   const registerUrl = `/register?eventId=${eventId}${showSections ? "&section=" + section : ""}`;
 
-  console.log(`Event status: isLive ${isLive}, isFull ${isFull}, isClosed ${isClosed}`);
-
   return (
     <div
       className={removeStyles ? "" : "relative bg-white rounded-lg shadow-lg"}
