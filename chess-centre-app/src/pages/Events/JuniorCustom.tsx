@@ -141,6 +141,12 @@ export default function JuniorCustomEvent() {
               <ul>
                 <li>Open</li>
                 <li>
+                  Major{" "}
+                  <span className="text-xs text-gray-500">
+                    (1450 ECF and below)
+                  </span>
+                </li>
+                <li>
                   Intermediate{" "}
                   <span className="text-xs text-gray-500">
                     (1200 ECF and below)
