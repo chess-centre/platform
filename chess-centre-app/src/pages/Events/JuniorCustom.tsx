@@ -129,12 +129,12 @@ export default function JuniorCustomEvent() {
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">
               The Chess Centre brings to you our{" "}
-              <span className="font-semibold">1st Junior Rapidplay</span> held
+              <span className="font-semibold">2nd Junior Rapidplay</span> held
               at the Ilkley Grammar School.
             </p>
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">
               This event is open to all juniors under the age of 18 as at 1st
-              September 2021.
+              September 2022.
             </p>
             <div className="prose prose-teal text-teal-600 mx-auto lg:max-w-none text-justify">
               <h3>Sections</h3>
@@ -253,7 +253,7 @@ export default function JuniorCustomEvent() {
               <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify my-4">
                 <p className="italic text-xs">
                   Entries will close on the evening of{" "}
-                  <span className="font-semibold">Thursday 19th May</span>
+                  <span className="font-semibold">Thursday 1st September</span>
                 </p>
                 <h3>Address</h3>
                 <p>Ilkley Grammar School, Armitage Hall, LS29 8TH</p>
