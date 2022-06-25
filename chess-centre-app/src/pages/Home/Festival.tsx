@@ -93,10 +93,8 @@ export default function Festival() {
         query: getEvent,
         variables: { id },
         authMode: "AWS_IAM",
-      }).catch((error) => {
-        console.log("Error fetching event.", id);
-        console.log(error.response);
       });
+      
       if (response && response.data) {
         const {
           data: { getEvent: entries },
@@ -485,7 +483,7 @@ const Schedule = ({ event }) => {
                 {event.break && event.break.afterRound === round && (
                   <tr>
                     <td
-                      colSpan="3"
+                      colSpan={3}
                       className="py-2 text-center whitespace-nowrap text-xs font-medium text-gray-400"
                     >
                       Lunch Break
@@ -575,7 +573,7 @@ const EntryForm = ({ id }) => {
   const [selectedRoundFour, setSelectedRoundFour] = useState(false);
   const sections = standardSections;
 
-  const generateUrl = () => {
+  const generateUrl = (): string => {
     const sectionStr = `&section=${section}`;
     const r1 = selectedRoundOne ? "1" : "";
     const r2 = selectedRoundTwo ? "2" : "";
@@ -614,7 +612,6 @@ const EntryForm = ({ id }) => {
 
       <div className="relative mx-auto">
         <div
-          htmlFor="byes"
           className="block text-sm text-gray-800 text-center mt-6 mb-4"
         >
           Half point byes{" "}

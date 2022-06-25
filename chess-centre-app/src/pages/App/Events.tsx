@@ -23,7 +23,7 @@ function Events() {
         {isPaid && (
           <div className="inline-flex align-top top-2">
           <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
-            Premium 
+            Member 
           </span>
           </div>
         )}

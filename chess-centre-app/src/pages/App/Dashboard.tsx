@@ -132,7 +132,7 @@ export default function Dashboard() {
         {isPaid && !isLoading && (
           <div className="inline-flex align-top top-2 ml-2">
             <span className="items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
-              Premium
+              Member
             </span>
           </div>
         )}

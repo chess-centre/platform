@@ -300,4 +300,50 @@ export const rounds = [
       day: "Saturday",
     },
   },
+  {
+    type: "doubles",
+    eventStart: "12:30",
+    eventEnd: "16:30",
+    rounds: [
+      {
+        round: 1,
+        day: "Saturday",
+        time: "13:00 - 13:20",
+      },
+      {
+        round: 2,
+        day: "Saturday",
+        time: "13:30 - 13:50",
+      },
+      {
+        round: 3,
+        day: "Saturday",
+        time: "14:00 - 14:20",
+      },
+      {
+        round: 4,
+        day: "Saturday",
+        time: "14:30 - 14:50",
+      },
+      {
+        round: 5,
+        day: "Saturday",
+        time: "15:00 - 15:20",
+      },
+      {
+        round: 6,
+        day: "Saturday",
+        time: "15:30 - 15:50",
+      },
+      {
+        round: 7,
+        day: "Saturday",
+        time: "16:00 - 16:20",
+      },
+    ],
+    prizeGiving: {
+      time: "16:30",
+      day: "Saturday",
+    },
+  },
 ];

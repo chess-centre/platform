@@ -15,6 +15,8 @@ function setIcon(type) {
       return "fa-chess-knight-alt";
     case "junior":
       return "fa-chess-rook-alt";
+    case "doubles":
+      return "";
     default:
       return "fa-chess-bishop-alt";
   }

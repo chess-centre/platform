@@ -24,8 +24,6 @@ export const getMember = /* GraphQL */ `
       membershipType
       gameInfo
       ratingInfo
-      createdAt
-      updatedAt
       stripeCustomerId
       stripeCurrentPeriodEnd
       stripePriceId
@@ -43,7 +41,35 @@ export const getMember = /* GraphQL */ `
 
 export default function Profile() {
   const { user } = useAuthState();
-  const [member, setMember] = useState({});
+  const [member, setMember] = useState({
+    id: "",
+    about: "",
+    fideId: undefined,
+    ecfId: undefined,
+    username: "",
+    name: "",
+    email: "",
+    ecfRating: undefined,
+    ecfRapid: undefined,
+    ecfMembership: "",
+    estimatedRating: undefined,
+    club: "",
+    gender: "",
+    membershipType: undefined,
+    gameInfo: undefined,
+    ratingInfo: undefined,
+    stripeCustomerId: undefined,
+    stripeCurrentPeriodEnd: undefined,
+    stripePriceId: undefined,
+    stripeProductId: undefined,
+    ecfLastUpdated: undefined,
+    liChessUsernam: undefined,
+    liChessInfo: undefined,
+    lichessLastUpdated: undefined,
+    chesscomUsername: undefined,
+    chesscomInfo: undefined,
+    chesscomLastUpdated: undefined
+  });
   const [customerPortalUrl, setCustomerPortalUrl] = useState();
   const [isLoadingProfile, setIsLoadingProfile] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
@@ -141,7 +167,7 @@ export default function Profile() {
                   {isPaid && (
                     <div className="inline-flex align-top top-2">
                       <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
-                        Premium
+                        Member
                       </span>
                     </div>
                   )}
