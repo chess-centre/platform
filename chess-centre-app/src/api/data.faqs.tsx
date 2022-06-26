@@ -1,4 +1,5 @@
 import React, { Link } from "react-router-dom";
+import moment from "moment";
 const TOPIC = {
   BEGINNERS: "beginners",
   RATING: "rating",
@@ -55,12 +56,14 @@ export const faqData = (type) =>
       type: TYPE.PUBLIC,
     },
     {
-      question: `Do I need to be a member to join an event?`,
+      question: `Do I need to be a member to play in an event?`,
       Answer: () => (
         <span>
-          No. Most of our events will be published to our members first. As we
-          have limited numbers this means some events will likely be full before
-          they are offered to non-members.
+          No. All our events are open for all to join, register your free account to the sign up for any of our published{" "}
+          <Link
+            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            to={`/events`}
+          >events</Link>
         </span>
       ),
       tags: [TOPIC.MEMBERSHIP],
@@ -247,7 +250,7 @@ export const faqData = (type) =>
     },
     {
       question: `How old are "Juniors"?`,
-      Answer: () => <span>Under 16 from September 2021.</span>,
+      Answer: () => <span>Under 16 from September { moment().format("YYYY") }.</span>,
       tags: [TOPIC.JUNIORS],
       type: TYPE.PUBLIC,
     },
