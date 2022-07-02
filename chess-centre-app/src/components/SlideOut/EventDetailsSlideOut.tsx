@@ -23,7 +23,8 @@ function EntriesTable(data) {
   const isJunior = eventDetails?.name?.includes("Junior");
   const sectionOverrides = isJunior ? [
     { name: "Open", current: true },
-    { name: "Intermediate", current: false },
+    { name: "Major", current: false },
+    { name: "Inter", current: false },
     { name: "Minor", current: false },
   ]: undefined
 
