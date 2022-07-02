@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { classNames } from "../../utils/Classes";
 
-export default function EntriesTable(data) {
+export default function EntriesTable(data: any) {
   const { eventDetails } = data;
   const [selectedSection, handleSelectionSelect] = useState("open");
 
@@ -52,7 +52,7 @@ export default function EntriesTable(data) {
      * Returns a clean list of table data which has a pre defined sort integar on the rating object
      */
     if (eventDetails.entries?.items && eventDetails.entries?.items.length > 0) {
-      return eventDetails.entries.items.reduce((list, entry) => {
+      const players = eventDetails.entries.items.reduce((list, entry) => {
         if (entry && entry.member) {
           const rating = getRating(entry.member);
           const row = {
@@ -62,11 +62,13 @@ export default function EntriesTable(data) {
             rating,
             section: entry.section,
             byes: entry.byes,
+            chessTitle: entry.member?.chessTitle
           };
           list.push(row);
         }
         return list;
       }, []);
+      return players;
     } else {
       return [];
     }
@@ -106,6 +108,14 @@ export default function EntriesTable(data) {
             >
               Seed
             </th>
+            {
+              selectedSection === "open" && (<th
+                scope="col"
+                className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+              >
+                Title
+              </th>)
+            }
             <th
               scope="col"
               className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase"
@@ -134,21 +144,28 @@ export default function EntriesTable(data) {
         </thead>
         <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
           {tableData()
-            .sort((a, b) => b.rating.sort - a.rating.sort)
-            .filter((row) => {
+            .sort((a: any, b: any) => b.rating.sort - a.rating.sort)
+            .filter((row: any) => {
               if (eventDetails?.multipleSections) {
                 return row.section.includes(selectedSection);
               } else {
                 return true;
               }
             })
-            .map(({ name, rating, club, byes }, key) => {
+            .map(({ name, chessTitle, rating, club, byes }, key: number) => {
               const isEven = key % 2 === 0;
               return (
                 <tr key={key} className={isEven ? "bg-gray-50" : ""}>
-                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                  <td className="px-2 pl-2 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                     {key + 1}
                   </td>
+                  {
+                    selectedSection === "open" && (
+                      <td className="px-2 pl-2 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                        {chessTitle}
+                      </td>
+                    )
+                  }
                   <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
                     {name}
                   </td>
@@ -177,7 +194,7 @@ export default function EntriesTable(data) {
         initially see "unrated" while we verify your info.
       </p>
       <p className="text-center italic text-xs">
-       <span className="text-orange-500">*</span> Indicates a partial rating and is therefore eligible to enter any
+        <span className="text-orange-500">*</span> Indicates a partial rating and is therefore eligible to enter any
         section until an official full rating is published.
       </p>
     </div>
