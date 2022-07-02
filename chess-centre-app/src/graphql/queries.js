@@ -324,6 +324,7 @@ export const getGame = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -387,6 +388,7 @@ export const getGame = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -474,6 +476,7 @@ export const getGame = /* GraphQL */ `
         ecfRapidPartial
         ecfRatingPartial
         estimatedRating
+        chessTitle
         club
         gender
         membershipType
@@ -522,6 +525,7 @@ export const getGame = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -642,6 +646,7 @@ export const getGame = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -705,6 +710,7 @@ export const getGame = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -792,6 +798,7 @@ export const getGame = /* GraphQL */ `
         ecfRapidPartial
         ecfRatingPartial
         estimatedRating
+        chessTitle
         club
         gender
         membershipType
@@ -840,6 +847,7 @@ export const getGame = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -973,6 +981,7 @@ export const getGame = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -1010,6 +1019,7 @@ export const getGame = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -1104,6 +1114,7 @@ export const getGame = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -1238,6 +1249,7 @@ export const listGames = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -1275,6 +1287,7 @@ export const listGames = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -1327,6 +1340,7 @@ export const listGames = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -1414,6 +1428,7 @@ export const listGames = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -1451,6 +1466,7 @@ export const listGames = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -1503,6 +1519,7 @@ export const listGames = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -1741,6 +1758,7 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -1778,6 +1796,7 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -1830,6 +1849,7 @@ export const listGamesByEvent = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -1917,6 +1937,7 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -1954,6 +1975,7 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -2006,6 +2028,7 @@ export const listGamesByEvent = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -2244,6 +2267,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -2281,6 +2305,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -2333,6 +2358,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -2420,6 +2446,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -2457,6 +2484,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -2509,6 +2537,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -2747,6 +2776,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -2784,6 +2814,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -2836,6 +2867,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -2923,6 +2955,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -2960,6 +2993,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -3012,6 +3046,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -3248,6 +3283,7 @@ export const syncGames = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -3285,6 +3321,7 @@ export const syncGames = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -3337,6 +3374,7 @@ export const syncGames = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -3424,6 +3462,7 @@ export const syncGames = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -3461,6 +3500,7 @@ export const syncGames = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -3513,6 +3553,7 @@ export const syncGames = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -3903,6 +3944,7 @@ export const syncMembers = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -3966,6 +4008,7 @@ export const syncMembers = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -4053,6 +4096,7 @@ export const syncMembers = /* GraphQL */ `
         ecfRapidPartial
         ecfRatingPartial
         estimatedRating
+        chessTitle
         club
         gender
         membershipType
@@ -4101,6 +4145,7 @@ export const syncMembers = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -4240,6 +4285,7 @@ export const getMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -4277,6 +4323,7 @@ export const getMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -4329,6 +4376,7 @@ export const getMember = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -4416,6 +4464,7 @@ export const getMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -4453,6 +4502,7 @@ export const getMember = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -4505,6 +4555,7 @@ export const getMember = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -4655,6 +4706,7 @@ export const getMember = /* GraphQL */ `
       ecfRapidPartial
       ecfRatingPartial
       estimatedRating
+      chessTitle
       club
       gender
       membershipType
@@ -4725,6 +4777,7 @@ export const getMember = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -4889,6 +4942,7 @@ export const listMembers = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -4952,6 +5006,7 @@ export const listMembers = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -5039,6 +5094,7 @@ export const listMembers = /* GraphQL */ `
         ecfRapidPartial
         ecfRatingPartial
         estimatedRating
+        chessTitle
         club
         gender
         membershipType
@@ -5087,6 +5143,7 @@ export const listMembers = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -5249,6 +5306,7 @@ export const getEvent = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -5312,6 +5370,7 @@ export const getEvent = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -5463,6 +5522,7 @@ export const getEvent = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -5640,6 +5700,7 @@ export const listEvents = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -5677,6 +5738,7 @@ export const listEvents = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -5771,6 +5833,7 @@ export const listEvents = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -5926,6 +5989,7 @@ export const listEventsActive = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -5963,6 +6027,7 @@ export const listEventsActive = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -6057,6 +6122,7 @@ export const listEventsActive = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -6208,6 +6274,7 @@ export const syncEvents = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -6245,6 +6312,7 @@ export const syncEvents = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -6339,6 +6407,7 @@ export const syncEvents = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -6477,6 +6546,7 @@ export const getEntry = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -6540,6 +6610,7 @@ export const getEntry = /* GraphQL */ `
             ecfRapidPartial
             ecfRatingPartial
             estimatedRating
+            chessTitle
             club
             gender
             membershipType
@@ -6627,6 +6698,7 @@ export const getEntry = /* GraphQL */ `
         ecfRapidPartial
         ecfRatingPartial
         estimatedRating
+        chessTitle
         club
         gender
         membershipType
@@ -6675,6 +6747,7 @@ export const getEntry = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -6808,6 +6881,7 @@ export const getEntry = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -6845,6 +6919,7 @@ export const getEntry = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -6939,6 +7014,7 @@ export const getEntry = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -7058,6 +7134,7 @@ export const listEntrys = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -7095,6 +7172,7 @@ export const listEntrys = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -7147,6 +7225,7 @@ export const listEntrys = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType
@@ -7368,6 +7447,7 @@ export const syncEntries = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -7405,6 +7485,7 @@ export const syncEntries = /* GraphQL */ `
               ecfRapidPartial
               ecfRatingPartial
               estimatedRating
+              chessTitle
               club
               gender
               membershipType
@@ -7457,6 +7538,7 @@ export const syncEntries = /* GraphQL */ `
           ecfRapidPartial
           ecfRatingPartial
           estimatedRating
+          chessTitle
           club
           gender
           membershipType

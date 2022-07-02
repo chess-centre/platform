@@ -37,7 +37,7 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
-                                "allow": "private",
+                                "allow": "public",
                                 "operations": [
                                     "create",
                                     "update",
@@ -1034,6 +1034,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "chessTitle": {
+                    "name": "chessTitle",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "club": {
                     "name": "club",
                     "isArray": false,
@@ -1283,5 +1290,5 @@ export const schema = {
             }
         }
     },
-    "version": "ff711cc0c64f57540a4989e85d3f3e2a"
+    "version": "897af1ade15de84c517080c440a4ea11"
 };
