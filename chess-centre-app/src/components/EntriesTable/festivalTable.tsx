@@ -99,96 +99,98 @@ export default function EntriesTable(data: any) {
 
       <ul className="my-2 sm:mx-2 text-sm text-teal-700">{getSectionInfo()}</ul>
 
-      <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 rounded w-full">
-        <thead className="bg-gray-100 border-b-2 rounded-lg">
-          <tr>
-            <th
-              scope="col"
-              className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
-            >
-              Seed
-            </th>
-            {
-              selectedSection === "open" && (<th
+      <div className="overflow-x-auto">
+        <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 rounded w-full">
+          <thead className="bg-gray-100 border-b-2 rounded-lg">
+            <tr>
+              <th
                 scope="col"
                 className="px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
               >
-                Title
-              </th>)
-            }
-            <th
-              scope="col"
-              className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase"
-            >
-              Name
-            </th>
-            <th
-              scope="col"
-              className="hidden sm:block px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
-            >
-              Club
-            </th>
-            <th
-              scope="col"
-              className="relative px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
-            >
-              Rating
-            </th>
-            <th
-              scope="col"
-              className="relative px-1 py-2 text-center text-xs font-medium text-gray-500 uppercase"
-            >
-              Byes
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
-          {tableData()
-            .sort((a: any, b: any) => b.rating.sort - a.rating.sort)
-            .filter((row: any) => {
-              if (eventDetails?.multipleSections) {
-                return row.section.includes(selectedSection);
-              } else {
-                return true;
+                Seed
+              </th>
+              {
+                selectedSection === "open" && (<th
+                  scope="col"
+                  className="px-0 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+                >
+                  Title
+                </th>)
               }
-            })
-            .map(({ name, chessTitle, rating, club, byes }, key: number) => {
-              const isEven = key % 2 === 0;
-              return (
-                <tr key={key} className={isEven ? "bg-gray-50" : ""}>
-                  <td className="px-2 pl-2 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
-                    {key + 1}
-                  </td>
-                  {
-                    selectedSection === "open" && (
-                      <td className="px-2 pl-2 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
-                        {chessTitle}
-                      </td>
-                    )
-                  }
-                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {name}
-                  </td>
-                  <td className="hidden sm:block truncate px-2 pl-4 py-2 whitespace-nowrap text-xs text-gray-600">
-                    {club}
-                  </td>
-                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
-                    {rating.isPartial ? (
-                      <span className="italic text-gray-500 ml-2">
-                        {rating.value} <span className="text-orange-500">*</span>
-                      </span>
-                    ) : (
-                      <span>{rating.value}</span>
-                    )}
-                  </td>
-                  <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
-                    {byes ? byes !== "null" && byes?.split("").join(",") : ""}
-                  </td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
+              <th
+                scope="col"
+                className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase"
+              >
+                Name
+              </th>
+              <th
+                scope="col"
+                className="hidden sm:block px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+              >
+                Club
+              </th>
+              <th
+                scope="col"
+                className="relative px-2 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+              >
+                Rating
+              </th>
+              <th
+                scope="col"
+                className="relative px-1 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+              >
+                Byes
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
+            {tableData()
+              .sort((a: any, b: any) => b.rating.sort - a.rating.sort)
+              .filter((row: any) => {
+                if (eventDetails?.multipleSections) {
+                  return row.section.includes(selectedSection);
+                } else {
+                  return true;
+                }
+              })
+              .map(({ name, chessTitle, rating, club, byes }, key: number) => {
+                const isEven = key % 2 === 0;
+                return (
+                  <tr key={key} className={isEven ? "bg-gray-50" : ""}>
+                    <td className="px-2 pl-2 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                      {key + 1}
+                    </td>
+                    {
+                      selectedSection === "open" && (
+                        <td className="px-0 py-2 whitespace-nowrap text-sm font-medium text-teal-900 text-center">
+                          {chessTitle}
+                        </td>
+                      )
+                    }
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {name}
+                    </td>
+                    <td className="hidden sm:block truncate px-2 pl-4 py-2 whitespace-nowrap text-xs text-gray-600">
+                      {club}
+                    </td>
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
+                      {rating.isPartial ? (
+                        <span className="italic text-gray-500 ml-2">
+                          {rating.value} <span className="text-orange-500">*</span>
+                        </span>
+                      ) : (
+                        <span>{rating.value}</span>
+                      )}
+                    </td>
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
+                      {byes ? byes !== "null" && byes?.split("").join(",") : ""}
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
       <p className="text-center italic text-xs text-teal-600">
         Ratings are automatically checked against the ECF database, you may
         initially see "unrated" while we verify your info.
