@@ -300,4 +300,40 @@ export const rounds = [
       day: "Saturday",
     },
   },
+  {
+    type: "festival-blitz",
+    eventStart: "19:30",
+    eventEnd: "22:30",
+    rounds: [
+      {
+        round: 1,
+        day: "Saturday",
+        time: "19:30 - 19:50",
+      },
+      {
+        round: 2,
+        day: "Saturday",
+        time: "20:00 - 20:20",
+      },
+      {
+        round: 3,
+        day: "Saturday",
+        time: "20:30 - 20:50",
+      },
+      {
+        round: 4,
+        day: "Saturday",
+        time: "21:00 - 21:20",
+      },
+      {
+        round: 5,
+        day: "Saturday",
+        time: "21:30 - 21:50",
+      }
+    ],
+    prizeGiving: {
+      time: "22:00",
+      day: "Saturday",
+    },
+  },
 ];

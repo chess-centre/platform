@@ -31,7 +31,7 @@ const routes = [
   },
   {
     path: "/our-mission",
-    component: lazy(() => import("../pages/Home/OurMission.tsx")),
+    component: lazy(() => import("../pages/Home/OurMission")),
     isPrivate: false,
   },
   {
@@ -86,6 +86,11 @@ const routes = [
     component: lazy(() => import("../pages/Home/Festival")),
     exact: true,
     isPrivate: false,
+  },
+  {
+    path: "/events/festival/blitz/:id",
+    component: lazy(() => import("../pages/Events/FestivalBlitz")),
+    isPrivate: false
   },
   {
     path: "/events",
