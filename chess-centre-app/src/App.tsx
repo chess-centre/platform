@@ -14,13 +14,12 @@ if (process.env.NODE_ENV === "production") {
   const trackingId = "UA-194757154-1";
   ReactGA.initialize(trackingId);
 }
-const FESTIVAL_ID = process.env.REACT_APP_FESTIVAL_ID || "8142eecc-cebc-401f-ae7c-ce90be22798c";
+const FESTIVAL_ID = process.env.REACT_APP_FESTIVAL_ID;
+const FESTIVAL_BLITZ_ID = process.env.REACT_APP_FESTIVAL_BLITZ_ID;
+const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY;
 
-const queryClient = new QueryClient();
-const STRIPE_KEY =
-  process.env.REACT_APP_STRIPE_KEY ||
-  "pk_test_51ISWSYHSMP8H4TL9aCSlDl8OLfmuBAfUnkOCCENqvHSYzONYxSyMURq2YhnXVZHoyg8X8S7x3dDE4pfpGs03MeLb00E9DOqtMY";
 const stripePromise = loadStripe(STRIPE_KEY);
+const queryClient = new QueryClient();
 const Page404 = lazy(() => import("./pages/Error/404"));
 
 export default function App() {
@@ -49,6 +48,7 @@ export default function App() {
                     />
                   ))}
                   <Redirect exact from="/festival" to={`/events/festival/${FESTIVAL_ID}`} />
+                  <Redirect exact from="/festival/blitz" to={`/events/festival/blitz/${FESTIVAL_BLITZ_ID}`} />
                   <Route component={Page404} />
                 </Switch>
               </Router>
