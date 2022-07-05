@@ -709,6 +709,13 @@ const EntryForm = ({ id }) => {
         >
           Enter Now
         </Link>
+        <p className="text-xs text-gray-500 text-center">Other Festival events</p>
+        <Link
+          to="/festival/blitz"
+          className="w-full border rounded-md py-1.5 px-8 flex items-center justify-center text-base font-medium text-blue-brand hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
+        >
+          Evening Blitz
+        </Link>
       </div>
     </div>
   );

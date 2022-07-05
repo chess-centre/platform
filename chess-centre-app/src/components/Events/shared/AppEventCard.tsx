@@ -201,7 +201,7 @@ export function EventCard(props) {
             {rounds && (
               <div
                 className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
-                onClick={() => showModal(id, type.eventType)}
+                onClick={() => showModal(id, type.eventType, name || type.name)}
               >
                 <i className="fad fa-flag mr-1"></i>
                 <span className="inline text-teal-700">

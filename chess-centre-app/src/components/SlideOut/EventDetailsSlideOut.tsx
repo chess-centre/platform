@@ -9,7 +9,7 @@ import QuickSearch from "../FAQs/QuickSearch";
 import { prettyDate } from "../../utils/DateFormating";
 import { classNames } from "../../utils/Classes";
 
-function truncate(str, n) {
+function truncate(str: string, n: number) {
   return str.length > n ? str.substr(0, n - 1) + " ..." : str;
 }
 
@@ -290,7 +290,12 @@ function EntriesTable(data) {
   );
 }
 
-function SectionTabs(props) {
+type SectionTabProps = {
+  handleSelectionSelect: Function | undefined,
+  sectionOverrides: Array<any> | undefined
+}
+
+function SectionTabs(props: SectionTabProps) {
   const { handleSelectionSelect, sectionOverrides } = props;
 
   const initialSections = sectionOverrides && sectionOverrides.length > 0 ? sectionOverrides : [
@@ -302,10 +307,10 @@ function SectionTabs(props) {
 
   const [sections, setSections] = useState(initialSections);
 
-  const updateSectionSelected = (section) => {
-    setSections((currentState) => {
+  const updateSectionSelected = (section: string) => {
+    setSections((currentState: any) => {
       return [
-        ...currentState.map((c) => {
+        ...currentState.map((c: any) => {
           return {
             ...c,
             current: section.includes(c.name?.toLowerCase()),
@@ -354,11 +359,17 @@ function SectionTabs(props) {
   );
 }
 
-export default function EventDetailsSlideOut(props: any) {
+type DetailProps = {
+  slideState: any,
+  user: any,
+  setIsSlideOutOpen: Function
+};
+
+export default function EventDetailsSlideOut(props: DetailProps) {
   const { slideState, user, setIsSlideOutOpen } = props;
   const { open, eventDetails } = slideState;
 
-  function selectImage(type) {
+  function selectImage(type: string) {
     if (type?.includes("junior")) {
       return JuniorRapidPlay;
     }
@@ -374,11 +385,11 @@ export default function EventDetailsSlideOut(props: any) {
   }
 
   // TODO: add address information to event details:
-  function addressLookup(name) {
+  function addressLookup(name: string): string {
     if (name?.includes("IGS")) {
       return "Ilkley Grammar School, Armitage Hall, LS29 8TH";
     }
-    if (name?.includes("Festival")) {
+    if (name?.includes("Festival") && !name?.includes("Blitz")) {
       return "King's Hall & Winter Garden, Station Road, Ilkley, LS29 8HB";
     }
     return "Unit 8, Crescent Court, Ilkely, LS29 8DE";

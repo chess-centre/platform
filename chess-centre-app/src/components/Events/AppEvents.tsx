@@ -144,10 +144,11 @@ export default function AppEvents() {
   const closeModal = () => {
     setModalState((s) => ({ ...s, open: false }));
   };
-  const showModal = (eventId, eventType) => {
+  const showModal = (eventId: string, eventType: string, eventName: string): void => {
     setModalState({
       eventId,
       eventType,
+      eventName,
       open: true,
     });
   };
