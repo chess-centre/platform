@@ -3,12 +3,19 @@ import { Modal, ModalBody, ModalFooter } from "@windmill/react-ui";
 import RoundTimes from "../RoundTimes/Rounds";
 
 export default function RoundTimesModal(props) {
-  const { eventId, eventType, open, closeModal } = props;
+  const { eventId, eventType, open, closeModal, eventName } = props;
+
+  let type = eventType;
+
+  // TODO: event types NEED to be refactored
+  if(eventName && eventName.includes("Festival Blitz")) {
+    type = "festival-blitz";
+  }
 
   return (
     <Modal isOpen={open} onClose={closeModal}>
       <ModalBody>
-        <RoundTimes {...{ eventId, eventType }} removeStyles={true} />
+        <RoundTimes eventId={eventId} eventType={type} removeStyles={true} />
       </ModalBody>
       <ModalFooter>
         <button
