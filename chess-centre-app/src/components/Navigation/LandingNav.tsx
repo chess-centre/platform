@@ -38,7 +38,7 @@ const LandingNav = (props) => {
         localStorage.removeItem("token");
       }
     };
-    if (user && user.userConfirmed) {
+    if (user) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
@@ -221,7 +221,7 @@ const LandingNav = (props) => {
                       (current === url
                         ? activeMenuMobile
                         : selectableMenuMobile) +
-                      ` block w-full px-5 py-4 text-center text-sm text-gray-400 hover:text-gray-500
+                      ` block w-full px-5 py-4 text-center text-sm text-teal-600 hover:text-teal-700
                       focus:outline-none focus:bg-gray-100 focus:text-teal-700`
                     }
                     role="menuitem"
@@ -266,9 +266,8 @@ const LandingNav = (props) => {
                   role="menuitem"
                   to="/login"
                 >
-                  <span className="text-gray-900">
-                    <i className="fas fa-chess"></i>{" "}
-                    <span className="text-sm ml-1">Login</span>
+                  <span className="text-gray-900 font-medium font-sans">
+                    <span className="text-sm ml-1">LOGIN</span>
                   </span>
                 </Link>
               )}

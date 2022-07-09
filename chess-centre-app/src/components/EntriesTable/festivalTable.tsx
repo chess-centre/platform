@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { classNames } from "../../utils/Classes";
 
 export default function EntriesTable(data: any) {
