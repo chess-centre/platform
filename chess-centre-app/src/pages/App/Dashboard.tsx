@@ -82,27 +82,60 @@ export const getMember = /* GraphQL */ `
   }
 `;
 
+interface Member {
+  id: string;
+  about?: string | null;
+  fideId?: string | null;
+  ecfId?: string | null;
+  username?: string | null;
+  name?: string | null;
+  email?: string | null;
+  stripeCustomerId?: string | null;
+  stripeCurrentPeriodEnd?: number | null;
+  stripePriceId?: string | null;
+  stripeProductId?: string | null;
+  stripeFriendlyProductName?: string | null;
+  ecfRating?: string | null;
+  ecfRapid?: string | null;
+  ecfMembership?: string | null;
+  ecfRapidPartial?: boolean | null;
+  ecfRatingPartial?: boolean | null;
+  estimatedRating?: string | null;
+  chessTitle?: string | null;
+  club?: string | null;
+  gender?: string | null;
+  membershipType?: string | null;
+  gameInfo?: string | null;
+  ratingInfo?: string | null;
+  liChessUsername?: string | null;
+  liChessInfo?: string | null;
+  chesscomUsername?: string | null;
+  chesscomInfo?: string | null;
+  chesscomLastUpdated?: number | null;
+  lichessLastUpdated?: number | null;
+  ecfLastUpdated?: number | null;
+}
+
 export default function Dashboard() {
   const [isPaid, setIsPaid] = useState(false);
   const { user } = useAuthState();
-  const [member, setMember] = useState();
+  const [member, setMember] = useState<Member>();
   const [isLoading, setIsLoading] = useState(false);
   const [previousEvents, setPreviousEvents] = useState([]);
   const [upcomingEvents, setUpComingEvents] = useState([]);
 
   useEffect(() => {
-
     document.title = "The Chess Centre | Dashboard";
 
     async function fetchMember() {
       setIsLoading(true);
       const {
         data: { getMember: member },
-      } = await API.graphql({
+      } = await API.graphql<any>({
         query: getMember,
-        variables: { id: user.attributes.sub },
+        variables: { id: user?.attributes?.sub },
       });
-      const membershipStatus = await isPaidMember();
+      const membershipStatus = await isPaidMember(undefined);
       setIsPaid(membershipStatus);
       setMember(member);
       if (member?.entries?.items) {
@@ -223,10 +256,13 @@ function EventTable({ upcomingEvents, previousEvents }) {
                 <tbody>
                   {upcomingEvents &&
                     upcomingEvents
-                      .sort(
-                        (a, b) => new Date(a.startDate) - new Date(b.startDate)
-                      )
-                      .map(({ event }, key) => (
+                      .sort((a: any, b: any) => {
+                        return (
+                          (new Date(a.startDate) as any) -
+                          (new Date(b.startDate) as any)
+                        );
+                      })
+                      .map(({ event }, key: number) => (
                         <tr
                           key={key}
                           className={
@@ -239,7 +275,7 @@ function EventTable({ upcomingEvents, previousEvents }) {
                             {event.name || event.type?.name}
                           </td>
                           <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
-                            {prettyDate(event.startDate)}
+                            {prettyDate(event.startDate, undefined)}
                           </td>
                           <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                             {event.rounds || event.type?.rounds}
@@ -300,9 +336,9 @@ function EventTable({ upcomingEvents, previousEvents }) {
                     {previousEvents.length > 0 &&
                       previousEvents
                         .sort(
-                          (a, b) =>
-                            new Date(a.startDate) - new Date(b.startDate)
-                        )
+                          (a: any, b: any) => {
+                            return (new Date(a.startDate) as any) - (new Date(b.startDate) as any)
+                          })
                         .map(({ event }, key) => (
                           <tr
                             key={key}
@@ -316,7 +352,7 @@ function EventTable({ upcomingEvents, previousEvents }) {
                               {event.name || event.type?.name}
                             </td>
                             <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
-                              {prettyDate(event.startDate)}
+                              {prettyDate(event.startDate, undefined)}
                             </td>
                             <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900">
                               {event.type.description}

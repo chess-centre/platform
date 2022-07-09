@@ -104,7 +104,7 @@ const Home = () => {
           <main className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-18 xl:mt-24">
             <div className="text-center">
               <h2 className="-mt-5">
-                <span className="text-gray-900 text-8xl sm:text-9xl">
+                <span className="text-gray-800 text-8xl sm:text-9xl">
                   <i className="fas fa-chess"></i>
                 </span>
               </h2>
@@ -118,7 +118,7 @@ const Home = () => {
               </h2>
 
               <div className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                It's time things changed around here. <span role="img">🚀</span>
+                It's time things changed around here <span role="img">🚀</span>
                 <p className="mt-2 text-teal-500">
                   Visit our dedicated venue in Ilkley
                 </p>
@@ -129,7 +129,7 @@ const Home = () => {
                     to="/register"
                     className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:text-lg md:px-12"
                   >
-                    Join Now
+                    Create Account
                   </Link>
                 </div>
               </div>

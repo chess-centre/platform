@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { GraphQLResult } from "@aws-amplify/api";
 import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
 import QuickSearch from "../../../components/FAQs/QuickSearch";
@@ -41,9 +42,44 @@ export const getMember = /* GraphQL */ `
   }
 `;
 
+interface Member {
+ id: string;
+ about?: string | null;
+ fideId?: string | null;
+ ecfId?: string | null;
+ username?: string | null;
+ name?: string | null;
+ email?: string | null;
+ stripeCustomerId?: string | null;
+ stripeCurrentPeriodEnd?: number | null;
+ stripePriceId?: string | null;
+ stripeProductId?: string | null;
+ stripeFriendlyProductName?: string | null;
+ ecfRating?: string | null;
+ ecfRapid?: string | null;
+ ecfMembership?: string | null;
+ ecfRapidPartial?: boolean | null;
+ ecfRatingPartial?: boolean | null;
+ estimatedRating?: string | null;
+ chessTitle?: string | null;
+ club?: string | null;
+ gender?: string | null;
+ membershipType?: string | null;
+ gameInfo?: string | null;
+ ratingInfo?: string | null;
+ liChessUsername?: string | null;
+ liChessInfo?: string | null;
+ chesscomUsername?: string | null;
+ chesscomInfo?: string | null;
+ chesscomLastUpdated?: number | null;
+ lichessLastUpdated?: number | null;
+ ecfLastUpdated?: number | null;
+}
+
+
 export default function Profile() {
   const { user } = useAuthState();
-  const [member, setMember] = useState({});
+  const [member, setMember] = useState<Member>();
   const [customerPortalUrl, setCustomerPortalUrl] = useState();
   const [isLoadingProfile, setIsLoadingProfile] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
@@ -89,11 +125,13 @@ export default function Profile() {
     const getMemberInfo = async () => {
       const {
         data: { getMember: member },
-      } = await API.graphql({
+      } = await API.graphql<any>({
         query: getMember,
         authMode: "AWS_IAM",
         variables: { id: user.username },
       });
+
+      
 
       setMember(member);
 
@@ -180,8 +218,8 @@ export default function Profile() {
       </aside>
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
         <AccountProfile
-          name={member.name}
-          expires={member.stripeCurrentPeriodEnd}
+          name={member?.name}
+          expires={member?.stripeCurrentPeriodEnd}
         />
         <ChessProfile {...member} isLoading={isLoadingProfile} />
         <IntegrationProfile {...member} isLoading={isLoadingProfile} />
