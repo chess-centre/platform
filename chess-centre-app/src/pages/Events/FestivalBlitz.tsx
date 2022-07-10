@@ -178,7 +178,7 @@ export default function FestivalBlitzEvent() {
                   </div>
                 </div>
               )}
-              <VenueInfo />
+              <VenueInfo openingTime="7:00pm Saturday Evening" />
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <button
                   className="text-teal-600 hover:text-teal-500"
