@@ -2,7 +2,7 @@ import { Auth } from "aws-amplify";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Logo from "../../assets/img/logo.svg";
-import { useAuthState, useAuthDispatch, logout } from "../../context/Auth";
+import { useAuthDispatch, logout } from "../../context/Auth";
 import LogoWithName from "../../assets/img/logo-light-theme.png";
 
 const headings = [
@@ -11,11 +11,10 @@ const headings = [
   { url: "our-mission", title: "Our Mission" },
 ];
 
-const LandingNav = (props) => {
+const LandingNav = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { current } = props;
   const history = useHistory();
-  const { user } = useAuthState();
   const dispatch = useAuthDispatch();
   const [isExpanded, toggleExpansion] = React.useState(true);
   const activeMenu = "text-orange-brand";
@@ -32,19 +31,22 @@ const LandingNav = (props) => {
   useEffect(() => {
     const getCurrentUser = async () => {
       try {
-        await Auth.currentAuthenticatedUser();
+        const user = await Auth.currentAuthenticatedUser();
+        if(user) {
+          if (user) {
+            setIsLoggedIn(true);
+          } else {
+            setIsLoggedIn(false);
+            localStorage.removeItem("currentUser");
+            localStorage.removeItem("token");
+          }
+        }
       } catch (error) {
         localStorage.removeItem("currentUser");
         localStorage.removeItem("token");
       }
     };
-    if (user) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-      localStorage.removeItem("currentUser");
-      localStorage.removeItem("token");
-    }
+
     getCurrentUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
