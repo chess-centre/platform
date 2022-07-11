@@ -15,7 +15,7 @@ const Refreshments = () => {
   );
 };
 
-const Facilities = () => {
+const Facilities = ({ openingTime = "9:30am Saturday Morning" }) => {
   return (
     <div className="mt-2 prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
       <h3>Facilities</h3>
@@ -26,18 +26,21 @@ const Facilities = () => {
         specific requests or enquiries.
       </p>
       <p className="prose prose-teal text-gray-500">
-        Our venue will be open from <span className="font-medium">9:30 am</span>{" "}
-        Saturday morning to welcome you all.
+        Our venue will be open from <span className="font-medium">{ openingTime }</span>{" "} to welcome you all.
       </p>
     </div>
   );
 };
 
-export default function VenueInfo() {
+interface VenueInfoProps {
+  openingTime?: string | undefined
+}
+
+export default function VenueInfo(props: VenueInfoProps) {
   return (
     <>
       <Refreshments />
-      <Facilities />
+      <Facilities openingTime={props.openingTime} />
     </>
   )
 }
