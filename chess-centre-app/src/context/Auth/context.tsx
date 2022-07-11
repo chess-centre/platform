@@ -1,22 +1,9 @@
 import React, { useReducer } from "react";
 import { initialState, AuthReducer } from "./reducer";
 
-interface User {
-  user: UserProps
-}
 
-interface UserProps {
-  username: string | null
-  attributes: AttributeProps | null
-  userConfirmed: boolean | null
-}
 
-interface AttributeProps {
-  sub: string | null
-
-}
-
-const AuthStateContext = React.createContext<User>({ user: { username: "", attributes: null, userConfirmed: false }});
+const AuthStateContext = React.createContext({ user: undefined });
 const AuthDispatchContext = React.createContext({});
 
 export function useAuthState() {
