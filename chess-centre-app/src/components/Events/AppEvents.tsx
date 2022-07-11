@@ -185,6 +185,7 @@ export default function AppEvents() {
           autoDismiss: true,
         }
       );
+      console.log("error", error);
     }
   };
 
