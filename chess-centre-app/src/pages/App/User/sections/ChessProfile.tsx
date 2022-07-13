@@ -56,8 +56,8 @@ export default function ChessProfile(props) {
 
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
-                    className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
+                    className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+                    focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
                     disabled
                     defaultValue={ecfId}
                     type="text"
@@ -72,8 +72,8 @@ export default function ChessProfile(props) {
                   <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     <div className="flex">Standard</div>
                     <input
-                      className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
+                      className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
                       disabled
                       defaultValue={ecfRating}
                       type="text"
@@ -84,8 +84,8 @@ export default function ChessProfile(props) {
                   <div className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     <div className="flex">Rapidplay</div>
                     <input
-                      className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
+                      className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
                       disabled
                       defaultValue={ecfRapid}
                       type="text"
@@ -115,8 +115,8 @@ export default function ChessProfile(props) {
                 </label>
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
-                    className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
-                focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-60`}
+                    className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+                    focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
                     disabled
                     defaultValue={fideId}
                     type="text"
@@ -145,10 +145,9 @@ export default function ChessProfile(props) {
           )}
         </div>
 
-        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-right text-xs sm:text-sm sm:px-6 border-t border-gray-50 dark:border-gray-700 italic">
+        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-center sm:text-right text-xs sm:text-sm sm:px-6 border-t border-gray-50 dark:border-gray-700 italic">
           <span>
-            These fields will be automatically populated once you have an
-            official rating with the{" "}
+            These fields are automatically populated, our schedule runs daily to check against the{" "}
             <span className="block sm:hidden"></span>
             <a
               className="text-teal-600 hover:text-teal-500 text-"
@@ -156,8 +155,9 @@ export default function ChessProfile(props) {
               target="_blank"
               rel="noreferrer"
             >
-              English Chess Federation.
+              English Chess Federation
             </a>
+            {" "} rating database.
           </span>
         </div>
       </div>

@@ -158,7 +158,7 @@ export default function GamesView() {
   const [isErrorGame, setIsErrorGame] = useState(false);
   const [games, setGames] = useState([]);
   const [currentUser, setCurrentUser] = useState(true);
-  const [currentUserInfo, setCurrentUserInfo] = useState("");
+  const [currentUserInfo, setCurrentUserInfo] = useState({});
   const [playerId, setPlayerId] = useState(memberId);
   const [playerName, setPlayerName] = useState("");
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -211,7 +211,7 @@ export default function GamesView() {
     return items;
   };
 
-  const fetchAllGames = async (id) => {
+  const fetchAllGames = async (id: string) => {
     setIsLoadingGames(true);
 
     const [whiteGames, blackGames] = await Promise.all([
@@ -286,9 +286,9 @@ export default function GamesView() {
         </div>
       </div>
 
-      <div className="mt-2 max-w-3xl mx-auto grid grid-cols-1 gap-4 lg:max-w-full lg:grid-flow-col-dense xl:grid-cols-3">
-        <section className="lg:col-span-2 order-2 lg:order-2">
-          <dl className="grid grid-cols-1">
+      <div className="mt-2 max-w-3xl mx-auto grid grid-cols-1 gap-4 md:max-w-full xl:grid-cols-3">
+        <section className="sm:col-span-2 order-2">
+          <div className="grid grid-cols-1">
             {!isLoading && !isLoadingGames && !error && !isErrorGame && (
               <div>
                 {games && games.length > 0 ? (
@@ -349,7 +349,6 @@ export default function GamesView() {
                 </p>
               </div>
             )}
-
             {(error || isErrorGame) && (
               <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                 <span>
@@ -361,9 +360,9 @@ export default function GamesView() {
                 </p>
               </div>
             )}
-          </dl>
+          </div>
         </section>
-        <section className="col-span-1 order-1 lg:order-1 mt-5">
+        <section className="col-span-1 order-1 mt-5">
           {!isLoading && !isLoadingGames && !error && !isErrorGame && (
             <>
               {games && games.length > 0 ? (

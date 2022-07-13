@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { bgColor700 } from "tailwind-dynamic-classes";
+import { bgColor700, bgColor600 } from "tailwind-dynamic-classes";
 import Register from "../Register";
 import { prettyDate } from "../../../utils/DateFormating";
 import { classNames } from "../../../utils/Classes";
@@ -102,21 +102,21 @@ export function EventCard(props) {
     >
       <div
         className={classNames(
-          type.color === "blue" ? "bg-blue-brand" : bgColor700[type.color],
+          type.color === "blue" ? "bg-blue-brand" : bgColor600[type.color],
           "absolute left-0 z-10 inset-y-0 py-1 px-1.5 text-xs rounded-l-lg"
         )}
       ></div>
       <div
         className={classNames(
-          "bg-gray-200",
-          "absolute left-3 z-10 inset-y-0 py-1 px-0.5 border-l text-xs"
+          type.color === "blue" ? "bg-black" : bgColor700[type.color],
+          "absolute left-3 z-10 inset-y-0 py-1 px-0.5 text-xs"
         )}
       ></div>
       <div className="bg-white dark:bg-gray-800 pt-4 shadow rounded-lg overflow-hidden h-full">
         <div className="pl-9 pr-4 sm:pl-9 space-y-2 pb-2">
           <div className="grid grid-cols-3">
             <div className="col-span-2">
-              <h2 className="text-lg leading-6 font-medium text-gray-900 dark:text-white mb-1">
+              <h2 className="text-lg sm:text-xl leading-6 font-medium text-gray-900 dark:text-white mb-1">
                 {name || type.name}{" "}
                 {eventId === id && (
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
@@ -124,28 +124,25 @@ export function EventCard(props) {
                   </span>
                 )}
               </h2>
-              <p className="text-sm text-gray-700 dark:text-gray-500">
-                Entries:{" "}
+              <p className="text-sm text-gray-700">
+                <span className="font-medium text-gray-900">Entries:{" "}</span>
                 {`${entryCount || 0}  / ${maxEntries || type.maxEntries
                   }`}
               </p>
               {type.defaultPrice && !registered && !full ? (
-                <p className="text-sm text-gray-700 mr-2">
-                  <span className="inline">
-                    Entry Fee: £{type.defaultPrice}
-                  </span>{" "}
+                <p className="text-sm text-gray-700 mr-2 inline">
+                    <span className="font-medium text-gray-900">Entry Fee:</span> £{type.defaultPrice}
                 </p>
               ) : (
-                <p className="text-sm text-gray-700 mr-2">
-                  <span className="inline">
-                    Entry Fee:{" "}
-                    <span className="text-teal-500 text-xs">
+                <p className="text-sm text-gray-900 mr-2 inline font-medium">
+                   Entry Fee:{" "}
+                    <span className="text-teal-500 text-xs font-normal">
                       {registered ? "PAID" : full ? "Closed" : ""}
                     </span>
-                  </span>{" "}
                 </p>
               )}
             </div>
+            {/* SIGN UP button */ }
             <div className="flex-initial flex-nowrap">
               <div className="text-right">
                 {allowedToRegister ? (
@@ -183,16 +180,15 @@ export function EventCard(props) {
               </div>
             </div>
             <div className="col-span-3">
-              <p className="text-sm text-gray-700 mr-2">
-                <span className="inline">
+              <p className="text-sm text-gray-600 mr-2 inline">
                   {description || type.description}
-                </span>{" "}
               </p>
             </div>
           </div>
+          <div className="border-b-2"></div>
           { /* icon information */}
           <div className="sm:flex sm:flex-wrap">
-            <div className="sm:inline text-xs text-gray-900-700 mr-2 mb-2">
+            <div className="sm:inline text-sm text-gray-900-700 mr-2 mb-2">
               <i className="fad fa-calendar-alt mr-1"></i>
               <span className="text-teal-700">
                 {prettyDate(startDate, endDate)}
@@ -200,7 +196,7 @@ export function EventCard(props) {
             </div>
             {rounds && (
               <div
-                className="sm:inline text-xs text-gray-900 cursor-pointer mr-2 mb-2"
+                className="sm:inline text-sm text-gray-900 cursor-pointer mr-2 mb-2"
                 onClick={() => showModal(id, type.eventType, name || type.name)}
               >
                 <i className="fad fa-flag mr-1"></i>
@@ -210,7 +206,7 @@ export function EventCard(props) {
               </div>
             )}
             <div
-              className="sm:inline  text-xs text-gray-900 cursor-pointer mr-2 mb-2"
+              className="sm:inline  text-sm text-gray-900 cursor-pointer mr-2 mb-2"
               onClick={() =>
                 setIsSlideOutOpen({
                   open: true,
