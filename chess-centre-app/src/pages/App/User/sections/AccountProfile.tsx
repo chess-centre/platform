@@ -55,8 +55,8 @@ export default function AccountProfile(props) {
               First name
             </label>
             <input
-              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3  text-gray-700 sm:text-gray-500 cursor-not-allowed
-                focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-70`}
+              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+              focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
               disabled
               value={user.given_name}
               type="text"
@@ -81,7 +81,7 @@ export default function AccountProfile(props) {
               id={LAST_NAME}
               autoComplete="off"
               className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-              focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-701`}
+              focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
             />
           </div>
 
@@ -99,8 +99,8 @@ export default function AccountProfile(props) {
               name={EMAIL_ADDRESS}
               id={EMAIL_ADDRESS}
               autoComplete="off"
-              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500  cursor-not-allowed
-              focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-70`}
+              className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
+              focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
             />
           </div>
           {user.email_verified && (
@@ -143,7 +143,7 @@ export default function AccountProfile(props) {
                     id="renewal"
                     autoComplete="off"
                     className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-                          focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800 disabled:opacity-701`}
+                          focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
                   />
                 </div>
               </div>
@@ -171,8 +171,7 @@ export default function AccountProfile(props) {
           )}
         </div>
       </div>
-      <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-xs sm:text-sm sm:px-6 border-t border-gray-50 dark:border-gray-700 italic">
-        <div className="text-right">
+      <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-center sm:text-right text-xs sm:text-sm sm:px-6 border-t border-gray-50 dark:border-gray-700 italic">
           Need to update these details?{" "}
           <a
             className="text-teal-600 hover:text-teal-500"
@@ -180,7 +179,6 @@ export default function AccountProfile(props) {
           >
             support@chesscentre.online
           </a>
-        </div>
       </div>
     </div>
   );
