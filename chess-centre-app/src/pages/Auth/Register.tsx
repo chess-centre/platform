@@ -273,15 +273,15 @@ function Register(props) {
                 />
               </div>
 
-              <div className="mt-4" check>
+              <div className="mt-4">
                 <input
                   type="checkbox"
                   checked={isChecked}
                   disabled={loading}
-                  className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                  className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded cursor-pointer"
                   onChange={(e) => setPrivacyPolicyStatus(e.target.checked)}
                 />
-                <span className="ml-2 text-xs">
+                <span className="ml-2 text-xs inline">
                   I agree to the <PrivacyPolicyModal />
                 </span>
               </div>

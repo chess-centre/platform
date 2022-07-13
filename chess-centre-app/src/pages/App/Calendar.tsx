@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Calendar from "../../components/Calendar/LeanCalendar";
 
 export default function AppCalendar() {
@@ -16,11 +16,11 @@ export default function AppCalendar() {
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">
           <p className="text-sm text-left text-gray-500 dark:text-gray-300">
-            Events happening in our club in the coming weeks.
+            Events happening in our club in the coming weeks
           </p>
         </div>
       </div>
-      <div className="mb-6">
+      <div className="mb-6 -ml-1">
         <Calendar />
       </div>
       

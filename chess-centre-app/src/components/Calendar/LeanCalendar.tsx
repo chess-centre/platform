@@ -201,7 +201,7 @@ export default function Calendar() {
   }, [data]);
 
   return (
-    <div className="mx-auto sm:max-w-none mt-6">
+    <div className="mx-auto sm:max-w-none mt-6 mb-10">
       <div className="mx-auto text-center">
         <div className="relative flex mb-5 mt-2">
           <div className="ml-1 z-0 top-6 inline-flex m-auto">

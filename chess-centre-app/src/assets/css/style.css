@@ -10,5 +10,6 @@
 }
 
 ::selection {
-    background-color: rgba(255, 132, 39, 0.1) !important;
+    background-color: rgb(240,128,43) !important;
+    color: white;
 }

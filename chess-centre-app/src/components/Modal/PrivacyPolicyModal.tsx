@@ -21,7 +21,7 @@ function PrivacyPolicyModal() {
   }
   return (
     <>
-      <span onClick={openModal} className="underline">
+      <span onClick={openModal} className="underline cursor-pointer">
         privacy policy
       </span>
       <Modal isOpen={isModalOpen} onClose={() => closeModal(false)}>
