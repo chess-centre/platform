@@ -70,8 +70,8 @@ export async function signUpUser(
       password,
       attributes: {
         email,
-        given_name: firstName,
-        family_name: surname,
+        given_name: firstName.trim(),
+        family_name: surname.trim(),
       },
     });
 
