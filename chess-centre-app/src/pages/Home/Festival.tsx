@@ -423,9 +423,6 @@ export default function Festival() {
                       <li>
                         <span className="font-bold text-teal-600">
                           Anti-Cheating{" "}
-                          <span className="text-red-600 font-medium text-sm">
-                            (TBC)
-                          </span>
                         </span>
                         <p>
                           We are working with an official FIDE registered
