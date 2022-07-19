@@ -156,7 +156,7 @@ export default function EntriesTable(data: any) {
               .map(({ name, chessTitle, rating, club, byes }, key: number) => {
                 const isEven = key % 2 === 0;
                 return (
-                  <tr key={key} className={isEven ? "bg-gray-50" : ""}>
+                  <tr key={key} className={classNames(isEven ? "bg-gray-50" : "", "hover:bg-yellow-50")}>
                     <td className="px-2 pl-2 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                       {key + 1}
                     </td>
@@ -245,7 +245,7 @@ function SectionTabs(props) {
                 ? "text-gray-900"
                 : "text-gray-500 hover:text-gray-700",
               tabIdx === 0 ? "rounded-l-lg" : "",
-              tabIdx === section.length - 1 ? "rounded-r-lg" : "",
+              tabIdx === sections.length - 1 ? "rounded-r-lg" : "",
               "group relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-xs font-medium text-center hover:bg-gray-50 focus:z-10 cursor-pointer"
             )}
             aria-current={section.current ? "page" : undefined}
