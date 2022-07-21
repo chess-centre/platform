@@ -122,6 +122,10 @@
         "getEvents": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
           "s3Key": "amplify-builds/getEvents-64567053305934516c4d-build.zip"
+        },
+        "ecfRatingUpdater": {
+          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
+          "s3Key": "amplify-builds/ecfRatingUpdater-304b2b526c5a5963636c-build.zip"
         }
       }
     }
