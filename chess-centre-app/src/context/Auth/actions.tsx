@@ -105,9 +105,9 @@ export async function resendActivationCode(email) {
 export async function logout(dispatch) {
   await Auth.signOut();
   await DataStore.clear();
-  dispatch({ type: "LOGOUT" });
   localStorage.removeItem("currentUser");
   localStorage.removeItem("token");
+  dispatch({ type: "LOGOUT" });
 }
 
 export async function subscribe(dispatch, plan, stripe) {
