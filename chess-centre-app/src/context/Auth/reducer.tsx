@@ -14,8 +14,8 @@ let token = (() => {
 })();
 
 export const initialState = {
-  user: user || "",
-  token: token || "",
+  user: user || null,
+  token: token || null,
   loading: false,
   errorMessage: null,
 };
@@ -56,6 +56,8 @@ export const AuthReducer = (initialState, action) => {
       return {
         ...initialState,
         loading: false,
+        user: null,
+        token: null,
         errorMessage: action.error,
       };
     case "SIGNUP_SUCCESS":
@@ -70,13 +72,15 @@ export const AuthReducer = (initialState, action) => {
       return {
         ...initialState,
         loading: false,
+        user: null,
+        token: null,
         errorMessage: action.error,
       };
     case "LOGOUT":
       return {
         ...initialState,
-        user: "",
-        token: "",
+        user: null,
+        token: null,
         errorMessage: null,
       };
     case "CONFIRM_EMAIL_PENDING":
