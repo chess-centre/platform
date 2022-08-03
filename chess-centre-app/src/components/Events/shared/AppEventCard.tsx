@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { bgColor700, bgColor600 } from "tailwind-dynamic-classes";
 import Register from "../Register";
 import { prettyDate } from "../../../utils/DateFormating";
@@ -67,8 +67,32 @@ export function NoEventListed() {
   </div>)
 }
 
-export function EventCard(props) {
+interface EventCardProps {
+  id: string;
+  eventId: string;
+  name: string;
+  description: string;
+  entries: any;
+  type: any;
+  startDate: string;
+  endDate: string;
+  time: string;
+  allowedToRegister: boolean;
+  full: boolean;
+  isLive: boolean;
+  multipleSections: boolean; 
+  registered: boolean;
+  maxEntries: number;
+  entryCount: number;
+  rounds: number;
+  register: Function;
+  showModal: Function;
+  setIsSlideOutOpen: Function;
+}
 
+export function EventCard(props: EventCardProps) {
+
+  const history = useHistory()
   const {
     id,
     eventId,
@@ -94,6 +118,8 @@ export function EventCard(props) {
 
   const showByes = type?.eventType?.includes("festival");
   const isJunior = name?.includes("Junior");
+
+  const goToEventInfo = id => history.push(`/app/events/${id}`)
 
   return (
     <section
@@ -207,26 +233,27 @@ export function EventCard(props) {
             )}
             <div
               className="sm:inline  text-sm text-gray-900 cursor-pointer mr-2 mb-2"
-              onClick={() =>
-                setIsSlideOutOpen({
-                  open: true,
-                  eventDetails: {
-                    id,
-                    name,
-                    description,
-                    entries,
-                    type,
-                    startDate,
-                    endDate,
-                    time,
-                    allowedToRegister,
-                    maxEntries,
-                    entryCount,
-                    rounds,
-                    multipleSections
-                  },
-                })
-              }
+              // onClick={() =>
+              //   setIsSlideOutOpen({
+              //     open: true,
+              //     eventDetails: {
+              //       id,
+              //       name,
+              //       description,
+              //       entries,
+              //       type,
+              //       startDate,
+              //       endDate,
+              //       time,
+              //       allowedToRegister,
+              //       maxEntries,
+              //       entryCount,
+              //       rounds,
+              //       multipleSections
+              //     },
+              //   })
+              // }
+              onClick={() => goToEventInfo(id)}
             >
               {entryCount > 0 ?
                 <>

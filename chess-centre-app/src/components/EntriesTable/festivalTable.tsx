@@ -5,6 +5,8 @@ export default function EntriesTable(data: any) {
   const { eventDetails } = data;
   const [selectedSection, handleSelectionSelect] = useState("open");
 
+  console.log(eventDetails);
+
   const tableData = () => {
     /**
      * Calculates which rating should be listed dependant upon the data we have on a player.

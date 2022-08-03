@@ -145,7 +145,7 @@ export async function isAdmin() {
   return false;
 }
 
-export async function isPaidMember(existing: any) {
+export async function isPaidMember(existing: any | undefined) {
   const getGroups = (user: any) => {
     return user.signInUserSession.idToken.payload["cognito:groups"];
   };
