@@ -2,7 +2,6 @@ import API from "@aws-amplify/api";
 import { useQuery } from "react-query";
 import { useAuthState } from "./Auth";
 
-
 const listEventsActive = /* GraphQL */ `
   query ListEventsActive(
     $active: String
@@ -86,7 +85,7 @@ export function useEvents(eventId: string | undefined) {
 
   function alreadyRegistered(event) {
     return !!event.entries.items.find(
-      (e) => e.memberId === user?.attributes?.sub
+      (e: any) => e.memberId === user?.attributes?.sub
     );
   }
   function isFull(event) {
@@ -105,8 +104,8 @@ export function useEvents(eventId: string | undefined) {
 
     const sorted = events
       // TODO: move to graphQL query:
-      .filter((e) => !!e.type.canRegister)
-      .sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+      .filter((e: any) => !!e.type.canRegister)
+      .sort((a: any, b: any) => new Date(a.startDate) - new Date(b.startDate));
 
     const eventList = sorted.map((event) => ({
       ...event,
@@ -116,12 +115,11 @@ export function useEvents(eventId: string | undefined) {
       registered: alreadyRegistered(event),
     }));
 
-    if(eventId) {
-        return eventList.filter(({ id }) => id === eventId);
+    if (eventId) {
+      console.log("eventList", eventList.filter(({ id }) => id === eventId))
+      return eventList.filter(({ id }) => id === eventId);
     } else {
-        return eventList;
+      return eventList;
     }
-
-
   });
 }

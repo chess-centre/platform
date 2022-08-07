@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: "/events/:eventId",
-    component: lazy(() => import("../pages/App/EventInfo")),
+    component: lazy(() => import("../pages/App/EventDetails")),
   },
   {
     path: "/events",

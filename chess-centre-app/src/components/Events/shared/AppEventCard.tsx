@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { bgColor700, bgColor600 } from "tailwind-dynamic-classes";
 import Register from "../Register";
@@ -124,12 +125,12 @@ export function EventCard(props: EventCardProps) {
   return (
     <section
       key={eventId}
-      className="relative sm:mr-3 mb-3 rounded-lg border shadow-2xl"
+      className="relative sm:mr-3 mb-3 rounded-md border shadow-lg"
     >
       <div
         className={classNames(
           type.color === "blue" ? "bg-blue-brand" : bgColor600[type.color],
-          "absolute left-0 z-10 inset-y-0 py-1 px-1.5 text-xs rounded-l-lg"
+          "absolute left-0 z-10 inset-y-0 py-1 px-1.5 text-xs rounded-l-md"
         )}
       ></div>
       <div
@@ -190,15 +191,14 @@ export function EventCard(props: EventCardProps) {
                     {isLive && (
                       <Link
                         to="/broadcast/live"
-                        className={`inline-flex items-center px-2 2xl:px-2.5 py-1.5 
-                      border border-transparent text-sm font-medium rounded-md shadow-sm text-white
-                       bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600`}
+                        className={`inline-flex items-center px-2 py-1.5  text-sm font-medium rounded-md text-white
+                       bg-pink-700 hover:bg-pink-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-600`}
                       >
-                        <span className="hidden 2xl:flex relative h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-65"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
+                        <span className="flex relative h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-65"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                         </span>
-                        <span className="2xl:ml-2">Now Live</span>
+                        <span className="ml-2">Live</span>
                       </Link>
                     )}
                   </>
