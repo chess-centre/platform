@@ -55,17 +55,19 @@ export function SkelectonAppEventCard() {
 }
 
 export function NoEventListed() {
-  return (<div className="mt-6 sm:mt-2 mb-10 text-center sm:text-left">
-    <span className="text-8xl sm:text-4xl">
-      <i className="fad fa-frown text-teal-700"></i>
-    </span>
-    <h3 className="mt-2 text-2xl text-gray-600 font-extrabold">
-      Oh, no events...
-    </h3>
-    <p className="mt-6 mx-6 sm:mx-0 text-md text-teal-500">
-      Don't worry, we are busy planning our 2022 schedule.
-    </p>
-  </div>)
+  return (
+    <div className="mt-6 sm:mt-2 mb-10 text-center sm:text-left">
+      <span className="text-8xl sm:text-4xl">
+        <i className="fad fa-frown text-teal-700"></i>
+      </span>
+      <h3 className="mt-2 text-2xl text-gray-600 font-extrabold">
+        Oh, no events...
+      </h3>
+      <p className="mt-6 mx-6 sm:mx-0 text-md text-teal-500">
+        Don't worry, we are busy planning our 2022 schedule.
+      </p>
+    </div>
+  );
 }
 
 interface EventCardProps {
@@ -81,7 +83,7 @@ interface EventCardProps {
   allowedToRegister: boolean;
   full: boolean;
   isLive: boolean;
-  multipleSections: boolean; 
+  multipleSections: boolean;
   registered: boolean;
   maxEntries: number;
   entryCount: number;
@@ -92,18 +94,14 @@ interface EventCardProps {
 }
 
 export function EventCard(props: EventCardProps) {
-
-  const history = useHistory()
+  const history = useHistory();
   const {
     id,
     eventId,
     name,
-    description,
-    entries,
     type,
     startDate,
     endDate,
-    time,
     allowedToRegister,
     full,
     isLive,
@@ -111,16 +109,13 @@ export function EventCard(props: EventCardProps) {
     registered,
     maxEntries,
     entryCount,
-    rounds,
     register,
-    showModal,
-    setIsSlideOutOpen
   } = props;
 
   const showByes = type?.eventType?.includes("festival");
   const isJunior = name?.includes("Junior");
 
-  const goToEventInfo = id => history.push(`/app/events/${id}`)
+  const goToEventInfo = (id: string) => history.push(`/app/events/${id}`);
 
   return (
     <section
@@ -142,7 +137,7 @@ export function EventCard(props: EventCardProps) {
       <div className="bg-white dark:bg-gray-800 pt-4 shadow rounded-lg overflow-hidden h-full">
         <div className="pl-9 pr-4 sm:pl-9 space-y-2 pb-2">
           <div className="grid grid-cols-3">
-            <div className="col-span-2">
+            <div className="col-span-2 space-y-2">
               <h2 className="text-lg sm:text-xl leading-6 font-medium text-gray-900 dark:text-white mb-1">
                 {name || type.name}{" "}
                 {eventId === id && (
@@ -151,29 +146,47 @@ export function EventCard(props: EventCardProps) {
                   </span>
                 )}
               </h2>
-              <p className="text-sm text-gray-700">
-                <span className="font-medium text-gray-900">Entries:{" "}</span>
-                {`${entryCount || 0}  / ${maxEntries || type.maxEntries
-                  }`}
-              </p>
+              <div className="flex items-center text-sm text-gray-700 space-x-2">
+                <div className="text-gray-900 text-sm">
+                  <span className="text-teal-600">Entries</span>{" "}
+                  {`${entryCount || 0}  / ${maxEntries || type.maxEntries}`}
+                </div>
+              </div>
               {type.defaultPrice && !registered && !full ? (
-                <p className="text-sm text-gray-700 mr-2 inline">
-                    <span className="font-medium text-gray-900">Entry Fee:</span> £{type.defaultPrice}
-                </p>
+                <div className="flex items-center text-sm text-gray-700 space-x-2">
+                  <div className="text-gray-900 text-sm">
+                    <span className="text-teal-600">Entry Fee</span> £
+                    {type.defaultPrice}
+                  </div>
+                </div>
               ) : (
-                <p className="text-sm text-gray-900 mr-2 inline font-medium">
-                   Entry Fee:{" "}
-                    <span className="text-teal-500 text-xs font-normal">
-                      {registered ? "PAID" : full ? "Closed" : ""}
+                <div className="flex items-center text-sm text-gray-900 space-x-2">
+                  <div className="text-gray-900 text-sm">
+                    <span className="text-teal-600">Entry Fee</span>{" "}
+                    <span className="text-xs font-normal">
+                      {registered ? "PAID" : full ? "CLOSED" : ""}
                     </span>
-                </p>
+                  </div>
+                </div>
               )}
+              <div className="flex items-center text-sm text-gray-700 space-x-2">
+                <div className="text-gray-900 text-sm">
+                  <span className="text-teal-600">Date</span>{" "}
+                  <span className="text-xs">{prettyDate(startDate, endDate)}</span>
+                </div>
+              </div>
             </div>
-            {/* SIGN UP button */ }
+            {/* SIGN UP button */}
             <div className="flex-initial flex-nowrap">
               <div className="text-right">
                 {allowedToRegister ? (
-                  <Register id={id} register={register} multipleSections={multipleSections} showByes={showByes} isJunior={isJunior} />
+                  <Register
+                    id={id}
+                    register={register}
+                    multipleSections={multipleSections}
+                    showByes={showByes}
+                    isJunior={isJunior}
+                  />
                 ) : (
                   <>
                     <p className="text-sm text-gray-700">
@@ -205,74 +218,22 @@ export function EventCard(props: EventCardProps) {
                 )}
               </div>
             </div>
-            <div className="col-span-3">
-              <p className="text-sm text-gray-600 mr-2 inline">
-                  {description || type.description}
-              </p>
-            </div>
           </div>
           <div className="border-b-2"></div>
-          { /* icon information */}
-          <div className="sm:flex sm:flex-wrap">
-            <div className="sm:inline text-sm text-gray-900-700 mr-2 mb-2">
-              <i className="fad fa-calendar-alt mr-1"></i>
-              <span className="text-teal-700">
-                {prettyDate(startDate, endDate)}
-              </span>{" "}
-            </div>
-            {rounds && (
-              <div
-                className="sm:inline text-sm text-gray-900 cursor-pointer mr-2 mb-2"
-                onClick={() => showModal(id, type.eventType, name || type.name)}
-              >
-                <i className="fad fa-flag mr-1"></i>
-                <span className="inline text-teal-700">
-                  {rounds} rounds
-                </span>{" "}
-              </div>
-            )}
+          {/* icon information */}
+          <div className="text-center mx-auto">
             <div
-              className="sm:inline  text-sm text-gray-900 cursor-pointer mr-2 mb-2"
-              // onClick={() =>
-              //   setIsSlideOutOpen({
-              //     open: true,
-              //     eventDetails: {
-              //       id,
-              //       name,
-              //       description,
-              //       entries,
-              //       type,
-              //       startDate,
-              //       endDate,
-              //       time,
-              //       allowedToRegister,
-              //       maxEntries,
-              //       entryCount,
-              //       rounds,
-              //       multipleSections
-              //     },
-              //   })
-              // }
+              className="sm:inline text-sm text-gray-900 cursor-pointer mr-2 sm:mb-2"
               onClick={() => goToEventInfo(id)}
             >
-              {entryCount > 0 ?
-                <>
-                  <i className="fad fa-user-friends mr-1"></i>
-                  <span className="inline text-teal-700">
-                    View entries
-                  </span>{" "}
-                </> : 
-                <>
-                  <i className="fas fa-info-square mr-1"></i>
-                  <span className="inline text-teal-700">
-                    More info
-                  </span>{" "}
-                </>
-              }
+              <i className="fas fa-info-square mr-1"></i>
+              <span className="text-teal-700 hover:text-teal-500">
+                More Information
+              </span>{" "}
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

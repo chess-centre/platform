@@ -79,7 +79,7 @@ const listEventsActive = /* GraphQL */ `
   }
 `;
 
-export function useEvents(eventId: string | undefined) {
+export function useEvents() {
   const { user } = useAuthState();
   const yesterday = new Date(Date.now() - 3600 * 1000 * 24);
 
@@ -105,9 +105,9 @@ export function useEvents(eventId: string | undefined) {
     const sorted = events
       // TODO: move to graphQL query:
       .filter((e: any) => !!e.type.canRegister)
-      .sort((a: any, b: any) => new Date(a.startDate) - new Date(b.startDate));
+      .sort((a: any, b: any) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
 
-    const eventList = sorted.map((event) => ({
+    const eventList = sorted.map((event: any) => ({
       ...event,
       allowedToRegister:
         !alreadyRegistered(event) && !isFull(event) && !event?.isLive,
@@ -115,11 +115,7 @@ export function useEvents(eventId: string | undefined) {
       registered: alreadyRegistered(event),
     }));
 
-    if (eventId) {
-      console.log("eventList", eventList.filter(({ id }) => id === eventId))
-      return eventList.filter(({ id }) => id === eventId);
-    } else {
-      return eventList;
-    }
+    return eventList;
+
   });
 }
