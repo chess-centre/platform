@@ -1,7 +1,7 @@
 interface SectionType {
     name: string,
-    ratingBand: string | null,
-    cap: number | null
+    ratingBand: string | undefined,
+    cap: number | undefined
 }
 
 export const juniorSections: SectionType[] = [

@@ -1,4 +1,5 @@
 import React from "react";
+import { standardSections, juniorSections } from "../../api/sections";
 
 export const TemplateData = {
   festival: {
@@ -19,7 +20,7 @@ export const TemplateData = {
       },
       {
         name: "Matthew Webb",
-        imgUrl: "/matt.png" 
+        imgUrl: "/matt.png",
       },
     ],
   },
@@ -36,7 +37,7 @@ export const TemplateData = {
     ],
     organisers: [
       { name: "Andrew Wainwright", imgUrl: "/andy.png" },
-      { name: "Matthew Webb", imgUrl: "/matt.png"  },
+      { name: "Matthew Webb", imgUrl: "/matt.png" },
     ],
   },
   rapidplay: {
@@ -52,7 +53,7 @@ export const TemplateData = {
     ],
     organisers: [
       { name: "Andrew Wainwright", imgUrl: "/andy.png" },
-      { name: "Matthew Webb", imgUrl: "/matt.png"  },
+      { name: "Matthew Webb", imgUrl: "/matt.png" },
     ],
   },
   blitz: {
@@ -66,11 +67,11 @@ export const TemplateData = {
     organisers: [
       {
         name: "Andrew Wainwright",
-        imgUrl: "/andy.png" 
+        imgUrl: "/andy.png",
       },
       {
         name: "Matthew Webb",
-        imgUrl: "/matt.png" 
+        imgUrl: "/matt.png",
       },
     ],
   },
@@ -81,27 +82,41 @@ export const TemplateData = {
       "We offer a range of rated sections which allows us to divide the children in bands according to their current playing strength.",
       "Below you will find the full details for the event including the playing schedule and current entries.",
     ],
-    tags: [{ name: "Junior", color: "bg-pink-500" },
-    { name: "ECF", color: "bg-rose-500" }, { name: "Rapidplay", color: "bg-teal-500" }],
+    tags: [
+      { name: "Junior", color: "bg-pink-500" },
+      { name: "ECF", color: "bg-rose-500" },
+      { name: "Rapidplay", color: "bg-teal-500" },
+    ],
     organisers: [
       {
         name: "Andrew Wainwright",
-        imgUrl: "/andy.png" 
+        imgUrl: "/andy.png",
       },
       {
         name: "Matthew Webb",
-        imgUrl: "/matt.png" 
+        imgUrl: "/matt.png",
       },
     ],
   },
 };
 
-export function EventDescription({ template }) {
+export function EventDescription({ template, multipleSections, isJuniorEvent }) {
   return (
     <div className="prose max-w-none">
-      {TemplateData[template].paragraphs.map((text: string, key: number) => (
-        <p key={key}>{text}</p>
-      ))}
+      {TemplateData[template].paragraphs.map((text: string, key: number) => {
+
+        if(multipleSections && key === 2) {
+          return <>
+            <ol>
+              { !isJuniorEvent && standardSections.map(section => <li key={section.name}>{ section.name } <span className="text-sm text-gray-400">{section.ratingBand }</span></li>) }
+
+              { isJuniorEvent && juniorSections.map(section => <li key={section.name}>{ section.name } <span className="text-sm text-gray-400">{section.ratingBand }</span></li>) }
+            </ol>
+            <p key={key}>{text}</p>
+          </>
+        }
+        return <p key={key}>{text}</p>;
+      })}
     </div>
   );
 }

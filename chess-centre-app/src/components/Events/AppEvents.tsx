@@ -5,44 +5,41 @@ import queryString from "query-string";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
 import { useAuthState } from "../../context/Auth";
-import RoundTimesModal from "../Modal/RoundTimesModal";
-import { EventCard, NoEventListed, SkelectonAppEventCard } from "./shared/AppEventCard";
+import {
+  EventCard,
+  NoEventListed,
+  SkelectonAppEventCard,
+} from "./shared/AppEventCard";
 import PaymentCompleteModal from "../Modal/PaymentCompleteModal";
-import EventDetailsSlideOut from "../SlideOut/EventDetailsSlideOut";
 import { useEvents } from "../../context/EventsContext";
-
 
 export default function AppEvents() {
   const { user } = useAuthState();
   const { search } = useLocation();
-  const { eventId, session_id, event_payment_success, show_info, section, byes } = queryString.parse(
-    search
-  );
+  const {
+    eventId,
+    session_id,
+    event_payment_success,
+    section,
+    byes,
+  } = queryString.parse(search);
   const stripe = useStripe();
   const { addToast } = useToasts();
-  const [slideState, setIsSlideOutOpen] = useState({
-    open: false,
-    eventDetails: {},
-  });
-  const [modalState, setModalState] = useState({});
   const [paymentSuccesseful, setPaymentSuccessful] = useState(false);
   const { isLoading, error, data } = useEvents();
-  const closeModal = () => {
-    setModalState((s) => ({ ...s, open: false }));
-  };
-  const showModal = (eventId: string, eventType: string, eventName: string): void => {
-    setModalState({
-      eventId,
-      eventType,
-      eventName,
-      open: true,
-    });
-  };
 
-  const register = async (eventId: string, confirmSection, confirmByes) => {
+  const register = async (
+    eventId: any,
+    confirmSection: any,
+    confirmByes: any
+  ) => {
     try {
       const redirectTo = `${window.location.origin}/app/events`;
-      const selectedSection = section ? section : confirmSection ? confirmSection : null;
+      const selectedSection = section
+        ? section
+        : confirmSection
+        ? confirmSection
+        : null;
       const byesSelection = byes ? byes : confirmByes ? confirmByes : null;
       const { sessionId } = await API.post("public", "/event/register", {
         body: {
@@ -50,7 +47,7 @@ export default function AppEvents() {
           successUrl: redirectTo,
           cancelUrl: redirectTo,
           section: selectedSection,
-          byes: byesSelection
+          byes: byesSelection,
         },
       });
       await stripe?.redirectToCheckout({ sessionId });
@@ -85,60 +82,48 @@ export default function AppEvents() {
     ) {
       setPaymentSuccessful(true);
     }
-
-    if (show_info /* user is rendering the page specifically to view entries */) {
-      const eventDetails = data?.find(event => event.id === show_info);
-      if (eventDetails) {
-        setIsSlideOutOpen({
-          open: true,
-          eventDetails: { ...eventDetails },
-        })
-      }
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId, data]);
 
   return (
     <div className="mt-5 grid grid-col-1 sm:grid-cols-2 2xl:grid-cols-3 mb-10">
-      {!error && (
-        <>
-          {!isLoading &&
-            data &&
-            data.map(event => {
-              return (
-                <EventCard key={event.id} {...{ ...event, eventId, register, showModal, setIsSlideOutOpen }} />
-              );
-            }
+      <>
+        {!error && (
+          <>
+            {!isLoading &&
+              data &&
+              data.map((event) => {
+                return (
+                  <EventCard
+                    key={event.id}
+                    {...{ ...event, eventId, register }}
+                  />
+                );
+              })}
+
+            {isLoading && (
+              <>
+                {[...new Array(9).keys()].map((k) => (
+                  <SkelectonAppEventCard key={k} />
+                ))}
+              </>
             )}
 
-
-
-          {isLoading && (
-            <>
-              {[...new Array(9).keys()].map((k) => (
-                <SkelectonAppEventCard key={k} />
-              ))}
-            </>
-          )}
-
-          {data && data.length === 0 && (
-            <NoEventListed />
-          )}
-        </>
-      )}
-
-      {error && (
-        <div>
-          <div className="italic text-red-700">Error fetching events.</div>
-        </div>
-      )}
-
+            {data && data.length === 0 && <NoEventListed />}
+          </>
+        )}
+      </>
+      <>
+        {error && (
+          <div>
+            <div className="italic text-red-700">Error fetching events.</div>
+          </div>
+        )}
+      </>
       <PaymentCompleteModal
         open={paymentSuccesseful}
         setOpen={setPaymentSuccessful}
       />
-      <EventDetailsSlideOut {...{ user, slideState, setIsSlideOutOpen }} />
-      <RoundTimesModal {...modalState} closeModal={closeModal} />
     </div>
   );
 }

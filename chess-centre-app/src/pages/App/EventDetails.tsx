@@ -1,5 +1,10 @@
+import API from "@aws-amplify/api";
+import { Auth } from "aws-amplify";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useStripe } from "@stripe/react-stripe-js";
+import { useToasts } from "react-toast-notifications";
+import moment from "moment";
 import { useEvents } from "../../context/EventsContext";
 import EntriesTable from "../../components/EntriesTable/AppTable";
 import RoundTimes from "../../components/RoundTimes/AppRounds";
@@ -11,20 +16,23 @@ import {
 import AppTravel from "../../components/Travel/AppTravel";
 import Brumdcrumbs from "../../components/Breadcrumbs";
 import EventContactUsModal from "../../components/Modal/EventContactUsModal";
-import moment from "moment";
+
+import EventSectionSelectionModal from "../../components/Modal/EventSectionSelectModal";
+import { juniorSections, standardSections } from "../../api/sections";
 
 export default function EventDetails() {
   const { eventId } = useParams();
   const [eventName, setEventName] = useState("");
-  const [eventInfo, setEventInfo] = useState({});
-  const { isLoading, error, data } = useEvents(eventId);
+  const [eventInfo, setEventInfo] = useState<Event | undefined>();
+  const { isLoading, error, data } = useEvents();
 
   useEffect(() => {
     document.title = "The Chess Centre | Event Information";
     let isMounted = true;
     if (!isLoading && isMounted) {
-      setEventInfo(data[0]);
-      setEventName(data[0].name);
+      const e: Event = data.find((event: Event) => event.id === eventId);
+      setEventInfo(e);
+      setEventName(e.name);
     }
 
     return () => {
@@ -55,6 +63,7 @@ export default function EventDetails() {
           <div className="grid grid-cols-1">
             <div>
               {!isLoading &&
+                eventInfo &&
                 Object.keys(eventInfo).length > 0 &&
                 !Boolean(error) && <DetailsView data={eventInfo} />}
             </div>
@@ -67,8 +76,47 @@ export default function EventDetails() {
   );
 }
 
-function DetailsView({ data }) {
+interface Event {
+  id: string;
+  active: string;
+  allowedToRegister: boolean;
+  cancelled: boolean;
+  complete: boolean;
+  description: string;
+  endDate: string;
+  entries: Array<any>;
+  entryCount: number;
+  full: boolean;
+  isLive: boolean;
+  maxEntries: number;
+  multipleSections: boolean;
+  name: string;
+  registered: boolean;
+  rounds: number;
+  startDate: string;
+  time: string;
+  type: {
+    canRegister: boolean;
+    color: string;
+    defaultPrice: string;
+    description: string;
+    eventType: string;
+    id: string;
+    maxEntries: number;
+    name: string;
+    stripePriceId: string;
+    time: string | null;
+    timeControl: string;
+    url: string;
+  };
+}
 
+interface Props {
+  data: Event;
+}
+
+function DetailsView(props: Props) {
+  const { data } = props;
   const { tags, organisers, address } = TemplateData[data.type.eventType];
   const [isModelOpen, setIsModalOpen] = useState(false);
   const [tabs, setTabs] = useState([
@@ -78,7 +126,7 @@ function DetailsView({ data }) {
   ]);
   const [selected, setSelected] = useState("Schedule");
 
-  const renderTab = (selected, data) => {
+  const renderTab = (selected: string, data: Event) => {
     switch (selected) {
       case "Entries":
         return <Entries data={data} />;
@@ -89,6 +137,15 @@ function DetailsView({ data }) {
       default:
         return <Schedule data={data} />;
     }
+  };
+
+  const showRegistration = () => {
+    const { isLive, complete, cancelled, full, registered } = data;
+    let show = true;
+    if (isLive || complete || cancelled || full || registered) {
+      show = false;
+    }
+    return show;
   };
 
   return (
@@ -108,29 +165,46 @@ function DetailsView({ data }) {
                     </div>
 
                     <div className="mt-4 sm:flex sm:space-x-3 md:mt-0 items-center mx-auto space-y-3 sm:space-y-0 text-center">
+                      {showRegistration() && (
+                        <RegisterButton
+                          id={data.id}
+                          showByes={data.multipleSections}
+                          multipleSections={data.multipleSections}
+                          isJunior={data.name.includes("Junior")}
+                        />
+                      )}
 
-                      <button
-                        type="button"
-                        className="sm:inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-                      >
-                        <span>Register</span>
-                      </button>
+                      {data.registered && (
+                        <span className="flex w-full sm:w-auto justify-center px-4 py-2 rounded-md border border-yellow-300 text-sm font-medium bg-yellow-100 text-yellow-800">
+                          Entered
+                        </span>
+                      )}
                       <button
                         type="button"
                         onClick={() => setIsModalOpen(true)}
-                        className="sm:inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700"
+                        className="flex w-full sm:w-auto justify-center px-4 py-2 border border-gray-300 
+                        shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700"
                       >
                         <span>Contact Us</span>
                       </button>
                     </div>
+
                   </div>
                   {/* Mobile Sidebar  */}
                   <div className="xl:hidden">
-                    <SummaryDetails data={data} tags={tags} organisers={organisers} />
+                    <SummaryDetails
+                      data={data}
+                      tags={tags}
+                      organisers={organisers}
+                    />
                   </div>
-                  
+
                   <div className="py-3 xl:pt-8 mt-6 sm:mt-0">
-                    <EventDescription template={data.type.eventType} />
+                    <EventDescription
+                      template={data.type.eventType}
+                      multipleSections={data.multipleSections}
+                      isJuniorEvent={data.name.includes("Junior")}
+                    />
                   </div>
                 </div>
               </div>
@@ -154,13 +228,18 @@ function DetailsView({ data }) {
             </div>
           </div>
         </div>
-        <EventContactUsModal open={isModelOpen} setOpen={setIsModalOpen} eventName={data.name.trim()} eventStart={data.startDate.trim()} />
+        <EventContactUsModal
+          open={isModelOpen}
+          setOpen={setIsModalOpen}
+          eventName={data.name.trim()}
+          eventStart={data.startDate.trim()}
+        />
       </main>
     </div>
   );
 }
 
-function Entries(props) {
+function Entries(props: Props) {
   const { data } = props;
   return (
     <div className="mt-10">
@@ -169,7 +248,7 @@ function Entries(props) {
   );
 }
 
-function Schedule(props: any) {
+function Schedule(props: Props) {
   const { data } = props;
   return (
     <div className="mt-2">
@@ -182,7 +261,7 @@ function Schedule(props: any) {
   );
 }
 
-function Travel(props: any) {
+function Travel(props: Props) {
   const { data } = props;
   return (
     <div className="mt-2">
@@ -283,7 +362,7 @@ function SummaryDetails({ data, tags, organisers }) {
           <div className="text-gray-900 text-sm font-medium">
             <span className="text-teal-600">Start</span>{" "}
             <time dateTime={data.startDate}>
-              {moment(data.startDate).format("ddd MMM Do, YYYY")}
+              {moment(data.startDate).format("dddd, MMMM Do")}
             </time>
           </div>
         </div>
@@ -295,7 +374,7 @@ function SummaryDetails({ data, tags, organisers }) {
             <div className="text-gray-900 text-sm font-medium">
               <span className="text-teal-600">End</span>{" "}
               <time dateTime={data.endDate}>
-                {moment(data.endDate).format("ddd MMM Do, YYYY")}
+                {moment(data.endDate).format("dddd, MMMM Do")}
               </time>
             </div>
           </div>
@@ -305,8 +384,7 @@ function SummaryDetails({ data, tags, organisers }) {
             <i className="fas fa-flag text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Rounds</span>{" "}
-            {data.rounds}
+            <span className="text-teal-600">Rounds</span> {data.rounds}
           </div>
         </div>
 
@@ -315,8 +393,7 @@ function SummaryDetails({ data, tags, organisers }) {
             <i className="fas fa-users text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Entries</span>{" "}
-            {data.entryCount}
+            <span className="text-teal-600">Entries</span> {data.entryCount}
           </div>
         </div>
 
@@ -335,8 +412,8 @@ function SummaryDetails({ data, tags, organisers }) {
             <i className="fad fa-credit-card text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Entry Fee</span>{" "}
-            £{data.type.defaultPrice}
+            <span className="text-teal-600">Entry Fee</span> £
+            {data.type.defaultPrice}
           </div>
         </div>
       </div>
@@ -391,3 +468,123 @@ function SummaryDetails({ data, tags, organisers }) {
   );
 }
 
+interface RegisterButtonProps {
+  id: string;
+  multipleSections: boolean;
+  showByes: boolean;
+  isJunior: boolean;
+}
+
+function RegisterButton(props: RegisterButtonProps) {
+  const {
+    id,
+    multipleSections = false,
+    showByes = false,
+    isJunior = false,
+  } = props;
+  const stripe = useStripe();
+  const { addToast } = useToasts();
+
+  const [isLoadingSignUp, setIsLoadingSignUp] = useState(false);
+  const [modelOpen, setModalOpen] = useState(false);
+  const handleRegister = async (
+    id: string,
+    section: string | undefined,
+    byes: any
+  ) => {
+    setIsLoadingSignUp(true);
+    await Auth.currentUserCredentials();
+    await register(id, section, byes);
+    setIsLoadingSignUp(false);
+  };
+
+  const openSectionSelectionModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const register = async (
+    eventId: string,
+    confirmSection: string,
+    confirmByes: string
+  ) => {
+    try {
+      const redirectTo = `${window.location.origin}/app/events/${eventId}`;
+      const selectedSection = confirmSection ? confirmSection : null;
+      const byesSelection = confirmByes ? confirmByes : null;
+      const { sessionId } = await API.post("public", "/event/register", {
+        body: {
+          eventId,
+          successUrl: redirectTo,
+          cancelUrl: redirectTo,
+          section: selectedSection,
+          byes: byesSelection,
+        },
+      });
+      await stripe?.redirectToCheckout({ sessionId });
+    } catch (error) {
+      const mailToString = `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0AEvent ID: ${eventId}%0D%0AUser ID: ${user.username}%0D%0AUser: ${user.attributes.given_name} ${user.attributes.family_name}%0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`;
+      addToast(
+        <div>
+          Oops, something isn't working on our end.
+          <br />
+          If this persists, please{" "}
+          <a className="font-bold underline" href={mailToString}>
+            contact us
+          </a>{" "}
+          🛠️
+        </div>,
+        {
+          appearance: "error",
+          autoDismiss: true,
+        }
+      );
+      console.log("Error", error);
+    }
+  };
+
+  const sections = isJunior ? juniorSections : standardSections;
+
+  return (
+    <div>
+      {multipleSections ? (
+        <>
+          <button
+            className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            onClick={() => openSectionSelectionModal()}
+          >
+            Register
+          </button>
+        </>
+      ) : (
+        <button
+          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          onClick={() => handleRegister(id, undefined, undefined)}
+        >
+          {isLoadingSignUp ? (
+            <>
+              <div className="mr-2">
+                <i className="fas fa-spinner-third animate-spin -ml-4 sm:ml-0"></i>
+              </div>
+              <div className="text-sm">Loading...</div>
+            </>
+          ) : (
+            `Register`
+          )}
+        </button>
+      )}
+      <EventSectionSelectionModal
+        key={id}
+        showByes={showByes}
+        eventId={id}
+        handleRegister={handleRegister}
+        open={modelOpen}
+        closeModal={closeModal}
+        sections={sections}
+      />
+    </div>
+  );
+}

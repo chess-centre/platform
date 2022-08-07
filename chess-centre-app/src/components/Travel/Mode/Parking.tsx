@@ -3,7 +3,7 @@ import { classNames } from "../../../utils/Classes";
 
 export default function Parking({ alignLeft = true }) {
   // eslint-disable-next-line no-unused-vars
-  const [parkingInfo, setTrainInfo] = useState([
+  const [parkingInfo] = useState([
     {
       street: "South Hawksworth Street",
       postCode: "LS29 9DX",
@@ -30,7 +30,7 @@ export default function Parking({ alignLeft = true }) {
     },
   ]);
   // eslint-disable-next-line no-unused-vars
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   return (
     <div className="mt-4 p-0 text-sm">
@@ -60,7 +60,7 @@ export default function Parking({ alignLeft = true }) {
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-2 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider"
+                  className="px-2 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider"
                 >
                   Map
                 </th>
@@ -87,7 +87,7 @@ export default function Parking({ alignLeft = true }) {
                         type="button"
                         className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
                       >
-                        <i className="far fa-directions text-white"></i>
+                        <i className="far fa-map-marker-alt text-white"></i>
                       </a>
                     </td>
                   </tr>
