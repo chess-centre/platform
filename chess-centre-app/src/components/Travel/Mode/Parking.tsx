@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { classNames } from "../../../utils/Classes";
 
-export default function Parking() {
+export default function Parking({ alignLeft = true }) {
   // eslint-disable-next-line no-unused-vars
   const [parkingInfo, setTrainInfo] = useState([
     {
@@ -68,17 +69,17 @@ export default function Parking() {
             <tbody className="bg-white divide-y divide-gray-200">
               {parkingInfo.map((details, key) => {
                 return (
-                  <tr key={key}>
+                  <tr key={key} className={classNames(alignLeft ? "text-left" : "text-center")}>
                     <td className="px-2 py-2 whitespace-nowrap text-sm text-gray-900">
                       {details.street}
                     </td>
-                    <td className="px-2 py-2 text-center whitespace-nowrap text-sm text-gray-800">
+                    <td className="px-2 py-2 whitespace-nowrap text-sm text-gray-800">
                       {details.distance}
                     </td>
-                    <td className="px-2 py-2 text-center whitespace-nowrap text-sm text-gray-800">
+                    <td className="px-2 py-2 whitespace-nowrap text-sm text-gray-800">
                       {details.cost}
                     </td>
-                    <td className="px-2 py-2 text-center whitespace-nowrap text-sm text-gray-800">
+                    <td className="px-2 py-2 whitespace-nowrap text-sm text-gray-800">
                       <a
                         href={details.mapURL}
                         target="_blank"
@@ -113,7 +114,6 @@ export default function Parking() {
 
       {isLoading && (
         <div
-          type="button"
           className="relative block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center"
         >
           <span className="">

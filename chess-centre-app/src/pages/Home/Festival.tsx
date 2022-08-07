@@ -1,7 +1,7 @@
 import API from "@aws-amplify/api";
 import { Tab } from "@headlessui/react";
 import { Link, useParams } from "react-router-dom";
-import { useEffect, Fragment, useState } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";

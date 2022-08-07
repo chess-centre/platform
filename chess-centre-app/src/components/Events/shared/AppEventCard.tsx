@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { bgColor700, bgColor600 } from "tailwind-dynamic-classes";
 import Register from "../Register";
 import { prettyDate } from "../../../utils/DateFormating";
@@ -67,8 +68,32 @@ export function NoEventListed() {
   </div>)
 }
 
-export function EventCard(props) {
+interface EventCardProps {
+  id: string;
+  eventId: string;
+  name: string;
+  description: string;
+  entries: any;
+  type: any;
+  startDate: string;
+  endDate: string;
+  time: string;
+  allowedToRegister: boolean;
+  full: boolean;
+  isLive: boolean;
+  multipleSections: boolean; 
+  registered: boolean;
+  maxEntries: number;
+  entryCount: number;
+  rounds: number;
+  register: Function;
+  showModal: Function;
+  setIsSlideOutOpen: Function;
+}
 
+export function EventCard(props: EventCardProps) {
+
+  const history = useHistory()
   const {
     id,
     eventId,
@@ -95,15 +120,17 @@ export function EventCard(props) {
   const showByes = type?.eventType?.includes("festival");
   const isJunior = name?.includes("Junior");
 
+  const goToEventInfo = id => history.push(`/app/events/${id}`)
+
   return (
     <section
       key={eventId}
-      className="relative sm:mr-3 mb-3 rounded-lg border shadow-2xl"
+      className="relative sm:mr-3 mb-3 rounded-md border shadow-lg"
     >
       <div
         className={classNames(
           type.color === "blue" ? "bg-blue-brand" : bgColor600[type.color],
-          "absolute left-0 z-10 inset-y-0 py-1 px-1.5 text-xs rounded-l-lg"
+          "absolute left-0 z-10 inset-y-0 py-1 px-1.5 text-xs rounded-l-md"
         )}
       ></div>
       <div
@@ -164,15 +191,14 @@ export function EventCard(props) {
                     {isLive && (
                       <Link
                         to="/broadcast/live"
-                        className={`inline-flex items-center px-2 2xl:px-2.5 py-1.5 
-                      border border-transparent text-sm font-medium rounded-md shadow-sm text-white
-                       bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600`}
+                        className={`inline-flex items-center px-2 py-1.5  text-sm font-medium rounded-md text-white
+                       bg-pink-700 hover:bg-pink-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-600`}
                       >
-                        <span className="hidden 2xl:flex relative h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-65"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-600"></span>
+                        <span className="flex relative h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-65"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                         </span>
-                        <span className="2xl:ml-2">Now Live</span>
+                        <span className="ml-2">Live</span>
                       </Link>
                     )}
                   </>
@@ -207,26 +233,27 @@ export function EventCard(props) {
             )}
             <div
               className="sm:inline  text-sm text-gray-900 cursor-pointer mr-2 mb-2"
-              onClick={() =>
-                setIsSlideOutOpen({
-                  open: true,
-                  eventDetails: {
-                    id,
-                    name,
-                    description,
-                    entries,
-                    type,
-                    startDate,
-                    endDate,
-                    time,
-                    allowedToRegister,
-                    maxEntries,
-                    entryCount,
-                    rounds,
-                    multipleSections
-                  },
-                })
-              }
+              // onClick={() =>
+              //   setIsSlideOutOpen({
+              //     open: true,
+              //     eventDetails: {
+              //       id,
+              //       name,
+              //       description,
+              //       entries,
+              //       type,
+              //       startDate,
+              //       endDate,
+              //       time,
+              //       allowedToRegister,
+              //       maxEntries,
+              //       entryCount,
+              //       rounds,
+              //       multipleSections
+              //     },
+              //   })
+              // }
+              onClick={() => goToEventInfo(id)}
             >
               {entryCount > 0 ?
                 <>
