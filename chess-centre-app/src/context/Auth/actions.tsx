@@ -1,4 +1,4 @@
-import Amplify, { Auth, API, DataStore } from "aws-amplify";
+import Amplify, { Auth, API } from "aws-amplify";
 import AWS_AUTH from "../../aws-exports";
 Amplify.configure({
   ...AWS_AUTH,
@@ -104,7 +104,6 @@ export async function resendActivationCode(email) {
 
 export async function logout(dispatch) {
   await Auth.signOut();
-  await DataStore.clear();
   localStorage.removeItem("currentUser");
   localStorage.removeItem("token");
   dispatch({ type: "LOGOUT" });

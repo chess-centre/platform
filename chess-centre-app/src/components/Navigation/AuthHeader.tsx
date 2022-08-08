@@ -29,8 +29,8 @@ export default function Header() {
   const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext);
   const [avatarUrl, setAvatarUrl] = useState("");
 
-  const signOut = async () => {
-    await logout(dispatch);
+  const signOut = () => {
+    logout(dispatch);
     history.push("/");
   };
 
