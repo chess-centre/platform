@@ -37,7 +37,7 @@ export default function Register(props: RegisterProps) {
       {multipleSections ?
         <>
           <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium 
-            rounded-sm shadow-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            rounded-md shadow-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
             onClick={() => openSectionSelectionModal()}>
             Register
           </button>

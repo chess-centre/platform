@@ -151,12 +151,12 @@ function DetailsView(props: Props) {
   return (
     <div className="grid grid-cols-1 mb-10">
       <main className="flex-1">
-        <div className="py-8 xl:py-10">
-          <div className="mx-auto px-4 sm:px-6 lg:px-8 xl:grid xl:grid-cols-3">
-            <div className="xl:col-span-2 xl:pr-8 xl:border-r xl:border-gray-200">
+        <div className="py-8 lg:py-10">
+          <div className="mx-auto px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-3">
+            <div className="lg:col-span-2 lg:pr-8 lg:border-r lg:border-gray-200">
               <div>
                 <div>
-                  <div className="md:flex md:items-center md:justify-between md:space-x-4 xl:border-b xl:pb-6">
+                  <div className="md:flex md:items-center md:justify-between md:space-x-4 lg:border-b lg:pb-6">
                     <div>
                       <h1 className="text-2xl font-bold text-gray-900">
                         {data.name}
@@ -191,7 +191,7 @@ function DetailsView(props: Props) {
 
                   </div>
                   {/* Mobile Sidebar  */}
-                  <div className="xl:hidden">
+                  <div className="lg:hidden">
                     <SummaryDetails
                       data={data}
                       tags={tags}
@@ -199,7 +199,7 @@ function DetailsView(props: Props) {
                     />
                   </div>
 
-                  <div className="py-3 xl:pt-8 mt-6 sm:mt-0">
+                  <div className="py-3 lg:pt-8 mt-6 sm:mt-0">
                     <EventDescription
                       template={data.type.eventType}
                       multipleSections={data.multipleSections}
@@ -223,7 +223,7 @@ function DetailsView(props: Props) {
               </section>
             </div>
             {/* Desktop Sidebar  */}
-            <div className="hidden xl:block">
+            <div className="hidden lg:block">
               <SummaryDetails data={data} tags={tags} organisers={organisers} />
             </div>
           </div>
@@ -352,7 +352,7 @@ function ErrorView() {
 
 function SummaryDetails({ data, tags, organisers }) {
   return (
-    <aside className="mt-8 xl:mt-0 xl:pl-8">
+    <aside className="mt-8 lg:mt-0 lg:pl-8">
       <h2 className="sr-only">Details</h2>
       <div className="space-y-5">
         <div className="flex items-center space-x-2">
@@ -417,7 +417,7 @@ function SummaryDetails({ data, tags, organisers }) {
           </div>
         </div>
       </div>
-      <div className="mt-6 border-t border-b xl:border-b-0 border-gray-200 py-6 space-y-8">
+      <div className="mt-6 border-t border-b lg:border-b-0 border-gray-200 py-6 space-y-8">
         <div>
           <h2 className="text-sm font-medium text-gray-500">Organsers</h2>
           <ul className="mt-3 space-y-3">

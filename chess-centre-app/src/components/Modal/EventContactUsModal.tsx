@@ -58,8 +58,8 @@ export default function EventContactUsModal({ open, setOpen, eventName, eventSta
                     </Dialog.Title>
                     <div className="mt-2">
                       <ul className="divide-y divide-gray-200 text-left">
-                        {contacts.map((contact) => (
-                          <li key={contact.email} className="py-4 flex">
+                        {contacts.map((contact, key) => (
+                          <li key={key} className="py-4 flex">
                             <img
                               className="h-10 w-10 rounded-full"
                               src={contact.image}
@@ -74,7 +74,7 @@ export default function EventContactUsModal({ open, setOpen, eventName, eventSta
                               </p>
                               <p className="text-xs space-x-2 mt-2 text-gray-500">
                                 Enquiry{" "}
-                                {contact.enquiryType?.map(type => <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-pink-100 text-pink-800">{ type }</span>)}
+                                {contact.enquiryType?.map((type, key) => <span key={key} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-pink-100 text-pink-800">{ type }</span>)}
                               </p>
                             </div>
                           </li>
