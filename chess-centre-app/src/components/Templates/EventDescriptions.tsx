@@ -13,6 +13,7 @@ export const TemplateData = {
       { name: "Standard", color: "bg-blue-500" },
       { name: "ECF", color: "bg-rose-500" },
     ],
+    coverImage: "/festival-square.jpg",
     organisers: [
       {
         name: "Andrew Wainwright",
@@ -31,6 +32,7 @@ export const TemplateData = {
       "Sections are determined purely on latest ECF standard play ratings.",
       "Below you will find the full details for the event including the playing schedule and current entries.",
     ],
+    coverImage: "/open-congress.jpg",
     tags: [
       { name: "Standard", color: "bg-blue-500" },
       { name: "ECF", color: "bg-rose-500" },
@@ -47,6 +49,7 @@ export const TemplateData = {
       "Where we have fewer than 18 players we will default to a swiss event.",
       "Below you will find the full details for the event including the playing schedule and current entries.",
     ],
+    coverImage: "/open-rapidplay.jpg",
     tags: [
       { name: "Rapidplay", color: "bg-teal-500" },
       { name: "ECF", color: "bg-rose-500" },
@@ -63,6 +66,7 @@ export const TemplateData = {
       "This event is not ECF rated.",
       "Below you will find the full details for the event including the playing schedule and current entries.",
     ],
+    coverImage: "/open-blitz.jpg",
     tags: [{ name: "Blitz", color: "bg-yellow-500" }],
     organisers: [
       {
@@ -82,6 +86,7 @@ export const TemplateData = {
       "We offer a range of rated sections which allows us to divide the children in bands according to their current playing strength.",
       "Below you will find the full details for the event including the playing schedule and current entries.",
     ],
+    coverImage: "/igs.jpg",
     tags: [
       { name: "Junior", color: "bg-pink-500" },
       { name: "ECF", color: "bg-rose-500" },
@@ -100,23 +105,53 @@ export const TemplateData = {
   },
 };
 
-export function EventDescription({ template, multipleSections, isJuniorEvent }) {
+export function EventDescription({
+  template,
+  multipleSections,
+  isJuniorEvent,
+}) {
   return (
-    <div className="prose max-w-none">
-      {TemplateData[template].paragraphs.map((text: string, key: number) => {
+    <div className="sm:flex">
+      <div className="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
+          <img
+            className="object-cover rounded-lg h-48 w-full sm:h-32 sm:w-32 border border-gray-300 bg-white text-gray-300"
+            src={TemplateData[template].coverImage}
+            alt=""
+          />
+      </div>
+      <div className=" col-span-2 prose max-w-none">
+        {TemplateData[template].paragraphs.map((text: string, key: number) => {
+          if (multipleSections && key === 2) {
+            return (
+              <>
+                <ol>
+                  {!isJuniorEvent &&
+                    standardSections.map((section) => (
+                      <li key={section.name}>
+                        {section.name}{" "}
+                        <span className="text-sm text-gray-400">
+                          {section.ratingBand}
+                        </span>
+                      </li>
+                    ))}
 
-        if(multipleSections && key === 2) {
-          return <>
-            <ol>
-              { !isJuniorEvent && standardSections.map(section => <li key={section.name}>{ section.name } <span className="text-sm text-gray-400">{section.ratingBand }</span></li>) }
-
-              { isJuniorEvent && juniorSections.map(section => <li key={section.name}>{ section.name } <span className="text-sm text-gray-400">{section.ratingBand }</span></li>) }
-            </ol>
-            <p key={key}>{text}</p>
-          </>
-        }
-        return <p key={key}>{text}</p>;
-      })}
+                  {isJuniorEvent &&
+                    juniorSections.map((section) => (
+                      <li key={section.name}>
+                        {section.name}{" "}
+                        <span className="text-sm text-gray-400">
+                          {section.ratingBand}
+                        </span>
+                      </li>
+                    ))}
+                </ol>
+                <p key={key}>{text}</p>
+              </>
+            );
+          }
+          return <p key={key}>{text}</p>;
+        })}
+      </div>
     </div>
   );
 }
