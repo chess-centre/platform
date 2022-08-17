@@ -3,7 +3,7 @@ import { initialState, AuthReducer } from "./reducer";
 
 
 
-const AuthStateContext = React.createContext({ user: undefined, token: null });
+const AuthStateContext = React.createContext({ user: undefined });
 const AuthDispatchContext = React.createContext({});
 
 export function useAuthState() {

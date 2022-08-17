@@ -1,4 +1,4 @@
-import Amplify, { Auth, API } from "aws-amplify";
+import Amplify, { Auth, API, DataStore } from "aws-amplify";
 import AWS_AUTH from "../../aws-exports";
 Amplify.configure({
   ...AWS_AUTH,
@@ -104,9 +104,10 @@ export async function resendActivationCode(email) {
 
 export async function logout(dispatch) {
   await Auth.signOut();
+  await DataStore.clear();
+  dispatch({ type: "LOGOUT" });
   localStorage.removeItem("currentUser");
   localStorage.removeItem("token");
-  dispatch({ type: "LOGOUT" });
 }
 
 export async function subscribe(dispatch, plan, stripe) {
@@ -144,7 +145,7 @@ export async function isAdmin() {
   return false;
 }
 
-export async function isPaidMember(existing: any | undefined) {
+export async function isPaidMember(existing: any) {
   const getGroups = (user: any) => {
     return user.signInUserSession.idToken.payload["cognito:groups"];
   };

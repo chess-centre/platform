@@ -1,35 +1,5 @@
 // Could be CMS controlled:
-
-type Day =
-  "Monday" |
-  "Tuesday" |
-  "Wednesday" |
-  "Thursday" |
-  "Friday" |
-  "Saturday" |
-  "Sunday";
-
-interface Round {
-  round: number;
-  day: Day
-  time: string;
-}
-
-interface Schedule {
-  type: string;
-  eventStart: string;
-  eventEnd: string;
-  rounds: Array<Round>;
-  prizeGiving: {
-    time: string;
-    day: Day
-  },
-  break?: {
-    afterRound: number | undefined
-  }
-}
-
-export const rounds: Schedule[] = [
+export const rounds = [
   {
     type: "festival",
     eventStart: "9:30",

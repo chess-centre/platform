@@ -16,7 +16,7 @@ function ListCard({ event }) {
     if (event.isLive) {
       history.push("/broadcast/live");
     } else if (event.type.canRegister) {
-      history.push(`/app/events/${event.id}`);
+      history.push(`/app/events?show_info=${event.id}`);
     }
   };
 
