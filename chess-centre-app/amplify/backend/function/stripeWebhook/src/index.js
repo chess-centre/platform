@@ -228,15 +228,17 @@ async function handleCheckoutSessionCompletedPayment(id) {
         startDate,
         endDate,
         arrivalTime,
-        entryCount,
         type: { name: eventName, eventType },
+        entries: { items: entries },
         _version,
       },
-      getMember: { email, name }
+      getMember: { email, name },
     },
   } = await fetchEvent(eventId, memberId);
 
   console.log(entries);
+
+  const entryCount = entries.length + 1; // add one for this entry
 
   const createEntry = gql`
     mutation createEntry(
@@ -263,7 +265,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
     memberId,
     section,
     byes,
-    entryCount: entryCount + 1,
+    entryCount,
     _version,
   });
   console.log(JSON.stringify(data));
@@ -400,7 +402,7 @@ async function fetchEvent(id, memberId) {
 
   const variables = {
     id,
-    memberId
+    memberId,
   };
 
   req.method = "POST";
@@ -435,4 +437,3 @@ async function fetchEvent(id, memberId) {
   console.log(JSON.stringify(data));
   return data;
 }
-
