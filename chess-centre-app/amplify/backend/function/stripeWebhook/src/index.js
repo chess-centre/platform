@@ -32,7 +32,7 @@ const endpoint = new urlParse(appsyncUrl).hostname.toString();
 const { print } = graphql;
 
 const getEvent = gql`
-  query getEvent($id: ID!, $memberId: ID!) {
+  query getEvent($id: ID!, $memberId: ID!, $filter: ModelEventFilterInput, $limit: Int) {
     getEvent(id: $id) {
       id
       maxEntries
@@ -252,17 +252,15 @@ async function handleCheckoutSessionCompletedPayment(id) {
         startDate,
         endDate,
         arrivalTime,
+        entryCount,
         type: { name: eventName, eventType },
         _version,
       },
-      getMember: { email, name },
-      listEntrys: { items: entries }
+      getMember: { email, name }
     },
-  } = await fetchEvent(eventId, memberId, 250);
+  } = await fetchEvent(eventId, memberId);
 
   console.log(entries);
-
-  const entryCount = entries.length + 1; // add one for this entry
 
   const createEntry = gql`
     mutation createEntry(
@@ -289,7 +287,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
     memberId,
     section,
     byes,
-    entryCount,
+    entryCount: entryCount + 1,
     _version,
   });
   console.log(JSON.stringify(data));
@@ -421,14 +419,13 @@ async function executeGraphql(query, variables) {
   return data;
 }
 
-async function fetchEvent(id, memberId, limit) {
+async function fetchEvent(id, memberId) {
   const req = new AWS.HttpRequest(appsyncUrl, region);
 
   const variables = {
     id,
     memberId,
-    limit,
-    filter: { eventId: { eq: id } }
+    limit
   };
 
   req.method = "POST";
