@@ -20,7 +20,7 @@ const festival = {
 };
 
 const getEvent = /* GraphQL */ `
-  query GetEvent($id: ID!) {
+  query GetEvent($id: ID!, $filter: ModelEntryFilterInput, $limit: Int) {
     getEvent(id: $id) {
       id
       name
@@ -50,14 +50,15 @@ const getEvent = /* GraphQL */ `
         defaultPrice
         canRegister
       }
-      entries {
-        items {
-          id
-          eventId
-          memberId
-          section
-          byes
-          member {
+    }
+    listEntrys(filter: $filter, limit: $limit) {
+      items {
+        id
+        eventId
+        memberId
+        section
+        byes
+        member {
             id
             fideId
             ecfId
@@ -72,8 +73,9 @@ const getEvent = /* GraphQL */ `
             gender
             chessTitle
           }
-        }
       }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -92,17 +94,17 @@ export default function Festival() {
       setIsLoading(true);
       const response = await API.graphql({
         query: getEvent,
-        variables: { id },
+        variables: { id, filter: { eventId: { eq: id } }, limit: 250 },
         authMode: "AWS_IAM",
       });
 
       if (response && response.data) {
         const {
-          data: { getEvent: entries },
+          data: { listEntrys: entries },
         } = response;
-        setEventEntries(entries);
-        if (entries?.entries?.items) {
-          setEntriesCount(entries?.entries?.items.length);
+        setEventEntries({ entries });
+        if (entries?.items) {
+          setEntriesCount(entries?.items.length);
         }
       }
       setIsLoading(false);
@@ -599,8 +601,8 @@ const EntryForm = ({ id }) => {
             className="mt-1 block w-full pl-3 pr-10 py-2 text-md border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
             defaultValue="Open"
           >
-            {sections && sections.map(({ name, ratingBand }) => (
-              <option value={name}>
+            {sections && sections.map(({ name, ratingBand }, key) => (
+              <option key={key} value={name}>
                 {name} {ratingBand}
               </option>)
             )}

@@ -68,6 +68,30 @@ const getEvent = gql`
       stripeCustomerId
       stripeCurrentPeriodEnd
     }
+    listEntrys(filter: $filter, limit: $limit) {
+      items {
+        id
+        eventId
+        memberId
+        section
+        byes
+        member {
+            id
+            fideId
+            ecfId
+            name
+            ecfRatingPartial
+            ecfRating
+            ecfRapidPartial
+            ecfRapid
+            ecfMembership
+            estimatedRating
+            club
+            gender
+            chessTitle
+          }
+      }
+    }
   }
 `;
 
@@ -229,12 +253,12 @@ async function handleCheckoutSessionCompletedPayment(id) {
         endDate,
         arrivalTime,
         type: { name: eventName, eventType },
-        entries: { items: entries },
         _version,
       },
       getMember: { email, name },
+      listEntrys: { items: entries }
     },
-  } = await fetchEvent(eventId, memberId);
+  } = await fetchEvent(eventId, memberId, 250);
 
   console.log(entries);
 
@@ -397,12 +421,14 @@ async function executeGraphql(query, variables) {
   return data;
 }
 
-async function fetchEvent(id, memberId) {
+async function fetchEvent(id, memberId, limit) {
   const req = new AWS.HttpRequest(appsyncUrl, region);
 
   const variables = {
     id,
     memberId,
+    limit,
+    filter: { eventId: { eq: id } }
   };
 
   req.method = "POST";
