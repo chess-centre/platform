@@ -32,7 +32,7 @@ const endpoint = new urlParse(appsyncUrl).hostname.toString();
 const { print } = graphql;
 
 const getEvent = gql`
-  query getEvent($id: ID!, $memberId: ID!, $filter: ModelEventFilterInput, $limit: Int) {
+  query getEvent($id: ID!, $memberId: ID!) {
     getEvent(id: $id) {
       id
       maxEntries
@@ -67,30 +67,6 @@ const getEvent = gql`
       email
       stripeCustomerId
       stripeCurrentPeriodEnd
-    }
-    listEntrys(filter: $filter, limit: $limit) {
-      items {
-        id
-        eventId
-        memberId
-        section
-        byes
-        member {
-            id
-            fideId
-            ecfId
-            name
-            ecfRatingPartial
-            ecfRating
-            ecfRapidPartial
-            ecfRapid
-            ecfMembership
-            estimatedRating
-            club
-            gender
-            chessTitle
-          }
-      }
     }
   }
 `;
@@ -424,8 +400,7 @@ async function fetchEvent(id, memberId) {
 
   const variables = {
     id,
-    memberId,
-    limit
+    memberId
   };
 
   req.method = "POST";
