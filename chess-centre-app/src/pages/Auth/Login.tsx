@@ -160,7 +160,7 @@ function Login(props) {
               </div>
 
               <div className="relative inline-flex w-full">
-                <div className="mt-6" check>
+                <div className="mt-6">
                   <input
                     type="checkbox"
                     disabled={loading}

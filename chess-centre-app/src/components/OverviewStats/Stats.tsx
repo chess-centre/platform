@@ -207,7 +207,7 @@ function GamesSummaryMobile({ title, data }) {
 }
 
 function RatingSummaryDesktop({ title, data }) {
-  const sorted = data?.sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sorted = data?.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const currentStandard = sorted.length > 0 ? sorted[0].standard : 0;
   const previousStandard = sorted.length > 0 ? sorted[1].standard : 0;
@@ -221,7 +221,7 @@ function RatingSummaryDesktop({ title, data }) {
   // const previousRapid = 2209;
 
   const Diff = ({ current, previous }) => {
-    const change = (current - previous).toFixed(0);
+    const change = Number((current - previous).toFixed(0));
     const diff = isNaN(change) ? "blank" : change;
 
     if (diff > 0) {
@@ -295,7 +295,7 @@ function RatingSummaryDesktop({ title, data }) {
 }
 
 function RatingSummaryMobile({ title, data }) {
-  const sorted = data?.sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sorted = data?.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const currentStandard = sorted.length > 0 ? sorted[0].standard : 0;
   const previousStandard = sorted.length > 0 ? sorted[1].standard : 0;
@@ -310,7 +310,7 @@ function RatingSummaryMobile({ title, data }) {
   // const previousRapid = 2101;
 
   const Diff = ({ current, previous }) => {
-    const change = (current - previous).toFixed(0);
+    const change = Number((current - previous).toFixed(0));
     const diff = isNaN(change) ? "blank" : change;
 
     if (diff > 0) {
