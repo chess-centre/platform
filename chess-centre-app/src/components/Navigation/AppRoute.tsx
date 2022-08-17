@@ -3,14 +3,14 @@ import { Redirect, Route } from "react-router-dom";
 import { useAuthState } from "../../context/Auth";
 
 const AppRoutes = ({ component: Component, path, isPrivate, ...rest }) => {
-  let { token } = useAuthState();
+  const userDetails = useAuthState();
 
   if (isPrivate) {
     return (
       <Route
         path={path}
         render={(props) => {
-          return token ? (
+          return userDetails.token ? (
             <Component {...props} />
           ) : (
             <Redirect to={{ pathname: "/login", state: { from: props.location } }} />

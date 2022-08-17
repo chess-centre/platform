@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from "react";
 import { API } from "aws-amplify";
 import { rounds } from "../../../api/data.roundTimes";
-import { classNames } from "../../../utils/Classes";
 
-export default function Buses({ eventId, eventType, alignLeft = true }) {
+export default function Buses({ eventId, eventType }) {
   const { eventStart, eventEnd } = rounds.find(
     ({ type }) => type === eventType
   );
@@ -68,10 +67,10 @@ export default function Buses({ eventId, eventType, alignLeft = true }) {
                   </th>
                 </tr>
               </thead>
-              <tbody className={classNames("bg-white divide-y divide-gray-200")}>
+              <tbody className="bg-white divide-y divide-gray-200">
                 {Object.keys(busInfo).map((buses, key) => {
                   return (
-                    <tr key={key} className={classNames(alignLeft ? "text-left" : "text-center")}>
+                    <tr key={key}>
                       <td className="px-2 py-2 whitespace-nowrap text-sm text-gray-900">
                         {buses}
                       </td>

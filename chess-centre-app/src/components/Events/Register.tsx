@@ -3,19 +3,11 @@ import React, { useState } from "react";
 import EventSectionSelectionModal from "../Modal/EventSectionSelectModal";
 import { juniorSections, standardSections } from "../../api/sections";
 
-interface RegisterProps {
-  id: string;
-  multipleSections: boolean;
-  showByes: boolean;
-  isJunior: boolean;
-  register: Function;
-}
-
-export default function Register(props: RegisterProps) {
-  const { id, multipleSections, showByes, isJunior, register } = props;
+export default function Register(props: any) {
+  const { register, id, multipleSections, showByes, isJunior } = props;
   const [isLoadingSignUp, setIsLoadingSignUp] = useState(false);
   const [modelOpen, setModalOpen] = useState(false);
-  const handleRegister = async (id: string, section: string | undefined, byes: any) => {
+  const handleRegister = async (id, section, byes) => {
     setIsLoadingSignUp(true);
     await Auth.currentUserCredentials();
     await register(id, section, byes);
@@ -33,29 +25,26 @@ export default function Register(props: RegisterProps) {
   const sections = isJunior ? juniorSections : standardSections
 
   return (
-    <div>
+    <>
       {multipleSections ?
         <>
-          <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium 
-            rounded-md shadow-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-            onClick={() => openSectionSelectionModal()}>
-            Register
+          <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            onClick={() => openSectionSelectionModal(id)}>
+            Sign up
           </button>
         </> :
-        <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium 
-        rounded-md shadow-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-          onClick={() => handleRegister(id, undefined, undefined)}>
+        <button className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          onClick={() => handleRegister(id)}>
           {isLoadingSignUp ? (
             <div className="flex">
               <i className="fas fa-spinner-third animate-spin"></i>
               <span className="ml-2 text-xs">Loading</span>
             </div>
           ) : (
-            `Register`
+            `Sign up`
           )}
         </button>}
-      <EventSectionSelectionModal
-        key={id} 
+      <EventSectionSelectionModal 
         showByes={showByes} 
         eventId={id} 
         handleRegister={handleRegister} 
@@ -63,6 +52,6 @@ export default function Register(props: RegisterProps) {
         closeModal={closeModal} 
         sections={sections}
         />
-    </div>
+    </>
   );
 }
