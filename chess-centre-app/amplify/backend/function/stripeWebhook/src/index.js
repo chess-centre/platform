@@ -437,4 +437,3 @@ async function fetchEvent(id, memberId) {
   console.log(JSON.stringify(data));
   return data;
 }
-

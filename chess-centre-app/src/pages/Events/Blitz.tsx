@@ -171,7 +171,7 @@ export default function BlitzEvent() {
                         {entryCount === 1 ? "entry" : "entries"}.
                         <br className="block sm:hidden" />
                         <Link
-                          to={`/app/events?show_info=${id}`}
+                          to={`/app/events/${id}`}
                           className="font-medium underline text-yellow-700 hover:text-yellow-600 sm:ml-2"
                         >
                           Login to see the full list
