@@ -136,49 +136,6 @@ export default function Festival() {
     fetchEvent();
   }, [id]);
 
-
-  useEffect(() => {
-    const fetchEntries = async () => {
-      setIsLoadingEntries(true);
-
-      const response = await API.graphql({
-        query: getEvent,
-        variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250 },
-        authMode: "AWS_IAM"
-      });
-
-      if (response && response.data) {
-        const {
-          data: {
-            getEvent: eventData,
-            listEntrys: entries },
-        } = response;
-
-        if(entries.nextToken) {
-          const additionalResponse = await API.graphql({
-            query: getEvent,
-            variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250, nextToken: entries.nextToken },
-            authMode: "AWS_IAM",
-          });
-
-          const {
-            data: {
-              listEntrys: moreEntries },
-          } = additionalResponse;
-
-          const items = { items: [ ...entries.items, moreEntries.items ] };
-
-          setEventEntries({ ...eventData, entries: items });
-
-        } else {
-          setEventEntries({ ...eventData, entries });
-        }
-      }
-      setIsLoadingEntries(false);
-    };
-    fetchEntries();
-  }, [eventId]);
-
   return (
     <div className="relative bg-white">
       <div className=" bg-gray-50 pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
