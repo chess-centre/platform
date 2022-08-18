@@ -70,8 +70,8 @@ export async function signUpUser(
       password,
       attributes: {
         email,
-        given_name: firstName.trim(),
-        family_name: surname.trim(),
+        given_name: firstName.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase()).trim(),
+        family_name: surname.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase()).trim(),
       },
     });
 
