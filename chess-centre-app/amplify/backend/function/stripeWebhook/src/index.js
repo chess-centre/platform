@@ -47,19 +47,6 @@ const getEvent = gql`
       }
       endDate
       startDate
-      entries {
-        items {
-          id
-          eventId
-          memberId
-          member {
-              name
-              ecfId
-              ecfRating
-              ecfRapid
-            }
-        }
-      }
       _version
     }
     getMember(id: $memberId) {
@@ -317,7 +304,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
     startDate,
     endDate,
     eventType,
-    entryList,
+    entries: entryList,
     section,
     byes
   };
