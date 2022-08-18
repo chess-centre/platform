@@ -52,6 +52,7 @@ const getEvent = /* GraphQL */ `
               club
               gender
               membershipType
+              chessTitle
             }
       }
       nextToken
