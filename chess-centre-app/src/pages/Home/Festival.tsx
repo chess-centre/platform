@@ -100,9 +100,11 @@ export default function Festival() {
 
       if (response && response.data) {
         const {
-          data: { listEntrys: entries },
+          data: { 
+            getEvent: eventData,
+            listEntrys: entries },
         } = response;
-        setEventEntries({ entries });
+        setEventEntries({ ...eventData, entries });
         if (entries?.items) {
           setEntriesCount(entries?.items.length);
         }

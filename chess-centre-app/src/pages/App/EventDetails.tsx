@@ -20,10 +20,52 @@ import EventContactUsModal from "../../components/Modal/EventContactUsModal";
 import EventSectionSelectionModal from "../../components/Modal/EventSectionSelectModal";
 import { juniorSections, standardSections } from "../../api/sections";
 
+const getEvent = /* GraphQL */ `
+  query GetEvent($id: ID!, $filter: ModelEntryFilterInput, $limit: Int) {
+    getEvent(id: $id) {
+      id
+      name
+      description
+      active
+      multipleSections
+    }
+    listEntrys(filter: $filter, limit: $limit) {
+      items {
+        id
+            eventId
+            memberId
+            section
+            byes
+            createdAt
+            updatedAt
+            member {
+              id
+              fideId
+              ecfId
+              name
+              ecfRatingPartial
+              ecfRating
+              ecfRapidPartial
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+            }
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+
 export default function EventDetails() {
   const { eventId } = useParams();
   const [eventName, setEventName] = useState("");
   const [eventInfo, setEventInfo] = useState<Event | undefined>();
+  const [isLoadingEntries, setIsLoadingEntries] = useState(false);
+  const [eventEntries, setEventEntries] = useState({});
   const { isLoading, error, data } = useEvents();
 
   useEffect(() => {
@@ -41,6 +83,28 @@ export default function EventDetails() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  useEffect(() => {
+    const fetchEntries = async () => {
+      setIsLoadingEntries(true);
+      const response = await API.graphql({
+        query: getEvent,
+        variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250 },
+        authMode: "AWS_IAM",
+      });
+
+      if (response && response.data) {
+        const {
+          data: {
+            getEvent: eventData,
+            listEntrys: entries },
+        } = response;
+        setEventEntries({ ...eventData, entries });
+      }
+      setIsLoadingEntries(false);
+    };
+    fetchEntries();
+  }, [eventId]);
 
   return (
     <div className="overscroll-none">
@@ -65,7 +129,7 @@ export default function EventDetails() {
               {!isLoading &&
                 eventInfo &&
                 Object.keys(eventInfo).length > 0 &&
-                !Boolean(error) && <DetailsView data={eventInfo} />}
+                !Boolean(error) && <DetailsView data={eventInfo} isLoadingEntries={isLoadingEntries} entries={eventEntries} />}
             </div>
             <div>{isLoading && <LoadingView />}</div>
             <div>{Boolean(error) && <ErrorView />}</div>
@@ -113,10 +177,12 @@ interface Event {
 
 interface Props {
   data: Event;
+  isLoadingEntries?: Boolean;
+  entries?: any;
 }
 
 function DetailsView(props: Props) {
-  const { data } = props;
+  const { data, isLoadingEntries, entries } = props;
   const { tags, organisers, address } = TemplateData[data.type.eventType];
   const [isModelOpen, setIsModalOpen] = useState(false);
   const [tabs, setTabs] = useState([
@@ -129,7 +195,7 @@ function DetailsView(props: Props) {
   const renderTab = (selected: string, data: Event) => {
     switch (selected) {
       case "Entries":
-        return <Entries data={data} />;
+        return <Entries data={data} isLoading={isLoadingEntries} entries={entries} />;
       case "Schedule":
         return <Schedule data={data} />;
       case "Travel":
@@ -240,10 +306,26 @@ function DetailsView(props: Props) {
 }
 
 function Entries(props: Props) {
-  const { data } = props;
+  const { data, isLoadingEntries, entries } = props;
+
+  let mergeEventInfoWithEntries = data;
+
+  if(entries) {
+    mergeEventInfoWithEntries = {
+      ...data,
+      entries: entries.entries
+    }
+  }
+
   return (
     <div className="mt-10">
-      <EntriesTable eventDetails={data} />
+      <>
+        {!isLoadingEntries && <EntriesTable eventDetails={mergeEventInfoWithEntries} />}
+      </>
+      <>
+        {isLoadingEntries && <p>Loading...</p>}
+      </>
+
     </div>
   );
 }
