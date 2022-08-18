@@ -12,6 +12,7 @@ import EntriesTable from "../../components/EntriesTable/festivalTable";
 import { rounds } from "../../api/data.roundTimes";
 import { classNames } from "../../utils/Classes";
 import FestivalHero from "../../assets/img/festival_hero.jpg";
+import { ConsoleLogger } from "@aws-amplify/core";
 
 const festival = {
   name: "Ilkley Chess Festival",
@@ -108,6 +109,8 @@ export default function Festival() {
 
         if(entries.nextToken) {
 
+          console.log("INFO: bulk entries payload requested");
+
           const additionalResponse = await API.graphql({
             query: getEvent,
             variables: { id, filter: { eventId: { eq: id } }, limit: 250, nextToken: entries.nextToken },
@@ -121,8 +124,12 @@ export default function Festival() {
 
           const items = { items: [ ...entries.items, moreEntries.items ] };
 
+          console.log("INFO:", entries.items.length, moreEntries.items.length);
+          console.log("INFO: combined items", items);
+          
+
           setEventEntries({ ...eventData, entries: items });
-          setEntriesCount(items.length);
+          setEntriesCount(items.items.length);
 
         } else {
           setEventEntries({ ...eventData, entries });
