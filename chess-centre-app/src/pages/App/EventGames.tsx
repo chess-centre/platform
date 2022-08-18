@@ -44,6 +44,7 @@ export const listGamesByEvent = /* GraphQL */ `
           ecfRapid
           estimatedRating
           club
+          chessTitle
         }
         blackMember {
           id
@@ -55,6 +56,7 @@ export const listGamesByEvent = /* GraphQL */ `
           ecfRapid
           estimatedRating
           club
+          chessTitle
         }
       }
       nextToken

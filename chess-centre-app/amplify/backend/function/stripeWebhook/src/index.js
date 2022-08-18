@@ -32,10 +32,11 @@ const endpoint = new urlParse(appsyncUrl).hostname.toString();
 const { print } = graphql;
 
 const getEvent = gql`
-  query getEvent($id: ID!, $memberId: ID!) {
+  query getEvent($id: ID!, $memberId: ID!, $filter: ModelEntryFilterInput, $limit: Int, $nextToken: String) {
     getEvent(id: $id) {
       id
       maxEntries
+      entryCount
       type {
         id
         name
@@ -67,6 +68,35 @@ const getEvent = gql`
       email
       stripeCustomerId
       stripeCurrentPeriodEnd
+    }
+    listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+            eventId
+            memberId
+            section
+            byes
+            createdAt
+            updatedAt
+            member {
+              id
+              fideId
+              ecfId
+              name
+              ecfRatingPartial
+              ecfRating
+              ecfRapidPartial
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              chessTitle
+            }
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -222,6 +252,8 @@ async function handleCheckoutSessionCompletedPayment(id) {
   
   console.log("memberId", memberId, "eventId", eventId, "section", section, "byes", byes);
 
+  let entryList = [];
+
   const {
     data: {
       getEvent: {
@@ -229,16 +261,22 @@ async function handleCheckoutSessionCompletedPayment(id) {
         endDate,
         arrivalTime,
         type: { name: eventName, eventType },
-        entries: { items: entries },
         _version,
       },
       getMember: { email, name },
+      listEntrys: { items: entries, nextToken }
     },
   } = await fetchEvent(eventId, memberId);
 
-  console.log(entries);
 
-  const entryCount = entries.length + 1; // add one for this entry
+  entryList = [...entries];
+
+  if(nextToken) {
+    const { data: { listEntrys: { items: nextEntries }}} = await fetchEvent(eventId, memberId, nextToken);
+    entryList = [...entryList, ...nextEntries];
+  }
+
+  const entryCount = entryList.length + 1; // add one for this entry
 
   const createEntry = gql`
     mutation createEntry(
@@ -279,7 +317,7 @@ async function handleCheckoutSessionCompletedPayment(id) {
     startDate,
     endDate,
     eventType,
-    entries,
+    entryList,
     section,
     byes
   };
@@ -397,12 +435,15 @@ async function executeGraphql(query, variables) {
   return data;
 }
 
-async function fetchEvent(id, memberId) {
+async function fetchEvent(id, memberId, nextToken) {
   const req = new AWS.HttpRequest(appsyncUrl, region);
 
   const variables = {
     id,
     memberId,
+    limit: 250,
+    filter: { eventId: { eq: id }},
+    nextToken: nextToken
   };
 
   req.method = "POST";
