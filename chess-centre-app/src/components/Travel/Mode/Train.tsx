@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from "react";
 import { API } from "aws-amplify";
+import { classNames } from "../../../utils/Classes";
 import { rounds } from "../../../api/data.roundTimes";
 
-export default function Trains({ eventId, eventType }) {
+export default function Trains({ eventId, eventType, alignLeft = true }) {
   const { eventStart, eventEnd } = rounds.find(
     ({ type }) => type === eventType
   );
@@ -66,11 +67,11 @@ export default function Trains({ eventId, eventType }) {
               <tbody className="bg-white divide-y divide-gray-200">
                 {trainInfo.map((details, key) => {
                   return (
-                    <tr key={key}>
+                    <tr key={key} className={classNames(alignLeft ? "text-left" : "text-center")}>
                       <td className="px-2 py-2 whitespace-nowrap text-sm text-gray-900">
                         {details.destination_name}
                       </td>
-                      <td className="px-2 py-2 text-center whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-2 py-2 whitespace-nowrap text-sm text-gray-900">
                         {details.platform}
                       </td>
                       <td className="px-2 py-2 whitespace-nowrap text-sm text-gray-900">
