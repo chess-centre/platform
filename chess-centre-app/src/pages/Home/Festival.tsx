@@ -20,7 +20,7 @@ const festival = {
 };
 
 const getEvent = /* GraphQL */ `
-  query GetEvent($id: ID!, $filter: ModelEntryFilterInput, $limit: Int) {
+  query GetEvent($id: ID!, $filter: ModelEntryFilterInput, $limit: Int, $nextToken: String) {
     getEvent(id: $id) {
       id
       name
@@ -51,7 +51,7 @@ const getEvent = /* GraphQL */ `
         canRegister
       }
     }
-    listEntrys(filter: $filter, limit: $limit) {
+    listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         eventId
@@ -104,15 +104,80 @@ export default function Festival() {
             getEvent: eventData,
             listEntrys: entries },
         } = response;
-        setEventEntries({ ...eventData, entries });
-        if (entries?.items) {
-          setEntriesCount(entries?.items.length);
+
+
+        if(entries.nextToken) {
+
+          const additionalResponse = await API.graphql({
+            query: getEvent,
+            variables: { id, filter: { eventId: { eq: id } }, limit: 250, nextToken: entries.nextToken },
+            authMode: "AWS_IAM",
+          });
+
+          const {
+            data: {
+              listEntrys: moreEntries },
+          } = additionalResponse;
+
+          const items = { items: [ ...entries.items, moreEntries.items ] };
+
+          setEventEntries({ ...eventData, entries: items });
+          setEntriesCount(items.length);
+
+        } else {
+          setEventEntries({ ...eventData, entries });
+          if (entries?.items) {
+            setEntriesCount(entries?.items.length);
+          }
         }
       }
       setIsLoading(false);
     };
     fetchEvent();
   }, [id]);
+
+
+  useEffect(() => {
+    const fetchEntries = async () => {
+      setIsLoadingEntries(true);
+
+      const response = await API.graphql({
+        query: getEvent,
+        variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250 },
+        authMode: "AWS_IAM"
+      });
+
+      if (response && response.data) {
+        const {
+          data: {
+            getEvent: eventData,
+            listEntrys: entries },
+        } = response;
+
+        if(entries.nextToken) {
+          const additionalResponse = await API.graphql({
+            query: getEvent,
+            variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250, nextToken: entries.nextToken },
+            authMode: "AWS_IAM",
+          });
+
+          const {
+            data: {
+              listEntrys: moreEntries },
+          } = additionalResponse;
+
+          const items = { items: [ ...entries.items, moreEntries.items ] };
+
+          setEventEntries({ ...eventData, entries: items });
+
+        } else {
+          setEventEntries({ ...eventData, entries });
+        }
+      }
+      setIsLoadingEntries(false);
+    };
+    fetchEntries();
+  }, [eventId]);
 
   return (
     <div className="relative bg-white">

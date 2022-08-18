@@ -21,7 +21,7 @@ import EventSectionSelectionModal from "../../components/Modal/EventSectionSelec
 import { juniorSections, standardSections } from "../../api/sections";
 
 const getEvent = /* GraphQL */ `
-  query GetEvent($id: ID!, $filter: ModelEntryFilterInput, $limit: Int) {
+  query GetEvent($id: ID!, $filter: ModelEntryFilterInput, $limit: Int, $nextToken: String) {
     getEvent(id: $id) {
       id
       name
@@ -29,7 +29,7 @@ const getEvent = /* GraphQL */ `
       active
       multipleSections
     }
-    listEntrys(filter: $filter, limit: $limit) {
+    listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
             eventId
@@ -87,6 +87,7 @@ export default function EventDetails() {
   useEffect(() => {
     const fetchEntries = async () => {
       setIsLoadingEntries(true);
+
       const response = await API.graphql({
         query: getEvent,
         variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250 },
@@ -99,7 +100,26 @@ export default function EventDetails() {
             getEvent: eventData,
             listEntrys: entries },
         } = response;
-        setEventEntries({ ...eventData, entries });
+
+        if(entries.nextToken) {
+          const additionalResponse = await API.graphql({
+            query: getEvent,
+            variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250, nextToken: entries.nextToken },
+            authMode: "AWS_IAM",
+          });
+
+          const {
+            data: {
+              listEntrys: moreEntries },
+          } = additionalResponse;
+
+          const items = { items: [ ...entries.items, moreEntries.items ] };
+
+          setEventEntries({ ...eventData, entries: items });
+
+        } else {
+          setEventEntries({ ...eventData, entries });
+        }
       }
       setIsLoadingEntries(false);
     };
@@ -195,7 +215,7 @@ function DetailsView(props: Props) {
   const renderTab = (selected: string, data: Event) => {
     switch (selected) {
       case "Entries":
-        return <Entries data={data} isLoading={isLoadingEntries} entries={entries} />;
+        return <Entries data={data} isLoadingEntries={isLoadingEntries} entries={entries} />;
       case "Schedule":
         return <Schedule data={data} />;
       case "Travel":
