@@ -113,7 +113,7 @@ export default function EventDetails() {
               listEntrys: moreEntries },
           } = additionalResponse;
 
-          const items = { items: [ ...entries.items, moreEntries.items ] };
+          const items = { items: [ ...entries.items, ...moreEntries.items ] };
 
           setEventEntries({ ...eventData, entries: items });
 

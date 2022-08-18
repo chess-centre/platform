@@ -122,7 +122,7 @@ export default function Festival() {
               listEntrys: moreEntries },
           } = additionalResponse;
 
-          const items = { items: [ ...entries.items, moreEntries.items ] };
+          const items = { items: [ ...entries.items, ...moreEntries.items ] };
 
           console.log("INFO:", entries.items.length, moreEntries.items.length);
           console.log("INFO: combined items", items);
