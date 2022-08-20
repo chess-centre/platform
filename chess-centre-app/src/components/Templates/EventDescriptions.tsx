@@ -123,7 +123,7 @@ export function EventDescription({
         {TemplateData[template].paragraphs.map((text: string, key: number) => {
           if (multipleSections && key === 2) {
             return (
-              <>
+              <div key={key}>
                 <ol>
                   {!isJuniorEvent &&
                     standardSections.map((section) => (
@@ -146,7 +146,7 @@ export function EventDescription({
                     ))}
                 </ol>
                 <p key={key}>{text}</p>
-              </>
+              </div>
             );
           }
           return <p key={key}>{text}</p>;
