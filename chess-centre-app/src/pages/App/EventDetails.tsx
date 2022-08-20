@@ -16,7 +16,6 @@ import {
 import AppTravel from "../../components/Travel/AppTravel";
 import Brumdcrumbs from "../../components/Breadcrumbs";
 import EventContactUsModal from "../../components/Modal/EventContactUsModal";
-
 import EventSectionSelectionModal from "../../components/Modal/EventSectionSelectModal";
 import { juniorSections, standardSections } from "../../api/sections";
 
@@ -205,6 +204,7 @@ interface Props {
 function DetailsView(props: Props) {
   const { data, isLoadingEntries, entries } = props;
   const { tags, organisers, address } = TemplateData[data.type.eventType];
+  const [isJunior] = useState(data?.name.includes("Junior") || false);
   const [isModelOpen, setIsModalOpen] = useState(false);
   const [tabs, setTabs] = useState([
     { key: "schedule", name: "Schedule", current: true },
@@ -255,9 +255,9 @@ function DetailsView(props: Props) {
                       {showRegistration() && (
                         <RegisterButton
                           id={data.id}
-                          showByes={data.multipleSections}
+                          showByes={data.multipleSections && !isJunior}
                           multipleSections={data.multipleSections}
-                          isJunior={data.name.includes("Junior")}
+                          isJunior={isJunior}
                         />
                       )}
 
@@ -272,7 +272,7 @@ function DetailsView(props: Props) {
                         className="flex w-full sm:w-auto justify-center px-4 py-2 border border-gray-300 
                         shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700"
                       >
-                        <span>Contact Us</span>
+                        <span>Contact Us!</span>
                       </button>
                     </div>
 
@@ -687,6 +687,7 @@ function RegisterButton(props: RegisterButtonProps) {
         open={modelOpen}
         closeModal={closeModal}
         sections={sections}
+        isJunior={isJunior}
       />
     </div>
   );

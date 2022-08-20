@@ -1,4 +1,4 @@
-import { Fragment, useRef } from "react";
+import React, { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/outline";
 
@@ -64,9 +64,8 @@ export default function PaymentCompleteModal(props) {
                     <p className="text-sm text-gray-500">
                       You have now been registered!
                     </p>
-                    <p className="text-sm text-gray-500">
-                      Your name will appear in <span>yellow</span> in our
-                      entries list.
+                    <p className="text-sm text-gray-500 mt-4">
+                      You will now be show in the entries list, see "More Information" for full details and other event entries.
                     </p>
                   </div>
                 </div>

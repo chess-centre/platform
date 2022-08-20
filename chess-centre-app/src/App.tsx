@@ -33,7 +33,6 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <LiveGameProvider>
           <Elements stripe={stripePromise}>
             <ToastProvider>
               <Router>
@@ -54,7 +53,6 @@ export default function App() {
               </Router>
             </ToastProvider>
           </Elements>
-        </LiveGameProvider>
       </AuthProvider>
     </QueryClientProvider>
   );

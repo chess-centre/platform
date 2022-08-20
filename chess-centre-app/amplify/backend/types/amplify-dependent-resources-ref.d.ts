@@ -3,8 +3,6 @@ export type AmplifyDependentResourcesAttributes = {
         "platformchesscentreapp": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
-            "HostedUIDomain": "string",
-            "OAuthMetadata": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",
@@ -236,13 +234,6 @@ export type AmplifyDependentResourcesAttributes = {
         "pgn": {
             "BucketName": "string",
             "Region": "string"
-        }
-    },
-    "analytics": {
-        "platformchesscentreaKinesis": {
-            "kinesisStreamArn": "string",
-            "kinesisStreamId": "string",
-            "kinesisStreamShardCount": "string"
         }
     }
 }

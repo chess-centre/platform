@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { useAuthState } from "../../context/Auth";
@@ -12,12 +12,8 @@ import Integrations from "../../components/Integrations";
 import FestivalCTA from "../../components/Festival/HomePageCTA";
 import EmbeddedVideo from "../../components/Video/Embedded";
 
-
-import { useLiveGameState } from "../../context/LiveGameContext";
-
 const Home = () => {
   const { user } = useAuthState();
-  const { eventInfo, isLoading } = useLiveGameState();
 
   useEffect(() => {
     document.title = "The Chess Centre | Welcome";
@@ -133,40 +129,6 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-              {!isLoading ? (
-                eventInfo.map((_, key) => {
-                  return (
-                    <div key={key} className="mt-4">
-                      <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center">
-                        <div className="rounded-md shadow">
-                          <Link
-                            to="/broadcast/live"
-                            className={`
-                            py-3
-                            w-full flex items-center justify-center px-9 border 
-                            border-transparent text-base font-medium rounded-md text-white bg-teal-700 hover:bg-teal-600 
-                            focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out`}
-                          >
-                            <span className="flex relative h-3 w-3">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-                              <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
-                            </span>{" "}
-                            <span className="ml-2">Live Games</span>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div className="mt-4">
-                  <div className="text-gray-300 mb-2 text-xs">
-                    <i className="fal fa-spinner-third fa-spin fa-fw"></i>
-                    <br />
-                    checking for live games
-                  </div>
-                </div>
-              )}
             </div>
           </main>
         </div>
