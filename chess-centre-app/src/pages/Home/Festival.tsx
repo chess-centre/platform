@@ -12,7 +12,7 @@ import EntriesTable from "../../components/EntriesTable/festivalTable";
 import { rounds } from "../../api/data.roundTimes";
 import { classNames } from "../../utils/Classes";
 import FestivalHero from "../../assets/img/festival_hero.jpg";
-import { ConsoleLogger } from "@aws-amplify/core";
+import ConfirmEntry from "../../components/Modal/ConfirmFestivalEntry";
 
 const festival = {
   name: "Ilkley Chess Festival",
@@ -108,9 +108,6 @@ export default function Festival() {
 
 
         if(entries.nextToken) {
-
-          console.log("INFO: bulk entries payload requested");
-
           const additionalResponse = await API.graphql({
             query: getEvent,
             variables: { id, filter: { eventId: { eq: id } }, limit: 250, nextToken: entries.nextToken },
@@ -122,11 +119,7 @@ export default function Festival() {
               listEntrys: moreEntries },
           } = additionalResponse;
 
-          const items = { items: [ ...entries.items, ...moreEntries.items ] };
-
-          console.log("INFO:", entries.items.length, moreEntries.items.length);
-          console.log("INFO: combined items", items);
-          
+          const items = { items: [ ...entries.items, ...moreEntries.items ] };          
 
           setEventEntries({ ...eventData, entries: items });
           setEntriesCount(items.items.length);
@@ -602,6 +595,8 @@ const EntryForm = ({ id }) => {
   const [selectedRoundTwo, setSelectedRoundTwo] = useState(false);
   const [selectedRoundThree, setSelectedRoundThree] = useState(false);
   const [selectedRoundFour, setSelectedRoundFour] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [byesSelected, setByesSelected] = useState("");
   const sections = standardSections;
 
   const generateUrl = () => {
@@ -614,6 +609,16 @@ const EntryForm = ({ id }) => {
     const byesStr = byes ? `&byes=${byes}` : "";
     return `/register?eventId=${id}${sectionStr}${byesStr}`;
   };
+
+  const handleConfirmEntry = () => {
+    const r1 = selectedRoundOne ? "1" : "";
+    const r2 = selectedRoundTwo ? "2" : "";
+    const r3 = selectedRoundThree ? "3" : "";
+    const r4 = selectedRoundFour ? "4" : "";
+    const byes = `${r1}${r2}${r3}${r4}`;
+    setByesSelected(byes);
+    setModalOpen(true);
+  }
 
   return (
     <div>
@@ -643,7 +648,6 @@ const EntryForm = ({ id }) => {
 
       <div className="relative mx-auto">
         <div
-          htmlFor="byes"
           className="block text-sm text-gray-800 text-center mt-6 mb-4"
         >
           Half point byes{" "}
@@ -733,12 +737,12 @@ const EntryForm = ({ id }) => {
         <span className="text-base font-medium text-gray-500">entry fee</span>
       </div>
       <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4">
-        <Link
-          to={generateUrl()}
-          className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-teal-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
+        <button
+          onClick={() => handleConfirmEntry()}
+          className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-blue-brand"
         >
           Enter Now
-        </Link>
+        </button>
         <p className="text-xs text-gray-500 text-center">Other Festival events</p>
         <Link
           to="/festival/blitz"
@@ -747,6 +751,7 @@ const EntryForm = ({ id }) => {
           Evening Blitz
         </Link>
       </div>
+      <ConfirmEntry setOpen={setModalOpen} open={modalOpen} section={section} byes={byesSelected} url={generateUrl()} />
     </div>
   );
 };
