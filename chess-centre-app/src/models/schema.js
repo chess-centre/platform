@@ -578,6 +578,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "isJunior": {
+                    "name": "isJunior",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "active": {
                     "name": "active",
                     "isArray": false,
@@ -1124,6 +1131,13 @@ export const schema = {
                     "type": "Float",
                     "isRequired": false,
                     "attributes": []
+                },
+                "isJunior": {
+                    "name": "isJunior",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -1290,5 +1304,5 @@ export const schema = {
             }
         }
     },
-    "version": "897af1ade15de84c517080c440a4ea11"
+    "version": "919a4f17507a469d3c4b9c5e22075cf0"
 };

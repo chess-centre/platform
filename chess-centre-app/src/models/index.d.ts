@@ -82,6 +82,7 @@ export declare class Event {
   readonly cancelled?: boolean | null;
   readonly isLive?: boolean | null;
   readonly isLiveUrl?: string | null;
+  readonly isJunior?: boolean | null;
   readonly active?: string | null;
   readonly multipleSections?: boolean | null;
   readonly results?: (Result | null)[] | null;
@@ -149,6 +150,7 @@ export declare class Member {
   readonly chesscomLastUpdated?: number | null;
   readonly lichessLastUpdated?: number | null;
   readonly ecfLastUpdated?: number | null;
+  readonly isJunior?: boolean | null;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
 }
