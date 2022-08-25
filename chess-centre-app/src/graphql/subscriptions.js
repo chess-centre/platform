@@ -271,6 +271,7 @@ export const onCreateGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -335,6 +336,7 @@ export const onCreateGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -364,6 +366,7 @@ export const onCreateGame = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -423,6 +426,7 @@ export const onCreateGame = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -472,6 +476,7 @@ export const onCreateGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -497,6 +502,7 @@ export const onCreateGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -593,6 +599,7 @@ export const onCreateGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -657,6 +664,7 @@ export const onCreateGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -686,6 +694,7 @@ export const onCreateGame = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -745,6 +754,7 @@ export const onCreateGame = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -794,6 +804,7 @@ export const onCreateGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -819,6 +830,7 @@ export const onCreateGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -846,6 +858,7 @@ export const onCreateGame = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -928,6 +941,7 @@ export const onCreateGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -966,6 +980,7 @@ export const onCreateGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -991,6 +1006,7 @@ export const onCreateGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -1061,6 +1077,7 @@ export const onCreateGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1086,6 +1103,7 @@ export const onCreateGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -1213,6 +1231,7 @@ export const onUpdateGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -1277,6 +1296,7 @@ export const onUpdateGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -1306,6 +1326,7 @@ export const onUpdateGame = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -1365,6 +1386,7 @@ export const onUpdateGame = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -1414,6 +1436,7 @@ export const onUpdateGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1439,6 +1462,7 @@ export const onUpdateGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -1535,6 +1559,7 @@ export const onUpdateGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -1599,6 +1624,7 @@ export const onUpdateGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -1628,6 +1654,7 @@ export const onUpdateGame = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -1687,6 +1714,7 @@ export const onUpdateGame = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -1736,6 +1764,7 @@ export const onUpdateGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1761,6 +1790,7 @@ export const onUpdateGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -1788,6 +1818,7 @@ export const onUpdateGame = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -1870,6 +1901,7 @@ export const onUpdateGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1908,6 +1940,7 @@ export const onUpdateGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1933,6 +1966,7 @@ export const onUpdateGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -2003,6 +2037,7 @@ export const onUpdateGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2028,6 +2063,7 @@ export const onUpdateGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -2155,6 +2191,7 @@ export const onDeleteGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -2219,6 +2256,7 @@ export const onDeleteGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -2248,6 +2286,7 @@ export const onDeleteGame = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -2307,6 +2346,7 @@ export const onDeleteGame = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -2356,6 +2396,7 @@ export const onDeleteGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2381,6 +2422,7 @@ export const onDeleteGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -2477,6 +2519,7 @@ export const onDeleteGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -2541,6 +2584,7 @@ export const onDeleteGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -2570,6 +2614,7 @@ export const onDeleteGame = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -2629,6 +2674,7 @@ export const onDeleteGame = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -2678,6 +2724,7 @@ export const onDeleteGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2703,6 +2750,7 @@ export const onDeleteGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -2730,6 +2778,7 @@ export const onDeleteGame = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -2812,6 +2861,7 @@ export const onDeleteGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2850,6 +2900,7 @@ export const onDeleteGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2875,6 +2926,7 @@ export const onDeleteGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -2945,6 +2997,7 @@ export const onDeleteGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2970,6 +3023,7 @@ export const onDeleteGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -3197,6 +3251,7 @@ export const onCreateMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3235,6 +3290,7 @@ export const onCreateMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3260,6 +3316,7 @@ export const onCreateMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -3288,6 +3345,7 @@ export const onCreateMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -3376,6 +3434,7 @@ export const onCreateMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3414,6 +3473,7 @@ export const onCreateMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3439,6 +3499,7 @@ export const onCreateMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -3467,6 +3528,7 @@ export const onCreateMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -3508,6 +3570,7 @@ export const onCreateMember = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -3618,6 +3681,7 @@ export const onCreateMember = /* GraphQL */ `
       chesscomLastUpdated
       lichessLastUpdated
       ecfLastUpdated
+      isJunior
       _version
       _deleted
       _lastChangedAt
@@ -3689,6 +3753,7 @@ export const onCreateMember = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -3718,6 +3783,7 @@ export const onCreateMember = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -3861,6 +3927,7 @@ export const onUpdateMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3899,6 +3966,7 @@ export const onUpdateMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3924,6 +3992,7 @@ export const onUpdateMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -3952,6 +4021,7 @@ export const onUpdateMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -4040,6 +4110,7 @@ export const onUpdateMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4078,6 +4149,7 @@ export const onUpdateMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4103,6 +4175,7 @@ export const onUpdateMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -4131,6 +4204,7 @@ export const onUpdateMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -4172,6 +4246,7 @@ export const onUpdateMember = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -4282,6 +4357,7 @@ export const onUpdateMember = /* GraphQL */ `
       chesscomLastUpdated
       lichessLastUpdated
       ecfLastUpdated
+      isJunior
       _version
       _deleted
       _lastChangedAt
@@ -4353,6 +4429,7 @@ export const onUpdateMember = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -4382,6 +4459,7 @@ export const onUpdateMember = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -4525,6 +4603,7 @@ export const onDeleteMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4563,6 +4642,7 @@ export const onDeleteMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4588,6 +4668,7 @@ export const onDeleteMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -4616,6 +4697,7 @@ export const onDeleteMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -4704,6 +4786,7 @@ export const onDeleteMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4742,6 +4825,7 @@ export const onDeleteMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4767,6 +4851,7 @@ export const onDeleteMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -4795,6 +4880,7 @@ export const onDeleteMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -4836,6 +4922,7 @@ export const onDeleteMember = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -4946,6 +5033,7 @@ export const onDeleteMember = /* GraphQL */ `
       chesscomLastUpdated
       lichessLastUpdated
       ecfLastUpdated
+      isJunior
       _version
       _deleted
       _lastChangedAt
@@ -5017,6 +5105,7 @@ export const onDeleteMember = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5046,6 +5135,7 @@ export const onDeleteMember = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -5108,6 +5198,7 @@ export const onCreateEvent = /* GraphQL */ `
       cancelled
       isLive
       isLiveUrl
+      isJunior
       active
       multipleSections
       _version
@@ -5212,6 +5303,7 @@ export const onCreateEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5276,6 +5368,7 @@ export const onCreateEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5305,6 +5398,7 @@ export const onCreateEvent = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -5428,6 +5522,7 @@ export const onCreateEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5457,6 +5552,7 @@ export const onCreateEvent = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -5519,6 +5615,7 @@ export const onUpdateEvent = /* GraphQL */ `
       cancelled
       isLive
       isLiveUrl
+      isJunior
       active
       multipleSections
       _version
@@ -5623,6 +5720,7 @@ export const onUpdateEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5687,6 +5785,7 @@ export const onUpdateEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5716,6 +5815,7 @@ export const onUpdateEvent = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -5839,6 +5939,7 @@ export const onUpdateEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5868,6 +5969,7 @@ export const onUpdateEvent = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -5930,6 +6032,7 @@ export const onDeleteEvent = /* GraphQL */ `
       cancelled
       isLive
       isLiveUrl
+      isJunior
       active
       multipleSections
       _version
@@ -6034,6 +6137,7 @@ export const onDeleteEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -6098,6 +6202,7 @@ export const onDeleteEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -6127,6 +6232,7 @@ export const onDeleteEvent = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -6250,6 +6356,7 @@ export const onDeleteEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -6279,6 +6386,7 @@ export const onDeleteEvent = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -6421,6 +6529,7 @@ export const onCreateEntry = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -6485,6 +6594,7 @@ export const onCreateEntry = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -6514,6 +6624,7 @@ export const onCreateEntry = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -6573,6 +6684,7 @@ export const onCreateEntry = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -6622,6 +6734,7 @@ export const onCreateEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6647,6 +6760,7 @@ export const onCreateEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -6674,6 +6788,7 @@ export const onCreateEntry = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -6756,6 +6871,7 @@ export const onCreateEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6794,6 +6910,7 @@ export const onCreateEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6819,6 +6936,7 @@ export const onCreateEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -6889,6 +7007,7 @@ export const onCreateEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6914,6 +7033,7 @@ export const onCreateEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -7026,6 +7146,7 @@ export const onUpdateEntry = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -7090,6 +7211,7 @@ export const onUpdateEntry = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -7119,6 +7241,7 @@ export const onUpdateEntry = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -7178,6 +7301,7 @@ export const onUpdateEntry = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -7227,6 +7351,7 @@ export const onUpdateEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -7252,6 +7377,7 @@ export const onUpdateEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -7279,6 +7405,7 @@ export const onUpdateEntry = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -7361,6 +7488,7 @@ export const onUpdateEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -7399,6 +7527,7 @@ export const onUpdateEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -7424,6 +7553,7 @@ export const onUpdateEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -7494,6 +7624,7 @@ export const onUpdateEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -7519,6 +7650,7 @@ export const onUpdateEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -7631,6 +7763,7 @@ export const onDeleteEntry = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -7695,6 +7828,7 @@ export const onDeleteEntry = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -7724,6 +7858,7 @@ export const onDeleteEntry = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -7783,6 +7918,7 @@ export const onDeleteEntry = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -7832,6 +7968,7 @@ export const onDeleteEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -7857,6 +7994,7 @@ export const onDeleteEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -7884,6 +8022,7 @@ export const onDeleteEntry = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -7966,6 +8105,7 @@ export const onDeleteEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -8004,6 +8144,7 @@ export const onDeleteEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -8029,6 +8170,7 @@ export const onDeleteEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -8099,6 +8241,7 @@ export const onDeleteEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -8124,6 +8267,7 @@ export const onDeleteEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version

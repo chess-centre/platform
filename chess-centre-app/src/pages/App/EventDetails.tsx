@@ -272,7 +272,7 @@ function DetailsView(props: Props) {
                         className="flex w-full sm:w-auto justify-center px-4 py-2 border border-gray-300 
                         shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700"
                       >
-                        <span>Contact Us!</span>
+                        <span>Contact Us</span>
                       </button>
                     </div>
 
