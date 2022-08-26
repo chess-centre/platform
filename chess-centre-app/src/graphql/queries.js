@@ -261,6 +261,8 @@ export const getGame = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -295,6 +297,8 @@ export const getGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -360,6 +364,8 @@ export const getGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -522,6 +528,8 @@ export const getGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -589,6 +597,8 @@ export const getGame = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -623,6 +633,8 @@ export const getGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -688,6 +700,8 @@ export const getGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -850,6 +864,8 @@ export const getGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -987,6 +1003,8 @@ export const getGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1026,6 +1044,8 @@ export const getGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1123,6 +1143,8 @@ export const getGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1226,6 +1248,8 @@ export const listGames = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -1260,6 +1284,8 @@ export const listGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1299,6 +1325,8 @@ export const listGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1409,6 +1437,8 @@ export const listGames = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -1443,6 +1473,8 @@ export const listGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1482,6 +1514,8 @@ export const listGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1744,6 +1778,8 @@ export const listGamesByEvent = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -1778,6 +1814,8 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1817,6 +1855,8 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1927,6 +1967,8 @@ export const listGamesByEvent = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -1961,6 +2003,8 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2000,6 +2044,8 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2262,6 +2308,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -2296,6 +2344,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2335,6 +2385,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2445,6 +2497,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -2479,6 +2533,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2518,6 +2574,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2780,6 +2838,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -2814,6 +2874,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2853,6 +2915,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2963,6 +3027,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -2997,6 +3063,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3036,6 +3104,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3296,6 +3366,8 @@ export const syncGames = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -3330,6 +3402,8 @@ export const syncGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3369,6 +3443,8 @@ export const syncGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3479,6 +3555,8 @@ export const syncGames = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -3513,6 +3591,8 @@ export const syncGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3552,6 +3632,8 @@ export const syncGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3944,6 +4026,8 @@ export const syncMembers = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -3978,6 +4062,8 @@ export const syncMembers = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -4043,6 +4129,8 @@ export const syncMembers = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -4205,6 +4293,8 @@ export const syncMembers = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4279,6 +4369,8 @@ export const getMember = /* GraphQL */ `
       ecfId
       username
       name
+      firstName
+      surname
       email
       games {
         id
@@ -4313,6 +4405,8 @@ export const getMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -4347,6 +4441,8 @@ export const getMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4386,6 +4482,8 @@ export const getMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4496,6 +4594,8 @@ export const getMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -4530,6 +4630,8 @@ export const getMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4569,6 +4671,8 @@ export const getMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4827,6 +4931,8 @@ export const getMember = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -4960,6 +5066,8 @@ export const listMembers = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -4994,6 +5102,8 @@ export const listMembers = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5059,6 +5169,8 @@ export const listMembers = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5221,6 +5333,8 @@ export const listMembers = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -5365,6 +5479,8 @@ export const getEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5430,6 +5546,8 @@ export const getEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5584,6 +5702,8 @@ export const getEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5787,6 +5907,8 @@ export const listEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -5826,6 +5948,8 @@ export const listEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -5923,6 +6047,8 @@ export const listEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -6082,6 +6208,8 @@ export const listEventsActive = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -6121,6 +6249,8 @@ export const listEventsActive = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -6218,6 +6348,8 @@ export const listEventsActive = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -6373,6 +6505,8 @@ export const syncEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -6412,6 +6546,8 @@ export const syncEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -6509,6 +6645,8 @@ export const syncEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -6594,6 +6732,8 @@ export const getEntry = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -6628,6 +6768,8 @@ export const getEntry = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -6693,6 +6835,8 @@ export const getEntry = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -6855,6 +6999,8 @@ export const getEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -6992,6 +7138,8 @@ export const getEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7031,6 +7179,8 @@ export const getEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7128,6 +7278,8 @@ export const getEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7216,6 +7368,8 @@ export const listEntrys = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -7250,6 +7404,8 @@ export const listEntrys = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7289,6 +7445,8 @@ export const listEntrys = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7534,6 +7692,8 @@ export const syncEntries = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -7568,6 +7728,8 @@ export const syncEntries = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7607,6 +7769,8 @@ export const syncEntries = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid

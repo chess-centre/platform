@@ -225,6 +225,8 @@ export const createGame = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -259,6 +261,8 @@ export const createGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -324,6 +328,8 @@ export const createGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -486,6 +492,8 @@ export const createGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -553,6 +561,8 @@ export const createGame = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -587,6 +597,8 @@ export const createGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -652,6 +664,8 @@ export const createGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -814,6 +828,8 @@ export const createGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -951,6 +967,8 @@ export const createGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -990,6 +1008,8 @@ export const createGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1087,6 +1107,8 @@ export const createGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1188,6 +1210,8 @@ export const updateGame = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -1222,6 +1246,8 @@ export const updateGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -1287,6 +1313,8 @@ export const updateGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -1449,6 +1477,8 @@ export const updateGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1516,6 +1546,8 @@ export const updateGame = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -1550,6 +1582,8 @@ export const updateGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -1615,6 +1649,8 @@ export const updateGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -1777,6 +1813,8 @@ export const updateGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1914,6 +1952,8 @@ export const updateGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -1953,6 +1993,8 @@ export const updateGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2050,6 +2092,8 @@ export const updateGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2151,6 +2195,8 @@ export const deleteGame = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -2185,6 +2231,8 @@ export const deleteGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -2250,6 +2298,8 @@ export const deleteGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -2412,6 +2462,8 @@ export const deleteGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2479,6 +2531,8 @@ export const deleteGame = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -2513,6 +2567,8 @@ export const deleteGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -2578,6 +2634,8 @@ export const deleteGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -2740,6 +2798,8 @@ export const deleteGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2877,6 +2937,8 @@ export const deleteGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -2916,6 +2978,8 @@ export const deleteGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3013,6 +3077,8 @@ export const deleteGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3220,6 +3286,8 @@ export const createMember = /* GraphQL */ `
       ecfId
       username
       name
+      firstName
+      surname
       email
       games {
         id
@@ -3254,6 +3322,8 @@ export const createMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -3288,6 +3358,8 @@ export const createMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3327,6 +3399,8 @@ export const createMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3437,6 +3511,8 @@ export const createMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -3471,6 +3547,8 @@ export const createMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3510,6 +3588,8 @@ export const createMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -3768,6 +3848,8 @@ export const createMember = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -3899,6 +3981,8 @@ export const updateMember = /* GraphQL */ `
       ecfId
       username
       name
+      firstName
+      surname
       email
       games {
         id
@@ -3933,6 +4017,8 @@ export const updateMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -3967,6 +4053,8 @@ export const updateMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4006,6 +4094,8 @@ export const updateMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4116,6 +4206,8 @@ export const updateMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -4150,6 +4242,8 @@ export const updateMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4189,6 +4283,8 @@ export const updateMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4447,6 +4543,8 @@ export const updateMember = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -4578,6 +4676,8 @@ export const deleteMember = /* GraphQL */ `
       ecfId
       username
       name
+      firstName
+      surname
       email
       games {
         id
@@ -4612,6 +4712,8 @@ export const deleteMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -4646,6 +4748,8 @@ export const deleteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4685,6 +4789,8 @@ export const deleteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4795,6 +4901,8 @@ export const deleteMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -4829,6 +4937,8 @@ export const deleteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -4868,6 +4978,8 @@ export const deleteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -5126,6 +5238,8 @@ export const deleteMember = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5327,6 +5441,8 @@ export const createEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5392,6 +5508,8 @@ export const createEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5546,6 +5664,8 @@ export const createEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5747,6 +5867,8 @@ export const updateEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5812,6 +5934,8 @@ export const updateEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5966,6 +6090,8 @@ export const updateEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -6167,6 +6293,8 @@ export const deleteEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -6232,6 +6360,8 @@ export const deleteEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -6386,6 +6516,8 @@ export const deleteEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -6528,6 +6660,8 @@ export const createEntry = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -6562,6 +6696,8 @@ export const createEntry = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -6627,6 +6763,8 @@ export const createEntry = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -6789,6 +6927,8 @@ export const createEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -6926,6 +7066,8 @@ export const createEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -6965,6 +7107,8 @@ export const createEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7062,6 +7206,8 @@ export const createEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7148,6 +7294,8 @@ export const updateEntry = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -7182,6 +7330,8 @@ export const updateEntry = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -7247,6 +7397,8 @@ export const updateEntry = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -7409,6 +7561,8 @@ export const updateEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7546,6 +7700,8 @@ export const updateEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7585,6 +7741,8 @@ export const updateEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7682,6 +7840,8 @@ export const updateEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -7768,6 +7928,8 @@ export const deleteEntry = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -7802,6 +7964,8 @@ export const deleteEntry = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -7867,6 +8031,8 @@ export const deleteEntry = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -8029,6 +8195,8 @@ export const deleteEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -8166,6 +8334,8 @@ export const deleteEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -8205,6 +8375,8 @@ export const deleteEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
@@ -8302,6 +8474,8 @@ export const deleteEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid

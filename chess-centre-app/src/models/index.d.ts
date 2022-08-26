@@ -124,6 +124,8 @@ export declare class Member {
   readonly ecfId?: string | null;
   readonly username?: string | null;
   readonly name?: string | null;
+  readonly firstName?: string | null;
+  readonly surname?: string | null;
   readonly email?: string | null;
   readonly entries?: Entry[] | null;
   readonly stripeCustomerId?: string | null;
