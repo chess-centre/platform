@@ -353,11 +353,19 @@ function Entries(props: Props) {
 
 function Schedule(props: Props) {
   const { data } = props;
+
+  let eventType = data.type.eventType;
+
+  // TODO: refine list of eventTypes ensuring flexibility with static round schedule
+  if(data?.name.includes("Festival") && data?.type?.eventType === "blitz") {
+    eventType = "festival-blitz";
+  }
+
   return (
     <div className="mt-2">
       <RoundTimes
         eventId={data.id}
-        eventType={data.type.eventType}
+        eventType={eventType}
         removeStyles={true}
       />
     </div>

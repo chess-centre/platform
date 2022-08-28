@@ -6,7 +6,7 @@ export const TemplateData = {
     address: "King's Hall & Winter Garden, Ilkley, LS29 8HB",
     paragraphs: [
       "Join us for our biggest event yet! Our Ilkley Chess Festival will be held at the beautiful Kings Hall & Winter Gardens.",
-      "Hopefully the beginning of many great events being held in the North.",
+      "This is just the beginning of many great events to be held in West Yorkshire!",
       "Below you will find the full details for the event including the playing schedule and current entries.",
     ],
     tags: [
