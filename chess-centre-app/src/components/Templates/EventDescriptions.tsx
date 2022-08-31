@@ -14,6 +14,20 @@ export const TemplateData = {
       { name: "ECF", color: "bg-rose-500" },
     ],
     coverImage: "/festival-square.jpg",
+    arbiters: [
+      {
+        name: "Alan Atkinson",
+        fideUrl: "https://ratings.fide.com/profile/450430"
+      },
+      {
+        name: "John Grasham",
+        fideUrl: ""
+      },
+      {
+        name: "Ihor Lewyk",
+        fideUrl: ""
+      }
+    ],
     organisers: [
       {
         name: "Andrew Wainwright",
