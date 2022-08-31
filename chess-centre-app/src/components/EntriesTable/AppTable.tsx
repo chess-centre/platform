@@ -6,7 +6,11 @@ import { juniorSections, standardSections } from "../../api/sections";
 export default function EntriesTable(data: any) {
   const { eventDetails } = data;
   const [selectedSection, handleSelectionSelect] = useState("open");
-  const [showByes, setShowByes] = useState<boolean>(true)
+  const [showByes, setShowByes] = useState<boolean>(true);
+  const isRapid =
+    eventDetails?.name?.includes("Rapidplay") ||
+    eventDetails?.name?.includes("IGS");
+  const isBlitz = eventDetails?.name?.includes("Blitz");
 
   const tableData = () => {
     /**
@@ -22,33 +26,93 @@ export default function EntriesTable(data: any) {
       const standard = ecfRating ? parseInt(ecfRating, 10) : 0;
       const rapid = ecfRapid ? parseInt(ecfRapid, 10) : 0;
 
-      if (standard) {
+      if (isBlitz) {
+        if (rapid)
+          return {
+            value: rapid,
+            sort: rapid,
+            isPartial: ecfRapidPartial,
+            key: "",
+          };
+        if (standard)
+          return {
+            value: standard,
+            sort: standard,
+            isPartial: ecfRatingPartial,
+            key: "S",
+          };
+        if (estimatedRating)
+          return {
+            value: estimatedRating,
+            sort: Number(estimatedRating),
+            isPartial: ecfRatingPartial,
+            key: "E",
+          };
         return {
-          value: standard,
-          sort: standard,
+          value: "unrated",
+          sort: 0,
           isPartial: ecfRatingPartial,
           key: "",
         };
       }
-
-      if (rapid) {
+      if (isRapid) {
+        if (rapid)
+          return {
+            value: rapid,
+            sort: rapid,
+            isPartial: ecfRapidPartial,
+            key: "",
+          };
+        if (standard)
+          return {
+            value: standard,
+            sort: standard,
+            isPartial: ecfRatingPartial,
+            key: "S",
+          };
+        if (estimatedRating)
+          return {
+            value: estimatedRating,
+            sort: Number(estimatedRating),
+            isPartial: ecfRatingPartial,
+            key: "E",
+          };
         return {
-          value: rapid,
-          sort: rapid,
-          isPartial: ecfRapidPartial,
-          key: "R",
-        };
-      }
-
-      if (estimatedRating) {
-        return {
-          value: estimatedRating,
+          value: "unrated",
+          sort: 0,
           isPartial: ecfRatingPartial,
-          sort: Number(estimatedRating),
-          key: "E",
+          key: "",
+        };
+        // Standard Rating
+      } else {
+        if (standard)
+          return {
+            value: standard,
+            sort: standard,
+            isPartial: ecfRatingPartial,
+            key: "",
+          };
+        if (rapid)
+          return {
+            value: rapid,
+            sort: rapid,
+            isPartial: ecfRapidPartial,
+            key: "R",
+          };
+        if (estimatedRating)
+          return {
+            value: estimatedRating,
+            sort: Number(estimatedRating),
+            isPartial: ecfRatingPartial,
+            key: "E",
+          };
+        return {
+          value: "unrated",
+          sort: 0,
+          isPartial: ecfRatingPartial,
+          key: "",
         };
       }
-      return { value: "unrated", sort: 0, key: "" };
     };
 
     /**

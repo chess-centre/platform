@@ -943,6 +943,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "firstName": {
+                    "name": "firstName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "surname": {
+                    "name": "surname",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "email": {
                     "name": "email",
                     "isArray": false,
@@ -1304,5 +1318,5 @@ export const schema = {
             }
         }
     },
-    "version": "919a4f17507a469d3c4b9c5e22075cf0"
+    "version": "9180dec604a6631973b52ff1ff006e41"
 };

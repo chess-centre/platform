@@ -101,7 +101,7 @@ export default function EventDetails() {
             listEntrys: entries },
         } = response;
 
-        if(entries.nextToken) {
+        if (entries.nextToken) {
           const additionalResponse = await API.graphql({
             query: getEvent,
             variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250, nextToken: entries.nextToken },
@@ -113,7 +113,7 @@ export default function EventDetails() {
               listEntrys: moreEntries },
           } = additionalResponse;
 
-          const items = { items: [ ...entries.items, ...moreEntries.items ] };
+          const items = { items: [...entries.items, ...moreEntries.items] };
 
           setEventEntries({ ...eventData, entries: items });
 
@@ -203,7 +203,7 @@ interface Props {
 
 function DetailsView(props: Props) {
   const { data, isLoadingEntries, entries } = props;
-  const { tags, organisers, address } = TemplateData[data.type.eventType];
+  const { tags, organisers, address, arbiters } = TemplateData[data.type.eventType];
   const [isJunior] = useState(data?.name.includes("Junior") || false);
   const [isModelOpen, setIsModalOpen] = useState(false);
   const [tabs, setTabs] = useState([
@@ -283,6 +283,7 @@ function DetailsView(props: Props) {
                       data={data}
                       tags={tags}
                       organisers={organisers}
+                      arbiters={arbiters}
                     />
                   </div>
 
@@ -311,7 +312,7 @@ function DetailsView(props: Props) {
             </div>
             {/* Desktop Sidebar  */}
             <div className="hidden lg:block">
-              <SummaryDetails data={data} tags={tags} organisers={organisers} />
+              <SummaryDetails data={data} tags={tags} organisers={organisers} arbiters={arbiters} />
             </div>
           </div>
         </div>
@@ -331,7 +332,7 @@ function Entries(props: Props) {
 
   let mergeEventInfoWithEntries = data;
 
-  if(entries) {
+  if (entries) {
     mergeEventInfoWithEntries = {
       ...data,
       entries: entries.entries
@@ -353,11 +354,19 @@ function Entries(props: Props) {
 
 function Schedule(props: Props) {
   const { data } = props;
+
+  let eventType = data.type.eventType;
+
+  // TODO: refine list of eventTypes ensuring flexibility with static round schedule
+  if (data?.name.includes("Festival") && data?.type?.eventType === "blitz") {
+    eventType = "festival-blitz";
+  }
+
   return (
     <div className="mt-2">
       <RoundTimes
         eventId={data.id}
-        eventType={data.type.eventType}
+        eventType={eventType}
         removeStyles={true}
       />
     </div>
@@ -453,7 +462,7 @@ function ErrorView() {
   );
 }
 
-function SummaryDetails({ data, tags, organisers }) {
+function SummaryDetails({ data, tags, organisers, arbiters }) {
   return (
     <aside className="mt-8 lg:mt-0 lg:pl-8">
       <h2 className="sr-only">Details</h2>
@@ -521,6 +530,21 @@ function SummaryDetails({ data, tags, organisers }) {
         </div>
       </div>
       <div className="mt-6 border-t border-b lg:border-b-0 border-gray-200 py-6 space-y-8">
+        { arbiters && <div>
+          <h2 className="text-sm font-medium text-gray-500">Arbiters</h2>
+          <ul className="mt-3 space-y-3">
+            {arbiters.map(({ name }) => (
+              <li key={name} className="flex justify-start">
+                <span className="flex items-center space-x-3">
+                  <div className="text-sm font-medium text-gray-900">
+                    {name}
+                  </div>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div> }
+
         <div>
           <h2 className="text-sm font-medium text-gray-500">Organsers</h2>
           <ul className="mt-3 space-y-3">

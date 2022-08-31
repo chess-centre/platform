@@ -26,12 +26,10 @@ exports.handler = async (event, context, callback) => {
       createdAt: timestamp,
       updatedAt: timestamp,
       username: `${given_name.toLowerCase()}-${family_name.toLowerCase()}`,
+      firstName: given_name,
+      surname: family_name,
       name,
-      email,
-      promoByEmail: false,
-      promoByText: false,
-      eventsByEmail: false,
-      eventsByText: false,
+      email
     },
     ConditionExpression: "attribute_not_exists(id)"
   };

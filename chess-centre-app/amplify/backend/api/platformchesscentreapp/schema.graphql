@@ -84,6 +84,8 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   ecfId: String
   username: String
   name: String
+  firstName: String
+  surname: String
   email: String
   entries: [Entry!] @connection(keyName: "byMember", fields: ["id"])
   games: [Game!] @function(name: "getMemberGames-${env}")
