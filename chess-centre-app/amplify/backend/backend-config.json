@@ -132,6 +132,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "eventRegisterMember",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     },
@@ -473,6 +481,11 @@
       "service": "Lambda"
     },
     "ecfRatingUpdater": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "eventRegisterMember": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

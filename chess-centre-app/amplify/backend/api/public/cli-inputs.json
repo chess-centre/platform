@@ -49,6 +49,18 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/events/register/member": {
+      "name": "/events/register/member",
+      "lambdaFunction": "eventRegisterMember",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update"
+        ]
+      }
     }
   }
 }
