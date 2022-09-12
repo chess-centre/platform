@@ -136,6 +136,7 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   isJunior: Boolean
   active: String
   multipleSections: Boolean
+  willBroadcast: Boolean
   results: [Result] @connection(keyName: "byEvent", fields: ["id"])
 }
 

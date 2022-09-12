@@ -441,6 +441,7 @@ export const getGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -579,6 +580,7 @@ export const getGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -777,6 +779,7 @@ export const getGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -915,6 +918,7 @@ export const getGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -943,6 +947,7 @@ export const getGame = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -1095,6 +1100,7 @@ export const getGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -1194,6 +1200,7 @@ export const getGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -1376,6 +1383,7 @@ export const listGames = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -1565,6 +1573,7 @@ export const listGames = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -1636,6 +1645,7 @@ export const listGames = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          willBroadcast
           _version
           _deleted
           _lastChangedAt
@@ -1906,6 +1916,7 @@ export const listGamesByEvent = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -2095,6 +2106,7 @@ export const listGamesByEvent = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -2166,6 +2178,7 @@ export const listGamesByEvent = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          willBroadcast
           _version
           _deleted
           _lastChangedAt
@@ -2436,6 +2449,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -2625,6 +2639,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -2696,6 +2711,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          willBroadcast
           _version
           _deleted
           _lastChangedAt
@@ -2966,6 +2982,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -3155,6 +3172,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -3226,6 +3244,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          willBroadcast
           _version
           _deleted
           _lastChangedAt
@@ -3494,6 +3513,7 @@ export const syncGames = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -3683,6 +3703,7 @@ export const syncGames = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -3754,6 +3775,7 @@ export const syncGames = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          willBroadcast
           _version
           _deleted
           _lastChangedAt
@@ -4206,6 +4228,7 @@ export const syncMembers = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -4344,6 +4367,7 @@ export const syncMembers = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -4533,6 +4557,7 @@ export const getMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -4722,6 +4747,7 @@ export const getMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -4793,6 +4819,7 @@ export const getMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          willBroadcast
           _version
           _deleted
           _lastChangedAt
@@ -5008,6 +5035,7 @@ export const getMember = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -5246,6 +5274,7 @@ export const listMembers = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -5384,6 +5413,7 @@ export const listMembers = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -5419,6 +5449,7 @@ export const getEvent = /* GraphQL */ `
       isJunior
       active
       multipleSections
+      willBroadcast
       _version
       _deleted
       _lastChangedAt
@@ -5623,6 +5654,7 @@ export const getEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -5779,6 +5811,7 @@ export const getEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -5847,6 +5880,7 @@ export const listEvents = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -5999,6 +6033,7 @@ export const listEvents = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -6098,6 +6133,7 @@ export const listEvents = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -6148,6 +6184,7 @@ export const listEventsActive = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -6300,6 +6337,7 @@ export const listEventsActive = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -6399,6 +6437,7 @@ export const listEventsActive = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -6445,6 +6484,7 @@ export const syncEvents = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -6597,6 +6637,7 @@ export const syncEvents = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -6696,6 +6737,7 @@ export const syncEvents = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -6912,6 +6954,7 @@ export const getEntry = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -7050,6 +7093,7 @@ export const getEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -7078,6 +7122,7 @@ export const getEntry = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -7230,6 +7275,7 @@ export const getEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -7329,6 +7375,7 @@ export const getEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -7496,6 +7543,7 @@ export const listEntrys = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -7567,6 +7615,7 @@ export const listEntrys = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          willBroadcast
           _version
           _deleted
           _lastChangedAt
@@ -7820,6 +7869,7 @@ export const syncEntries = /* GraphQL */ `
               isJunior
               active
               multipleSections
+              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -7891,6 +7941,7 @@ export const syncEntries = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          willBroadcast
           _version
           _deleted
           _lastChangedAt

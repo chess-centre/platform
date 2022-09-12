@@ -599,6 +599,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "willBroadcast": {
+                    "name": "willBroadcast",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "results": {
                     "name": "results",
                     "isArray": true,
@@ -1318,5 +1325,5 @@ export const schema = {
             }
         }
     },
-    "version": "9180dec604a6631973b52ff1ff006e41"
+    "version": "b0a02a606454df4805553c19b9d899b8"
 };
