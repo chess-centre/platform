@@ -375,7 +375,6 @@ export const onCreateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -514,7 +513,6 @@ export const onCreateGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -713,7 +711,6 @@ export const onCreateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -852,7 +849,6 @@ export const onCreateGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -881,7 +877,6 @@ export const onCreateGame = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -1034,7 +1029,6 @@ export const onCreateGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -1134,7 +1128,6 @@ export const onCreateGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -1364,7 +1357,6 @@ export const onUpdateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -1503,7 +1495,6 @@ export const onUpdateGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -1702,7 +1693,6 @@ export const onUpdateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -1841,7 +1831,6 @@ export const onUpdateGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -1870,7 +1859,6 @@ export const onUpdateGame = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -2023,7 +2011,6 @@ export const onUpdateGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -2123,7 +2110,6 @@ export const onUpdateGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -2353,7 +2339,6 @@ export const onDeleteGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -2492,7 +2477,6 @@ export const onDeleteGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -2691,7 +2675,6 @@ export const onDeleteGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -2830,7 +2813,6 @@ export const onDeleteGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -2859,7 +2841,6 @@ export const onDeleteGame = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -3012,7 +2993,6 @@ export const onDeleteGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -3112,7 +3092,6 @@ export const onDeleteGame = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -3414,7 +3393,6 @@ export const onCreateMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -3604,7 +3582,6 @@ export const onCreateMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -3676,7 +3653,6 @@ export const onCreateMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
-          willBroadcast
           _version
           _deleted
           _lastChangedAt
@@ -3892,7 +3868,6 @@ export const onCreateMember = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -4110,7 +4085,6 @@ export const onUpdateMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -4300,7 +4274,6 @@ export const onUpdateMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -4372,7 +4345,6 @@ export const onUpdateMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
-          willBroadcast
           _version
           _deleted
           _lastChangedAt
@@ -4588,7 +4560,6 @@ export const onUpdateMember = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -4806,7 +4777,6 @@ export const onDeleteMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -4996,7 +4966,6 @@ export const onDeleteMember = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -5068,7 +5037,6 @@ export const onDeleteMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
-          willBroadcast
           _version
           _deleted
           _lastChangedAt
@@ -5284,7 +5252,6 @@ export const onDeleteMember = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -5348,7 +5315,6 @@ export const onCreateEvent = /* GraphQL */ `
       isJunior
       active
       multipleSections
-      willBroadcast
       _version
       _deleted
       _lastChangedAt
@@ -5553,7 +5519,6 @@ export const onCreateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -5710,7 +5675,6 @@ export const onCreateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -5774,7 +5738,6 @@ export const onUpdateEvent = /* GraphQL */ `
       isJunior
       active
       multipleSections
-      willBroadcast
       _version
       _deleted
       _lastChangedAt
@@ -5979,7 +5942,6 @@ export const onUpdateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -6136,7 +6098,6 @@ export const onUpdateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -6200,7 +6161,6 @@ export const onDeleteEvent = /* GraphQL */ `
       isJunior
       active
       multipleSections
-      willBroadcast
       _version
       _deleted
       _lastChangedAt
@@ -6405,7 +6365,6 @@ export const onDeleteEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -6562,7 +6521,6 @@ export const onDeleteEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -6807,7 +6765,6 @@ export const onCreateEntry = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -6946,7 +6903,6 @@ export const onCreateEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -6975,7 +6931,6 @@ export const onCreateEntry = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -7128,7 +7083,6 @@ export const onCreateEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -7228,7 +7182,6 @@ export const onCreateEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -7443,7 +7396,6 @@ export const onUpdateEntry = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -7582,7 +7534,6 @@ export const onUpdateEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -7611,7 +7562,6 @@ export const onUpdateEntry = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -7764,7 +7714,6 @@ export const onUpdateEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -7864,7 +7813,6 @@ export const onUpdateEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -8079,7 +8027,6 @@ export const onDeleteEntry = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            willBroadcast
             _version
             _deleted
             _lastChangedAt
@@ -8218,7 +8165,6 @@ export const onDeleteEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -8247,7 +8193,6 @@ export const onDeleteEntry = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        willBroadcast
         _version
         _deleted
         _lastChangedAt
@@ -8400,7 +8345,6 @@ export const onDeleteEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt
@@ -8500,7 +8444,6 @@ export const onDeleteEntry = /* GraphQL */ `
               isJunior
               active
               multipleSections
-              willBroadcast
               _version
               _deleted
               _lastChangedAt

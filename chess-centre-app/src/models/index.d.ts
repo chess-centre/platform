@@ -85,7 +85,6 @@ export declare class Event {
   readonly isJunior?: boolean | null;
   readonly active?: string | null;
   readonly multipleSections?: boolean | null;
-  readonly willBroadcast?: boolean | null;
   readonly results?: (Result | null)[] | null;
   constructor(init: ModelInit<Event>);
   static copyOf(source: Event, mutator: (draft: MutableModel<Event>) => MutableModel<Event> | void): Event;
