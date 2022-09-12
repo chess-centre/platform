@@ -18,6 +18,8 @@ import Brumdcrumbs from "../../components/Breadcrumbs";
 import EventContactUsModal from "../../components/Modal/EventContactUsModal";
 import EventSectionSelectionModal from "../../components/Modal/EventSectionSelectModal";
 import { juniorSections, standardSections } from "../../api/sections";
+import Chesscom from "../../assets/img/chesscom.png";
+import C24 from "../../assets/img/c24.png";
 
 const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!, $filter: ModelEntryFilterInput, $limit: Int, $nextToken: String) {
@@ -203,7 +205,7 @@ interface Props {
 
 function DetailsView(props: Props) {
   const { data, isLoadingEntries, entries } = props;
-  const { tags, organisers, address, arbiters } = TemplateData[data.type.eventType];
+  const { tags, organisers, address, arbiters, hasBroadcast, broadcastLink } = TemplateData[data.type.eventType];
   const [isJunior] = useState(data?.name.includes("Junior") || false);
   const [isModelOpen, setIsModalOpen] = useState(false);
   const [tabs, setTabs] = useState([
@@ -284,6 +286,8 @@ function DetailsView(props: Props) {
                       tags={tags}
                       organisers={organisers}
                       arbiters={arbiters}
+                      hasBroadcast={hasBroadcast}
+                      broadcastLink={broadcastLink}
                     />
                   </div>
 
@@ -312,7 +316,7 @@ function DetailsView(props: Props) {
             </div>
             {/* Desktop Sidebar  */}
             <div className="hidden lg:block">
-              <SummaryDetails data={data} tags={tags} organisers={organisers} arbiters={arbiters} />
+              <SummaryDetails data={data} tags={tags} organisers={organisers} arbiters={arbiters} hasBroadcast={hasBroadcast} broadcastLink={broadcastLink} />
             </div>
           </div>
         </div>
@@ -462,7 +466,7 @@ function ErrorView() {
   );
 }
 
-function SummaryDetails({ data, tags, organisers, arbiters }) {
+function SummaryDetails({ data, tags, organisers, arbiters, hasBroadcast, broadcastLink }) {
   return (
     <aside className="mt-8 lg:mt-0 lg:pl-8">
       <h2 className="sr-only">Details</h2>
@@ -530,7 +534,7 @@ function SummaryDetails({ data, tags, organisers, arbiters }) {
         </div>
       </div>
       <div className="mt-6 border-t border-b lg:border-b-0 border-gray-200 py-6 space-y-8">
-        { arbiters && <div>
+        {arbiters && <div>
           <h2 className="text-sm font-medium text-gray-500">Arbiters</h2>
           <ul className="mt-3 space-y-3">
             {arbiters.map(({ name }) => (
@@ -543,7 +547,7 @@ function SummaryDetails({ data, tags, organisers, arbiters }) {
               </li>
             ))}
           </ul>
-        </div> }
+        </div>}
 
         <div>
           <h2 className="text-sm font-medium text-gray-500">Organsers</h2>
@@ -590,6 +594,26 @@ function SummaryDetails({ data, tags, organisers, arbiters }) {
               ))}
           </ul>
         </div>
+        {
+          hasBroadcast && <div>
+            <h2 className="text-sm font-medium text-gray-500">Broadcast</h2>
+            <div className="grid grid-cols-1 mt-4">
+              <div>
+                <img className="w-24" alt="chess.com" src={Chesscom} />
+              </div>
+              <div className="mt-6">
+                <img className="w-24" alt="chess24" src={C24} />
+              </div>
+            </div>
+            <div className="mt-8">
+              <a className="inline-flex items-center 
+                rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs 
+                font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                href={broadcastLink} target="_blank">Chess-Results</a>
+            </div>
+          </div>
+        }
+
       </div>
     </aside>
   );
