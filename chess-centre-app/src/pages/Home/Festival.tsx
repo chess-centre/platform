@@ -8,6 +8,9 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 import { standardSections } from "../../api/sections";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
+import QueenElizabeth from "../../assets/img/our-queen-elizabeth.webp";
+import Chesscom from "../../assets/img/chesscom.png";
+import C24 from "../../assets/img/c24.png";
 import EntriesTable from "../../components/EntriesTable/festivalTable";
 import { rounds } from "../../api/data.roundTimes";
 import { classNames } from "../../utils/Classes";
@@ -101,13 +104,13 @@ export default function Festival() {
 
       if (response && response.data) {
         const {
-          data: { 
+          data: {
             getEvent: eventData,
             listEntrys: entries },
         } = response;
 
 
-        if(entries.nextToken) {
+        if (entries.nextToken) {
           const additionalResponse = await API.graphql({
             query: getEvent,
             variables: { id, filter: { eventId: { eq: id } }, limit: 250, nextToken: entries.nextToken },
@@ -119,7 +122,7 @@ export default function Festival() {
               listEntrys: moreEntries },
           } = additionalResponse;
 
-          const items = { items: [ ...entries.items, ...moreEntries.items ] };          
+          const items = { items: [...entries.items, ...moreEntries.items] };
 
           setEventEntries({ ...eventData, entries: items });
           setEntriesCount(items.items.length);
@@ -270,6 +273,15 @@ export default function Festival() {
                 <Tab.Panel className="-mb-10 py-5 focus:ring-transparent">
                   <div className="relative">
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
+                      <p>In loving memory of <span className="font-bold text-teal-brand">Her Majesty Queen Elizabeth II</span> we will be holding a minutes silence on Saturday morning before round 2.</p>
+                      <img
+                        src={QueenElizabeth}
+                        alt="Queen Elizabeth"
+                        className="object-center object-cover w-56 rounded-md shadow-md"
+                      />
+                      <p></p>
+                    </div>
+                    <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
                       <h2>Sections</h2>
                       <ul className="font-medium text-teal-brand">
                         <li>Open</li>
@@ -357,6 +369,21 @@ export default function Festival() {
                         Standard ECF rules apply. All games will be submited to
                         the ECF for offical rating calculation.
                       </p>
+                    </div>
+                    <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify mt-4 sm:mb-6">
+                      <h2>Broadcast</h2>
+                      <p className="text-sm">
+                        It is with great pleasure we will be broadcasting our top boards to the following Chess websites:
+                      </p>
+                      <div className="grid grid-cols-2">
+                        <div>
+                          <img className="w-32 sm:w-48 m-auto" alt="chess.com" src={Chesscom} />
+                        </div>
+                        <div className="mt-2">
+                          <img className="w-32 sm:w-48 m-auto" alt="chess24" src={C24} />
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </Tab.Panel>
