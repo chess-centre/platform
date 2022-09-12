@@ -144,7 +144,115 @@
     },
     "categories": {
       "auth": {
-        "platformchesscentreapp": {}
+        "platformchesscentreapp": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "stripeCheckout": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/stripeCheckout-712f3942654c7a2f7132-build.zip"
+        },
+        "platformchesscentreappPostConfirmation": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-6b65483855706636574b-build.zip"
+        },
+        "platformchesscentreappPreTokenGeneration": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/platformchesscentreappPreTokenGeneration-725849694e424b4a2f30-build.zip"
+        },
+        "stripeCustomerPortal": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/stripeCustomerPortal-4252314878327366596d-build.zip"
+        },
+        "eventRegister": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/eventRegister-652b5637732f67304852-build.zip"
+        },
+        "ecfPlayer": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/ecfPlayer-63394251564b3946477a-build.zip"
+        },
+        "ecfPlayerGames": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/ecfPlayerGames-2b6d3358726b50503963-build.zip"
+        },
+        "getMemberGames": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/getMemberGames-5450574566512f707456-build.zip"
+        },
+        "getChesscomPlayer": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/getChesscomPlayer-42436f69513552726c38-build.zip"
+        },
+        "getLichessPlayer": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/getLichessPlayer-626732656b7161764d68-build.zip"
+        },
+        "ecfHistoricRating": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/ecfHistoricRating-52453479794251765932-build.zip"
+        },
+        "trainTravelInfo": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/trainTravelInfo-6f763069386f71375547-build.zip"
+        },
+        "busTravelInfo": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/busTravelInfo-66714c6876434c515661-build.zip"
+        },
+        "updateGameHistory": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/updateGameHistory-6a57584e745067454d44-build.zip"
+        },
+        "uploadLichessPgns": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/uploadLichessPgns-57614f3662487347426f-build.zip"
+        },
+        "ecfRatingScraper": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/ecfRatingScraper-31734f5157576a6c395a-build.zip"
+        },
+        "getInstagramFeed": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/getInstagramFeed-316a6d476341656c2b6f-build.zip"
+        },
+        "updateLichessPlayerRatings": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/updateLichessPlayerRatings-6376725455415a66716c-build.zip"
+        },
+        "updateChesscomRatings": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/updateChesscomRatings-776738797a624c396574-build.zip"
+        },
+        "getLichessStatuses": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/getLichessStatuses-2f314734353952306d39-build.zip"
+        },
+        "searchECFPlayer": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/searchECFPlayer-2f5459565a45674c2f4d-build.zip"
+        },
+        "eventRegisterFestival": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/eventRegisterFestival-67682f5356783635566e-build.zip"
+        },
+        "memberECFUpdate": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/memberECFUpdate-39445251313037704831-build.zip"
+        },
+        "memberUpdateECFId": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/memberUpdateECFId-337975354b6746394b66-build.zip"
+        },
+        "getEvents": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/getEvents-64567053305934516c4d-build.zip"
+        },
+        "ecfRatingUpdater": {
+          "deploymentBucketName": "amplify-amplify0f443b412ea14-staging-154920-deployment",
+          "s3Key": "amplify-builds/ecfRatingUpdater-6a417250386f38465747-build.zip"
+        },
+        "stripeWebhook": {}
       }
     }
   },

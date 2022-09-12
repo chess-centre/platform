@@ -484,10 +484,5 @@
       "providerPlugin": "awscloudformation"
     }
   },
-  "analytics": {
-    "platformchesscentreaKinesis": {
-      "service": "Kinesis",
-      "providerPlugin": "awscloudformation"
-    }
-  }
+  "analytics": {}
 }
