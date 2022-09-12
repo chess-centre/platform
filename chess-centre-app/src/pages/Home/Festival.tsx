@@ -8,7 +8,7 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 import { standardSections } from "../../api/sections";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
-import QueenElizabeth from "../../assets/img/our-queen-elizabeth.webp";
+import QueenElizabeth from "../../assets/img/our-queen-elizabeth.png";
 import Chesscom from "../../assets/img/chesscom.png";
 import C24 from "../../assets/img/c24.png";
 import EntriesTable from "../../components/EntriesTable/festivalTable";
@@ -277,7 +277,7 @@ export default function Festival() {
                       <img
                         src={QueenElizabeth}
                         alt="Queen Elizabeth"
-                        className="object-center object-cover w-56 rounded-md shadow-md"
+                        className="object-center object-cover w-80 rounded-md shadow-md"
                       />
                       <p></p>
                     </div>
