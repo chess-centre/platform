@@ -126,10 +126,6 @@
         "ecfRatingUpdater": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
           "s3Key": "amplify-builds/ecfRatingUpdater-6a417250386f38465747-build.zip"
-        },
-        "eventRegisterMember": {
-          "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/eventRegisterMember-7753347779664d653430-build.zip"
         }
       }
     }
