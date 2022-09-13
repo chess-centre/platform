@@ -550,7 +550,7 @@ function SummaryDetails({ data, tags, organisers, arbiters, hasBroadcast, broadc
         </div>}
 
         <div>
-          <h2 className="text-sm font-medium text-gray-500">Organsers</h2>
+          <h2 className="text-sm font-medium text-gray-500">Organisers</h2>
           <ul className="mt-3 space-y-3">
             {organisers.map(({ name, imgUrl }) => (
               <li key={name} className="flex justify-start">
@@ -596,7 +596,7 @@ function SummaryDetails({ data, tags, organisers, arbiters, hasBroadcast, broadc
         </div>
         {
           hasBroadcast && <div>
-            <h2 className="text-sm font-medium text-gray-500">Broadcast</h2>
+            <h2 className="text-sm font-medium text-gray-500">Broadcasting</h2>
             <div className="grid grid-cols-1 mt-4">
               <div>
                 <img className="w-24" alt="chess.com" src={Chesscom} />

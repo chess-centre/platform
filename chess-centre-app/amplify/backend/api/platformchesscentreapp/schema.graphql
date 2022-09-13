@@ -96,6 +96,7 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   stripeFriendlyProductName: String @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   ecfRating: String
   ecfRapid: String
+  fideRating: String
   ecfMembership: String
   ecfRapidPartial: Boolean,
   ecfRatingPartial: Boolean,

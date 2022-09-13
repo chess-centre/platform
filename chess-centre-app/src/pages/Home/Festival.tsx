@@ -73,6 +73,7 @@ const getEvent = /* GraphQL */ `
             ecfRapid
             ecfMembership
             estimatedRating
+            fideRating
             club
             gender
             chessTitle

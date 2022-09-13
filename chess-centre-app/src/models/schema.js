@@ -1027,6 +1027,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "fideRating": {
+                    "name": "fideRating",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "ecfMembership": {
                     "name": "ecfMembership",
                     "isArray": false,
@@ -1318,5 +1325,5 @@ export const schema = {
             }
         }
     },
-    "version": "9180dec604a6631973b52ff1ff006e41"
+    "version": "380db68a2dc2a1c09044571b4fe83852"
 };
