@@ -1,48 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateMailingList = /* GraphQL */ `
-  subscription OnCreateMailingList {
-    onCreateMailingList {
-      id
-      email
-      enabled
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateMailingList = /* GraphQL */ `
-  subscription OnUpdateMailingList {
-    onUpdateMailingList {
-      id
-      email
-      enabled
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteMailingList = /* GraphQL */ `
-  subscription OnDeleteMailingList {
-    onDeleteMailingList {
-      id
-      email
-      enabled
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateBroadcast = /* GraphQL */ `
   subscription OnCreateBroadcast {
     onCreateBroadcast {
@@ -160,6 +118,48 @@ export const onDeleteResult = /* GraphQL */ `
     }
   }
 `;
+export const onCreateMailingList = /* GraphQL */ `
+  subscription OnCreateMailingList {
+    onCreateMailingList {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateMailingList = /* GraphQL */ `
+  subscription OnUpdateMailingList {
+    onUpdateMailingList {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteMailingList = /* GraphQL */ `
+  subscription OnDeleteMailingList {
+    onDeleteMailingList {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateGame = /* GraphQL */ `
   subscription OnCreateGame {
     onCreateGame {
@@ -258,6 +258,7 @@ export const onCreateGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -325,6 +326,7 @@ export const onCreateGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -375,15 +377,15 @@ export const onCreateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -415,6 +417,7 @@ export const onCreateGame = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -467,6 +470,7 @@ export const onCreateGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -594,6 +598,7 @@ export const onCreateGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -661,6 +666,7 @@ export const onCreateGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -711,15 +717,15 @@ export const onCreateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -751,6 +757,7 @@ export const onCreateGame = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -803,6 +810,7 @@ export const onCreateGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -877,11 +885,6 @@ export const onCreateGame = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         results {
           items {
             id
@@ -903,6 +906,11 @@ export const onCreateGame = /* GraphQL */ `
           nextToken
           startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         games {
           items {
             id
@@ -942,6 +950,7 @@ export const onCreateGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -983,6 +992,7 @@ export const onCreateGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1082,6 +1092,7 @@ export const onCreateGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1240,6 +1251,7 @@ export const onUpdateGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -1307,6 +1319,7 @@ export const onUpdateGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -1357,15 +1370,15 @@ export const onUpdateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -1397,6 +1410,7 @@ export const onUpdateGame = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -1449,6 +1463,7 @@ export const onUpdateGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1576,6 +1591,7 @@ export const onUpdateGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -1643,6 +1659,7 @@ export const onUpdateGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -1693,15 +1710,15 @@ export const onUpdateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -1733,6 +1750,7 @@ export const onUpdateGame = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -1785,6 +1803,7 @@ export const onUpdateGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1859,11 +1878,6 @@ export const onUpdateGame = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         results {
           items {
             id
@@ -1885,6 +1899,11 @@ export const onUpdateGame = /* GraphQL */ `
           nextToken
           startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         games {
           items {
             id
@@ -1924,6 +1943,7 @@ export const onUpdateGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1965,6 +1985,7 @@ export const onUpdateGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2064,6 +2085,7 @@ export const onUpdateGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2222,6 +2244,7 @@ export const onDeleteGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -2289,6 +2312,7 @@ export const onDeleteGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -2339,15 +2363,15 @@ export const onDeleteGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -2379,6 +2403,7 @@ export const onDeleteGame = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -2431,6 +2456,7 @@ export const onDeleteGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2558,6 +2584,7 @@ export const onDeleteGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -2625,6 +2652,7 @@ export const onDeleteGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -2675,15 +2703,15 @@ export const onDeleteGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -2715,6 +2743,7 @@ export const onDeleteGame = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -2767,6 +2796,7 @@ export const onDeleteGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2841,11 +2871,6 @@ export const onDeleteGame = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         results {
           items {
             id
@@ -2867,6 +2892,11 @@ export const onDeleteGame = /* GraphQL */ `
           nextToken
           startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         games {
           items {
             id
@@ -2906,6 +2936,7 @@ export const onDeleteGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2947,6 +2978,7 @@ export const onDeleteGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3046,6 +3078,7 @@ export const onDeleteGame = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3306,6 +3339,7 @@ export const onCreateMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3347,6 +3381,7 @@ export const onCreateMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3402,6 +3437,7 @@ export const onCreateMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -3495,6 +3531,7 @@ export const onCreateMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3536,6 +3573,7 @@ export const onCreateMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3591,6 +3629,7 @@ export const onCreateMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -3653,11 +3692,6 @@ export const onCreateMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
           results {
             items {
               id
@@ -3679,6 +3713,11 @@ export const onCreateMember = /* GraphQL */ `
             nextToken
             startedAt
           }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
           games {
             items {
               id
@@ -3744,6 +3783,7 @@ export const onCreateMember = /* GraphQL */ `
       }
       ecfRating
       ecfRapid
+      fideRating
       ecfMembership
       ecfRapidPartial
       ecfRatingPartial
@@ -3818,6 +3858,7 @@ export const onCreateMember = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -3868,15 +3909,15 @@ export const onCreateMember = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -3998,6 +4039,7 @@ export const onUpdateMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4039,6 +4081,7 @@ export const onUpdateMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4094,6 +4137,7 @@ export const onUpdateMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -4187,6 +4231,7 @@ export const onUpdateMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4228,6 +4273,7 @@ export const onUpdateMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4283,6 +4329,7 @@ export const onUpdateMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -4345,11 +4392,6 @@ export const onUpdateMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
           results {
             items {
               id
@@ -4371,6 +4413,11 @@ export const onUpdateMember = /* GraphQL */ `
             nextToken
             startedAt
           }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
           games {
             items {
               id
@@ -4436,6 +4483,7 @@ export const onUpdateMember = /* GraphQL */ `
       }
       ecfRating
       ecfRapid
+      fideRating
       ecfMembership
       ecfRapidPartial
       ecfRatingPartial
@@ -4510,6 +4558,7 @@ export const onUpdateMember = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -4560,15 +4609,15 @@ export const onUpdateMember = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -4690,6 +4739,7 @@ export const onDeleteMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4731,6 +4781,7 @@ export const onDeleteMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4786,6 +4837,7 @@ export const onDeleteMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -4879,6 +4931,7 @@ export const onDeleteMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4920,6 +4973,7 @@ export const onDeleteMember = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4975,6 +5029,7 @@ export const onDeleteMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -5037,11 +5092,6 @@ export const onDeleteMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
           results {
             items {
               id
@@ -5063,6 +5113,11 @@ export const onDeleteMember = /* GraphQL */ `
             nextToken
             startedAt
           }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
           games {
             items {
               id
@@ -5128,6 +5183,7 @@ export const onDeleteMember = /* GraphQL */ `
       }
       ecfRating
       ecfRapid
+      fideRating
       ecfMembership
       ecfRapidPartial
       ecfRatingPartial
@@ -5202,6 +5258,7 @@ export const onDeleteMember = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -5252,15 +5309,15 @@ export const onDeleteMember = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -5315,11 +5372,6 @@ export const onCreateEvent = /* GraphQL */ `
       isJunior
       active
       multipleSections
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       results {
         items {
           id
@@ -5341,6 +5393,11 @@ export const onCreateEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
       games {
         items {
           id
@@ -5402,6 +5459,7 @@ export const onCreateEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -5469,6 +5527,7 @@ export const onCreateEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -5519,15 +5578,15 @@ export const onCreateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -5625,6 +5684,7 @@ export const onCreateEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -5675,15 +5735,15 @@ export const onCreateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -5738,11 +5798,6 @@ export const onUpdateEvent = /* GraphQL */ `
       isJunior
       active
       multipleSections
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       results {
         items {
           id
@@ -5764,6 +5819,11 @@ export const onUpdateEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
       games {
         items {
           id
@@ -5825,6 +5885,7 @@ export const onUpdateEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -5892,6 +5953,7 @@ export const onUpdateEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -5942,15 +6004,15 @@ export const onUpdateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -6048,6 +6110,7 @@ export const onUpdateEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -6098,15 +6161,15 @@ export const onUpdateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -6161,11 +6224,6 @@ export const onDeleteEvent = /* GraphQL */ `
       isJunior
       active
       multipleSections
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       results {
         items {
           id
@@ -6187,6 +6245,11 @@ export const onDeleteEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
       games {
         items {
           id
@@ -6248,6 +6311,7 @@ export const onDeleteEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -6315,6 +6379,7 @@ export const onDeleteEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -6365,15 +6430,15 @@ export const onDeleteEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -6471,6 +6536,7 @@ export const onDeleteEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -6521,15 +6587,15 @@ export const onDeleteEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -6648,6 +6714,7 @@ export const onCreateEntry = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -6715,6 +6782,7 @@ export const onCreateEntry = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -6765,15 +6833,15 @@ export const onCreateEntry = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -6805,6 +6873,7 @@ export const onCreateEntry = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -6857,6 +6926,7 @@ export const onCreateEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -6931,11 +7001,6 @@ export const onCreateEntry = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         results {
           items {
             id
@@ -6957,6 +7022,11 @@ export const onCreateEntry = /* GraphQL */ `
           nextToken
           startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         games {
           items {
             id
@@ -6996,6 +7066,7 @@ export const onCreateEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7037,6 +7108,7 @@ export const onCreateEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7136,6 +7208,7 @@ export const onCreateEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7279,6 +7352,7 @@ export const onUpdateEntry = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -7346,6 +7420,7 @@ export const onUpdateEntry = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -7396,15 +7471,15 @@ export const onUpdateEntry = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -7436,6 +7511,7 @@ export const onUpdateEntry = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -7488,6 +7564,7 @@ export const onUpdateEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7562,11 +7639,6 @@ export const onUpdateEntry = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         results {
           items {
             id
@@ -7588,6 +7660,11 @@ export const onUpdateEntry = /* GraphQL */ `
           nextToken
           startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         games {
           items {
             id
@@ -7627,6 +7704,7 @@ export const onUpdateEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7668,6 +7746,7 @@ export const onUpdateEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7767,6 +7846,7 @@ export const onUpdateEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7910,6 +7990,7 @@ export const onDeleteEntry = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -7977,6 +8058,7 @@ export const onDeleteEntry = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -8027,15 +8109,15 @@ export const onDeleteEntry = /* GraphQL */ `
             isJunior
             active
             multipleSections
+            results {
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
-            results {
-              nextToken
-              startedAt
-            }
             games {
               nextToken
               startedAt
@@ -8067,6 +8149,7 @@ export const onDeleteEntry = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -8119,6 +8202,7 @@ export const onDeleteEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -8193,11 +8277,6 @@ export const onDeleteEntry = /* GraphQL */ `
         isJunior
         active
         multipleSections
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         results {
           items {
             id
@@ -8219,6 +8298,11 @@ export const onDeleteEntry = /* GraphQL */ `
           nextToken
           startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         games {
           items {
             id
@@ -8258,6 +8342,7 @@ export const onDeleteEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -8299,6 +8384,7 @@ export const onDeleteEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -8398,6 +8484,7 @@ export const onDeleteEntry = /* GraphQL */ `
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial

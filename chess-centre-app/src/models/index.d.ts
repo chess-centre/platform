@@ -1,6 +1,4 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
-
-
+import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 
 export declare class S3Object {
   readonly bucket: string;
@@ -8,6 +6,24 @@ export declare class S3Object {
   readonly key: string;
   constructor(init: ModelInit<S3Object>);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export declare class MailingList {
   readonly id: string;
@@ -135,6 +151,7 @@ export declare class Member {
   readonly stripeFriendlyProductName?: string | null;
   readonly ecfRating?: string | null;
   readonly ecfRapid?: string | null;
+  readonly fideRating?: string | null;
   readonly ecfMembership?: string | null;
   readonly ecfRapidPartial?: boolean | null;
   readonly ecfRatingPartial?: boolean | null;
