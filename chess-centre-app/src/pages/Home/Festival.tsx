@@ -371,7 +371,7 @@ export default function Festival() {
                         the ECF for offical rating calculation.
                       </p>
                     </div>
-                    <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify mt-4 sm:mb-6">
+                    <div className="hidden sm:block prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify mt-4 sm:mb-6">
                       <h2>Broadcast</h2>
                       <p className="text-sm">
                         It is with great pleasure we will be broadcasting our top boards to the following Chess websites:
@@ -786,12 +786,12 @@ const EntryForm = ({ id }) => {
           href="https://chess-results.com/tnr665788.aspx?lan=1&art=0" target="_blank">Chess Results</a>
       </div>
       <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4">
-        <button
+        {/* <button
           // onClick={() => handleConfirmEntry()}
           className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-blue-brand"
         >
           ENTRIES CLOSED
-        </button>
+        </button> */}
         <p className="text-xs text-gray-500 text-center">Still open for entry</p>
         <Link
           to="/festival/blitz"

@@ -124,18 +124,29 @@ const Home = () => {
               </div>
               <div className="max-w-md mx-auto sm:flex sm:justify-center mt-5 text-blue-brand text-bold">Festival Live Games</div>
               <div className="mt-5 max-w-md mx-auto flex justify-center space-x-6">
-                  <div>
-                    <a href="https://www.chess.com/events/2022-ilkley-chess-festival">
-                      <img className="w-24" alt="chess.com" src={Chesscom} />
-                    </a>
-                  </div>
-                  <div className="mr-5 mt-1">
-                    <a href="https://chess24.com/en/watch/live-tournaments/ikley-chess-festival-2022-open#live">
-                      <img className="w-24" alt="chess24" src={C24} />
-                    </a>
-                  </div>
+                <div>
+                  <a href="https://www.chess.com/events/2022-ilkley-chess-festival">
+                    <img className="w-24" alt="chess.com" src={Chesscom} />
+                  </a>
                 </div>
-              <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+                <div className="mr-5 mt-1">
+                  <a href="https://chess24.com/en/watch/live-tournaments/ikley-chess-festival-2022-open#live">
+                    <img className="w-24" alt="chess24" src={C24} />
+                  </a>
+                </div>
+              </div>
+              <div className="max-w-md mx-auto sm:flex sm:justify-center mt-5 text-gray-500 text-bold text-xs">Pairings for Round 2 Major will be completed Saturday morning</div>
+              <div className="mt-3 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
+                <div>
+                  <a
+                    href="https://chess-results.com/tnr665788.aspx?lan=1&art=0"
+                    className="w-full flex items-center justify-center px-8 py-2 border border-transparent text-base leading-6 font-medium rounded-md border border-gray-200 text-gray-500 bg-white hover:bg-gray-100 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:text-lg md:px-12"
+                  >
+                    Festival Results
+                  </a>
+                  </div>
+              </div>
+              <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
                 <div className={user ? "hidden" : "rounded-md shadow"}>
                   <Link
                     to="/register"
