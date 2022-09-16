@@ -340,7 +340,7 @@ export default function Festival() {
                       </div>
                     </div>
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify mt-4">
-                      <h2>Event Structure</h2>
+                      <h2>Event Information</h2>
                       <ul className="font-medium text-teal-brand">
                         <li>
                           Rounds: <span className="text-blue-brand">5</span>{" "}
@@ -378,13 +378,16 @@ export default function Festival() {
                       </p>
                       <div className="grid grid-cols-2">
                         <div>
-                          <img className="w-32 sm:w-48 m-auto" alt="chess.com" src={Chesscom} />
+                          <a href="https://www.chess.com/events/2022-ilkley-chess-festival">
+                            <img className="w-32 sm:w-48 m-auto" alt="chess.com" src={Chesscom} />
+                          </a>
                         </div>
                         <div className="mt-2">
-                          <img className="w-32 sm:w-48 m-auto" alt="chess24" src={C24} />
+                          <a href="https://chess24.com/en/watch/live-tournaments/ikley-chess-festival-2022-open#live">
+                            <img className="w-32 sm:w-48 m-auto" alt="chess24" src={C24} />
+                          </a>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </Tab.Panel>
@@ -650,7 +653,7 @@ const EntryForm = ({ id }) => {
 
   return (
     <div>
-      <div className="border-t border-gray-200">
+      {/* <div className="border-t border-gray-200">
         <div className="mt-8 mx-6">
           <label
             htmlFor="section"
@@ -672,9 +675,9 @@ const EntryForm = ({ id }) => {
             )}
           </select>
         </div>
-      </div>
+      </div> */}
 
-      <div className="relative mx-auto">
+      {/* <div className="relative mx-auto">
         <div
           className="block text-sm text-gray-800 text-center mt-6 mb-4"
         >
@@ -758,20 +761,38 @@ const EntryForm = ({ id }) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="text-center">
+      {/* <div className="text-center">
         <span className="text-5xl font-extrabold text-gray-900 mr-1">£30</span>
         <span className="text-base font-medium text-gray-500">entry fee</span>
+      </div> */}
+      <div className="text-gray-500 text-center">Watch Live here:</div>
+      <div className="grid grid-cols-2">
+        
+        <div>
+          <a href="https://www.chess.com/events/2022-ilkley-chess-festival">
+            <img className="w-16 sm:w-20 m-auto" alt="chess.com" src={Chesscom} />
+          </a>
+        </div>
+        <div className="mt-2">
+          <a href="https://chess24.com/en/watch/live-tournaments/ikley-chess-festival-2022-open#live">
+            <img className="w-16 sm:w-20 m-auto" alt="chess24" src={C24} />
+          </a>
+        </div>
+      </div>
+      <div className="mt-4 mx-auto">
+        <a className="w-full border rounded-md py-1.5 px-8 flex items-center justify-center text-base font-medium text-blue-brand hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
+          href="https://chess-results.com/tnr665788.aspx?lan=1&art=0" target="_blank">Chess Results</a>
       </div>
       <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4">
         <button
-          onClick={() => handleConfirmEntry()}
+          // onClick={() => handleConfirmEntry()}
           className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-blue-brand"
         >
-          Enter Now
+          ENTRIES CLOSED
         </button>
-        <p className="text-xs text-gray-500 text-center">Other Festival events</p>
+        <p className="text-xs text-gray-500 text-center">Still open for entry</p>
         <Link
           to="/festival/blitz"
           className="w-full border rounded-md py-1.5 px-8 flex items-center justify-center text-base font-medium text-blue-brand hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"

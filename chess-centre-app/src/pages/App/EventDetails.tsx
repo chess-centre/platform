@@ -599,10 +599,14 @@ function SummaryDetails({ data, tags, organisers, arbiters, hasBroadcast, broadc
             <h2 className="text-sm font-medium text-gray-500">Broadcasting</h2>
             <div className="grid grid-cols-1 mt-4">
               <div>
-                <img className="w-24" alt="chess.com" src={Chesscom} />
+                <a href="https://www.chess.com/events/2022-ilkley-chess-festival">
+                  <img className="w-24" alt="chess.com" src={Chesscom} />
+                </a>
               </div>
               <div className="mt-6">
-                <img className="w-24" alt="chess24" src={C24} />
+                <a href="https://chess24.com/en/watch/live-tournaments/ikley-chess-festival-2022-open#live">
+                  <img className="w-24" alt="chess24" src={C24} />
+                </a>
               </div>
             </div>
             <div className="mt-8">
