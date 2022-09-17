@@ -135,7 +135,6 @@ const Home = () => {
                   </a>
                 </div>
               </div>
-              <div className="max-w-md mx-auto sm:flex sm:justify-center mt-5 text-gray-500 text-bold text-xs">Pairings for Round 2 Major will be completed Saturday morning</div>
               <div className="mt-3 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
                 <div>
                   <a
