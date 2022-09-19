@@ -122,19 +122,6 @@ const Home = () => {
                   Visit our dedicated venue in Ilkley
                 </p>
               </div>
-              <div className="max-w-md mx-auto sm:flex sm:justify-center mt-5 text-blue-brand text-bold">Festival Live Games</div>
-              <div className="mt-5 max-w-md mx-auto flex justify-center space-x-6">
-                <div>
-                  <a href="https://www.chess.com/events/2022-ilkley-chess-festival">
-                    <img className="w-24" alt="chess.com" src={Chesscom} />
-                  </a>
-                </div>
-                <div className="mr-5 mt-1">
-                  <a href="https://chess24.com/en/watch/live-tournaments/ikley-chess-festival-2022-open#live">
-                    <img className="w-24" alt="chess24" src={C24} />
-                  </a>
-                </div>
-              </div>
               <div className="mt-3 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
                 <div>
                   <a
@@ -160,7 +147,6 @@ const Home = () => {
         </div>
       </div>
       <EmbeddedVideo />
-      <FestivalCTA />
       <Calendar />
       <GamesSignUp />
       <FAQs />
