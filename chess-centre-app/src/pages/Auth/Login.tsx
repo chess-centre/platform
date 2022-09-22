@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ImageLarge from "../../assets/img/festival-register.jpg";
-import ImageSmall from "../../assets/img/festival-register-small.jpg";
+import KingIcons from "../../assets/img/festival-register-small.jpg";
 import Logo from "../../assets/img/logo.svg";
 import {
   loginUser,
@@ -91,14 +90,14 @@ function Login(props) {
           <div className="h-32 md:h-auto md:w-1/2 bg-blue-brand">
             <img
               aria-hidden="true"
-              className="hidden sm:block object-cover object-center w-full h-full py-6"
-              src={ImageLarge}
+              className="hidden sm:block object-scale-down object-center h-full py-6"
+              src={KingIcons}
               alt="The Chess Centre"
             />
             <img
               aria-hidden="true"
               className="block sm:hidden object-scale-down object-center w-full h-full"
-              src={ImageSmall}
+              src={KingIcons}
               alt="The Chess Centre"
             />
           </div>
