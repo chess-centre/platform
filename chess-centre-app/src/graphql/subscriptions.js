@@ -1,6 +1,48 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateMailingList = /* GraphQL */ `
+  subscription OnCreateMailingList {
+    onCreateMailingList {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateMailingList = /* GraphQL */ `
+  subscription OnUpdateMailingList {
+    onUpdateMailingList {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteMailingList = /* GraphQL */ `
+  subscription OnDeleteMailingList {
+    onDeleteMailingList {
+      id
+      email
+      enabled
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateBroadcast = /* GraphQL */ `
   subscription OnCreateBroadcast {
     onCreateBroadcast {
@@ -110,48 +152,6 @@ export const onDeleteResult = /* GraphQL */ `
       live
       winner
       dgtCloudUrl
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateMailingList = /* GraphQL */ `
-  subscription OnCreateMailingList {
-    onCreateMailingList {
-      id
-      email
-      enabled
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateMailingList = /* GraphQL */ `
-  subscription OnUpdateMailingList {
-    onUpdateMailingList {
-      id
-      email
-      enabled
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteMailingList = /* GraphQL */ `
-  subscription OnDeleteMailingList {
-    onDeleteMailingList {
-      id
-      email
-      enabled
       _version
       _deleted
       _lastChangedAt
@@ -377,15 +377,15 @@ export const onCreateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -403,6 +403,7 @@ export const onCreateGame = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -717,15 +718,15 @@ export const onCreateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -743,6 +744,7 @@ export const onCreateGame = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -885,6 +887,11 @@ export const onCreateGame = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         results {
           items {
             id
@@ -906,11 +913,6 @@ export const onCreateGame = /* GraphQL */ `
           nextToken
           startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         games {
           items {
             id
@@ -1062,6 +1064,7 @@ export const onCreateGame = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
@@ -1370,15 +1373,15 @@ export const onUpdateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -1396,6 +1399,7 @@ export const onUpdateGame = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -1710,15 +1714,15 @@ export const onUpdateGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -1736,6 +1740,7 @@ export const onUpdateGame = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -1878,6 +1883,11 @@ export const onUpdateGame = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         results {
           items {
             id
@@ -1899,11 +1909,6 @@ export const onUpdateGame = /* GraphQL */ `
           nextToken
           startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         games {
           items {
             id
@@ -2055,6 +2060,7 @@ export const onUpdateGame = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
@@ -2363,15 +2369,15 @@ export const onDeleteGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -2389,6 +2395,7 @@ export const onDeleteGame = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -2703,15 +2710,15 @@ export const onDeleteGame = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -2729,6 +2736,7 @@ export const onDeleteGame = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -2871,6 +2879,11 @@ export const onDeleteGame = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         results {
           items {
             id
@@ -2892,11 +2905,6 @@ export const onDeleteGame = /* GraphQL */ `
           nextToken
           startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         games {
           items {
             id
@@ -3048,6 +3056,7 @@ export const onDeleteGame = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
@@ -3199,6 +3208,7 @@ export const onCreateEventType = /* GraphQL */ `
       eventType
       defaultPrice
       canRegister
+      memberEntry
       _version
       _deleted
       _lastChangedAt
@@ -3222,6 +3232,7 @@ export const onUpdateEventType = /* GraphQL */ `
       eventType
       defaultPrice
       canRegister
+      memberEntry
       _version
       _deleted
       _lastChangedAt
@@ -3245,6 +3256,7 @@ export const onDeleteEventType = /* GraphQL */ `
       eventType
       defaultPrice
       canRegister
+      memberEntry
       _version
       _deleted
       _lastChangedAt
@@ -3692,6 +3704,11 @@ export const onCreateMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
           results {
             items {
               id
@@ -3713,11 +3730,6 @@ export const onCreateMember = /* GraphQL */ `
             nextToken
             startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
           games {
             items {
               id
@@ -3757,6 +3769,7 @@ export const onCreateMember = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt
@@ -3909,15 +3922,15 @@ export const onCreateMember = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -3935,6 +3948,7 @@ export const onCreateMember = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -4392,6 +4406,11 @@ export const onUpdateMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
           results {
             items {
               id
@@ -4413,11 +4432,6 @@ export const onUpdateMember = /* GraphQL */ `
             nextToken
             startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
           games {
             items {
               id
@@ -4457,6 +4471,7 @@ export const onUpdateMember = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt
@@ -4609,15 +4624,15 @@ export const onUpdateMember = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -4635,6 +4650,7 @@ export const onUpdateMember = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -5092,6 +5108,11 @@ export const onDeleteMember = /* GraphQL */ `
           isJunior
           active
           multipleSections
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
           results {
             items {
               id
@@ -5113,11 +5134,6 @@ export const onDeleteMember = /* GraphQL */ `
             nextToken
             startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
           games {
             items {
               id
@@ -5157,6 +5173,7 @@ export const onDeleteMember = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt
@@ -5309,15 +5326,15 @@ export const onDeleteMember = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -5335,6 +5352,7 @@ export const onDeleteMember = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -5372,6 +5390,11 @@ export const onCreateEvent = /* GraphQL */ `
       isJunior
       active
       multipleSections
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
       results {
         items {
           id
@@ -5393,11 +5416,6 @@ export const onCreateEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       games {
         items {
           id
@@ -5578,15 +5596,15 @@ export const onCreateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -5604,6 +5622,7 @@ export const onCreateEvent = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -5632,6 +5651,7 @@ export const onCreateEvent = /* GraphQL */ `
         eventType
         defaultPrice
         canRegister
+        memberEntry
         _version
         _deleted
         _lastChangedAt
@@ -5735,15 +5755,15 @@ export const onCreateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -5761,6 +5781,7 @@ export const onCreateEvent = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -5798,6 +5819,11 @@ export const onUpdateEvent = /* GraphQL */ `
       isJunior
       active
       multipleSections
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
       results {
         items {
           id
@@ -5819,11 +5845,6 @@ export const onUpdateEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       games {
         items {
           id
@@ -6004,15 +6025,15 @@ export const onUpdateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -6030,6 +6051,7 @@ export const onUpdateEvent = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -6058,6 +6080,7 @@ export const onUpdateEvent = /* GraphQL */ `
         eventType
         defaultPrice
         canRegister
+        memberEntry
         _version
         _deleted
         _lastChangedAt
@@ -6161,15 +6184,15 @@ export const onUpdateEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -6187,6 +6210,7 @@ export const onUpdateEvent = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -6224,6 +6248,11 @@ export const onDeleteEvent = /* GraphQL */ `
       isJunior
       active
       multipleSections
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
       results {
         items {
           id
@@ -6245,11 +6274,6 @@ export const onDeleteEvent = /* GraphQL */ `
         nextToken
         startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
       games {
         items {
           id
@@ -6430,15 +6454,15 @@ export const onDeleteEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -6456,6 +6480,7 @@ export const onDeleteEvent = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -6484,6 +6509,7 @@ export const onDeleteEvent = /* GraphQL */ `
         eventType
         defaultPrice
         canRegister
+        memberEntry
         _version
         _deleted
         _lastChangedAt
@@ -6587,15 +6613,15 @@ export const onDeleteEvent = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -6613,6 +6639,7 @@ export const onDeleteEvent = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -6833,15 +6860,15 @@ export const onCreateEntry = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -6859,6 +6886,7 @@ export const onCreateEntry = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -7001,6 +7029,11 @@ export const onCreateEntry = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         results {
           items {
             id
@@ -7022,11 +7055,6 @@ export const onCreateEntry = /* GraphQL */ `
           nextToken
           startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         games {
           items {
             id
@@ -7178,6 +7206,7 @@ export const onCreateEntry = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
@@ -7471,15 +7500,15 @@ export const onUpdateEntry = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -7497,6 +7526,7 @@ export const onUpdateEntry = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -7639,6 +7669,11 @@ export const onUpdateEntry = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         results {
           items {
             id
@@ -7660,11 +7695,6 @@ export const onUpdateEntry = /* GraphQL */ `
           nextToken
           startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         games {
           items {
             id
@@ -7816,6 +7846,7 @@ export const onUpdateEntry = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
@@ -8109,15 +8140,15 @@ export const onDeleteEntry = /* GraphQL */ `
             isJunior
             active
             multipleSections
-            results {
-              nextToken
-              startedAt
-            }
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            results {
+              nextToken
+              startedAt
+            }
             games {
               nextToken
               startedAt
@@ -8135,6 +8166,7 @@ export const onDeleteEntry = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -8277,6 +8309,11 @@ export const onDeleteEntry = /* GraphQL */ `
         isJunior
         active
         multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
         results {
           items {
             id
@@ -8298,11 +8335,6 @@ export const onDeleteEntry = /* GraphQL */ `
           nextToken
           startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
         games {
           items {
             id
@@ -8454,6 +8486,7 @@ export const onDeleteEntry = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
