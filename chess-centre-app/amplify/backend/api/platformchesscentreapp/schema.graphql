@@ -75,6 +75,7 @@ type EventType @model @auth(rules: [{allow: private}, {allow: public, provider: 
   eventType: String
   defaultPrice: String
   canRegister: Boolean
+  memberEntry: Boolean @auth(rules: [{allow: private, operations: [read]}])
 }
 
 type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: private, operations: [read]}, {allow: public, provider: iam, operations: [read]}]) @key(name: "stripe", fields: ["stripeCustomerId"]) {
@@ -98,10 +99,10 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   ecfRapid: String
   fideRating: String
   ecfMembership: String
-  ecfRapidPartial: Boolean,
-  ecfRatingPartial: Boolean,
+  ecfRapidPartial: Boolean
+  ecfRatingPartial: Boolean
   estimatedRating: String
-  chessTitle: String,
+  chessTitle: String
   club: String
   gender: String
   membershipType: String
@@ -144,8 +145,8 @@ type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   id: ID!
   eventId: ID!
   memberId: ID!
-  section: String,
-  byes: String,
+  section: String
+  byes: String
   event: Event @connection(fields: ["eventId"])
   member: Member @connection(fields: ["memberId"])
 }
