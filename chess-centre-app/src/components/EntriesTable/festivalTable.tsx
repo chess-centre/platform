@@ -13,6 +13,7 @@ export default function EntriesTable(data: any) {
       ecfRating,
       ecfRapid,
       estimatedRating,
+      fideRating,
       ecfRatingPartial = false,
       ecfRapidPartial = false,
     }) => {
@@ -28,12 +29,12 @@ export default function EntriesTable(data: any) {
         };
       }
 
-      if (rapid) {
+      if (fideRating) {
         return {
-          value: rapid,
-          sort: rapid,
-          isPartial: ecfRapidPartial,
-          key: "R",
+          value: fideRating,
+          isPartial: false,
+          sort: Number(fideRating),
+          key: "F",
         };
       }
 
@@ -45,6 +46,16 @@ export default function EntriesTable(data: any) {
           key: "E",
         };
       }
+
+      if (rapid) {
+        return {
+          value: rapid,
+          sort: rapid,
+          isPartial: ecfRapidPartial,
+          key: "R",
+        };
+      }
+
       return { value: "unrated", sort: 0, key: "" };
     };
 
@@ -141,6 +152,12 @@ export default function EntriesTable(data: any) {
               >
                 Byes
               </th>
+              <th
+                scope="col"
+                className="relative px-1 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+              >
+                Key
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
@@ -185,20 +202,46 @@ export default function EntriesTable(data: any) {
                     <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
                       {byes ? byes !== "null" && byes?.split("").join(",") : ""}
                     </td>
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
+                      {rating.key}
+                    </td>
                   </tr>
                 );
               })}
           </tbody>
         </table>
       </div>
-      <p className="text-center italic text-xs text-teal-600">
-        Ratings are automatically checked against the ECF database, you may
-        initially see "unrated" while we verify your info.
-      </p>
-      <p className="text-center italic text-xs">
-        <span className="text-orange-500">*</span> Indicates a partial rating and is therefore eligible to enter any
-        section until an official full rating is published.
-      </p>
+
+      <div className="text-xs text-gray-400 border border-dashed py-1 px-2">
+        <p className="mb-2">
+          The latest ECF standard ratings are used for our event, or if a FIDE rating is available as a fallback.
+          Where a player has a partial rating (indicated with a P by the ECF) we will individually review their game history and either:
+          <ul>
+            <li>Use the provisional rating given (usually where greater than 5 games against rated players) <span className="font-semibold">OR</span></li>
+            <li>Consult with our official arbiter on the playing strength evidence and provide an estimated rating (E)</li>
+          </ul>
+        </p>
+        <p className="mb-2">Rating reference key</p>
+        <p className="ml-2">
+          <span className="font-bold text-teal-700">F</span> = FIDE standard
+          rating used
+        </p>
+        <p className="ml-2">
+          <span className="font-bold text-teal-700">R</span> = Rapidplay ECF
+          rating used
+        </p>
+        <p className="ml-2">
+          <span className="font-bold text-teal-700">E</span> = Estimated rating
+          is used
+        </p>
+        <p className="ml-2 italic">
+          <span className="text-orange-500">* </span> = Partial rating
+        </p>
+        <p className="italic text-xs text-teal-600">
+          Ratings are automatically checked against the ECF database, you may
+          initially see "unrated" while we verify your information. You do not need to email us your ECF data.
+        </p>
+      </div>
     </div>
   );
 }

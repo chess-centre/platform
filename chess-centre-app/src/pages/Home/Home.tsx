@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import { useAuthState } from "../../context/Auth";
@@ -11,13 +11,12 @@ import GamesSignUp from "../../components/CTA/SignUp";
 import Integrations from "../../components/Integrations";
 import FestivalCTA from "../../components/Festival/HomePageCTA";
 import EmbeddedVideo from "../../components/Video/Embedded";
+import Chesscom from "../../assets/img/chesscom.png";
+import C24 from "../../assets/img/c24.png";
 
-
-import { useLiveGameState } from "../../context/LiveGameContext";
 
 const Home = () => {
   const { user } = useAuthState();
-  const { eventInfo, isLoading } = useLiveGameState();
 
   useEffect(() => {
     document.title = "The Chess Centre | Welcome";
@@ -123,7 +122,17 @@ const Home = () => {
                   Visit our dedicated venue in Ilkley
                 </p>
               </div>
-              <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+              <div className="mt-3 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
+                <div>
+                  <a
+                    href="https://chess-results.com/tnr665788.aspx?lan=1&art=0"
+                    className="w-full flex items-center justify-center px-8 py-2 border border-transparent text-base leading-6 font-medium rounded-md border border-gray-200 text-gray-500 bg-white hover:bg-gray-100 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:text-lg md:px-12"
+                  >
+                    Festival Results
+                  </a>
+                  </div>
+              </div>
+              <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
                 <div className={user ? "hidden" : "rounded-md shadow"}>
                   <Link
                     to="/register"
@@ -133,46 +142,11 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-              {!isLoading ? (
-                eventInfo.map((_, key) => {
-                  return (
-                    <div key={key} className="mt-4">
-                      <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center">
-                        <div className="rounded-md shadow">
-                          <Link
-                            to="/broadcast/live"
-                            className={`
-                            py-3
-                            w-full flex items-center justify-center px-9 border 
-                            border-transparent text-base font-medium rounded-md text-white bg-teal-700 hover:bg-teal-600 
-                            focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out`}
-                          >
-                            <span className="flex relative h-3 w-3">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
-                              <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-600"></span>
-                            </span>{" "}
-                            <span className="ml-2">Live Games</span>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div className="mt-4">
-                  <div className="text-gray-300 mb-2 text-xs">
-                    <i className="fal fa-spinner-third fa-spin fa-fw"></i>
-                    <br />
-                    checking for live games
-                  </div>
-                </div>
-              )}
             </div>
           </main>
         </div>
       </div>
       <EmbeddedVideo />
-      <FestivalCTA />
       <Calendar />
       <GamesSignUp />
       <FAQs />

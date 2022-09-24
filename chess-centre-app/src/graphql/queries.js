@@ -261,6 +261,8 @@ export const getGame = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -295,6 +297,8 @@ export const getGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -320,6 +324,7 @@ export const getGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -337,6 +342,7 @@ export const getGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -359,6 +365,8 @@ export const getGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -384,6 +392,7 @@ export const getGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -401,6 +410,7 @@ export const getGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -430,6 +440,7 @@ export const getGame = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -458,6 +469,7 @@ export const getGame = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -472,6 +484,7 @@ export const getGame = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -489,6 +502,7 @@ export const getGame = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -518,9 +532,12 @@ export const getGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -538,6 +555,7 @@ export const getGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -563,6 +581,7 @@ export const getGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -583,6 +602,8 @@ export const getGame = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -617,6 +638,8 @@ export const getGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -642,6 +665,7 @@ export const getGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -659,6 +683,7 @@ export const getGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -681,6 +706,8 @@ export const getGame = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -706,6 +733,7 @@ export const getGame = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -723,6 +751,7 @@ export const getGame = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -752,6 +781,7 @@ export const getGame = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -780,6 +810,7 @@ export const getGame = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -794,6 +825,7 @@ export const getGame = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -811,6 +843,7 @@ export const getGame = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -840,9 +873,12 @@ export const getGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -860,6 +896,7 @@ export const getGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -885,6 +922,7 @@ export const getGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -912,6 +950,7 @@ export const getGame = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -974,9 +1013,12 @@ export const getGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -994,6 +1036,7 @@ export const getGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1012,9 +1055,12 @@ export const getGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1032,6 +1078,7 @@ export const getGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1057,6 +1104,7 @@ export const getGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -1082,6 +1130,7 @@ export const getGame = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
@@ -1107,9 +1156,12 @@ export const getGame = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1127,6 +1179,7 @@ export const getGame = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1152,6 +1205,7 @@ export const getGame = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -1208,6 +1262,8 @@ export const listGames = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -1242,9 +1298,12 @@ export const listGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1262,6 +1321,7 @@ export const listGames = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1280,9 +1340,12 @@ export const listGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1300,6 +1363,7 @@ export const listGames = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1325,6 +1389,7 @@ export const listGames = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -1336,6 +1401,7 @@ export const listGames = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -1353,6 +1419,7 @@ export const listGames = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -1387,6 +1454,8 @@ export const listGames = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -1421,9 +1490,12 @@ export const listGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1441,6 +1513,7 @@ export const listGames = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1459,9 +1532,12 @@ export const listGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1479,6 +1555,7 @@ export const listGames = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1504,6 +1581,7 @@ export const listGames = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -1515,6 +1593,7 @@ export const listGames = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -1532,6 +1611,7 @@ export const listGames = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -1573,6 +1653,7 @@ export const listGames = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -1640,6 +1721,7 @@ export const listGames = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt
@@ -1717,6 +1799,8 @@ export const listGamesByEvent = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -1751,9 +1835,12 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1771,6 +1858,7 @@ export const listGamesByEvent = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1789,9 +1877,12 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1809,6 +1900,7 @@ export const listGamesByEvent = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1834,6 +1926,7 @@ export const listGamesByEvent = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -1845,6 +1938,7 @@ export const listGamesByEvent = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -1862,6 +1956,7 @@ export const listGamesByEvent = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -1896,6 +1991,8 @@ export const listGamesByEvent = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -1930,9 +2027,12 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1950,6 +2050,7 @@ export const listGamesByEvent = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -1968,9 +2069,12 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -1988,6 +2092,7 @@ export const listGamesByEvent = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2013,6 +2118,7 @@ export const listGamesByEvent = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -2024,6 +2130,7 @@ export const listGamesByEvent = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -2041,6 +2148,7 @@ export const listGamesByEvent = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -2082,6 +2190,7 @@ export const listGamesByEvent = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -2149,6 +2258,7 @@ export const listGamesByEvent = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt
@@ -2226,6 +2336,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -2260,9 +2372,12 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2280,6 +2395,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2298,9 +2414,12 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2318,6 +2437,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2343,6 +2463,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -2354,6 +2475,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -2371,6 +2493,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -2405,6 +2528,8 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -2439,9 +2564,12 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2459,6 +2587,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2477,9 +2606,12 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2497,6 +2629,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2522,6 +2655,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -2533,6 +2667,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -2550,6 +2685,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -2591,6 +2727,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -2658,6 +2795,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt
@@ -2735,6 +2873,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -2769,9 +2909,12 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2789,6 +2932,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2807,9 +2951,12 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2827,6 +2974,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2852,6 +3000,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -2863,6 +3012,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -2880,6 +3030,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -2914,6 +3065,8 @@ export const listGamesByBlackMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -2948,9 +3101,12 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -2968,6 +3124,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -2986,9 +3143,12 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3006,6 +3166,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3031,6 +3192,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -3042,6 +3204,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -3059,6 +3222,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -3100,6 +3264,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -3167,6 +3332,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt
@@ -3242,6 +3408,8 @@ export const syncGames = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -3276,9 +3444,12 @@ export const syncGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3296,6 +3467,7 @@ export const syncGames = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3314,9 +3486,12 @@ export const syncGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3334,6 +3509,7 @@ export const syncGames = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3359,6 +3535,7 @@ export const syncGames = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -3370,6 +3547,7 @@ export const syncGames = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -3387,6 +3565,7 @@ export const syncGames = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -3421,6 +3600,8 @@ export const syncGames = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -3455,9 +3636,12 @@ export const syncGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3475,6 +3659,7 @@ export const syncGames = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3493,9 +3678,12 @@ export const syncGames = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -3513,6 +3701,7 @@ export const syncGames = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -3538,6 +3727,7 @@ export const syncGames = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -3549,6 +3739,7 @@ export const syncGames = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -3566,6 +3757,7 @@ export const syncGames = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -3607,6 +3799,7 @@ export const syncGames = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -3674,6 +3867,7 @@ export const syncGames = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt
@@ -3785,6 +3979,7 @@ export const getEventType = /* GraphQL */ `
       eventType
       defaultPrice
       canRegister
+      memberEntry
       _version
       _deleted
       _lastChangedAt
@@ -3813,6 +4008,7 @@ export const listEventTypes = /* GraphQL */ `
         eventType
         defaultPrice
         canRegister
+        memberEntry
         _version
         _deleted
         _lastChangedAt
@@ -3850,6 +4046,7 @@ export const syncEventTypes = /* GraphQL */ `
         eventType
         defaultPrice
         canRegister
+        memberEntry
         _version
         _deleted
         _lastChangedAt
@@ -3881,6 +4078,8 @@ export const syncMembers = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -3915,6 +4114,8 @@ export const syncMembers = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -3940,6 +4141,7 @@ export const syncMembers = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -3957,6 +4159,7 @@ export const syncMembers = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -3979,6 +4182,8 @@ export const syncMembers = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -4004,6 +4209,7 @@ export const syncMembers = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -4021,6 +4227,7 @@ export const syncMembers = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -4050,6 +4257,7 @@ export const syncMembers = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -4078,6 +4286,7 @@ export const syncMembers = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -4092,6 +4301,7 @@ export const syncMembers = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -4109,6 +4319,7 @@ export const syncMembers = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -4138,9 +4349,12 @@ export const syncMembers = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4158,6 +4372,7 @@ export const syncMembers = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4183,6 +4398,7 @@ export const syncMembers = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -4210,6 +4426,8 @@ export const getMember = /* GraphQL */ `
       ecfId
       username
       name
+      firstName
+      surname
       email
       games {
         id
@@ -4244,6 +4462,8 @@ export const getMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -4278,9 +4498,12 @@ export const getMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4298,6 +4521,7 @@ export const getMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4316,9 +4540,12 @@ export const getMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4336,6 +4563,7 @@ export const getMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4361,6 +4589,7 @@ export const getMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -4372,6 +4601,7 @@ export const getMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -4389,6 +4619,7 @@ export const getMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -4423,6 +4654,8 @@ export const getMember = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -4457,9 +4690,12 @@ export const getMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4477,6 +4713,7 @@ export const getMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4495,9 +4732,12 @@ export const getMember = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -4515,6 +4755,7 @@ export const getMember = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -4540,6 +4781,7 @@ export const getMember = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -4551,6 +4793,7 @@ export const getMember = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -4568,6 +4811,7 @@ export const getMember = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -4609,6 +4853,7 @@ export const getMember = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -4676,6 +4921,7 @@ export const getMember = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt
@@ -4702,6 +4948,7 @@ export const getMember = /* GraphQL */ `
       }
       ecfRating
       ecfRapid
+      fideRating
       ecfMembership
       ecfRapidPartial
       ecfRatingPartial
@@ -4719,6 +4966,7 @@ export const getMember = /* GraphQL */ `
       chesscomLastUpdated
       lichessLastUpdated
       ecfLastUpdated
+      isJunior
       _version
       _deleted
       _lastChangedAt
@@ -4748,6 +4996,8 @@ export const getMember = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -4773,6 +5023,7 @@ export const getMember = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -4790,6 +5041,7 @@ export const getMember = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -4819,6 +5071,7 @@ export const getMember = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -4847,6 +5100,7 @@ export const getMember = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -4879,6 +5133,8 @@ export const listMembers = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -4913,6 +5169,8 @@ export const listMembers = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -4938,6 +5196,7 @@ export const listMembers = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -4955,6 +5214,7 @@ export const listMembers = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -4977,6 +5237,8 @@ export const listMembers = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5002,6 +5264,7 @@ export const listMembers = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -5019,6 +5282,7 @@ export const listMembers = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5048,6 +5312,7 @@ export const listMembers = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -5076,6 +5341,7 @@ export const listMembers = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -5090,6 +5356,7 @@ export const listMembers = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -5107,6 +5374,7 @@ export const listMembers = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -5136,9 +5404,12 @@ export const listMembers = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -5156,6 +5427,7 @@ export const listMembers = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -5181,6 +5453,7 @@ export const listMembers = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -5215,6 +5488,7 @@ export const getEvent = /* GraphQL */ `
       cancelled
       isLive
       isLiveUrl
+      isJunior
       active
       multipleSections
       _version
@@ -5277,6 +5551,8 @@ export const getEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5302,6 +5578,7 @@ export const getEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -5319,6 +5596,7 @@ export const getEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5341,6 +5619,8 @@ export const getEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5366,6 +5646,7 @@ export const getEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -5383,6 +5664,7 @@ export const getEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5412,6 +5694,7 @@ export const getEvent = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -5440,6 +5723,7 @@ export const getEvent = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -5468,6 +5752,7 @@ export const getEvent = /* GraphQL */ `
         eventType
         defaultPrice
         canRegister
+        memberEntry
         _version
         _deleted
         _lastChangedAt
@@ -5493,6 +5778,8 @@ export const getEvent = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -5518,6 +5805,7 @@ export const getEvent = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -5535,6 +5823,7 @@ export const getEvent = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -5564,6 +5853,7 @@ export const getEvent = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -5592,6 +5882,7 @@ export const getEvent = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -5631,6 +5922,7 @@ export const listEvents = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -5693,9 +5985,12 @@ export const listEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -5713,6 +6008,7 @@ export const listEvents = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -5731,9 +6027,12 @@ export const listEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -5751,6 +6050,7 @@ export const listEvents = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -5776,6 +6076,7 @@ export const listEvents = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -5801,6 +6102,7 @@ export const listEvents = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
@@ -5826,9 +6128,12 @@ export const listEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -5846,6 +6151,7 @@ export const listEvents = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -5871,6 +6177,7 @@ export const listEvents = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -5920,6 +6227,7 @@ export const listEventsActive = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -5982,9 +6290,12 @@ export const listEventsActive = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -6002,6 +6313,7 @@ export const listEventsActive = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6020,9 +6332,12 @@ export const listEventsActive = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -6040,6 +6355,7 @@ export const listEventsActive = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6065,6 +6381,7 @@ export const listEventsActive = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -6090,6 +6407,7 @@ export const listEventsActive = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
@@ -6115,9 +6433,12 @@ export const listEventsActive = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -6135,6 +6456,7 @@ export const listEventsActive = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6160,6 +6482,7 @@ export const listEventsActive = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -6205,6 +6528,7 @@ export const syncEvents = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -6267,9 +6591,12 @@ export const syncEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -6287,6 +6614,7 @@ export const syncEvents = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6305,9 +6633,12 @@ export const syncEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -6325,6 +6656,7 @@ export const syncEvents = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6350,6 +6682,7 @@ export const syncEvents = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -6375,6 +6708,7 @@ export const syncEvents = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
@@ -6400,9 +6734,12 @@ export const syncEvents = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -6420,6 +6757,7 @@ export const syncEvents = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6445,6 +6783,7 @@ export const syncEvents = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -6483,6 +6822,8 @@ export const getEntry = /* GraphQL */ `
         ecfId
         username
         name
+        firstName
+        surname
         email
         games {
           id
@@ -6517,6 +6858,8 @@ export const getEntry = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -6542,6 +6885,7 @@ export const getEntry = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -6559,6 +6903,7 @@ export const getEntry = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -6581,6 +6926,8 @@ export const getEntry = /* GraphQL */ `
             ecfId
             username
             name
+            firstName
+            surname
             email
             games {
               id
@@ -6606,6 +6953,7 @@ export const getEntry = /* GraphQL */ `
             }
             ecfRating
             ecfRapid
+            fideRating
             ecfMembership
             ecfRapidPartial
             ecfRatingPartial
@@ -6623,6 +6971,7 @@ export const getEntry = /* GraphQL */ `
             chesscomLastUpdated
             lichessLastUpdated
             ecfLastUpdated
+            isJunior
             _version
             _deleted
             _lastChangedAt
@@ -6652,6 +7001,7 @@ export const getEntry = /* GraphQL */ `
             cancelled
             isLive
             isLiveUrl
+            isJunior
             active
             multipleSections
             _version
@@ -6680,6 +7030,7 @@ export const getEntry = /* GraphQL */ `
               eventType
               defaultPrice
               canRegister
+              memberEntry
               _version
               _deleted
               _lastChangedAt
@@ -6694,6 +7045,7 @@ export const getEntry = /* GraphQL */ `
         }
         ecfRating
         ecfRapid
+        fideRating
         ecfMembership
         ecfRapidPartial
         ecfRatingPartial
@@ -6711,6 +7063,7 @@ export const getEntry = /* GraphQL */ `
         chesscomLastUpdated
         lichessLastUpdated
         ecfLastUpdated
+        isJunior
         _version
         _deleted
         _lastChangedAt
@@ -6740,9 +7093,12 @@ export const getEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -6760,6 +7116,7 @@ export const getEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6785,6 +7142,7 @@ export const getEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -6812,6 +7170,7 @@ export const getEntry = /* GraphQL */ `
         cancelled
         isLive
         isLiveUrl
+        isJunior
         active
         multipleSections
         _version
@@ -6874,9 +7233,12 @@ export const getEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -6894,6 +7256,7 @@ export const getEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6912,9 +7275,12 @@ export const getEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -6932,6 +7298,7 @@ export const getEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -6957,6 +7324,7 @@ export const getEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -6982,6 +7350,7 @@ export const getEntry = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
           _version
           _deleted
           _lastChangedAt
@@ -7007,9 +7376,12 @@ export const getEntry = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7027,6 +7399,7 @@ export const getEntry = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -7052,6 +7425,7 @@ export const getEntry = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -7093,6 +7467,8 @@ export const listEntrys = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -7127,9 +7503,12 @@ export const listEntrys = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7147,6 +7526,7 @@ export const listEntrys = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -7165,9 +7545,12 @@ export const listEntrys = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7185,6 +7568,7 @@ export const listEntrys = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -7210,6 +7594,7 @@ export const listEntrys = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -7221,6 +7606,7 @@ export const listEntrys = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -7238,6 +7624,7 @@ export const listEntrys = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -7279,6 +7666,7 @@ export const listEntrys = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -7346,6 +7734,7 @@ export const listEntrys = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt
@@ -7406,6 +7795,8 @@ export const syncEntries = /* GraphQL */ `
           ecfId
           username
           name
+          firstName
+          surname
           email
           games {
             id
@@ -7440,9 +7831,12 @@ export const syncEntries = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7460,6 +7854,7 @@ export const syncEntries = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -7478,9 +7873,12 @@ export const syncEntries = /* GraphQL */ `
               ecfId
               username
               name
+              firstName
+              surname
               email
               ecfRating
               ecfRapid
+              fideRating
               ecfMembership
               ecfRapidPartial
               ecfRatingPartial
@@ -7498,6 +7896,7 @@ export const syncEntries = /* GraphQL */ `
               chesscomLastUpdated
               lichessLastUpdated
               ecfLastUpdated
+              isJunior
               _version
               _deleted
               _lastChangedAt
@@ -7523,6 +7922,7 @@ export const syncEntries = /* GraphQL */ `
               cancelled
               isLive
               isLiveUrl
+              isJunior
               active
               multipleSections
               _version
@@ -7534,6 +7934,7 @@ export const syncEntries = /* GraphQL */ `
           }
           ecfRating
           ecfRapid
+          fideRating
           ecfMembership
           ecfRapidPartial
           ecfRatingPartial
@@ -7551,6 +7952,7 @@ export const syncEntries = /* GraphQL */ `
           chesscomLastUpdated
           lichessLastUpdated
           ecfLastUpdated
+          isJunior
           _version
           _deleted
           _lastChangedAt
@@ -7592,6 +7994,7 @@ export const syncEntries = /* GraphQL */ `
           cancelled
           isLive
           isLiveUrl
+          isJunior
           active
           multipleSections
           _version
@@ -7659,6 +8062,7 @@ export const syncEntries = /* GraphQL */ `
             eventType
             defaultPrice
             canRegister
+            memberEntry
             _version
             _deleted
             _lastChangedAt

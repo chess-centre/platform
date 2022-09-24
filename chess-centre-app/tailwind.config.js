@@ -103,7 +103,7 @@ module.exports = {
           900: "#014451",
         },
         blue: {
-          brand: "#022b3d",
+          brand: "#0a2d3b",
           50: "#ebf5ff",
           100: "#e1effe",
           200: "#c3ddfd",

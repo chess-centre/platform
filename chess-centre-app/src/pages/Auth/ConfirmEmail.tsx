@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import ImageLight from "../../assets/img/chess-players.jpg";
 import ImageDark from "../../assets/img/chess-players.jpg";
-import { Label, Input, Button } from "@windmill/react-ui";
 import {
   useAuthDispatch,
   useAuthState,
@@ -52,7 +51,7 @@ function ConfirmEmail(props) {
       dispatch({
         type: "ACTIVATION_CODE_ERROR",
         error: error.message,
-      });      
+      });
     }
   }
 
@@ -83,39 +82,44 @@ function ConfirmEmail(props) {
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Account activation
               </h1>
-              <Label>
-                <span>
-                  Enter your code{" "}
-                  <span className="text-xs text-gray-600">
-                    (sent to you via email)
-                  </span>
-                </span>
 
+              <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                <label
+                  htmlFor="name"
+                  className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-sm text-gray-900"
+                >
+                  enter activation code
+                </label>
                 <div className="flex space-x-3 mt-1">
-                  <Input
+                  <input
                     disabled={loading}
                     onChange={(e) => setCode(e.target.value)}
                     type="text"
                     placeholder="000000"
                     onKeyDown={handleKeyDown}
+                    className="block w-full border-0 p-0 text-teal-600 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
                   />
                 </div>
-              </Label>
-              <Button
-                disabled={loading}
-                onClick={submitActivationCode}
-                block
-                className="mt-4"
-              >
-                Confirm Sign Up
-              </Button>
-              <p
-                className={
-                  errorMessage ? "text-red-700 text-sm text-center mt-2" : "hidden"
-                }
-              >
-                {errorMessage}
-              </p>
+                
+              </div>
+
+
+              <div className="relative w-full">
+                <p className="text-xxs text-gray-500">This code has have been sent to your email address</p>
+                <button
+                  className="mt-4 w-full right-0 items-center px-4 py-2 border border-transparent shadow text-sm leading-4 
+                font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
+                focus:ring-offset-2 focus:ring-teal-500"
+                  disabled={loading}
+                  onClick={submitActivationCode}
+                >
+                  Confirm sign up
+                </button>
+
+              
+              { errorMessage && <p className="mt-2 text-sm text-red-600 text-center">{errorMessage}</p>}
+
+              </div>
               <hr className="my-8" />
               <div className="mt-4">
                 <div

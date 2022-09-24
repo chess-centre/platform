@@ -1,6 +1,4 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
-
-
+import { ModelInit, MutableModel } from "@aws-amplify/datastore";
 
 export declare class S3Object {
   readonly bucket: string;
@@ -8,6 +6,24 @@ export declare class S3Object {
   readonly key: string;
   constructor(init: ModelInit<S3Object>);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export declare class MailingList {
   readonly id: string;
@@ -82,6 +98,7 @@ export declare class Event {
   readonly cancelled?: boolean | null;
   readonly isLive?: boolean | null;
   readonly isLiveUrl?: string | null;
+  readonly isJunior?: boolean | null;
   readonly active?: string | null;
   readonly multipleSections?: boolean | null;
   readonly results?: (Result | null)[] | null;
@@ -102,6 +119,7 @@ export declare class EventType {
   readonly eventType?: string | null;
   readonly defaultPrice?: string | null;
   readonly canRegister?: boolean | null;
+  readonly memberEntry?: boolean | null;
   constructor(init: ModelInit<EventType>);
   static copyOf(source: EventType, mutator: (draft: MutableModel<EventType>) => MutableModel<EventType> | void): EventType;
 }
@@ -123,6 +141,8 @@ export declare class Member {
   readonly ecfId?: string | null;
   readonly username?: string | null;
   readonly name?: string | null;
+  readonly firstName?: string | null;
+  readonly surname?: string | null;
   readonly email?: string | null;
   readonly entries?: Entry[] | null;
   readonly stripeCustomerId?: string | null;
@@ -132,6 +152,7 @@ export declare class Member {
   readonly stripeFriendlyProductName?: string | null;
   readonly ecfRating?: string | null;
   readonly ecfRapid?: string | null;
+  readonly fideRating?: string | null;
   readonly ecfMembership?: string | null;
   readonly ecfRapidPartial?: boolean | null;
   readonly ecfRatingPartial?: boolean | null;
@@ -149,6 +170,7 @@ export declare class Member {
   readonly chesscomLastUpdated?: number | null;
   readonly lichessLastUpdated?: number | null;
   readonly ecfLastUpdated?: number | null;
+  readonly isJunior?: boolean | null;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
 }

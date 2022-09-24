@@ -16,14 +16,58 @@ import {
 import AppTravel from "../../components/Travel/AppTravel";
 import Brumdcrumbs from "../../components/Breadcrumbs";
 import EventContactUsModal from "../../components/Modal/EventContactUsModal";
-
 import EventSectionSelectionModal from "../../components/Modal/EventSectionSelectModal";
 import { juniorSections, standardSections } from "../../api/sections";
+import Chesscom from "../../assets/img/chesscom.png";
+import C24 from "../../assets/img/c24.png";
+
+const getEvent = /* GraphQL */ `
+  query GetEvent($id: ID!, $filter: ModelEntryFilterInput, $limit: Int, $nextToken: String) {
+    getEvent(id: $id) {
+      id
+      name
+      description
+      active
+      multipleSections
+    }
+    listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+            eventId
+            memberId
+            section
+            byes
+            createdAt
+            updatedAt
+            member {
+              id
+              fideId
+              ecfId
+              name
+              ecfRatingPartial
+              ecfRating
+              ecfRapidPartial
+              ecfRapid
+              ecfMembership
+              estimatedRating
+              club
+              gender
+              membershipType
+              chessTitle
+            }
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 
 export default function EventDetails() {
   const { eventId } = useParams();
   const [eventName, setEventName] = useState("");
   const [eventInfo, setEventInfo] = useState<Event | undefined>();
+  const [isLoadingEntries, setIsLoadingEntries] = useState(false);
+  const [eventEntries, setEventEntries] = useState({});
   const { isLoading, error, data } = useEvents();
 
   useEffect(() => {
@@ -41,6 +85,48 @@ export default function EventDetails() {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  useEffect(() => {
+    const fetchEntries = async () => {
+      setIsLoadingEntries(true);
+
+      const response = await API.graphql({
+        query: getEvent,
+        variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250 },
+        authMode: "AWS_IAM",
+      });
+
+      if (response && response.data) {
+        const {
+          data: {
+            getEvent: eventData,
+            listEntrys: entries },
+        } = response;
+
+        if (entries.nextToken) {
+          const additionalResponse = await API.graphql({
+            query: getEvent,
+            variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250, nextToken: entries.nextToken },
+            authMode: "AWS_IAM",
+          });
+
+          const {
+            data: {
+              listEntrys: moreEntries },
+          } = additionalResponse;
+
+          const items = { items: [...entries.items, ...moreEntries.items] };
+
+          setEventEntries({ ...eventData, entries: items });
+
+        } else {
+          setEventEntries({ ...eventData, entries });
+        }
+      }
+      setIsLoadingEntries(false);
+    };
+    fetchEntries();
+  }, [eventId]);
 
   return (
     <div className="overscroll-none">
@@ -65,7 +151,7 @@ export default function EventDetails() {
               {!isLoading &&
                 eventInfo &&
                 Object.keys(eventInfo).length > 0 &&
-                !Boolean(error) && <DetailsView data={eventInfo} />}
+                !Boolean(error) && <DetailsView data={eventInfo} isLoadingEntries={isLoadingEntries} entries={eventEntries} />}
             </div>
             <div>{isLoading && <LoadingView />}</div>
             <div>{Boolean(error) && <ErrorView />}</div>
@@ -113,11 +199,14 @@ interface Event {
 
 interface Props {
   data: Event;
+  isLoadingEntries?: Boolean;
+  entries?: any;
 }
 
 function DetailsView(props: Props) {
-  const { data } = props;
-  const { tags, organisers, address } = TemplateData[data.type.eventType];
+  const { data, isLoadingEntries, entries } = props;
+  const { tags, organisers, address, arbiters, hasBroadcast, broadcastLink } = TemplateData[data.type.eventType];
+  const [isJunior] = useState(data?.name.includes("Junior") || false);
   const [isModelOpen, setIsModalOpen] = useState(false);
   const [tabs, setTabs] = useState([
     { key: "schedule", name: "Schedule", current: true },
@@ -129,7 +218,7 @@ function DetailsView(props: Props) {
   const renderTab = (selected: string, data: Event) => {
     switch (selected) {
       case "Entries":
-        return <Entries data={data} />;
+        return <Entries data={data} isLoadingEntries={isLoadingEntries} entries={entries} />;
       case "Schedule":
         return <Schedule data={data} />;
       case "Travel":
@@ -168,9 +257,9 @@ function DetailsView(props: Props) {
                       {showRegistration() && (
                         <RegisterButton
                           id={data.id}
-                          showByes={data.multipleSections}
+                          showByes={data.multipleSections && !isJunior}
                           multipleSections={data.multipleSections}
-                          isJunior={data.name.includes("Junior")}
+                          isJunior={isJunior}
                         />
                       )}
 
@@ -196,6 +285,9 @@ function DetailsView(props: Props) {
                       data={data}
                       tags={tags}
                       organisers={organisers}
+                      arbiters={arbiters}
+                      hasBroadcast={hasBroadcast}
+                      broadcastLink={broadcastLink}
                     />
                   </div>
 
@@ -224,7 +316,7 @@ function DetailsView(props: Props) {
             </div>
             {/* Desktop Sidebar  */}
             <div className="hidden lg:block">
-              <SummaryDetails data={data} tags={tags} organisers={organisers} />
+              <SummaryDetails data={data} tags={tags} organisers={organisers} arbiters={arbiters} hasBroadcast={hasBroadcast} broadcastLink={broadcastLink} />
             </div>
           </div>
         </div>
@@ -240,21 +332,45 @@ function DetailsView(props: Props) {
 }
 
 function Entries(props: Props) {
-  const { data } = props;
+  const { data, isLoadingEntries, entries } = props;
+
+  let mergeEventInfoWithEntries = data;
+
+  if (entries) {
+    mergeEventInfoWithEntries = {
+      ...data,
+      entries: entries.entries
+    }
+  }
+
   return (
     <div className="mt-10">
-      <EntriesTable eventDetails={data} />
+      <>
+        {!isLoadingEntries && <EntriesTable eventDetails={mergeEventInfoWithEntries} />}
+      </>
+      <>
+        {isLoadingEntries && <p>Loading...</p>}
+      </>
+
     </div>
   );
 }
 
 function Schedule(props: Props) {
   const { data } = props;
+
+  let eventType = data.type.eventType;
+
+  // TODO: refine list of eventTypes ensuring flexibility with static round schedule
+  if (data?.name.includes("Festival") && data?.type?.eventType === "blitz") {
+    eventType = "festival-blitz";
+  }
+
   return (
     <div className="mt-2">
       <RoundTimes
         eventId={data.id}
-        eventType={data.type.eventType}
+        eventType={eventType}
         removeStyles={true}
       />
     </div>
@@ -350,7 +466,7 @@ function ErrorView() {
   );
 }
 
-function SummaryDetails({ data, tags, organisers }) {
+function SummaryDetails({ data, tags, organisers, arbiters, hasBroadcast, broadcastLink }) {
   return (
     <aside className="mt-8 lg:mt-0 lg:pl-8">
       <h2 className="sr-only">Details</h2>
@@ -418,8 +534,23 @@ function SummaryDetails({ data, tags, organisers }) {
         </div>
       </div>
       <div className="mt-6 border-t border-b lg:border-b-0 border-gray-200 py-6 space-y-8">
+        {arbiters && <div>
+          <h2 className="text-sm font-medium text-gray-500">Arbiters</h2>
+          <ul className="mt-3 space-y-3">
+            {arbiters.map(({ name }) => (
+              <li key={name} className="flex justify-start">
+                <span className="flex items-center space-x-3">
+                  <div className="text-sm font-medium text-gray-900">
+                    {name}
+                  </div>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>}
+
         <div>
-          <h2 className="text-sm font-medium text-gray-500">Organsers</h2>
+          <h2 className="text-sm font-medium text-gray-500">Organisers</h2>
           <ul className="mt-3 space-y-3">
             {organisers.map(({ name, imgUrl }) => (
               <li key={name} className="flex justify-start">
@@ -463,6 +594,30 @@ function SummaryDetails({ data, tags, organisers }) {
               ))}
           </ul>
         </div>
+        {
+          hasBroadcast && <div>
+            <h2 className="text-sm font-medium text-gray-500">Broadcasting</h2>
+            <div className="grid grid-cols-1 mt-4">
+              <div>
+                <a href="https://www.chess.com/events/2022-ilkley-chess-festival">
+                  <img className="w-24" alt="chess.com" src={Chesscom} />
+                </a>
+              </div>
+              <div className="mt-6">
+                <a href="https://chess24.com/en/watch/live-tournaments/ikley-chess-festival-2022-open#live">
+                  <img className="w-24" alt="chess24" src={C24} />
+                </a>
+              </div>
+            </div>
+            <div className="mt-8">
+              <a className="inline-flex items-center 
+                rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs 
+                font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                href={broadcastLink} target="_blank">Chess-Results</a>
+            </div>
+          </div>
+        }
+
       </div>
     </aside>
   );
@@ -584,6 +739,7 @@ function RegisterButton(props: RegisterButtonProps) {
         open={modelOpen}
         closeModal={closeModal}
         sections={sections}
+        isJunior={isJunior}
       />
     </div>
   );

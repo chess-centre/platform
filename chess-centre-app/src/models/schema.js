@@ -578,6 +578,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "isJunior": {
+                    "name": "isJunior",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "active": {
                     "name": "active",
                     "isArray": false,
@@ -742,6 +749,13 @@ export const schema = {
                 },
                 "canRegister": {
                     "name": "canRegister",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "memberEntry": {
+                    "name": "memberEntry",
                     "isArray": false,
                     "type": "Boolean",
                     "isRequired": false,
@@ -936,6 +950,20 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "firstName": {
+                    "name": "firstName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "surname": {
+                    "name": "surname",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "email": {
                     "name": "email",
                     "isArray": false,
@@ -1001,6 +1029,13 @@ export const schema = {
                 },
                 "ecfRapid": {
                     "name": "ecfRapid",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "fideRating": {
+                    "name": "fideRating",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -1122,6 +1157,13 @@ export const schema = {
                     "name": "ecfLastUpdated",
                     "isArray": false,
                     "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isJunior": {
+                    "name": "isJunior",
+                    "isArray": false,
+                    "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -1290,5 +1332,5 @@ export const schema = {
             }
         }
     },
-    "version": "897af1ade15de84c517080c440a4ea11"
+    "version": "33415783c7d867a6aa3cbc61d68c67bf"
 };

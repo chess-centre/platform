@@ -29,6 +29,7 @@ const getEvent = gql`
         stripePriceId
         eventType
         time
+        memberEntry
       }
       endDate
       startDate
@@ -89,10 +90,10 @@ exports.handler = async (event) => {
     data: {
       getEvent: {
         maxEntries,
-        type: { stripePriceId, maxEntries: defaultMaxEntries},
+        type: { stripePriceId, maxEntries: defaultMaxEntries, memberEntry },
         entries: { items: entries },
       },
-      getMember: { stripeCustomerId },
+      getMember: { stripeCustomerId, stripeCurrentPeriodEnd },
     },
   } = eventData;
 
@@ -120,6 +121,14 @@ exports.handler = async (event) => {
   if(!stripeCustomerId) {
     console.log("stripeCustomerId does not exist for this user.");
   }
+
+  let activeMember = false;
+
+  if(stripeCustomerId && new Date(stripeCurrentPeriodEnd) > Date.now()) {
+    activeMember = true;
+  }
+
+  console.log("Member is active:", activeMember);
 
   // See https://stripe.com/docs/api/checkout/sessions/create
   // for additional parameters to pass.
@@ -150,6 +159,8 @@ exports.handler = async (event) => {
       headers,
       body: JSON.stringify({
         sessionId: session.id,
+        active: activeMember,
+        memberEntry
       }),
     };
   } catch (e) {

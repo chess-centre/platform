@@ -23,7 +23,27 @@
           ]
         }
       ],
-      "customAuth": false
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      }
     },
     "userPoolGroups": {
       "service": "Cognito-UserPool-Groups",
@@ -464,10 +484,5 @@
       "providerPlugin": "awscloudformation"
     }
   },
-  "analytics": {
-    "platformchesscentreaKinesis": {
-      "service": "Kinesis",
-      "providerPlugin": "awscloudformation"
-    }
-  }
+  "analytics": {}
 }

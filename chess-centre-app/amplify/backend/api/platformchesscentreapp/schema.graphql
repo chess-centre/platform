@@ -75,6 +75,7 @@ type EventType @model @auth(rules: [{allow: private}, {allow: public, provider: 
   eventType: String
   defaultPrice: String
   canRegister: Boolean
+  memberEntry: Boolean @auth(rules: [{allow: private, operations: [read]}])
 }
 
 type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner, ownerField: "id", operations: [read, update]}, {allow: private, operations: [read]}, {allow: public, provider: iam, operations: [read]}]) @key(name: "stripe", fields: ["stripeCustomerId"]) {
@@ -84,6 +85,8 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   ecfId: String
   username: String
   name: String
+  firstName: String
+  surname: String
   email: String
   entries: [Entry!] @connection(keyName: "byMember", fields: ["id"])
   games: [Game!] @function(name: "getMemberGames-${env}")
@@ -94,11 +97,12 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   stripeFriendlyProductName: String @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   ecfRating: String
   ecfRapid: String
+  fideRating: String
   ecfMembership: String
-  ecfRapidPartial: Boolean,
-  ecfRatingPartial: Boolean,
+  ecfRapidPartial: Boolean
+  ecfRatingPartial: Boolean
   estimatedRating: String
-  chessTitle: String,
+  chessTitle: String
   club: String
   gender: String
   membershipType: String
@@ -111,6 +115,7 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   chesscomLastUpdated: Float
   lichessLastUpdated: Float
   ecfLastUpdated: Float
+  isJunior: Boolean
 }
 
 type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam}, {allow: public, provider: iam, operations: [read]}]) @key(name: "eventsByActive", fields: ["active", "startDate"], queryField: "listEventsActive") {
@@ -130,6 +135,7 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   cancelled: Boolean
   isLive: Boolean
   isLiveUrl: String
+  isJunior: Boolean
   active: String
   multipleSections: Boolean
   results: [Result] @connection(keyName: "byEvent", fields: ["id"])
@@ -139,8 +145,8 @@ type Entry @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   id: ID!
   eventId: ID!
   memberId: ID!
-  section: String,
-  byes: String,
+  section: String
+  byes: String
   event: Event @connection(fields: ["eventId"])
   member: Member @connection(fields: ["memberId"])
 }

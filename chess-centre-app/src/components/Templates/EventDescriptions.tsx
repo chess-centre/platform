@@ -3,10 +3,11 @@ import { standardSections, juniorSections } from "../../api/sections";
 
 export const TemplateData = {
   festival: {
-    address: "King's Hall & Winter Garden, Station Road, Ilkley, LS29 8HB",
+    address: "King's Hall & Winter Garden, Ilkley, LS29 8HB",
     paragraphs: [
       "Join us for our biggest event yet! Our Ilkley Chess Festival will be held at the beautiful Kings Hall & Winter Gardens.",
-      "Hopefully the beginning of many great events being held in the North.",
+      "This is just the beginning of many great events to be held in West Yorkshire!",
+      "Section details:",
       "Below you will find the full details for the event including the playing schedule and current entries.",
     ],
     tags: [
@@ -14,6 +15,20 @@ export const TemplateData = {
       { name: "ECF", color: "bg-rose-500" },
     ],
     coverImage: "/festival-square.jpg",
+    arbiters: [
+      {
+        name: "Alan Atkinson",
+        fideUrl: "https://ratings.fide.com/profile/450430"
+      },
+      {
+        name: "John Grasham",
+        fideUrl: ""
+      },
+      {
+        name: "Ihor Lewyk",
+        fideUrl: ""
+      }
+    ],
     organisers: [
       {
         name: "Andrew Wainwright",
@@ -24,6 +39,8 @@ export const TemplateData = {
         imgUrl: "/matt.png",
       },
     ],
+    hasBroadcast: true,
+    broadcastLink: "https://chess-results.com/tnr665788.aspx?lan=1&art=0"
   },
   congress: {
     address: "Unit 8, Crescent Court, Ilkely, LS29 8DE",
@@ -121,9 +138,9 @@ export function EventDescription({
       </div>
       <div className=" col-span-2 prose max-w-none">
         {TemplateData[template].paragraphs.map((text: string, key: number) => {
-          if (multipleSections && key === 2) {
+          if (multipleSections && key === 3) {
             return (
-              <>
+              <div key={key}>
                 <ol>
                   {!isJuniorEvent &&
                     standardSections.map((section) => (
@@ -146,7 +163,7 @@ export function EventDescription({
                     ))}
                 </ol>
                 <p key={key}>{text}</p>
-              </>
+              </div>
             );
           }
           return <p key={key}>{text}</p>;

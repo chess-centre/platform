@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ExclamationIcon, StarIcon } from "@heroicons/react/solid";
 import { classNames } from "../../utils/Classes";
+import { juniorSections, standardSections } from "../../api/sections";
 
 export default function EntriesTable(data: any) {
   const { eventDetails } = data;
   const [selectedSection, handleSelectionSelect] = useState("open");
+  const [showByes, setShowByes] = useState<boolean>(true);
+  const isRapid =
+    eventDetails?.name?.includes("Rapidplay") ||
+    eventDetails?.name?.includes("IGS");
+  const isBlitz = eventDetails?.name?.includes("Blitz");
 
   const tableData = () => {
     /**
@@ -20,33 +26,93 @@ export default function EntriesTable(data: any) {
       const standard = ecfRating ? parseInt(ecfRating, 10) : 0;
       const rapid = ecfRapid ? parseInt(ecfRapid, 10) : 0;
 
-      if (standard) {
+      if (isBlitz) {
+        if (rapid)
+          return {
+            value: rapid,
+            sort: rapid,
+            isPartial: ecfRapidPartial,
+            key: "",
+          };
+        if (standard)
+          return {
+            value: standard,
+            sort: standard,
+            isPartial: ecfRatingPartial,
+            key: "S",
+          };
+        if (estimatedRating)
+          return {
+            value: estimatedRating,
+            sort: Number(estimatedRating),
+            isPartial: ecfRatingPartial,
+            key: "E",
+          };
         return {
-          value: standard,
-          sort: standard,
+          value: "unrated",
+          sort: 0,
           isPartial: ecfRatingPartial,
           key: "",
         };
       }
-
-      if (rapid) {
+      if (isRapid) {
+        if (rapid)
+          return {
+            value: rapid,
+            sort: rapid,
+            isPartial: ecfRapidPartial,
+            key: "",
+          };
+        if (standard)
+          return {
+            value: standard,
+            sort: standard,
+            isPartial: ecfRatingPartial,
+            key: "S",
+          };
+        if (estimatedRating)
+          return {
+            value: estimatedRating,
+            sort: Number(estimatedRating),
+            isPartial: ecfRatingPartial,
+            key: "E",
+          };
         return {
-          value: rapid,
-          sort: rapid,
-          isPartial: ecfRapidPartial,
-          key: "R",
-        };
-      }
-
-      if (estimatedRating) {
-        return {
-          value: estimatedRating,
+          value: "unrated",
+          sort: 0,
           isPartial: ecfRatingPartial,
-          sort: Number(estimatedRating),
-          key: "E",
+          key: "",
+        };
+        // Standard Rating
+      } else {
+        if (standard)
+          return {
+            value: standard,
+            sort: standard,
+            isPartial: ecfRatingPartial,
+            key: "",
+          };
+        if (rapid)
+          return {
+            value: rapid,
+            sort: rapid,
+            isPartial: ecfRapidPartial,
+            key: "R",
+          };
+        if (estimatedRating)
+          return {
+            value: estimatedRating,
+            sort: Number(estimatedRating),
+            isPartial: ecfRatingPartial,
+            key: "E",
+          };
+        return {
+          value: "unrated",
+          sort: 0,
+          isPartial: ecfRatingPartial,
+          key: "",
         };
       }
-      return { value: "unrated", sort: 0, key: "" };
     };
 
     /**
@@ -75,20 +141,14 @@ export default function EntriesTable(data: any) {
     }
   };
 
-  const getSectionInfo = () => {
-    switch (selectedSection) {
-      case "open":
-        return <li>Open to all</li>;
-      case "major":
-        return <li>ECF 2000 and below</li>;
-      case "inter":
-        return <li>ECF 1750 and below</li>;
-      case "minor":
-        return <li>ECF 1500 and below</li>;
-      default:
-        return <li>Open to all</li>;
-    }
+  const getSectionInfo = (isJunior = false) => {
+    const section = isJunior ? juniorSections : standardSections;
+    return section.find(({ key }) => key === selectedSection)?.description
   };
+
+  useEffect(() => {
+    setShowByes(!data.eventDetails.name.includes("Junior"))
+  }, [])
 
   return (
     <div>
@@ -98,7 +158,7 @@ export default function EntriesTable(data: any) {
             <SectionTabs handleSelectionSelect={handleSelectionSelect} />
           </div>
           <ul className="my-6 sm:mx-2 text-sm text-teal-700">
-            {getSectionInfo()}
+            <li>{getSectionInfo(eventDetails.name.includes("Junior"))}</li>
           </ul>
         </>
       )}
@@ -139,12 +199,14 @@ export default function EntriesTable(data: any) {
               >
                 Rating
               </th>
-              <th
-                scope="col"
-                className="relative px-1 py-2 text-center text-xs font-medium text-gray-500 uppercase"
-              >
-                Byes
-              </th>
+              {showByes && (
+                <th
+                  scope="col"
+                  className="relative px-1 py-2 text-center text-xs font-medium text-gray-500 uppercase"
+                >
+                  Byes
+                </th>
+              )}
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700">
@@ -191,9 +253,11 @@ export default function EntriesTable(data: any) {
                         <span>{rating.value}</span>
                       )}
                     </td>
-                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
-                      {byes ? byes !== "null" && byes?.split("").join(",") : ""}
-                    </td>
+                    {showByes && (
+                      <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
+                        {byes ? byes !== "null" && byes?.split("").join(",") : ""}
+                      </td>
+                    )}
                   </tr>
                 );
               })}

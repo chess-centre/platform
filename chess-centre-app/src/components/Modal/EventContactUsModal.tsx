@@ -4,20 +4,20 @@ import moment from "moment";
 
 const contacts = [
   {
-    name: "Matt Webb",
-    email: "support@chesscentre.online",
-    image: "/matt.png",
-    enquiryType: ["technical", "withdraw", "rating"]
-  },
-  {
     name: "Andy Wainwright",
     email: "info@chesscentre.online",
     image: "/andy.png",
     enquiryType: ["general", "travel", "juniors"]
+  },
+  {
+    name: "Matt Webb",
+    email: "support@chesscentre.online",
+    image: "/matt.png",
+    enquiryType: ["technical", "withdraw", "rating"]
   }
 ];
 
-export default function EventContactUsModal({ open, setOpen, eventName, eventStart }) {
+export default function EventContactUsModal({ open, setOpen, eventName, eventStart }): JSX.Element {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>

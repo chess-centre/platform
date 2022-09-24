@@ -8,10 +8,14 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 import { standardSections } from "../../api/sections";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
+import QueenElizabeth from "../../assets/img/our-queen-elizabeth.png";
+import Chesscom from "../../assets/img/chesscom.png";
+import C24 from "../../assets/img/c24.png";
 import EntriesTable from "../../components/EntriesTable/festivalTable";
 import { rounds } from "../../api/data.roundTimes";
 import { classNames } from "../../utils/Classes";
 import FestivalHero from "../../assets/img/festival_hero.jpg";
+import ConfirmEntry from "../../components/Modal/ConfirmFestivalEntry";
 
 const festival = {
   name: "Ilkley Chess Festival",
@@ -20,7 +24,7 @@ const festival = {
 };
 
 const getEvent = /* GraphQL */ `
-  query GetEvent($id: ID!) {
+  query GetEvent($id: ID!, $filter: ModelEntryFilterInput, $limit: Int, $nextToken: String) {
     getEvent(id: $id) {
       id
       name
@@ -50,14 +54,15 @@ const getEvent = /* GraphQL */ `
         defaultPrice
         canRegister
       }
-      entries {
-        items {
-          id
-          eventId
-          memberId
-          section
-          byes
-          member {
+    }
+    listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        eventId
+        memberId
+        section
+        byes
+        member {
             id
             fideId
             ecfId
@@ -68,12 +73,14 @@ const getEvent = /* GraphQL */ `
             ecfRapid
             ecfMembership
             estimatedRating
+            fideRating
             club
             gender
             chessTitle
           }
-        }
       }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -92,17 +99,40 @@ export default function Festival() {
       setIsLoading(true);
       const response = await API.graphql({
         query: getEvent,
-        variables: { id },
+        variables: { id, filter: { eventId: { eq: id } }, limit: 250 },
         authMode: "AWS_IAM",
       });
 
       if (response && response.data) {
         const {
-          data: { getEvent: entries },
+          data: {
+            getEvent: eventData,
+            listEntrys: entries },
         } = response;
-        setEventEntries(entries);
-        if (entries?.entries?.items) {
-          setEntriesCount(entries?.entries?.items.length);
+
+
+        if (entries.nextToken) {
+          const additionalResponse = await API.graphql({
+            query: getEvent,
+            variables: { id, filter: { eventId: { eq: id } }, limit: 250, nextToken: entries.nextToken },
+            authMode: "AWS_IAM",
+          });
+
+          const {
+            data: {
+              listEntrys: moreEntries },
+          } = additionalResponse;
+
+          const items = { items: [...entries.items, ...moreEntries.items] };
+
+          setEventEntries({ ...eventData, entries: items });
+          setEntriesCount(items.items.length);
+
+        } else {
+          setEventEntries({ ...eventData, entries });
+          if (entries?.items) {
+            setEntriesCount(entries?.items.length);
+          }
         }
       }
       setIsLoading(false);
@@ -244,6 +274,15 @@ export default function Festival() {
                 <Tab.Panel className="-mb-10 py-5 focus:ring-transparent">
                   <div className="relative">
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
+                      <p>In loving memory of <span className="font-bold text-teal-brand">Her Majesty Queen Elizabeth II</span> we will be holding a minutes silence on Saturday morning before round 2.</p>
+                      <img
+                        src={QueenElizabeth}
+                        alt="Queen Elizabeth"
+                        className="object-center object-cover w-80 rounded-md shadow-md"
+                      />
+                      <p></p>
+                    </div>
+                    <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
                       <h2>Sections</h2>
                       <ul className="font-medium text-teal-brand">
                         <li>Open</li>
@@ -301,7 +340,7 @@ export default function Festival() {
                       </div>
                     </div>
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify mt-4">
-                      <h2>Event Structure</h2>
+                      <h2>Event Information</h2>
                       <ul className="font-medium text-teal-brand">
                         <li>
                           Rounds: <span className="text-blue-brand">5</span>{" "}
@@ -331,6 +370,24 @@ export default function Festival() {
                         Standard ECF rules apply. All games will be submited to
                         the ECF for offical rating calculation.
                       </p>
+                    </div>
+                    <div className="hidden sm:block prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify mt-4 sm:mb-6">
+                      <h2>Broadcast</h2>
+                      <p className="text-sm">
+                        It is with great pleasure we will be broadcasting our top boards to the following Chess websites:
+                      </p>
+                      <div className="grid grid-cols-2">
+                        <div>
+                          <a href="https://www.chess.com/events/2022-ilkley-chess-festival">
+                            <img className="w-32 sm:w-48 m-auto" alt="chess.com" src={Chesscom} />
+                          </a>
+                        </div>
+                        <div className="mt-2">
+                          <a href="https://chess24.com/en/watch/live-tournaments/ikley-chess-festival-2022-open#live">
+                            <img className="w-32 sm:w-48 m-auto" alt="chess24" src={C24} />
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </Tab.Panel>
@@ -569,6 +626,8 @@ const EntryForm = ({ id }) => {
   const [selectedRoundTwo, setSelectedRoundTwo] = useState(false);
   const [selectedRoundThree, setSelectedRoundThree] = useState(false);
   const [selectedRoundFour, setSelectedRoundFour] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [byesSelected, setByesSelected] = useState("");
   const sections = standardSections;
 
   const generateUrl = () => {
@@ -582,138 +641,25 @@ const EntryForm = ({ id }) => {
     return `/register?eventId=${id}${sectionStr}${byesStr}`;
   };
 
+  const handleConfirmEntry = () => {
+    const r1 = selectedRoundOne ? "1" : "";
+    const r2 = selectedRoundTwo ? "2" : "";
+    const r3 = selectedRoundThree ? "3" : "";
+    const r4 = selectedRoundFour ? "4" : "";
+    const byes = `${r1}${r2}${r3}${r4}`;
+    setByesSelected(byes);
+    setModalOpen(true);
+  }
+
   return (
     <div>
-      <div className="border-t border-gray-200">
-        <div className="mt-8 mx-6">
-          <label
-            htmlFor="section"
-            className="block text-sm text-gray-700 text-center mb-2"
-          >
-            Select your section
-          </label>
-          <select
-            onChange={(e) => setSection(e.target.value.toLowerCase())}
-            id="section"
-            name="section"
-            className="mt-1 block w-full pl-3 pr-10 py-2 text-md border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
-            defaultValue="Open"
-          >
-            {sections && sections.map(({ name, ratingBand }) => (
-              <option value={name}>
-                {name} {ratingBand}
-              </option>)
-            )}
-          </select>
-        </div>
-      </div>
-
-      <div className="relative mx-auto">
-        <div
-          htmlFor="byes"
-          className="block text-sm text-gray-800 text-center mt-6 mb-4"
-        >
-          Half point byes{" "}
-          <span className="text-gray-500 text-xs">(optional)</span>
-        </div>
-
-        <div className="grid place-items-center grid-cols-1 sm:grid-cols-4 mt-2 mb-4">
-          <div className="flex items-start mb-6 sm:mb-0">
-            <div className="flex items-center h-5">
-              <input
-                defaultChecked={selectedRoundOne}
-                onChange={(e) => setSelectedRoundOne(e.currentTarget.checked)}
-                id="round-two"
-                name="round-two"
-                type="checkbox"
-                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
-              />
-            </div>
-            <div className="ml-3 text-xs">
-              <label
-                htmlFor="candidates"
-                className="font-medium text-blue-brand"
-              >
-                Round 1
-              </label>
-            </div>
-          </div>
-          <div className="flex items-start mb-6 sm:mb-0">
-            <div className="flex items-center h-5">
-              <input
-                defaultChecked={selectedRoundTwo}
-                onChange={(e) => setSelectedRoundTwo(e.currentTarget.checked)}
-                id="round-two"
-                name="round-two"
-                type="checkbox"
-                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
-              />
-            </div>
-            <div className="ml-3 text-xs">
-              <label
-                htmlFor="candidates"
-                className="font-medium text-blue-brand"
-              >
-                Round 2
-              </label>
-            </div>
-          </div>
-          <div className="flex items-start mb-6 sm:mb-0">
-            <div className="flex items-center h-5">
-              <input
-                defaultChecked={selectedRoundThree}
-                onChange={(e) => setSelectedRoundThree(e.currentTarget.checked)}
-                id="round-three"
-                name="round-three"
-                type="checkbox"
-                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
-              />
-            </div>
-            <div className="ml-3 text-xs">
-              <label htmlFor="offers" className="font-medium text-blue-brand">
-                Round 3
-              </label>
-            </div>
-          </div>
-          <div className="flex items-start mb-6 sm:mb-0">
-            <div className="flex items-center h-5">
-              <input
-                defaultChecked={selectedRoundFour}
-                onChange={(e) => setSelectedRoundFour(e.currentTarget.checked)}
-                id="round-four"
-                name="round-four"
-                type="checkbox"
-                className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
-              />
-            </div>
-            <div className="ml-3 text-xs">
-              <label htmlFor="offers" className="font-medium text-blue-brand">
-                Round 4
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="text-center">
-        <span className="text-5xl font-extrabold text-gray-900 mr-1">£30</span>
-        <span className="text-base font-medium text-gray-500">entry fee</span>
+      <div className="mt-4 mx-auto">
+        <a className="w-full border rounded-md py-1.5 px-8 flex items-center justify-center text-base font-medium text-blue-brand hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
+          href="https://chess-results.com/tnr665788.aspx?lan=1&art=0" target="_blank">Chess Results</a>
       </div>
       <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4">
-        <Link
-          to={generateUrl()}
-          className="w-full bg-blue-brand border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-teal-brand focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
-        >
-          Enter Now
-        </Link>
-        <p className="text-xs text-gray-500 text-center">Other Festival events</p>
-        <Link
-          to="/festival/blitz"
-          className="w-full border rounded-md py-1.5 px-8 flex items-center justify-center text-base font-medium text-blue-brand hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
-        >
-          Evening Blitz
-        </Link>
       </div>
+      <ConfirmEntry setOpen={setModalOpen} open={modalOpen} section={section} byes={byesSelected} url={generateUrl()} />
     </div>
   );
 };
