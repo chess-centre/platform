@@ -1,7 +1,7 @@
 import API from "@aws-amplify/api";
 import { Auth } from "aws-amplify";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
 import moment from "moment";
@@ -630,6 +630,20 @@ interface RegisterButtonProps {
   isJunior: boolean;
 }
 
+const createEntry = /* GraphQL */ `
+  mutation CreateEntry(
+    $input: CreateEntryInput!
+    $condition: ModelEntryConditionInput
+  ) {
+    createEntry(input: $input, condition: $condition) {
+      eventId
+      memberId
+      section
+      byes
+    }
+  }
+`;
+
 function RegisterButton(props: RegisterButtonProps) {
   const {
     id,
@@ -638,8 +652,8 @@ function RegisterButton(props: RegisterButtonProps) {
     isJunior = false,
   } = props;
   const stripe = useStripe();
+  const history = useHistory();
   const { addToast } = useToasts();
-
   const [isLoadingSignUp, setIsLoadingSignUp] = useState(false);
   const [modelOpen, setModalOpen] = useState(false);
   const handleRegister = async (
@@ -670,7 +684,7 @@ function RegisterButton(props: RegisterButtonProps) {
       const redirectTo = `${window.location.origin}/app/events/${eventId}`;
       const selectedSection = confirmSection ? confirmSection : null;
       const byesSelection = confirmByes ? confirmByes : null;
-      const { sessionId } = await API.post("public", "/event/register", {
+      const { sessionId, active, memberEntry } = await API.post("public", "/event/register", {
         body: {
           eventId,
           successUrl: redirectTo,
@@ -679,7 +693,25 @@ function RegisterButton(props: RegisterButtonProps) {
           byes: byesSelection,
         },
       });
-      await stripe?.redirectToCheckout({ sessionId });
+      if(active && memberEntry) {
+        const user = await Auth.currentUserInfo();
+        const entryInfo = {
+          byes: byesSelection,
+          section: selectedSection,
+          eventId,
+          memberId: user.attributes.sub
+        }
+       const entry = await API.graphql({ query: createEntry, variables: {input: entryInfo }});
+        if(entry) {
+          history.push('/app/events?event_member_entry_success=true');
+          window.location.reload();
+        } else {
+          console.log("error", entry)
+        }
+      } else {
+        await stripe?.redirectToCheckout({ sessionId });
+      }
+
     } catch (error) {
       const mailToString = `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0AEvent ID: ${eventId}%0D%0AUser ID: ${user.username}%0D%0AUser: ${user.attributes.given_name} ${user.attributes.family_name}%0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`;
       addToast(

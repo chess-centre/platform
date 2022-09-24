@@ -14,7 +14,7 @@ import PaymentCompleteModal from "../Modal/PaymentCompleteModal";
 import MemberEnryCompleteModal from "../Modal/MemberEntryCompleteModal";
 import { useEvents } from "../../context/EventsContext";
 
-export const createEntry = /* GraphQL */ `
+const createEntry = /* GraphQL */ `
   mutation CreateEntry(
     $input: CreateEntryInput!
     $condition: ModelEntryConditionInput
@@ -69,7 +69,6 @@ export default function AppEvents() {
         },
       });
       if(active && memberEntry) {
-
         const entryInfo = {
           byes: byesSelection,
           section: selectedSection,
@@ -79,10 +78,10 @@ export default function AppEvents() {
         const entry = await API.graphql({ query: createEntry, variables: {input: entryInfo }});
         if(entry) {
           history.push('/app/events?event_member_entry_success=true');
+          window.location.reload();
         } else {
           console.log("error", entry)
         }
-
       } else {
         await stripe?.redirectToCheckout({ sessionId });
       }
