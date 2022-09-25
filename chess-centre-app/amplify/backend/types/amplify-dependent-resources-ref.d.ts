@@ -3,8 +3,6 @@ export type AmplifyDependentResourcesAttributes = {
         "platformchesscentreapp": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
-            "HostedUIDomain": "string",
-            "OAuthMetadata": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",
@@ -196,12 +194,6 @@ export type AmplifyDependentResourcesAttributes = {
             "LambdaExecutionRole": "string"
         },
         "searchECFPlayer": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
-        "eventRegisterFestival": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
