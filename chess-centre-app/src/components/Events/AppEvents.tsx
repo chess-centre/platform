@@ -1,6 +1,6 @@
 import API from "@aws-amplify/api";
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
@@ -11,21 +11,39 @@ import {
   SkelectonAppEventCard,
 } from "./shared/AppEventCard";
 import PaymentCompleteModal from "../Modal/PaymentCompleteModal";
+import MemberEnryCompleteModal from "../Modal/MemberEntryCompleteModal";
 import { useEvents } from "../../context/EventsContext";
+
+const createEntry = /* GraphQL */ `
+  mutation CreateEntry(
+    $input: CreateEntryInput!
+    $condition: ModelEntryConditionInput
+  ) {
+    createEntry(input: $input, condition: $condition) {
+      eventId
+      memberId
+      section
+      byes
+    }
+  }
+`;
 
 export default function AppEvents() {
   const { user } = useAuthState();
   const { search } = useLocation();
+  const history = useHistory();
   const {
     eventId,
     session_id,
     event_payment_success,
     section,
     byes,
+    event_member_entry_success
   } = queryString.parse(search);
   const stripe = useStripe();
   const { addToast } = useToasts();
   const [paymentSuccesseful, setPaymentSuccessful] = useState(false);
+  const [memberEntrySuccessful, setMemberEntrySuccessful] = useState(false);
   const { isLoading, error, data } = useEvents();
 
   const register = async (
@@ -41,7 +59,7 @@ export default function AppEvents() {
         ? confirmSection
         : null;
       const byesSelection = byes ? byes : confirmByes ? confirmByes : null;
-      const { sessionId } = await API.post("public", "/event/register", {
+      const { sessionId, active, memberEntry } = await API.post("public", "/event/register", {
         body: {
           eventId,
           successUrl: redirectTo,
@@ -50,7 +68,24 @@ export default function AppEvents() {
           byes: byesSelection,
         },
       });
-      await stripe?.redirectToCheckout({ sessionId });
+      if(active && memberEntry) {
+        const entryInfo = {
+          byes: byesSelection,
+          section: selectedSection,
+          eventId,
+          memberId: user?.attributes?.sub
+        }
+        const entry = await API.graphql({ query: createEntry, variables: {input: entryInfo }});
+        if(entry) {
+          history.push('/app/events?event_member_entry_success=true');
+          window.location.reload();
+        } else {
+          console.log("error", entry)
+        }
+      } else {
+        await stripe?.redirectToCheckout({ sessionId });
+      }
+      
     } catch (error) {
       const mailToString = `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0AEvent ID: ${eventId}%0D%0AUser ID: ${user.username}%0D%0AUser: ${user.attributes.given_name} ${user.attributes.family_name}%0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`;
       addToast(
@@ -81,6 +116,10 @@ export default function AppEvents() {
       session_id /* user has completed a payment */
     ) {
       setPaymentSuccessful(true);
+    }
+
+    if(event_member_entry_success) {
+      setMemberEntrySuccessful(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId, data]);
@@ -123,6 +162,10 @@ export default function AppEvents() {
       <PaymentCompleteModal
         open={paymentSuccesseful}
         setOpen={setPaymentSuccessful}
+      />
+      <MemberEnryCompleteModal
+        open={memberEntrySuccessful}
+        setOpen={setMemberEntrySuccessful}
       />
     </div>
   );

@@ -753,6 +753,13 @@ export const schema = {
                     "type": "Boolean",
                     "isRequired": false,
                     "attributes": []
+                },
+                "memberEntry": {
+                    "name": "memberEntry",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -1325,5 +1332,5 @@ export const schema = {
             }
         }
     },
-    "version": "380db68a2dc2a1c09044571b4fe83852"
+    "version": "33415783c7d867a6aa3cbc61d68c67bf"
 };

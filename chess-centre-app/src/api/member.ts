@@ -46,7 +46,7 @@ export const useMember = () => {
   });
 };
 
-export const getMemberBySub = async (id) => {
+export const getMemberBySub = async (id: string) => {
   const {
     data: { getMember: member }
   } = await API.graphql({

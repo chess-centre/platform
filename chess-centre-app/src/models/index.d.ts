@@ -119,6 +119,7 @@ export declare class EventType {
   readonly eventType?: string | null;
   readonly defaultPrice?: string | null;
   readonly canRegister?: boolean | null;
+  readonly memberEntry?: boolean | null;
   constructor(init: ModelInit<EventType>);
   static copyOf(source: EventType, mutator: (draft: MutableModel<EventType>) => MutableModel<EventType> | void): EventType;
 }

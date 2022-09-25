@@ -41,14 +41,17 @@ export const CentreRoadmap = () => {
         </li>
         <li className="mb-2">
           <div className="flex items-center mb-1">
-          <div className="bg-pink-700 rounded-full h-4 w-4 z-0"></div>
+          <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-pink-200 text-pink-700 p-1 rounded leading-none">
-                Launched
+              <span className="mr-2 bg-green-200 text-green-800 p-1 rounded leading-none">
+                Complete
               </span>
             </div>
           </div>
           <div className="ml-12">
+            <ul className="ml-5">
+              <li><span className="text-teal-600 text-sm">September 2022</span></li>
+            </ul>
             <ul className="list-disc ml-5">
               <li>Ilkley Chess Festival 🚀</li>
               <li>2nd Ilkley Grammar School Congress 🤓</li>
