@@ -46,10 +46,10 @@ export default function Register(props: RegisterProps) {
         rounded-md shadow-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           onClick={() => handleRegister(id, undefined, undefined)}>
           {isLoadingSignUp ? (
-            <div className="flex">
+            <>
               <i className="fas fa-spinner-third animate-spin"></i>
               <span className="ml-2 text-sm">Loading</span>
-            </div>
+            </>
           ) : (
             `Register`
           )}
