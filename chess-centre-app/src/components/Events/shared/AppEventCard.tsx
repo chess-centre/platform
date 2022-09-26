@@ -147,18 +147,15 @@ export function EventCard(props: EventCardProps) {
       ></div>
       <div className="bg-white dark:bg-gray-800 pt-4 shadow rounded-lg overflow-hidden h-full">
         <div className="pl-9 pr-4 sm:pl-9 space-y-2 pb-2">
-          <div className="grid grid-cols-3">
-            <div className="col-span-3">
-              <h2 className="text-xl leading-6 font-medium text-gray-900">
-                {name || type.name}{" "}
-              </h2>
-            </div>
-          </div>
-
           <div className="grid grid-cols-3 space-x-2 w-full">
             <DateBlock startDate={startDate} endDate={endDate} />
             <div className="col-span-2">
-              <div className="space-y-2">
+              <div className="space-y-1">
+                <div>
+                  <h2 className="text-xl leading-6 font-medium text-gray-900">
+                    {name || type.name}{" "}
+                  </h2>
+                </div>
                 <div className="flex items-center text-gray-700 space-x-2">
                   <div className="text-gray-900 text-md">
                     <span className="mr-1 text-sm">Entries</span>
@@ -174,12 +171,6 @@ export function EventCard(props: EventCardProps) {
                   isMember={isMember}
                   memberEntry={memberEntry}
                 />
-                {eventId === id && (
-                  <div className="flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-black">
-                    <i className="fas fa-spinner-third animate-spin text-xs"></i>
-                    <span className="ml-2">Payment redirect...</span>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -190,9 +181,7 @@ export function EventCard(props: EventCardProps) {
               className="w-full text-center mx-auto rounded-md border bg-white px-2.5 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
               onClick={() => goToEventInfo(id)}
             >
-              <span className="text-teal-700">
-                More Information
-              </span>{" "}
+              <span className="text-teal-700">More Information</span>{" "}
             </button>
 
             <div>
@@ -235,6 +224,12 @@ export function EventCard(props: EventCardProps) {
               )}
             </div>
           </div>
+          {eventId === id && (
+            <div className="flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-yellow-100 text-yellow-500">
+              <i className="fas fa-spinner-third animate-spin text-xs"></i>
+              <span className="ml-2">Redirecting to payment...</span>
+            </div>
+          )}
         </div>
       </div>
     </section>

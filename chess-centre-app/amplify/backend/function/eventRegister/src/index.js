@@ -140,9 +140,14 @@ exports.handler = async (event) => {
     const { data: { listEntrys: { items: nextEntries }}} = await fetchEvent(eventId, memberId, nextToken);
     entryList = [...entryList, ...nextEntries];
   }
+  
+  console.log(entryList);
 
   const actualMaxEntries = maxEntries || defaultMaxEntries;
   const entryCount = entryList.length || 0;
+  
+  console.log("Count", entryCount, actualMaxEntries);
+  
   if (entryCount >= actualMaxEntries) {
     console.log("This event is full");
     return {
@@ -248,12 +253,15 @@ exports.handler = async (event) => {
 };
 
 
-async function fetchEvent(id, memberId) {
+async function fetchEvent(id, memberId, nextToken) {
   const req = new AWS.HttpRequest(appsyncUrl, region);
 
   const variables = {
     id,
     memberId,
+    limit: 250,
+    filter: { eventId: { eq: id }},
+    nextToken: nextToken
   };
 
   req.method = "POST";
