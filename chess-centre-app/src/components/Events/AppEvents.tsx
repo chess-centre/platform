@@ -4,7 +4,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
-import { useAuthState } from "../../context/Auth";
+import { useAuthState, isPaidMember } from "../../context/Auth";
 import {
   EventCard,
   NoEventListed,
@@ -28,6 +28,7 @@ export default function AppEvents() {
   } = queryString.parse(search);
   const stripe = useStripe();
   const { addToast } = useToasts();
+  const [isPaid, setIsPaid] = useState(false);
   const [paymentSuccesseful, setPaymentSuccessful] = useState(false);
   const [memberEntrySuccessful, setMemberEntrySuccessful] = useState(false);
   const { isLoading, error, data } = useEvents();
@@ -99,8 +100,18 @@ export default function AppEvents() {
     if (event_member_entry_success) {
       setMemberEntrySuccessful(true);
     }
+
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId, data]);
+
+  useEffect(() => {
+    async function fetchMember() {
+      const membershipStatus = await isPaidMember(undefined);
+      setIsPaid(membershipStatus);
+    }
+    fetchMember();
+  }, [])
 
   return (
     <div className="mt-5 grid grid-col-1 sm:grid-cols-2 2xl:grid-cols-3 mb-10">
@@ -114,6 +125,7 @@ export default function AppEvents() {
                   <EventCard
                     key={event.id}
                     {...{ ...event, eventId, register }}
+                    isMember={isPaid}
                   />
                 );
               })}

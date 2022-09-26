@@ -47,6 +47,7 @@ const listEventsActive = /* GraphQL */ `
           eventType
           defaultPrice
           canRegister
+          memberEntry
         }
         entries {
           items {
@@ -113,6 +114,7 @@ export function useEvents() {
         !alreadyRegistered(event) && !isFull(event) && !event?.isLive,
       full: isFull(event),
       registered: alreadyRegistered(event),
+      memberEntry: Boolean(event.type.memberEntry)
     }));
 
     return eventList;
