@@ -114,7 +114,7 @@ export default function AppEvents() {
   }, [])
 
   return (
-    <div className="mt-5 grid grid-col-1 sm:grid-cols-2 2xl:grid-cols-3 mb-10">
+    <div className="mt-5 grid grid-col-1 sm:grid-cols-2 2xl:grid-cols-3 mb-14">
       <>
         {!error && (
           <>
