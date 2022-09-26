@@ -137,7 +137,7 @@ exports.handler = async (event) => {
 
   let activeMember = false;
 
-  if(stripeCustomerId && new Date(stripeCurrentPeriodEnd) > Date.now()) {
+  if(stripeCustomerId && new Date(stripeCurrentPeriodEnd) > Date.now() && Boolean(memberEntry)) {
     activeMember = true;
 
     const params = {
