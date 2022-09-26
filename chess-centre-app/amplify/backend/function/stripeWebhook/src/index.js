@@ -59,28 +59,28 @@ const getEvent = gql`
     listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-            eventId
-            memberId
-            section
-            byes
-            createdAt
-            updatedAt
-            member {
-              id
-              fideId
-              ecfId
-              name
-              ecfRatingPartial
-              ecfRating
-              ecfRapidPartial
-              ecfRapid
-              ecfMembership
-              estimatedRating
-              club
-              gender
-              membershipType
-              chessTitle
-            }
+        eventId
+        memberId
+        section
+        byes
+        createdAt
+        updatedAt
+        member {
+          id
+          fideId
+          ecfId
+          name
+          ecfRatingPartial
+          ecfRating
+          ecfRapidPartial
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          chessTitle
+        }
       }
       nextToken
       startedAt

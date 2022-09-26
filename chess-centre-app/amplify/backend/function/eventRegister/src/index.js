@@ -20,7 +20,7 @@ const graphql = require("graphql");
 const { print } = graphql;
 
 const getEvent = gql`
-  query getEvent($id: ID!, $memberId: ID!) {
+  query getEvent($id: ID!, $memberId: ID!, $filter: ModelEntryFilterInput, $limit: Int, $nextToken: String) {
     getEvent(id: $id) {
       id
       maxEntries
@@ -37,13 +37,6 @@ const getEvent = gql`
       endDate
       startDate
       _version
-      entries {
-        items {
-          id
-          eventId
-          memberId
-        }
-      }
     }
     getMember(id: $memberId) {
       id
@@ -51,6 +44,35 @@ const getEvent = gql`
       email
       stripeCustomerId
       stripeCurrentPeriodEnd
+    }
+    listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        eventId
+        memberId
+        section
+        byes
+        createdAt
+        updatedAt
+        member {
+          id
+          fideId
+          ecfId
+          name
+          ecfRatingPartial
+          ecfRating
+          ecfRapidPartial
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          chessTitle
+        }
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -90,6 +112,8 @@ exports.handler = async (event) => {
   const eventData = await fetchEvent(eventId, memberId);
   console.log(JSON.stringify(eventData));
 
+  let entryList = [];
+
   const {
     data: {
       getEvent: {
@@ -99,7 +123,6 @@ exports.handler = async (event) => {
         endDate,
         _version,
         type: { name: eventName, eventType, stripePriceId, maxEntries: defaultMaxEntries, memberEntry },
-        entries: { items: entries }
       },
       getMember: { 
         stripeCustomerId, 
@@ -107,11 +130,19 @@ exports.handler = async (event) => {
         email,
         name
       },
+      listEntrys: { items: entries, nextToken }
     },
   } = eventData;
 
+  entryList = [...entries];
+
+  if(nextToken) {
+    const { data: { listEntrys: { items: nextEntries }}} = await fetchEvent(eventId, memberId, nextToken);
+    entryList = [...entryList, ...nextEntries];
+  }
+
   const actualMaxEntries = maxEntries || defaultMaxEntries;
-  const entryCount = entries.length || 0;
+  const entryCount = entryList.length || 0;
   if (entryCount >= actualMaxEntries) {
     console.log("This event is full");
     return {
@@ -121,7 +152,7 @@ exports.handler = async (event) => {
     };
   }
 
-  const existingEntry = entries.find((e) => e.memberId === memberId);
+  const existingEntry = entryList.find((e) => e.memberId === memberId);
   if (existingEntry) {
     console.log("This member is already registered for this event.");
     return {
@@ -149,7 +180,7 @@ exports.handler = async (event) => {
       startDate,
       endDate,
       eventType,
-      entries,
+      entries: entryList,
       section,
       byes
     };
