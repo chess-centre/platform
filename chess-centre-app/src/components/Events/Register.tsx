@@ -48,7 +48,7 @@ export default function Register(props: RegisterProps) {
           {isLoadingSignUp ? (
             <div className="flex">
               <i className="fas fa-spinner-third animate-spin"></i>
-              <span className="ml-2 text-xs">Loading</span>
+              <span className="ml-2 text-sm">Loading</span>
             </div>
           ) : (
             `Register`

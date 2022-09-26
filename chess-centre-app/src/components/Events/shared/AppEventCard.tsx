@@ -2,7 +2,12 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { bgColor700, bgColor600 } from "tailwind-dynamic-classes";
 import Register from "../Register";
-import { prettyDate } from "../../../utils/DateFormating";
+import {
+  prettyDate,
+  getDay,
+  getMonth,
+  getDayStr,
+} from "../../../utils/DateFormating";
 import { classNames } from "../../../utils/Classes";
 
 export function SkelectonAppEventCard() {
@@ -91,6 +96,8 @@ interface EventCardProps {
   register: Function;
   showModal: Function;
   setIsSlideOutOpen: Function;
+  memberEntry: boolean;
+  isMember: boolean;
 }
 
 export function EventCard(props: EventCardProps) {
@@ -110,12 +117,16 @@ export function EventCard(props: EventCardProps) {
     maxEntries,
     entryCount,
     register,
+    memberEntry,
+    isMember,
   } = props;
 
   const showByes = type?.eventType?.includes("festival");
   const isJunior = name?.includes("Junior");
 
   const goToEventInfo = (id: string) => history.push(`/app/events/${id}`);
+
+  console.log(name, "MemberEntry", memberEntry, "isMember", isMember);
 
   return (
     <section
@@ -137,103 +148,172 @@ export function EventCard(props: EventCardProps) {
       <div className="bg-white dark:bg-gray-800 pt-4 shadow rounded-lg overflow-hidden h-full">
         <div className="pl-9 pr-4 sm:pl-9 space-y-2 pb-2">
           <div className="grid grid-cols-3">
-            <div className="col-span-2 space-y-2">
-              <h2 className="text-lg sm:text-xl leading-6 font-medium text-gray-900 dark:text-white mb-1">
+            <div className="col-span-3">
+              <h2 className="text-xl leading-6 font-medium text-gray-900">
                 {name || type.name}{" "}
-                {eventId === id && (
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
-                    Selected
-                  </span>
-                )}
               </h2>
-              <div className="flex items-center text-sm text-gray-700 space-x-2">
-                <div className="text-gray-900 text-sm">
-                  <span className="text-teal-600">Entries</span>{" "}
-                  {`${entryCount || 0}  / ${maxEntries || type.maxEntries}`}
-                </div>
-              </div>
-              {type.defaultPrice && !registered && !full ? (
-                <div className="flex items-center text-sm text-gray-700 space-x-2">
-                  <div className="text-gray-900 text-sm">
-                    <span className="text-teal-600">Entry Fee</span> £
-                    {type.defaultPrice}
-                  </div>
-                </div>
-              ) : (
-                <div className="flex items-center text-sm text-gray-900 space-x-2">
-                  <div className="text-gray-900 text-sm">
-                    <span className="text-teal-600">Entry Fee</span>{" "}
-                    <span className="text-xs font-normal">
-                      {registered ? "PAID" : full ? "CLOSED" : ""}
-                    </span>
-                  </div>
-                </div>
-              )}
-              <div className="flex items-center text-sm text-gray-700 space-x-2">
-                <div className="text-gray-900 text-sm">
-                  <span className="text-teal-600">Date</span>{" "}
-                  <span className="text-xs">{prettyDate(startDate, endDate)}</span>
-                </div>
-              </div>
             </div>
-            {/* SIGN UP button */}
-            <div className="flex-initial flex-nowrap">
-              <div className="text-right">
-                {allowedToRegister ? (
-                  <Register
-                    id={id}
-                    register={register}
-                    multipleSections={multipleSections}
-                    showByes={showByes}
-                    isJunior={isJunior}
-                  />
-                ) : (
-                  <>
-                    <p className="text-sm text-gray-700">
-                      {registered && !isLive && !full && (
-                        <span className="inline-flex items-center px-3 py-1.5 rounded-md border border-yellow-300 text-sm font-medium bg-yellow-100 text-yellow-800">
-                          Entered
-                        </span>
-                      )}
-                      {full && !isLive && !registered && (
-                        <span className="inline-flex items-center px-3 py-1.5 rounded-md border border-yellow-300 text-sm font-medium bg-yellow-100 text-yellow-800">
-                          Full
-                        </span>
-                      )}
-                    </p>
-                    {isLive && (
-                      <Link
-                        to="/broadcast/live"
-                        className={`inline-flex items-center px-2 py-1.5  text-sm font-medium rounded-md text-white
-                       bg-pink-700 hover:bg-pink-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-600`}
-                      >
-                        <span className="flex relative h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-65"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                        </span>
-                        <span className="ml-2">Live</span>
-                      </Link>
-                    )}
-                  </>
+          </div>
+
+          <div className="grid grid-cols-3 space-x-2 w-full">
+            <DateBlock startDate={startDate} endDate={endDate} />
+            <div className="col-span-2">
+              <div className="space-y-2">
+                <div className="flex items-center text-gray-700 space-x-2">
+                  <div className="text-gray-900 text-md">
+                    <span className="mr-1 text-sm">Entries</span>
+                    <span className="text-teal-600 text-md">{`${
+                      entryCount || 0
+                    }  / ${maxEntries || type.maxEntries}`}</span>
+                  </div>
+                </div>
+                <EntryFee
+                  isFull={full}
+                  price={type.defaultPrice}
+                  hasRegistered={registered}
+                  isMember={isMember}
+                  memberEntry={memberEntry}
+                />
+                {eventId === id && (
+                  <div className="flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-black">
+                    <i className="fas fa-spinner-third animate-spin text-xs"></i>
+                    <span className="ml-2">Payment redirect...</span>
+                  </div>
                 )}
               </div>
             </div>
           </div>
-          <div className="border-b-2"></div>
+
           {/* icon information */}
-          <div className="text-center mx-auto">
-            <div
-              className="sm:inline text-sm text-gray-900 cursor-pointer mr-2 sm:mb-2"
+          <div className="flex space-x-2">
+            <button
+              className="w-full text-center mx-auto rounded-md border bg-white px-2.5 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
               onClick={() => goToEventInfo(id)}
             >
-              <i className="fas fa-info-square mr-1"></i>
-              <span className="text-teal-700 hover:text-teal-500">
+              <span className="text-teal-700">
                 More Information
               </span>{" "}
+            </button>
+
+            <div>
+              {allowedToRegister ? (
+                <Register
+                  id={id}
+                  register={register}
+                  multipleSections={multipleSections}
+                  showByes={showByes}
+                  isJunior={isJunior}
+                />
+              ) : (
+                <>
+                  <p className="text-sm text-gray-700">
+                    {registered && !isLive && !full && (
+                      <span className="inline-flex items-center px-3 py-1.5 rounded-md border border-yellow-300 text-sm font-medium bg-yellow-100 text-yellow-800">
+                        Entered
+                      </span>
+                    )}
+                    {full && !isLive && !registered && (
+                      <span className="inline-flex items-center px-3 py-1.5 rounded-md border border-yellow-300 text-sm font-medium bg-yellow-100 text-yellow-800">
+                        Full
+                      </span>
+                    )}
+                  </p>
+                  {isLive && (
+                    <Link
+                      to="/broadcast/live"
+                      className={`inline-flex items-center px-2 py-1.5  text-sm font-medium rounded-md text-white
+                       bg-pink-700 hover:bg-pink-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-600`}
+                    >
+                      <span className="flex relative h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-65"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                      </span>
+                      <span className="ml-2">Live</span>
+                    </Link>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function EntryFee({ price, hasRegistered, isFull, isMember, memberEntry }) {
+  const isFree = isMember && memberEntry;
+
+  if (isFull) {
+    return (
+      <div className="flex items-center text-md text-gray-900 space-x-2">
+        <div className="text-gray-900">
+          <span className="mr-1 text-sm">Entry Fee</span>
+          <span className="text-teal-600 text-md">CLOSED</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (hasRegistered) {
+    return (
+      <div className="flex items-center text-gray-900 space-x-2">
+        <div className="text-gray-900 text-md">
+          <span className="mr-1 text-sm">Entry Fee</span>
+          <span className="text-teal-600 text-md">
+            {isFree ? "Free" : "Paid"}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center text-md text-gray-700 space-x-2">
+      <div className="text-gray-900">
+        <span className="mr-1 text-sm">Entry Fee</span>
+        <span className="text-teal-600 text-md">
+          {isFree ? "Free" : `£${price}`}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function DateBlock({ startDate, endDate }) {
+  return (
+    <div
+      className={classNames(
+        endDate && startDate !== endDate ? "px-1" : "px-4",
+        "text-center sm:text-left bg-gray-100 text-teal-800 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 shadow-inner"
+      )}
+    >
+      <div>
+        <p className="text-xs font-base sm:text-lg  mt-2 sm:mt-0 text-center">
+          {getMonth(startDate)}
+        </p>
+      </div>
+      <div className="items-baseline pb-4 sm:pb-0 sm:text-center">
+        {endDate && startDate !== endDate ? (
+          <>
+            <p className="font-semibold text-lg sm:text-lg m-auto sm:m-0">
+              {`${getDay(startDate)}-${getDay(endDate)}`}
+            </p>
+            <p className="font-thin text-xs sm:text-sm  m-auto mb-1">
+              {`${getDayStr(startDate)} - ${getDayStr(endDate)}`}
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="font-semibold text-2xl sm:text-3xl  m-auto sm:m-0">
+              {getDay(startDate)}
+            </p>
+            <p className="font-thin text-xs sm:text-sm  m-auto mb-0">
+              {getDayStr(startDate)}
+            </p>
+          </>
+        )}
+      </div>
+    </div>
   );
 }

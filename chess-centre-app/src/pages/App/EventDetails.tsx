@@ -613,7 +613,7 @@ function SummaryDetails({ data, tags, organisers, arbiters, hasBroadcast, broadc
               <a className="inline-flex items-center 
                 rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs 
                 font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                href={broadcastLink} target="_blank">Chess-Results</a>
+                href={broadcastLink} rel="noreferrer" target="_blank">Chess-Results</a>
             </div>
           </div>
         }
@@ -629,20 +629,6 @@ interface RegisterButtonProps {
   showByes: boolean;
   isJunior: boolean;
 }
-
-const createEntry = /* GraphQL */ `
-  mutation CreateEntry(
-    $input: CreateEntryInput!
-    $condition: ModelEntryConditionInput
-  ) {
-    createEntry(input: $input, condition: $condition) {
-      eventId
-      memberId
-      section
-      byes
-    }
-  }
-`;
 
 function RegisterButton(props: RegisterButtonProps) {
   const {
@@ -694,20 +680,8 @@ function RegisterButton(props: RegisterButtonProps) {
         },
       });
       if(active && memberEntry) {
-        const user = await Auth.currentUserInfo();
-        const entryInfo = {
-          byes: byesSelection,
-          section: selectedSection,
-          eventId,
-          memberId: user.attributes.sub
-        }
-       const entry = await API.graphql({ query: createEntry, variables: {input: entryInfo }});
-        if(entry) {
           history.push('/app/events?event_member_entry_success=true');
           window.location.reload();
-        } else {
-          console.log("error", entry)
-        }
       } else {
         await stripe?.redirectToCheckout({ sessionId });
       }

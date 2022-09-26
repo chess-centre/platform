@@ -4,7 +4,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
-import { useAuthState } from "../../context/Auth";
+import { useAuthState, isPaidMember } from "../../context/Auth";
 import {
   EventCard,
   NoEventListed,
@@ -13,20 +13,6 @@ import {
 import PaymentCompleteModal from "../Modal/PaymentCompleteModal";
 import MemberEnryCompleteModal from "../Modal/MemberEntryCompleteModal";
 import { useEvents } from "../../context/EventsContext";
-
-const createEntry = /* GraphQL */ `
-  mutation CreateEntry(
-    $input: CreateEntryInput!
-    $condition: ModelEntryConditionInput
-  ) {
-    createEntry(input: $input, condition: $condition) {
-      eventId
-      memberId
-      section
-      byes
-    }
-  }
-`;
 
 export default function AppEvents() {
   const { user } = useAuthState();
@@ -38,10 +24,11 @@ export default function AppEvents() {
     event_payment_success,
     section,
     byes,
-    event_member_entry_success
+    event_member_entry_success,
   } = queryString.parse(search);
   const stripe = useStripe();
   const { addToast } = useToasts();
+  const [isPaid, setIsPaid] = useState(false);
   const [paymentSuccesseful, setPaymentSuccessful] = useState(false);
   const [memberEntrySuccessful, setMemberEntrySuccessful] = useState(false);
   const { isLoading, error, data } = useEvents();
@@ -59,33 +46,25 @@ export default function AppEvents() {
         ? confirmSection
         : null;
       const byesSelection = byes ? byes : confirmByes ? confirmByes : null;
-      const { sessionId, active, memberEntry } = await API.post("public", "/event/register", {
-        body: {
-          eventId,
-          successUrl: redirectTo,
-          cancelUrl: redirectTo,
-          section: selectedSection,
-          byes: byesSelection,
-        },
-      });
-      if(active && memberEntry) {
-        const entryInfo = {
-          byes: byesSelection,
-          section: selectedSection,
-          eventId,
-          memberId: user?.attributes?.sub
+      const { sessionId, active, memberEntry } = await API.post(
+        "public",
+        "/event/register",
+        {
+          body: {
+            eventId,
+            successUrl: redirectTo,
+            cancelUrl: redirectTo,
+            section: selectedSection,
+            byes: byesSelection,
+          },
         }
-        const entry = await API.graphql({ query: createEntry, variables: {input: entryInfo }});
-        if(entry) {
-          history.push('/app/events?event_member_entry_success=true');
-          window.location.reload();
-        } else {
-          console.log("error", entry)
-        }
+      );
+      if (active && memberEntry) {
+        history.push("/app/events?event_member_entry_success=true");
+        window.location.reload();
       } else {
         await stripe?.redirectToCheckout({ sessionId });
       }
-      
     } catch (error) {
       const mailToString = `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0AEvent ID: ${eventId}%0D%0AUser ID: ${user.username}%0D%0AUser: ${user.attributes.given_name} ${user.attributes.family_name}%0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`;
       addToast(
@@ -118,11 +97,21 @@ export default function AppEvents() {
       setPaymentSuccessful(true);
     }
 
-    if(event_member_entry_success) {
+    if (event_member_entry_success) {
       setMemberEntrySuccessful(true);
     }
+
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId, data]);
+
+  useEffect(() => {
+    async function fetchMember() {
+      const membershipStatus = await isPaidMember(undefined);
+      setIsPaid(membershipStatus);
+    }
+    fetchMember();
+  }, [])
 
   return (
     <div className="mt-5 grid grid-col-1 sm:grid-cols-2 2xl:grid-cols-3 mb-10">
@@ -136,6 +125,7 @@ export default function AppEvents() {
                   <EventCard
                     key={event.id}
                     {...{ ...event, eventId, register }}
+                    isMember={isPaid}
                   />
                 );
               })}
