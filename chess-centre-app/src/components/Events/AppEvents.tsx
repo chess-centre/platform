@@ -14,20 +14,6 @@ import PaymentCompleteModal from "../Modal/PaymentCompleteModal";
 import MemberEnryCompleteModal from "../Modal/MemberEntryCompleteModal";
 import { useEvents } from "../../context/EventsContext";
 
-const createEntry = /* GraphQL */ `
-  mutation CreateEntry(
-    $input: CreateEntryInput!
-    $condition: ModelEntryConditionInput
-  ) {
-    createEntry(input: $input, condition: $condition) {
-      eventId
-      memberId
-      section
-      byes
-    }
-  }
-`;
-
 export default function AppEvents() {
   const { user } = useAuthState();
   const { search } = useLocation();
@@ -38,7 +24,7 @@ export default function AppEvents() {
     event_payment_success,
     section,
     byes,
-    event_member_entry_success
+    event_member_entry_success,
   } = queryString.parse(search);
   const stripe = useStripe();
   const { addToast } = useToasts();
@@ -59,33 +45,25 @@ export default function AppEvents() {
         ? confirmSection
         : null;
       const byesSelection = byes ? byes : confirmByes ? confirmByes : null;
-      const { sessionId, active, memberEntry } = await API.post("public", "/event/register", {
-        body: {
-          eventId,
-          successUrl: redirectTo,
-          cancelUrl: redirectTo,
-          section: selectedSection,
-          byes: byesSelection,
-        },
-      });
-      if(active && memberEntry) {
-        const entryInfo = {
-          byes: byesSelection,
-          section: selectedSection,
-          eventId,
-          memberId: user?.attributes?.sub
+      const { sessionId, active, memberEntry } = await API.post(
+        "public",
+        "/event/register",
+        {
+          body: {
+            eventId,
+            successUrl: redirectTo,
+            cancelUrl: redirectTo,
+            section: selectedSection,
+            byes: byesSelection,
+          },
         }
-        const entry = await API.graphql({ query: createEntry, variables: {input: entryInfo }});
-        if(entry) {
-          history.push('/app/events?event_member_entry_success=true');
-          window.location.reload();
-        } else {
-          console.log("error", entry)
-        }
+      );
+      if (active && memberEntry) {
+        history.push("/app/events?event_member_entry_success=true");
+        window.location.reload();
       } else {
         await stripe?.redirectToCheckout({ sessionId });
       }
-      
     } catch (error) {
       const mailToString = `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0AEvent ID: ${eventId}%0D%0AUser ID: ${user.username}%0D%0AUser: ${user.attributes.given_name} ${user.attributes.family_name}%0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`;
       addToast(
@@ -118,7 +96,7 @@ export default function AppEvents() {
       setPaymentSuccessful(true);
     }
 
-    if(event_member_entry_success) {
+    if (event_member_entry_success) {
       setMemberEntrySuccessful(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
