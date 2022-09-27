@@ -661,11 +661,17 @@ function RegisterButton(props: RegisterButtonProps) {
     setModalOpen(false);
   };
 
+  let isRegistering = false;
+
   const register = async (
     eventId: string,
     confirmSection: string,
     confirmByes: string
   ) => {
+
+    if(isRegistering) return;
+    isRegistering = true;
+
     try {
       const redirectTo = `${window.location.origin}/app/events/${eventId}`;
       const selectedSection = confirmSection ? confirmSection : null;
@@ -685,6 +691,7 @@ function RegisterButton(props: RegisterButtonProps) {
       } else {
         await stripe?.redirectToCheckout({ sessionId });
       }
+      isRegistering = false;
 
     } catch (error) {
       const mailToString = `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0AEvent ID: ${eventId}%0D%0AUser ID: ${user.username}%0D%0AUser: ${user.attributes.given_name} ${user.attributes.family_name}%0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`;
@@ -704,6 +711,8 @@ function RegisterButton(props: RegisterButtonProps) {
         }
       );
       console.log("Error", error);
+    } finally {
+      isRegistering = false;
     }
   };
 

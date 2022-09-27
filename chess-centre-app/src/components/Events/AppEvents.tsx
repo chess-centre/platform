@@ -32,12 +32,17 @@ export default function AppEvents() {
   const [paymentSuccesseful, setPaymentSuccessful] = useState(false);
   const [memberEntrySuccessful, setMemberEntrySuccessful] = useState(false);
   const { isLoading, error, data } = useEvents();
+  let isRegistering = false;
 
   const register = async (
     eventId: any,
     confirmSection: any,
     confirmByes: any
   ) => {
+
+    if(isRegistering) return;
+    isRegistering = true;
+
     try {
       const redirectTo = `${window.location.origin}/app/events`;
       const selectedSection = section
@@ -65,6 +70,8 @@ export default function AppEvents() {
       } else {
         await stripe?.redirectToCheckout({ sessionId });
       }
+      isRegistering = false;
+
     } catch (error) {
       const mailToString = `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0AEvent ID: ${eventId}%0D%0AUser ID: ${user.username}%0D%0AUser: ${user.attributes.given_name} ${user.attributes.family_name}%0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`;
       addToast(
@@ -83,6 +90,8 @@ export default function AppEvents() {
         }
       );
       console.log("error", error);
+    } finally {
+      isRegistering = false;
     }
   };
 
