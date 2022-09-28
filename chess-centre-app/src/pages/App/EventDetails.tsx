@@ -22,7 +22,12 @@ import Chesscom from "../../assets/img/chesscom.png";
 import C24 from "../../assets/img/c24.png";
 
 const getEvent = /* GraphQL */ `
-  query GetEvent($id: ID!, $filter: ModelEntryFilterInput, $limit: Int, $nextToken: String) {
+  query GetEvent(
+    $id: ID!
+    $filter: ModelEntryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
     getEvent(id: $id) {
       id
       name
@@ -33,28 +38,28 @@ const getEvent = /* GraphQL */ `
     listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-            eventId
-            memberId
-            section
-            byes
-            createdAt
-            updatedAt
-            member {
-              id
-              fideId
-              ecfId
-              name
-              ecfRatingPartial
-              ecfRating
-              ecfRapidPartial
-              ecfRapid
-              ecfMembership
-              estimatedRating
-              club
-              gender
-              membershipType
-              chessTitle
-            }
+        eventId
+        memberId
+        section
+        byes
+        createdAt
+        updatedAt
+        member {
+          id
+          fideId
+          ecfId
+          name
+          ecfRatingPartial
+          ecfRating
+          ecfRapidPartial
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          club
+          gender
+          membershipType
+          chessTitle
+        }
       }
       nextToken
       startedAt
@@ -92,33 +97,38 @@ export default function EventDetails() {
 
       const response = await API.graphql({
         query: getEvent,
-        variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250 },
+        variables: {
+          id: eventId,
+          filter: { eventId: { eq: eventId } },
+          limit: 250,
+        },
         authMode: "AWS_IAM",
       });
 
       if (response && response.data) {
         const {
-          data: {
-            getEvent: eventData,
-            listEntrys: entries },
+          data: { getEvent: eventData, listEntrys: entries },
         } = response;
 
         if (entries.nextToken) {
           const additionalResponse = await API.graphql({
             query: getEvent,
-            variables: { id: eventId, filter: { eventId: { eq: eventId } }, limit: 250, nextToken: entries.nextToken },
+            variables: {
+              id: eventId,
+              filter: { eventId: { eq: eventId } },
+              limit: 250,
+              nextToken: entries.nextToken,
+            },
             authMode: "AWS_IAM",
           });
 
           const {
-            data: {
-              listEntrys: moreEntries },
+            data: { listEntrys: moreEntries },
           } = additionalResponse;
 
           const items = { items: [...entries.items, ...moreEntries.items] };
 
           setEventEntries({ ...eventData, entries: items });
-
         } else {
           setEventEntries({ ...eventData, entries });
         }
@@ -151,7 +161,13 @@ export default function EventDetails() {
               {!isLoading &&
                 eventInfo &&
                 Object.keys(eventInfo).length > 0 &&
-                !Boolean(error) && <DetailsView data={eventInfo} isLoadingEntries={isLoadingEntries} entries={eventEntries} />}
+                !Boolean(error) && (
+                  <DetailsView
+                    data={eventInfo}
+                    isLoadingEntries={isLoadingEntries}
+                    entries={eventEntries}
+                  />
+                )}
             </div>
             <div>{isLoading && <LoadingView />}</div>
             <div>{Boolean(error) && <ErrorView />}</div>
@@ -205,7 +221,14 @@ interface Props {
 
 function DetailsView(props: Props) {
   const { data, isLoadingEntries, entries } = props;
-  const { tags, organisers, address, arbiters, hasBroadcast, broadcastLink } = TemplateData[data.type.eventType];
+  const {
+    tags,
+    organisers,
+    address,
+    arbiters,
+    hasBroadcast,
+    broadcastLink,
+  } = TemplateData[data.type.eventType];
   const [isJunior] = useState(data?.name.includes("Junior") || false);
   const [isModelOpen, setIsModalOpen] = useState(false);
   const [tabs, setTabs] = useState([
@@ -218,7 +241,13 @@ function DetailsView(props: Props) {
   const renderTab = (selected: string, data: Event) => {
     switch (selected) {
       case "Entries":
-        return <Entries data={data} isLoadingEntries={isLoadingEntries} entries={entries} />;
+        return (
+          <Entries
+            data={data}
+            isLoadingEntries={isLoadingEntries}
+            entries={entries}
+          />
+        );
       case "Schedule":
         return <Schedule data={data} />;
       case "Travel":
@@ -277,7 +306,6 @@ function DetailsView(props: Props) {
                         <span>Contact Us</span>
                       </button>
                     </div>
-
                   </div>
                   {/* Mobile Sidebar  */}
                   <div className="lg:hidden">
@@ -316,7 +344,14 @@ function DetailsView(props: Props) {
             </div>
             {/* Desktop Sidebar  */}
             <div className="hidden lg:block">
-              <SummaryDetails data={data} tags={tags} organisers={organisers} arbiters={arbiters} hasBroadcast={hasBroadcast} broadcastLink={broadcastLink} />
+              <SummaryDetails
+                data={data}
+                tags={tags}
+                organisers={organisers}
+                arbiters={arbiters}
+                hasBroadcast={hasBroadcast}
+                broadcastLink={broadcastLink}
+              />
             </div>
           </div>
         </div>
@@ -339,19 +374,18 @@ function Entries(props: Props) {
   if (entries) {
     mergeEventInfoWithEntries = {
       ...data,
-      entries: entries.entries
-    }
+      entries: entries.entries,
+    };
   }
 
   return (
     <div className="mt-10">
       <>
-        {!isLoadingEntries && <EntriesTable eventDetails={mergeEventInfoWithEntries} />}
+        {!isLoadingEntries && (
+          <EntriesTable eventDetails={mergeEventInfoWithEntries} />
+        )}
       </>
-      <>
-        {isLoadingEntries && <p>Loading...</p>}
-      </>
-
+      <>{isLoadingEntries && <p>Loading...</p>}</>
     </div>
   );
 }
@@ -368,11 +402,7 @@ function Schedule(props: Props) {
 
   return (
     <div className="mt-2">
-      <RoundTimes
-        eventId={data.id}
-        eventType={eventType}
-        removeStyles={true}
-      />
+      <RoundTimes eventId={data.id} eventType={eventType} removeStyles={true} />
     </div>
   );
 }
@@ -466,7 +496,14 @@ function ErrorView() {
   );
 }
 
-function SummaryDetails({ data, tags, organisers, arbiters, hasBroadcast, broadcastLink }) {
+function SummaryDetails({
+  data,
+  tags,
+  organisers,
+  arbiters,
+  hasBroadcast,
+  broadcastLink,
+}) {
   return (
     <aside className="mt-8 lg:mt-0 lg:pl-8">
       <h2 className="sr-only">Details</h2>
@@ -534,20 +571,22 @@ function SummaryDetails({ data, tags, organisers, arbiters, hasBroadcast, broadc
         </div>
       </div>
       <div className="mt-6 border-t border-b lg:border-b-0 border-gray-200 py-6 space-y-8">
-        {arbiters && <div>
-          <h2 className="text-sm font-medium text-gray-500">Arbiters</h2>
-          <ul className="mt-3 space-y-3">
-            {arbiters.map(({ name }) => (
-              <li key={name} className="flex justify-start">
-                <span className="flex items-center space-x-3">
-                  <div className="text-sm font-medium text-gray-900">
-                    {name}
-                  </div>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>}
+        {arbiters && (
+          <div>
+            <h2 className="text-sm font-medium text-gray-500">Arbiters</h2>
+            <ul className="mt-3 space-y-3">
+              {arbiters.map(({ name }) => (
+                <li key={name} className="flex justify-start">
+                  <span className="flex items-center space-x-3">
+                    <div className="text-sm font-medium text-gray-900">
+                      {name}
+                    </div>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div>
           <h2 className="text-sm font-medium text-gray-500">Organisers</h2>
@@ -594,8 +633,8 @@ function SummaryDetails({ data, tags, organisers, arbiters, hasBroadcast, broadc
               ))}
           </ul>
         </div>
-        {
-          hasBroadcast && <div>
+        {hasBroadcast && (
+          <div>
             <h2 className="text-sm font-medium text-gray-500">Broadcasting</h2>
             <div className="grid grid-cols-1 mt-4">
               <div>
@@ -610,14 +649,19 @@ function SummaryDetails({ data, tags, organisers, arbiters, hasBroadcast, broadc
               </div>
             </div>
             <div className="mt-8">
-              <a className="inline-flex items-center 
+              <a
+                className="inline-flex items-center 
                 rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs 
                 font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                href={broadcastLink} rel="noreferrer" target="_blank">Chess-Results</a>
+                href={broadcastLink}
+                rel="noreferrer"
+                target="_blank"
+              >
+                Chess-Results
+              </a>
             </div>
           </div>
-        }
-
+        )}
       </div>
     </aside>
   );
@@ -661,31 +705,40 @@ function RegisterButton(props: RegisterButtonProps) {
     setModalOpen(false);
   };
 
+  let isRegistering = false;
+
   const register = async (
     eventId: string,
     confirmSection: string,
     confirmByes: string
   ) => {
+    if (isRegistering) return;
+    isRegistering = true;
+
     try {
       const redirectTo = `${window.location.origin}/app/events/${eventId}`;
       const selectedSection = confirmSection ? confirmSection : null;
       const byesSelection = confirmByes ? confirmByes : null;
-      const { sessionId, active, memberEntry } = await API.post("public", "/event/register", {
-        body: {
-          eventId,
-          successUrl: redirectTo,
-          cancelUrl: redirectTo,
-          section: selectedSection,
-          byes: byesSelection,
-        },
-      });
-      if(active && memberEntry) {
-          history.push('/app/events?event_member_entry_success=true');
-          window.location.reload();
+      const { sessionId, active, memberEntry } = await API.post(
+        "public",
+        "/event/register",
+        {
+          body: {
+            eventId,
+            successUrl: redirectTo,
+            cancelUrl: redirectTo,
+            section: selectedSection,
+            byes: byesSelection,
+          },
+        }
+      );
+      if (active && memberEntry) {
+        history.push("/app/events?event_member_entry_success=true");
+        window.location.reload();
       } else {
         await stripe?.redirectToCheckout({ sessionId });
       }
-
+      isRegistering = false;
     } catch (error) {
       const mailToString = `mailto:support@chesscentre.online?subject=Event%20Sign%20Up%20Error&Body=%0D%0A// ---- DO NOT DELETE ----//%0D%0AEvent ID: ${eventId}%0D%0AUser ID: ${user.username}%0D%0AUser: ${user.attributes.given_name} ${user.attributes.family_name}%0D%0A// ---- THANK YOU ----//%0D%0A%0D%0A`;
       addToast(
@@ -704,6 +757,8 @@ function RegisterButton(props: RegisterButtonProps) {
         }
       );
       console.log("Error", error);
+    } finally {
+      isRegistering = false;
     }
   };
 
@@ -711,32 +766,34 @@ function RegisterButton(props: RegisterButtonProps) {
 
   return (
     <div>
-      {multipleSections ? (
-        <>
-          <button
-            className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-            onClick={() => openSectionSelectionModal()}
-          >
-            Register
-          </button>
-        </>
-      ) : (
+      
+      {multipleSections && (
+        <button
+          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          onClick={() => openSectionSelectionModal()}
+        >
+          Register
+        </button>
+      )}
+
+      {isLoadingSignUp && !multipleSections && (
+        <div className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+          <div className="mr-2">
+            <i className="fas fa-spinner-third animate-spin -ml-4 sm:ml-0"></i>
+          </div>
+          <div className="text-sm">Loading...</div>
+        </div>
+      )}
+
+      {!multipleSections && !isLoadingSignUp && (
         <button
           className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           onClick={() => handleRegister(id, undefined, undefined)}
         >
-          {isLoadingSignUp ? (
-            <>
-              <div className="mr-2">
-                <i className="fas fa-spinner-third animate-spin -ml-4 sm:ml-0"></i>
-              </div>
-              <div className="text-sm">Loading...</div>
-            </>
-          ) : (
-            `Register`
-          )}
+          Register
         </button>
       )}
+
       <EventSectionSelectionModal
         key={id}
         showByes={showByes}
