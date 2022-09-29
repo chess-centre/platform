@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastProvider } from "react-toast-notifications";
 import { AuthProvider } from "./context/Auth";
-import { LiveGameProvider } from "./context/LiveGameContext";
 import AppRoutes from "./components/Navigation/AppRoute";
 import routes from "./routes";
 import { loadStripe } from "@stripe/stripe-js";
@@ -15,7 +14,6 @@ if (process.env.NODE_ENV === "production") {
   ReactGA.initialize(trackingId);
 }
 const FESTIVAL_ID = process.env.REACT_APP_FESTIVAL_ID;
-const FESTIVAL_BLITZ_ID = process.env.REACT_APP_FESTIVAL_BLITZ_ID;
 const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY;
 
 const stripePromise = loadStripe(STRIPE_KEY);
@@ -47,7 +45,6 @@ export default function App() {
                     />
                   ))}
                   <Redirect exact from="/festival" to={`/events/festival/${FESTIVAL_ID}`} />
-                  <Redirect exact from="/festival/blitz" to={`/events/festival/blitz/${FESTIVAL_BLITZ_ID}`} />
                   <Route component={Page404} />
                 </Switch>
               </Router>

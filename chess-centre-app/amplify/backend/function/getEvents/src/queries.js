@@ -82,4 +82,3 @@ exports.getEvent = async (id) => {
     return {};
   }
 };
-

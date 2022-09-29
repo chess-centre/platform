@@ -2,6 +2,7 @@ import API from "@aws-amplify/api";
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { SidebarContext } from "../../context/SidebarContext";
+import { isAdmin } from "../../context/Auth";
 import {
   MenuIcon,
 } from "../../icons";
@@ -28,11 +29,16 @@ export default function Header() {
   const history = useHistory();
   const { toggleSidebar, isSidebarOpen } = useContext(SidebarContext);
   const [avatarUrl, setAvatarUrl] = useState("");
+  const [isAdminUser, setIsAdminUser] = useState(false);
 
   const signOut = () => {
     logout(dispatch);
     history.push("/");
   };
+
+  const checkAdminStatus = async () => {
+    setIsAdminUser(await isAdmin());
+  }
 
   useEffect(() => {
     if(!given_name) signOut();
@@ -56,6 +62,7 @@ export default function Header() {
       }
     }
     fetchMember();
+    checkAdminStatus();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -82,7 +89,7 @@ export default function Header() {
             { given_name && (<span className="text-xs sm:text-sm text-gray-900 pb-2">Welcome, {given_name}</span>) }
           </li>
           <li className="relative">
-            <ProfileDropDown signOut={signOut} avatarUrl={avatarUrl} />
+            <ProfileDropDown signOut={signOut} isAdminUser={isAdminUser} avatarUrl={avatarUrl} />
           </li>
         </ul>
       </div>
