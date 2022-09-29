@@ -12,6 +12,21 @@
         },
         "setting": "private"
       }
+    },
+    "/rating-check": {
+      "name": "/rating-check",
+      "lambdaFunction": "ecfRatingUpdater",
+      "permissions": {
+        "groups": {
+          "admins": [
+            "create",
+            "read",
+            "update",
+            "delete"
+          ]
+        },
+        "setting": "private"
+      }
     }
   }
 }
