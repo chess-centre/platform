@@ -537,9 +537,9 @@ function convertToBroadcast(event: any) {
               return {
                 id: idx + 1,
                 memberId: entry.id,
-                name: entry.name,
+                name: entry.member.name,
                 ratingInfo: {
-                  rating: entry.ecfRapid,
+                  rating: entry.member.ecfRapid,
                 },
               };
             }),

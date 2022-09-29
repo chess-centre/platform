@@ -62,7 +62,7 @@ const listEventsActive = /* GraphQL */ `
 
 export const useEvents = () => {
   return useQuery("eventData", async () => {
-    const yesterday = new Date(Date.now() - (3600 * 1000 * 24));
+    const yesterday = new Date(Date.now() - 3600 * 1000 * 24);
     const {
       data: {
         listEventsActive: { items: events },
@@ -73,9 +73,7 @@ export const useEvents = () => {
       authMode: "AWS_IAM",
     });
 
-    const sorted = events.sort(
-      (a, b) => new Date(a.startDate) - new Date(b.startDate)
-    );
+    const sorted = events.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return sorted.map((event) => ({
       ...event,
@@ -85,7 +83,7 @@ export const useEvents = () => {
       maxEntries: event.maxEntries || event.type.maxEntries,
       color: event.type.color,
       url: event.type.url,
-      isFull: event.entryCount >= (event.maxEntries || event.type.maxEntries)
+      isFull: event.entryCount >= (event.maxEntries || event.type.maxEntries),
     }));
   });
 };
@@ -144,7 +142,7 @@ const listEventsActiveLite = /* GraphQL */ `
 
 export const useEventsLite = () => {
   return useQuery("eventDataLite", async () => {
-    const yesterday = new Date(Date.now() - (3600 * 1000 * 24));
+    const yesterday = new Date(Date.now() - 3600 * 1000 * 24);
     const {
       data: {
         listEventsActive: { items: events },
@@ -155,9 +153,7 @@ export const useEventsLite = () => {
       authMode: "AWS_IAM",
     });
 
-    const sorted = events.sort(
-      (a, b) => new Date(a.startDate) - new Date(b.startDate)
-    );
+    const sorted = events.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return sorted.map((event) => ({
       ...event,
@@ -167,7 +163,7 @@ export const useEventsLite = () => {
       maxEntries: event.maxEntries || event.type.maxEntries,
       color: event.type.color,
       url: event.type.url,
-      isFull: event.entryCount >= (event.maxEntries || event.type.maxEntries)
+      isFull: event.entryCount >= (event.maxEntries || event.type.maxEntries),
     }));
   });
 };
@@ -242,10 +238,9 @@ const listEventsFull = /* GraphQL */ `
   }
 `;
 
-
 export const useFullEvents = () => {
   return useQuery("eventData", async () => {
-    const yesterday = new Date(Date.now() - (3600 * 1000 * 24));
+    const yesterday = new Date(Date.now() - 3600 * 1000 * 24);
     const {
       data: {
         listEventsActive: { items: events },
@@ -256,9 +251,9 @@ export const useFullEvents = () => {
       authMode: "AWS_IAM",
     });
 
-    const sorted = events.sort(
-      (a, b) => new Date(a.startDate) - new Date(b.startDate)
-    );
+    const sorted = events
+      .filter((e: any) => !!e.type.canRegister)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return sorted.map((event) => ({
       ...event,
