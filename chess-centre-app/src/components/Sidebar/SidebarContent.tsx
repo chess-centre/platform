@@ -5,10 +5,9 @@ import { NavLink, Route, Link } from "react-router-dom";
 import * as Icons from "../../icons";
 import SidebarSubmenu from "./SidebarSubmenu";
 import ImageLight from "../../assets/img/logo-light-theme-small.png";
+import FBGroup from "../../assets/img/facebook-group.png";
 import { isPaidMember } from "../../context/Auth";
 import SupportContactModal from "../Modal/SupportContactModal";
-
-const version = process.env.REACT_APP_VERSION || "0.0.0";
 
 function Icon({ icon, ...props }) {
   const Icon = Icons[icon];
@@ -29,7 +28,7 @@ function SidebarContent() {
   };
 
   async function checkMemberStatus() {
-    const isPaid = await isPaidMember();
+    const isPaid = await isPaidMember(undefined);
     setNeedsUpgrade(!isPaid);
   }
 
@@ -87,6 +86,7 @@ function SidebarContent() {
           Upgrade Membership
         </Link>
       )}
+
       {!isLoading && eventInfo?.length > 0 && (
         <Link
           to="/broadcast/live"
@@ -102,16 +102,36 @@ function SidebarContent() {
           <span className="ml-2">Watch Now</span>
         </Link>
       )}
-      <div className="absolute grid grid-cols-2 bottom-1 pl-8 my-6 text-sm">
-        <div
-          onClick={openModal}
-          className="text-right hover:text-teal-600 ml-2 mr-8 cursor-pointer"
-        >
+      <div className="absolute flex bottom-4 mx-4 space-x-6">
+        <div className="-mt-1">
+          <a
+            className=""
+            href="https://www.facebook.com/groups/chesscentre"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img className="w-24" alt="facebook group" src={FBGroup} />
+          </a>
+        </div>
+        <div onClick={openModal} className="hover:text-teal-600 cursor-pointer">
           <i className="fas fa-user-headset"></i>{" "}
           <span className="text-xs">support</span>
         </div>
-        <div className="text-center hover:text-teal-500">
-          <Link to="/app/roadmap">{`v${version}`}</Link>
+      </div>
+      <div className="absolute flex bottom-4 mx-4 space-x-6">
+        <div className="-mt-1">
+          <a
+            className=""
+            href="https://www.facebook.com/groups/chesscentre"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img className="w-24" alt="facebook group" src={FBGroup} />
+          </a>
+        </div>
+        <div onClick={openModal} className="hover:text-teal-600 cursor-pointer">
+          <i className="fas fa-user-headset"></i>{" "}
+          <span className="text-xs">support</span>
         </div>
       </div>
       <SupportContactModal open={isModalOpen} closeModal={closeModal} />

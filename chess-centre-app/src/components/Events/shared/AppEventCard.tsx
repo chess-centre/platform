@@ -3,7 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import { bgColor700, bgColor600 } from "tailwind-dynamic-classes";
 import Register from "../Register";
 import {
-  prettyDate,
   getDay,
   getMonth,
   getDayStr,
@@ -125,8 +124,6 @@ export function EventCard(props: EventCardProps) {
   const isJunior = name?.includes("Junior");
 
   const goToEventInfo = (id: string) => history.push(`/app/events/${id}`);
-
-  console.log(name, "MemberEntry", memberEntry, "isMember", isMember);
 
   return (
     <section

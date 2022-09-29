@@ -5,7 +5,6 @@ import Header from "../components/Navigation/AuthHeader";
 import Main from "./Main";
 import ThemedSuspense from "../components/ThemedSuspense";
 import { SidebarContext } from "../context/SidebarContext";
-import { isAdmin } from "../context/Auth";
 
 const routes = [
   {
@@ -66,7 +65,7 @@ const routes = [
     component: lazy(() => import("../pages/App/EventGames")),
   },
   {
-    path: "/admin/:id",
+    path: "/admin",
     component: lazy(() => import("../pages/Admin")),
     isAdmin: true
   },
@@ -76,17 +75,11 @@ const Page404 = lazy(() => import("../pages/Error/404"));
 
 function Layout() {
   const { isSidebarOpen, closeSidebar } = useContext(SidebarContext);
-  const [adminUser, setAdminUser] = useState(false);
   let location = useLocation();
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     closeSidebar();
-    const checkAdmin = async () => {
-      const admin = await isAdmin();
-      setAdminUser(admin);
-    };
-    checkAdmin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
@@ -104,21 +97,12 @@ function Layout() {
             <Switch>
               {routes.map((route, i) => {
                 if (route.component) {
-                  if (route.isAdmin && !adminUser) {
-                    return <Route
-                      key={i}
-                      exact={true}
-                      path={`/app${route.path}`}
-                      render={(props) => <Redirect to={{ pathname: "/app/dashboard", state: { from: props.location } }} />}
-                    />
-                  } else {
                     return <Route
                       key={i}
                       exact={true}
                       path={`/app${route.path}`}
                       render={(props) => <route.component {...props} />}
                     />
-                  }
                 } else {
                   return null;
                 }

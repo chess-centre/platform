@@ -1,10 +1,10 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
 import { classNames } from "../../utils/Classes";
 
 export default function ProfileDropDown(props) {
-  const { signOut, avatarUrl } = props;
+  const { signOut, avatarUrl, isAdminUser } = props;
   return (
     <Menu as="div" className="relative inline-block text-left">
       {({ open }) => (
@@ -43,7 +43,7 @@ export default function ProfileDropDown(props) {
           >
             <Menu.Items
               static
-              className="origin-top-right absolute right-0 mt-2 w-32 sm:w-44 rounded-md shadow-lg bg-white border border-teal-500 ring-black ring-opacity-100 divide-y divide-gray-100 focus:outline-none"
+              className="origin-top-right absolute right-0 mt-2 w-32 sm:w-44 rounded-md shadow-lg bg-white border border-teal-500 ring-black ring-opacity-100 focus:outline-none"
             >
               <div className="py-1">
                 <Menu.Item>
@@ -60,13 +60,32 @@ export default function ProfileDropDown(props) {
                   )}
                 </Menu.Item>
               </div>
-              <div className="py-1">
+              {isAdminUser && (
+                <div className="py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <Link
+                        to="/app/admin"
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-gray-700",
+                          "block px-4 py-1 sm:py-2 text-xs sm:text-sm"
+                        )}
+                      >
+                        Admin
+                      </Link>
+                    )}
+                  </Menu.Item>
+                </div>
+              )}
+              <div className="py-1 border-t">
                 <Menu.Item>
                   {({ active }) => (
                     <div
                       onClick={signOut}
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700 ",
                         "block px-4 py-1 sm:py-2 text-xs sm:text-sm cursor-pointer"
                       )}
                     >

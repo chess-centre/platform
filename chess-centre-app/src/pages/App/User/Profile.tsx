@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
-import { GraphQLResult } from "@aws-amplify/api";
+import React, { useEffect, useState } from "react";
 import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
 import QuickSearch from "../../../components/FAQs/QuickSearch";
 import { ChessProfile, AccountProfile, IntegrationProfile } from "./sections";
-import { useAuthState, isAdmin } from "../../../context/Auth";
+import { useAuthState } from "../../../context/Auth";
 
 export const getMember = /* GraphQL */ `
   query GetMember($id: ID!) {
@@ -83,27 +82,6 @@ export default function Profile() {
   const [customerPortalUrl, setCustomerPortalUrl] = useState();
   const [isLoadingProfile, setIsLoadingProfile] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
-  const [adminUser, setAdminUser] = useState(false);
-
-  const AdminLink = ({ user }) => {
-    if (user && adminUser) {
-      return (<Link
-        to={`/app/admin/${user.attributes.sub}`}
-        className={`text-gray-500 hover:text-teal-700 bg-gray-50 group rounded-md flex items-center hover:shadow hover:bg-white`}
-        aria-current="page">
-        <div className="flex text-center pt-3 pl-3 pr-3 pb-3">
-          <div className="text-sm inline-block font-medium">
-            <i className="fas fa-tools text-gray-500 hover:text-teal-700 mr-2"></i>{" "}
-            <span>
-              Admin
-            </span>
-          </div>
-        </div>
-      </Link>);
-    } else {
-      return null;
-    }
-  }
 
 
   useEffect(() => {
@@ -131,8 +109,7 @@ export default function Profile() {
         variables: { id: user.username },
       });
 
-      
-
+  
       setMember(member);
 
       document.title = `The Chess Centre | ${member.name}`;
@@ -148,8 +125,6 @@ export default function Profile() {
       setIsLoadingProfile(true);
       await getMemberInfo().catch(error => console.log("Error", error));
       await getCustomerPortal();
-      const admin = await isAdmin();
-      setAdminUser(admin);
       setIsLoadingProfile(false);
     };
 
@@ -213,7 +188,6 @@ export default function Profile() {
               </span>
             </a>
           )}
-          <AdminLink user={user} />
         </nav>
       </aside>
       <div className="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
