@@ -60,6 +60,7 @@ export default function Admin() {
   const [ecfId, setECFId] = useState<string>("");
   const [updatedMembers, setUpdatedMembers] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState({});
+  const [isUpdatingRatings, setIsUpdatingRatings] = useState(false);
 
   async function checkStatus() {
     const status = await isAdmin();
@@ -67,6 +68,15 @@ export default function Admin() {
       history.push("/app");
     }
   }
+
+  const runUpdater = async () => {
+    setIsUpdatingRatings(true);
+    const response = await API.get("admin", "/rating-check").catch((e) => {
+      console.log(e);
+    });
+    console.log(response);
+    setIsUpdatingRatings(false);
+  };
 
   useEffect(() => {
     document.title = "The Chess Centre | Admin";
@@ -205,7 +215,9 @@ export default function Admin() {
                 <button
                   onClick={() => updateECFIdForMember()}
                   type="button"
-                  className="bg-white inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                  className="bg-white inline-flex items-center px-4 py-2 border border-gray-300 
+                  shadow-sm text-sm font-medium rounded-md text-gray-700 hover:bg-gray-50 
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                 >
                   <PlusIcon
                     className="-ml-2 mr-1 h-5 w-5 text-gray-400"
@@ -271,9 +283,36 @@ export default function Admin() {
                 </tbody>
               </table>
             </div>
-            <div className="text-sm text-gray-500 italic">
-              Note: this information does not persist and will be wiped upon
-              page reload or refresh.
+            <div className="flex-inline">
+              <div className="text-sm text-gray-500 italic">
+                Note: this information does not persist and will be wiped upon
+                page reload or refresh.
+              </div>
+              <div className="text-right -mt-8">
+                {!isUpdatingRatings && (
+                  <button
+                    onClick={() => runUpdater()}
+                    type="button"
+                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm bg-sky-600 
+                    font-medium rounded-md text-white hover:bg-sky-500  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                  >
+                    Update Rating
+                  </button>
+                )}
+                {isUpdatingRatings && (
+                  <button
+                    type="button"
+                    disabled
+                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm bg-sky-700 
+                  font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                  >
+                    <div className=" text-white align-middle mr-2 text-sm inline-flex">
+                      <i className="fal fa-spinner-third fa-spin fa-fw"></i>
+                    </div>
+                    <span>Updating...</span>
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -479,8 +518,7 @@ function EventRendering({ eventData, selectedEvent, setSelectedEvent }) {
 }
 
 function convertToBroadcast(event: any) {
-  
-  if(isEmpty(event)) return {};
+  if (isEmpty(event)) return {};
 
   // TODO: move to DB
   const sections = [
@@ -603,7 +641,9 @@ function convertToBroadcast(event: any) {
 }
 
 function isEmpty(obj) {
-  return obj // 👈 null and undefined check
-&& Object.keys(obj).length === 0
-&& Object.getPrototypeOf(obj) === Object.prototype
+  return (
+    obj && // 👈 null and undefined check
+    Object.keys(obj).length === 0 &&
+    Object.getPrototypeOf(obj) === Object.prototype
+  );
 }
