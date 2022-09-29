@@ -480,6 +480,8 @@ function EventRendering({ eventData, selectedEvent, setSelectedEvent }) {
 
 function convertToBroadcast(event: any) {
   
+  if(isEmpty(event)) return {};
+
   // TODO: move to DB
   const sections = [
     {
@@ -529,7 +531,7 @@ function convertToBroadcast(event: any) {
         title: s.title,
         icon: s.icon,
         entries: [
-          ...event.entries?.items
+          ...event?.entries?.items
             .slice(key * 6, key * 6 + 5)
             .map((entry, idx) => {
               return {
@@ -598,4 +600,10 @@ function convertToBroadcast(event: any) {
   };
 
   return data;
+}
+
+function isEmpty(obj) {
+  return obj // 👈 null and undefined check
+&& Object.keys(obj).length === 0
+&& Object.getPrototypeOf(obj) === Object.prototype
 }
