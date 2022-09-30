@@ -642,7 +642,7 @@ function convertToBroadcast(event: any) {
         title: s.title,
         icon: s.icon,
         entries: [
-          ...entries.slice(key * 6, key * 6 + 5).map((entry, seed) => ({ id: seed + 1, seed: seed + 1, ...entry }))
+          ...entries.slice(key * 6, key * 6 + 6).map((entry, seed) => ({ ...entry, id: seed + 1, seed: seed + 1 }))
         ]
       })),
     ],
