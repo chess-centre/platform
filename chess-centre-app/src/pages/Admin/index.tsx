@@ -477,23 +477,31 @@ function EventRendering({ eventData, selectedEvent, setSelectedEvent }) {
               >
                 {({ active, selected }) => (
                   <>
-                    <div className="flex">
-                      <span
+                    <div className="flex space-x-2">
+                      <div
                         className={classNames(
                           "truncate",
                           selected && "font-semibold"
                         )}
                       >
                         {eventInfo.name}
-                      </span>
-                      <span
+                      </div>
+                      <div
                         className={classNames(
-                          "ml-2 truncate text-gray-500",
-                          active ? "text-sky-200" : "text-gray-500"
+                          "ml-2 text-sm truncate text-gray-500",
+                          active ? "text-sky-200" : "text-gray-400"
                         )}
                       >
-                        {eventInfo.entries.length}
-                      </span>
+                        {moment(eventInfo.startDate).format("MMM Do")}
+                      </div>
+                      <div
+                        className={classNames(
+                          "ml-2 text-sm truncate text-gray-500",
+                          active ? "text-sky-200" : "text-gray-300"
+                        )}
+                      >
+                        entries: {eventInfo.entries.items.length}
+                      </div>
                     </div>
 
                     {selected && (
@@ -517,8 +525,73 @@ function EventRendering({ eventData, selectedEvent, setSelectedEvent }) {
   );
 }
 
+const getRating = ({
+  ecfRating,
+  ecfRapid,
+  estimatedRating,
+  fideRating,
+  ecfRatingPartial = false,
+  ecfRapidPartial = false,
+}) => {
+  const standard = ecfRating ? parseInt(ecfRating, 10) : 0;
+  const rapid = ecfRapid ? parseInt(ecfRapid, 10) : 0;
+
+  if (standard) {
+    return {
+      value: standard,
+      sort: standard,
+      isPartial: ecfRatingPartial,
+      key: "",
+    };
+  }
+
+  if (fideRating) {
+    return {
+      value: fideRating,
+      isPartial: false,
+      sort: Number(fideRating),
+      key: "F",
+    };
+  }
+
+  if (estimatedRating) {
+    return {
+      value: estimatedRating,
+      isPartial: ecfRatingPartial,
+      sort: Number(estimatedRating),
+      key: "E",
+    };
+  }
+
+  if (rapid) {
+    return {
+      value: rapid,
+      sort: rapid,
+      isPartial: ecfRapidPartial,
+      key: "R",
+    };
+  }
+
+  return { value: "unrated", sort: 0, key: "" };
+};
+
 function convertToBroadcast(event: any) {
   if (isEmpty(event)) return {};
+
+  const entries = [...event?.entries?.items?.map((entry, idx) => {
+    const rating = getRating(entry);
+    return {
+      id: idx + 1,
+      memberId: entry.id,
+      name: entry.member.name,
+      ratingInfo: {
+        rating: rating.value,
+        ...rating
+      },
+    };
+  })].sort((a: any, b: any) => b.ratingInfo.rating.sort - a.ratingInfo.rating.sort);
+
+  console.log("Entries", entries);
 
   // TODO: move to DB
   const sections = [
@@ -569,19 +642,8 @@ function convertToBroadcast(event: any) {
         title: s.title,
         icon: s.icon,
         entries: [
-          ...event?.entries?.items
-            .slice(key * 6, key * 6 + 5)
-            .map((entry, idx) => {
-              return {
-                id: idx + 1,
-                memberId: entry.id,
-                name: entry.member.name,
-                ratingInfo: {
-                  rating: entry.member.ecfRapid,
-                },
-              };
-            }),
-        ],
+          ...entries.slice(key * 6, key * 6 + 5)
+        ]
       })),
     ],
     pairings: [
