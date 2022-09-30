@@ -136,7 +136,7 @@ export async function subscribe(dispatch, plan, stripe) {
 export async function isAdmin() {
   const user = await Auth.currentAuthenticatedUser();
   if (user) {
-    return user.signInUserSession.accessToken.payload['cognito:groups'].includes('admins')
+    return !!user?.signInUserSession?.accessToken?.payload['cognito:groups']?.includes('admins')
   }
   return false;
 }
