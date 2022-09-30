@@ -579,7 +579,7 @@ function convertToBroadcast(event: any) {
   if (isEmpty(event)) return {};
 
   const entries = [...event?.entries?.items?.map((entry, idx) => {
-    const rating = getRating(entry);
+    const rating = getRating(entry.member);
     return {
       id: idx + 1,
       memberId: entry.id,
@@ -589,7 +589,7 @@ function convertToBroadcast(event: any) {
         ...rating
       },
     };
-  })].sort((a: any, b: any) => b.ratingInfo.rating.sort - a.ratingInfo.rating.sort);
+  })].sort((a: any, b: any) => b.ratingInfo.sort - a.ratingInfo.sort);
 
   console.log("Entries", entries);
 
@@ -642,7 +642,7 @@ function convertToBroadcast(event: any) {
         title: s.title,
         icon: s.icon,
         entries: [
-          ...entries.slice(key * 6, key * 6 + 5)
+          ...entries.slice(key * 6, key * 6 + 5).map((entry, seed) => ({ id: seed + 1, seed: seed + 1, ...entry }))
         ]
       })),
     ],
