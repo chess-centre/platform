@@ -579,7 +579,7 @@ function convertToBroadcast(event: any) {
   if (isEmpty(event)) return {};
 
   const entries = [...event?.entries?.items?.map((entry, idx) => {
-    const rating = getRating(entry);
+    const rating = getRating(entry.member);
     return {
       id: idx + 1,
       memberId: entry.id,
