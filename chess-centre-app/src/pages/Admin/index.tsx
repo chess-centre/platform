@@ -232,8 +232,8 @@ export default function Admin() {
       </div>
       {Boolean(updatedMembers.length) && (
         <div className="grid grid-cols-1">
-          <div className="shadow rounded-lg border bg-white grid gap-2 xl:gap-4 mb-4 mt-2 px-6 py-4 overflow-auto">
-            <div className="text-left">
+          <div className="shadow rounded-lg border bg-white grid gap-2 xl:gap-4 mb-4 mt-2 px-6 py-4">
+            <div className="text-left overflow-auto">
               <table className="min-w-full divide-y divide-gray-300">
                 <thead>
                   <tr>
@@ -283,12 +283,12 @@ export default function Admin() {
                 </tbody>
               </table>
             </div>
-            <div className="flex-inline">
+            <div className="sm:flex-inline">
               <div className="text-sm text-gray-500 italic">
                 Note: this information does not persist and will be wiped upon
                 page reload or refresh.
               </div>
-              <div className="text-right -mt-8">
+              <div className="text-right sm:-mt-8">
                 {!isUpdatingRatings && (
                   <button
                     onClick={() => runUpdater()}
