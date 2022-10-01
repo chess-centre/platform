@@ -582,7 +582,7 @@ function convertToBroadcast(event: any) {
     const rating = getRating(entry.member);
     return {
       id: idx + 1,
-      memberId: entry.id,
+      memberId: entry.member.id,
       name: entry.member.name,
       ratingInfo: {
         rating: rating.value,
