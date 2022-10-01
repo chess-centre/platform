@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastProvider } from "react-toast-notifications";
 import { AuthProvider } from "./context/Auth";
+import { LiveGameProvider } from "./context/LiveGameContext";
 import AppRoutes from "./components/Navigation/AppRoute";
 import routes from "./routes";
 import { loadStripe } from "@stripe/stripe-js";
@@ -31,6 +32,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <LiveGameProvider>
           <Elements stripe={stripePromise}>
             <ToastProvider>
               <Router>
@@ -50,6 +52,7 @@ export default function App() {
               </Router>
             </ToastProvider>
           </Elements>
+        </LiveGameProvider>
       </AuthProvider>
     </QueryClientProvider>
   );
