@@ -536,12 +536,21 @@ const getRating = ({
   const standard = ecfRating ? parseInt(ecfRating, 10) : 0;
   const rapid = ecfRapid ? parseInt(ecfRapid, 10) : 0;
 
+  if (rapid) {
+    return {
+      value: rapid,
+      sort: rapid,
+      isPartial: ecfRapidPartial,
+      key: "",
+    };
+  }
+  
   if (standard) {
     return {
       value: standard,
       sort: standard,
       isPartial: ecfRatingPartial,
-      key: "",
+      key: "S",
     };
   }
 
@@ -562,16 +571,7 @@ const getRating = ({
       key: "E",
     };
   }
-
-  if (rapid) {
-    return {
-      value: rapid,
-      sort: rapid,
-      isPartial: ecfRapidPartial,
-      key: "R",
-    };
-  }
-
+  
   return { value: "unrated", sort: 0, key: "" };
 };
 
