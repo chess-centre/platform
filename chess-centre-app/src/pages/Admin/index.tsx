@@ -47,20 +47,10 @@ const updateMember = /* GraphQL */ `
 `;
 
 export default function Admin() {
-  const { data } = useFullEvents();
   const history = useHistory();
   const { user } = useAuthState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isUpdatingECF, setIsUpdatingECF] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const [members, setMembers] = useState([]);
-  const [selectedMember, setSelectedMember] = useState({
-    id: null,
-    _version: null,
-  });
-  const [ecfId, setECFId] = useState<string>("");
-  const [updatedMembers, setUpdatedMembers] = useState([]);
-  const [selectedEvent, setSelectedEvent] = useState({});
-  const [isUpdatingRatings, setIsUpdatingRatings] = useState(false);
 
   async function checkStatus() {
     const status = await isAdmin();
@@ -69,22 +59,13 @@ export default function Admin() {
     }
   }
 
-  const runUpdater = async () => {
-    setIsUpdatingRatings(true);
-    const response = await API.get("admin", "/rating-check").catch((e) => {
-      console.log(e);
-    });
-    console.log(response);
-    setIsUpdatingRatings(false);
-  };
-
   useEffect(() => {
     document.title = "The Chess Centre | Admin";
 
     checkStatus();
 
     async function fetchStatus() {
-      setIsLoading(true);
+      setIsFetching(true);
       const {
         data: {
           listMembers: { items: playersList },
@@ -97,12 +78,61 @@ export default function Admin() {
       if (playersList) {
         setMembers(playersList.filter((m) => !m.ecfId));
       }
-      setIsLoading(false);
+      setIsFetching(false);
     }
     fetchStatus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+  return (
+    <>
+      <h1 className="relative mt-6 mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        <i className="fad fa-tools text-sky-600"></i> Admin
+        <div className="inline-flex align-top top-2 ml-2"></div>
+        {isFetching && (
+          <div className="absolute text-sky-500 mt-2 align-middle ml-2 text-sm inline-flex">
+            <i className="fal fa-spinner-third fa-spin fa-fw"></i>
+            <span className="text-xs text-gray-300 ml-2 font-normal">
+              fetching data...
+            </span>
+          </div>
+        )}
+      </h1>
+      <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
+        <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
+          <p className="ml-2 mt-1 text-sm text-left text-gray-500 dark:text-gray-400">
+            Utility functions to help maintain our site!
+          </p>
+        </div>
+      </div>
+      <div>
+        <div className="rounded-md bg-sky-100 p-4 mb-2 mt-2 border">
+          <div className="flex">
+            <div className="ml-3">
+              <h3 className="text-sm font-medium text-sky-600">
+                Remember, with great power comes great responsibility
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <UpdateMemberECFId members={members} />
+
+      <EventPreparation />
+    </>
+  );
+}
+
+function UpdateMemberECFId({ members }) {
+  const [isUpdatingECF, setIsUpdatingECF] = useState(false);
+  const [selectedMember, setSelectedMember] = useState({
+    id: null,
+    _version: null,
+  });
+  const [ecfId, setECFId] = useState<string>("");
+  const [updatedMembers, setUpdatedMembers] = useState([]);
+  const [isUpdatingRatings, setIsUpdatingRatings] = useState(false);
   const updateECFIdForMember = async () => {
     setIsUpdatingECF(true);
 
@@ -143,36 +173,17 @@ export default function Admin() {
     setECFId(id);
   };
 
+  const runUpdater = async () => {
+    setIsUpdatingRatings(true);
+    const response = await API.get("admin", "/rating-check", {}).catch((e) => {
+      console.log(e);
+    });
+    console.log(response);
+    setIsUpdatingRatings(false);
+  };
+
   return (
     <>
-      <h1 className="relative mt-6 mb-2 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fad fa-tools text-sky-600"></i> Admin
-        <div className="inline-flex align-top top-2 ml-2"></div>
-        {isLoading && (
-          <div className="absolute text-sky-500 mt-2 align-middle ml-2 text-sm inline-flex">
-            <i className="fal fa-spinner-third fa-spin fa-fw"></i>
-          </div>
-        )}
-      </h1>
-      <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
-        <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
-          <p className="ml-2 mt-1 text-sm text-left text-gray-500 dark:text-gray-400">
-            Utility functions to help maintain our site!
-          </p>
-        </div>
-      </div>
-      <div>
-        <div className="rounded-md bg-sky-100 p-4 mb-2 mt-2 border">
-          <div className="flex">
-            <div className="ml-3">
-              <h3 className="text-sm font-medium text-sky-600">
-                Remember, with great power comes great responsibility
-              </h3>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="grid grid-cols-1">
         <div className="shadow rounded-lg border bg-white grid gap-2 xl:gap-4 mb-4 md:grid-cols-2 mt-2 px-4 py-6">
           <div>
@@ -215,9 +226,9 @@ export default function Admin() {
                 <button
                   onClick={() => updateECFIdForMember()}
                   type="button"
-                  className="bg-white inline-flex items-center px-4 py-2 border border-gray-300 
-                  shadow-sm text-sm font-medium rounded-md text-gray-700 hover:bg-gray-50 
-                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                  className="bg-white inline-flex items-center px-4 py-2.5 sm:py-2 border border-gray-300 
+              shadow-sm text-sm font-medium rounded-md text-gray-700 hover:bg-gray-50 
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
                 >
                   <PlusIcon
                     className="-ml-2 mr-1 h-5 w-5 text-gray-400"
@@ -283,12 +294,12 @@ export default function Admin() {
                 </tbody>
               </table>
             </div>
-            <div className="sm:flex-inline">
-              <div className="text-sm text-gray-500 italic">
+            <div className="sm:flex-inline mt-2">
+              <div className="text-xs md:text-sm text-gray-500 italic">
                 Note: this information does not persist and will be wiped upon
                 page reload or refresh.
               </div>
-              <div className="text-right sm:-mt-8">
+              <div className="text-right sm:-mt-8 mt-2">
                 {!isUpdatingRatings && (
                   <button
                     onClick={() => runUpdater()}
@@ -317,36 +328,54 @@ export default function Admin() {
           </div>
         </div>
       )}
-      {data && (
-        <div className="grid grid-cols-1">
-          <div className="shadow rounded-lg border bg-white grid gap-2 xl:gap-4 mb-4 md:grid-cols-3 mt-2 px-4 py-6">
-            <EventRendering
-              eventData={data}
-              selectedEvent={selectedEvent}
-              setSelectedEvent={setSelectedEvent}
-            />
-            <div className="col-span-2">
-              <label
-                htmlFor="json-event-data"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                JSON output
-              </label>
-              <textarea
-                name="json-event-data"
-                className="block w-full rounded-md border-gray-300 shadow-xs focus:border-sky-500 focus:ring-sky-500 sm:text-xs"
-                rows={20}
-                value={JSON.stringify(
-                  convertToBroadcast(selectedEvent),
-                  undefined,
-                  4
-                )}
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </>
+  );
+}
+
+function EventPreparation() {
+  const { isLoading, data } = useFullEvents();
+  const [selectedEvent, setSelectedEvent] = useState({});
+  const [selectedType, setSelectedType] = useState("Swiss");
+  const [broadcast, setBroadcast] = useState<string | undefined>();
+
+  useEffect(() => {
+    const broadcastData = convertToBroadcast(selectedEvent, selectedType);
+    setBroadcast(JSON.stringify(broadcastData, undefined, 6));
+  }, [selectedEvent, selectedType]);
+
+  return (
+    <div className="grid grid-cols-1">
+      <div className="shadow rounded-lg border bg-white grid gap-2 xl:gap-4 mb-4 md:grid-cols-3 mt-2 px-4 py-6">
+        {!isLoading && (
+          <EventSelection
+            eventData={data}
+            selectedEvent={selectedEvent}
+            setSelectedEvent={setSelectedEvent}
+          />
+        )}
+        <div className="col-span-2">
+          <div className="md:flex md:relative mb-1">
+            <label
+              htmlFor="json-event-data"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              JSON output{" "}
+              <span className="text-xs text-gray-500">
+                for presentation broadcast
+              </span>
+            </label>
+            <EventTypeToggle setSelectedType={setSelectedType} />
+          </div>
+          <textarea
+            name="json-event-data"
+            className="block w-full rounded-md border-gray-300 shadow-xs focus:border-sky-500 focus:ring-sky-500 sm:text-xs"
+            rows={20}
+            readOnly={true}
+            value={broadcast}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -436,7 +465,7 @@ function MemberSearch({ members, selectedMember, setSelectedMember }) {
   );
 }
 
-function EventRendering({ eventData, selectedEvent, setSelectedEvent }) {
+function EventSelection({ eventData, selectedEvent, setSelectedEvent }) {
   const [query, setQuery] = useState("");
 
   const filterEvents =
@@ -451,7 +480,7 @@ function EventRendering({ eventData, selectedEvent, setSelectedEvent }) {
       <Combobox.Label className="block text-sm font-medium text-gray-700">
         Events <span className="text-xs text-gray-500">with entries</span>
       </Combobox.Label>
-      <div className="relative mt-1">
+      <div className="relative mt-2">
         <Combobox.Input
           placeholder="Select member..."
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
@@ -521,6 +550,18 @@ function EventRendering({ eventData, selectedEvent, setSelectedEvent }) {
           </Combobox.Options>
         )}
       </div>
+      <div className="mt-2 text-xs text-gray-500 space-y-2 px-1">
+        <p>
+          A list of upcoming event entries. This allows you to prepare a{" "}
+          <span className="font-bold">swiss</span> or{" "}
+          <span className="font-bold">round robin</span> for our internal
+          broadcast.
+        </p>
+        <p>
+          Copy the JSON output into the broadcast admin. The output is editable
+          so you can switch a player in or out easily.
+        </p>
+      </div>
     </Combobox>
   );
 }
@@ -544,7 +585,7 @@ const getRating = ({
       key: "",
     };
   }
-  
+
   if (standard) {
     return {
       value: standard,
@@ -571,46 +612,111 @@ const getRating = ({
       key: "E",
     };
   }
-  
+
   return { value: "unrated", sort: 0, key: "" };
 };
 
-function convertToBroadcast(event: any) {
+function convertToBroadcast(event: any, eventType: string) {
   if (isEmpty(event)) return {};
 
-  const entries = [...event?.entries?.items?.map((entry, idx) => {
-    const rating = getRating(entry.member);
-    return {
-      id: idx + 1,
-      memberId: entry.member.id,
-      name: entry.member.name,
-      ratingInfo: {
-        rating: rating.value,
-        ...rating
-      },
-    };
-  })].sort((a: any, b: any) => b.ratingInfo.sort - a.ratingInfo.sort);
-
-  console.log("Entries", entries);
-
   // TODO: move to DB
-  const sections = [
+  let sections =
+    eventType === "Swiss"
+      ? [
+          {
+            section: "swiss",
+            title: "Event Schedule",
+            icon: "fad fa-chess-king",
+          },
+        ]
+      : [
+          {
+            section: "one",
+            title: "Division 1",
+            icon: "fad fa-chess-king",
+          },
+          {
+            section: "two",
+            title: "Division 2",
+            icon: "fad fa-chess-queen",
+          },
+          {
+            section: "three",
+            title: "Division 3",
+            icon: "fad fa-chess-bishop",
+          },
+        ];
+
+  const entries = [
+    ...event?.entries?.items?.map((entry: object, idx: number) => {
+      const rating = getRating(entry.member);
+      return {
+        id: idx + 1,
+        memberId: entry.member.id,
+        name: entry.member.name,
+        ratingInfo: {
+          rating: rating.value,
+          ...rating,
+        },
+      };
+    }),
+  ].sort((a: any, b: any) => b.ratingInfo.sort - a.ratingInfo.sort);
+
+  console.log(entries.length);
+
+  const swissPairings = [
     {
-      name: "one",
-      title: "Division 1",
-      icon: "fad fa-chess-king",
-    },
-    {
-      name: "two",
-      title: "Division 2",
-      icon: "fad fa-chess-queen",
-    },
-    {
-      name: "three",
-      title: "Division 3",
-      icon: "fad fa-chess-bishop",
-    },
+      round: 1,
+      pairings: [...new Array(Math.ceil(entries.length / 2))].map((_, key) => {
+        const drawSplit = Math.ceil(entries.length / 2) + key
+        const isOdd = (key + 1) % 2 === 0;
+        return isOdd ? [drawSplit + 1, key + 1] : [key + 1, drawSplit + 1];
+      })
+    }
   ];
+
+  const roundRobinPairings = [
+    {
+      round: 1,
+      pairings: [
+        [1, 6],
+        [2, 5],
+        [3, 4],
+      ],
+    },
+    {
+      round: 2,
+      pairings: [
+        [6, 4],
+        [5, 3],
+        [1, 2],
+      ],
+    },
+    {
+      round: 3,
+      pairings: [
+        [2, 6],
+        [3, 1],
+        [4, 5],
+      ],
+    },
+    {
+      round: 4,
+      pairings: [
+        [6, 5],
+        [1, 4],
+        [2, 3],
+      ],
+    },
+    {
+      round: 5,
+      pairings: [
+        [3, 6],
+        [4, 2],
+        [5, 1],
+      ],
+    },
+  ]
 
   const data = {
     name: `${event.name} ${moment().format("yyyy")}`,
@@ -619,7 +725,7 @@ function convertToBroadcast(event: any) {
     date: event.startDate,
     settings: {
       enableToggles: false,
-      type: "RoundRobin",
+      type: eventType,
       currentRound: 1,
       showRoundTimeForRound: 1,
       totalRounds: event.rounds,
@@ -638,62 +744,36 @@ function convertToBroadcast(event: any) {
     },
     players: [
       ...sections.map((s, key) => ({
-        section: s.name,
+        section: s.section,
         title: s.title,
         icon: s.icon,
-        entries: [
-          ...entries.slice(key * 6, key * 6 + 6).map((entry, seed) => ({ ...entry, id: seed + 1, seed: seed + 1 }))
-        ]
+        entries:
+          eventType === "Swiss"
+            ? [
+                ...entries.map((entry, seed) => ({
+                  ...entry,
+                  id: seed + 1,
+                  seed: seed + 1,
+                })),
+              ]
+            : [
+                ...entries
+                  .slice(key * 6, key * 6 + 6)
+                  .map((entry, seed) => ({
+                    ...entry,
+                    id: seed + 1,
+                    seed: seed + 1,
+                  })),
+              ],
       })),
     ],
-    pairings: [
-      {
-        round: 1,
-        pairings: [
-          [1, 6],
-          [2, 5],
-          [3, 4],
-        ],
-      },
-      {
-        round: 2,
-        pairings: [
-          [6, 4],
-          [5, 3],
-          [1, 2],
-        ],
-      },
-      {
-        round: 3,
-        pairings: [
-          [2, 6],
-          [3, 1],
-          [4, 5],
-        ],
-      },
-      {
-        round: 4,
-        pairings: [
-          [6, 5],
-          [1, 4],
-          [2, 3],
-        ],
-      },
-      {
-        round: 5,
-        pairings: [
-          [3, 6],
-          [4, 2],
-          [5, 1],
-        ],
-      },
-    ],
+    pairings: eventType === "Swiss" ? swissPairings : roundRobinPairings,
     results: [
       ...sections.map((s) => ({
-        section: s.name,
+        section: s.section,
         scores: [...new Array(event.rounds)].map((_, key) => ({
           round: key + 1,
-          pairResults: [[], [], []],
+          pairResults: [...new Array(Math.ceil(entries.length / 2)).fill([])],
         })),
       })),
     ],
@@ -702,10 +782,45 @@ function convertToBroadcast(event: any) {
   return data;
 }
 
-function isEmpty(obj) {
+function isEmpty(obj: object) {
   return (
     obj && // 👈 null and undefined check
     Object.keys(obj).length === 0 &&
     Object.getPrototypeOf(obj) === Object.prototype
+  );
+}
+
+function EventTypeToggle({ setSelectedType }) {
+  const eventTypes = [
+    { id: "Swiss", title: "Swiss", checked: true },
+    { id: "RoundRobin", title: "Round Robin", checked: false },
+  ];
+
+  return (
+    <div className="md:absolute md:right-2 ml-2 md:ml-0">
+      <fieldset>
+        <legend className="sr-only">Event Type</legend>
+        <div className="flex items-center space-y-0 sm:space-x-10 space-x-6">
+          {eventTypes.map((type) => (
+            <div key={type.id} className="flex items-center">
+              <input
+                id={type.id}
+                name="event-type"
+                type="radio"
+                defaultChecked={type.checked}
+                onChange={() => setSelectedType(type.id)}
+                className="h-4 w-4 border-gray-300 text-sky-600 focus:ring-sky-500"
+              />
+              <label
+                htmlFor={type.id}
+                className="ml-3 block text-sm font-medium text-gray-700"
+              >
+                {type.title}
+              </label>
+            </div>
+          ))}
+        </div>
+      </fieldset>
+    </div>
   );
 }
