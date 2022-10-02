@@ -117,14 +117,14 @@ export default function Admin() {
         </div>
       </div>
 
-      <UpdateMemberECFId members={members} />
+      <UpdateMemberECFId members={members} setMembers={setMembers} />
 
       <EventPreparation />
     </>
   );
 }
 
-function UpdateMemberECFId({ members }) {
+function UpdateMemberECFId({ members, setMembers }) {
   const [isUpdatingECF, setIsUpdatingECF] = useState(false);
   const [selectedMember, setSelectedMember] = useState({
     id: null,
