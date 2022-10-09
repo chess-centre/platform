@@ -8,6 +8,7 @@ import { Combobox } from "@headlessui/react";
 import { classNames } from "../../utils/Classes";
 import { useHistory } from "react-router-dom";
 import { useFullEvents } from "../../api/events";
+import { MemberItem, Entry, Section, Pairing, SectionPairings } from "./types";
 
 const listMembers = /* GraphQL */ `
   query ListMembers(
@@ -70,13 +71,13 @@ export default function Admin() {
         data: {
           listMembers: { items: playersList },
         },
-      } = await API.graphql({
+      }: any = await API.graphql({
         query: listMembers,
         variables: { limit: 500 },
         authMode: "AWS_IAM",
       });
       if (playersList) {
-        setMembers(playersList.filter((m) => !m.ecfId));
+        setMembers(playersList.filter((m: any) => !m.ecfId));
       }
       setIsFetching(false);
     }
@@ -129,9 +130,10 @@ function UpdateMemberECFId({ members, setMembers }) {
   const [selectedMember, setSelectedMember] = useState({
     id: null,
     _version: null,
+    name: null,
   });
   const [ecfId, setECFId] = useState<string>("");
-  const [updatedMembers, setUpdatedMembers] = useState([]);
+  const [updatedMembers, setUpdatedMembers] = useState<MemberItem[]>([]);
   const [isUpdatingRatings, setIsUpdatingRatings] = useState(false);
   const updateECFIdForMember = async () => {
     setIsUpdatingECF(true);
@@ -158,10 +160,11 @@ function UpdateMemberECFId({ members, setMembers }) {
           ecfId,
         },
       ]);
-      setMembers([...members.filter((m) => m.id !== selectedMember.id)]);
+      setMembers([...members.filter((m: any) => m.id !== selectedMember.id)]);
       setSelectedMember({
         id: null,
         _version: null,
+        name: null,
       });
       setECFId("");
       setIsUpdatingECF(false);
@@ -241,9 +244,9 @@ function UpdateMemberECFId({ members, setMembers }) {
           </div>
         </div>
       </div>
-      {Boolean(updatedMembers.length) && (
-        <div className="grid grid-cols-1">
-          <div className="shadow rounded-lg border bg-white grid gap-2 xl:gap-4 mb-4 mt-2 px-6 py-4">
+      <div className="grid grid-cols-1">
+        <div className="shadow rounded-lg border bg-white grid gap-2 xl:gap-4 mb-4 mt-2 px-6 py-4">
+          {Boolean(updatedMembers.length) && (
             <div className="text-left overflow-auto">
               <table className="min-w-full divide-y divide-gray-300">
                 <thead>
@@ -294,40 +297,42 @@ function UpdateMemberECFId({ members, setMembers }) {
                 </tbody>
               </table>
             </div>
-            <div className="sm:flex-inline mt-2">
+          )}
+          <div className="sm:flex-inline mt-2">
+            {Boolean(updatedMembers.length) && (
               <div className="text-xs md:text-sm text-gray-500 italic">
                 Note: this information does not persist and will be wiped upon
                 page reload or refresh.
               </div>
-              <div className="text-right sm:-mt-8 mt-2">
-                {!isUpdatingRatings && (
-                  <button
-                    onClick={() => runUpdater()}
-                    type="button"
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm bg-sky-600 
+            )}
+            <div className="text-right sm:-mt-8 mt-2">
+              {!isUpdatingRatings && Boolean(updatedMembers.length) && (
+                <button
+                  onClick={() => runUpdater()}
+                  type="button"
+                  className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm bg-sky-600 
                     font-medium rounded-md text-white hover:bg-sky-500  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                  >
-                    Update Rating
-                  </button>
-                )}
-                {isUpdatingRatings && (
-                  <button
-                    type="button"
-                    disabled
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm bg-sky-700 
+                >
+                  Update Rating
+                </button>
+              )}
+              {isUpdatingRatings && (
+                <button
+                  type="button"
+                  disabled
+                  className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm bg-sky-700 
                   font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                  >
-                    <div className=" text-white align-middle mr-2 text-sm inline-flex">
-                      <i className="fal fa-spinner-third fa-spin fa-fw"></i>
-                    </div>
-                    <span>Updating...</span>
-                  </button>
-                )}
-              </div>
+                >
+                  <div className=" text-white align-middle mr-2 text-sm inline-flex">
+                    <i className="fal fa-spinner-third fa-spin fa-fw"></i>
+                  </div>
+                  <span>Updating...</span>
+                </button>
+              )}
             </div>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
@@ -346,7 +351,7 @@ function EventPreparation() {
   return (
     <div className="grid grid-cols-1">
       <div className="shadow rounded-lg border bg-white grid gap-2 xl:gap-4 mb-4 md:grid-cols-3 mt-2 px-4 py-6">
-        {!isLoading && (
+        {!isLoading && data && (
           <EventSelection
             eventData={data}
             selectedEvent={selectedEvent}
@@ -389,7 +394,7 @@ function MemberSearch({ members, selectedMember, setSelectedMember }) {
           return member?.name.toLowerCase().includes(query.toLowerCase());
         });
 
-  const handleSelectedMember = (member) => {
+  const handleSelectedMember = (member: any) => {
     setSelectedMember(member);
   };
 
@@ -404,7 +409,7 @@ function MemberSearch({ members, selectedMember, setSelectedMember }) {
           placeholder="Select member..."
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
           onChange={(event) => setQuery(event.target.value)}
-          displayValue={(member) => member?.name}
+          displayValue={(member: any) => member.name}
         />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
           <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -485,7 +490,7 @@ function EventSelection({ eventData, selectedEvent, setSelectedEvent }) {
           placeholder="Select member..."
           className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm"
           onChange={(event) => setQuery(event.target.value)}
-          displayValue={(e) => e?.name}
+          displayValue={(e: any) => e.name}
         />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
           <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -566,14 +571,14 @@ function EventSelection({ eventData, selectedEvent, setSelectedEvent }) {
   );
 }
 
-const getRating = ({
+function getRating({
   ecfRating,
   ecfRapid,
   estimatedRating,
   fideRating,
   ecfRatingPartial = false,
   ecfRapidPartial = false,
-}) => {
+}) {
   const standard = ecfRating ? parseInt(ecfRating, 10) : 0;
   const rapid = ecfRapid ? parseInt(ecfRapid, 10) : 0;
 
@@ -614,109 +619,13 @@ const getRating = ({
   }
 
   return { value: "unrated", sort: 0, key: "" };
-};
+}
 
 function convertToBroadcast(event: any, eventType: string) {
   if (isEmpty(event)) return {};
 
-  // TODO: move to DB
-  let sections =
-    eventType === "Swiss"
-      ? [
-          {
-            section: "swiss",
-            title: "Event Schedule",
-            icon: "fad fa-chess-king",
-          },
-        ]
-      : [
-          {
-            section: "one",
-            title: "Division 1",
-            icon: "fad fa-chess-king",
-          },
-          {
-            section: "two",
-            title: "Division 2",
-            icon: "fad fa-chess-queen",
-          },
-          {
-            section: "three",
-            title: "Division 3",
-            icon: "fad fa-chess-bishop",
-          },
-        ];
-
-  const entries = [
-    ...event?.entries?.items?.map((entry: object, idx: number) => {
-      const rating = getRating(entry.member);
-      return {
-        id: idx + 1,
-        memberId: entry.member.id,
-        name: entry.member.name,
-        ratingInfo: {
-          rating: rating.value,
-          ...rating,
-        },
-      };
-    }),
-  ].sort((a: any, b: any) => b.ratingInfo.sort - a.ratingInfo.sort);
-
-  console.log(entries.length);
-
-  const swissPairings = [
-    {
-      round: 1,
-      pairings: [...new Array(Math.ceil(entries.length / 2))].map((_, key) => {
-        const drawSplit = Math.ceil(entries.length / 2) + key
-        const isOdd = (key + 1) % 2 === 0;
-        return isOdd ? [drawSplit + 1, key + 1] : [key + 1, drawSplit + 1];
-      })
-    }
-  ];
-
-  const roundRobinPairings = [
-    {
-      round: 1,
-      pairings: [
-        [1, 6],
-        [2, 5],
-        [3, 4],
-      ],
-    },
-    {
-      round: 2,
-      pairings: [
-        [6, 4],
-        [5, 3],
-        [1, 2],
-      ],
-    },
-    {
-      round: 3,
-      pairings: [
-        [2, 6],
-        [3, 1],
-        [4, 5],
-      ],
-    },
-    {
-      round: 4,
-      pairings: [
-        [6, 5],
-        [1, 4],
-        [2, 3],
-      ],
-    },
-    {
-      round: 5,
-      pairings: [
-        [3, 6],
-        [4, 2],
-        [5, 1],
-      ],
-    },
-  ]
+  const sections = getSections(eventType);
+  const entries = modelEntries(event.entries);
 
   const data = {
     name: `${event.name} ${moment().format("yyyy")}`,
@@ -742,44 +651,246 @@ function convertToBroadcast(event: any, eventType: string) {
       },
       prizeGiving: "3:30pm",
     },
-    players: [
-      ...sections.map((s, key) => ({
-        section: s.section,
-        title: s.title,
-        icon: s.icon,
-        entries:
-          eventType === "Swiss"
-            ? [
-                ...entries.map((entry, seed) => ({
-                  ...entry,
-                  id: seed + 1,
-                  seed: seed + 1,
-                })),
-              ]
-            : [
-                ...entries
-                  .slice(key * 6, key * 6 + 6)
-                  .map((entry, seed) => ({
-                    ...entry,
-                    id: seed + 1,
-                    seed: seed + 1,
-                  })),
-              ],
-      })),
-    ],
-    pairings: eventType === "Swiss" ? swissPairings : roundRobinPairings,
-    results: [
-      ...sections.map((s) => ({
-        section: s.section,
-        scores: [...new Array(event.rounds)].map((_, key) => ({
-          round: key + 1,
-          pairResults: [...new Array(Math.ceil(entries.length / 2)).fill([])],
-        })),
-      })),
-    ],
+    players: getPlayers(entries, sections, eventType),
+    pairings: getPairings(entries, sections, eventType, event.rounds),
+    results: getResults(entries, sections, event.rounds),
   };
 
   return data;
+}
+
+function getSections(eventType: string): Section[] {
+  switch (eventType) {
+    case "Swiss":
+      return [
+        {
+          section: "swiss",
+          title: "Event Schedule",
+          icon: "fad fa-chess-king",
+        },
+      ];
+    case "RoundRobin":
+      return [
+        {
+          section: "open",
+          title: "Division 1",
+          icon: "fad fa-chess-king",
+        },
+        {
+          section: "major",
+          title: "Division 2",
+          icon: "fad fa-chess-queen",
+        },
+        {
+          section: "minor",
+          title: "Division 3",
+          icon: "fad fa-chess-bishop",
+        },
+      ];
+    case "Congress":
+      return [
+        {
+          section: "open",
+          title: "Open",
+          icon: "fad fa-chess-king",
+        },
+        {
+          section: "major",
+          title: "Major",
+          icon: "fad fa-chess-queen",
+        },
+        {
+          section: "intermediate",
+          title: "Intermediate",
+          icon: "fad fa-chess-rook",
+        },
+        {
+          section: "minor",
+          title: "Minor",
+          icon: "fad fa-chess-bishop",
+        },
+      ];
+    default:
+      return [
+        {
+          section: "swiss",
+          title: "Event Schedule",
+          icon: "fad fa-chess-king",
+        },
+      ];
+  }
+}
+
+function modelEntries(entries: any): Entry[] {
+  return [
+    ...entries?.items?.map((entry: any, idx: number) => {
+      const rating = getRating(entry.member);
+      return {
+        id: idx + 1,
+        section: entry.section,
+        memberId: entry.member.id,
+        name: entry.member.name,
+        ratingInfo: {
+          rating: rating.value,
+          ...rating,
+        },
+      };
+    }),
+  ].sort((a: Entry, b: Entry) => b.ratingInfo.sort - a.ratingInfo.sort);
+}
+
+function getPlayers(entries: Entry[], sections: Section[], eventType: string) {
+  function getEntryList(
+    entries: Entry[],
+    eventType: string,
+    section: string,
+    key: number
+  ) {
+    switch (eventType) {
+      case "Swiss":
+        return [
+          ...entries.map((entry, seed) => ({
+            ...entry,
+            id: seed + 1,
+            seed: seed + 1,
+          })),
+        ];
+      case "RoundRobin":
+        return [
+          ...entries.slice(key * 6, key * 6 + 6).map((entry, seed) => ({
+            ...entry,
+            id: seed + 1,
+            seed: seed + 1,
+          })),
+        ];
+      case "Congress":
+        return [
+          ...entries
+            .filter((e) => e.section === section)
+            .map((entry, seed) => ({
+              ...entry,
+              id: seed + 1,
+              seed: seed + 1,
+            })),
+        ];
+      default:
+        return [];
+    }
+  }
+
+  return [
+    ...sections.map((s, key) => {
+      const list = getEntryList(entries, eventType, s.section, key);
+      return {
+        count: list.length,
+        section: s.section,
+        title: s.title,
+        icon: s.icon,
+        entries: list,
+      };
+    }),
+  ];
+}
+
+function getPairings(
+  entries: Entry[],
+  sections: Section[],
+  eventType: string,
+  rounds: number
+): Pairing[] | SectionPairings[] | undefined {
+  console.log("Pairings", eventType);
+
+  if (eventType === "Swiss") {
+    return [
+      {
+        round: 1,
+        pairings: [...new Array(Math.ceil(entries.length / 2))].map(
+          (_, key) => {
+            const drawSplit = Math.ceil(entries.length / 2) + key;
+            const isOdd = (key + 1) % 2 === 0;
+            return isOdd ? [drawSplit + 1, key + 1] : [key + 1, drawSplit + 1];
+          }
+        ),
+      },
+    ];
+  }
+
+  if (eventType === "RoundRobin") {
+    return [
+      {
+        round: 1,
+        pairings: [
+          [1, 6],
+          [2, 5],
+          [3, 4],
+        ],
+      },
+      {
+        round: 2,
+        pairings: [
+          [6, 4],
+          [5, 3],
+          [1, 2],
+        ],
+      },
+      {
+        round: 3,
+        pairings: [
+          [2, 6],
+          [3, 1],
+          [4, 5],
+        ],
+      },
+      {
+        round: 4,
+        pairings: [
+          [6, 5],
+          [1, 4],
+          [2, 3],
+        ],
+      },
+      {
+        round: 5,
+        pairings: [
+          [3, 6],
+          [4, 2],
+          [5, 1],
+        ],
+      },
+    ];
+  }
+
+  if (eventType === "Congress") {
+    return [
+      ...sections.map((s) => {
+        const sectionEntries = entries.filter((e) => e.section === s.section);
+        return {
+          section: s.section,
+          count: sectionEntries.length,
+          sectionPairings: [...new Array(rounds)].map((_, key) => {
+              return {
+                round: key + 1,
+                pairings: [
+                  ...new Array(Math.ceil(sectionEntries.length / 2)).fill([]),
+                ],
+              };
+            }),
+        };
+      }),
+    ];
+  }
+}
+
+function getResults(entries: Entry[], sections: Section[], rounds: number) {
+  return [
+    ...sections.map((s) => ({
+      section: s.section,
+      scores: [...new Array(rounds)].map((_, key) => ({
+        round: key + 1,
+        pairResults: [...new Array(Math.ceil(entries.length / 2)).fill([])],
+      })),
+    })),
+  ];
 }
 
 function isEmpty(obj: object) {
@@ -794,6 +905,7 @@ function EventTypeToggle({ setSelectedType }) {
   const eventTypes = [
     { id: "Swiss", title: "Swiss", checked: true },
     { id: "RoundRobin", title: "Round Robin", checked: false },
+    { id: "Congress", title: "Congress", checked: false },
   ];
 
   return (
