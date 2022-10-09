@@ -1,4 +1,5 @@
-import { useHistory, Link } from "react-router-dom";
+import React, { useHistory, Link } from "react-router-dom";
+import moment from "moment";
 import { bgColor700 } from "tailwind-dynamic-classes";
 import {
   prettyDate,
@@ -32,15 +33,16 @@ export function GridCard({ event }) {
         )}
       ></div>
       <header>
-        <h3 className="text-xl font-bold mb-1">{event.name}</h3>
+        <h3 className="text-xl font-bold mb-1 text-center">{event.name}</h3>
       </header>
-      <div className="text-gray-600 flex-grow mb-5">
+      <div className="text-gray-600 flex-grow mb-5 text-center">
         <div>
           <p className="sm:inline mr-1 text-sm text-teal-700">
             <i className="fad fa-calendar-alt mr-1"></i>
             <span className="inline">
-              {prettyDate(event.startDate, event.endDate)}
-            </span>{" "}
+            { event.endDate && `${moment(event.startDate).format("ddd Do")} - ${moment(event.endDate).format("ddd Do, MMM")}`}
+            { !event.endDate && `${moment(event.startDate).format("ddd Do, MMM")}`}
+            </span>
           </p>
           {event.time && event.time !== "various" && (
             <p className="sm:inline text-sm text-teal-700">
@@ -55,7 +57,7 @@ export function GridCard({ event }) {
             </p>
           )}
         </div>
-        <p className="text-gray-900 font-thin text-base">{event.description}</p>
+        <p className="mt-2 mb-2 text-gray-900 font-thin text-sm">{event.description}</p>
       </div>
       <div
         className={

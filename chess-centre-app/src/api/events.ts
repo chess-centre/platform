@@ -73,7 +73,9 @@ export const useEvents = () => {
       authMode: "AWS_IAM",
     });
 
-    const sorted = events.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const sorted = events.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
 
     return sorted.map((event) => ({
       ...event,
@@ -153,7 +155,9 @@ export const useEventsLite = () => {
       authMode: "AWS_IAM",
     });
 
-    const sorted = events.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const sorted = events.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
 
     return sorted.map((event) => ({
       ...event,
@@ -238,22 +242,90 @@ const listEventsFull = /* GraphQL */ `
   }
 `;
 
+const getEvent = /* GraphQL */ `
+  query GetEvent(
+    $id: ID!
+    $filter: ModelEntryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    getEvent(id: $id) {
+      id
+      entryCount
+    }
+    listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        eventId
+        memberId
+        section
+        byes
+        member {
+          id
+          fideId
+          ecfId
+          name
+          ecfRatingPartial
+          ecfRating
+          ecfRapidPartial
+          ecfRapid
+          ecfMembership
+          estimatedRating
+          fideRating
+          club
+          gender
+          chessTitle
+        }
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+
 export const useFullEvents = () => {
   return useQuery("eventData", async () => {
-    const yesterday = new Date(Date.now() - 3600 * 1000 * 24);
+    const threeMonths = new Date(Date.now() - 3600 * 1000 * 24 * 90);
     const {
       data: {
         listEventsActive: { items: events },
       },
-    } = await API.graphql({
+    }: any = await API.graphql({
       query: listEventsFull,
-      variables: { active: "yes", startDate: { gt: yesterday } },
+      variables: { active: "yes", startDate: { gt: threeMonths } },
       authMode: "AWS_IAM",
     });
 
     const sorted = events
       .filter((e: any) => !!e.type.canRegister)
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      .sort(
+        (a: any, b: any) =>
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
+
+    for (let i = 0; i < sorted.length; i++) {
+      if (sorted[i].entryCount > 99) {
+        let list: any[] = [];
+        const {
+          data: { listEntrys: entries },
+        }: any = await queryLargeEntryList({ id: sorted[i].id, nextToken: null });
+
+        if (entries) {
+          list = [...entries.items];
+        }
+
+        if (entries.nextToken) {
+          const {
+            data: { listEntrys: moreEntries },
+          }: any = await queryLargeEntryList({
+            id: sorted[i].id,
+            nextToken: entries.nextToken,
+          });
+          list = [...list, ...moreEntries.items];
+        }
+        sorted[i].entries.items = list;
+      }
+    }
 
     return sorted.map((event) => ({
       ...event,
@@ -264,3 +336,11 @@ export const useFullEvents = () => {
     }));
   });
 };
+
+async function queryLargeEntryList({ id, nextToken }) {
+  return await API.graphql({
+    query: getEvent,
+    variables: { id, filter: { eventId: { eq: id } }, limit: 250, nextToken },
+    authMode: "AWS_IAM",
+  });
+}
