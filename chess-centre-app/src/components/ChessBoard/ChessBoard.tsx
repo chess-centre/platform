@@ -24,7 +24,7 @@ function PGNViewer(props) {
     });
   });
 
-  return <div id={id}></div>;
+  return <div className="mx-auto" id={id}></div>;
 }
 
 export default PGNViewer;

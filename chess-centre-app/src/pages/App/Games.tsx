@@ -156,7 +156,7 @@ export default function GamesView() {
   const { isLoading, error, data } = useMember();
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [isErrorGame, setIsErrorGame] = useState(false);
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState<any[]>([]);
   const [currentUser, setCurrentUser] = useState(true);
   const [currentUserInfo, setCurrentUserInfo] = useState({});
   const [playerId, setPlayerId] = useState(memberId);
@@ -178,7 +178,7 @@ export default function GamesView() {
       data: {
         listGamesByWhiteMember: { items },
       },
-    } = await API.graphql({
+    }: any = await API.graphql({
       query: listGamesByWhiteMember,
       variables: { whiteMemberId: id },
       authMode: "AWS_IAM",
@@ -195,7 +195,7 @@ export default function GamesView() {
       data: {
         listGamesByBlackMember: { items },
       },
-    } = await API.graphql({
+    }: any = await API.graphql({
       query: listGamesByBlackMember,
       variables: { blackMemberId: id },
       authMode: "AWS_IAM",
@@ -402,7 +402,9 @@ export default function GamesView() {
         </section>
         <AddMyProfileImageModal
           open={isOpenModal}
-          {...{ ...currentUserInfo, closeModal, setAvatar }}
+          currentUserInfo={currentUserInfo}
+          closeModal={closeModal}
+          setAvatar={setAvatar}
         />
       </div>
     </div>
