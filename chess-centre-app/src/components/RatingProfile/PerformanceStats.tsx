@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DefaultAvatar from "../../assets/img/default-avatar.png";
 
 const initialState = {
@@ -42,7 +42,7 @@ export default function PerformanceStats({
           />
         ) : (
           <img
-            className="w-32 h-32 flex-shrink-0 mx-auto rounded-md hover:opacity-70 cursor-pointer"
+            className="w-32 h-32 flex-shrink-0 mx-auto rounded-md cursor-pointer"
             src={DefaultAvatar}
             alt=""
             onClick={openModal}
@@ -277,12 +277,11 @@ const calculatePerformanceRating = (id, games, type) => {
 };
 
 const FormTimeLine = ({ form }) => {
-  const Result = ({ r, key }) => {
+  const Result = ({ r }) => {
     switch (r) {
       case 1:
         return (
           <div
-            key={key}
             className="bg-green-600 hover:bg-green-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5"
           >
             W
@@ -291,7 +290,6 @@ const FormTimeLine = ({ form }) => {
       case 0:
         return (
           <div
-            key={key}
             className=" bg-red-600 hover:bg-red-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5"
           >
             L
@@ -300,7 +298,6 @@ const FormTimeLine = ({ form }) => {
       case 0.5:
         return (
           <div
-            key={key}
             className=" bg-yellow-600 hover:bg-yellow-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5"
           >
             D
@@ -309,7 +306,6 @@ const FormTimeLine = ({ form }) => {
       default:
         return (
           <div
-            key={key}
             className=" bg-gray-400 text-gray-200 text-sx text-center rounded-sm cursor-default w-3.5 py-0.5"
           >
             -
@@ -320,9 +316,7 @@ const FormTimeLine = ({ form }) => {
 
   return (
     <div className="flex gap-1 my-2">
-      {form.map((r, key) => (
-        <Result r={r} key={key} />
-      ))}
+      {form.map((r, index) => <Result r={r} key={index} />)}
     </div>
   );
 };

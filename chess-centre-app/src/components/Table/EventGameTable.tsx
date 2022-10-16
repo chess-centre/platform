@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import Table from "./index";
@@ -13,9 +13,8 @@ export default function EventGameTable({ games, memberId }) {
   const closeModal = () => {
     setModalState(() => ({ pgn: "", open: false }));
   };
-  const showModal = (pgn, liChessUrl) => {
+  const showModal = (pgn) => {
     setModalState({
-      liChessUrl,
       pgn,
       open: true,
     });
@@ -47,7 +46,6 @@ export default function EventGameTable({ games, memberId }) {
             return (
               <ViewGameButton
                 pgn={props.cell.value}
-                liChessUrl={props.row.values.liChessUrl}
               />
             );
           } else {
@@ -138,7 +136,7 @@ export default function EventGameTable({ games, memberId }) {
     return (
       <div className="text-center">
         <button
-          onClick={() => showModal(pgn, liChessUrl)}
+          onClick={() => showModal(pgn)}
           type="button"
           className="inline-flex items-center px-2 py-1.5 border border-transparent rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
         >

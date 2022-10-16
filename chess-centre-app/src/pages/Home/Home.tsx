@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import FooterLanding from "../../components/Footer/LandingFooter";
-import { useAuthState } from "../../context/Auth";
 import LandingNav from "../../components/Navigation/LandingNav";
 import Calendar from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
@@ -9,14 +8,9 @@ import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
 import GamesSignUp from "../../components/CTA/SignUp";
 import Integrations from "../../components/Integrations";
-import FestivalCTA from "../../components/Festival/HomePageCTA";
 import EmbeddedVideo from "../../components/Video/Embedded";
-import Chesscom from "../../assets/img/chesscom.png";
-import C24 from "../../assets/img/c24.png";
-
 
 const Home = () => {
-  const { user } = useAuthState();
 
   useEffect(() => {
     document.title = "The Chess Centre | Welcome";
@@ -99,7 +93,6 @@ const Home = () => {
 
         <div className="relative pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
           <LandingNav />
-
           <main className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-18 xl:mt-24">
             <div className="text-center">
               <h2 className="-mt-5">
@@ -122,18 +115,8 @@ const Home = () => {
                   Visit our dedicated venue in Ilkley
                 </p>
               </div>
-              <div className="mt-3 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
-                <div>
-                  <a
-                    href="https://chess-results.com/tnr665788.aspx?lan=1&art=0"
-                    className="w-full flex items-center justify-center px-8 py-2 border border-transparent text-base leading-6 font-medium rounded-md border border-gray-200 text-gray-500 bg-white hover:bg-gray-100 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:text-lg md:px-12"
-                  >
-                    Festival Results
-                  </a>
-                  </div>
-              </div>
               <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
-                <div className={user ? "hidden" : "rounded-md shadow"}>
+                <div className="rounded-md shadow">
                   <Link
                     to="/register"
                     className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:text-lg md:px-12"

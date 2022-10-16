@@ -69,7 +69,7 @@ export default function EventGamesView() {
   const { eventId } = useParams();
   const [isLoadingGames, setIsLoadingGames] = useState(false);
   const [isErrorGame, setIsErrorGame] = useState(false);
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState<any[]>([]);
   const [eventName, setEventName] = useState("");
 
   useEffect(() => {
@@ -77,21 +77,45 @@ export default function EventGamesView() {
 
     const fetchGames = async (eventId) => {
       setIsLoadingGames(true);
+      
       const {
         data: {
-          listGamesByEvent: { items },
+          listGamesByEvent: { items, nextToken },
         },
-      } = await API.graphql({
+      }: any = await API.graphql({
         query: listGamesByEvent,
         variables: { eventId },
         authMode: "AWS_IAM",
       });
-      if (items) {
-        setGames(items);
+
+      const games: any[] = await moreGames(nextToken);
+
+      if (items && Array.isArray(items)) {
+        setGames([...items, ...games]);
         setEventName(items[0].eventName);
         setIsLoadingGames(false);
       }
     };
+
+    const moreGames = async (nextToken: any) => {
+      let token = nextToken;
+      let games: any[] = [];
+
+      while(token) {
+        const {
+          data: {
+            listGamesByEvent: { items, nextToken },
+          },
+        }: any = await API.graphql({
+          query: listGamesByEvent,
+          variables: { eventId, nextToken: token },
+          authMode: "AWS_IAM",
+        });
+        games = [...games, ...items];
+        token = nextToken;
+      }
+      return games;
+    }
 
     try {
       fetchGames(eventId);
