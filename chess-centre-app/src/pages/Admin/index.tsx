@@ -578,54 +578,49 @@ function getRating({
   fideRating,
   ecfRatingPartial = false,
   ecfRapidPartial = false,
+  isBlitz,
+  isRapid
 }) {
   const standard = ecfRating ? parseInt(ecfRating, 10) : 0;
   const rapid = ecfRapid ? parseInt(ecfRapid, 10) : 0;
-
-  if (rapid) {
+  const ratingObj = (rating: any, isPartial: boolean, key: string) => {
     return {
-      value: rapid,
-      sort: rapid,
-      isPartial: ecfRapidPartial,
-      key: "",
-    };
+      value: rating,
+      sort: rating !== "unrated" ? Number(rating) : 0,
+      isPartial,
+      key
+    }
   }
-
-  if (standard) {
-    return {
-      value: standard,
-      sort: standard,
-      isPartial: ecfRatingPartial,
-      key: "S",
-    };
+  /**
+   * Depending on the event type (blitz, rapid, standard) a provided order of precedence is used.
+   * We want to display a rating most relevant to the event type and fallback to other ratings if not available
+   */
+  if (isBlitz) {
+    if (rapid) return ratingObj(rapid, ecfRapidPartial, "");
+    if (standard) return ratingObj(standard, ecfRatingPartial, "S");
+    if (estimatedRating) return ratingObj(estimatedRating, ecfRatingPartial, "E");
+    return ratingObj("unrated", ecfRatingPartial, "");
   }
-
-  if (fideRating) {
-    return {
-      value: fideRating,
-      isPartial: false,
-      sort: Number(fideRating),
-      key: "F",
-    };
+  if (isRapid) {
+    if (rapid) return ratingObj(rapid, ecfRapidPartial, "");
+    if (standard) return ratingObj(standard, ecfRatingPartial, "S");
+    if (estimatedRating) return ratingObj(estimatedRating, ecfRatingPartial, "E");
+    return ratingObj("unrated", ecfRatingPartial, "");
+  } else {
+    // Standard Rating
+    if (standard) return ratingObj(standard, ecfRatingPartial, "");
+    if(fideRating) return ratingObj(fideRating, false, "F");
+    if (rapid) return ratingObj(rapid, ecfRapidPartial, "R");
+    if (estimatedRating) ratingObj(estimatedRating, ecfRatingPartial, "E");
+    return ratingObj("unrated", ecfRatingPartial, "");
   }
-
-  if (estimatedRating) {
-    return {
-      value: estimatedRating,
-      isPartial: ecfRatingPartial,
-      sort: Number(estimatedRating),
-      key: "E",
-    };
-  }
-
-  return { value: "unrated", sort: 0, key: "" };
 }
 
 function convertToBroadcast(event: any, eventType: string) {
   if (isEmpty(event)) return {};
 
   const sections = getSections(eventType);
-  const entries = modelEntries(event.entries);
+  const entries = modelEntries(event.entries, event.name);
 
   const data = {
     name: `${event.name} ${moment().format("yyyy")}`,
@@ -721,10 +716,12 @@ function getSections(eventType: string): Section[] {
   }
 }
 
-function modelEntries(entries: any): Entry[] {
+function modelEntries(entries: any, eventName: string): Entry[] {
   return [
     ...entries?.items?.map((entry: any, idx: number) => {
-      const rating = getRating(entry.member);
+      const isBlitz = eventName.includes("Blitz");
+      const isRapid = eventName.includes("Rapid");
+      const rating = getRating({ ...entry.member, isBlitz, isRapid });
       return {
         id: idx + 1,
         section: entry.section,
@@ -771,6 +768,8 @@ function getPlayers(entries: Entry[], sections: Section[], eventType: string) {
               ...entry,
               id: seed + 1,
               seed: seed + 1,
+              // Used for random rating anomalies where we need to distinguist between our proposed seed and the chess-results swiss manager
+              chessResulsSeed: seed + 1
             })),
         ];
       default:
