@@ -36,5 +36,5 @@ export type Pairing = {
 export type SectionPairings = {
   section: string,
   count: number,
-  pairings: Pairing[]
+  sectionPairings: Pairing[]
 }
