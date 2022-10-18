@@ -126,7 +126,8 @@
         "updateCalendarSchedule": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
           "s3Key": "amplify-builds/updateCalendarSchedule-33472b5637744861574f-build.zip"
-        }
+        },
+        "createGameRecords": {}
       }
     }
   },
