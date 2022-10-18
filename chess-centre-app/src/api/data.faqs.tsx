@@ -134,8 +134,8 @@ export const faqData = (type) =>
         <span>
           To provide the absolute best value whilst ensuring your whole
           experience is a great one we continually review our offering and
-          pricing. This means we offer special discounts to students, senior
-          citizens and family memberships. Being part of The Chess Centre is
+          pricing. This means we offer special discounts to students and senior
+          citizens. Being part of The Chess Centre is
           about being part of a wider community who supports the growth of
           Chess.
         </span>
@@ -249,8 +249,8 @@ export const faqData = (type) =>
       type: TYPE.PUBLIC,
     },
     {
-      question: `How old are "Juniors"?`,
-      Answer: () => <span>Under 16 from September { moment().format("YYYY") }.</span>,
+      question: `How old are "Juniors" / "Students"?`,
+      Answer: () => <span>Under the age of 16 from September { moment().format("YYYY") }.<br /><br /><span className="italic">Note: Junior memberships differ from a Student discount on Adult memberships.</span></span>,
       tags: [TOPIC.JUNIORS],
       type: TYPE.PUBLIC,
     },

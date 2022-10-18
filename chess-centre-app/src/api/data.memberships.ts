@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const Memberships = [
   {
     title: "Adult",
@@ -60,21 +62,27 @@ export const Memberships = [
     plan: "junior",
   },
   {
-    title: "Student / Senior",
+    title: "Senior",
     price: "£10",
-    subHeading: "We are delighted to be able to offer half-price on our membership to full-time students and senior citizens.",
-    benefits: [],
-    buttonColour: "bg-orange-600 hover:bg-orange-500",
-    pillColour: "bg-black",
+    subHeading: "We are delighted to offer half-price on our standard membership to all our senior citizens.",
+    benefits: [{
+      name: "Same benefits as a standard membership",
+      iconClasses: "fas fa-sparkles"
+    }],
+    buttonColour: "bg-gray-800 hover:bg-gray-700",
+    pillColour: "bg-orange-brand",
     plan: "student-senior",
   },
   {
-    title: "Family",
+    title: "Student",
     price: "£10",
-    subHeading: "The chess obsession spreading throughout the household? Additional family members can join for half-price.",
-    benefits: [],
-    buttonColour: "bg-orange-600 hover:bg-orange-500",
-    pillColour: "bg-black",
-    plan: "family",
+    subHeading: `Those under 16 years old before Sept ${moment().format("yyyy")} are eligible for our half-price standard membership.`,
+    benefits: [{
+      name: "Same benefits as a standard membership",
+      iconClasses: "fas fa-sparkles"
+    }],
+    buttonColour: "bg-gray-800 hover:bg-gray-700",
+    pillColour: "bg-orange-brand",
+    plan: "student-senior",
   },
 ];
