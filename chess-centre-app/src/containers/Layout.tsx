@@ -1,4 +1,4 @@
-import React, { useContext, Suspense, useEffect, useState, lazy } from "react";
+import React, { useContext, Suspense, useEffect, lazy } from "react";
 import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Navigation/AuthHeader";

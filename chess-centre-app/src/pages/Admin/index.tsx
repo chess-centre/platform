@@ -21,7 +21,6 @@ const listMembers = /* GraphQL */ `
         id
         fideId
         ecfId
-        email
         username
         name
         ecfRating
@@ -29,8 +28,7 @@ const listMembers = /* GraphQL */ `
         ecfMembership
         estimatedRating
         club
-        stripeFriendlyProductName
-        _version
+        createdAt
       }
     }
   }
@@ -77,7 +75,7 @@ export default function Admin() {
         authMode: "AWS_IAM",
       });
       if (playersList) {
-        setMembers(playersList.filter((m: any) => !m.ecfId));
+        setMembers(playersList.filter((m: any) => !m.ecfId).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()));
       }
       setIsFetching(false);
     }
@@ -416,7 +414,7 @@ function MemberSearch({ members, selectedMember, setSelectedMember }) {
         </Combobox.Button>
 
         {Boolean(filterMembers.length) && (
-          <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full hover:text-white overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
             {filterMembers.map((member) => (
               <Combobox.Option
                 key={member.id}
@@ -433,19 +431,18 @@ function MemberSearch({ members, selectedMember, setSelectedMember }) {
                     <div className="flex">
                       <span
                         className={classNames(
-                          "truncate",
-                          selected && "font-semibold"
+                          selected && "font-semibold", active ? "text-white" : "text-sky-600"
                         )}
                       >
                         {member.name}
                       </span>
                       <span
                         className={classNames(
-                          "ml-2 truncate text-gray-500",
+                          "ml-2 mt-0.5 text-gray-500 text-xs",
                           active ? "text-sky-200" : "text-gray-500"
                         )}
                       >
-                        {member.email}
+                        {moment(member.createdAt).format("ddd Do MMM yyyy")}
                       </span>
                     </div>
 
@@ -513,10 +510,7 @@ function EventSelection({ eventData, selectedEvent, setSelectedEvent }) {
                   <>
                     <div className="flex space-x-2">
                       <div
-                        className={classNames(
-                          "truncate",
-                          selected && "font-semibold"
-                        )}
+                        className={classNames(selected && "font-semibold", active ? "text-white" : "text-sky-600")}
                       >
                         {eventInfo.name}
                       </div>

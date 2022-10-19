@@ -110,7 +110,6 @@ export default function AppEvents() {
       setMemberEntrySuccessful(true);
     }
 
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eventId, data]);
 
