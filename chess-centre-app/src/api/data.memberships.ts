@@ -76,7 +76,7 @@ export const Memberships = [
   {
     title: "Student",
     price: "£10",
-    subHeading: `Those under 16 years old before Sept ${moment().format("yyyy")} are eligible for our half-price standard membership.`,
+    subHeading: `Those in full-time education are eligible for half-price on our standard membership.`,
     benefits: [{
       name: "Same benefits as a standard membership",
       iconClasses: "fas fa-sparkles"
