@@ -17,15 +17,22 @@ export default function PerformanceStats({
   avatarUrl,
   setAvatar,
 }) {
+
+  const [pgnCount, setPgnCount] = useState(0)
+
   useEffect(() => {
     if (playerInfo && playerInfo.chesscomInfo) {
       const { avatar } = JSON.parse(playerInfo.chesscomInfo);
       setAvatar(avatar);
-    } else {
-      setAvatar("");
     }
-    return () => {};
+    return () => {
+      setAvatar("")
+    };
   }, [playerInfo, setAvatar]);
+
+  useEffect(() => {
+    setPgnCount(games.filter(game => !!game.pgnStr).length || 0);
+  }, [games])
 
   function downloadPGNs(fileName: string, games: any) {
     const pgns = games
@@ -107,13 +114,14 @@ export default function PerformanceStats({
           </div>
         </div>
         <div className="mt-4 mx-1">
+          {Boolean(pgnCount) && 
           <button
             type="button"
             className="inline-flex w-full justify-center rounded-md border border-transparent bg-sky-700 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sm:text-sm"
             onClick={() => downloadPGNs(playerInfo.username, games)}
           >
-            Download All PGNs
-          </button>
+            {`Download All ${pgnCount} PGNs`}
+          </button> }
         </div>
       </div>
 
