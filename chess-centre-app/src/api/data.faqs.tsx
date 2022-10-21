@@ -249,8 +249,8 @@ export const faqData = (type) =>
       type: TYPE.PUBLIC,
     },
     {
-      question: `How old are "Juniors" / "Students"?`,
-      Answer: () => <span>Under the age of 16 from September { moment().format("YYYY") }.<br /><br /><span className="italic">Note: Junior memberships differ from a Student discount on Adult memberships.</span></span>,
+      question: `How old are "Juniors"`,
+      Answer: () => <span>Under the age of 16 from September { moment().format("YYYY") }.<br /><br /><span className="italic">Note: A Junior membership differs from a Student discount on an Adult membership.</span></span>,
       tags: [TOPIC.JUNIORS],
       type: TYPE.PUBLIC,
     },

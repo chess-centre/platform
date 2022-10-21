@@ -27,6 +27,30 @@ export default function PerformanceStats({
     return () => {};
   }, [playerInfo, setAvatar]);
 
+  function downloadPGNs(fileName: string, games: any) {
+    const pgns = games
+      .filter(game => !!game.pgnStr)
+      .sort((a: any, b:any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .reduce((pre:string, cur: any) => {
+      if (cur.pgnStr) {
+        pre += cur.pgnStr.replace(/["']/g, '"') + "\r\r";
+      }
+      return pre;
+    }, "");
+    saveFile(fileName, pgns);
+  }
+
+  function saveFile(filename: string, data: string | undefined) {
+    if (!data) return;
+    const blob = new Blob([data], { type: "application/vnd.chess-pgn" });
+    const elem = window.document.createElement("a");
+    elem.href = window.URL.createObjectURL(blob);
+    elem.download = `${filename}-chess-centre-games.pgn`;
+    document.body.appendChild(elem);
+    elem.click();
+    document.body.removeChild(elem);
+  }
+
   return (
     <div className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
       <div className="flex-1 flex flex-col p-4">
@@ -82,7 +106,17 @@ export default function PerformanceStats({
             />
           </div>
         </div>
+        <div className="mt-4 mx-1">
+          <button
+            type="button"
+            className="inline-flex w-full justify-center rounded-md border border-transparent bg-sky-700 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sm:text-sm"
+            onClick={() => downloadPGNs(playerInfo.username, games)}
+          >
+            Download All PGNs
+          </button>
+        </div>
       </div>
+
       <div>
         <div className="flex divide-x divide-gray-200 bg-gray-100 h-4"></div>
       </div>
@@ -94,7 +128,6 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
   const [stats, setStats] = useState(initialState);
   const [rating, setRating] = useState(0);
   const [formArray, setFormArray] = useState([]);
-
 
   useEffect(() => {
     if (games && games.length > 0) {
@@ -120,11 +153,11 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
         form.unshift("");
       }
       setFormArray(form);
-    }
+    };
 
     if (playerInfo.gameInfo) {
       const prop = type === "standard" ? "formStatsStandard" : "formStatsRapid";
-      formStats(prop)
+      formStats(prop);
     }
   }, [games, playerInfo, type]);
 
@@ -281,33 +314,25 @@ const FormTimeLine = ({ form }) => {
     switch (r) {
       case 1:
         return (
-          <div
-            className="bg-green-600 hover:bg-green-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5"
-          >
+          <div className="bg-green-600 hover:bg-green-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5">
             W
           </div>
         );
       case 0:
         return (
-          <div
-            className=" bg-red-600 hover:bg-red-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5"
-          >
+          <div className=" bg-red-600 hover:bg-red-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5">
             L
           </div>
         );
       case 0.5:
         return (
-          <div
-            className=" bg-yellow-600 hover:bg-yellow-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5"
-          >
+          <div className=" bg-yellow-600 hover:bg-yellow-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5">
             D
           </div>
         );
       default:
         return (
-          <div
-            className=" bg-gray-400 text-gray-200 text-sx text-center rounded-sm cursor-default w-3.5 py-0.5"
-          >
+          <div className=" bg-gray-400 text-gray-200 text-sx text-center rounded-sm cursor-default w-3.5 py-0.5">
             -
           </div>
         );
@@ -316,7 +341,9 @@ const FormTimeLine = ({ form }) => {
 
   return (
     <div className="flex gap-1 my-2">
-      {form.map((r, index) => <Result r={r} key={index} />)}
+      {form.map((r, index) => (
+        <Result r={r} key={index} />
+      ))}
     </div>
   );
 };

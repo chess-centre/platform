@@ -9,15 +9,17 @@ export default function GameTable({ games, memberId }) {
   const [modalState, setModalState] = useState({
     pgn: "",
     open: false,
+    fileName: ""
   });
 
   const closeModal = () => {
-    setModalState(() => ({ pgn: "", open: false }));
+    setModalState(() => ({ pgn: "", open: false, fileName: "" }));
   };
-  const showModal = (pgn) => {
+  const showModal = (pgn, fileName) => {
     setModalState({
       pgn,
       open: true,
+      fileName
     });
   };
 
@@ -40,9 +42,15 @@ export default function GameTable({ games, memberId }) {
         accessor: "pgn",
         Cell: (props) => {
           if (props.cell.value) {
+
+            const opponent = `${props.row.values.name.split(" ").join("-").toLowerCase()}`;
+            const event = `${props.row.values.event.split(" ").join("-").toLowerCase()}`;
+            const fileName = `${event}-${opponent}`;
+
             return (
               <ViewGameButton
                 pgn={props.cell.value}
+                fileName={fileName}
               />
             );
           } else {
@@ -154,11 +162,11 @@ export default function GameTable({ games, memberId }) {
     []
   );
 
-  const ViewGameButton = ({ pgn }) => {
+  const ViewGameButton = ({ pgn, fileName }) => {
     return (
       <div className="text-center">
         <button
-          onClick={() => showModal(pgn)}
+          onClick={() => showModal(pgn, fileName)}
           type="button"
           className="inline-flex items-center px-2 py-1.5 border border-transparent rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
         >
@@ -249,7 +257,7 @@ export default function GameTable({ games, memberId }) {
           <QuickSearch tag="games" />
         </div>
       </main>
-      <GameViewerModal {...{ ...modalState, closeModal }} />
+      <GameViewerModal closeModal={closeModal} {...modalState} />
     </div>
   );
 }
