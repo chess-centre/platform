@@ -29,6 +29,10 @@ const routes = [
     component: lazy(() => import("../pages/App/Results")),
   },
   {
+    path: "/results/:resultId",
+    component: lazy(() => import("../pages/App/ResultDetails")),
+  },
+  {
     path: "/players",
     component: lazy(() => import("../pages/App/Players")),
   },

@@ -14,7 +14,7 @@ type Broadcast @model @auth(rules: [{allow: private}]) {
   dgtUrl: String
 }
 
-type Result @model @auth(rules: [{allow: private}]) @key(name: "byEvent", fields: ["eventID"]) {
+type Result @model @auth(rules: [{allow: private, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventID"]) {
   id: ID!
   pairings: AWSJSON
   results: AWSJSON

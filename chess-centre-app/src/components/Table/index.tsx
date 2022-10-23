@@ -123,7 +123,7 @@ export function SelectColumnFilter({
   // using the preFilteredRows
   const options = React.useMemo(() => {
     const options = new Set();
-    preFilteredRows.forEach((row) => {
+    preFilteredRows.forEach((row: any) => {
       options.add(row.values[id]);
     });
     return [...options.values()];
@@ -143,7 +143,7 @@ export function SelectColumnFilter({
         }}
       >
         <option value="">All</option>
-        {options.map((option, i) => (
+        {options.map((option: any, i) => (
           <option key={i} value={option}>
             {option}
           </option>
