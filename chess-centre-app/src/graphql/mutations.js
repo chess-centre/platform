@@ -122,20 +122,324 @@ export const createResult = /* GraphQL */ `
   ) {
     createResult(input: $input, condition: $condition) {
       id
-      pairings
-      results
-      players
+      resultInfo
       eventID
+      eventType
       name
       complete
-      live
-      winner
+      isLive
+      winners
       dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      event {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        isLive
+        isLiveUrl
+        isJunior
+        active
+        multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        results {
+          items {
+            id
+            resultInfo
+            eventID
+            eventType
+            name
+            complete
+            isLive
+            winners
+            dgtCloudUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        games {
+          items {
+            id
+            eventId
+            eventName
+            date
+            whiteMemberId
+            whiteName
+            whiteRating
+            blackMemberId
+            blackName
+            blackRating
+            round
+            result
+            type
+            pgn {
+              bucket
+              region
+              key
+            }
+            pgnStr
+            liChessUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          memberEntry
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            section
+            byes
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
     }
   }
 `;
@@ -146,20 +450,324 @@ export const updateResult = /* GraphQL */ `
   ) {
     updateResult(input: $input, condition: $condition) {
       id
-      pairings
-      results
-      players
+      resultInfo
       eventID
+      eventType
       name
       complete
-      live
-      winner
+      isLive
+      winners
       dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      event {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        isLive
+        isLiveUrl
+        isJunior
+        active
+        multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        results {
+          items {
+            id
+            resultInfo
+            eventID
+            eventType
+            name
+            complete
+            isLive
+            winners
+            dgtCloudUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        games {
+          items {
+            id
+            eventId
+            eventName
+            date
+            whiteMemberId
+            whiteName
+            whiteRating
+            blackMemberId
+            blackName
+            blackRating
+            round
+            result
+            type
+            pgn {
+              bucket
+              region
+              key
+            }
+            pgnStr
+            liChessUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          memberEntry
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            section
+            byes
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
     }
   }
 `;
@@ -170,20 +778,324 @@ export const deleteResult = /* GraphQL */ `
   ) {
     deleteResult(input: $input, condition: $condition) {
       id
-      pairings
-      results
-      players
+      resultInfo
       eventID
+      eventType
       name
       complete
-      live
-      winner
+      isLive
+      winners
       dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      event {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        isLive
+        isLiveUrl
+        isJunior
+        active
+        multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        results {
+          items {
+            id
+            resultInfo
+            eventID
+            eventType
+            name
+            complete
+            isLive
+            winners
+            dgtCloudUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        games {
+          items {
+            id
+            eventId
+            eventName
+            date
+            whiteMemberId
+            whiteName
+            whiteRating
+            blackMemberId
+            blackName
+            blackRating
+            round
+            result
+            type
+            pgn {
+              bucket
+              region
+              key
+            }
+            pgnStr
+            liChessUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          memberEntry
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            section
+            byes
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
     }
   }
 `;
@@ -925,20 +1837,42 @@ export const createGame = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt
@@ -1924,20 +2858,42 @@ export const updateGame = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt
@@ -2923,20 +3879,42 @@ export const deleteGame = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt
@@ -3769,14 +4747,13 @@ export const createMember = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted
@@ -4474,14 +5451,13 @@ export const updateMember = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted
@@ -5179,14 +6155,13 @@ export const deleteMember = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted
@@ -5464,20 +6439,74 @@ export const createEvent = /* GraphQL */ `
       results {
         items {
           id
-          pairings
-          results
-          players
+          resultInfo
           eventID
+          eventType
           name
           complete
-          live
-          winner
+          isLive
+          winners
           dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            isLive
+            isLiveUrl
+            isJunior
+            active
+            multipleSections
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              memberEntry
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
         }
         nextToken
         startedAt
@@ -5896,20 +6925,74 @@ export const updateEvent = /* GraphQL */ `
       results {
         items {
           id
-          pairings
-          results
-          players
+          resultInfo
           eventID
+          eventType
           name
           complete
-          live
-          winner
+          isLive
+          winners
           dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            isLive
+            isLiveUrl
+            isJunior
+            active
+            multipleSections
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              memberEntry
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
         }
         nextToken
         startedAt
@@ -6328,20 +7411,74 @@ export const deleteEvent = /* GraphQL */ `
       results {
         items {
           id
-          pairings
-          results
-          players
+          resultInfo
           eventID
+          eventType
           name
           complete
-          live
-          winner
+          isLive
+          winners
           dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            isLive
+            isLiveUrl
+            isJunior
+            active
+            multipleSections
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              memberEntry
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
         }
         nextToken
         startedAt
@@ -7112,20 +8249,42 @@ export const createEntry = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt
@@ -7755,20 +8914,42 @@ export const updateEntry = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt
@@ -8398,20 +9579,42 @@ export const deleteEntry = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt

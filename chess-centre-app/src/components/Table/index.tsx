@@ -183,6 +183,7 @@ function Table({ columns, data, searchPlaceholder = "games...", colour = "bg-tea
           "liChessUrl",
           "chesscomUrl",
           "eventId",
+          "eventID",
           "formArray",
           "bulletDiff",
           "blitzDiff",

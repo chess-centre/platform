@@ -12,20 +12,13 @@ export const listResults = /* GraphQL */ `
     listResults(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        pairings
-        results
-        players
+        resultInfo
         eventID
         name
         complete
-        live
-        winner
+        isLive
+        winners
         dgtCloudUrl
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
       }
       nextToken
       startedAt
@@ -54,17 +47,17 @@ export default function ResultView() {
         authMode: "AWS_IAM",
       });
 
-      const results: any[] = await moreResults(nextToken);
+      const responses: any[] = await moreResults(nextToken);
 
       if (items && Array.isArray(items)) {
-        setResults([...items, ...results]);
+        setResults([...items, ...responses]);
         setIsLoadingResults(false);
       }
     };
 
     const moreResults = async (nextToken: any) => {
       let token = nextToken;
-      let results: any[] = [];
+      let responses: any[] = [];
 
       while(token) {
         const {
@@ -76,10 +69,10 @@ export default function ResultView() {
           authMode: "AWS_IAM",
         });
 
-        results = [...results, ...items];
+        responses = [...responses, ...items];
         token = nextToken;
       }
-      return results;
+      return responses;
     }
 
     try {
@@ -95,7 +88,7 @@ export default function ResultView() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-chess-king text-teal-600"></i> Event Results <span className="text-sm text-gray-500">held @ The Chess Centre</span>
+        <i className="fas fa-chess-king text-teal-600"></i> Results <span className="text-sm text-gray-500"></span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
       </div>
@@ -113,7 +106,7 @@ export default function ResultView() {
                   <i className="fal fa-chess fa-6x text-teal-500"></i>
                 </span>
                 <p className="mt-2 block text-sm font-medium text-gray-600">
-                  No results for this event.
+                  No results found!
                 </p>
               </div>
             )}
@@ -137,7 +130,7 @@ export default function ResultView() {
               <i className="aninmal-pulse fal fa-exclamation-square fa-10x text-orange-400 opacity-50"></i>
             </span>
             <p className="mt-2 block text-sm font-medium text-gray-600">
-              Oops, there seems to be an issue loading your results. Try again
+              Oops, there seems to be an issue loading our latest event results. Try again
               later.
             </p>
           </div>

@@ -4,8 +4,6 @@ import Table from "./index";
 
 export default function ResultsTable({ results }) {
 
-  console.log(results)
-
   const columns = useMemo(
     () => [
       {
@@ -17,15 +15,15 @@ export default function ResultsTable({ results }) {
         accessor: "eventID",
       },
       {
-        Header: "Name",
+        Header: "Event Name",
         accessor: "name"
       },
       {
-        Header: "View",
+        Header: "Result Details",
         accessor: "view",
         Cell: (props) => (
           <Link
-            className="text-teal-600"
+            className="text-teal-600 text-center sm:text-left"
             to={`/app/results/${props.row.values.id}`}
           >
             view
@@ -35,11 +33,6 @@ export default function ResultsTable({ results }) {
     ],
     []
   );
-
-//   const data = useMemo(() => {
-//     return results.result
-// }, [results])
-
 
   return (
     <div className=" bg-gray-50 text-gray-900">

@@ -1,81 +1,18 @@
-import API from "@aws-amplify/api";
-import { Auth } from "aws-amplify";
-import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import { useStripe } from "@stripe/react-stripe-js";
-import { useToasts } from "react-toast-notifications";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import moment from "moment";
 import { useResults } from "../../context/ResultContext";
-import EntriesTable from "../../components/EntriesTable/AppTable";
-import RoundTimes from "../../components/RoundTimes/AppRounds";
-import { classNames } from "../../utils/Classes";
-import {
-  EventDescription,
-  TemplateData,
-} from "../../components/Templates/EventDescriptions";
-import AppTravel from "../../components/Travel/AppTravel";
 import Brumdcrumbs from "../../components/Breadcrumbs";
-import EventContactUsModal from "../../components/Modal/EventContactUsModal";
-import EventSectionSelectionModal from "../../components/Modal/EventSectionSelectModal";
-import { juniorSections, standardSections } from "../../api/sections";
+import ResultsContactUsModal from "../../components/Modal/ResultsContactUsModal"
 import Chesscom from "../../assets/img/chesscom.png";
 import C24 from "../../assets/img/c24.png";
-
-const getEvent = /* GraphQL */ `
-  query GetEvent(
-    $id: ID!
-    $filter: ModelEntryFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    getEvent(id: $id) {
-      id
-      name
-      description
-      active
-      multipleSections
-    }
-    listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        eventId
-        memberId
-        section
-        byes
-        createdAt
-        updatedAt
-        member {
-          id
-          fideId
-          ecfId
-          name
-          ecfRatingPartial
-          ecfRating
-          ecfRapidPartial
-          ecfRapid
-          ecfMembership
-          estimatedRating
-          club
-          gender
-          membershipType
-          chessTitle
-        }
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
+import { Robin } from "../../components/Results";
 
 export default function ResultDetails() {
+  document.title = "The Chess Centre | Result Information";
+
   const { resultId } = useParams();
-  const [eventName, setEventName] = useState("");
   const { isLoading, error, data } = useResults({ resultId });
-
-  useEffect(() => {
-    document.title = "The Chess Centre | Result Information";
-  }, []);
-
 
   return (
     <div className="overscroll-none">
@@ -84,13 +21,14 @@ export default function ResultDetails() {
         <span className="text-sm text-gray-500">standings</span>
       </h1>
       <div className="pb-4 ml-2">
-        <Brumdcrumbs
-          crumbs={[
-            { name: "Event", link: "/app/events", current: false },
-            { name: "Results", link: "/app/results", current: false },
-            { name: eventName, current: true },
-          ]}
-        />
+        {!isLoading && (
+          <Brumdcrumbs
+            crumbs={[
+              { name: "Results", link: "/app/results", current: false },
+              { name: data.name, current: true },
+            ]}
+          />
+        )}
       </div>
       <div className="border-b border-gray-200"></div>
 
@@ -98,13 +36,9 @@ export default function ResultDetails() {
         <section className="sm:col-span-2 order-2 bg-white p-2 rounded-md shadow-lg">
           <div className="grid grid-cols-1">
             <div>
-              {!isLoading &&
-                !Boolean(error) && (
-                  <DetailsView
-                    data={data}
-                    isLoadingEntries={isLoading}
-                  />
-                )}
+              {!isLoading && !Boolean(error) && (
+                <DetailsView data={data} isLoadingEntries={isLoading} />
+              )}
             </div>
             <div>{isLoading && <LoadingView />}</div>
             <div>{Boolean(error) && <ErrorView />}</div>
@@ -115,81 +49,13 @@ export default function ResultDetails() {
   );
 }
 
-interface Event {
-  id: string;
-  active: string;
-  allowedToRegister: boolean;
-  cancelled: boolean;
-  complete: boolean;
-  description: string;
-  endDate: string;
-  entries: Array<any>;
-  entryCount: number;
-  full: boolean;
-  isLive: boolean;
-  maxEntries: number;
-  multipleSections: boolean;
-  name: string;
-  registered: boolean;
-  rounds: number;
-  startDate: string;
-  time: string;
-  type: {
-    canRegister: boolean;
-    color: string;
-    defaultPrice: string;
-    description: string;
-    eventType: string;
-    id: string;
-    maxEntries: number;
-    name: string;
-    stripePriceId: string;
-    time: string | null;
-    timeControl: string;
-    url: string;
-  };
-}
-
-interface Props {
-  data: Event;
-  isLoadingEntries?: Boolean;
-  entries?: any;
-}
-
-function DetailsView(props: Props) {
+function DetailsView(props: any) {
   const { data } = props;
-
   const [isModelOpen, setIsModalOpen] = useState(false);
-  const [tabs, setTabs] = useState([
-    { key: "schedule", name: "Schedule", current: true },
-    { key: "entries", name: "Entries", current: false },
-    { key: "travel", name: "Travel", current: false },
-  ]);
-  const [selected, setSelected] = useState("Schedule");
-
-  // const renderTab = (selected: string, data: Event) => {
-  //   switch (selected) {
-  //     case "Entries":
-  //       return (
-  //         <Entries
-  //           data={data}
-  //           isLoadingEntries={isLoadingEntries}
-  //           entries={entries}
-  //         />
-  //       );
-  //     case "Schedule":
-  //       return <Schedule data={data} />;
-  //     case "Travel":
-  //       return <Travel data={data} />;
-  //     default:
-  //       return <Schedule data={data} />;
-  //   }
-  // };
-
-
+  const { pairings, players, results, settings, name, date } = JSON.parse(data.resultInfo);
 
   return (
-    <div className="grid grid-cols-1 mb-10">
+    <div className="grid grid-cols-1 mb-2 sm:mb-6">
       <main className="flex-1">
         <div className="py-8 lg:py-10">
           <div className="mx-auto px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-3">
@@ -209,7 +75,7 @@ function DetailsView(props: Props) {
                         type="button"
                         onClick={() => setIsModalOpen(true)}
                         className="flex w-full sm:w-auto justify-center px-4 py-2 border border-gray-300 
-                        shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700"
+                        shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600"
                       >
                         <span>Contact Us</span>
                       </button>
@@ -217,117 +83,52 @@ function DetailsView(props: Props) {
                   </div>
                   {/* Mobile Sidebar  */}
                   <div className="lg:hidden">
-                    {/* <SummaryDetails
-                      data={data}
-                      tags={tags}
-                      organisers={organisers}
-                      arbiters={arbiters}
-                      hasBroadcast={hasBroadcast}
-                      broadcastLink={broadcastLink}
-                    /> */}
+                    <SummaryDetails
+                      data={data.event}
+                    />
                   </div>
 
                   <div className="py-3 lg:pt-8 mt-6 sm:mt-0">
-                    {/* <EventDescription
-                      template={data.type.eventType}
-                      multipleSections={data.multipleSections}
-                      isJuniorEvent={data.name.includes("Junior")}
-                    /> */}
+                    <div className="grid grid-cols-1 space-y-4">
+                      {players.map(
+                        ({ entries, section, title, icon }, index) => {
+                          const scores = results.find(
+                            (r) => r.section === section
+                          ).scores;
+                          return (
+                            <Robin
+                              key={index}
+                              title={title}
+                              pairings={pairings}
+                              entries={entries}
+                              results={scores}
+                              settings={settings}
+                              icon={icon}
+                              boards={index}
+                            />
+                          );
+                        }
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-              {/* TAB DETAILS */}
-              <section className="mt-8">
-                <div className="divide-y divide-gray-200">
-                  <div className="flow-root">
-                    {/* <Tabs
-                      tabs={tabs}
-                      setSelected={setSelected}
-                      setTabs={setTabs}
-                    /> */}
-                    {/* {renderTab(selected, data)} */}
-                  </div>
-                </div>
-              </section>
             </div>
             {/* Desktop Sidebar  */}
             <div className="hidden lg:block">
-              {/* <SummaryDetails
-                data={data}
-                tags={tags}
-                organisers={organisers}
-                arbiters={arbiters}
-                hasBroadcast={hasBroadcast}
-                broadcastLink={broadcastLink}
-              /> */}
+              <SummaryDetails
+                data={data.event}
+              />
             </div>
           </div>
         </div>
-        {/* <EventContactUsModal
+        <ResultsContactUsModal
           open={isModelOpen}
           setOpen={setIsModalOpen}
-          eventName={data.name.trim()}
-          eventStart={data.startDate.trim()}
-        /> */}
+          eventName={name}
+          eventStart={date}
+        />
       </main>
-    </div>
-  );
-}
-
-
-
-
-
-
-function Tabs(props: any) {
-  const { tabs, setSelected, setTabs } = props;
-  const handleClick = (tab: string) => updateTabs(tab);
-  const updateTabs = (tab: string) => {
-    setSelected(tab);
-    setTabs((prevState: any) =>
-      prevState.map(({ name, icon }) => ({
-        name,
-        icon,
-        current: name === tab,
-      }))
-    );
-  };
-
-  return (
-    <div>
-      <div className="block">
-        <div className="border-b border-gray-200">
-          <nav className="-mb-px flex space-x-8" aria-label="Tabs">
-            {tabs.map((tab: any) => (
-              <div
-                onClick={() => handleClick(tab.name)}
-                key={tab.name}
-                className={classNames(
-                  tab.current
-                    ? "border-teal-500 text-teal-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200",
-                  "whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm cursor-pointer"
-                )}
-                aria-current={tab.current ? "page" : undefined}
-              >
-                {tab.name}
-                {tab.count && (
-                  <span
-                    className={classNames(
-                      tab.current
-                        ? "bg-teal-100 text-teal-600"
-                        : "bg-gray-100 text-gray-900",
-                      "hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block"
-                    )}
-                  >
-                    {tab.count}
-                  </span>
-                )}
-              </div>
-            ))}
-          </nav>
-        </div>
-      </div>
     </div>
   );
 }
@@ -359,14 +160,7 @@ function ErrorView() {
   );
 }
 
-function SummaryDetails({
-  data,
-  tags,
-  organisers,
-  arbiters,
-  hasBroadcast,
-  broadcastLink,
-}) {
+function SummaryDetails({ data }) {
   return (
     <aside className="mt-8 lg:mt-0 lg:pl-8">
       <h2 className="sr-only">Details</h2>
@@ -376,25 +170,13 @@ function SummaryDetails({
             <i className="fas fa-calendar-alt text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Start</span>{" "}
+            <span className="text-teal-600">Held on</span>{" "}
             <time dateTime={data.startDate}>
               {moment(data.startDate).format("dddd, MMMM Do")}
             </time>
           </div>
         </div>
-        {data.endDate && (
-          <div className="flex items-center space-x-2">
-            <div>
-              <i className="fas fa-calendar-alt text-gray-400"></i>
-            </div>
-            <div className="text-gray-900 text-sm font-medium">
-              <span className="text-teal-600">End</span>{" "}
-              <time dateTime={data.endDate}>
-                {moment(data.endDate).format("dddd, MMMM Do")}
-              </time>
-            </div>
-          </div>
-        )}
+
         <div className="flex items-center space-x-2">
           <div>
             <i className="fas fa-flag text-gray-400"></i>
@@ -403,7 +185,6 @@ function SummaryDetails({
             <span className="text-teal-600">Rounds</span> {data.rounds}
           </div>
         </div>
-
         <div className="flex items-center space-x-2">
           <div>
             <i className="fas fa-users text-gray-400"></i>
@@ -422,109 +203,6 @@ function SummaryDetails({
             {data.timeControl ? data.timeControl : data.type.timeControl}
           </div>
         </div>
-
-        <div className="flex items-center space-x-2">
-          <div>
-            <i className="fad fa-credit-card text-gray-400"></i>
-          </div>
-          <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Entry Fee</span> £
-            {data.type.defaultPrice}
-          </div>
-        </div>
-      </div>
-      <div className="mt-6 border-t border-b lg:border-b-0 border-gray-200 py-6 space-y-8">
-        {arbiters && (
-          <div>
-            <h2 className="text-sm font-medium text-gray-500">Arbiters</h2>
-            <ul className="mt-3 space-y-3">
-              {arbiters.map(({ name }) => (
-                <li key={name} className="flex justify-start">
-                  <span className="flex items-center space-x-3">
-                    <div className="text-sm font-medium text-gray-900">
-                      {name}
-                    </div>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <div>
-          <h2 className="text-sm font-medium text-gray-500">Organisers</h2>
-          <ul className="mt-3 space-y-3">
-            {organisers.map(({ name, imgUrl }) => (
-              <li key={name} className="flex justify-start">
-                <span className="flex items-center space-x-3">
-                  <div className="flex-shrink-0">
-                    <img
-                      className="h-5 w-5 rounded-full"
-                      src={imgUrl}
-                      alt={name}
-                    />
-                  </div>
-                  <div className="text-sm font-medium text-gray-900">
-                    {name}
-                  </div>
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h2 className="text-sm font-medium text-gray-500">Tags</h2>
-          <ul className="mt-2 leading-8">
-            {Boolean(tags.length) &&
-              tags.map(({ name, color }) => (
-                <li key={name} className="inline">
-                  <span className="relative inline-flex items-center rounded-full border border-gray-300 px-3 py-0.5">
-                    <div className="absolute flex-shrink-0 flex items-center justify-center">
-                      <span
-                        className={classNames(
-                          "h-1.5 w-1.5 rounded-full",
-                          color
-                        )}
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div className="ml-3.5 text-sm font-medium text-gray-900">
-                      {name}
-                    </div>
-                  </span>{" "}
-                </li>
-              ))}
-          </ul>
-        </div>
-        {hasBroadcast && (
-          <div>
-            <h2 className="text-sm font-medium text-gray-500">Broadcasting</h2>
-            <div className="grid grid-cols-1 mt-4">
-              <div>
-                <a href="https://www.chess.com/events/2022-ilkley-chess-festival">
-                  <img className="w-24" alt="chess.com" src={Chesscom} />
-                </a>
-              </div>
-              <div className="mt-6">
-                <a href="https://chess24.com/en/watch/live-tournaments/ikley-chess-festival-2022-open#live">
-                  <img className="w-24" alt="chess24" src={C24} />
-                </a>
-              </div>
-            </div>
-            <div className="mt-8">
-              <a
-                className="inline-flex items-center 
-                rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs 
-                font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
-                href={broadcastLink}
-                rel="noreferrer"
-                target="_blank"
-              >
-                Chess-Results
-              </a>
-            </div>
-          </div>
-        )}
       </div>
     </aside>
   );

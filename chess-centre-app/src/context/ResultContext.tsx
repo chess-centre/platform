@@ -5,15 +5,47 @@ export const getResult = /* GraphQL */ `
   query GetResult($id: ID!) {
     getResult(id: $id) {
       id
-      pairings
-      results
-      players
+      resultInfo
       eventID
+      eventType
       name
       complete
-      live
-      winner
+      isLive
+      winners
       dgtCloudUrl
+      event {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        isLive
+        isLiveUrl
+        isJunior
+        active
+        multipleSections
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          memberEntry
+        }
+      }
     }
   }
 `;
