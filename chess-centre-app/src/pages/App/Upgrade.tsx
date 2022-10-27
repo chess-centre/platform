@@ -1,12 +1,10 @@
-import { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import MembershipCard from "../../components/Membership/MembershipCard";
 import { Memberships } from "../../api/data.memberships";
 
 export default function Upgrade() {
-  useEffect(() => {
-    document.title = "The Chess Centre | Membership";
-  }, []);
+  document.title = "The Chess Centre | Membership";
 
   return (
     <>

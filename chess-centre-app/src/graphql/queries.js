@@ -145,20 +145,324 @@ export const getResult = /* GraphQL */ `
   query GetResult($id: ID!) {
     getResult(id: $id) {
       id
-      pairings
-      results
-      players
+      resultInfo
       eventID
+      eventType
       name
       complete
-      live
-      winner
+      isLive
+      winners
       dgtCloudUrl
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
+      event {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        isLive
+        isLiveUrl
+        isJunior
+        active
+        multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        results {
+          items {
+            id
+            resultInfo
+            eventID
+            eventType
+            name
+            complete
+            isLive
+            winners
+            dgtCloudUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        games {
+          items {
+            id
+            eventId
+            eventName
+            date
+            whiteMemberId
+            whiteName
+            whiteRating
+            blackMemberId
+            blackName
+            blackRating
+            round
+            result
+            type
+            pgn {
+              bucket
+              region
+              key
+            }
+            pgnStr
+            liChessUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          memberEntry
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            section
+            byes
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
     }
   }
 `;
@@ -171,20 +475,124 @@ export const listResults = /* GraphQL */ `
     listResults(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        pairings
-        results
-        players
+        resultInfo
         eventID
+        eventType
         name
         complete
-        live
-        winner
+        isLive
+        winners
         dgtCloudUrl
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        event {
+          id
+          name
+          description
+          rounds
+          time
+          startDate
+          endDate
+          maxEntries
+          entryCount
+          complete
+          cancelled
+          isLive
+          isLiveUrl
+          isJunior
+          active
+          multipleSections
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          results {
+            items {
+              id
+              resultInfo
+              eventID
+              eventType
+              name
+              complete
+              isLive
+              winners
+              dgtCloudUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          games {
+            items {
+              id
+              eventId
+              eventName
+              date
+              whiteMemberId
+              whiteName
+              whiteRating
+              blackMemberId
+              blackName
+              blackRating
+              round
+              result
+              type
+              pgnStr
+              liChessUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          type {
+            id
+            name
+            description
+            url
+            color
+            time
+            maxEntries
+            stripePriceId
+            timeControl
+            eventType
+            defaultPrice
+            canRegister
+            memberEntry
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              section
+              byes
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
       }
       nextToken
       startedAt
@@ -206,20 +614,124 @@ export const syncResults = /* GraphQL */ `
     ) {
       items {
         id
-        pairings
-        results
-        players
+        resultInfo
         eventID
+        eventType
         name
         complete
-        live
-        winner
+        isLive
+        winners
         dgtCloudUrl
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        event {
+          id
+          name
+          description
+          rounds
+          time
+          startDate
+          endDate
+          maxEntries
+          entryCount
+          complete
+          cancelled
+          isLive
+          isLiveUrl
+          isJunior
+          active
+          multipleSections
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          results {
+            items {
+              id
+              resultInfo
+              eventID
+              eventType
+              name
+              complete
+              isLive
+              winners
+              dgtCloudUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          games {
+            items {
+              id
+              eventId
+              eventName
+              date
+              whiteMemberId
+              whiteName
+              whiteRating
+              blackMemberId
+              blackName
+              blackRating
+              round
+              result
+              type
+              pgnStr
+              liChessUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          type {
+            id
+            name
+            description
+            url
+            color
+            time
+            maxEntries
+            stripePriceId
+            timeControl
+            eventType
+            defaultPrice
+            canRegister
+            memberEntry
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              section
+              byes
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
       }
       nextToken
       startedAt
@@ -961,20 +1473,42 @@ export const getGame = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt
@@ -1664,14 +2198,13 @@ export const listGames = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted
@@ -2201,14 +2734,13 @@ export const listGamesByEvent = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted
@@ -2738,14 +3270,13 @@ export const listGamesByWhiteMember = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted
@@ -3275,14 +3806,13 @@ export const listGamesByBlackMember = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted
@@ -3810,14 +4340,13 @@ export const syncGames = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted
@@ -4864,14 +5393,13 @@ export const getMember = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted
@@ -5499,20 +6027,74 @@ export const getEvent = /* GraphQL */ `
       results {
         items {
           id
-          pairings
-          results
-          players
+          resultInfo
           eventID
+          eventType
           name
           complete
-          live
-          winner
+          isLive
+          winners
           dgtCloudUrl
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            isLive
+            isLiveUrl
+            isJunior
+            active
+            multipleSections
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              memberEntry
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
         }
         nextToken
         startedAt
@@ -5933,20 +6515,42 @@ export const listEvents = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt
@@ -6238,20 +6842,42 @@ export const listEventsActive = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt
@@ -6539,20 +7165,42 @@ export const syncEvents = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt
@@ -7181,20 +7829,42 @@ export const getEntry = /* GraphQL */ `
         results {
           items {
             id
-            pairings
-            results
-            players
+            resultInfo
             eventID
+            eventType
             name
             complete
-            live
-            winner
+            isLive
+            winners
             dgtCloudUrl
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
           }
           nextToken
           startedAt
@@ -7677,14 +8347,13 @@ export const listEntrys = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted
@@ -8005,14 +8674,13 @@ export const syncEntries = /* GraphQL */ `
           results {
             items {
               id
-              pairings
-              results
-              players
+              resultInfo
               eventID
+              eventType
               name
               complete
-              live
-              winner
+              isLive
+              winners
               dgtCloudUrl
               _version
               _deleted

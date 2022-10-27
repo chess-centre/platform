@@ -44,7 +44,7 @@ export const FestivalProvider = ({ children }) => {
                     data: {
                         listEventsActive: { items },
                     },
-                } = await API.graphql({
+                }: any = await API.graphql({
                     query: listEventsActive,
                     variables: {
                         active: "yes",

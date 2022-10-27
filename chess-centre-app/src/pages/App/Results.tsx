@@ -1,113 +1,141 @@
-import { useEffect } from "react";
-import Logo from "../../assets/img/logo.svg";
+import React, { useEffect, useState } from "react";
 
-function Results() {
+import API from "@aws-amplify/api";
+import EventResultTable from "../../components/Table/EventResultTable";
+
+export const listResults = /* GraphQL */ `
+  query ListResults(
+    $filter: ModelResultFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listResults(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        resultInfo
+        eventID
+        name
+        complete
+        isLive
+        winners
+        dgtCloudUrl
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+
+
+export default function ResultView() {
+  const [isLoadingResults, setIsLoadingResults] = useState(false);
+  const [isErrorResult, setIsErrorResult] = useState(false);
+  const [results, setResults] = useState<any[]>([]);
+
   useEffect(() => {
-    document.title = "The Chess Centre | Results";
+    document.title = "The Chess Centre | Event Results";
+
+    const fetchResults = async () => {
+      setIsLoadingResults(true);
+      
+      const {
+        data: {
+          listResults: { items, nextToken },
+        },
+      }: any = await API.graphql({
+        query: listResults,
+        authMode: "AWS_IAM",
+      });
+
+      const responses: any[] = await moreResults(nextToken);
+
+      if (items && Array.isArray(items)) {
+        setResults([...items, ...responses]);
+        setIsLoadingResults(false);
+      }
+    };
+
+    const moreResults = async (nextToken: any) => {
+      let token = nextToken;
+      let responses: any[] = [];
+
+      while(token) {
+        const {
+          data: {
+            listResults: { items, nextToken },
+          },
+        }: any = await API.graphql({
+          query: listResults,
+          authMode: "AWS_IAM",
+        });
+
+        responses = [...responses, ...items];
+        token = nextToken;
+      }
+      return responses;
+    }
+
+    try {
+      fetchResults();
+    } catch (error) {
+      console.log("Error", error);
+      setIsLoadingResults(false);
+      setIsErrorResult(true);
+    }
+
   }, []);
 
   return (
-    <div>
-      <div className="relative mt-10 sm:mt-20 py-3 sm:max-w-xl mx-auto">
-        <div
-          className={
-            "absolute inset-0 bg-teal-700 shadow-lg transform skew-y-0 sm:-rotate-6 rounded-lg"
-          }
-        ></div>
+    <div className="overscroll-none">
+      <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        <i className="fas fa-chess-king text-teal-600"></i> Results <span className="text-sm text-gray-500"></span>
+      </h1>
+      <div className="pb-5 border-b border-gray-200">
+      </div>
 
-        <div className="relative px-4 ml-2 mr-2 py-10 bg-white shadow-lg rounded-lg sm:p-20">
-          <div className="max-w-md mx-auto">
-            <div>
-              <img alt="Logo" src={Logo} className="h-7 sm:h-8 m-auto mb-2" />
-            </div>
-            <div className="divide-y divide-gray-200">
-              <div className="sm:py-2 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                <h1 className="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                  COMING SOON!
-                </h1>
-                <h4 className="text-center text-gray-700">Results</h4>
-                <p className="text-teal-800">
-                  <span role="img">🐻</span> with us, we're busy completely
-                  rebuilding your results view...
-                </p>
-                <ul className="list-disc space-y-2">
-                  <li className="flex items-start">
-                    <span className="h-6 flex items-center sm:h-7">
-                      <svg
-                        className="flex-shrink-0 h-5 w-5 text-teal-500"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                    <p className="ml-2">
-                      See the latest result, tables, pictures and links to ECF
-                      submitted data
-                    </p>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="h-6 flex items-center sm:h-7">
-                      <svg
-                        className="flex-shrink-0 h-5 w-5 text-teal-500"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                    <p className="ml-2">
-                      Check games of each player and see their rating
-                      performance
-                    </p>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="h-6 flex items-center sm:h-7">
-                      <svg
-                        className="flex-shrink-0 h-5 w-5 text-teal-500"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                    <p className="ml-2">
-                      Play through all DGT board broadcast games via Lichess
-                    </p>
-                  </li>
-                </ul>
+      <div className="grid grid-cols-1">
+        {!isLoadingResults && !isErrorResult && (
+          <div>
+            {results && results.length > 0 ? (
+              <div>
+                <EventResultTable results={results} />
               </div>
-              <div className="pt-4 text-base leading-6 sm:text-lg sm:leading-7 mt-3">
-                <p className="font-bold">Write code? 🐵</p>
-                <p>
-                  Checkout the source code for this site and get involved.
-                  <a
-                    href="https://github.com/chess-centre"
-                    className="text-teal-600 hover:text-teal-700"
-                  >
-                    {" "}
-                    Let's do this &rarr;{" "}
-                  </a>
+            ) : (
+              <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+                <span>
+                  <i className="fal fa-chess fa-6x text-teal-500"></i>
+                </span>
+                <p className="mt-2 block text-sm font-medium text-gray-600">
+                  No results found!
                 </p>
               </div>
-            </div>
+            )}
           </div>
-        </div>
+        )}
+
+        {isLoadingResults && (
+          <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+            <span className="animate-pulse">
+              <i className="aninmal-pulse fal fa-chess-board fa-10x text-teal-500 opacity-50"></i>
+            </span>
+            <p className="mt-2 block text-sm font-medium text-gray-600">
+              Loading results...
+            </p>
+          </div>
+        )}
+
+        {isErrorResult && (
+          <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
+            <span>
+              <i className="aninmal-pulse fal fa-exclamation-square fa-10x text-orange-400 opacity-50"></i>
+            </span>
+            <p className="mt-2 block text-sm font-medium text-gray-600">
+              Oops, there seems to be an issue loading our latest event results. Try again
+              later.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
 }
-
-export default Results;
