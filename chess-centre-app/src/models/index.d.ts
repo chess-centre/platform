@@ -47,38 +47,16 @@ export declare class Broadcast {
 
 export declare class Result {
   readonly id: string;
-  readonly pairings?: string | null;
-  readonly results?: string | null;
-  readonly players?: string | null;
-  readonly eventID?: string | null;
+  readonly resultInfo?: string | null;
+  readonly event?: Event | null;
+  readonly eventType?: string | null;
   readonly name?: string | null;
   readonly complete?: boolean | null;
-  readonly live?: boolean | null;
-  readonly winner?: string | null;
+  readonly isLive?: boolean | null;
+  readonly winners?: string | null;
   readonly dgtCloudUrl?: string | null;
   constructor(init: ModelInit<Result>);
   static copyOf(source: Result, mutator: (draft: MutableModel<Result>) => MutableModel<Result> | void): Result;
-}
-
-export declare class Game {
-  readonly id: string;
-  readonly eventName?: string | null;
-  readonly date?: string | null;
-  readonly whiteName?: string | null;
-  readonly whiteRating?: number | null;
-  readonly blackName?: string | null;
-  readonly blackRating?: number | null;
-  readonly round?: number | null;
-  readonly event?: Event | null;
-  readonly whiteMember?: Member | null;
-  readonly blackMember?: Member | null;
-  readonly result?: string | null;
-  readonly type?: string | null;
-  readonly pgn?: S3Object | null;
-  readonly pgnStr?: string | null;
-  readonly liChessUrl?: string | null;
-  constructor(init: ModelInit<Game>);
-  static copyOf(source: Game, mutator: (draft: MutableModel<Game>) => MutableModel<Game> | void): Game;
 }
 
 export declare class Event {
@@ -173,6 +151,27 @@ export declare class Member {
   readonly isJunior?: boolean | null;
   constructor(init: ModelInit<Member>);
   static copyOf(source: Member, mutator: (draft: MutableModel<Member>) => MutableModel<Member> | void): Member;
+}
+
+export declare class Game {
+  readonly id: string;
+  readonly eventName?: string | null;
+  readonly date?: string | null;
+  readonly whiteName?: string | null;
+  readonly whiteRating?: number | null;
+  readonly blackName?: string | null;
+  readonly blackRating?: number | null;
+  readonly round?: number | null;
+  readonly event?: Event | null;
+  readonly whiteMember?: Member | null;
+  readonly blackMember?: Member | null;
+  readonly result?: string | null;
+  readonly type?: string | null;
+  readonly pgn?: S3Object | null;
+  readonly pgnStr?: string | null;
+  readonly liChessUrl?: string | null;
+  constructor(init: ModelInit<Game>);
+  static copyOf(source: Game, mutator: (draft: MutableModel<Game>) => MutableModel<Game> | void): Game;
 }
 
 export declare class Plan {

@@ -14,16 +14,16 @@ type Broadcast @model @auth(rules: [{allow: private}]) {
   dgtUrl: String
 }
 
-type Result @model @auth(rules: [{allow: private}]) @key(name: "byEvent", fields: ["eventID"]) {
+type Result @model @auth(rules: [{allow: private, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventID"]) {
   id: ID!
-  pairings: AWSJSON
-  results: AWSJSON
-  players: AWSJSON
+  resultInfo: AWSJSON
   eventID: ID
+  event: Event @connection(fields: ["eventID"])
+  eventType: String
   name: String
   complete: Boolean
-  live: Boolean
-  winner: String
+  isLive: Boolean
+  winners: String
   dgtCloudUrl: String
 }
 

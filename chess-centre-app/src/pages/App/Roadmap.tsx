@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import React from "react";
 import { CentreRoadmap } from "../../components/Roadmap/CentreRoadmap";
 import { TechRoadmap } from "../../components/Roadmap/TechRoadmap";
 
 export default function AppRoadmap() {
+
+  document.title = "The Chess Centre | Roadmap";
 
   const brandColors = [
     "bg-blue-50",
@@ -106,10 +108,6 @@ export default function AppRoadmap() {
     "border-green-800",
     "border-green-900",
   ];
-
-  useEffect(() => {
-    document.title = "The Chess Centre | Roadmap";
-  }, []);
 
   return (
     <div>

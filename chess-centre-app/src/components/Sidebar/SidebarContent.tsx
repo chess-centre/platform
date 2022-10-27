@@ -54,18 +54,27 @@ function SidebarContent() {
           route.routes ? (
             <SidebarSubmenu route={route} key={route.name} />
           ) : (
-            <li className="relative px-6 py-3" key={route.name}>
+            <li
+              className="relative px-6 py-3 hover:bg-gray-100 hover:text-teal-800"
+              key={route.name}
+            >
               <NavLink
                 exact
                 to={route.path}
-                className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-teal-800 dark:hover:text-gray-200"
+                className="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150"
                 activeClassName="text-teal-500 dark:text-gray-100"
               >
-                <Route path={route.path} exact={route.exact}>
+                <Route path={route.path}>
                   <span
-                    className="absolute inset-y-0 left-0 w-2 bg-teal-600 rounded-tr-lg rounded-br-lg"
+                    className="absolute inset-y-0 left-0 w-2 bg-teal-500 rounded-tr-lg rounded-br-lg"
                     aria-hidden="true"
                   ></span>
+                  <span
+                    className="absolute right-0 inset-y-auto "
+                    aria-hidden="true"
+                  >
+                    <div className="border-solid border-r-gray-300 border-r-8 border-y-transparent border-y-8 border-l-0"></div>
+                  </span>
                 </Route>
                 <Icon
                   className="w-5 h-5"
