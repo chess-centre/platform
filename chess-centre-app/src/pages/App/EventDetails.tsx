@@ -49,6 +49,7 @@ const getEvent = /* GraphQL */ `
           fideId
           ecfId
           name
+          chessTitle
           ecfRatingPartial
           ecfRating
           ecfRapidPartial
@@ -108,7 +109,7 @@ export default function EventDetails() {
       if (response && response.data) {
         const {
           data: { getEvent: eventData, listEntrys: entries },
-        } = response;
+        }: any = response;
 
         if (entries.nextToken) {
           const additionalResponse = await API.graphql({
@@ -124,7 +125,7 @@ export default function EventDetails() {
 
           const {
             data: { listEntrys: moreEntries },
-          } = additionalResponse;
+          }: any = additionalResponse;
 
           const items = { items: [...entries.items, ...moreEntries.items] };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef } from "react";
 import { ExclamationIcon, StarIcon } from "@heroicons/react/solid";
 import { classNames } from "../../utils/Classes";
 import { juniorSections, standardSections } from "../../api/sections";
@@ -6,11 +6,12 @@ import { juniorSections, standardSections } from "../../api/sections";
 export default function EntriesTable(data: any) {
   const { eventDetails } = data;
   const [selectedSection, handleSelectionSelect] = useState("open");
-  const [showByes, setShowByes] = useState<boolean>(true);
   const isRapid =
     eventDetails?.name?.includes("Rapidplay") ||
     eventDetails?.name?.includes("IGS");
   const isBlitz = eventDetails?.name?.includes("Blitz");
+  const showTitled = useRef<boolean>(false);
+  const showByes = useRef<boolean>(false);
 
   const tableData = () => {
     /**
@@ -126,11 +127,18 @@ export default function EntriesTable(data: any) {
             id: entry.member.id,
             name: entry.member.name,
             club: entry.member.club,
+            title: entry.member?.chessTitle,
             rating,
             section: entry.section,
             byes: entry.byes,
             chessTitle: entry.member?.chessTitle,
           };
+          if(entry.byes && entry.byes !== "null") {
+            showByes.current = true;
+          }
+          if(entry.member?.chessTitle) {
+            showTitled.current = true;
+          }
           list.push(row);
         }
         return list;
@@ -145,10 +153,6 @@ export default function EntriesTable(data: any) {
     const section = isJunior ? juniorSections : standardSections;
     return section.find(({ key }) => key === selectedSection)?.description
   };
-
-  useEffect(() => {
-    setShowByes(!data.eventDetails.name.includes("Junior"))
-  }, [])
 
   return (
     <div>
@@ -173,7 +177,7 @@ export default function EntriesTable(data: any) {
               >
                 Seed
               </th>
-              {selectedSection === "open" && (
+              {showTitled.current && (
                 <th
                   scope="col"
                   className="px-0 py-2 text-center text-xs font-medium text-gray-500 uppercase"
@@ -199,7 +203,7 @@ export default function EntriesTable(data: any) {
               >
                 Rating
               </th>
-              {showByes && (
+              {showByes.current && (
                 <th
                   scope="col"
                   className="relative px-1 py-2 text-center text-xs font-medium text-gray-500 uppercase"
@@ -232,7 +236,7 @@ export default function EntriesTable(data: any) {
                     <td className="px-2 pl-2 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center">
                       {key + 1}
                     </td>
-                    {selectedSection === "open" && (
+                    {showTitled.current && (
                       <td className="px-0 py-2 whitespace-nowrap text-sm font-medium text-teal-900 text-center">
                         {chessTitle}
                       </td>
@@ -253,7 +257,7 @@ export default function EntriesTable(data: any) {
                         <span>{rating.value}</span>
                       )}
                     </td>
-                    {showByes && (
+                    {showByes.current && (
                       <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
                         {byes ? byes !== "null" && byes?.split("").join(",") : ""}
                       </td>
