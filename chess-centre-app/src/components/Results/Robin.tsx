@@ -1,13 +1,12 @@
 import React from "react";
 import { Standings, resultCheck } from "../../components/Results";
 
-const addSeeding = (players) =>
-  players.map((player, idx) => ({ ...player, seed: idx + 1 }));
+const addSeeding = (players: any) =>
+  players.map((player: any, idx: number) => ({ ...player, seed: idx + 1 }));
 
-export function Robin({ title, pairings, entries, results, settings, icon, boards }) {
+export function Robin({ title, pairings, entries, results, settings }) {
 
   const players = addSeeding(entries);
-
   const { roundByRound } = resultCheck(pairings, players, results, settings);
 
   return (

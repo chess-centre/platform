@@ -199,6 +199,27 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "ecfLMSUrl": {
+                    "name": "ecfLMSUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chess24Url": {
+                    "name": "chess24Url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chessDotComUrl": {
+                    "name": "chessDotComUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -1329,5 +1350,5 @@ export const schema = {
             }
         }
     },
-    "version": "ca2a2fa2973461ae9ddff318a1fcc6bd"
+    "version": "5d852bd39b9baa85b0c7606861bd55ef"
 };

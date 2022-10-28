@@ -25,6 +25,9 @@ type Result @model @auth(rules: [{allow: private, provider: iam, operations: [re
   isLive: Boolean
   winners: String
   dgtCloudUrl: String
+  ecfLMSUrl: String
+  chess24Url: String
+  chessDotComUrl: String
 }
 
 type S3Object {

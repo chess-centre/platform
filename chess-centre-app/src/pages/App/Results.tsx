@@ -19,6 +19,15 @@ export const listResults = /* GraphQL */ `
         isLive
         winners
         dgtCloudUrl
+        event {
+          name
+          description
+          rounds
+          time
+          startDate
+          endDate
+          entryCount
+        }
       }
       nextToken
       startedAt
@@ -91,6 +100,11 @@ export default function ResultView() {
         <i className="fas fa-chess-king text-teal-600"></i> Results <span className="text-sm text-gray-500"></span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
+        <div className="md:flex md:items-center md:justify-between">
+          <p className="text-sm text-left text-gray-500 dark:text-gray-300 mb-2">
+            Our previous events
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1">

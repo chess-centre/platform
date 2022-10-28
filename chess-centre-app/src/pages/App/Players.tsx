@@ -186,13 +186,13 @@ export default function Players() {
           player.rank = i + 1;
           return { ...player };
         });
-      setState((state) => ({ ...state, chesscomPlayers: [...filtered] }));
+      setState((state:any) => ({ ...state, chesscomPlayers: [...filtered] }));
     }
   };
 
   const ratingChange = (data, type) => {
     try {
-      const sorted = JSON.parse(data).sort((a, b) => new Date(b.date) - new Date(a.date));
+      const sorted = JSON.parse(data).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
       if (sorted && sorted.length > 1) {
         return Number(sorted[0][type] - sorted[1][type]);
       } else {
@@ -247,7 +247,7 @@ export default function Players() {
             },
           ];
         }, []);
-      setState((state) => ({ ...state, ecfPlayers: [...filtered] }));
+      setState((state: any) => ({ ...state, ecfPlayers: [...filtered] }));
     }
   };
 

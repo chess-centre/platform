@@ -13,6 +13,7 @@ export const getResult = /* GraphQL */ `
       isLive
       winners
       dgtCloudUrl
+      ecfLMSUrl
       event {
         id
         name
