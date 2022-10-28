@@ -269,7 +269,7 @@ export default function GamesView() {
   }, [data, memberId]);
 
   return (
-    <div className="overscroll-none">
+    <div className="overscroll-none mb-12">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <i className="fas fa-chess-king text-teal-600"></i> Games{" "}
         <span className="text-sm text-gray-500">by player</span>
@@ -287,7 +287,7 @@ export default function GamesView() {
       </div>
 
       <div className="mt-2 max-w-3xl mx-auto grid grid-cols-1 gap-4 md:max-w-full xl:grid-cols-3">
-        <section className="sm:col-span-2 order-2">
+        <section className="sm:col-span-2 sm:order-1 order-2">
           <div className="grid grid-cols-1">
             {!isLoading && !isLoadingGames && !error && !isErrorGame && (
               <div>
@@ -362,7 +362,7 @@ export default function GamesView() {
             )}
           </div>
         </section>
-        <section className="col-span-1 order-1 mt-5">
+        <section className="col-span-1 sm:order-2 order-1 sm:mt-5">
           {!isLoading && !isLoadingGames && !error && !isErrorGame && (
             <>
               {games && games.length > 0 ? (

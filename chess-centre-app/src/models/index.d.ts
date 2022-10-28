@@ -55,6 +55,9 @@ export declare class Result {
   readonly isLive?: boolean | null;
   readonly winners?: string | null;
   readonly dgtCloudUrl?: string | null;
+  readonly ecfLMSUrl?: string | null;
+  readonly chess24Url?: string | null;
+  readonly chessDotComUrl?: string | null;
   constructor(init: ModelInit<Result>);
   static copyOf(source: Result, mutator: (draft: MutableModel<Result>) => MutableModel<Result> | void): Result;
 }

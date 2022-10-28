@@ -4,7 +4,7 @@ import moment from "moment";
 import Table from "./index";
 import GameViewerModal from "../Modal/GameViewerModal";
 
-export default function EventGameTable({ games, memberId }) {
+export default function EventGameTable({ games }) {
   const [modalState, setModalState] = useState({
     pgn: "",
     open: false,
@@ -132,7 +132,7 @@ export default function EventGameTable({ games, memberId }) {
     []
   );
 
-  const ViewGameButton = ({ pgn, liChessUrl }) => {
+  const ViewGameButton = ({ pgn }) => {
     return (
       <div className="text-center">
         <button

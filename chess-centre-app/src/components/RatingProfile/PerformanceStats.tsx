@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import DefaultAvatar from "../../assets/img/default-avatar.png";
 
 const initialState = {
   points: 0,
@@ -8,6 +7,7 @@ const initialState = {
   ratingsAdjusted: [],
   averageRating: 0,
   performanceRating: 0,
+  unratedGames: 0,
 };
 
 export default function PerformanceStats({
@@ -17,8 +17,7 @@ export default function PerformanceStats({
   avatarUrl,
   setAvatar,
 }) {
-
-  const [pgnCount, setPgnCount] = useState(0)
+  const [pgnCount, setPgnCount] = useState(0);
 
   useEffect(() => {
     if (playerInfo && playerInfo.chesscomInfo) {
@@ -26,24 +25,27 @@ export default function PerformanceStats({
       setAvatar(avatar);
     }
     return () => {
-      setAvatar("")
+      setAvatar("");
     };
   }, [playerInfo, setAvatar]);
 
   useEffect(() => {
-    setPgnCount(games.filter(game => !!game.pgnStr).length || 0);
-  }, [games])
+    setPgnCount(games.filter((game) => !!game.pgnStr).length || 0);
+  }, [games]);
 
   function downloadPGNs(fileName: string, games: any) {
     const pgns = games
-      .filter(game => !!game.pgnStr)
-      .sort((a: any, b:any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .reduce((pre:string, cur: any) => {
-      if (cur.pgnStr) {
-        pre += cur.pgnStr.replace(/["']/g, '"') + "\r\r";
-      }
-      return pre;
-    }, "");
+      .filter((game) => !!game.pgnStr)
+      .sort(
+        (a: any, b: any) =>
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+      )
+      .reduce((pre: string, cur: any) => {
+        if (cur.pgnStr) {
+          pre += cur.pgnStr.replace(/["']/g, '"') + "\r\r";
+        }
+        return pre;
+      }, "");
     saveFile(fileName, pgns);
   }
 
@@ -59,30 +61,15 @@ export default function PerformanceStats({
   }
 
   return (
-    <div className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
-      <div className="flex-1 flex flex-col p-4">
-        <h3 className="text-gray-500 text-sm font-medium">
-          <div className="mb-2">Overview</div>
+    <div className="col-span-1 flex flex-col text-center">
+      <div className="flex-1 flex flex-col p-2">
+        <h3 className="text-gray-700 text-lg font-medium">
+          <div className="mb-3">Performance Overview</div>
         </h3>
-
-        {avatarUrl ? (
-          <img
-            className="w-32 h-32 flex-shrink-0 mx-auto rounded-md"
-            src={avatarUrl}
-            alt=""
-          />
-        ) : (
-          <img
-            className="w-32 h-32 flex-shrink-0 mx-auto rounded-md cursor-pointer"
-            src={DefaultAvatar}
-            alt=""
-            onClick={openModal}
-          />
-        )}
 
         <div className="mt-3 grid grid-cols-2 gap-4 sm:gap-4 lg:grid-cols-2">
           <div className="relative border border-gray-200 bg-white rounded-md">
-            <div className="bg-teal-600 rounded-t-md text-white uppercase font-medium text-sm py-2 mb-2">
+            <div className="bg-teal-700 rounded-t-md text-white uppercase font-medium text-sm py-2 mb-2">
               Standard
             </div>
             <div className="text-lg font-medium">
@@ -114,19 +101,20 @@ export default function PerformanceStats({
           </div>
         </div>
         <div className="mt-4 mx-1">
-          {Boolean(pgnCount) && 
-          <button
-            type="button"
-            className="inline-flex w-full justify-center rounded-md border border-transparent bg-sky-700 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sm:text-sm"
-            onClick={() => downloadPGNs(playerInfo.username, games)}
-          >
-            {`Download All ${pgnCount} PGNs`}
-          </button> }
+          {Boolean(pgnCount) && (<>
+            <button
+              type="button"
+              className="inline-flex w-full justify-center rounded-md border border-gray-200
+              bg-gray-100 px-4 py-2 text-base font-medium text-teal-700 shadow-sm hover:bg-gray-200 hover:border-gray-300
+              focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sm:text-sm"
+              onClick={() => downloadPGNs(playerInfo.username, games)}
+            >
+              <i className="far fa-cloud-download mr-2 mt-1"></i> {`Download PGNs`}
+            </button>
+            <div className="text-xs text-gray-500 mt-2">Playable games available {pgnCount}</div>
+            </>
+          )}
         </div>
-      </div>
-
-      <div>
-        <div className="flex divide-x divide-gray-200 bg-gray-100 h-4"></div>
       </div>
     </div>
   );
@@ -169,6 +157,28 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
     }
   }, [games, playerInfo, type]);
 
+  function PerformanceRating({ performance, currentRating }: { performance: number, currentRating: number }) {
+    if (performance > currentRating) {
+      return (
+        <span className="px-6 py-1 text-green-800 text-lg font-medium bg-green-100 rounded-lg">
+          {performance}
+        </span>
+      );
+    }
+    if (performance < currentRating) {
+      return (
+        <span className="px-6 py-1 text-red-800 text-lg font-medium bg-red-100 rounded-lg">
+          {performance}
+        </span>
+      );
+    }
+    return (
+      <span className="px-6 py-1 text-gray-800 text-lg font-medium bg-green-100 rounded-lg">
+        {performance}
+      </span>
+    );
+  }
+
   return (
     <dl className="mt-2 flex-grow flex flex-col justify-between text-gray-600">
       <dt className="text-sm font-medium">Games</dt>
@@ -177,17 +187,7 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
       <dd className="text-lg font-medium text-teal-600">{stats.points}</dd>
       <dt className="text-sm font-medium">Perf. Rating</dt>
       <dd className="m-3">
-        {stats &&
-        stats.performanceRating &&
-        stats.performanceRating >= rating ? (
-          <span className="px-6 py-1 text-green-800 text-lg font-medium bg-green-100 rounded-lg">
-            {stats.performanceRating}
-          </span>
-        ) : (
-          <span className="px-6 py-1 text-red-800 text-lg font-medium bg-red-100 rounded-lg">
-            {stats.performanceRating}
-          </span>
-        )}
+        <PerformanceRating performance={stats.performanceRating} currentRating={rating} />
       </dd>
       <dt className="text-sm font-medium">Av. Opp. Rating</dt>
       <dd className="m-3">
@@ -211,7 +211,7 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
   );
 };
 
-const calculatePerformanceRating = (id, games, type) => {
+const calculatePerformanceRating = (id: string, games: any, type: string) => {
   let countUnratedGames = 0;
 
   const maxOpponentRating = (rating, opponentRating) => {
@@ -309,6 +309,7 @@ const calculatePerformanceRating = (id, games, type) => {
         ratingsAdjusted: [],
         averageRating: 0,
         performanceRating: 0,
+        unratedGames: 0,
       }
     );
 

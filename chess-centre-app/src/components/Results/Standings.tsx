@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import SettingsToggle from "./SettingsToggle";
 import { Link } from "react-router-dom";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { classNames } from "../../utils/Classes";
 
 export const Standings = ({
   roundByRound,
@@ -21,16 +18,16 @@ export const Standings = ({
 
   return (
     <div>
-      <div className="bg-orange-brand font-medium text-white text-center rounded-md uppercase tracking-wider text-2xl border-slate-50 border mb-2">
+      <div className="bg-orange-brand shadow-inner shadow-orange-600 font-medium text-white text-center rounded-md uppercase tracking-wider text-2xl mb-2">
         {division}
       </div>
-      <div className="shadow-md overflow-x-auto">
-        <table className="w-full divide-y divide-slate-50 ">
+      <div className="shadow-md overflow-x-auto w-full">
+        <table className="w-full divide-y divide-slate-50">
           <thead className="bg-gray-100">
             <tr>
               <th
                 scope="col"
-                className="px-1 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
+                className="hidden sm:block px-1 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
               >
                 Pos.
               </th>
@@ -56,7 +53,7 @@ export const Standings = ({
               </th>
               <th
                 scope="col"
-                className="block sm:hidden relative px-4 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
+                className="block sm:hidden relative px-2 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
               >
                 Total
               </th>
@@ -64,6 +61,7 @@ export const Standings = ({
                 [...new Array(settings.totalRounds)].map((_, idx) => {
                   return (
                     <th
+                      key={idx}
                       scope="col"
                       className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-slate-900 uppercase tracking-wider"
                     >
@@ -81,7 +79,7 @@ export const Standings = ({
             </tr>
           </thead>
           <tbody className="">
-            {roundByRound.map((data, key) => {
+            {roundByRound.map((data, key: number) => {
               const position = key + 1;
               const isEven = key % 2 === 0;
 
@@ -89,11 +87,11 @@ export const Standings = ({
                 <tr
                   key={key}
                   className={classNames(
-                    isEven ? "bg-white" : "bg-slate-50",
-                    "hover:bg-yellow-50"
+                    isEven ? "bg-white" : "bg-slate-50", position === 1 && "border-b border-yellow-300 bg-yellow-50",
+                    "hover:bg-teal-50"
                   )}
                 >
-                  <td className="border-r border-slate-50 px-1 py-2 text-sm sm:text-md whitespace-nowrap text-center text-slate-800">
+                  <td className="hidden sm:block border-r border-slate-50 px-1 py-2 text-sm sm:text-md whitespace-nowrap text-center text-slate-800">
                     {position}
                   </td>
                   {showTitle && (
@@ -103,8 +101,11 @@ export const Standings = ({
                       </span>
                     </td>
                   )}
-                  <td className="pl-4 text-left px-4 py-2 whitespace-nowrap text-sm sm:text-md text-teal-600 hover:text-teal-700">
-                    <Link to={`/app/games/${data.memberId}`}>{data.name}</Link>
+                  <td className="pl-4 text-left px-2 py-2 whitespace-nowrap text-sm sm:text-md text-teal-600 hover:text-teal-700">
+                    <Link to={`/app/games/${data.memberId}`}>{data.name}</Link> 
+                    {
+                      position === 1 && <span className="ml-2 text-yellow-400"><i className="fal fa-trophy-alt"></i></span>
+                    }
                   </td>
 
                   <td className="border-r border-slate-50 px-1 py-2 text-sm sm:text-md whitespace-nowrap text-center text-white">
@@ -112,14 +113,14 @@ export const Standings = ({
                       {data.rating ? data.rating : "unrated"}
                     </span>
                   </td>
-                  <td className="block sm:hidden px-4 sm:px-6 py-2 whitespace-nowrap text-center sm:font-bold text-slate-800">
+                  <td className="block sm:hidden px-2 sm:px-6 py-2 whitespace-nowrap text-center sm:font-bold text-slate-800">
                     <Total value={data.total} />
                   </td>
 
                   {data.rounds &&
                     data.rounds
                       .slice(0, settings.currentRound)
-                      .map((r, idx) => {
+                      .map((r: any, idx: number) => {
                         const isLive =
                           idx + 1 === settings.currentRound &&
                           settings.roundLive;
@@ -131,8 +132,8 @@ export const Standings = ({
                           1;
 
                         return (
-                          <td className="px-4 py-2 whitespace-nowrap font-medium text-sm sm:text-lg border-r border-slate-50">
-                            <div key={idx} className="text-center">
+                          <td key={idx} className="px-4 py-2 whitespace-nowrap font-medium text-sm sm:text-md border-r border-slate-50">
+                            <div className="text-center">
                               <ResultCell
                                 idx={idx}
                                 result={r}
@@ -200,14 +201,14 @@ function ResultCell({
 }) {
   const OpponentPairing = () =>
     showPairing && (
-      <span className="absolute text-xxs -mt-1 text-slate-500 right-1">
+      <span className="absolute text-xxs -mt-1 text-slate-500 right-0 sm:right-1">
         {opponent}
       </span>
     );
 
   const PairingColor = () =>
     showColors && (
-      <span className="absolute text-xxs -mt-1 text-slate-500 left-1">
+      <span className="absolute text-xxs -mt-1 text-slate-500 left-0 sm:left-1">
         {color}
       </span>
     );

@@ -3,10 +3,19 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import { useResults } from "../../context/ResultContext";
 import Brumdcrumbs from "../../components/Breadcrumbs";
-import ResultsContactUsModal from "../../components/Modal/ResultsContactUsModal"
-import Chesscom from "../../assets/img/chesscom.png";
-import C24 from "../../assets/img/c24.png";
+import ResultsContactUsModal from "../../components/Modal/ResultsContactUsModal";
 import { Robin } from "../../components/Results";
+
+const organisers = [
+  {
+    name: "Andrew Wainwright",
+    imgUrl: "/andy.png",
+  },
+  {
+    name: "Matthew Webb",
+    imgUrl: "/matt.png",
+  },
+];
 
 export default function ResultDetails() {
   document.title = "The Chess Centre | Result Information";
@@ -52,7 +61,9 @@ export default function ResultDetails() {
 function DetailsView(props: any) {
   const { data } = props;
   const [isModelOpen, setIsModalOpen] = useState(false);
-  const { pairings, players, results, settings, name, date } = JSON.parse(data.resultInfo);
+  const { pairings, players, results, settings, name, date } = JSON.parse(
+    data.resultInfo
+  );
 
   return (
     <div className="grid grid-cols-1 mb-2 sm:mb-6">
@@ -64,10 +75,12 @@ function DetailsView(props: any) {
                 <div>
                   <div className="md:flex md:items-center md:justify-between md:space-x-4 lg:border-b lg:pb-6">
                     <div>
-                      <h1 className="text-2xl font-bold text-gray-900">
+                      <h1 className="text-2xl font-bold text-gray-900 text-center sm:text-left">
                         {data.name}
                       </h1>
-                      <p className="mt-2 text-sm text-gray-500">{}</p>
+                      <p className="mt-2 text-sm text-gray-500 text-center sm:text-left">
+                        Final standings from the event
+                      </p>
                     </div>
 
                     <div className="mt-4 sm:flex sm:space-x-3 md:mt-0 items-center mx-auto space-y-3 sm:space-y-0 text-center">
@@ -85,15 +98,16 @@ function DetailsView(props: any) {
                   <div className="lg:hidden">
                     <SummaryDetails
                       data={data.event}
+                      ecfLMSUrl={data.ecfLMSUrl}
                     />
                   </div>
 
                   <div className="py-3 lg:pt-8 mt-6 sm:mt-0">
-                    <div className="grid grid-cols-1 space-y-4">
+                    <div className="grid grid-cols-1 space-y-6">
                       {players.map(
-                        ({ entries, section, title, icon }, index) => {
+                        ({ entries, section, title }, index: number) => {
                           const scores = results.find(
-                            (r) => r.section === section
+                            (r: any) => r.section === section
                           ).scores;
                           return (
                             <Robin
@@ -103,8 +117,6 @@ function DetailsView(props: any) {
                               entries={entries}
                               results={scores}
                               settings={settings}
-                              icon={icon}
-                              boards={index}
                             />
                           );
                         }
@@ -116,9 +128,7 @@ function DetailsView(props: any) {
             </div>
             {/* Desktop Sidebar  */}
             <div className="hidden lg:block">
-              <SummaryDetails
-                data={data.event}
-              />
+              <SummaryDetails data={data.event} ecfLMSUrl={data.ecfLMSUrl} />
             </div>
           </div>
         </div>
@@ -160,11 +170,11 @@ function ErrorView() {
   );
 }
 
-function SummaryDetails({ data }) {
+function SummaryDetails({ data, ecfLMSUrl }) {
   return (
     <aside className="mt-8 lg:mt-0 lg:pl-8">
-      <h2 className="sr-only">Details</h2>
-      <div className="space-y-5">
+      <h2 className="text-sm font-medium text-gray-500">Event Summary</h2>
+      <div className="space-y-5 mt-3">
         <div className="flex items-center space-x-2">
           <div>
             <i className="fas fa-calendar-alt text-gray-400"></i>
@@ -204,6 +214,63 @@ function SummaryDetails({ data }) {
           </div>
         </div>
       </div>
+      <div className="mt-6 border-t border-gray-200 py-6 space-y-8">
+        <div>
+          <h2 className="text-sm font-medium text-gray-500">Organisers</h2>
+          <ul className="mt-3 space-y-3">
+            {organisers.map(({ name, imgUrl }) => (
+              <li key={name} className="flex justify-start">
+                <span className="flex items-center space-x-3">
+                  <div className="flex-shrink-0">
+                    <img
+                      className="h-5 w-5 rounded-full"
+                      src={imgUrl}
+                      alt={name}
+                    />
+                  </div>
+                  <div className="text-sm font-medium text-gray-900">
+                    {name}
+                  </div>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      {ecfLMSUrl && (
+        <div className="mt-6 border-t border-gray-200 py-6 space-y-8">
+          <div>
+            <h2 className="text-sm font-medium text-gray-500">References</h2>
+            <ul className="mt-3 space-y-3">
+              <li className="flex justify-start">
+              <span className="h-6 flex items-center sm:h-7 mr-1">
+                  <svg
+                    className="flex-shrink-0 h-4 w-4 text-teal-600"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+                <span className="flex items-center space-x-3">
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-teal-600 hover:text-teal-500 text-sm font-medium"
+                    href={ecfLMSUrl}
+                  >
+                    ECF Submission
+                  </a>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
     </aside>
   );
 }

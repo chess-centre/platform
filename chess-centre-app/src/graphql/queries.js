@@ -153,6 +153,9 @@ export const getResult = /* GraphQL */ `
       isLive
       winners
       dgtCloudUrl
+      ecfLMSUrl
+      chess24Url
+      chessDotComUrl
       _version
       _deleted
       _lastChangedAt
@@ -191,6 +194,9 @@ export const getResult = /* GraphQL */ `
             isLive
             winners
             dgtCloudUrl
+            ecfLMSUrl
+            chess24Url
+            chessDotComUrl
             _version
             _deleted
             _lastChangedAt
@@ -483,6 +489,9 @@ export const listResults = /* GraphQL */ `
         isLive
         winners
         dgtCloudUrl
+        ecfLMSUrl
+        chess24Url
+        chessDotComUrl
         _version
         _deleted
         _lastChangedAt
@@ -521,6 +530,9 @@ export const listResults = /* GraphQL */ `
               isLive
               winners
               dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
               _version
               _deleted
               _lastChangedAt
@@ -622,6 +634,9 @@ export const syncResults = /* GraphQL */ `
         isLive
         winners
         dgtCloudUrl
+        ecfLMSUrl
+        chess24Url
+        chessDotComUrl
         _version
         _deleted
         _lastChangedAt
@@ -660,6 +675,9 @@ export const syncResults = /* GraphQL */ `
               isLive
               winners
               dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
               _version
               _deleted
               _lastChangedAt
@@ -1481,6 +1499,9 @@ export const getGame = /* GraphQL */ `
             isLive
             winners
             dgtCloudUrl
+            ecfLMSUrl
+            chess24Url
+            chessDotComUrl
             _version
             _deleted
             _lastChangedAt
@@ -2206,6 +2227,9 @@ export const listGames = /* GraphQL */ `
               isLive
               winners
               dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
               _version
               _deleted
               _lastChangedAt
@@ -2742,6 +2766,9 @@ export const listGamesByEvent = /* GraphQL */ `
               isLive
               winners
               dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
               _version
               _deleted
               _lastChangedAt
@@ -3278,6 +3305,9 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               isLive
               winners
               dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
               _version
               _deleted
               _lastChangedAt
@@ -3814,6 +3844,9 @@ export const listGamesByBlackMember = /* GraphQL */ `
               isLive
               winners
               dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
               _version
               _deleted
               _lastChangedAt
@@ -4348,6 +4381,9 @@ export const syncGames = /* GraphQL */ `
               isLive
               winners
               dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
               _version
               _deleted
               _lastChangedAt
@@ -5401,6 +5437,9 @@ export const getMember = /* GraphQL */ `
               isLive
               winners
               dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
               _version
               _deleted
               _lastChangedAt
@@ -6035,6 +6074,9 @@ export const getEvent = /* GraphQL */ `
           isLive
           winners
           dgtCloudUrl
+          ecfLMSUrl
+          chess24Url
+          chessDotComUrl
           _version
           _deleted
           _lastChangedAt
@@ -6523,6 +6565,9 @@ export const listEvents = /* GraphQL */ `
             isLive
             winners
             dgtCloudUrl
+            ecfLMSUrl
+            chess24Url
+            chessDotComUrl
             _version
             _deleted
             _lastChangedAt
@@ -6850,6 +6895,9 @@ export const listEventsActive = /* GraphQL */ `
             isLive
             winners
             dgtCloudUrl
+            ecfLMSUrl
+            chess24Url
+            chessDotComUrl
             _version
             _deleted
             _lastChangedAt
@@ -7173,6 +7221,9 @@ export const syncEvents = /* GraphQL */ `
             isLive
             winners
             dgtCloudUrl
+            ecfLMSUrl
+            chess24Url
+            chessDotComUrl
             _version
             _deleted
             _lastChangedAt
@@ -7837,6 +7888,9 @@ export const getEntry = /* GraphQL */ `
             isLive
             winners
             dgtCloudUrl
+            ecfLMSUrl
+            chess24Url
+            chessDotComUrl
             _version
             _deleted
             _lastChangedAt
@@ -8355,6 +8409,9 @@ export const listEntrys = /* GraphQL */ `
               isLive
               winners
               dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
               _version
               _deleted
               _lastChangedAt
@@ -8682,6 +8739,9 @@ export const syncEntries = /* GraphQL */ `
               isLive
               winners
               dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
               _version
               _deleted
               _lastChangedAt

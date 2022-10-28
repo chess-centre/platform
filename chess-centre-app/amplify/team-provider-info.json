@@ -303,11 +303,11 @@
         },
         "ecfPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
-          "s3Key": "amplify-builds/ecfPlayer-63394251564b3946477a-build.zip"
+          "s3Key": "amplify-builds/ecfPlayer-6d6b70714f42326a7244-build.zip"
         },
         "ecfPlayerGames": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
-          "s3Key": "amplify-builds/ecfPlayerGames-2b6d3358726b50503963-build.zip"
+          "s3Key": "amplify-builds/ecfPlayerGames-357a6846663936764d65-build.zip"
         },
         "getMemberGames": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
@@ -323,7 +323,7 @@
         },
         "ecfHistoricRating": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
-          "s3Key": "amplify-builds/ecfHistoricRating-52453479794251765932-build.zip"
+          "s3Key": "amplify-builds/ecfHistoricRating-474b6a7338395378777a-build.zip"
         },
         "trainTravelInfo": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
@@ -335,11 +335,11 @@
         },
         "updateGameHistory": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
-          "s3Key": "amplify-builds/updateGameHistory-6a57584e745067454d44-build.zip"
+          "s3Key": "amplify-builds/updateGameHistory-6b566d70445757654338-build.zip"
         },
         "uploadLichessPgns": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
-          "s3Key": "amplify-builds/uploadLichessPgns-57614f3662487347426f-build.zip"
+          "s3Key": "amplify-builds/uploadLichessPgns-7a33535231593867376a-build.zip"
         },
         "ecfRatingScraper": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
@@ -363,19 +363,19 @@
         },
         "searchECFPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
-          "s3Key": "amplify-builds/searchECFPlayer-2f5459565a45674c2f4d-build.zip"
+          "s3Key": "amplify-builds/searchECFPlayer-41724f70582b2b4a374d-build.zip"
         },
         "memberECFUpdate": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
-          "s3Key": "amplify-builds/memberECFUpdate-39445251313037704831-build.zip"
+          "s3Key": "amplify-builds/memberECFUpdate-57656275526b4e685437-build.zip"
         },
         "memberUpdateECFId": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
-          "s3Key": "amplify-builds/memberUpdateECFId-337975354b6746394b66-build.zip"
+          "s3Key": "amplify-builds/memberUpdateECFId-6d2f6b68515665375272-build.zip"
         },
         "getEvents": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
-          "s3Key": "amplify-builds/getEvents-5774787758796f7a4473-build.zip"
+          "s3Key": "amplify-builds/getEvents-766c53434c307a5a696e-build.zip"
         },
         "ecfRatingUpdater": {
           "deploymentBucketName": "amplify-platformchesscentrea-prod-44508-deployment",
