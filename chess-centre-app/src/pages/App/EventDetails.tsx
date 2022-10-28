@@ -6,6 +6,7 @@ import { useStripe } from "@stripe/react-stripe-js";
 import { useToasts } from "react-toast-notifications";
 import moment from "moment";
 import { useEvents } from "../../context/EventsContext";
+import { isPaidMember } from "../../context/Auth";
 import EntriesTable from "../../components/EntriesTable/AppTable";
 import RoundTimes from "../../components/RoundTimes/AppRounds";
 import { classNames } from "../../utils/Classes";
@@ -17,6 +18,7 @@ import AppTravel from "../../components/Travel/AppTravel";
 import Brumdcrumbs from "../../components/Breadcrumbs";
 import EventContactUsModal from "../../components/Modal/EventContactUsModal";
 import EventSectionSelectionModal from "../../components/Modal/EventSectionSelectModal";
+import ConfirmEntryModal from "../../components/Modal/ConfirmEntryModal";
 import { juniorSections, standardSections } from "../../api/sections";
 import Chesscom from "../../assets/img/chesscom.png";
 import C24 from "../../assets/img/c24.png";
@@ -231,6 +233,7 @@ function DetailsView(props: Props) {
     broadcastLink,
   } = TemplateData[data.type.eventType];
   const [isJunior] = useState(data?.name.includes("Junior") || false);
+  const [isMember, setIsMember] = useState(false);
   const [isModelOpen, setIsModalOpen] = useState(false);
   const [tabs, setTabs] = useState([
     { key: "schedule", name: "Schedule", current: true },
@@ -267,6 +270,13 @@ function DetailsView(props: Props) {
     return show;
   };
 
+  useEffect(() => {
+    const memberCheck = async () => {
+      setIsMember(await isPaidMember(undefined));
+    };
+    memberCheck();
+  }, []);
+
   return (
     <div className="grid grid-cols-1 mb-10">
       <main className="flex-1">
@@ -290,6 +300,7 @@ function DetailsView(props: Props) {
                           showByes={data.multipleSections && !isJunior}
                           multipleSections={data.multipleSections}
                           isJunior={isJunior}
+                          isMember={isMember}
                         />
                       )}
 
@@ -673,6 +684,7 @@ interface RegisterButtonProps {
   multipleSections: boolean;
   showByes: boolean;
   isJunior: boolean;
+  isMember: boolean;
 }
 
 function RegisterButton(props: RegisterButtonProps) {
@@ -681,12 +693,17 @@ function RegisterButton(props: RegisterButtonProps) {
     multipleSections = false,
     showByes = false,
     isJunior = false,
+    isMember = false
   } = props;
   const stripe = useStripe();
   const history = useHistory();
   const { addToast } = useToasts();
   const [isLoadingSignUp, setIsLoadingSignUp] = useState(false);
   const [modelOpen, setModalOpen] = useState(false);
+  const [confirmEntryModalOpen, setConfirmEntryModalOpen] = useState<Boolean>(
+    false
+  );
+
   const handleRegister = async (
     id: string,
     section: string | undefined,
@@ -704,6 +721,14 @@ function RegisterButton(props: RegisterButtonProps) {
 
   const closeModal = () => {
     setModalOpen(false);
+  };
+
+  const openConfirmMemberEntryModal = () => {
+    setConfirmEntryModalOpen(true);
+  };
+
+  const confirmEntryModalClose = () => {
+    setConfirmEntryModalOpen(false);
   };
 
   let isRegistering = false;
@@ -767,7 +792,6 @@ function RegisterButton(props: RegisterButtonProps) {
 
   return (
     <div>
-      
       {multipleSections && (
         <button
           className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
@@ -786,10 +810,19 @@ function RegisterButton(props: RegisterButtonProps) {
         </div>
       )}
 
-      {!multipleSections && !isLoadingSignUp && (
+      {!multipleSections && !isLoadingSignUp && !isMember && (
         <button
           className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           onClick={() => handleRegister(id, undefined, undefined)}
+        >
+          Register
+        </button>
+      )}
+
+      {!multipleSections && !isLoadingSignUp && isMember && (
+        <button
+          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          onClick={() => openConfirmMemberEntryModal()}
         >
           Register
         </button>
@@ -804,6 +837,13 @@ function RegisterButton(props: RegisterButtonProps) {
         closeModal={closeModal}
         sections={sections}
         isJunior={isJunior}
+      />
+
+      <ConfirmEntryModal
+        eventId={id}
+        open={confirmEntryModalOpen}
+        cancel={confirmEntryModalClose}
+        handleRegister={handleRegister}
       />
     </div>
   );

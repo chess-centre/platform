@@ -189,6 +189,7 @@ export function EventCard(props: EventCardProps) {
                   multipleSections={multipleSections}
                   showByes={showByes}
                   isJunior={isJunior}
+                  isMember={isMember}
                 />
               ) : (
                 <>
