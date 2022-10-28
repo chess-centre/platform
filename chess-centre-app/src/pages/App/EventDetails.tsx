@@ -213,6 +213,7 @@ interface Event {
     time: string | null;
     timeControl: string;
     url: string;
+    memberEntry: boolean;
   };
 }
 
@@ -301,6 +302,7 @@ function DetailsView(props: Props) {
                           multipleSections={data.multipleSections}
                           isJunior={isJunior}
                           isMember={isMember}
+                          memberEntry={data.type.memberEntry}
                         />
                       )}
 
@@ -685,6 +687,7 @@ interface RegisterButtonProps {
   showByes: boolean;
   isJunior: boolean;
   isMember: boolean;
+  memberEntry: boolean;
 }
 
 function RegisterButton(props: RegisterButtonProps) {
@@ -693,7 +696,8 @@ function RegisterButton(props: RegisterButtonProps) {
     multipleSections = false,
     showByes = false,
     isJunior = false,
-    isMember = false
+    isMember = false,
+    memberEntry= false
   } = props;
   const stripe = useStripe();
   const history = useHistory();
@@ -810,7 +814,8 @@ function RegisterButton(props: RegisterButtonProps) {
         </div>
       )}
 
-      {!multipleSections && !isLoadingSignUp && !isMember && (
+      {/* All directly payable events */}
+      {!multipleSections && !isLoadingSignUp && (!memberEntry || !isMember) && (
         <button
           className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           onClick={() => handleRegister(id, undefined, undefined)}
@@ -819,7 +824,8 @@ function RegisterButton(props: RegisterButtonProps) {
         </button>
       )}
 
-      {!multipleSections && !isLoadingSignUp && isMember && (
+      {/* Free events for members */}
+      {!multipleSections && !isLoadingSignUp && isMember && memberEntry && (
         <button
           className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           onClick={() => openConfirmMemberEntryModal()}

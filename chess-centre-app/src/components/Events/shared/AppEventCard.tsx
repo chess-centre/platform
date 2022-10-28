@@ -116,8 +116,8 @@ export function EventCard(props: EventCardProps) {
     maxEntries,
     entryCount,
     register,
-    memberEntry,
     isMember,
+    memberEntry
   } = props;
 
   const showByes = type?.eventType?.includes("festival");
@@ -190,6 +190,7 @@ export function EventCard(props: EventCardProps) {
                   showByes={showByes}
                   isJunior={isJunior}
                   isMember={isMember}
+                  memberEntry={memberEntry}
                 />
               ) : (
                 <>

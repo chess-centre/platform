@@ -10,11 +10,12 @@ interface RegisterProps {
   showByes: boolean;
   isJunior: boolean;
   isMember: boolean;
+  memberEntry: boolean;
   register: Function;
 }
 
 export default function Register(props: RegisterProps) {
-  const { id, multipleSections, showByes, isJunior, isMember, register } = props;
+  const { id, multipleSections, showByes, isJunior, isMember, memberEntry, register } = props;
   const [isLoadingSignUp, setIsLoadingSignUp] = useState(false);
   const [modelOpen, setModalOpen] = useState(false);
   const [confirmEntryModalOpen, setConfirmEntryModalOpen] = useState<Boolean>(
@@ -72,7 +73,7 @@ export default function Register(props: RegisterProps) {
         </div>
       )}
 
-      {!isLoadingSignUp && !multipleSections && !isMember && (
+      {!isLoadingSignUp && !multipleSections && (!memberEntry || !isMember) && (
         <button
           className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium 
         rounded-md shadow-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
@@ -82,7 +83,7 @@ export default function Register(props: RegisterProps) {
         </button>
       )}
 
-      {!multipleSections && !isLoadingSignUp && isMember && (
+      {!multipleSections && !isLoadingSignUp && isMember && memberEntry && (
         <button
           className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
           onClick={() => openConfirmMemberEntryModal()}
