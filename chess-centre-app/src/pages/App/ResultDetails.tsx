@@ -238,7 +238,7 @@ function SummaryDetails({ data, ecfLMSUrl }) {
         </div>
       </div>
       {ecfLMSUrl && (
-        <div className="mt-6 border-t border-gray-200 py-6 space-y-8">
+        <div className="mt-6 border-t border-gray-200 pt-6">
           <div>
             <h2 className="text-sm font-medium text-gray-500">References</h2>
             <ul className="mt-3 space-y-3">
