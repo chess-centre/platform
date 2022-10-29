@@ -18,7 +18,7 @@ export const Standings = ({
 
   return (
     <div>
-      <div className="bg-orange-brand shadow-inner shadow-orange-600 font-medium text-white text-center rounded-md uppercase tracking-wider text-2xl mb-2">
+      <div className="bg-orange-brand py-1 shadow-orange-600 font-medium text-white text-center rounded-t-md uppercase tracking-wider text-2xl">
         {division}
       </div>
       <div className="shadow-md overflow-x-auto w-full">
@@ -72,7 +72,7 @@ export const Standings = ({
 
               <th
                 scope="col"
-                className="hidden sm:block relative px-6 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
+                className="hidden sm:block relative px-2 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
               >
                 Total
               </th>
@@ -87,7 +87,7 @@ export const Standings = ({
                 <tr
                   key={key}
                   className={classNames(
-                    isEven ? "bg-white" : "bg-slate-50", position === 1 && "border-b border-yellow-300 bg-yellow-50",
+                    isEven ? "bg-white" : "bg-slate-50", position === 1 && "border-b border-yellow-200",
                     "hover:bg-teal-50"
                   )}
                 >
@@ -149,7 +149,7 @@ export const Standings = ({
                         );
                       })}
 
-                  <td className="hidden sm:block px-4 sm:px-6 py-2 whitespace-nowrap text-center sm:font-bold text-slate-700">
+                  <td className="hidden sm:block px-2 py-2 whitespace-nowrap text-center text-sm sm:font-bold text-slate-700">
                     <Total value={data.total} />
                   </td>
                 </tr>

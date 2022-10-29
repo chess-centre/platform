@@ -98,7 +98,7 @@ export default function EventDetails() {
     const fetchEntries = async () => {
       setIsLoadingEntries(true);
 
-      const response = await API.graphql({
+      const response: any = await API.graphql({
         query: getEvent,
         variables: {
           id: eventId,
@@ -108,7 +108,7 @@ export default function EventDetails() {
         authMode: "AWS_IAM",
       });
 
-      if (response && response.data) {
+      if (response && response?.data) {
         const {
           data: { getEvent: eventData, listEntrys: entries },
         }: any = response;
@@ -235,6 +235,7 @@ function DetailsView(props: Props) {
   } = TemplateData[data.type.eventType];
   const [isJunior] = useState(data?.name.includes("Junior") || false);
   const [isMember, setIsMember] = useState(false);
+  const [user, setUser] = useState({});
   const [isModelOpen, setIsModalOpen] = useState(false);
   const [tabs, setTabs] = useState([
     { key: "schedule", name: "Schedule", current: true },
@@ -274,6 +275,7 @@ function DetailsView(props: Props) {
   useEffect(() => {
     const memberCheck = async () => {
       setIsMember(await isPaidMember(undefined));
+      setUser(await Auth.currentAuthenticatedUser());
     };
     memberCheck();
   }, []);
@@ -303,6 +305,7 @@ function DetailsView(props: Props) {
                           isJunior={isJunior}
                           isMember={isMember}
                           memberEntry={data.type.memberEntry}
+                          user={user}
                         />
                       )}
 
@@ -688,6 +691,7 @@ interface RegisterButtonProps {
   isJunior: boolean;
   isMember: boolean;
   memberEntry: boolean;
+  user: any
 }
 
 function RegisterButton(props: RegisterButtonProps) {
@@ -697,7 +701,8 @@ function RegisterButton(props: RegisterButtonProps) {
     showByes = false,
     isJunior = false,
     isMember = false,
-    memberEntry= false
+    memberEntry= false,
+    user
   } = props;
   const stripe = useStripe();
   const history = useHistory();
@@ -739,7 +744,7 @@ function RegisterButton(props: RegisterButtonProps) {
 
   const register = async (
     eventId: string,
-    confirmSection: string,
+    confirmSection: string | undefined,
     confirmByes: string
   ) => {
     if (isRegistering) return;
