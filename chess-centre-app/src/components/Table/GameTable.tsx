@@ -90,19 +90,19 @@ export default function GameTable({ games, memberId }) {
           switch (props.cell.value) {
             case "win":
               return (
-                <div className="mx-auto bg-green-600 hover:bg-green-500 text-white text-sx text-center w-7 cursor-pointer rounded-sm">
+                <div className="mx-auto bg-green-500 hover:bg-green-600 text-white text-sx text-center w-7 cursor-pointer rounded-sm">
                   W
                 </div>
               );
             case "loss":
               return (
-                <div className="mx-auto bg-red-700 hover:bg-red-600 text-white text-sx text-center w-7 cursor-pointer rounded-sm">
+                <div className="mx-auto bg-red-600 hover:bg-red-700 text-white text-sx text-center w-7 cursor-pointer rounded-sm">
                   L
                 </div>
               );
             case "draw":
               return (
-                <div className="mx-auto bg-yellow-500 hover:bg-yellow-400 text-white text-sx text-center w-7 cursor-pointer rounded-sm">
+                <div className="mx-auto bg-yellow-500 hover:bg-yellow-600 text-white text-sx text-center w-7 cursor-pointer rounded-sm">
                   D
                 </div>
               );

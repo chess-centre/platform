@@ -6,7 +6,7 @@ import LichessPlayerTable from "../../components/Table/LichessPlayerTable";
 import ChesscomPlayerTable from "../../components/Table/ChesscomPlayerTable";
 import { classNames } from "../../utils/Classes";
 
-export const listMembers = /* GraphQL */ `
+const listMembers = /* GraphQL */ `
   query ListMembers(
     $filter: ModelMemberFilterInput
     $limit: Int
@@ -40,7 +40,7 @@ export const listMembers = /* GraphQL */ `
 
 export default function Players() {
   const { user } = useAuthState();
-  const [state, setState] = useState({
+  const [state, setState] = useState<any>({
     isLoading: false,
     isError: false,
     ecfPlayers: [],

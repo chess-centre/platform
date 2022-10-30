@@ -62,7 +62,6 @@ export function useResults({ resultId }) {
       },
       authMode: "AWS_IAM",
     });
-
     return result;
   });
 }

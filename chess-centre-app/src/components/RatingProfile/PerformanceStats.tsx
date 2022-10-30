@@ -64,7 +64,7 @@ export default function PerformanceStats({
     <div className="col-span-1 flex flex-col text-center">
       <div className="flex-1 flex flex-col p-2">
         <h3 className="text-gray-700 text-lg font-medium">
-          <div className="mb-3">Performance Overview</div>
+          <div className="mb-3">Overview</div>
         </h3>
 
         <div className="mt-3 grid grid-cols-2 gap-4 sm:gap-4 lg:grid-cols-2">
@@ -323,7 +323,7 @@ const FormTimeLine = ({ form }) => {
     switch (r) {
       case 1:
         return (
-          <div className="bg-green-600 hover:bg-green-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5">
+          <div className="bg-green-500 hover:bg-green-600 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5">
             W
           </div>
         );
@@ -335,7 +335,7 @@ const FormTimeLine = ({ form }) => {
         );
       case 0.5:
         return (
-          <div className=" bg-yellow-600 hover:bg-yellow-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5">
+          <div className=" bg-yellow-500 hover:bg-yellow-600 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5">
             D
           </div>
         );
