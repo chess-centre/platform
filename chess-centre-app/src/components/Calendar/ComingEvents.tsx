@@ -20,13 +20,14 @@ function GridCalendar({
   allDeselected,
   isEndMonth,
 }) {
+
   return (
     <div>
       {!error ? (
         <div className="flex items-start">
           {/* Timeline buttons */}
           {
-            <div className="relative mr-4 sm:mr-12 lg:mr-22">
+            <div className="relative mr-4">
               <div
                 className="absolute inset-0 my-6 ml-16 pointer-events-none -z-1"
                 aria-hidden="true"
@@ -48,9 +49,9 @@ function GridCalendar({
                       ...
                     </span>
                     <span
-                      className={`block w-3.5 h-3.5 bg-gray-400 border-2 border-white rounded-full z-10 ${
-                        selected === month &&
-                        (isEven ? "bg-teal-brand " : "bg-orange-brand ")
+                      className={`block w-3.5 h-3.5 border-2 border-white rounded-full z-10 ${
+                        selected === month ?
+                        (isEven ? "bg-teal-brand " : "bg-orange-brand ") : "bg-gray-400"
                       }`}
                     ></span>
                   </button>
@@ -243,12 +244,11 @@ export default function Calendar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="pb-8 pt-6 md:py-10">
           <div className="mx-auto text-center pb-4 md:pb-8">
-            <h3 className="font-red-hat-display mb-4">
-              {" "}
+            <h3>
               <span className="text-teal-700">
                 <i className="fad fa-calendar-alt"></i>
               </span>{" "}
-              Our Calendar
+              Calendar
             </h3>
             <div className="relative grid grid-cols-4 gap-0 mb-10">
               <div></div>
@@ -289,7 +289,6 @@ export default function Calendar() {
           </div>
           {calendarView === "grid" ? (
             <GridCalendar
-              filtersSelected={selectedMenuFilter}
               selected={selectedMonth}
               isEndMonth={endMonth === selectedMonth}
               {...{
@@ -304,7 +303,6 @@ export default function Calendar() {
             />
           ) : (
             <ListCalendar
-              filtersSelected={selectedMenuFilter}
               selected={selectedMonth}
               isEndMonth={endMonth === selectedMonth}
               {...{

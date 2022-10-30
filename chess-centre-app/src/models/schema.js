@@ -244,6 +244,24 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "public",
                                 "provider": "iam",
                                 "operations": [
                                     "read"

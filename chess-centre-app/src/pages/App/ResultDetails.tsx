@@ -21,7 +21,10 @@ export default function ResultDetails() {
   document.title = "The Chess Centre | Result Information";
 
   const { resultId } = useParams();
+  console.log("resultId", resultId);
   const { isLoading, error, data } = useResults({ resultId });
+
+  console.log("DATA", data);
 
   return (
     <div className="overscroll-none">
@@ -30,7 +33,7 @@ export default function ResultDetails() {
         <span className="text-sm text-gray-500">standings</span>
       </h1>
       <div className="pb-4 ml-2">
-        {!isLoading && (
+        {!isLoading && data && (
           <Brumdcrumbs
             crumbs={[
               { name: "Results", link: "/app/results", current: false },
@@ -45,12 +48,12 @@ export default function ResultDetails() {
         <section className="sm:col-span-2 order-2 bg-white p-2 rounded-md shadow-lg">
           <div className="grid grid-cols-1">
             <div>
-              {!isLoading && !Boolean(error) && (
+              {!isLoading && !Boolean(error) && data && (
                 <DetailsView data={data} isLoadingEntries={isLoading} />
               )}
             </div>
             <div>{isLoading && <LoadingView />}</div>
-            <div>{Boolean(error) && <ErrorView />}</div>
+            <div>{(Boolean(error) || (!isLoading && !data)) && <ErrorView />}</div>
           </div>
         </section>
       </div>
@@ -160,10 +163,10 @@ function ErrorView() {
   return (
     <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
       <span>
-        <i className="aninmal-pulse fal fa-exclamation-square fa-10x text-orange-400 opacity-50"></i>
+        <i className="aninmal-pulse fal fa-exclamation-square fa-10x text-red-400 opacity-50"></i>
       </span>
       <p className="mt-2 block text-sm font-medium text-gray-600">
-        Oops, there seems to be an issue loading this event info. Try again
+        Oops, there seems to be an issue loading this result event information. Try again
         later.
       </p>
     </div>

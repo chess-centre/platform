@@ -32,10 +32,10 @@ export default function GameViewerModal({ open, closeModal, pgn, fileName }) {
                 </div>
               </div>
             </div>
-            <div className="mt-5 sm:mt-6 flex gap-4 sm:mx-8">
+            <div className="mt-5 sm:mt-6 flex gap-4 sm:mx-12">
               <button
                 type="button"
-                className="inline-flex w-full justify-center rounded-md border border-gray-200 bg-gray-100 px-4 py-2 text-base font-medium text-black shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 sm:text-sm"
+                className="inline-flex w-full justify-center rounded-md border border-gray-200 bg-gray-100 px-4 py-2 text-sm font-medium text-black shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
                 onClick={closeModal}
               >
                 Close
@@ -43,10 +43,13 @@ export default function GameViewerModal({ open, closeModal, pgn, fileName }) {
               {game && (
                 <button
                   type="button"
-                  className="inline-flex w-full justify-center rounded-md border border-transparent bg-sky-700 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-sky-800 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sm:text-sm"
+                  className="inline-flex w-full justify-center rounded-md border border-gray-200
+                  bg-teal-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teal-500 hover:border-gray-300
+                  focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
                   onClick={() => downloadPGN(fileName, game)}
                 >
-                  Download PGN
+                  <i className="far fa-cloud-download mr-2 mt-1"></i>{" "}
+                  {`Download PGN`}
                 </button>
               )}
             </div>

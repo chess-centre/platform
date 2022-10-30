@@ -1,5 +1,6 @@
 import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
+import moment from "moment";
 import Stats from "../../components/OverviewStats/Stats";
 import ChartCard from "../../components/Chart/ChartCard";
 import { Line, Bar, Doughnut } from "react-chartjs-2";
@@ -8,8 +9,8 @@ import {
   RatingProgressChart,
   ResultsDoughnut,
 } from "../../api/data.dashboard";
-import { prettyDate } from "../../utils/DateFormating";
 import { useAuthState, isPaidMember } from "../../context/Auth";
+import { Link } from "react-router-dom";
 
 export const getMember = /* GraphQL */ `
   query GetMember($id: ID!) {
@@ -54,6 +55,17 @@ export const getMember = /* GraphQL */ `
             name
             description
             rounds
+            results {
+              items {
+                id
+                resultInfo
+                eventID
+                eventType
+                name
+                complete
+                winners
+              }
+          }
             time
             startDate
             endDate
@@ -75,6 +87,7 @@ export const getMember = /* GraphQL */ `
               eventType
               canRegister
             }
+
           }
         }
       }
@@ -212,14 +225,15 @@ export default function Dashboard() {
 }
 
 function EventTable({ upcomingEvents, previousEvents }) {
+
   return (
-    <div className="grid gap-6 mb-8 mt-4 relative min-w-0 p-4 bg-white shadow rounded-lg border-gray-100">
+    <div className="grid grid-cols-1 gap-6 mb-8 mt-4 relative min-w-0 p-4 bg-white shadow rounded-lg border-gray-100">
       <div className="overflow-x-auto">
         <p className="mb-4 font-semibold text-gray-800 dark:text-gray-300">
           Events
         </p>
         <div className="overflow-x-auto">
-          {upcomingEvents.length > 0 ? (
+          {upcomingEvents.length > 0 && (
             <div>
               <p className="ml-1 mt-1 text-sm text-left text-gray-500 dark:text-gray-400">
                 Your upcoming events
@@ -256,12 +270,7 @@ function EventTable({ upcomingEvents, previousEvents }) {
                 <tbody>
                   {upcomingEvents &&
                     upcomingEvents
-                      .sort((a: any, b: any) => {
-                        return (
-                          (new Date(a.startDate) as any) -
-                          (new Date(b.startDate) as any)
-                        );
-                      })
+                      .sort((a: any, b: any) => new Date(b.event.startDate).getTime() - (new Date(a.event.startDate).getTime()))
                       .map(({ event }, key: number) => (
                         <tr
                           key={key}
@@ -275,7 +284,7 @@ function EventTable({ upcomingEvents, previousEvents }) {
                             {event.name || event.type?.name}
                           </td>
                           <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
-                            {prettyDate(event.startDate, undefined)}
+                            {moment(event.startDate).format("ddd Do, MMMM YY")}
                           </td>
                           <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                             {event.rounds || event.type?.rounds}
@@ -288,11 +297,10 @@ function EventTable({ upcomingEvents, previousEvents }) {
                 </tbody>
               </table>
             </div>
-          ) : (
-            ""
           )}
+
           <div>
-            {previousEvents.length > 0 ? (
+            {previousEvents.length > 0 && (
               <div>
                 <p className="ml-1 mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
                   Your previous events you have participated in.
@@ -330,16 +338,25 @@ function EventTable({ upcomingEvents, previousEvents }) {
                       >
                         Entries
                       </th>
+                      <th
+                        scope="col"
+                        className="px-2 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-center"
+                      >
+                        Results
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {previousEvents.length > 0 &&
                       previousEvents
-                        .sort(
-                          (a: any, b: any) => {
-                            return (new Date(a.startDate) as any) - (new Date(b.startDate) as any)
-                          })
-                        .map(({ event }, key) => (
+                        .sort((a: any, b: any) => new Date(b.event.startDate).getTime() - (new Date(a.event.startDate).getTime()))
+                        .map(({ event }, key: number) => {
+                          
+                          const hasResult = event.results?.items?.length > 0 && event.results?.items[0]?.complete === true;
+                          const resultId = hasResult ? event.results?.items[0]?.id : null;
+
+
+                          return (
                           <tr
                             key={key}
                             className={
@@ -349,10 +366,10 @@ function EventTable({ upcomingEvents, previousEvents }) {
                             }
                           >
                             <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                              {event.name || event.type?.name}
+                              {hasResult ? <Link className="text-teal-600 font-medium" to={`/app/results/${resultId}`}>{event.name || event.type?.name}</Link> : event.name || event.type?.name}
                             </td>
                             <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
-                              {prettyDate(event.startDate, undefined)}
+                              {moment(event.startDate).format("ddd Do, MMM YYYY")}
                             </td>
                             <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900">
                               {event.type.description}
@@ -363,13 +380,14 @@ function EventTable({ upcomingEvents, previousEvents }) {
                             <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-center">
                               {event.entryCount}
                             </td>
+                            <td className="px-2 py-4 whitespace-nowrap text-xs text-gray-600 text-center">
+                              {hasResult ? <Link className="text-teal-600 font-medium" to={`/app/results/${resultId}`}>View</Link> : "Not Available"}
+                            </td>
                           </tr>
-                        ))}
+                        ) })}
                   </tbody>
                 </table>
               </div>
-            ) : (
-              ""
             )}
           </div>
         </div>
