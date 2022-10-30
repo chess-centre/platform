@@ -142,7 +142,6 @@ export default function EventGamesView() {
           }
         }
       } catch (error) {
-        console.log("Caught!");
         setIsLoadingGames(false);
         setIsErrorGame(true);
       }

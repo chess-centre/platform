@@ -276,7 +276,7 @@ export default function Players() {
       case "lichess":
         return (
           <LichessPlayerTable
-            userId={user.attributes.sub}
+            userId={user?.attributes?.sub}
             players={state.lichessPlayers}
             statuses={state.lichessStatuses}
             {...{ colour }}

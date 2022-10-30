@@ -48,7 +48,7 @@ export default function GameViewerModal({ open, closeModal, pgn, fileName }) {
                   focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
                   onClick={() => downloadPGN(fileName, game)}
                 >
-                  <i className="far fa-cloud-download mr-2 mt-1"></i>{" "}
+                  <i className="hidden sm:block far fa-cloud-download mr-2 mt-1"></i>{" "}
                   {`Download PGN`}
                 </button>
               )}
