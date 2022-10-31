@@ -73,6 +73,7 @@ const getEvent = /* GraphQL */ `
             ecfRapid
             ecfMembership
             estimatedRating
+            ecfLastUpdated
             fideRating
             club
             gender
@@ -97,7 +98,7 @@ export default function Festival() {
 
     const fetchEvent = async () => {
       setIsLoading(true);
-      const response = await API.graphql({
+      const response: any = await API.graphql({
         query: getEvent,
         variables: { id, filter: { eventId: { eq: id } }, limit: 250 },
         authMode: "AWS_IAM",
@@ -108,7 +109,7 @@ export default function Festival() {
           data: {
             getEvent: eventData,
             listEntrys: entries },
-        } = response;
+        }: any = response;
 
 
         if (entries.nextToken) {
@@ -121,7 +122,7 @@ export default function Festival() {
           const {
             data: {
               listEntrys: moreEntries },
-          } = additionalResponse;
+          }: any = additionalResponse;
 
           const items = { items: [...entries.items, ...moreEntries.items] };
 

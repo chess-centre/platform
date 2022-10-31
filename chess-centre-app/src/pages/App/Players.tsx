@@ -39,7 +39,7 @@ const listMembers = /* GraphQL */ `
 `;
 
 export default function Players() {
-  const { user } = useAuthState();
+  const { user }: { user: any } = useAuthState();
   const [state, setState] = useState<any>({
     isLoading: false,
     isError: false,
@@ -308,7 +308,7 @@ export default function Players() {
         data: {
           listMembers: { items: playersList },
         },
-      } = await API.graphql({
+      }: any = await API.graphql({
         query: listMembers,
         // TODO: this filter isn't supported from some reason:
         variables: { limit: 500, filter: { ecfId: { ne: null } } },
@@ -324,7 +324,7 @@ export default function Players() {
       }
 
       if (state.selectedTab.ref === "lichess") {
-        const fetchStatuses = async () => await API.get("lichess", "/statuses", null);
+        const fetchStatuses = async () => await API.get("lichess", "/statuses", {});
         const lichessStatuses = await fetchStatuses();
         lichessPlayerData(playersList, lichessStatuses);
       }
@@ -335,7 +335,7 @@ export default function Players() {
       fetchRatedPlayers();
     } catch (error) {
       console.log("Error", error);
-      setState((state) => ({ ...state, isLoading: false, isError: true }));
+      setState((state: any) => ({ ...state, isLoading: false, isError: true }));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

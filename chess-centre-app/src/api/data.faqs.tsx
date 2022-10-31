@@ -1,21 +1,30 @@
 import React, { Link } from "react-router-dom";
 import moment from "moment";
-const TOPIC = {
-  BEGINNERS: "beginners",
-  RATING: "rating",
-  GAMES: "games",
-  MEMBERSHIP: "membership",
-  GENERAL: "general",
-  JUNIORS: "juniors",
-  COACHING: "coaching",
-  EVENTS: "events",
-};
-const TYPE = {
-  INTERNAL: "internal",
-  PUBLIC: "public",
+
+export enum Topic {
+  BEGINNERS = "beginners",
+  RATING = "rating",
+  GAMES = "games",
+  MEMBERSHIP = "membership",
+  GENERAL = "general",
+  JUNIORS = "juniors",
+  COACHING = "coaching",
+  EVENTS = "events",
 };
 
-export const faqData = (type) =>
+export enum Type {
+  INTERNAL = "internal",
+  PUBLIC = "public",
+}
+
+export type Faq = {
+  question: string,
+  tags: Topic[],
+  type: Type,
+  Answer: () => JSX.Element
+}
+
+export const faqData = (type: Type): Faq[] =>
   [
     {
       question: `Do you teach beginners?`,
@@ -39,8 +48,8 @@ export const faqData = (type) =>
           for children aged 6 to 16.
         </span>
       ),
-      tags: [TOPIC.BEGINNERS],
-      type: TYPE.PUBLIC,
+      tags: [Topic.BEGINNERS],
+      type: Type.PUBLIC,
     },
     {
       question: `Do I need a chess rating to participate in an event?`,
@@ -52,8 +61,8 @@ export const faqData = (type) =>
           you'll get a rating.
         </span>
       ),
-      tags: [TOPIC.RATING],
-      type: TYPE.PUBLIC,
+      tags: [Topic.RATING],
+      type: Type.PUBLIC,
     },
     {
       question: `Do I need to be a member to play in an event?`,
@@ -66,8 +75,8 @@ export const faqData = (type) =>
           >events</Link>
         </span>
       ),
-      tags: [TOPIC.MEMBERSHIP],
-      type: TYPE.PUBLIC,
+      tags: [Topic.MEMBERSHIP],
+      type: Type.PUBLIC,
     },
     {
       question: `Can I just turn up to for a casual game?`,
@@ -85,8 +94,8 @@ export const faqData = (type) =>
           few visits
         </span>
       ),
-      tags: [TOPIC.RATING],
-      type: TYPE.PUBLIC,
+      tags: [Topic.RATING],
+      type: Type.PUBLIC,
     },
     {
       question: `Will my games be FIDE rated?`,
@@ -97,8 +106,8 @@ export const faqData = (type) =>
           to our members.
         </span>
       ),
-      tags: [TOPIC.RATING],
-      type: TYPE.PUBLIC,
+      tags: [Topic.RATING],
+      type: Type.PUBLIC,
     },
     {
       question: `What if I am unable to make an event I am registered for?`,
@@ -114,8 +123,8 @@ export const faqData = (type) =>
           and we'll do our best to re-work our event.
         </span>
       ),
-      tags: [TOPIC.RATING],
-      type: TYPE.PUBLIC,
+      tags: [Topic.RATING],
+      type: Type.PUBLIC,
     },
     {
       question: `Can I pay my membership annually?`,
@@ -125,8 +134,8 @@ export const faqData = (type) =>
           to us when you are next in the club and we will process this for you.
         </span>
       ),
-      tags: [TOPIC.MEMBERSHIP],
-      type: TYPE.PUBLIC,
+      tags: [Topic.MEMBERSHIP],
+      type: Type.PUBLIC,
     },
     {
       question: `Do you offer any discounts?`,
@@ -140,8 +149,8 @@ export const faqData = (type) =>
           Chess.
         </span>
       ),
-      tags: [TOPIC.MEMBERSHIP],
-      type: TYPE.PUBLIC,
+      tags: [Topic.MEMBERSHIP],
+      type: Type.PUBLIC,
     },
     {
       question: `Do I need to sign up before coming down to the Junior Club?`,
@@ -160,8 +169,8 @@ export const faqData = (type) =>
           it from there.
         </span>
       ),
-      tags: [TOPIC.JUNIORS],
-      type: TYPE.PUBLIC,
+      tags: [Topic.JUNIORS],
+      type: Type.PUBLIC,
     },
     {
       question: `How can I improve my game outside of The Chess Centre`,
@@ -172,8 +181,8 @@ export const faqData = (type) =>
           learning materials to support our own teaching and coaching efforts.
         </span>
       ),
-      tags: [TOPIC.JUNIORS],
-      type: TYPE.PUBLIC,
+      tags: [Topic.JUNIORS],
+      type: Type.PUBLIC,
     },
     {
       question: `Can I cancel my membership anytime?`,
@@ -186,8 +195,8 @@ export const faqData = (type) =>
           payment period. And, you are always welcome back!
         </span>
       ),
-      tags: [TOPIC.MEMBERSHIP],
-      type: TYPE.PUBLIC,
+      tags: [Topic.MEMBERSHIP],
+      type: Type.PUBLIC,
     },
     {
       question: `How can I find my live games or results?`,
@@ -199,8 +208,8 @@ export const faqData = (type) =>
           on the app.
         </span>
       ),
-      tags: [TOPIC.GAMES],
-      type: TYPE.PUBLIC,
+      tags: [Topic.GAMES],
+      type: Type.PUBLIC,
     },
     {
       question: `How can I find the venue?`,
@@ -210,8 +219,8 @@ export const faqData = (type) =>
           Court, Ilkely LS29 8DE.
         </span>
       ),
-      tags: [TOPIC.GENERAL],
-      type: TYPE.PUBLIC,
+      tags: [Topic.GENERAL],
+      type: Type.PUBLIC,
     },
     {
       question: `Is there nearby parking?`,
@@ -222,8 +231,8 @@ export const faqData = (type) =>
           visiting the club.
         </span>
       ),
-      tags: [TOPIC.GENERAL],
-      type: TYPE.PUBLIC,
+      tags: [Topic.GENERAL],
+      type: Type.PUBLIC,
     },
     {
       question: `Is there nearby train station?`,
@@ -233,8 +242,8 @@ export const faqData = (type) =>
           with regular Trains to Bradford and Leeds.
         </span>
       ),
-      tags: [TOPIC.GENERAL],
-      type: TYPE.PUBLIC,
+      tags: [Topic.GENERAL],
+      type: Type.PUBLIC,
     },
     {
       question: `Do I need to be a member to play?`,
@@ -245,14 +254,14 @@ export const faqData = (type) =>
           and other unique events. These are for our subscribed members.
         </span>
       ),
-      tags: [TOPIC.MEMBERSHIP],
-      type: TYPE.PUBLIC,
+      tags: [Topic.MEMBERSHIP],
+      type: Type.PUBLIC,
     },
     {
       question: `How old are "Juniors"`,
       Answer: () => <span>Under the age of 16 from September { moment().format("YYYY") }.<br /><br /><span className="italic">Note: A Junior membership differs from a Student discount on an Adult membership.</span></span>,
-      tags: [TOPIC.JUNIORS],
-      type: TYPE.PUBLIC,
+      tags: [Topic.JUNIORS],
+      type: Type.PUBLIC,
     },
     {
       question: `Can I join a team?`,
@@ -266,8 +275,8 @@ export const faqData = (type) =>
           with that club captain.
         </span>
       ),
-      tags: [TOPIC.MEMBERSHIP],
-      type: TYPE.PUBLIC,
+      tags: [Topic.MEMBERSHIP],
+      type: Type.PUBLIC,
     },
     {
       question: `What is a "rating"?`,
@@ -280,8 +289,8 @@ export const faqData = (type) =>
           Rapidplay and Standard play time controls.
         </span>
       ),
-      tags: [TOPIC.MEMBERSHIP],
-      type: TYPE.PUBLIC,
+      tags: [Topic.MEMBERSHIP],
+      type: Type.PUBLIC,
     },
     {
       question: `How long are games?`,
@@ -296,8 +305,8 @@ export const faqData = (type) =>
           <span className="font-bold">25 minutes</span> on the clock per player.
         </span>
       ),
-      tags: [TOPIC.GAMES],
-      type: TYPE.PUBLIC,
+      tags: [Topic.GAMES],
+      type: Type.PUBLIC,
     },
     {
       question: `What if I run out of time on my clock during a game?`,
@@ -308,8 +317,8 @@ export const faqData = (type) =>
           left to checkmate you. This would then be a draw.
         </span>
       ),
-      tags: [TOPIC.GAMES],
-      type: TYPE.PUBLIC,
+      tags: [Topic.GAMES],
+      type: Type.PUBLIC,
     },
     {
       question: `Do you offer private 1-2-1 Chess coaching?`,
@@ -326,8 +335,8 @@ export const faqData = (type) =>
           .
         </span>
       ),
-      tags: [TOPIC.COACHING],
-      type: TYPE.PUBLIC,
+      tags: [Topic.COACHING],
+      type: Type.PUBLIC,
     },
     {
       question: `Does your venue provide disabled access?`,
@@ -338,8 +347,8 @@ export const faqData = (type) =>
           apologise to those who this impacts.
         </span>
       ),
-      tags: [TOPIC.GENERAL],
-      type: TYPE.PUBLIC,
+      tags: [Topic.GENERAL],
+      type: Type.PUBLIC,
     },
     {
       question: `How much is a membership?`,
@@ -354,8 +363,8 @@ export const faqData = (type) =>
           </Link>
         </span>
       ),
-      tags: [TOPIC.MEMBERSHIP],
-      type: TYPE.PUBLIC,
+      tags: [Topic.MEMBERSHIP],
+      type: Type.PUBLIC,
     },
     {
       question: `How do I find what time each round starts for an event?`,
@@ -373,8 +382,8 @@ export const faqData = (type) =>
           link via the main events page.
         </span>
       ),
-      tags: [TOPIC.EVENTS],
-      type: TYPE.PUBLIC,
+      tags: [Topic.EVENTS],
+      type: Type.PUBLIC,
     },
     {
       question: `Why don't all results from an event appear?`,
@@ -392,8 +401,8 @@ export const faqData = (type) =>
           </a>
         </span>
       ),
-      tags: [TOPIC.GAMES],
-      type: TYPE.INTERNAL,
+      tags: [Topic.GAMES],
+      type: Type.INTERNAL,
     },
     {
       question: `Why don't all results have playable games?`,
@@ -413,8 +422,8 @@ export const faqData = (type) =>
           </a>
         </span>
       ),
-      tags: [TOPIC.GAMES],
-      type: TYPE.INTERNAL,
+      tags: [Topic.GAMES],
+      type: Type.INTERNAL,
     },
     {
       question: `How do I add my bullet and blitz ratings?`,
@@ -430,11 +439,11 @@ export const faqData = (type) =>
           </Link>
         </span>
       ),
-      tags: [TOPIC.RATING],
-      type: TYPE.INTERNAL,
+      tags: [Topic.RATING],
+      type: Type.INTERNAL,
     },
   ].filter((q) =>
-    type === TYPE.INTERNAL
+    type === Type.INTERNAL
       ? /* ALL */ true
       : q.type === type
       ? /* SPECIFIC */ true

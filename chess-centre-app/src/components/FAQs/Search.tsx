@@ -1,13 +1,22 @@
+import React from "react";
 import { SearchIcon } from "@heroicons/react/solid";
 
-export const Search = ({ searchTerm, setSearchTerm, selectedTags, setSelectedTags, onResultChange }) => {
+type SearchProps = {
+  searchTerm: string | null,
+  setSearchTerm: Function,
+  selectedTags: string[],
+  setSelectedTags: Function,
+  onResultChange: Function
+}
+
+export const Search = ({ searchTerm, setSearchTerm, selectedTags, setSelectedTags, onResultChange }: SearchProps) => {
   
-  const handleSearchInput = (search) => {
+  const handleSearchInput = (search: string): void => {
     setSearchTerm(search);
     onResultChange({ search });
   };
 
-  const handleRemoveTags = (tag) => {
+  const handleRemoveTags = (tag: string): void => {
     const newArr = selectedTags.filter((t) => t !== tag);
     setSelectedTags(newArr);
     onResultChange({ tag: "" });

@@ -9,7 +9,8 @@
     "forceConsistentCasingInFileNames": true,  /* Disallow inconsistently-cased references to the same file. */
     "allowJs": true,
     "moduleResolution": "node",
-    "rootDir": "src"
+    "rootDir": "src",
+    "typeRoots" : ["node_modules/@types", "src/types"]
   },
   "include": ["./src/index.d.ts"],
   "exclude": [
