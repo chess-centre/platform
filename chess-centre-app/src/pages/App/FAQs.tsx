@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import queryString from "query-string";
 import { Search } from "../../components/FAQs/Search";
 import { Results } from "../../components/FAQs/Results";
 import { searchQuery } from "../../utils/UrlChange";
-import { faqData } from "../../api/data.faqs";
+import { faqData, Type } from "../../api/data.faqs";
 
 export default function FAQs() {
   const history = useHistory();
   const location = useLocation();
-  const faqs = faqData("internal");
+  const faqs = faqData(Type.INTERNAL);
   const parsed = queryString.parse(location.search);
-  const [selectedTags, setSelectedTags] = useState(
-    parsed.tag ? [parsed.tag] : []
-  );
-  const [searchTerm, setSearchTerm] = useState(parsed.search || "");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const totalQuestions = faqs.length;
   const onResultChange = (query) => {
     const search = searchQuery(location.search, query);
@@ -28,7 +26,15 @@ export default function FAQs() {
       left: 0,
       behavior: "smooth"
     });
-  }, []);
+
+    if(typeof parsed.tags === "string") {
+      setSelectedTags([parsed.tags]);
+      
+    }
+    if(typeof parsed.search === "string") {
+      setSearchTerm(parsed.search)
+    }
+  }, [parsed.tags, parsed.search]);
 
   return (
     <div>
@@ -120,7 +126,7 @@ export default function FAQs() {
                     onResultChange,
                     setSearchTerm,
                     setSelectedTags,
-                    selectedTags,
+                    selectedTags
                   }}
                 />
               </div>

@@ -21,10 +21,7 @@ export default function ResultDetails() {
   document.title = "The Chess Centre | Result Information";
 
   const { resultId } = useParams();
-  console.log("resultId", resultId);
   const { isLoading, error, data } = useResults({ resultId });
-
-  console.log("DATA", data);
 
   return (
     <div className="overscroll-none">

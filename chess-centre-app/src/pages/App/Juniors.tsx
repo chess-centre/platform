@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import QuickSearch from "../../components/FAQs/QuickSearch";
 
 const usefulLinks = [
@@ -87,7 +87,6 @@ function UsefulLinksTable() {
                         className="text-teal-500 hover:text-teal-700 hover:underline"
                         target="_blank"
                         rel="noreferrer"
-                        alt="Chess Site"
                         href={url}
                       >
                         {displayUrl}

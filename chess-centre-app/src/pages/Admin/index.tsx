@@ -791,7 +791,6 @@ function getPairings(
   eventType: string,
   rounds: number
 ): Pairing[] | SectionPairings[] | undefined {
-  console.log("Pairings", eventType);
 
   if (eventType === "Swiss") {
     return [

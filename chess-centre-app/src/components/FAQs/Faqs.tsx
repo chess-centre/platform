@@ -1,13 +1,14 @@
+import React from "react";
 import { Link } from "react-router-dom";
-import { faqData } from "../../api/data.faqs";
+import { faqData, Type, Faq } from "../../api/data.faqs";
 
 /**
  * @returns subset of FAQs displayed on the home page
  */
 export default function FAQs() {
 
-  const faqs = faqData("public");
-  const FAQ_COUNT = 6;
+  const faqs: Faq[] = faqData(Type.PUBLIC);
+  const FAQ_COUNT: number = 6;
 
   return (
     <div className="bg-gray-50">

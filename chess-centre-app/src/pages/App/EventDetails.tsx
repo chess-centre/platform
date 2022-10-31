@@ -58,6 +58,7 @@ const getEvent = /* GraphQL */ `
           ecfRapid
           ecfMembership
           estimatedRating
+          ecfLastUpdated
           club
           gender
           membershipType
