@@ -3,18 +3,35 @@ import SettingsToggle from "./SettingsToggle";
 import { Link } from "react-router-dom";
 import { classNames } from "../../utils/Classes";
 
+type StandingsProps = {
+  roundByRound: any,
+  settings: any,
+  showTitle: boolean,
+  division: string
+}
+
 export const Standings = ({
   roundByRound,
   settings,
   showTitle = false,
   division,
-}) => {
-  const [showOpponents, setShowOpponents] = useState(
+}: StandingsProps) => {
+
+  const [highlightArrow, setHighlightArrow] = useState<number>(0);
+  const [showOpponents, setShowOpponents] = useState<boolean>(
     settings.showOpponentPairing || false
   );
-  const [showPairingColors, setShowPairingColors] = useState(
+  const [showPairingColors, setShowPairingColors] = useState<boolean>(
     settings.showPairingColors || false
   );
+  const highlightOpponent = (
+    opponentPosition: number,
+    showOpponents: boolean
+  ): void => {
+    if (showOpponents && highlightArrow !== opponentPosition) {
+      setHighlightArrow(opponentPosition);
+    }
+  };
 
   return (
     <div>
@@ -63,7 +80,7 @@ export const Standings = ({
                     <th
                       key={idx}
                       scope="col"
-                      className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-slate-900 uppercase tracking-wider"
+                      className="px-4 sm:px-6 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
                     >
                       {`R${idx + 1}`}
                     </th>
@@ -82,13 +99,16 @@ export const Standings = ({
             {roundByRound.map((data, key: number) => {
               const position = key + 1;
               const isEven = key % 2 === 0;
+              const highlightLeader = position === 1;
+              const hightLightOpponent = position === highlightArrow && showOpponents 
 
               return (
                 <tr
                   key={key}
                   className={classNames(
-                    isEven ? "bg-white" : "bg-slate-50", position === 1 && "border-b border-yellow-200",
-                    "hover:bg-teal-50"
+                    highlightLeader ? "border-b border-yellow-200 hover:bg-teal-50" : "border-b border-slate-50 hover:bg-teal-50",
+                    hightLightOpponent ? "bg-teal-300" : isEven ? "bg-white" : "bg-slate-50",
+                    showOpponents && "cursor-pointer"
                   )}
                 >
                   <td className="hidden sm:block border-r border-slate-50 px-1 py-2 text-sm sm:text-md whitespace-nowrap text-center text-slate-800">
@@ -102,10 +122,12 @@ export const Standings = ({
                     </td>
                   )}
                   <td className="pl-4 text-left px-2 py-2 whitespace-nowrap text-sm sm:text-md text-teal-600 hover:text-teal-700">
-                    <Link to={`/app/games/${data.memberId}`}>{data.name}</Link> 
-                    {
-                      position === 1 && <span className="ml-2 text-yellow-400"><i className="fal fa-trophy-alt"></i></span>
-                    }
+                    <Link to={`/app/games/${data.memberId}`}>{data.name}</Link>
+                    {position === 1 && (
+                      <span className="ml-2 text-yellow-400">
+                        <i className="fal fa-trophy-alt"></i>
+                      </span>
+                    )}
                   </td>
 
                   <td className="border-r border-slate-50 px-1 py-2 text-sm sm:text-md whitespace-nowrap text-center text-white">
@@ -132,8 +154,22 @@ export const Standings = ({
                           1;
 
                         return (
-                          <td key={idx} className="px-4 py-2 whitespace-nowrap font-medium text-sm sm:text-md border-r border-slate-50">
-                            <div className="text-center">
+                          <td
+                            key={idx}
+                            className="px-4 py-2 whitespace-nowrap font-medium text-sm sm:text-md border-r border-slate-50"
+                          >
+                            <div
+                              className="text-center"
+                              onMouseOver={() =>
+                                highlightOpponent(
+                                  opponentPosition,
+                                  showOpponents
+                                )
+                              }
+                              onMouseLeave={() =>
+                                highlightOpponent(0, showOpponents)
+                              }
+                            >
                               <ResultCell
                                 idx={idx}
                                 result={r}
@@ -201,15 +237,35 @@ function ResultCell({
 }) {
   const OpponentPairing = () =>
     showPairing && (
-      <span className="absolute text-xxs -mt-1 text-slate-500 right-0 sm:right-1">
+      <span className="absolute text-xxs -mt-1 text-slate-400 right-0 sm:right-1 2xl:right-2">
         {opponent}
       </span>
     );
 
   const PairingColor = () =>
     showColors && (
-      <span className="absolute text-xxs -mt-1 text-slate-500 left-0 sm:left-1">
-        {color}
+      <span className="absolute left-0 sm:left-1 bottom-2">
+        {color === "W" ? (
+          <span className="absolute flex flex-shrink-0 items-center justify-center">
+            <span
+              className={classNames(
+                "bg-white border border-gray-300",
+                "h-1.5 w-1.5 rounded-full"
+              )}
+              aria-hidden="true"
+            />
+          </span>
+        ) : (
+          <span className="absolute flex flex-shrink-0 items-center justify-center">
+            <span
+              className={classNames(
+                "bg-black border border-gray-300",
+                "h-1.5 w-1.5 rounded-full"
+              )}
+              aria-hidden="true"
+            />
+          </span>
+        )}
       </span>
     );
 

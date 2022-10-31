@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import { useResults } from "../../context/ResultContext";
 import Brumdcrumbs from "../../components/Breadcrumbs";
@@ -50,7 +50,9 @@ export default function ResultDetails() {
               )}
             </div>
             <div>{isLoading && <LoadingView />}</div>
-            <div>{(Boolean(error) || (!isLoading && !data)) && <ErrorView />}</div>
+            <div>
+              {(Boolean(error) || (!isLoading && !data)) && <ErrorView />}
+            </div>
           </div>
         </section>
       </div>
@@ -163,8 +165,8 @@ function ErrorView() {
         <i className="aninmal-pulse fal fa-exclamation-square fa-10x text-red-400 opacity-50"></i>
       </span>
       <p className="mt-2 block text-sm font-medium text-gray-600">
-        Oops, there seems to be an issue loading this result event information. Try again
-        later.
+        Oops, there seems to be an issue loading this result event information.
+        Try again later.
       </p>
     </div>
   );
@@ -243,7 +245,7 @@ function SummaryDetails({ data, ecfLMSUrl }) {
             <h2 className="text-sm font-medium text-gray-500">References</h2>
             <ul className="mt-3 space-y-3">
               <li className="flex justify-start">
-              <span className="h-6 flex items-center sm:h-7 mr-1">
+                <span className="h-6 flex items-center sm:h-7 mr-1">
                   <svg
                     className="flex-shrink-0 h-4 w-4 text-teal-600"
                     viewBox="0 0 20 20"
@@ -271,6 +273,19 @@ function SummaryDetails({ data, ecfLMSUrl }) {
           </div>
         </div>
       )}
+      <div className="pt-6">
+        <Link
+          to={`/app/games/event/${data.id}`}
+          className="inline-flex w-full justify-center rounded-md border border-gray-200
+          bg-gray-100 px-4 py-2 text-base font-medium text-teal-700 shadow-sm hover:bg-gray-200 hover:border-gray-300
+          focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sm:text-sm"
+        >
+          Games
+          <span>
+            <i className="fas fa-dice ml-2 mt-1"></i>{" "}
+          </span>
+        </Link>
+      </div>
     </aside>
   );
 }
