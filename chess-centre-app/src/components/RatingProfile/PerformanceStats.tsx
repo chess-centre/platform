@@ -12,22 +12,9 @@ const initialState = {
 
 export default function PerformanceStats({
   playerInfo,
-  games,
-  openModal,
-  avatarUrl,
-  setAvatar,
+  games
 }) {
   const [pgnCount, setPgnCount] = useState(0);
-
-  useEffect(() => {
-    if (playerInfo && playerInfo.chesscomInfo) {
-      const { avatar } = JSON.parse(playerInfo.chesscomInfo);
-      setAvatar(avatar);
-    }
-    return () => {
-      setAvatar("");
-    };
-  }, [playerInfo, setAvatar]);
 
   useEffect(() => {
     setPgnCount(games.filter((game) => !!game.pgnStr).length || 0);

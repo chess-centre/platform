@@ -4,7 +4,7 @@ import moment from "moment";
 import { useResults } from "../../context/ResultContext";
 import Brumdcrumbs from "../../components/Breadcrumbs";
 import ResultsContactUsModal from "../../components/Modal/ResultsContactUsModal";
-import { Robin } from "../../components/Results";
+import { ResultViewer } from "../../components/Results";
 
 const organisers = [
   {
@@ -63,9 +63,6 @@ export default function ResultDetails() {
 function DetailsView(props: any) {
   const { data } = props;
   const [isModelOpen, setIsModalOpen] = useState(false);
-  const { pairings, players, results, settings, name, date } = JSON.parse(
-    data.resultInfo
-  );
 
   return (
     <div className="grid grid-cols-1 mb-2 sm:mb-6">
@@ -106,23 +103,7 @@ function DetailsView(props: any) {
 
                   <div className="py-3 lg:pt-8 mt-6 sm:mt-0">
                     <div className="grid grid-cols-1 space-y-6">
-                      {players.map(
-                        ({ entries, section, title }, index: number) => {
-                          const scores = results.find(
-                            (r: any) => r.section === section
-                          ).scores;
-                          return (
-                            <Robin
-                              key={index}
-                              title={title}
-                              pairings={pairings}
-                              entries={entries}
-                              results={scores}
-                              settings={settings}
-                            />
-                          );
-                        }
-                      )}
+                      { data?.resultInfo && <ResultViewer data={data.resultInfo} /> }
                     </div>
                   </div>
                 </div>
@@ -137,8 +118,8 @@ function DetailsView(props: any) {
         <ResultsContactUsModal
           open={isModelOpen}
           setOpen={setIsModalOpen}
-          eventName={name}
-          eventStart={date}
+          eventName={data.name}
+          eventStart={data.date}
         />
       </main>
     </div>

@@ -42,7 +42,7 @@ export default function ChesscomFetch({
     if (!username) return;
     setIsFetching(true);
     try {
-      const response = await API.post("chesscom", `/user/${username}`);
+      const response = await API.post("chesscom", `/user/${username}`, {});
       if (!response.error) {
         const { chess_bullet, chess_blitz, chess_rapid, avatar } = response;
         setBlitz(chess_blitz?.last?.rating);
