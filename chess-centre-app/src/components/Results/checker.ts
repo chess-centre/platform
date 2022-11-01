@@ -40,6 +40,7 @@ export const resultCheckCongress = (boardPairings, players: any[], results: any[
             colors: [color],
             total: result || 0,
             name: p.name,
+            memberId: p.memberId,
             rating: p.ratingInfo.rating,
             title: p.title ? p.title : "",
           };
