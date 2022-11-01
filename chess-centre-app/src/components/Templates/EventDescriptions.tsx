@@ -70,6 +70,7 @@ export const TemplateData = {
     tags: [
       { name: "Rapidplay", color: "bg-teal-500" },
       { name: "ECF", color: "bg-rose-500" },
+      { name: "DGT Boards", color: "bg-sky-500" },
     ],
     organisers: [
       { name: "Andrew Wainwright", imgUrl: "/andy.png" },

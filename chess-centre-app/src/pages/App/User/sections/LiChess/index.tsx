@@ -16,7 +16,7 @@ export default function LiChessFetch({
   const [blitz, setBlitz] = useState("");
   const [bullet, setBullet] = useState("");
   const [rapid, setRapid] = useState("");
-  const [lastUpdated, setLastUpdated] = useState("");
+  const [lastUpdated, setLastUpdated] = useState<number | null>();
 
   useEffect(() => {
     if (liChessInfo) {
@@ -35,20 +35,20 @@ export default function LiChessFetch({
     if (liChessUsername) {
       setUsername(liChessUsername);
     }
-  }, [liChessUsername, liChessInfo, lichessLastUpdated]);
+  }, [liChessUsername, liChessInfo, lichessLastUpdated, blitz, bullet, rapid]);
 
   const getLiChessData = async () => {
     if (!username) return;
     setIsFetching(true);
     try {
-      const response = await API.post("lichess", `/user/${username}`);
+      const response = await API.post("lichess", `/user/${username}`, {});
       if (!response.error) {
         const {
-          perfs: { blitz, bullet, rapid },
+          perfs,
         } = response;
-        setBlitz(blitz?.rating?.toString());
-        setBullet(bullet?.rating?.toString());
-        setRapid(rapid?.rating?.toString());
+        setBlitz(perfs?.blitz?.rating?.toString());
+        setBullet(perfs?.bullet?.rating?.toString());
+        setRapid(perfs?.rapid?.rating?.toString());
         setLastUpdated(Date.now());
         addToast(`Successfully updated your Lichess username and rating!`, {
           appearance: "success",
@@ -123,7 +123,7 @@ export default function LiChessFetch({
               className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 sm:py-2 px-3  text-gray-900 sm:text-gray-500 cursor-not-allowed
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
               disabled
-              value={bullet}
+              defaultValue={bullet}
               type="text"
             />
           </div>
@@ -135,7 +135,7 @@ export default function LiChessFetch({
               className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 sm:py-2 px-3  text-gray-900 sm:text-gray-500 cursor-not-allowed
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
               disabled
-              value={blitz}
+              defaultValue={blitz}
               type="text"
             />
           </div>
@@ -147,7 +147,7 @@ export default function LiChessFetch({
               className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 sm:py-2 px-3  text-gray-900 sm:text-gray-500 cursor-not-allowed
                       focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
               disabled
-              value={rapid}
+              defaultValue={rapid}
               type="text"
             />
           </div>

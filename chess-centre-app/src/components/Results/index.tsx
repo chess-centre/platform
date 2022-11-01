@@ -1,11 +1,11 @@
 import { PairingsTable } from "./Pairings";
 import { Standings } from "./Standings";
 import { resultCheck } from "./checker";
-import { Robin } from "./Robin";
+import { ResultViewer } from "./ResultViewer";
 
 export {
   PairingsTable,
   Standings,
-  Robin,
+  ResultViewer,
   resultCheck
 }

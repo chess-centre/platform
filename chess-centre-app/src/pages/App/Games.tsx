@@ -2,9 +2,9 @@ import API from "@aws-amplify/api";
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { useMember } from "../../api/member";
+import Brumdcrumbs from "../../components/Breadcrumbs";
 import GameTable from "../../components/Table/GameTable";
 import PerformanceStats from "../../components/RatingProfile/PerformanceStats";
-import AddMyProfileImageModal from "../../components/Modal/AddMyProfileImageModal";
 
 export const listGamesByWhiteMember = /* GraphQL */ `
   query ListGamesByWhiteMember(
@@ -161,17 +161,6 @@ export default function GamesView() {
   const [currentUserInfo, setCurrentUserInfo] = useState({});
   const [playerId, setPlayerId] = useState(memberId);
   const [playerName, setPlayerName] = useState("");
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [avatarUrl, setAvatar] = useState("");
-
-  const openModal = () => {
-    if (currentUser) {
-      setIsOpenModal(true);
-    }
-  };
-  const closeModal = () => {
-    setIsOpenModal(false);
-  };
 
   const fetchWhiteGames = async (id) => {
     const {
@@ -247,6 +236,7 @@ export default function GamesView() {
         } else {
           setCurrentUser(false);
         }
+
       } else if (data && data.id) {
         setPlayerId(data.id);
         fetchAllGames(data.id);
@@ -275,13 +265,14 @@ export default function GamesView() {
         <span className="text-sm text-gray-500">by player</span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
-        <div className="md:flex md:items-center md:justify-between">
-          {playerName && (
-            <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
-              <p className="ml-2 mt-1 text-md text-gray-500 truncate">
-                {playerName}
-              </p>
-            </div>
+        <div className="ml-2">
+          {!isLoading && data && (
+            <Brumdcrumbs
+              crumbs={[
+                { name: "Games", link: "/app/games", current: false },
+                { name: playerName, current: true },
+              ]}
+            />
           )}
         </div>
       </div>
@@ -368,7 +359,7 @@ export default function GamesView() {
               {games && games.length > 0 ? (
                 <PerformanceStats
                   playerInfo={currentUserInfo}
-                  {...{ games, openModal, avatarUrl, setAvatar }}
+                  games={ games }
                 />
               ) : (
                 <div className="relative mt-1 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
@@ -400,12 +391,6 @@ export default function GamesView() {
             </div>
           )}
         </section>
-        <AddMyProfileImageModal
-          open={isOpenModal}
-          currentUserInfo={currentUserInfo}
-          closeModal={closeModal}
-          setAvatar={setAvatar}
-        />
       </div>
     </div>
   );

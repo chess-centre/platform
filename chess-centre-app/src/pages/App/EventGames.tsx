@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import EventGameTable from "../../components/Table/EventGameTable";
+import Brumdcrumbs from "../../components/Breadcrumbs";
 
 export const listGamesByEvent = /* GraphQL */ `
   query ListGamesByEvent(
@@ -225,13 +226,14 @@ export default function EventGamesView() {
         <span className="text-sm text-gray-500">by event</span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
-        <div className="md:flex md:items-center md:justify-between">
+        <div className="ml-2">
           {eventName && (
-            <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
-              <p className="ml-2 mt-1 text-md text-gray-500 truncate">
-                {eventName}
-              </p>
-            </div>
+            <Brumdcrumbs
+              crumbs={[
+                { name: "Games", link: "/app/games", current: false },
+                { name: eventName, current: true },
+              ]}
+            />
           )}
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import API from "@aws-amplify/api";
 import EventResultTable from "../../components/Table/EventResultTable";
+import Brumdcrumbs from "../../components/Breadcrumbs";
 
 export const listResults = /* GraphQL */ `
   query ListResults(
@@ -41,8 +42,10 @@ export default function ResultView() {
   const [isErrorResult, setIsErrorResult] = useState(false);
   const [results, setResults] = useState<any[]>([]);
 
+  document.title = "The Chess Centre | Results";
+
   useEffect(() => {
-    document.title = "The Chess Centre | Event Results";
+    
 
     const fetchResults = async () => {
       setIsLoadingResults(true);
@@ -53,6 +56,7 @@ export default function ResultView() {
         },
       }: any = await API.graphql({
         query: listResults,
+        variables: { filter: { complete: { eq: true } }},
         authMode: "AWS_IAM",
       });
 
@@ -75,6 +79,7 @@ export default function ResultView() {
           },
         }: any = await API.graphql({
           query: listResults,
+          variables: { filter: { complete: { eq: true } }},
           authMode: "AWS_IAM",
         });
 
@@ -97,13 +102,16 @@ export default function ResultView() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-chess-king text-teal-600"></i> Results <span className="text-sm text-gray-500"></span>
+        <i className="fas fa-chess-king text-teal-600"></i> Results{" "}
+        <span className="text-sm text-gray-500">from events</span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
-        <div className="md:flex md:items-center md:justify-between">
-          <p className="text-sm text-left text-gray-500 dark:text-gray-300 mb-2">
-            Our previous events
-          </p>
+        <div className="ml-2">
+            <Brumdcrumbs
+              crumbs={[
+                { name: "Results List", current: true },
+              ]}
+            />
         </div>
       </div>
 
