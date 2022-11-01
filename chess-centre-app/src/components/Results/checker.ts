@@ -1,4 +1,4 @@
-export const resultCheckFestival = (boardPairings, players: any[], results: any[], settings) => {
+export const resultCheckCongress = (boardPairings, players: any[], results: any[], settings) => {
   const resultBySeed: any[] = [];
   boardPairings
     .slice(0, settings.currentRound)
@@ -57,7 +57,7 @@ export const resultCheckFestival = (boardPairings, players: any[], results: any[
   );
 
   const roundByRound = Object.values(allRounds).sort(
-    (a: any, b: any) => Number(b.total) - Number(a.total)
+    (a, b) => Number(b.total) - Number(a.total)
   );
 
   return { resultBySeed, roundByRound };

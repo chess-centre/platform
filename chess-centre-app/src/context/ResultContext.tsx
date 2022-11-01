@@ -14,6 +14,8 @@ export const getResult = /* GraphQL */ `
       winners
       dgtCloudUrl
       ecfLMSUrl
+      chess24Url
+      chessDotComUrl
       event {
         id
         name

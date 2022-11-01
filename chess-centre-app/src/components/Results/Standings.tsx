@@ -4,19 +4,23 @@ import { Link } from "react-router-dom";
 import { classNames } from "../../utils/Classes";
 
 type StandingsProps = {
-  roundByRound: any,
-  settings: any,
-  showTitle: boolean,
-  division: string
-}
+  roundByRound: any;
+  settings: any;
+  showTitle: boolean;
+  division: string;
+  congress: boolean;
+  headerClasses: string;
+
+};
 
 export const Standings = ({
   roundByRound,
   settings,
   showTitle = false,
   division,
+  congress = false,
+  headerClasses
 }: StandingsProps) => {
-
   const [highlightArrow, setHighlightArrow] = useState<number>(0);
   const [showOpponents, setShowOpponents] = useState<boolean>(
     settings.showOpponentPairing || false
@@ -35,7 +39,7 @@ export const Standings = ({
 
   return (
     <div>
-      <div className="bg-orange-brand py-1 shadow-orange-600 font-medium text-white text-center rounded-t-md uppercase tracking-wider text-2xl">
+      <div className={classNames(headerClasses, "py-1 font-medium  text-center rounded-t-md uppercase tracking-wider text-2xl")}>
         {division}
       </div>
       <div className="shadow-md overflow-x-auto w-full">
@@ -98,21 +102,29 @@ export const Standings = ({
           <tbody className="">
             {roundByRound.map((data, key: number) => {
               const position = key + 1;
+              const isWinner =
+                roundByRound[key].total === roundByRound[0].total;
               const isEven = key % 2 === 0;
-              const highlightLeader = position === 1;
-              const hightLightOpponent = position === highlightArrow && showOpponents 
+              const hightLightOpponent =
+                position === highlightArrow && showOpponents;
 
               return (
                 <tr
                   key={key}
                   className={classNames(
-                    highlightLeader ? "border-b border-yellow-200 hover:bg-teal-50" : "border-b border-slate-50 hover:bg-teal-50",
-                    hightLightOpponent ? "bg-teal-300" : isEven ? "bg-white" : "bg-slate-50",
-                    showOpponents && "cursor-pointer"
+                    hightLightOpponent
+                      ? "bg-teal-300"
+                      : isEven && !isWinner
+                      ? "bg-white"
+                      : isWinner
+                      ? "bg-yellow-100 border border-b border-white"
+                      : "bg-slate-50",
+                    showOpponents && "cursor-pointer",
+                    "hover:bg-teal-100"
                   )}
                 >
                   <td className="hidden sm:block border-r border-slate-50 px-1 py-2 text-sm sm:text-md whitespace-nowrap text-center text-slate-800">
-                    {position}
+                    {isWinner ? "1st" : position}
                   </td>
                   {showTitle && (
                     <td className="px-0 py-2 text-sm sm:text-md whitespace-nowrap text-center text-slate-50">
@@ -123,7 +135,7 @@ export const Standings = ({
                   )}
                   <td className="pl-4 text-left px-2 py-2 whitespace-nowrap text-sm sm:text-md text-teal-600 hover:text-teal-700">
                     <Link to={`/app/games/${data.memberId}`}>{data.name}</Link>
-                    {position === 1 && (
+                    {isWinner && (
                       <span className="ml-2 text-yellow-400">
                         <i className="fal fa-trophy-alt"></i>
                       </span>
@@ -150,8 +162,12 @@ export const Standings = ({
                         const opponent = data.opponents[idx];
                         const color = data.colors[idx];
                         const opponentPosition =
-                          roundByRound.findIndex((p) => p.seed === opponent) +
-                          1;
+                          roundByRound.findIndex((p) => {
+                            if(congress) {
+                              return p.chessResulsSeed === opponent
+                            }
+                            return p.seed === opponent 
+                          }) + 1;
 
                         return (
                           <td
@@ -236,8 +252,8 @@ function ResultCell({
   showColors,
 }) {
   const OpponentPairing = () =>
-    showPairing && (
-      <span className="absolute text-xxs -mt-1 text-slate-400 right-0 sm:right-1 2xl:right-2">
+    showPairing && opponent !== 0 && (
+      <span className="absolute text-xxs -mt-1 text-slate-400 right-0">
         {opponent}
       </span>
     );

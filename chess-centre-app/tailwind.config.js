@@ -51,6 +51,7 @@ module.exports = {
           900: "#771d1d",
         },
         yellow: {
+          festival: "#ffd469",
           50: "#fdfdea",
           100: "#fdf6b2",
           200: "#fce96a",
@@ -77,6 +78,7 @@ module.exports = {
         // BRAND COLORS:
         orange: {
           brand: "#f0802b",
+          festival: "#f0802b",
           flyer: "#f58436",
           50: "#fff8f1",
           100: "#feecdc",
@@ -91,6 +93,7 @@ module.exports = {
         },
         teal: {
           brand: "#5499ab",
+          festival: "#5699ab",
           50: "#edfafa",
           100: "#d5f5f6",
           200: "#afecef",
@@ -104,6 +107,7 @@ module.exports = {
         },
         blue: {
           brand: "#0a2d3b",
+          festival: "#0b2e3f",
           50: "#ebf5ff",
           100: "#e1effe",
           200: "#c3ddfd",
