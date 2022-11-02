@@ -68,8 +68,8 @@ function DetailsView(props: any) {
     <div className="grid grid-cols-1 mb-2 sm:mb-6">
       <main className="flex-1">
         <div className="py-8 lg:py-10">
-          <div className="mx-auto px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-3">
-            <div className="lg:col-span-2 lg:pr-8 lg:border-r lg:border-gray-200">
+          <div className="mx-auto px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-4">
+            <div className="lg:col-span-3 lg:pr-8 lg:border-r lg:border-gray-200">
               <div>
                 <div>
                   <div className="md:flex md:items-center md:justify-between md:space-x-4 lg:border-b lg:pb-6">
@@ -98,6 +98,8 @@ function DetailsView(props: any) {
                     <SummaryDetails
                       data={data.event}
                       ecfLMSUrl={data.ecfLMSUrl}
+                      chess24Url={data.chess24Url}
+                      chessDotComUrl={data.chessDotComUrl}
                     />
                   </div>
 
@@ -113,7 +115,12 @@ function DetailsView(props: any) {
             </div>
             {/* Desktop Sidebar  */}
             <div className="hidden lg:block">
-              <SummaryDetails data={data.event} ecfLMSUrl={data.ecfLMSUrl} chess24Url={data.chess24Url} chessDotComUrl={data.chessDotComUrl} />
+              <SummaryDetails
+                data={data.event}
+                ecfLMSUrl={data.ecfLMSUrl}
+                chess24Url={data.chess24Url}
+                chessDotComUrl={data.chessDotComUrl}
+              />
             </div>
           </div>
         </div>
@@ -179,7 +186,7 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
             className="text-teal-600 hover:text-teal-500 text-sm font-medium"
             href={url}
           >
-            { label }
+            {label}
           </a>
         </span>
       </li>
@@ -197,8 +204,14 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
           <div className="text-gray-900 text-sm font-medium">
             <span className="text-teal-600">Held on</span>{" "}
             <time dateTime={data.startDate}>
-              {moment(data.startDate).format("dddd, MMMM Do")}
+              {moment(data.startDate).format("ddd Do, MMM")}
             </time>
+            {data.endDate && (<>{` - `}<br />
+              <time dateTime={data.endDate}>
+                {moment(data.endDate).format("ddd Do, MMM")}
+              </time>
+              </>
+            )}
           </div>
         </div>
 
@@ -258,8 +271,15 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
             <h2 className="text-sm font-medium text-gray-500">References</h2>
             <ul className="mt-3 space-y-3">
               <RefLink url={ecfLMSUrl} label="ECF Submission"></RefLink>
-              { chess24Url && <RefLink url={chess24Url} label="Chess24 Broadcast"></RefLink>}
-              { chessDotComUrl && <RefLink url={chessDotComUrl} label="Chess.com Broadcast"></RefLink>}
+              {chess24Url && (
+                <RefLink url={chess24Url} label="Chess24 Broadcast"></RefLink>
+              )}
+              {chessDotComUrl && (
+                <RefLink
+                  url={chessDotComUrl}
+                  label="Chess.com Broadcast"
+                ></RefLink>
+              )}
             </ul>
           </div>
         </div>
