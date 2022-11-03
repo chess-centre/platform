@@ -461,7 +461,7 @@ function StatisticsTable({ data, updatePerformanceRating }) {
                 return (
                   <tr
                     className={classNames("hover:bg-slate-50")}
-                    key={opponent.memberId}
+                    key={key}
                     onMouseEnter={() => updatePerformanceRating(key)}
                     onMouseLeave={() =>
                       updatePerformanceRating(rounds.length - 1)
@@ -561,6 +561,7 @@ function StatisticsSummary({ perf, idx }) {
 }
 
 const performanceRating = ({ playerRating, opponentRatings, results }) => {
+
   const maxOpponentRating = (rating: number, opponentRating: number) => {
     const diff = opponentRating - rating;
     if (diff > 400) {
@@ -576,10 +577,10 @@ const performanceRating = ({ playerRating, opponentRatings, results }) => {
 
   const { gained, sum, games }: Progression = opponentRatings.reduce(
     (pre: Progression, cur, idx: number) => {
-      if (cur && typeof cur.ratingInfo.value === "number") {
+      if (cur && typeof cur.ratingInfo.rating === "number") {
         pre.games += 1;
-        pre.sum += cur.ratingInfo.value;
-        const oR = maxOpponentRating(playerRating, cur.ratingInfo.value);
+        pre.sum += cur.ratingInfo.rating;
+        const oR = maxOpponentRating(playerRating, cur.ratingInfo.rating);
         const change = results[idx] === 1 ? 400 : results[idx] === 0 ? -400 : 0;
         pre.gained += oR + change;
       }
