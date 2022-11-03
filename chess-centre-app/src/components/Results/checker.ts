@@ -1,3 +1,44 @@
+export type RatingInfo = {
+  eventRating: number,
+  isPartial?: boolean,
+  key: string,
+  rating: number,
+  sort: number,
+  value: number 
+}
+
+export type Player = {
+  chessResulsSeed?: number,
+  seed?: number,
+  crName?: string,
+  id: number,
+  memberId: string,
+  name: string,
+  ratingInfo: RatingInfo,
+  section: string, 
+}
+
+export type Perf = {
+  average: string,
+  tpr: string,
+  games: number
+}
+
+export type RoundObj = {
+  rounds: number[],
+  chessResulsSeed?: number,
+  seed?: number,
+  colors: string[],
+  memberId: string,
+  name: string,
+  opponents: number[],
+  rating: number | string,
+  title: string,
+  total: number
+  details: Player[]
+  perf: Perf
+}
+
 export const resultCheckCongress = (boardPairings, players: any[], results: any[], settings) => {
   const resultBySeed: any[] = [];
   boardPairings
@@ -30,6 +71,7 @@ export const resultCheckCongress = (boardPairings, players: any[], results: any[
 
   const allRounds = resultBySeed.reduce(
     (player, { result, opponent, color, chessResulsSeed }) => {
+      const o = players.find(p => p.chessResulsSeed === opponent);
       if (!player[chessResulsSeed]) {
         const p = players.find((p) => p.chessResulsSeed === chessResulsSeed);
         if (p) {
@@ -37,6 +79,7 @@ export const resultCheckCongress = (boardPairings, players: any[], results: any[
             rounds: [result],
             chessResulsSeed,
             opponents: [opponent],
+            details: [o],
             colors: [color],
             total: result || 0,
             name: p.name,
@@ -45,23 +88,22 @@ export const resultCheckCongress = (boardPairings, players: any[], results: any[
             title: p.title ? p.title : "",
           };
         }
-      } else {
+      } else {   
         player[chessResulsSeed].rounds.push(result);
         player[chessResulsSeed].opponents.push(opponent);
+        player[chessResulsSeed].details.push(o);
         player[chessResulsSeed].colors.push(color);
         player[chessResulsSeed].total += result || 0;
       }
-
       return player;
     },
     {}
   );
 
   const roundByRound = Object.values(allRounds).sort(
-    (a, b) => Number(b.total) - Number(a.total)
+    (a: any, b:any) => Number(b.total) - Number(a.total)
   );
-
-  return { resultBySeed, roundByRound };
+  return { resultBySeed, roundByRound: roundByRound as RoundObj[] } 
 };
 
 export const resultCheck = (boardPairings, players: any[], results: any[], settings) => {
@@ -71,7 +113,7 @@ export const resultCheck = (boardPairings, players: any[], results: any[], setti
     .slice(0, settings.currentRound)
     .forEach(({ round, pairings }) => {
       const pairingResults = results.find((r) => r.round === round).pairResults;
-      pairings.forEach((board, index) => {
+      pairings.forEach((board: any, index: number) => {
         const whitePlayer = board[0];
         const blackPlayer = board[1];
         const whiteResultOfSeed = pairingResults[index][0];
@@ -97,6 +139,7 @@ export const resultCheck = (boardPairings, players: any[], results: any[], setti
 
   const allRounds = resultBySeed.reduce(
     (player, { seed, result, opponent, color }) => {
+      const o = players.find((p) => p.seed === opponent);
       if (!player[seed]) {
         const p = players.find((p) => p.seed === seed);
         if (p) {
@@ -104,6 +147,7 @@ export const resultCheck = (boardPairings, players: any[], results: any[], setti
             rounds: [result],
             seed,
             opponents: [opponent],
+            details: [o],
             colors: [color],
             total: result || 0,
             name: p.name,
@@ -115,6 +159,7 @@ export const resultCheck = (boardPairings, players: any[], results: any[], setti
       } else {
         player[seed].rounds.push(result);
         player[seed].opponents.push(opponent);
+        player[seed].details.push(o);
         player[seed].colors.push(color);
         player[seed].total += result || 0;
       }
@@ -125,8 +170,8 @@ export const resultCheck = (boardPairings, players: any[], results: any[], setti
   );
 
   const roundByRound = Object.values(allRounds).sort(
-    (a, b) => Number(b.total) - Number(a.total)
+    (a: any, b: any) => Number(b.total) - Number(a.total)
   );
 
-  return { resultBySeed, roundByRound };
+  return { resultBySeed, roundByRound: roundByRound as RoundObj[] } 
 };

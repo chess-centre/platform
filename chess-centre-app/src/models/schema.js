@@ -128,21 +128,14 @@ export const schema = {
                 }
             ]
         },
-        "Result": {
-            "name": "Result",
+        "External": {
+            "name": "External",
             "fields": {
                 "id": {
                     "name": "id",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
-                    "attributes": []
-                },
-                "resultInfo": {
-                    "name": "resultInfo",
-                    "isArray": false,
-                    "type": "AWSJSON",
-                    "isRequired": false,
                     "attributes": []
                 },
                 "event": {
@@ -155,67 +148,53 @@ export const schema = {
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "eventID"
+                        "targetName": "eventId"
                     }
                 },
-                "eventType": {
-                    "name": "eventType",
+                "chessdotcom": {
+                    "name": "chessdotcom",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "name": {
-                    "name": "name",
+                "lichess": {
+                    "name": "lichess",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "complete": {
-                    "name": "complete",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "isLive": {
-                    "name": "isLive",
-                    "isArray": false,
-                    "type": "Boolean",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "winners": {
-                    "name": "winners",
+                "chess24": {
+                    "name": "chess24",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "dgtCloudUrl": {
-                    "name": "dgtCloudUrl",
+                "chessresults": {
+                    "name": "chessresults",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "ecfLMSUrl": {
-                    "name": "ecfLMSUrl",
+                "dgtlive": {
+                    "name": "dgtlive",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "chess24Url": {
-                    "name": "chess24Url",
+                "ecfratings": {
+                    "name": "ecfratings",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
-                "chessDotComUrl": {
-                    "name": "chessDotComUrl",
+                "ecflms": {
+                    "name": "ecflms",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -223,7 +202,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Results",
+            "pluralName": "Externals",
             "attributes": [
                 {
                     "type": "model",
@@ -234,7 +213,7 @@ export const schema = {
                     "properties": {
                         "name": "byEvent",
                         "fields": [
-                            "eventID"
+                            "eventId"
                         ]
                     }
                 },
@@ -1262,6 +1241,180 @@ export const schema = {
                 }
             ]
         },
+        "Result": {
+            "name": "Result",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "resultInfo": {
+                    "name": "resultInfo",
+                    "isArray": false,
+                    "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "event": {
+                    "name": "event",
+                    "isArray": false,
+                    "type": {
+                        "model": "Event"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "eventID"
+                    }
+                },
+                "eventType": {
+                    "name": "eventType",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "name": {
+                    "name": "name",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "complete": {
+                    "name": "complete",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "isLive": {
+                    "name": "isLive",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "winners": {
+                    "name": "winners",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "dgtCloudUrl": {
+                    "name": "dgtCloudUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "ecfLMSUrl": {
+                    "name": "ecfLMSUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chess24Url": {
+                    "name": "chess24Url",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "chessDotComUrl": {
+                    "name": "chessDotComUrl",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "externalId": {
+                    "name": "externalId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "external": {
+                    "name": "external",
+                    "isArray": false,
+                    "type": {
+                        "model": "External"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": "id",
+                        "targetName": "externalId"
+                    }
+                }
+            },
+            "syncable": true,
+            "pluralName": "Results",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byEvent",
+                        "fields": [
+                            "eventID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byExternal",
+                        "fields": [
+                            "externalId"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "private",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "public",
+                                "provider": "iam",
+                                "operations": [
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Plan": {
             "name": "Plan",
             "fields": {
@@ -1368,5 +1521,5 @@ export const schema = {
             }
         }
     },
-    "version": "5d852bd39b9baa85b0c7606861bd55ef"
+    "version": "3619c3e48f7d09bfeeb24ea37c129dad"
 };

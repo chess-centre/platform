@@ -1,6 +1,6 @@
 import API from "@aws-amplify/api";
 import { Tab } from "@headlessui/react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect, Fragment, useState } from "react";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import LandingNav from "../../components/Navigation/LandingNav";
@@ -539,7 +539,7 @@ const Schedule = ({ event }) => {
                 {event.break && event.break.afterRound === round && (
                   <tr>
                     <td
-                      colSpan="3"
+                      colSpan={3}
                       className="py-2 text-center whitespace-nowrap text-xs font-medium text-gray-400"
                     >
                       Lunch Break
@@ -622,14 +622,13 @@ const Prizes = () => {
 };
 
 const EntryForm = ({ id }) => {
-  const [section, setSection] = useState("open");
-  const [selectedRoundOne, setSelectedRoundOne] = useState(false);
-  const [selectedRoundTwo, setSelectedRoundTwo] = useState(false);
-  const [selectedRoundThree, setSelectedRoundThree] = useState(false);
-  const [selectedRoundFour, setSelectedRoundFour] = useState(false);
+  const [section] = useState("open");
+  const [selectedRoundOne] = useState(false);
+  const [selectedRoundTwo] = useState(false);
+  const [selectedRoundThree] = useState(false);
+  const [selectedRoundFour] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [byesSelected, setByesSelected] = useState("");
-  const sections = standardSections;
 
   const generateUrl = () => {
     const sectionStr = `&section=${section}`;
@@ -642,20 +641,10 @@ const EntryForm = ({ id }) => {
     return `/register?eventId=${id}${sectionStr}${byesStr}`;
   };
 
-  const handleConfirmEntry = () => {
-    const r1 = selectedRoundOne ? "1" : "";
-    const r2 = selectedRoundTwo ? "2" : "";
-    const r3 = selectedRoundThree ? "3" : "";
-    const r4 = selectedRoundFour ? "4" : "";
-    const byes = `${r1}${r2}${r3}${r4}`;
-    setByesSelected(byes);
-    setModalOpen(true);
-  }
-
   return (
     <div>
       <div className="mt-4 mx-auto">
-        <a className="w-full border rounded-md py-1.5 px-8 flex items-center justify-center text-base font-medium text-blue-brand hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
+        <a rel="noreferrer" className="w-full border rounded-md py-1.5 px-8 flex items-center justify-center text-base font-medium text-blue-brand hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
           href="https://chess-results.com/tnr665788.aspx?lan=1&art=0" target="_blank">Chess Results</a>
       </div>
       <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4">

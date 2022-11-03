@@ -14,7 +14,20 @@ type Broadcast @model @auth(rules: [{allow: private}]) {
   dgtUrl: String
 }
 
-type Result @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventID"]) {
+type External @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventId"]) {
+  id: ID!
+  eventId: ID!
+  event: Event @connection(fields: ["eventId"])
+  chessdotcom: String
+  lichess: String
+  chess24: String
+  chessresults: String
+  dgtlive: String
+  ecfratings: String
+  ecflms: String
+}
+
+type Result @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventID"]) @key(name: "byExternal", fields: ["externalId"])  {
   id: ID!
   resultInfo: AWSJSON
   eventID: ID
@@ -28,6 +41,8 @@ type Result @model @auth(rules: [{allow: private}, {allow: public}, {allow: publ
   ecfLMSUrl: String
   chess24Url: String
   chessDotComUrl: String
+  externalId: ID
+  external: External @connection(fields: ["externalId"])
 }
 
 type S3Object {
