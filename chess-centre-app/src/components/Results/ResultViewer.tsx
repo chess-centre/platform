@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Standings, resultCheck, resultCheckCongress } from ".";
 import { classNames } from "../../utils/Classes";
+import { v4 } from "uuid"
 
-const addSeeding = (players: any) =>
-  players.map((player: any, idx: number) => ({ ...player, seed: idx + 1 }));
+const addSeeding = (players: any) => players.map((player: any, idx: number) => ({ ...player, seed: idx + 1 }));
 
 /**
  * Displays the list of results for a given event.
@@ -32,11 +32,8 @@ export function ResultViewer({ data }) {
             players
               .filter(({ section }) => section.includes(selectedSection))
               .map(({ entries, section, title }, index: number) => {
-                const scores = results.find((r: any) => r.section === section)
-                  .scores;
-                const sectionIdx = pairings.findIndex(
-                  (p) => p.section === section
-                );
+                const scores = results.find((r: any) => r.section === section).scores;
+                const sectionIdx = pairings.findIndex((p) => p.section === section);
                 const seededPlayers = addSeeding(entries);
                 const { roundByRound } = resultCheckCongress(
                   pairings[sectionIdx].sectionPairings,
@@ -45,16 +42,15 @@ export function ResultViewer({ data }) {
                   settings
                 );
                 return (
-                  <div key={sectionIdx}>
                     <Standings
+                      key={sectionIdx}
                       roundByRound={roundByRound}
                       division={title}
                       settings={settings}
                       showTitle={false}
                       congress={true}
-                      headerClasses={theme[section]}
+                      headerClasses={theme["major"]}
                     />
-                  </div>
                 );
               })}
         </div>
@@ -64,20 +60,15 @@ export function ResultViewer({ data }) {
     return (
       <div className="grid grid-cols-1 space-y-6">
         {players &&
-          players.map(({ entries, section, title }, index: number) => {
-            const scores = results.find((r: any) => r.section === section)
-              .scores;
+          players.map(({ entries, section, title }) => {
+            const scores = results.find((r: any) => r.section === section).scores;
             const seededPlayers = addSeeding(entries);
-            const { roundByRound } = resultCheck(
-              pairings,
-              seededPlayers,
-              scores,
-              settings
-            );
+            const { roundByRound } = resultCheck(pairings, seededPlayers, scores, settings);
 
             return (
-              <div key={index}>
+              <div key={v4()}>
                 <Standings
+                  key={v4()}
                   roundByRound={roundByRound}
                   division={title}
                   settings={settings}
@@ -126,18 +117,13 @@ function SectionTabs(props: SectionTabProps) {
 
   return (
     <div>
-      <nav
-        className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200 sm:border"
-        aria-label="Sections"
-      >
+      <nav className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200 sm:border" aria-label="Sections">
         {sections.map((section, tabIdx) => (
           <div
             onClick={() => updateSectionSelected(section.name.toLowerCase())}
             key={section.name}
             className={classNames(
-              section.current
-                ? "text-gray-900"
-                : "text-gray-500 hover:text-gray-700",
+              section.current ? "text-gray-900" : "text-gray-500 hover:text-gray-700",
               tabIdx === 0 ? "rounded-l-lg" : "",
               tabIdx === sections.length - 1 ? "rounded-r-lg" : "",
               "group relative min-w-0 flex-1 overflow-hidden bg-white py-2.5 px-2 text-xs font-medium text-center hover:bg-gray-50 focus:z-10 cursor-pointer"

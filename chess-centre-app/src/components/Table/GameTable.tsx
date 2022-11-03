@@ -159,6 +159,7 @@ export default function GameTable({ games, memberId }) {
         ),
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

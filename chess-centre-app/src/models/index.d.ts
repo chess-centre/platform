@@ -25,6 +25,8 @@ export declare class S3Object {
 
 
 
+
+
 export declare class MailingList {
   readonly id: string;
   readonly email: string;
@@ -45,21 +47,18 @@ export declare class Broadcast {
   static copyOf(source: Broadcast, mutator: (draft: MutableModel<Broadcast>) => MutableModel<Broadcast> | void): Broadcast;
 }
 
-export declare class Result {
+export declare class External {
   readonly id: string;
-  readonly resultInfo?: string | null;
   readonly event?: Event | null;
-  readonly eventType?: string | null;
-  readonly name?: string | null;
-  readonly complete?: boolean | null;
-  readonly isLive?: boolean | null;
-  readonly winners?: string | null;
-  readonly dgtCloudUrl?: string | null;
-  readonly ecfLMSUrl?: string | null;
-  readonly chess24Url?: string | null;
-  readonly chessDotComUrl?: string | null;
-  constructor(init: ModelInit<Result>);
-  static copyOf(source: Result, mutator: (draft: MutableModel<Result>) => MutableModel<Result> | void): Result;
+  readonly chessdotcom?: string | null;
+  readonly lichess?: string | null;
+  readonly chess24?: string | null;
+  readonly chessresults?: string | null;
+  readonly dgtlive?: string | null;
+  readonly ecfratings?: string | null;
+  readonly ecflms?: string | null;
+  constructor(init: ModelInit<External>);
+  static copyOf(source: External, mutator: (draft: MutableModel<External>) => MutableModel<External> | void): External;
 }
 
 export declare class Event {
@@ -175,6 +174,25 @@ export declare class Game {
   readonly liChessUrl?: string | null;
   constructor(init: ModelInit<Game>);
   static copyOf(source: Game, mutator: (draft: MutableModel<Game>) => MutableModel<Game> | void): Game;
+}
+
+export declare class Result {
+  readonly id: string;
+  readonly resultInfo?: string | null;
+  readonly event?: Event | null;
+  readonly eventType?: string | null;
+  readonly name?: string | null;
+  readonly complete?: boolean | null;
+  readonly isLive?: boolean | null;
+  readonly winners?: string | null;
+  readonly dgtCloudUrl?: string | null;
+  readonly ecfLMSUrl?: string | null;
+  readonly chess24Url?: string | null;
+  readonly chessDotComUrl?: string | null;
+  readonly externalId?: string | null;
+  readonly external?: External | null;
+  constructor(init: ModelInit<Result>);
+  static copyOf(source: Result, mutator: (draft: MutableModel<Result>) => MutableModel<Result> | void): Result;
 }
 
 export declare class Plan {

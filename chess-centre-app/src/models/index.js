@@ -4,17 +4,18 @@ import { schema } from './schema';
 
 
 
-const { MailingList, Broadcast, Result, Event, EventType, Entry, Member, Game, Plan, S3Object } = initSchema(schema);
+const { MailingList, Broadcast, External, Event, EventType, Entry, Member, Game, Result, Plan, S3Object } = initSchema(schema);
 
 export {
   MailingList,
   Broadcast,
-  Result,
+  External,
   Event,
   EventType,
   Entry,
   Member,
   Game,
+  Result,
   Plan,
   S3Object
 };

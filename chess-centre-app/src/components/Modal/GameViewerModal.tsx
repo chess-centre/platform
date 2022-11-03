@@ -10,11 +10,12 @@ export default function GameViewerModal({ open, closeModal, pgn, fileName }) {
   }
 
   function downloadPGN(filename: string, data: string | undefined) {
+    const name = filename.split(" ").join("-").toLowerCase();
     if(!data) return;
     const blob = new Blob([data], { type: "application/vnd.chess-pgn" });
     const elem = window.document.createElement("a");
     elem.href = window.URL.createObjectURL(blob);
-    elem.download = `${filename}.pgn`;
+    elem.download = `${name}.pgn`;
     document.body.appendChild(elem);
     elem.click();
     document.body.removeChild(elem);

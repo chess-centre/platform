@@ -201,18 +201,29 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
           <div>
             <i className="fas fa-calendar-alt text-gray-400"></i>
           </div>
-          <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Held on</span>{" "}
-            <time dateTime={data.startDate}>
-              {moment(data.startDate).format("ddd Do, MMM")}
-            </time>
-            {data.endDate && (<>{` - `}<br />
-              <time dateTime={data.endDate}>
-                {moment(data.endDate).format("ddd Do, MMM")}
+          {data.endDate ? (
+            <div className="text-gray-900 text-sm font-medium">
+              <span className="text-teal-600">Held on</span>{" "}
+              <time dateTime={data.startDate}>
+                {moment(data.startDate).format("Do")}
               </time>
-              </>
-            )}
-          </div>
+              {data.endDate && (
+                <>
+                  {` - `}
+                  <time dateTime={data.endDate}>
+                    {moment(data.endDate).format("Do MMMM YY")}
+                  </time>
+                </>
+              )}
+            </div>
+          ) : (
+            <div className="text-gray-900 text-sm font-medium">
+              <span className="text-teal-600">Held on</span>{" "}
+              <time dateTime={data.startDate}>
+                {moment(data.startDate).format("dddd Do MMMM")}
+              </time>
+            </div>
+          )}
         </div>
 
         <div className="flex items-center space-x-2">

@@ -245,7 +245,7 @@ export default function EventGamesView() {
               <div>
                 {games && games.length > 0 ? (
                   <div>
-                    <EventGameTable games={games} />
+                    <EventGameTable games={games} eventName={eventName} />
                   </div>
                 ) : (
                   <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">

@@ -141,21 +141,18 @@ export const syncBroadcasts = /* GraphQL */ `
     }
   }
 `;
-export const getResult = /* GraphQL */ `
-  query GetResult($id: ID!) {
-    getResult(id: $id) {
+export const getExternal = /* GraphQL */ `
+  query GetExternal($id: ID!) {
+    getExternal(id: $id) {
       id
-      resultInfo
-      eventID
-      eventType
-      name
-      complete
-      isLive
-      winners
-      dgtCloudUrl
-      ecfLMSUrl
-      chess24Url
-      chessDotComUrl
+      eventId
+      chessdotcom
+      lichess
+      chess24
+      chessresults
+      dgtlive
+      ecfratings
+      ecflms
       _version
       _deleted
       _lastChangedAt
@@ -197,11 +194,782 @@ export const getResult = /* GraphQL */ `
             ecfLMSUrl
             chess24Url
             chessDotComUrl
+            externalId
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            external {
+              id
+              eventId
+              chessdotcom
+              lichess
+              chess24
+              chessresults
+              dgtlive
+              ecfratings
+              ecflms
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        games {
+          items {
+            id
+            eventId
+            eventName
+            date
+            whiteMemberId
+            whiteName
+            whiteRating
+            blackMemberId
+            blackName
+            blackRating
+            round
+            result
+            type
+            pgn {
+              bucket
+              region
+              key
+            }
+            pgnStr
+            liChessUrl
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            whiteMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            blackMember {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+        type {
+          id
+          name
+          description
+          url
+          color
+          time
+          maxEntries
+          stripePriceId
+          timeControl
+          eventType
+          defaultPrice
+          canRegister
+          memberEntry
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        entries {
+          items {
+            id
+            eventId
+            memberId
+            section
+            byes
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            member {
+              id
+              about
+              fideId
+              ecfId
+              username
+              name
+              firstName
+              surname
+              email
+              ecfRating
+              ecfRapid
+              fideRating
+              ecfMembership
+              ecfRapidPartial
+              ecfRatingPartial
+              estimatedRating
+              chessTitle
+              club
+              gender
+              membershipType
+              gameInfo
+              ratingInfo
+              liChessUsername
+              liChessInfo
+              chesscomUsername
+              chesscomInfo
+              chesscomLastUpdated
+              lichessLastUpdated
+              ecfLastUpdated
+              isJunior
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+              stripeCustomerId
+              stripeCurrentPeriodEnd
+              stripePriceId
+              stripeProductId
+              stripeFriendlyProductName
+            }
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
+          nextToken
+          startedAt
+        }
+      }
+    }
+  }
+`;
+export const listExternals = /* GraphQL */ `
+  query ListExternals(
+    $filter: ModelExternalFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listExternals(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        eventId
+        chessdotcom
+        lichess
+        chess24
+        chessresults
+        dgtlive
+        ecfratings
+        ecflms
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        event {
+          id
+          name
+          description
+          rounds
+          time
+          startDate
+          endDate
+          maxEntries
+          entryCount
+          complete
+          cancelled
+          isLive
+          isLiveUrl
+          isJunior
+          active
+          multipleSections
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          results {
+            items {
+              id
+              resultInfo
+              eventID
+              eventType
+              name
+              complete
+              isLive
+              winners
+              dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
+              externalId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          games {
+            items {
+              id
+              eventId
+              eventName
+              date
+              whiteMemberId
+              whiteName
+              whiteRating
+              blackMemberId
+              blackName
+              blackRating
+              round
+              result
+              type
+              pgnStr
+              liChessUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          type {
+            id
+            name
+            description
+            url
+            color
+            time
+            maxEntries
+            stripePriceId
+            timeControl
+            eventType
+            defaultPrice
+            canRegister
+            memberEntry
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              section
+              byes
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncExternals = /* GraphQL */ `
+  query SyncExternals(
+    $filter: ModelExternalFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncExternals(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        eventId
+        chessdotcom
+        lichess
+        chess24
+        chessresults
+        dgtlive
+        ecfratings
+        ecflms
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        event {
+          id
+          name
+          description
+          rounds
+          time
+          startDate
+          endDate
+          maxEntries
+          entryCount
+          complete
+          cancelled
+          isLive
+          isLiveUrl
+          isJunior
+          active
+          multipleSections
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          results {
+            items {
+              id
+              resultInfo
+              eventID
+              eventType
+              name
+              complete
+              isLive
+              winners
+              dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
+              externalId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          games {
+            items {
+              id
+              eventId
+              eventName
+              date
+              whiteMemberId
+              whiteName
+              whiteRating
+              blackMemberId
+              blackName
+              blackRating
+              round
+              result
+              type
+              pgnStr
+              liChessUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          type {
+            id
+            name
+            description
+            url
+            color
+            time
+            maxEntries
+            stripePriceId
+            timeControl
+            eventType
+            defaultPrice
+            canRegister
+            memberEntry
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              section
+              byes
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getResult = /* GraphQL */ `
+  query GetResult($id: ID!) {
+    getResult(id: $id) {
+      id
+      resultInfo
+      eventID
+      eventType
+      name
+      complete
+      isLive
+      winners
+      dgtCloudUrl
+      ecfLMSUrl
+      chess24Url
+      chessDotComUrl
+      externalId
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+      external {
+        id
+        eventId
+        chessdotcom
+        lichess
+        chess24
+        chessresults
+        dgtlive
+        ecfratings
+        ecflms
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        event {
+          id
+          name
+          description
+          rounds
+          time
+          startDate
+          endDate
+          maxEntries
+          entryCount
+          complete
+          cancelled
+          isLive
+          isLiveUrl
+          isJunior
+          active
+          multipleSections
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          results {
+            items {
+              id
+              resultInfo
+              eventID
+              eventType
+              name
+              complete
+              isLive
+              winners
+              dgtCloudUrl
+              ecfLMSUrl
+              chess24Url
+              chessDotComUrl
+              externalId
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          games {
+            items {
+              id
+              eventId
+              eventName
+              date
+              whiteMemberId
+              whiteName
+              whiteRating
+              blackMemberId
+              blackName
+              blackRating
+              round
+              result
+              type
+              pgnStr
+              liChessUrl
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          type {
+            id
+            name
+            description
+            url
+            color
+            time
+            maxEntries
+            stripePriceId
+            timeControl
+            eventType
+            defaultPrice
+            canRegister
+            memberEntry
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          entries {
+            items {
+              id
+              eventId
+              memberId
+              section
+              byes
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+        }
+      }
+      event {
+        id
+        name
+        description
+        rounds
+        time
+        startDate
+        endDate
+        maxEntries
+        entryCount
+        complete
+        cancelled
+        isLive
+        isLiveUrl
+        isJunior
+        active
+        multipleSections
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+        results {
+          items {
+            id
+            resultInfo
+            eventID
+            eventType
+            name
+            complete
+            isLive
+            winners
+            dgtCloudUrl
+            ecfLMSUrl
+            chess24Url
+            chessDotComUrl
+            externalId
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            external {
+              id
+              eventId
+              chessdotcom
+              lichess
+              chess24
+              chessresults
+              dgtlive
+              ecfratings
+              ecflms
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             event {
               id
               name
@@ -492,11 +1260,83 @@ export const listResults = /* GraphQL */ `
         ecfLMSUrl
         chess24Url
         chessDotComUrl
+        externalId
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        external {
+          id
+          eventId
+          chessdotcom
+          lichess
+          chess24
+          chessresults
+          dgtlive
+          ecfratings
+          ecflms
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            isLive
+            isLiveUrl
+            isJunior
+            active
+            multipleSections
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              memberEntry
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
         event {
           id
           name
@@ -533,6 +1373,7 @@ export const listResults = /* GraphQL */ `
               ecfLMSUrl
               chess24Url
               chessDotComUrl
+              externalId
               _version
               _deleted
               _lastChangedAt
@@ -637,11 +1478,83 @@ export const syncResults = /* GraphQL */ `
         ecfLMSUrl
         chess24Url
         chessDotComUrl
+        externalId
         _version
         _deleted
         _lastChangedAt
         createdAt
         updatedAt
+        external {
+          id
+          eventId
+          chessdotcom
+          lichess
+          chess24
+          chessresults
+          dgtlive
+          ecfratings
+          ecflms
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+          event {
+            id
+            name
+            description
+            rounds
+            time
+            startDate
+            endDate
+            maxEntries
+            entryCount
+            complete
+            cancelled
+            isLive
+            isLiveUrl
+            isJunior
+            active
+            multipleSections
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            results {
+              nextToken
+              startedAt
+            }
+            games {
+              nextToken
+              startedAt
+            }
+            type {
+              id
+              name
+              description
+              url
+              color
+              time
+              maxEntries
+              stripePriceId
+              timeControl
+              eventType
+              defaultPrice
+              canRegister
+              memberEntry
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            entries {
+              nextToken
+              startedAt
+            }
+          }
+        }
         event {
           id
           name
@@ -678,6 +1591,7 @@ export const syncResults = /* GraphQL */ `
               ecfLMSUrl
               chess24Url
               chessDotComUrl
+              externalId
               _version
               _deleted
               _lastChangedAt
@@ -1502,11 +2416,28 @@ export const getGame = /* GraphQL */ `
             ecfLMSUrl
             chess24Url
             chessDotComUrl
+            externalId
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            external {
+              id
+              eventId
+              chessdotcom
+              lichess
+              chess24
+              chessresults
+              dgtlive
+              ecfratings
+              ecflms
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             event {
               id
               name
@@ -2230,6 +3161,7 @@ export const listGames = /* GraphQL */ `
               ecfLMSUrl
               chess24Url
               chessDotComUrl
+              externalId
               _version
               _deleted
               _lastChangedAt
@@ -2769,6 +3701,7 @@ export const listGamesByEvent = /* GraphQL */ `
               ecfLMSUrl
               chess24Url
               chessDotComUrl
+              externalId
               _version
               _deleted
               _lastChangedAt
@@ -3308,6 +4241,7 @@ export const listGamesByWhiteMember = /* GraphQL */ `
               ecfLMSUrl
               chess24Url
               chessDotComUrl
+              externalId
               _version
               _deleted
               _lastChangedAt
@@ -3847,6 +4781,7 @@ export const listGamesByBlackMember = /* GraphQL */ `
               ecfLMSUrl
               chess24Url
               chessDotComUrl
+              externalId
               _version
               _deleted
               _lastChangedAt
@@ -4384,6 +5319,7 @@ export const syncGames = /* GraphQL */ `
               ecfLMSUrl
               chess24Url
               chessDotComUrl
+              externalId
               _version
               _deleted
               _lastChangedAt
@@ -5440,6 +6376,7 @@ export const getMember = /* GraphQL */ `
               ecfLMSUrl
               chess24Url
               chessDotComUrl
+              externalId
               _version
               _deleted
               _lastChangedAt
@@ -6077,11 +7014,51 @@ export const getEvent = /* GraphQL */ `
           ecfLMSUrl
           chess24Url
           chessDotComUrl
+          externalId
           _version
           _deleted
           _lastChangedAt
           createdAt
           updatedAt
+          external {
+            id
+            eventId
+            chessdotcom
+            lichess
+            chess24
+            chessresults
+            dgtlive
+            ecfratings
+            ecflms
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+            event {
+              id
+              name
+              description
+              rounds
+              time
+              startDate
+              endDate
+              maxEntries
+              entryCount
+              complete
+              cancelled
+              isLive
+              isLiveUrl
+              isJunior
+              active
+              multipleSections
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+          }
           event {
             id
             name
@@ -6568,11 +7545,28 @@ export const listEvents = /* GraphQL */ `
             ecfLMSUrl
             chess24Url
             chessDotComUrl
+            externalId
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            external {
+              id
+              eventId
+              chessdotcom
+              lichess
+              chess24
+              chessresults
+              dgtlive
+              ecfratings
+              ecflms
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             event {
               id
               name
@@ -6898,11 +7892,28 @@ export const listEventsActive = /* GraphQL */ `
             ecfLMSUrl
             chess24Url
             chessDotComUrl
+            externalId
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            external {
+              id
+              eventId
+              chessdotcom
+              lichess
+              chess24
+              chessresults
+              dgtlive
+              ecfratings
+              ecflms
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             event {
               id
               name
@@ -7224,11 +8235,28 @@ export const syncEvents = /* GraphQL */ `
             ecfLMSUrl
             chess24Url
             chessDotComUrl
+            externalId
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            external {
+              id
+              eventId
+              chessdotcom
+              lichess
+              chess24
+              chessresults
+              dgtlive
+              ecfratings
+              ecflms
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             event {
               id
               name
@@ -7891,11 +8919,28 @@ export const getEntry = /* GraphQL */ `
             ecfLMSUrl
             chess24Url
             chessDotComUrl
+            externalId
             _version
             _deleted
             _lastChangedAt
             createdAt
             updatedAt
+            external {
+              id
+              eventId
+              chessdotcom
+              lichess
+              chess24
+              chessresults
+              dgtlive
+              ecfratings
+              ecflms
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
             event {
               id
               name
@@ -8412,6 +9457,7 @@ export const listEntrys = /* GraphQL */ `
               ecfLMSUrl
               chess24Url
               chessDotComUrl
+              externalId
               _version
               _deleted
               _lastChangedAt
@@ -8742,6 +9788,7 @@ export const syncEntries = /* GraphQL */ `
               ecfLMSUrl
               chess24Url
               chessDotComUrl
+              externalId
               _version
               _deleted
               _lastChangedAt
