@@ -8586,6 +8586,11 @@ elliptic@^6.5.3:
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
 
+elo-rating-system@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/elo-rating-system/-/elo-rating-system-1.1.1.tgz#c5ae7d3891a09943d5045bead7f47012bd16687f"
+  integrity sha512-NUsYddaquTPxHZglVUZNV49/1LOI/U7+DjByCIMlltWt3k+rQTSdc6FwGjKcfjnOfbTx6SX8ivsPfEZFnZMzTA==
+
 emittery@^0.10.2:
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/emittery/-/emittery-0.10.2.tgz#902eec8aedb8c41938c46e9385e9db7e03182933"

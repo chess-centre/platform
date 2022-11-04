@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { classNames } from "../../utils/Classes";
 import { RoundObj } from "./checker";
 import { Sparklines, SparklinesLine } from "react-sparklines";
+import { FiftyFiftyIcon } from "../../icons";
+import Elo from "elo-rating-system";
 
 type StandingsProps = {
   roundByRound: RoundObj[];
@@ -54,7 +56,7 @@ export const Standings = ({
       <div
         className={classNames(
           headerClasses,
-          "py-1 font-medium  text-center rounded-t-md uppercase tracking-wider text-2xl"
+          "py-2 font-semibold tracking-wider text text-center rounded-t-md uppercase text-md"
         )}
       >
         {division}
@@ -97,6 +99,14 @@ export const Standings = ({
               </th>
               <th
                 scope="col"
+                className="relative px-1 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
+              >
+                <span className="mx-auto">
+                  <i className="fas fa-chess-queen"></i>
+                </span>
+              </th>
+              <th
+                scope="col"
                 className="block sm:hidden relative px-2 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
               >
                 Total
@@ -113,7 +123,6 @@ export const Standings = ({
                     </th>
                   );
                 })}
-
               <th
                 scope="col"
                 className="hidden sm:block relative px-2 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
@@ -148,14 +157,14 @@ export const Standings = ({
                       "hover:bg-teal-100"
                     )}
                   >
-                    <td className="border-r border-slate-50 px-1 py-2 text-sm sm:text-md whitespace-nowrap text-center text-slate-400">
+                    <td className="border-r border-slate-50 px-1 py-3 text-sm sm:text-md whitespace-nowrap text-center text-slate-400">
                       {activeRow === key && expanded ? (
                         <i className="fas fa-chevron-down"></i>
                       ) : (
                         <i className="fas fa-chevron-right"></i>
                       )}
                     </td>
-                    <td className="hidden sm:block border-r border-slate-50 px-1 py-2 text-sm sm:text-md whitespace-nowrap text-center text-slate-800">
+                    <td className="hidden sm:block border-r border-slate-50 px-1 py-3 text-sm sm:text-md whitespace-nowrap text-center text-slate-800">
                       {isWinner ? "1st" : position}
                     </td>
                     {showTitle && (
@@ -165,23 +174,27 @@ export const Standings = ({
                         </span>
                       </td>
                     )}
-                    <td className="pl-4 text-left px-2 py-2 whitespace-nowrap text-sm sm:text-md text-teal-600 hover:text-teal-700">
-                      <Link to={`/app/games/${data.memberId}`}>
-                        {data.name}
-                      </Link>
+                    <td className="pl-4 text-left px-2 py-3 whitespace-nowrap text-sm sm:text-md text-teal-600 hover:text-teal-700">
+                      {data.name}
                       {isWinner && (
                         <span className="ml-2 text-yellow-400">
                           <i className="fal fa-trophy-alt"></i>
                         </span>
                       )}
                     </td>
-
-                    <td className="border-r border-slate-50 px-1 py-2 text-sm sm:text-md whitespace-nowrap text-center text-white">
+                    <td className="px-1 py-3 text-sm sm:text-md whitespace-nowrap text-center text-white">
                       <span className="text-teal-700">
                         {data.rating ? data.rating : "unrated"}
                       </span>
                     </td>
-                    <td className="block sm:hidden px-2 sm:px-6 py-2 whitespace-nowrap text-center sm:font-bold text-slate-800">
+                    <td className="whitespace-nowrap px-1 py-3 text-center text-gray-600 hover:text-gray-700">
+                      <Link to={`/app/games/${data.memberId}`}>
+                        <span className="">
+                          <i className="fad fa-game-board-alt"></i>
+                        </span>
+                      </Link>
+                    </td>
+                    <td className="block sm:hidden px-2 sm:px-6 py-3 whitespace-nowrap text-center sm:font-bold text-slate-800">
                       <Total value={data.total} />
                     </td>
 
@@ -206,7 +219,7 @@ export const Standings = ({
                           return (
                             <td
                               key={idx}
-                              className="px-2 sm:px-3 py-2 whitespace-nowrap font-medium text-sm sm:text-md border-r border-slate-50"
+                              className="px-2 py-3 whitespace-nowrap font-medium text-sm sm:text-md border-r border-slate-50"
                             >
                               <div
                                 className="text-center"
@@ -235,7 +248,7 @@ export const Standings = ({
                           );
                         })}
 
-                    <td className="hidden sm:block px-2 py-2 whitespace-nowrap text-center text-sm sm:font-bold text-slate-700">
+                    <td className="hidden sm:block px-2 py-3 whitespace-nowrap text-center text-sm sm:font-bold text-slate-700">
                       <Total value={data.total} />
                     </td>
                   </tr>
@@ -381,7 +394,7 @@ function Statistics({ data }: { data: RoundObj }) {
   };
 
   const perf = data.details.reduce((prev, cur, idx) => {
-    const { average, tpr, games } = performanceRating({
+    const { average, tpr, games, change, totalChange } = performanceRating({
       playerRating: data.rating,
       opponentRatings: data.details.slice(0, idx + 1),
       results: data.rounds.slice(0, idx + 1),
@@ -392,6 +405,8 @@ function Statistics({ data }: { data: RoundObj }) {
         average,
         tpr,
         games,
+        change,
+        totalChange,
       },
     ];
   }, [] as any);
@@ -401,7 +416,6 @@ function Statistics({ data }: { data: RoundObj }) {
   return (
     <div>
       <div className="grid grid-cols-2">
-
         <StatisticsTable
           data={data}
           updatePerformanceRating={updatePerformanceRating}
@@ -413,7 +427,7 @@ function Statistics({ data }: { data: RoundObj }) {
 }
 
 function StatisticsTable({ data, updatePerformanceRating }) {
-  const { details, rounds, colors }: RoundObj = data;
+  const { details, rounds, colors, perf }: RoundObj = data;
 
   return (
     <div className="inline-block min-w-full align-middle m-1">
@@ -434,23 +448,31 @@ function StatisticsTable({ data, updatePerformanceRating }) {
             </th>
             <th
               scope="col"
-              className="text-center font-thin text-xs mx-auto text-teal-600"
+              className="py-1 px-2 text-center font-thin text-sm text-teal-600"
+            >
+              Rating
+            </th>
+            <th
+              scope="col"
+              className="py-1 px-2 text-center font-thin text-xs mx-auto text-teal-600"
             >
               <span>
-                <i className="fas fa-game-board-alt"></i>
+                <FiftyFiftyIcon className="w-2.5 h-2.5 mx-auto" />
               </span>
             </th>
             <th
               scope="col"
-              className="py-1 text-center font-thin text-sm text-teal-600"
+              className="py-1 px-2 text-center font-thin text-xs text-teal-600"
             >
-              + / -
+              <span>
+                <i className="fas fa-swords"></i>
+              </span>
             </th>
             <th
               scope="col"
-              className="py-1 text-center font-thin text-sm text-teal-600"
+              className="py-1 px-2 text-center font-thin text-sm text-teal-600"
             >
-              Rating
+              +/-
             </th>
           </tr>
         </thead>
@@ -472,6 +494,9 @@ function StatisticsTable({ data, updatePerformanceRating }) {
                     </td>
                     <td className="whitespace-nowrap py-1 pl-2 text-sm text-slate-600">
                       {opponent.name}
+                    </td>
+                    <td className="whitespace-nowrap text-center py-1 text-sm text-slate-500">
+                      {opponent?.ratingInfo?.rating}
                     </td>
                     <td className="whitespace-nowrap text-center text-sm text-slate-600">
                       {colors[key] === "W" ? (
@@ -499,8 +524,18 @@ function StatisticsTable({ data, updatePerformanceRating }) {
                     <td className="whitespace-nowrap text-center py-1 text-sm text-slate-600">
                       {rounds[key] === 0.5 ? "½" : rounds[key]}
                     </td>
-                    <td className="whitespace-nowrap text-center py-1 text-sm text-slate-500">
-                      {opponent?.ratingInfo?.rating}
+                    <td className="whitespace-nowrap text-center py-1 text-xs text-slate-600">
+                      {perf[key].change > 0 && (
+                        <span className="text-green-500">
+                          {perf[key].change}
+                        </span>
+                      )}
+                      {perf[key].change < 0 && (
+                        <span className="text-red-600">{perf[key].change}</span>
+                      )}
+                      {perf[key].change === 0 && (
+                        <span className="text-gray-600">0</span>
+                      )}
                     </td>
                   </tr>
                 );
@@ -527,31 +562,52 @@ function StatisticsTable({ data, updatePerformanceRating }) {
 }
 
 function StatisticsSummary({ perf, idx }) {
-  const tprData = perf.slice(0, idx + 1).reduce((pre, cur) => [...pre, Number(cur.tpr)], []);
-  const avData = perf.slice(0, idx + 1).reduce((pre, cur) => [...pre, Number(cur.average)], []);
+  const tprData = perf
+    .slice(0, idx + 1)
+    .reduce((pre, cur) => [...pre, Number(cur.tpr)], []);
+  const avData = perf
+    .slice(0, idx + 1)
+    .reduce((pre, cur) => [...pre, Number(cur.average)], []);
   const plural = perf[idx].games > 1 ? "games" : "game";
+
   return (
     <div className="grid grid-cols-2 text-center justify-center items-center">
-      <div className="mt-10 border-r border-slate-300">
-        <div className="text-xs text-slate-400 mb-2">TPR</div>
-        <div className="text-teal-600 text-3xl sm:text-5xl">{perf[idx].tpr}</div>
+      <div className="col-span-2 py-2">
+        <div className="text-xs text-slate-400 sm:mb-2">Rating Change</div>
+        <div className="text-lg font-medium text-center m-2 bg-white z-10">
+          {perf[idx].totalChange > 0 && <span className="text-green-500">+{perf[idx].totalChange.toFixed(1)}</span>}
+          {perf[idx].totalChange < 0 && <span className="text-red-600">{perf[idx].totalChange.toFixed(1)}</span>}
+          {perf[idx].totalChange === 0 && <span className="text-gray-500">0</span>}
+        </div>
+      </div>
+
+      <div className="-mt-10">
+        <div className="text-xs text-slate-400 mb-2">Rating Perf.</div>
+        <div className="text-teal-600 text-3xl sm:text-5xl">
+          {perf[idx].tpr}
+        </div>
         <div className="text-xs text-slate-400 mt-2">
           after {perf[idx].games} rated {plural}
         </div>
       </div>
-      <div className="mt-10 bottom-0">
-        <div className="text-xs text-slate-400 mb-2">Average Rating</div>
-        <div className="text-blue-brand text-3xl sm:text-5xl">{perf[idx].average}</div>
+      <div className="-mt-10">
+        <div className="text-xs text-slate-400 mb-2">
+          Av. Opp. Rating
+        </div>
+        <div className="text-blue-brand text-3xl sm:text-5xl">
+          {perf[idx].average}
+        </div>
         <div className="text-xs text-slate-400 mt-2">
           after {perf[idx].games} rated {plural}
         </div>
       </div>
-      <div className="-mt-2">
+
+      <div className="-mt-4">
         <Sparklines data={tprData}>
           <SparklinesLine color="#0096a4" />
         </Sparklines>
       </div>
-      <div className="-mt-2">
+      <div className="-mt-4">
         <Sparklines data={avData}>
           <SparklinesLine color="#f0802b" />
         </Sparklines>
@@ -561,7 +617,6 @@ function StatisticsSummary({ perf, idx }) {
 }
 
 const performanceRating = ({ playerRating, opponentRatings, results }) => {
-
   const maxOpponentRating = (rating: number, opponentRating: number) => {
     const diff = opponentRating - rating;
     if (diff > 400) {
@@ -573,24 +628,47 @@ const performanceRating = ({ playerRating, opponentRatings, results }) => {
     return opponentRating;
   };
 
-  type Progression = { gained: number, sum: number, games: number }
+  type Progression = {
+    gained: number;
+    sum: number;
+    games: number;
+    change: number;
+    totalChange: number;
+  };
 
-  const { gained, sum, games }: Progression = opponentRatings.reduce(
+  const {
+    gained,
+    sum,
+    games,
+    change,
+    totalChange,
+  }: Progression = opponentRatings.reduce(
     (pre: Progression, cur, idx: number) => {
       if (cur && typeof cur.ratingInfo.rating === "number") {
+        const elo = new Elo({
+          k: 20,
+          rating: isNaN(playerRating) ? 1200 : playerRating,
+        });
+        const result = elo.change(cur?.ratingInfo?.rating || 1200, results[idx])
+          .change;
+
         pre.games += 1;
         pre.sum += cur.ratingInfo.rating;
         const oR = maxOpponentRating(playerRating, cur.ratingInfo.rating);
-        const change = results[idx] === 1 ? 400 : results[idx] === 0 ? -400 : 0;
-        pre.gained += oR + change;
+        const gain = results[idx] === 1 ? 400 : results[idx] === 0 ? -400 : 0;
+        pre.gained += oR + gain;
+        pre.change = Number(result.toFixed(1));
+        pre.totalChange += Number(result.toFixed(1));
       }
       return pre;
     },
-    { gained: 0, sum: 0, games: 0 }
+    { gained: 0, sum: 0, games: 0, change: 0, totalChange: 0 }
   );
   return {
     tpr: isNaN(gained / games) ? 0 : (gained / games).toFixed(0),
     average: isNaN(sum / games) ? 0 : (sum / games).toFixed(0),
     games,
+    change,
+    totalChange,
   };
 };
