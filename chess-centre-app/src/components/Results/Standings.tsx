@@ -73,7 +73,7 @@ export const Standings = ({
               </th>
               <th
                 scope="col"
-                className="hidden sm:block px-1 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
+                className="px-1 py-3 text-center text-xs font-medium text-slate-900 uppercase tracking-wider"
               >
                 Pos.
               </th>
@@ -164,7 +164,7 @@ export const Standings = ({
                         <i className="fas fa-chevron-right"></i>
                       )}
                     </td>
-                    <td className="hidden sm:block border-r border-slate-50 px-1 py-3 text-sm sm:text-md whitespace-nowrap text-center text-slate-800">
+                    <td className="border-r border-slate-50 px-1 py-3 text-sm sm:text-md whitespace-nowrap text-center text-slate-800">
                       {isWinner ? "1st" : position}
                     </td>
                     {showTitle && (
@@ -415,7 +415,7 @@ function Statistics({ data }: { data: RoundObj }) {
 
   return (
     <div>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 gap-1">
         <StatisticsTable
           data={data}
           updatePerformanceRating={updatePerformanceRating}
@@ -546,7 +546,7 @@ function StatisticsTable({ data, updatePerformanceRating }) {
                       {key + 1}
                     </td>
                     <td
-                      colSpan={4}
+                      colSpan={5}
                       className="whitespace-nowrap text-center py-1 pl-4 pr-3 text-sm text-slate-500 sm:pl-6 md:pl-0 bg-red-50"
                     >
                       bye
