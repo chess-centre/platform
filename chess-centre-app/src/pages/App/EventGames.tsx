@@ -222,7 +222,7 @@ export default function EventGamesView() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-chess-king text-teal-600"></i> Games{" "}
+        <i className="fas fa-game-board-alt text-teal-600"></i> Games{" "}
         <span className="text-sm text-gray-500">by event</span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
