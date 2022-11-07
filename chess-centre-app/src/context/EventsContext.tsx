@@ -98,7 +98,7 @@ export function useEvents() {
       data: {
         listEventsActive: { items: events },
       },
-    } = await API.graphql({
+    }: any = await API.graphql({
       query: listEventsActive,
       variables: { active: "yes", startDate: { gt: yesterday } },
     });

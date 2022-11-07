@@ -143,7 +143,13 @@ const routes = [
     component: lazy(() => import("../pages/Broadcast/Live")),
     exact: true,
     isPrivate: false,
-  }
+  },
+  // Widgets
+  {
+    path: "/widgets/event/:eventId",
+    component: lazy(() => import("../widgets/Event")),
+    isPrivate: false
+  },
 ];
 
 export default routes;

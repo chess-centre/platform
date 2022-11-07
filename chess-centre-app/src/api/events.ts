@@ -149,7 +149,7 @@ export const useEventsLite = () => {
       data: {
         listEventsActive: { items: events },
       },
-    } = await API.graphql({
+    }: any = await API.graphql({
       query: listEventsActiveLite,
       variables: { active: "yes", startDate: { gt: yesterday } },
       authMode: "AWS_IAM",
