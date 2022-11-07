@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SwaggerUI from "swagger-ui-react";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import LandingNav from "../../components/Navigation/LandingNav";
-import { useEvents } from "../../context/EventsContext";
+import { useEventsLite } from "../../context/EventHook";
 import moment from "moment";
 import { Switch } from "@headlessui/react";
 import "swagger-ui-react/swagger-ui.css";
@@ -12,7 +12,7 @@ import { classNames } from "../../utils/Classes";
 const Developer = () => {
   document.title = "The Chess Centre | Developer";
 
-  const { isLoading, error, data } = useEvents();
+  const { isLoading, error, data } = useEventsLite();
   const [eventUrl, setEventUrl] = useState<string>("");
   const [eventId, setEventId] = useState<string>("");
   const [embedCode, setEmbedCode] = useState<string>("");
@@ -188,22 +188,22 @@ const Developer = () => {
               <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
                 Widgets
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-3 mt-4">
-                <div className="prose text-sm">
-                  <p>Advertise one of our chess events, anywhere!</p>
-                  <p>
-                    Select from the below configuration and simply
-                    paste the generated code into your website or blog.
-                  </p>
-                  <div>
-                    <label
-                      htmlFor="events"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                    >
-                      Select Event
-                    </label>
-                    <div className="mt-2 sm:col-span-2">
-                      {!isLoading && !error && (
+              {!isLoading && !error && (
+                <div className="grid grid-cols-1 sm:grid-cols-3 mt-4">
+                  <div className="prose text-sm">
+                    <p>Advertise one of our chess events, anywhere!</p>
+                    <p>
+                      Select from the below configuration and simply paste the
+                      generated code into your website or blog.
+                    </p>
+                    <div>
+                      <label
+                        htmlFor="events"
+                        className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                      >
+                        Select Event
+                      </label>
+                      <div className="mt-2 sm:col-span-2">
                         <select
                           onChange={(event) => handleEventSelect(event)}
                           id="events"
@@ -221,79 +221,82 @@ const Developer = () => {
                             </option>
                           ))}
                         </select>
-                      )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="mt-4 sm:mt-0">
-                    <label
-                      htmlFor="colour"
-                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                    >
-                      Background Colour
-                    </label>
-                    <div className="mt-2 sm:col-span-2">
-                      {!isLoading && !error && (
-                        <select
-                          onChange={(event) =>
-                            handleSelectColor(event.target.value)
-                          }
-                          id="colour"
-                          name="colour"
-                          className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 max-w-xs text-sm"
-                        >
-                          <option>Gray</option>
-                          <option>White</option>
-                          <option>Black</option>
-                        </select>
-                      )}
+                    <div className="mt-4 sm:mt-0">
+                      <label
+                        htmlFor="colour"
+                        className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                      >
+                        Background Colour
+                      </label>
+                      <div className="mt-2 sm:col-span-2">
+                        {!isLoading && !error && (
+                          <select
+                            onChange={(event) =>
+                              handleSelectColor(event.target.value)
+                            }
+                            id="colour"
+                            name="colour"
+                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 max-w-xs text-sm"
+                          >
+                            <option>Gray</option>
+                            <option>White</option>
+                            <option>Black</option>
+                            <option>Teal</option>
+                          </select>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="pt-4">
-                    <LogoToggle
-                      enabled={enabledLogo}
-                      setEnabled={handleLogoToggle}
-                    />
-                  </div>
-                  <div className="pt-4">
-                    <ThemeToggle
-                      enabled={darkTheme}
-                      setEnabled={handleThemeToggle}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className="sm:px-4 mt-6 sm:mt-0">
-                    <div className="mt-1 sm:col-span-2">
-                      <textarea
-                        id="embed"
-                        name="embed"
-                        rows={6}
-                        className="block w-full max-w-lg rounded-md text-black border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 text-xs"
-                        defaultValue={embedCode}
+                    <div className="pt-4">
+                      <LogoToggle
+                        enabled={enabledLogo}
+                        setEnabled={handleLogoToggle}
                       />
                     </div>
-                    <label
-                      htmlFor="embed"
-                      className="block text-xs font-medium text-gray-500 sm:mt-px"
-                    >
-                      Generated Embed Code
-                    </label>
+                    <div className="pt-4">
+                      <ThemeToggle
+                        enabled={darkTheme}
+                        setEnabled={handleThemeToggle}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="sm:px-4 mt-6 sm:mt-0">
+                      <div className="mt-1 sm:col-span-2">
+                        <textarea
+                          id="embed"
+                          name="embed"
+                          rows={6}
+                          className="block w-full max-w-lg rounded-md text-black border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 text-xs"
+                          defaultValue={embedCode}
+                        />
+                      </div>
+                      <label
+                        htmlFor="embed"
+                        className="block text-xs font-medium text-gray-500 sm:mt-px"
+                      >
+                        Generated Embed Code
+                      </label>
+                    </div>
+                  </div>
+                  <div className="sm:-mt-6 mt-4">
+                    <h2 className="text-md text-gray-900 sm:tracking-tight">
+                      Example output:
+                    </h2>
+                    {eventUrl && (
+                      <iframe
+                        title="Event Widget"
+                        src={eventUrl}
+                        width={300}
+                        height={600}
+                      />
+                    )}
                   </div>
                 </div>
-                <div className="sm:-mt-6 mt-4">
-                  <h2 className="text-md text-gray-900 sm:tracking-tight">
-                    Example output: 
-                  </h2>
-                  {eventUrl && (
-                    <iframe
-                      title="Event Widget"
-                      src={eventUrl}
-                      width={300}
-                      height={600}
-                    />
-                  )}
-                </div>
-              </div>
+              )}
+              { isLoading && <div>Loading...</div> }
+              { error && <div>Oops, an error occurred</div> }
             </div>
           </div>
         </div>

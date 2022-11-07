@@ -11,6 +11,18 @@ const Issue = ({ issue }) => {
   );
 };
 
+const Project = ({ repoName }) => {
+  return (
+    <a
+      className="text-sky-600 text-xs hover:underline"
+      href={`https://github.com/chess-centre/${repoName}`}
+    >
+      {`view here`}
+    </a>
+  );
+};
+
+
 export const TechRoadmap = () => {
   return (
     <div className="relative m-8 text-sm sm:text-base">
@@ -48,11 +60,14 @@ export const TechRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li>
-                Event Crosstable / Results <br />
-                <Issue issue="475" />
+                New Project Initiatives
+                <ul className="list-disc ml-5">
+                  <li>Broadcasts <Project repoName="broadcasts" /></li>
+                  <li>Leagues <Project repoName="leagues" /></li>
+                </ul>
               </li>
               <li>
-                Latest News <br />
+                <span className="line-through">Latest News</span> <span className="text-xs text-gray-400">abandoned</span> <br />
                 <Issue issue="312" />
               </li>
             </ul>
@@ -70,7 +85,39 @@ export const TechRoadmap = () => {
           <div className="ml-12">
             <ul className="list-disc ml-5">
               <li>
+                Widgets - events <br /> <Issue issue="746" />
+              </li>
+              <li>
+                Free Event Entry - members<br /> <Issue issue="656" />
+              </li>
+              <li>
+                PGN Download<br /> <Issue issue="730" />
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li className="mb-2">
+          <div className="flex items-center mb-1">
+            <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
+            <div className="flex-1 ml-4 font-medium">
+              <span className="mr-2 bg-green-200 text-green-800 p-1 rounded  leading-none">
+                Complete
+              </span>
+              <span className="font-thin">v2.2.0</span>
+            </div>
+          </div>
+          <div className="ml-12">
+            <ul className="list-disc ml-5">
+              <li>
                 Public API - events <br /> <Issue issue="618" />
+              </li>
+              <li>
+                Event Results 📊<br />
+                <Issue issue="475" />, {" "}<Issue issue="743" />
+              </li>
+              <li>
+                Event TPR +/- <br />
+                <Issue issue="744" />
               </li>
             </ul>
           </div>
@@ -94,9 +141,6 @@ export const TechRoadmap = () => {
               <li>
                 Junior - multi section event <br /> <Issue issue="571" />
               </li>
-              <li>
-                Public API - events <br /> <Issue issue="618" />
-              </li>
             </ul>
           </div>
         </li>
@@ -104,7 +148,7 @@ export const TechRoadmap = () => {
           <div className="flex items-center mb-1">
             <div className="bg-orange-brand rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-green-200 text-green-800 p-1 rounded  leading-none">
+              <span className="mr-2 bg-green-200 text-green-800 p-1 rounded leading-none">
                 Complete
               </span>
               <span className="font-thin">v2.1.0</span>
@@ -120,7 +164,7 @@ export const TechRoadmap = () => {
                 Performance Ratings <br /> <Issue issue="473" />
               </li>
               <li>
-                Image Gallery <br /> <Issue issue="468" />
+                Image Gallery <span className="text-xs text-gray-400">depreciated</span> <br /> <Issue issue="468" />
               </li>
               <li>
                 Enhanced FAQs <br /> <Issue issue="453" />
