@@ -11,6 +11,5 @@ export const searchQuery = (currentQuery, newQuery: [string, string]) => {
     }
   }
   return params.toString();
- 
 };
 

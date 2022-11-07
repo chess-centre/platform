@@ -1,14 +1,96 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SwaggerUI from "swagger-ui-react";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import LandingNav from "../../components/Navigation/LandingNav";
+import { useEvents } from "../../context/EventsContext";
+import moment from "moment";
+import { Switch } from "@headlessui/react";
 import "swagger-ui-react/swagger-ui.css";
 import "../../assets/css/swagger-custom.css";
+import { classNames } from "../../utils/Classes";
 
 const Developer = () => {
+  document.title = "The Chess Centre | Developer";
+
+  const { isLoading, error, data } = useEvents();
+  const [eventUrl, setEventUrl] = useState<string>("");
+  const [eventId, setEventId] = useState<string>("");
+  const [embedCode, setEmbedCode] = useState<string>("");
+  const [enabledLogo, setEnabledLogo] = useState(true);
+  const [darkTheme, setDarkTheme] = useState(false);
+  const [bgColor, setBgColor] = useState("Gray");
+
   useEffect(() => {
-    document.title = "The Chess Centre | Developer";
-  }, []);
+    if (data) {
+      const defaultEvent = data[0];
+      setEventUrl(
+        `/widgets/event/${defaultEvent.id}?logo=${enabledLogo}&bgColor=${bgColor}&darkTheme=${darkTheme}`
+      );
+      setEventId(defaultEvent.id);
+      setEmbedCode(
+        getEmbedHTML({
+          eventId: defaultEvent.id,
+          bgColor,
+          enabledLogo,
+          darkTheme,
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
+  const handleEventSelect = (event) => {
+    const index = event.target.selectedIndex;
+    const optionElement = event.target.childNodes[index];
+    const eventId = optionElement.getAttribute("id");
+    setEventUrl(
+      `/widgets/event/${eventId}?logo=${enabledLogo}&bgColor=${bgColor}&darkTheme=${darkTheme}`
+    );
+    setEventId(eventId);
+    setEmbedCode(getEmbedHTML({ eventId, bgColor, enabledLogo, darkTheme }));
+  };
+
+  const handleSelectColor = (colour) => {
+    setBgColor(colour);
+    setEventUrl(
+      `/widgets/event/${eventId}?logo=${enabledLogo}&bgColor=${colour}&darkTheme=${darkTheme}`
+    );
+    setEmbedCode(
+      getEmbedHTML({ eventId, bgColor: colour, enabledLogo, darkTheme })
+    );
+  };
+
+  const handleLogoToggle = (enabled) => {
+    setEnabledLogo(enabled);
+    setEventUrl(
+      `/widgets/event/${eventId}?logo=${enabled}&bgColor=${bgColor}&darkTheme=${darkTheme}`
+    );
+    setEmbedCode(
+      getEmbedHTML({ eventId, bgColor, enabledLogo: enabled, darkTheme })
+    );
+  };
+
+  const handleThemeToggle = (darkEnabled) => {
+    setDarkTheme(darkEnabled);
+    setEventUrl(
+      `/widgets/event/${eventId}?logo=${enabledLogo}&bgColor=${bgColor}&darkTheme=${darkEnabled}`
+    );
+    setEmbedCode(
+      getEmbedHTML({ eventId, bgColor, enabledLogo, darkTheme: darkEnabled })
+    );
+  };
+
+  const getEmbedHTML = ({
+    eventId,
+    bgColor = "Gray",
+    enabledLogo = true,
+    darkTheme = false,
+    width = 300,
+    height = 600,
+  }) => {
+    const url = `https://chesscentre.online/widgets/event/${eventId}?logo=${enabledLogo}&bgColor=${bgColor}&darkTheme=${darkTheme}`;
+    return `<iframe frameBorder="0" title="The Chess Centre" src="${url}" width="${width}" height="${height}"/>`;
+  };
 
   return (
     <div>
@@ -100,10 +182,127 @@ const Developer = () => {
             </div>
           </div>
         </div>
-        <div className="py-2 sm:px-32">
-          <SwaggerUI url="/swagger.json" />
+        <div className="w-full bg-gray-50 mt-10">
+          <div className="max-w-7xl mx-auto">
+            <div className="mt-10 py-6 px-10 sm:px-32">
+              <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
+                Widgets
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 mt-4">
+                <div className="prose text-sm">
+                  <p>Advertise one of our chess events, anywhere!</p>
+                  <p>
+                    Select from the below configuration and simply
+                    paste the generated code into your website or blog.
+                  </p>
+                  <div>
+                    <label
+                      htmlFor="events"
+                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                    >
+                      Select Event
+                    </label>
+                    <div className="mt-2 sm:col-span-2">
+                      {!isLoading && !error && (
+                        <select
+                          onChange={(event) => handleEventSelect(event)}
+                          id="events"
+                          name="events"
+                          className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 max-w-xs text-sm"
+                        >
+                          {data.map((event) => (
+                            <option
+                              key={event.id}
+                              id={event.id}
+                              className="hover:bg-gray-200"
+                            >
+                              {event.name}{" "}
+                              {moment(event.startDate).format("MMM Do, yyyy")}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                    </div>
+                  </div>
+                  <div className="mt-4 sm:mt-0">
+                    <label
+                      htmlFor="colour"
+                      className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                    >
+                      Background Colour
+                    </label>
+                    <div className="mt-2 sm:col-span-2">
+                      {!isLoading && !error && (
+                        <select
+                          onChange={(event) =>
+                            handleSelectColor(event.target.value)
+                          }
+                          id="colour"
+                          name="colour"
+                          className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 max-w-xs text-sm"
+                        >
+                          <option>Gray</option>
+                          <option>White</option>
+                          <option>Black</option>
+                        </select>
+                      )}
+                    </div>
+                  </div>
+                  <div className="pt-4">
+                    <LogoToggle
+                      enabled={enabledLogo}
+                      setEnabled={handleLogoToggle}
+                    />
+                  </div>
+                  <div className="pt-4">
+                    <ThemeToggle
+                      enabled={darkTheme}
+                      setEnabled={handleThemeToggle}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="sm:px-4 mt-6 sm:mt-0">
+                    <div className="mt-1 sm:col-span-2">
+                      <textarea
+                        id="embed"
+                        name="embed"
+                        rows={6}
+                        className="block w-full max-w-lg rounded-md text-black border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 text-xs"
+                        defaultValue={embedCode}
+                      />
+                    </div>
+                    <label
+                      htmlFor="embed"
+                      className="block text-xs font-medium text-gray-500 sm:mt-px"
+                    >
+                      Generated Embed Code
+                    </label>
+                  </div>
+                </div>
+                <div className="sm:-mt-6 mt-4">
+                  <h2 className="text-md text-gray-900 sm:tracking-tight">
+                    Example output: 
+                  </h2>
+                  {eventUrl && (
+                    <iframe
+                      title="Event Widget"
+                      src={eventUrl}
+                      width={300}
+                      height={600}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
+        <div className="max-w-7xl mx-auto">
+          <div className="py-2 sm:px-32">
+            <SwaggerUI url="/swagger.json" />
+          </div>
+        </div>
+
         <FooterLanding />
       </div>
     </div>
@@ -111,3 +310,55 @@ const Developer = () => {
 };
 
 export default Developer;
+
+function LogoToggle({ enabled, setEnabled }) {
+  return (
+    <Switch.Group as="div" className="flex items-center">
+      <Switch
+        checked={enabled}
+        onChange={setEnabled}
+        className={classNames(
+          enabled ? "bg-teal-600" : "bg-gray-200",
+          "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+        )}
+      >
+        <span
+          aria-hidden="true"
+          className={classNames(
+            enabled ? "translate-x-5" : "translate-x-0",
+            "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+          )}
+        />
+      </Switch>
+      <Switch.Label as="span" className="ml-3">
+        <span className="text-sm font-medium text-gray-900">Show Logo</span>
+      </Switch.Label>
+    </Switch.Group>
+  );
+}
+
+function ThemeToggle({ enabled, setEnabled }) {
+  return (
+    <Switch.Group as="div" className="flex items-center">
+      <Switch
+        checked={enabled}
+        onChange={setEnabled}
+        className={classNames(
+          enabled ? "bg-teal-600" : "bg-gray-200",
+          "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+        )}
+      >
+        <span
+          aria-hidden="true"
+          className={classNames(
+            enabled ? "translate-x-5" : "translate-x-0",
+            "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+          )}
+        />
+      </Switch>
+      <Switch.Label as="span" className="ml-3">
+        <span className="text-sm font-medium text-gray-900">Dark Theme</span>
+      </Switch.Label>
+    </Switch.Group>
+  );
+}
