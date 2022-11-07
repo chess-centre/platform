@@ -10,43 +10,85 @@ import queryString from "query-string";
 
 const EventHeader = ({ name, description, showLogo, darkTheme }) => {
   return (
-    <div className={classNames("pt-2")}>
+    <div className={classNames("pt-2 mb-2")}>
       {showLogo && (
         <div className="mx-auto">
           <img
-            className="w-32 h-32 mx-auto"
+            className="w-28 h-28 mx-auto"
             alt="The Chess Centre"
             src={Logo}
           />
         </div>
       )}
-      <h2 className={classNames(!showLogo && "mt-6", darkTheme ? "text-gray-200" : "text-gray-900", "text-3xl leading-6 font-extrabold  text-center")}>
+      <h2
+        className={classNames(
+          !showLogo && "mt-6",
+          darkTheme ? "text-gray-200" : "text-gray-900",
+          "text-3xl leading-6 font-extrabold  text-center"
+        )}
+      >
         The Chess Centre
       </h2>
-      <h2 className={classNames(darkTheme ? "text-teal-500" : "text-teal-700", "mt-2 text-lg leading-6 font-medium  text-center")}>
+      <h2
+        className={classNames(
+          darkTheme ? "text-teal-500" : "text-teal-700",
+          "mt-2 text-lg leading-6 font-medium  text-center"
+        )}
+      >
         {name}
       </h2>
-      <p className={classNames(darkTheme ? "text-gray-200" : "text-gray-500", " mt-4 text-sm text-center")}>{description}</p>
+      <p
+        className={classNames(
+          darkTheme ? "text-gray-200" : "text-gray-500",
+          "mt-4 text-sm text-center"
+        )}
+      >
+        {description}
+      </p>
     </div>
   );
 };
 
-const EventPrice = ({ isLive, isFull, defaultPrice, darkTheme }) => {
+const EventPrice = ({ isLive, isFull, defaultPrice, complete, darkTheme }) => {
   return (
     <div className="text-center">
       {isLive && (
-        <span className={classNames(darkTheme ? "bg-gray-100" : "bg-gray-100", "animate-pulse px-16 rounded-lg text-5xl font-extrabold text-red-600 mr-1")}>
+        <div
+          className={classNames(
+            " bg-gray-100 text-red-600 animate-pulse mx-4 rounded-lg text-5xl font-extrabold"
+          )}
+        >
           LIVE
-        </span>
+        </div>
       )}
       {isFull && !isLive && (
-        <span className={classNames(darkTheme ? "bg-gray-50 text-gray-300" : "bg-gray-50 text-gray-300"," px-16 rounded-lg text-5xl font-extrabold mr-1")}>
+        <span
+          className={classNames(
+            darkTheme ? "bg-gray-50 text-gray-300" : "bg-gray-50 text-gray-300",
+            " px-16 rounded-lg text-5xl font-extrabold mr-1"
+          )}
+        >
           FULL
         </span>
       )}
-      {!isLive && !isFull && (
+      {complete && !isLive && (
+        <span
+          className={classNames(
+            darkTheme ? "bg-gray-50 text-gray-300" : "bg-gray-50 text-gray-300",
+            " px-4 rounded-lg text-5xl font-extrabold mr-1"
+          )}
+        >
+          EXPIRED
+        </span>
+      )}
+      {!complete && !isLive && !isFull && (
         <>
-          <span className={classNames(darkTheme ? "text-gray-200" : "text-gray-900","text-5xl font-extrabold  mr-1")}>
+          <span
+            className={classNames(
+              darkTheme ? "text-gray-200" : "text-gray-900",
+              "text-5xl font-extrabold mr-1"
+            )}
+          >
             £{defaultPrice}
           </span>
         </>
@@ -58,7 +100,12 @@ const EventPrice = ({ isLive, isFull, defaultPrice, darkTheme }) => {
 const EventDetails = ({ data, darkTheme }) => {
   return (
     <div className="py-4">
-      <h3 className={classNames(darkTheme ? "text-teal-500": "text-teal-700", "text-xs font-medium  tracking-wide uppercase")}>
+      <h3
+        className={classNames(
+          darkTheme ? "text-teal-500" : "text-teal-700",
+          "text-xs font-medium  tracking-wide uppercase"
+        )}
+      >
         Details
       </h3>
       <ul className="mt-2 space-y-2">
@@ -94,11 +141,23 @@ const EventDetails = ({ data, darkTheme }) => {
             show && (
               <li key={key} className="flex items-start">
                 <div className="flex-shrink-0">
-                  <span className={classNames(darkTheme ? "text-orange-600" : "text-teal-500", "ml-2")}>
+                  <span
+                    className={classNames(
+                      darkTheme ? "text-orange-600" : "text-teal-500",
+                      "ml-2"
+                    )}
+                  >
                     <i className={icon}></i>
                   </span>
                 </div>
-                <p className={classNames(darkTheme ? "text-gray-200" : "text-gray-700", "ml-3 text-sm")}>{information}</p>
+                <p
+                  className={classNames(
+                    darkTheme ? "text-gray-200" : "text-gray-700",
+                    "ml-3 text-sm"
+                  )}
+                >
+                  {information}
+                </p>
               </li>
             )
           );
@@ -115,7 +174,8 @@ const RegisterButton = ({
   showSections,
   sections,
   eventType,
-  darkTheme
+  complete,
+  darkTheme,
 }) => {
   const [section, setSection] = useState("open");
   let registerUrl = `/register?eventId=${id}${
@@ -124,7 +184,7 @@ const RegisterButton = ({
 
   return (
     <>
-      {isLive && (
+      {isLive && !complete && (
         <div>
           <a
             href="/broadcast/live"
@@ -143,7 +203,7 @@ const RegisterButton = ({
         </div>
       )}
 
-      {isFull && !isLive && (
+      {isFull && !isLive && !complete && (
         <button
           disabled
           className="  mt-6 block w-full bg-orange-600 border border-orange-600 rounded-md py-2 text-sm font-semibold text-white text-center cursor-not-allowed"
@@ -151,7 +211,17 @@ const RegisterButton = ({
           Closed
         </button>
       )}
-      {!isLive && !isFull && (
+
+      {complete && (
+        <button
+          disabled
+          className="  mt-6 block w-full bg-orange-600 border border-orange-600 rounded-md py-2 text-sm font-semibold text-white text-center cursor-not-allowed"
+        >
+          Complete
+        </button>
+      )}
+
+      {!isLive && !isFull && !complete && (
         <>
           <div>
             {showSections && eventType !== "festival" && (
@@ -183,7 +253,12 @@ const RegisterButton = ({
             href={registerUrl}
             target="_blank"
             rel="noreferrer"
-            className={classNames(darkTheme ? "bg-gray-50 hover:bg-gray-200 text-slate-900" : "bg-gray-800 border border-gray-800 hover:bg-gray-700 text-white", "mt-6 block w-full  rounded-md py-2 text-sm font-semibold  uppercase text-center")}
+            className={classNames(
+              darkTheme
+                ? "bg-gray-50 hover:bg-gray-200 text-slate-900"
+                : "bg-gray-800 border border-gray-800 hover:bg-gray-700 text-white",
+              "mt-6 block w-full  rounded-md py-2 text-sm font-semibold  uppercase text-center"
+            )}
           >
             Register Now
           </a>
@@ -213,18 +288,18 @@ export default function Event() {
         return "bg-white";
       case "Black":
         return "bg-gray-900";
-      case "Gray": 
+      case "Gray":
         return "bg-gray-50";
       case "Teal":
         return "bg-teal-brand";
       default:
         return "bg-gray-50";
     }
-  }
+  };
 
   useEffect(() => {
     if (typeof parsed.bgColor === "string") {
-      const color = getBgColor(parsed.bgColor)
+      const color = getBgColor(parsed.bgColor);
       setBgColor(color);
     }
     if (typeof parsed.logo === "string") {
@@ -239,7 +314,12 @@ export default function Event() {
     <>
       {!isLoading && !error && (
         <div className={classNames(bgColor, "w-full sm:max-w-xs p-2")}>
-          <div className={classNames(darkTheme ? "bg-slate-800": "bg-white"  ,"relative rounded-lg shadow-lg px-4")}>
+          <div
+            className={classNames(
+              darkTheme ? "bg-slate-800" : "bg-white",
+              "relative rounded-lg shadow-lg px-4"
+            )}
+          >
             <div
               className={classNames(
                 data.type.color === "blue"
@@ -261,7 +341,7 @@ export default function Event() {
                 isFull={data.entryCount >= data.maxEntries}
                 isLive={data.isLive}
                 darkTheme={darkTheme}
-
+                complete={data.complete}
               />
               <RegisterButton
                 id={data.id}
@@ -270,23 +350,48 @@ export default function Event() {
                 eventType={data.type.eventType}
                 showSections={data.multipleSections}
                 sections={
-                  data.name.includes("Junior") ? juniorSections : sections
+                  data.name?.includes("Junior") ? juniorSections : sections
                 }
                 darkTheme={darkTheme}
+                complete={data.complete}
               />
               <EventDetails data={data} darkTheme={darkTheme} />
             </div>
-            <div className={classNames(darkTheme ? "border-slate-700": "border-gray-200", "text-center border-t  py-2")}>
+            <div
+              className={classNames(
+                darkTheme ? "border-slate-700" : "border-gray-200",
+                "text-center border-t  py-2"
+              )}
+            >
               <a
                 target="_blank"
                 rel="noreferrer"
                 href={`https://chesscentre.online${data.type.url}/${data.id}`}
-                className={classNames(darkTheme ? "text-teal-400 hover:text-teal-300": "text-teal-500 hover:text-teal-700", "text-xs text-center")}
+                className={classNames(
+                  darkTheme
+                    ? "text-teal-400 hover:text-teal-300"
+                    : "text-teal-500 hover:text-teal-700",
+                  "text-xs text-center"
+                )}
               >
                 More Info
               </a>
             </div>
           </div>
+        </div>
+      )}
+
+      {isLoading && (
+        <div className="p-2 mt-10 flex w-auto justify-center text-center text-sm text-teal-500">
+          <div className="mr-2">
+            <i className="fas fa-spinner-third animate-spin ml-0"></i>
+          </div>
+          Loading Event ...
+        </div>
+      )}
+      {error && (
+        <div className="p-2 mt-10 flex w-auto justify-center text-center text-sm text-red-600">
+            Oops, something went wrong!
         </div>
       )}
     </>
