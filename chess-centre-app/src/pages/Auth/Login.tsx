@@ -48,7 +48,7 @@ function Login(props) {
           const { pathname, search } = props.history.location.state.from;
           props.history.push(`${pathname}${search}`);
         } else {
-          props.history.push("/app/dashboard");
+          props.history.push("/app/profile");
         }
       }
     } else {
@@ -228,14 +228,14 @@ function Login(props) {
                   Forgot your password?
                 </Link>
               </p>
-              <p className="mt-1">
+              {/* <p className="mt-1">
                 <Link
                   className="text-sm font-medium text-teal-600 dark:text-teal-400 hover:underline"
                   to="/register"
                 >
                   Create account
                 </Link>
-              </p>
+              </p> */}
               <p className="mt-1">
                 <Link
                   className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"

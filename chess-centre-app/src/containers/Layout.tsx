@@ -7,67 +7,67 @@ import ThemedSuspense from "../components/ThemedSuspense";
 import { SidebarContext } from "../context/SidebarContext";
 
 const routes = [
-  {
-    path: "/dashboard",
-    component: lazy(() => import("../pages/App/Dashboard")),
-  },
-  {
-    path: "/events/:eventId",
-    component: lazy(() => import("../pages/App/EventDetails")),
-  },
-  {
-    path: "/events",
-    component: lazy(() => import("../pages/App/Events")),
-    exact: true
-  },
-  {
-    path: "/calendar",
-    component: lazy(() => import("../pages/App/Calendar")),
-  },
-  {
-    path: "/results",
-    component: lazy(() => import("../pages/App/Results")),
-  },
-  {
-    path: "/results/:resultId",
-    component: lazy(() => import("../pages/App/ResultDetails")),
-  },
-  {
-    path: "/players",
-    component: lazy(() => import("../pages/App/Players")),
-  },
-  {
-    path: "/juniors",
-    component: lazy(() => import("../pages/App/Juniors")),
-  },
-  {
-    path: "/faqs",
-    component: lazy(() => import("../pages/App/FAQs")),
-  },
-  {
-    path: "/upgrade",
-    component: lazy(() => import("../pages/App/Upgrade")),
-  },
-  {
-    path: "/roadmap",
-    component: lazy(() => import("../pages/App/Roadmap")),
-  },
+  // {
+  //   path: "/dashboard",
+  //   component: lazy(() => import("../pages/App/Dashboard")),
+  // },
+  // {
+  //   path: "/events/:eventId",
+  //   component: lazy(() => import("../pages/App/EventDetails")),
+  // },
+  // {
+  //   path: "/events",
+  //   component: lazy(() => import("../pages/App/Events")),
+  //   exact: true
+  // },
+  // {
+  //   path: "/calendar",
+  //   component: lazy(() => import("../pages/App/Calendar")),
+  // },
+  // {
+  //   path: "/results",
+  //   component: lazy(() => import("../pages/App/Results")),
+  // },
+  // {
+  //   path: "/results/:resultId",
+  //   component: lazy(() => import("../pages/App/ResultDetails")),
+  // },
+  // {
+  //   path: "/players",
+  //   component: lazy(() => import("../pages/App/Players")),
+  // },
+  // {
+  //   path: "/juniors",
+  //   component: lazy(() => import("../pages/App/Juniors")),
+  // },
+  // {
+  //   path: "/faqs",
+  //   component: lazy(() => import("../pages/App/FAQs")),
+  // },
+  // {
+  //   path: "/upgrade",
+  //   component: lazy(() => import("../pages/App/Upgrade")),
+  // },
+  // {
+  //   path: "/roadmap",
+  //   component: lazy(() => import("../pages/App/Roadmap")),
+  // },
   {
     path: "/profile",
     component: lazy(() => import("../pages/App/User/Profile")),
   },
-  {
-    path: "/games",
-    component: lazy(() => import("../pages/App/Games")),
-  },
-  {
-    path: "/games/:memberId",
-    component: lazy(() => import("../pages/App/Games")),
-  },
-  {
-    path: "/games/event/:eventId",
-    component: lazy(() => import("../pages/App/EventGames")),
-  },
+  // {
+  //   path: "/games",
+  //   component: lazy(() => import("../pages/App/Games")),
+  // },
+  // {
+  //   path: "/games/:memberId",
+  //   component: lazy(() => import("../pages/App/Games")),
+  // },
+  // {
+  //   path: "/games/event/:eventId",
+  //   component: lazy(() => import("../pages/App/EventGames")),
+  // },
   {
     path: "/admin",
     component: lazy(() => import("../pages/Admin")),
