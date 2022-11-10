@@ -195,11 +195,11 @@ export default function Profile() {
           name={member?.name}
           expires={member?.stripeCurrentPeriodEnd}
         />
-        <ChessProfile {...member} isLoading={isLoadingProfile} />
+        {/* <ChessProfile {...member} isLoading={isLoadingProfile} />
         <IntegrationProfile {...member} isLoading={isLoadingProfile} />
         <div className="text-right">
           <QuickSearch tag="membership" />
-        </div>
+        </div> */}
       </div>
     </div>
   );
