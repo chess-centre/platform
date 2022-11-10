@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ContactInfo() {
   return (
@@ -12,12 +13,12 @@ export default function ContactInfo() {
             <p className="text-teal-600">For all information regarding future Chess Centre events, please contact:</p>
             <p className="text-4xl">Andrew Wainwright</p>
             <p className="text-md text-gray-500">email</p>
-            <p className="text-2xl">a.c.wainwright@outlook.com</p>
+            <p className="text-2xl">info@ilkleychesscentre.com</p>
           </div>
 
           <div className="mt-10">
             <h1 className="text-red-500 text-lg font-semibold">Existing Members</h1>
-            <p className="text-teal-600">You can continue to login to your account and manage your existing subscription</p>
+            <p className="text-teal-600">You can continue to <Link to="/login" className="text-teal-800 font-normal">login</Link> to your account and manage your existing subscription.</p>
           </div>
         </div>
       </div>
