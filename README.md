@@ -93,7 +93,7 @@ $ git fetch && git checkout develop
 Install dependencies
 
 ```bash
-$ npm install
+$ yarn
 ```
 
 At this point you now have everything you need for the frontend UI, now you need the `AWS Amplify` backend.
@@ -125,7 +125,7 @@ You will now have a development environment! 🥳
 Finally, start the project:
 
 ```bash
-$ npm start # default port 3000
+$ yarn start # default port 3000
 ```
 
 ### Environments
