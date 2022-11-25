@@ -172,13 +172,13 @@ export default function AccountProfile(props) {
         </div>
       </div>
       <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-center sm:text-right text-xs sm:text-sm sm:px-6 border-t border-gray-50 dark:border-gray-700 italic">
-          {/* Need to update these details?{" "}
+          {/* Need to update these details?{" "} */}
           <a
             className="text-teal-600 hover:text-teal-500"
             href={`mailto:support@chesscentre.online?subject=Account%20Update%20(MemberId:%20${user.id})`}
           >
             support@chesscentre.online
-          </a> */}
+          </a>
       </div>
     </div>
   );
