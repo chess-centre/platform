@@ -109,14 +109,14 @@ const LandingNav = (props: any) => {
           <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
             <span className="inline-flex rounded-md">
                 <div className="flex gap-3">
-                  <Link
+                  {/* <Link
                     to="/login"
                     className={`inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
                     font-medium rounded-md text-teal-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 
                     focus:ring-offset-2 focus:ring-teal-500`}
                   >
                     <span className="text-sm">Login</span>
-                  </Link>
+                  </Link> */}
                 </div>
             </span>
           </div>
@@ -187,7 +187,7 @@ const LandingNav = (props: any) => {
               })}
             </div>
             <div>
-                <Link
+                {/* <Link
                   className={`block w-full px-5 py-3 text-center text-sm text-teal-900 bg-gray-100 hover:bg-gray-100 hover:text-teal-700 
                   focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out`}
                   role="menuitem"
@@ -196,7 +196,7 @@ const LandingNav = (props: any) => {
                   <span className="text-gray-900 font-medium font-sans">
                     <span className="text-sm ml-1">LOGIN</span>
                   </span>
-                </Link>
+                </Link> */}
             </div>
           </div>
         </div>

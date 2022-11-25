@@ -16,10 +16,6 @@ export default function ContactInfo() {
             <p className="text-2xl">info@ilkleychesscentre.com</p>
           </div>
 
-          <div className="mt-10">
-            <h1 className="text-red-500 text-lg font-semibold">Existing Members</h1>
-            <p className="text-teal-600">You can continue to <Link to="/login" className="text-teal-800 font-normal">login</Link> to your account and manage your existing subscription.</p>
-          </div>
         </div>
       </div>
     </div>
