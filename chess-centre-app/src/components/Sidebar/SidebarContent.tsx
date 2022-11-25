@@ -111,7 +111,7 @@ function SidebarContent() {
           <span className="ml-2">Watch Now</span>
         </Link>
       )}
-      {/* <div className="absolute flex bottom-4 mx-4 space-x-6">
+      <div className="absolute flex bottom-4 mx-4 space-x-6">
         <div className="-mt-1">
           <a
             className=""
@@ -143,7 +143,7 @@ function SidebarContent() {
           <span className="text-xs">support</span>
         </div>
       </div>
-      <SupportContactModal open={isModalOpen} closeModal={closeModal} /> */}
+      <SupportContactModal open={isModalOpen} closeModal={closeModal} />
     </div>
   );
 }
