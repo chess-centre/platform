@@ -1,5 +1,5 @@
 import React from "react";
-import Map from "./GoogleMap";
+// import Map from "./GoogleMap";
 import { openingHours } from "../../api/data.openingHours";
 
 const FindUs = () => {
@@ -18,7 +18,7 @@ const FindUs = () => {
           <a href="https://w3w.co/templates.monkey.comments" target="_blank" alt="What3Words" rel="noreferrer">templates.monkey.comments</a>
         </p>
         <div className="mt-10 rounded-lg">
-          <Map
+          {/* <Map
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnoxH8i-1VmO6KVg3VomCsv3l8tOfObOI"
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={
@@ -27,7 +27,7 @@ const FindUs = () => {
             mapElement={
               <div style={{ height: `100%`, borderRadius: `25px` }} />
             }
-          />
+          /> */}
         </div>
         <OpeningTimes />
       </div>
