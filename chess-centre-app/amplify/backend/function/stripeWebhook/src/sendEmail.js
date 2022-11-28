@@ -8,10 +8,6 @@ async function sendMembershipEmailInternal({ email, name, stripeEmail, price, st
 
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
   
-  if(env.includes("prod")) {
-    ToAddresses.push("Andy <andy@chesscentre.online>")
-  }
-
   const params = {
     Source: "The Chess Centre <support@chesscentre.online>",
     Destination: {
@@ -187,10 +183,6 @@ async function sendRegisteredEventEmailInternal({ email, name, eventName, eventT
   console.log("Sending internal registration email to:", name, email, eventName, env);
 
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
-
-  if(env.includes("prod")) {
-    ToAddresses.push("Andy <andy@chesscentre.online>");
-  }
 
   const params = {
     Source: "The Chess Centre <support@chesscentre.online>",
