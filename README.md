@@ -1,20 +1,20 @@
 <p align="center">
   <img src="img/cc-logo.png" width="120" />
-  <h1 align="center">The Chess Centre</h1>
+  <h1 align="center">OTB Chess</h1>
   <h2 align="center">Platform</h2>
 </p>
 
 <div align="center">
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/chess-centre/welcome)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/chess-centre/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=chess-centre/platform&amp;utm_campaign=Badge_Grade&style=flat&colour=light)
-[![Version](https://img.shields.io/github/v/release/chess-centre/platform?color=light)](https://github.com/chess-centre/platform/releases)
-[![Closed Issues](https://img.shields.io/github/issues-closed/chess-centre/platform?color=light&label=features)](https://github.com/chess-centre/platform/issues?q=is%3Aissue+is%3Aclosed)
-[![Open Issues](https://img.shields.io/github/issues/chess-centre/platform?color=orange&label=features)](https://github.com/chess-centre/platform/issues)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](https://github.com/otb-chess/welcome)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8a35f82c63c0490db71b626a2f5125e1)](https://www.codacy.com/gh/otb-chess/platform/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=otb-chess/platform&amp;utm_campaign=Badge_Grade&style=flat&colour=light)
+[![Version](https://img.shields.io/github/v/release/otb-chess/platform?color=light)](https://github.com/otb-chess/platform/releases)
+[![Closed Issues](https://img.shields.io/github/issues-closed/otb-chess/platform?color=light&label=features)](https://github.com/otb-chess/platform/issues?q=is%3Aissue+is%3Aclosed)
+[![Open Issues](https://img.shields.io/github/issues/otb-chess/platform?color=orange&label=features)](https://github.com/otb-chess/platform/issues)
   
 </div>
   
-This project contains the core source code of **The Chess Centre** application including its associated services and deployment configuration.
+This project contains the core source code of **The OTB Chess** application including its associated services and deployment configuration.
 
 ### Table of Contents
 - [Motivation](#motivation)
@@ -34,11 +34,9 @@ This project contains the core source code of **The Chess Centre** application i
 
 ## Motivation
 
-<span style="color:#5499ab; font-weight: bold;">The Chess Centre</span> was born through a love of Chess and built for the amazing community which surrounds it. Here we will provide keen chess players who enjoy playing over-the-board chess with a platform to utilise modern, accessible and easy to use features that enables them to easily find upcoming events, register and effortlessly track results of their games and those of others.
+<span style="color:#5499ab; font-weight: bold;">OTB Chess</span> was born through a love of Chess and built for the amazing community which surrounds it. Here we will provide keen chess players who enjoy playing over-the-board chess with a platform to utilise modern, accessible and easy to use features that enables them to easily find upcoming events, register and effortlessly track results of their games and those of others.
 
-To support this goal a dedicated centre has been established for players to come, learn and play the game face to face. Seamlessly linking the physical face to face game at our fantastic venue with our digital platform, enabling new and existing players to participate and track their progress effortlessly.
-
-- ♟️ website: [chesscentre.online](https://www.chesscentre.online)
+- ♟️ website: [demo.chesscentre.online](https://demo.chesscentre.online)
 
 Our mission is entirely <span style="color:#f0802b;">**#NotForProfit**</span> so we gladly welcome volunteers.
   
@@ -75,16 +73,16 @@ Intentionally open and transparent and striving to make it easy to reproduce and
 Clone the project:
 
 ```bash
-$ git clone git@github.com:chess-centre/platform.git && cd platform
+$ git clone git@github.com:otb-chess/platform.git && cd platform
 ```
 
 Change directory to the root of the React application:
 
 ```bash
-$ cd chess-centre-app
+$ cd otb-chess-app
 ```
 
-Checkout our [develop](https://github.com/chess-centre/platform/tree/develop) branch - this is where PRs are merged pre-live
+Checkout our [develop](https://github.com/otb-chess/platform/tree/develop) branch - this is where PRs are merged pre-live
 
 ```bash
 $ git fetch && git checkout develop
@@ -220,7 +218,7 @@ Taking advantage of the fantastic online chess sites, we pull in live data from 
 
 ## Contributing 
 
-See our [welcome](https://github.com/chess-centre/welcome) respository for guidelines on helping us develop this platform.
+See our [welcome](https://github.com/otb-chess/welcome) respository for guidelines on helping us develop this platform.
 
 ## Special thanks 👏
 
@@ -242,7 +240,7 @@ This project uses many amazing open source libraries but for chess specifically,
 
 ## License 📒
 
-[![License](https://img.shields.io/github/license/chess-centre/platform?color=light)](https://github.com/chess-centre/platform/LICENSE)
+[![License](https://img.shields.io/github/license/otb-chess/platform?color=light)](https://github.com/otb-chess/platform/LICENSE)
 
 ## Contributors ✨
 
@@ -253,13 +251,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/matt-d-webb"><img src="https://avatars.githubusercontent.com/u/36933715?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matt D. Webb</b></sub></a><br /><a href="https://github.com/chess-centre/platform/commits?author=matt-d-webb" title="Code">💻</a> <a href="https://github.com/chess-centre/platform/commits?author=matt-d-webb" title="Tests">⚠️</a> <a href="https://github.com/chess-centre/platform/commits?author=matt-d-webb" title="Documentation">📖</a> <a href="#business-matt-d-webb" title="Business development">💼</a></td>
-    <td align="center"><a href="https://github.com/jbeasley123"><img src="https://avatars.githubusercontent.com/u/13149185?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jbeasley123</b></sub></a><br /><a href="https://github.com/chess-centre/platform/commits?author=jbeasley123" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/matt-d-webb"><img src="https://avatars.githubusercontent.com/u/36933715?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matt D. Webb</b></sub></a><br /><a href="https://github.com/otb-chess/platform/commits?author=matt-d-webb" title="Code">💻</a> <a href="https://github.com/otb-chess/platform/commits?author=matt-d-webb" title="Tests">⚠️</a> <a href="https://github.com/otb-chess/platform/commits?author=matt-d-webb" title="Documentation">📖</a> <a href="#business-matt-d-webb" title="Business development">💼</a></td>
+    <td align="center"><a href="https://github.com/jbeasley123"><img src="https://avatars.githubusercontent.com/u/13149185?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jbeasley123</b></sub></a><br /><a href="https://github.com/otb-chess/platform/commits?author=jbeasley123" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/AndyW359"><img src="https://avatars.githubusercontent.com/u/71315264?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AndyW359</b></sub></a><br /><a href="#content-AndyW359" title="Content">🖋</a></td>
     <td align="center"><a href="https://github.com/CatVarley"><img src="https://avatars.githubusercontent.com/u/16880382?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Cat Varley</b></sub></a><br /><a href="#ideas-CatVarley" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://elmore.dev"><img src="https://avatars.githubusercontent.com/u/2363879?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Adam Elmore</b></sub></a><br /><a href="https://github.com/chess-centre/platform/commits?author=adamelmore" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/akashsiddamshetty"><img src="https://avatars.githubusercontent.com/u/80561904?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AKASH SIDDAMSHETTY</b></sub></a><br /><a href="https://github.com/chess-centre/platform/commits?author=akashsiddamshetty" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/arpit-maurya"><img src="https://avatars.githubusercontent.com/u/82953478?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Arpit Maurya</b></sub></a><br /><a href="https://github.com/chess-centre/platform/commits?author=arpit-maurya" title="Code">💻</a></td>
+    <td align="center"><a href="https://elmore.dev"><img src="https://avatars.githubusercontent.com/u/2363879?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Adam Elmore</b></sub></a><br /><a href="https://github.com/otb-chess/platform/commits?author=adamelmore" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/akashsiddamshetty"><img src="https://avatars.githubusercontent.com/u/80561904?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AKASH SIDDAMSHETTY</b></sub></a><br /><a href="https://github.com/otb-chess/platform/commits?author=akashsiddamshetty" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/arpit-maurya"><img src="https://avatars.githubusercontent.com/u/82953478?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Arpit Maurya</b></sub></a><br /><a href="https://github.com/otb-chess/platform/commits?author=arpit-maurya" title="Code">💻</a></td>
   </tr>
 </table>
 

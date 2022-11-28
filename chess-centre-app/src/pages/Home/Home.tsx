@@ -105,15 +105,12 @@ const Home = () => {
                 <br className="xl:hidden" />
                 <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400">
                   {" "}
-                  The Chess Centre
+                  OTB Chess
                 </span>
               </h2>
 
               <div className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                 It's time things changed around here <span role="img">🚀</span>
-                <p className="mt-2 text-teal-500">
-                  Visit our dedicated venue in Ilkley
-                </p>
               </div>
               <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
                 <div className="rounded-md shadow">
