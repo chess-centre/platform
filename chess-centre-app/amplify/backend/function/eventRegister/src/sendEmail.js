@@ -44,10 +44,6 @@ async function sendRegisteredEventEmailInternal({ email, name, eventName, eventT
 
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
 
-  if(env.includes("prod")) {
-    ToAddresses.push("Andy <andy@chesscentre.online>");
-  }
-
   const params = {
     Source: "The Chess Centre <support@chesscentre.online>",
     Destination: {

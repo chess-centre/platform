@@ -6,10 +6,6 @@ async function sendRatingUpdateEmail(members, erredChecks, erredMembers) {
   console.log("Sending update email");
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
 
-  if(ENV.includes("prod")) {
-    ToAddresses.push("Andy <andy@chesscentre.online>");
-  }
-
   const errerMemberList = (members) => {
     if(members.length > 0) {
       const list = `<ol>` + members.map(m => `<li>${m.ecfId} - ${m.name}</li>`).join("") + "</ol>";
