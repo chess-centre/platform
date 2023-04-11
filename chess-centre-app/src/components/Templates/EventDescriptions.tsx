@@ -31,7 +31,7 @@ export const TemplateData = {
     ],
     organisers: [
       {
-        name: "Andrew Wainwright",
+        name: "Jonathan Arnott",
         imgUrl: "/andy.png",
       },
       {
@@ -43,7 +43,7 @@ export const TemplateData = {
     broadcastLink: "https://chess-results.com/tnr665788.aspx?lan=1&art=0"
   },
   congress: {
-    address: "Unit 8, Crescent Court, Ilkely, LS29 8DE",
+    address: "329A Coleford Road, Sheffield, S9 5NF",
     paragraphs: [
       "Our two day congress events have players split into three all-play-all sections.",
       "Sections are determined purely on latest ECF standard play ratings.",
@@ -55,12 +55,12 @@ export const TemplateData = {
       { name: "ECF", color: "bg-rose-500" },
     ],
     organisers: [
-      { name: "Andrew Wainwright", imgUrl: "/andy.png" },
+      { name: "Jonathan Arnott", imgUrl: "/andy.png" },
       { name: "Matthew Webb", imgUrl: "/matt.png" },
     ],
   },
   rapidplay: {
-    address: "Unit 8, Crescent Court, Ilkely, LS29 8DE",
+    address: "329A Coleford Road, Sheffield, S9 5NF",
     paragraphs: [
       "Our popular rapidplay events will take an all-play-all format where we get maximum entries",
       "Where we have fewer than 18 players we will default to a swiss event.",
@@ -73,12 +73,12 @@ export const TemplateData = {
       { name: "DGT Boards", color: "bg-sky-500" },
     ],
     organisers: [
-      { name: "Andrew Wainwright", imgUrl: "/andy.png" },
+      { name: "Jonathan Arnott", imgUrl: "/andy.png" },
       { name: "Matthew Webb", imgUrl: "/matt.png" },
     ],
   },
   blitz: {
-    address: "Unit 8, Crescent Court, Ilkely, LS29 8DE",
+    address: "329A Coleford Road, Sheffield, S9 5NF",
     paragraphs: [
       "Ready for some adrenaline pumping, hand trembling, piece flying chess?",
       "This event is not ECF rated.",
@@ -88,7 +88,7 @@ export const TemplateData = {
     tags: [{ name: "Blitz", color: "bg-yellow-500" }],
     organisers: [
       {
-        name: "Andrew Wainwright",
+        name: "Jonathan Arnott",
         imgUrl: "/andy.png",
       },
       {
@@ -112,7 +112,7 @@ export const TemplateData = {
     ],
     organisers: [
       {
-        name: "Andrew Wainwright",
+        name: "Jonathan Arnott",
         imgUrl: "/andy.png",
       },
       {

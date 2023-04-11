@@ -42,7 +42,7 @@ function DownloadPWA() {
                 </div>
                 <footer className="mt-6">
                   <p className="text-base font-medium text-gray-200">
-                    Matt &amp; Andy
+                    Jonathan &amp; Matt
                   </p>
                   <p className="text-base font-md text-gray-50">
                     Co-Founders @ <span className="font-bold text-gray-900"><i className="fak fa-chess-centre"></i> Sheffield Chess Centre </span>
