@@ -23,7 +23,7 @@ async function sendRegisteredEventEmailToMember({ email, name, eventName, eventT
         <p>The key details for this event:</p>
         <p>📅 Date: ${formatDate(startDate)}</p>
         ${arrivalTime ? `<p>⌚ Arrival Time: ${arrivalTime}</p>` : ""}
-        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
+        <p>🏠 Our location: <span style="color: #047481">329A Coleford Road, Sheffield, S9 5NF</span></p>
         <p>More details can be found here:
           <a href="https://www.chesscentre.online/events/${eventType}/${eventId}">chesscentre.online/${eventType}</a>
         </p>
