@@ -55,7 +55,7 @@ export default function Events() {
   }, [data, eventType]);
 
   useEffect(() => {
-    document.title = "The Chess Centre | Events"
+    document.title = "Sheffield Chess Centre | Events"
   }, []);
 
   return (

@@ -55,7 +55,7 @@ export default function JuniorCustomEvent() {
   const [isClosed, setIsClosed] = useState(false);
 
   useEffect(() => {
-    document.title = "The Chess Centre | IGS Junior Event";
+    document.title = "Sheffield Chess Centre | IGS Junior Event";
 
     const fetchEvent = async () => {
       setIsLoading(true);
@@ -128,7 +128,7 @@ export default function JuniorCustomEvent() {
           </div>
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">
-              The Chess Centre brings to you our{" "}
+              Sheffield Chess Centre brings to you our{" "}
               <span className="font-semibold">2nd Junior Rapidplay</span> held
               at the Ilkley Grammar School.
             </p>

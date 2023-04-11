@@ -94,7 +94,7 @@ export default function Festival() {
   const [entriesCount, setEntriesCount] = useState(0);
 
   useEffect(() => {
-    document.title = "The Chess Centre | Festival";
+    document.title = "Sheffield Chess Centre | Festival";
 
     const fetchEvent = async () => {
       setIsLoading(true);

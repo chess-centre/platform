@@ -144,7 +144,7 @@ export const faqData = (type: Type): Faq[] =>
           To provide the absolute best value whilst ensuring your whole
           experience is a great one we continually review our offering and
           pricing. This means we offer special discounts to students and senior
-          citizens. Being part of The Chess Centre is
+          citizens. Being part of Sheffield Chess Centre is
           about being part of a wider community who supports the growth of
           Chess.
         </span>
@@ -173,7 +173,7 @@ export const faqData = (type: Type): Faq[] =>
       type: Type.PUBLIC,
     },
     {
-      question: `How can I improve my game outside of The Chess Centre`,
+      question: `How can I improve my game outside of Sheffield Chess Centre`,
       Answer: () => (
         <span>
           There are many fantastic resources on the web which can help players
@@ -215,8 +215,7 @@ export const faqData = (type: Type): Faq[] =>
       question: `How can I find the venue?`,
       Answer: () => (
         <span>
-          We are based in the centre of Ilkely. Our address is Unit 8, Crescent
-          Court, Ilkely LS29 8DE.
+          We are based in Sheffield. Our address is 329A Coleford Road, Sheffield, S9 5NF.
         </span>
       ),
       tags: [Topic.GENERAL],

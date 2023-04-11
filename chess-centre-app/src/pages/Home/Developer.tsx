@@ -10,7 +10,7 @@ import "../../assets/css/swagger-custom.css";
 import { classNames } from "../../utils/Classes";
 
 const Developer = () => {
-  document.title = "The Chess Centre | Developer";
+  document.title = "Sheffield Chess Centre | Developer";
 
   const { isLoading, error, data } = useEventsLite();
   const [eventUrl, setEventUrl] = useState<string>("");
@@ -89,7 +89,7 @@ const Developer = () => {
     height = 600,
   }) => {
     const url = `https://chesscentre.online/widgets/event/${eventId}?logo=${enabledLogo}&bgColor=${bgColor}&darkTheme=${darkTheme}`;
-    return `<iframe frameBorder="0" title="The Chess Centre" src="${url}" width="${width}" height="${height}"/>`;
+    return `<iframe frameBorder="0" title="Sheffield Chess Centre" src="${url}" width="${width}" height="${height}"/>`;
   };
 
   return (

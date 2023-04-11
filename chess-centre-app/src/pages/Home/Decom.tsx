@@ -4,7 +4,7 @@ import ContactInfo from "../../components/DecomContact/ContactInfo";
 
 const Home = () => {
 
-  document.title = "The Chess Centre | Decommissioned";
+  document.title = "Sheffield Chess Centre | Decommissioned";
 
   return (
     <div>
@@ -94,7 +94,7 @@ const Home = () => {
                 <br className="xl:hidden" />
                 <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400">
                   {" "}
-                  The Chess Centre
+                  Sheffield Chess Centre
                 </span>
               </h2>
 
