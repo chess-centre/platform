@@ -80,7 +80,7 @@ export default function EventDetails() {
   const { isLoading, error, data } = useEvents();
 
   useEffect(() => {
-    document.title = "The Chess Centre | Event Information";
+    document.title = "Sheffield Chess Centre | Event Information";
     let isMounted = true;
     if (!isLoading && isMounted) {
       const e: Event = data.find((event: Event) => event.id === eventId);

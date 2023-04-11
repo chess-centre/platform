@@ -56,7 +56,7 @@ const LandingFooter = () => {
           </a>
         </div>
         <p className="mt-6 text-center text-sm sm:text-base text-gray-400">
-          &copy; 2020 The Chess Centre. All rights reserved.
+          &copy; 2020 Sheffield Chess Centre. All rights reserved.
         </p>
         <CookieBanner />
       </div>

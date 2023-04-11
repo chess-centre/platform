@@ -52,7 +52,7 @@ export default function JuniorRapidplayEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
-    document.title = "The Chess Centre | Junior Rapidplay";
+    document.title = "Sheffield Chess Centre | Junior Rapidplay";
 
     const fetchEvent = async () => {
       setIsLoading(true);

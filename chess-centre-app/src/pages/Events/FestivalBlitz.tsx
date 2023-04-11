@@ -53,7 +53,7 @@ export default function FestivalBlitzEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
-    document.title = "The Chess Centre | Festival Blitz";
+    document.title = "Sheffield Chess Centre | Festival Blitz";
 
     const fetchEvent = async () => {
       setIsLoading(true);

@@ -11,7 +11,7 @@ import IntegrationsMobileExample from "../../assets/img/integrations-mobile-exam
 
 export default function MoreInfo() {
   useEffect(() => {
-    document.title = "The Chess Centre | More Info";
+    document.title = "Sheffield Chess Centre | More Info";
     window.scrollTo({
       top: 0,
       left: 0,
@@ -119,7 +119,7 @@ export default function MoreInfo() {
                   </h2>
                   <p className="mt-4 text-lg text-gray-500">
                     Quickly view your overall performance across all your over
-                    the board games played at The Chess Centre. We automatically
+                    the board games played at Sheffield Chess Centre. We automatically
                     track your rating progress and even import your previous
                     results from the ECF.
                   </p>

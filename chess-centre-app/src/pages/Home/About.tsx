@@ -7,7 +7,7 @@ import MattAndyImage from "../../assets/img/matt-andy.png";
 const About = () => {
 
   useEffect(() => {
-    document.title = "The Chess Centre | About Us"
+    document.title = "Sheffield Chess Centre | About Us"
   }, []);
 
   return (

@@ -8,7 +8,7 @@ export default function MatchNight() {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = "The Chess Centre | Match Night";
+    document.title = "Sheffield Chess Centre | Match Night";
   }, []);
 
   return (
