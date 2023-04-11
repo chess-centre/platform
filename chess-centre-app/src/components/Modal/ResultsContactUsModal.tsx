@@ -4,7 +4,7 @@ import moment from "moment";
 
 const contacts = [
   {
-    name: "Andy Wainwright",
+    name: "Jonathan Arnott",
     email: "info@chesscentre.online",
     image: "/andy.png",
     enquiryType: ["general", "membership", "juniors"]

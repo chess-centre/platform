@@ -31,9 +31,7 @@ const About = () => {
           </div>
           <div className="space-y-12 lg:grid lg:grid-cols-1 lg:gap-8 lg:space-y-0 mb-8">
             <p className="text-xl text-gray-500 text-center sm:px-52">
-              Playing chess together since secondary school Matt &#38; Andy
-              decided now was time to put their professional skills to good use
-              and setup a dedicated centre for this wonderful game.
+              TBC
             </p>
           </div>
           <div className="space-y-12 lg:grid lg:grid-cols-2 lg:gap-8 lg:space-y-0">
@@ -105,31 +103,15 @@ const About = () => {
                 <li>
                   <div className="space-y-4">
                     <div className="text-lg leading-6 font-medium space-y-1 text-center">
-                      <h3>Andrew Wainwright</h3>
+                      <h3>Jonathan Arnott</h3>
                       <p className="text-teal-600">Co-founder</p>
                     </div>
                     <div className="text-lg text-justify">
                       <p className="text-gray-500 mb-2">
-                        Andy has run a range of teams, clubs and Chess events
-                        for over 20 years, ranging from local leagues, to county
-                        and junior chess. Having learned Chess at an early age
-                        Andy was keen to share the benefits of the game with his
-                        own children, and has also coached junior players for
-                        many years. As such, Andy leads our junior development
-                        activities and is lead coach for all of our beginners.
+                        TBC
                       </p>
                       <p className="text-gray-500 mb-2">
-                        When not coaching Chess, Andy is a Technology lawyer,
-                        Junior Football Coach, Dad and keen Labrador walker! His
-                        favourite opening is the Sicilian Najdorf, and his
-                        favourite player is{" "}
-                        <a
-                          className="text-teal-600 hover:text-teal-700 hover:underline"
-                          href="https://en.wikipedia.org/wiki/Mikhail_Tal"
-                        >
-                          Mikhail Tal
-                        </a>
-                        .
+                        TBC
                       </p>
                     </div>
                     <ul className="flex space-x-5">
@@ -173,7 +155,7 @@ const About = () => {
               </span>
             </div>
           </div>
-          <Volunteers />
+          {/* <Volunteers /> */}
         </div>
 
         <FooterLanding></FooterLanding>
