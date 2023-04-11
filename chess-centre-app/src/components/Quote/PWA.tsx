@@ -45,7 +45,7 @@ function DownloadPWA() {
                     Matt &amp; Andy
                   </p>
                   <p className="text-base font-md text-gray-50">
-                    Co-Founders @ <span className="font-bold text-gray-900"><i className="fak fa-chess-centre"></i> The Chess Centre </span>
+                    Co-Founders @ <span className="font-bold text-gray-900"><i className="fak fa-chess-centre"></i> Sheffield Chess Centre </span>
                   </p>
                 </footer>
               </blockquote>

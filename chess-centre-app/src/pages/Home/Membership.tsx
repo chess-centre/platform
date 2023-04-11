@@ -8,7 +8,7 @@ import { Memberships } from "../../api/data.memberships";
 function Membership() {
 
   useEffect(() => {
-    document.title = "The Chess Centre | Membership"
+    document.title = "Sheffield Chess Centre | Membership"
   }, []);
 
   return (

@@ -5,7 +5,7 @@ module.exports.welcome = async event => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: 'Welcome to The Chess Centre!',
+        message: 'Welcome to Sheffield Chess Centre!',
         input: event,
       },
       null,

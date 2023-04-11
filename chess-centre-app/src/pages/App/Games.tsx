@@ -224,7 +224,7 @@ export default function GamesView() {
   };
 
   useEffect(() => {
-    document.title = "The Chess Centre | Games";
+    document.title = "Sheffield Chess Centre | Games";
 
     try {
       if (memberId) {

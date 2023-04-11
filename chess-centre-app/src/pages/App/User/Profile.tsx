@@ -86,7 +86,7 @@ export default function Profile() {
 
   useEffect(() => {
 
-    document.title = "The Chess Centre | Profile";
+    document.title = "Sheffield Chess Centre | Profile";
 
     const getCustomerPortal = async () => {
       const returnUrl = `${window.location.origin}/app/profile`;
@@ -112,7 +112,7 @@ export default function Profile() {
   
       setMember(member);
 
-      document.title = `The Chess Centre | ${member.name}`;
+      document.title = `Sheffield Chess Centre | ${member.name}`;
 
       if (member && member.stripeCurrentPeriodEnd) {
         const today = new Date();

@@ -7,7 +7,7 @@ function Events() {
 
   useEffect(() => {
     
-    document.title = "The Chess Centre | Events";
+    document.title = "Sheffield Chess Centre | Events";
 
     async function fetchMember() {
       const membershipStatus = await isPaidMember();

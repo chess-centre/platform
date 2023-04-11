@@ -15,7 +15,7 @@ const EventHeader = ({ name, description, showLogo, darkTheme }) => {
         <div className="mx-auto">
           <img
             className="w-28 h-28 mx-auto"
-            alt="The Chess Centre"
+            alt="Sheffield Chess Centre"
             src={Logo}
           />
         </div>
@@ -27,7 +27,7 @@ const EventHeader = ({ name, description, showLogo, darkTheme }) => {
           "text-3xl leading-6 font-extrabold  text-center"
         )}
       >
-        The Chess Centre
+        Sheffield Chess Centre
       </h2>
       <h2
         className={classNames(

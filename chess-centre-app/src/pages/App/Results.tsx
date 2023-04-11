@@ -42,7 +42,7 @@ export default function ResultView() {
   const [isErrorResult, setIsErrorResult] = useState(false);
   const [results, setResults] = useState<any[]>([]);
 
-  document.title = "The Chess Centre | Results";
+  document.title = "Sheffield Chess Centre | Results";
 
   useEffect(() => {
     
