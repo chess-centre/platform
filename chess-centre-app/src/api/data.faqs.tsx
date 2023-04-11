@@ -215,8 +215,7 @@ export const faqData = (type: Type): Faq[] =>
       question: `How can I find the venue?`,
       Answer: () => (
         <span>
-          We are based in the centre of Ilkely. Our address is Unit 8, Crescent
-          Court, Ilkely LS29 8DE.
+          We are based in Sheffield. Our address is 329A Coleford Road, Sheffield, S9 5NF.
         </span>
       ),
       tags: [Topic.GENERAL],

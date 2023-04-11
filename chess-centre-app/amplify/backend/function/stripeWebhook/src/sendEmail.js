@@ -50,7 +50,7 @@ async function sendMembershipEmailToMember({ email, name }) {
         <p>Hello ${name} 👋</p>
         <p>This email is to confirm your membership sign up.</p> 
         <p>Thank you for joining our fantastic chess community ❤️</p> 
-        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
+        <p>🏠 Our location: <span style="color: #047481">329A Coleford Road, Sheffield, S9 5NF</span></p>
         <p>If you have any questions please don't hesitate to email us at: info@chesscentre.online</p>
         <p>We look forward to seeing you soon! 🚀</p>
         <p style="color: #9da4a5;font-size:10px;">ps. Memberships can be cancelled at anytime, no questions asked. If you have any problems just pop us a quick email and we'll gladly assist.</p>
@@ -82,7 +82,7 @@ async function sendRegisteredEventEmailToMember({ email, name, eventName, eventT
         <p>The key details for this event:</p>
         <p>📅 Date: ${formatDate(startDate)}</p>
         ${arrivalTime ? `<p>⌚ Arrival Time: ${arrivalTime}</p>` : ""}
-        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
+        <p>🏠 Our location: <span style="color: #047481">329A Coleford Road, Sheffield, S9 5NF</span></p>
         <p>More details can be found here:
           <a href="https://www.chesscentre.online/events/${eventType}/${eventId}">chesscentre.online/${eventType}</a>
         </p>

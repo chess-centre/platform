@@ -9,13 +9,13 @@ const FindUs = () => {
         <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-2">
           Find Us
         </h2>
-        <p>8 Crescent Court</p>
-        <p>Ilkley</p>
-        <p>LS29 8DE</p>
+        <p>329A Coleford Road</p>
+        <p>Sheffield</p>
+        <p>S9 5NF</p>
         <p className="text-gray-400 text-sm mt-4">What3Words</p>
         <p className="text-black font-sans font-medium text-sm"> 
           <span className="text-red-600 font-medium">&#47;&#47;&#47;</span>
-          <a href="https://w3w.co/templates.monkey.comments" target="_blank" alt="What3Words" rel="noreferrer">templates.monkey.comments</a>
+          <a href="https://w3w.co/hugs.driver.robots" target="_blank" alt="What3Words" rel="noreferrer">hugs.driver.robots</a>
         </p>
         <div className="mt-10 rounded-lg">
           {/* <Map
