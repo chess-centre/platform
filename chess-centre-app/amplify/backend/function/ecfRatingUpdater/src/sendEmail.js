@@ -6,10 +6,6 @@ async function sendRatingUpdateEmail(members, erredChecks, erredMembers) {
   console.log("Sending update email");
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
 
-  if(ENV.includes("prod")) {
-    ToAddresses.push("Andy <andy@chesscentre.online>");
-  }
-
   const errerMemberList = (members) => {
     if(members.length > 0) {
       const list = `<ol>` + members.map(m => `<li>${m.ecfId} - ${m.name}</li>`).join("") + "</ol>";
@@ -73,7 +69,7 @@ async function sendRatingUpdateEmail(members, erredChecks, erredMembers) {
   };
 
   const params = {
-    Source: "The Chess Centre <support@chesscentre.online>",
+    Source: "Sheffield Chess Centre <support@chesscentre.online>",
     Destination: {
       ToAddresses
     },
@@ -90,7 +86,7 @@ async function sendRatingUpdateEmail(members, erredChecks, erredMembers) {
             font-size:xx-small;
           }
         </style>
-        <h3 style="color: #047481">♟️ The Chess Centre</h3>
+        <h3 style="color: #047481">♟️ Sheffield Chess Centre</h3>
         <h4 style="color: #f0802b">📊 ECF Rating tracker complete</h4>
         <p>Total records checked: ${members.length}</p>      
         <p>📈 Standard rating changes:</p>

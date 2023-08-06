@@ -69,7 +69,7 @@ function ForgotPassword(props) {
   }
 
   useEffect(() => {
-    document.title = "The Chess Centre | Forgot Password";
+    document.title = "Sheffield Chess Centre | Forgot Password";
   }, []);
 
   return (

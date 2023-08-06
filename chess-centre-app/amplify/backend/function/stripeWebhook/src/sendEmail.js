@@ -8,12 +8,8 @@ async function sendMembershipEmailInternal({ email, name, stripeEmail, price, st
 
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
   
-  if(env.includes("prod")) {
-    ToAddresses.push("Andy <andy@chesscentre.online>")
-  }
-
   const params = {
-    Source: "The Chess Centre <support@chesscentre.online>",
+    Source: "Sheffield Chess Centre <support@chesscentre.online>",
     Destination: {
       ToAddresses
     },
@@ -39,22 +35,22 @@ async function sendMembershipEmailInternal({ email, name, stripeEmail, price, st
 async function sendMembershipEmailToMember({ email, name }) {
   console.log("Sending membership email to new member:", name, email);
   const params = {
-    Source: "The Chess Centre <support@chesscentre.online>",
+    Source: "Sheffield Chess Centre <support@chesscentre.online>",
     Destination: {
       BccAddresses: [
-        "The Chess Centre <support@chesscentre.online>",
+        "Sheffield Chess Centre <support@chesscentre.online>",
       ],
       ToAddresses: [email],
     },
     Message: {
-      Subject: { Data: `The Chess Centre | Membership Confirmed` },
+      Subject: { Data: `Sheffield Chess Centre | Membership Confirmed` },
       Body: {
-        Text: { Data: `Hi ${name},\r\n Thank you for joining The Chess Centre! More information to come.` },
-        Html: { Data: `<h2 style="color: #047481">♟️ The Chess Centre</h2>
+        Text: { Data: `Hi ${name},\r\n Thank you for joining Sheffield Chess Centre! More information to come.` },
+        Html: { Data: `<h2 style="color: #047481">♟️ Sheffield Chess Centre</h2>
         <p>Hello ${name} 👋</p>
         <p>This email is to confirm your membership sign up.</p> 
         <p>Thank you for joining our fantastic chess community ❤️</p> 
-        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
+        <p>🏠 Our location: <span style="color: #047481">329A Coleford Road, Sheffield, S9 5NF</span></p>
         <p>If you have any questions please don't hesitate to email us at: info@chesscentre.online</p>
         <p>We look forward to seeing you soon! 🚀</p>
         <p style="color: #9da4a5;font-size:10px;">ps. Memberships can be cancelled at anytime, no questions asked. If you have any problems just pop us a quick email and we'll gladly assist.</p>
@@ -69,10 +65,10 @@ async function sendMembershipEmailToMember({ email, name }) {
 async function sendRegisteredEventEmailToMember({ email, name, eventName, eventType, eventId, startDate, arrivalTime }) {
   console.log("Sending member registration email to:", name, email, eventName);
   const params = {
-    Source: "The Chess Centre <support@chesscentre.online>",
+    Source: "Sheffield Chess Centre <support@chesscentre.online>",
     Destination: {
       BccAddresses: [
-        "The Chess Centre <support@chesscentre.online>"
+        "Sheffield Chess Centre <support@chesscentre.online>"
       ],
       ToAddresses: [email],
     },
@@ -80,13 +76,13 @@ async function sendRegisteredEventEmailToMember({ email, name, eventName, eventT
       Subject: { Data: `${eventName} | Entry Confirmed` },
       Body: {
         Text: { Data: `Hi ${name},\r\n Thank you for registering for our ${eventName} on ${startDate}.` },
-        Html: { Data: `<h2 style="color: #047481">♟️ The Chess Centre</h2>
+        Html: { Data: `<h2 style="color: #047481">♟️ Sheffield Chess Centre</h2>
         <p>Hello ${name} 👋</p>
         <p>Thank you for registering for our <strong>${eventName}</strong>.</p> 
         <p>The key details for this event:</p>
         <p>📅 Date: ${formatDate(startDate)}</p>
         ${arrivalTime ? `<p>⌚ Arrival Time: ${arrivalTime}</p>` : ""}
-        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
+        <p>🏠 Our location: <span style="color: #047481">329A Coleford Road, Sheffield, S9 5NF</span></p>
         <p>More details can be found here:
           <a href="https://www.chesscentre.online/events/${eventType}/${eventId}">chesscentre.online/${eventType}</a>
         </p>
@@ -105,10 +101,10 @@ async function sendRegisteredEventEmailToMember({ email, name, eventName, eventT
 async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, eventName, eventType, eventId, startDate, arrivalTime, section }) {
   console.log("Sending member registration email to:", name, email, eventName);
   const params = {
-    Source: "The Chess Centre <support@chesscentre.online>",
+    Source: "Sheffield Chess Centre <support@chesscentre.online>",
     Destination: {
       BccAddresses: [
-        "The Chess Centre <support@chesscentre.online>"
+        "Sheffield Chess Centre <support@chesscentre.online>"
       ],
       ToAddresses: [email],
     },
@@ -133,7 +129,7 @@ async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, event
         </p>
         <p>We look forward to seeing you soon! 🚀</p>
         <p></p>
-        <p style="color: #047481">This event was brought to you by The Chess Centre, Ilkley ❤️</p>
+        <p style="color: #047481">This event was brought to you by Sheffield Chess Centre, Ilkley ❤️</p>
         <p style="color: #9da4a5;font-size:12px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
         `
       }
@@ -146,10 +142,10 @@ async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, event
 async function sendRegisteredEventEmailToMemberFestival({ email, name, eventName, eventType, eventId, startDate, endDate, section }) {
   console.log("Sending member registration email to:", name, email, eventName);
   const params = {
-    Source: "The Chess Centre <support@chesscentre.online>",
+    Source: "Sheffield Chess Centre <support@chesscentre.online>",
     Destination: {
       BccAddresses: [
-        "The Chess Centre <support@chesscentre.online>"
+        "Sheffield Chess Centre <support@chesscentre.online>"
       ],
       ToAddresses: [email],
     },
@@ -173,7 +169,7 @@ async function sendRegisteredEventEmailToMemberFestival({ email, name, eventName
         </p>
         <p>We look forward to seeing you soon! 🚀</p>
         <p></p>
-        <p>This event was brought to you by <span style="color: #047481"><strong>The Chess Centre</strong></span>, Ilkley ❤️</p>
+        <p>This event was brought to you by <span style="color: #047481"><strong>Sheffield Chess Centre</strong></span>, Ilkley ❤️</p>
         <p style="color: #9da4a5;font-size:12px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
         `
       }
@@ -188,12 +184,8 @@ async function sendRegisteredEventEmailInternal({ email, name, eventName, eventT
 
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
 
-  if(env.includes("prod")) {
-    ToAddresses.push("Andy <andy@chesscentre.online>");
-  }
-
   const params = {
-    Source: "The Chess Centre <support@chesscentre.online>",
+    Source: "Sheffield Chess Centre <support@chesscentre.online>",
     Destination: {
       ToAddresses
     },
@@ -210,7 +202,7 @@ async function sendRegisteredEventEmailInternal({ email, name, eventName, eventT
             font-size:xx-small;
           }
         </style>
-        <h3 style="color: #047481">♟️ The Chess Centre</h2>
+        <h3 style="color: #047481">♟️ Sheffield Chess Centre</h2>
         <p>Entry Name: ${name}</p>
         ${section && `<p>Section: ${section}</p>`}
         <p>Event: ${eventName}</p>

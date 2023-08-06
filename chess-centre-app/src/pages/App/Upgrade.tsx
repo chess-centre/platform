@@ -4,7 +4,7 @@ import MembershipCard from "../../components/Membership/MembershipCard";
 import { Memberships } from "../../api/data.memberships";
 
 export default function Upgrade() {
-  document.title = "The Chess Centre | Membership";
+  document.title = "Sheffield Chess Centre | Membership";
 
   return (
     <>

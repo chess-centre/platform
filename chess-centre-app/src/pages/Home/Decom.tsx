@@ -1,20 +1,10 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import FooterLanding from "../../components/Footer/LandingFooter";
-import LandingNav from "../../components/Navigation/LandingNav";
-import Calendar from "../../components/Calendar/ComingEvents";
-import FAQs from "../../components/FAQs/Faqs";
-import FindUs from "../../components/Map/FindUs";
-import DownloadPWA from "../../components/Quote/PWA";
-import GamesSignUp from "../../components/CTA/SignUp";
-import Integrations from "../../components/Integrations";
-import EmbeddedVideo from "../../components/Video/Embedded";
+import React from "react";
+import LandingNav from "../../components/Navigation/DecomNav";
+import ContactInfo from "../../components/DecomContact/ContactInfo";
 
 const Home = () => {
 
-  useEffect(() => {
-    document.title = "Sheffield Chess Centre | Welcome";
-  }, []);
+  document.title = "Sheffield Chess Centre | Decommissioned";
 
   return (
     <div>
@@ -93,7 +83,7 @@ const Home = () => {
 
         <div className="relative pt-6 pb-6 sm:pb-6 md:pb-6 lg:pb-6 xl:pb-6">
           <LandingNav />
-          <main className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-18 xl:mt-24">
+          <main className="mt-10 mb-6 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-18 xl:mt-24">
             <div className="text-center">
               <h2 className="-mt-5">
                 <span className="text-gray-800 text-8xl sm:text-9xl">
@@ -101,7 +91,6 @@ const Home = () => {
                 </span>
               </h2>
               <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-                <span className="font-light">Welcome to</span>
                 <br className="xl:hidden" />
                 <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400">
                   {" "}
@@ -110,30 +99,15 @@ const Home = () => {
               </h2>
 
               <div className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                It's time things changed around here <span role="img">🚀</span>
-              </div>
-              <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
-                <div className="rounded-md shadow">
-                  <Link
-                    to="/register"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:text-lg md:px-12"
-                  >
-                    Create Account
-                  </Link>
-                </div>
+                <p className="mt-2 text-teal-500">
+                  Visit our dedicated venue in Ilkley
+                </p>
               </div>
             </div>
           </main>
+          <ContactInfo />
         </div>
       </div>
-      <EmbeddedVideo />
-      <Calendar />
-      <GamesSignUp />
-      <FAQs />
-      <FindUs />
-      <DownloadPWA />
-      <Integrations />
-      <FooterLanding />
     </div>
   );
 };

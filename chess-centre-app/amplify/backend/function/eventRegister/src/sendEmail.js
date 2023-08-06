@@ -6,10 +6,10 @@ const SES = new AWS.SES({ region: region });
 async function sendRegisteredEventEmailToMember({ email, name, eventName, eventType, eventId, startDate, arrivalTime }) {
   console.log("Sending member registration email to:", name, email, eventName);
   const params = {
-    Source: "The Chess Centre <support@chesscentre.online>",
+    Source: "Sheffield Chess Centre <support@chesscentre.online>",
     Destination: {
       BccAddresses: [
-        "The Chess Centre <support@chesscentre.online>"
+        "Sheffield Chess Centre <support@chesscentre.online>"
       ],
       ToAddresses: [email],
     },
@@ -17,13 +17,13 @@ async function sendRegisteredEventEmailToMember({ email, name, eventName, eventT
       Subject: { Data: `${eventName} | Free Entry Confirmed` },
       Body: {
         Text: { Data: `Hi ${name},\r\n Thank you for registering for our ${eventName} on ${startDate}.` },
-        Html: { Data: `<h2 style="color: #047481">♟️ The Chess Centre</h2>
+        Html: { Data: `<h2 style="color: #047481">♟️ Sheffield Chess Centre</h2>
         <p>Hello ${name} 👋</p>
         <p>Thank you for registering for our <strong>${eventName}</strong>.</p> 
         <p>The key details for this event:</p>
         <p>📅 Date: ${formatDate(startDate)}</p>
         ${arrivalTime ? `<p>⌚ Arrival Time: ${arrivalTime}</p>` : ""}
-        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
+        <p>🏠 Our location: <span style="color: #047481">329A Coleford Road, Sheffield, S9 5NF</span></p>
         <p>More details can be found here:
           <a href="https://www.chesscentre.online/events/${eventType}/${eventId}">chesscentre.online/${eventType}</a>
         </p>
@@ -44,12 +44,8 @@ async function sendRegisteredEventEmailInternal({ email, name, eventName, eventT
 
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
 
-  if(env.includes("prod")) {
-    ToAddresses.push("Andy <andy@chesscentre.online>");
-  }
-
   const params = {
-    Source: "The Chess Centre <support@chesscentre.online>",
+    Source: "Sheffield Chess Centre <support@chesscentre.online>",
     Destination: {
       ToAddresses
     },
@@ -66,7 +62,7 @@ async function sendRegisteredEventEmailInternal({ email, name, eventName, eventT
             font-size:xx-small;
           }
         </style>
-        <h3 style="color: #047481">♟️ The Chess Centre</h2>
+        <h3 style="color: #047481">♟️ Sheffield Chess Centre</h2>
         <p>Entry Name: ${name}</p>
         ${section && `<p>Section: ${section}</p>`}
         <p>Event: ${eventName}</p>

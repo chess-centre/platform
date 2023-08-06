@@ -59,7 +59,7 @@ export default function Admin() {
   }
 
   useEffect(() => {
-    document.title = "The Chess Centre | Admin";
+    document.title = "Sheffield Chess Centre | Admin";
 
     checkStatus();
 

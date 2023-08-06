@@ -300,7 +300,7 @@ export default function Players() {
   };
 
   useEffect(() => {
-    document.title = "The Chess Centre | Players";
+    document.title = "Sheffield Chess Centre | Players";
 
     const fetchRatedPlayers = async () => {
       setState((state) => ({ ...state, isLoading: true, isError: false }));
