@@ -7,5 +7,6 @@
       "authplatformchesscentreapp",
       "Outputs.UserPoolId"
     ]
-  }
+  },
+  "CreateAPIKey": 0
 }
