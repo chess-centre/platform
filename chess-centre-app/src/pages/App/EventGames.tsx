@@ -110,7 +110,7 @@ export default function EventGamesView() {
   const [averageRating, setAverageRating] = useState<number>(0);
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Games by Event";
+    document.title = "The Chess Centre | Games by Event";
 
     const fetchGames = async () => {
       setIsLoadingGames(true);

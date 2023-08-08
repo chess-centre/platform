@@ -23,7 +23,7 @@ function Register(props) {
   const dispatch = useAuthDispatch();
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Register";
+    document.title = "The Chess Centre | Register";
 
     const isFormValid = () => {
       if (!email) return false;
@@ -165,7 +165,7 @@ function Register(props) {
                   <img
                     src={Logo}
                     className="object-contain h-20 w-full md:h-24"
-                    alt="Sheffield Chess Centre"
+                    alt="The Chess Centre"
                   />
                 )}
               </Link>

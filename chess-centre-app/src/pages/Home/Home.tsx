@@ -13,7 +13,7 @@ import EmbeddedVideo from "../../components/Video/Embedded";
 const Home = () => {
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Welcome";
+    document.title = "The Chess Centre | Welcome";
   }, []);
 
   return (
@@ -105,7 +105,7 @@ const Home = () => {
                 <br className="xl:hidden" />
                 <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400">
                   {" "}
-                  Sheffield Chess Centre
+                  The Chess Centre
                 </span>
               </h2>
 

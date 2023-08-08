@@ -87,7 +87,7 @@ export default function NormEvent() {
 
                     <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
                         <p className="text-left prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
-                            Sheffield Chess Centre is delighted to host it's first International Master (IM) Norm event!
+                            The Chess Centre is delighted to host it's first International Master (IM) Norm event!
                         </p>
                         <p className="mt-6 text-left prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
                             Here are the players doing battle:

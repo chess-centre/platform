@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
   ReactGA.initialize(trackingId);
 }
 const FESTIVAL_ID = process.env.REACT_APP_FESTIVAL_ID;
-const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY;
+const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY || "";
 
 const stripePromise = loadStripe(STRIPE_KEY);
 const queryClient = new QueryClient();

@@ -4,7 +4,7 @@ import InstagramFeed from "../../components/Social/InstagramFeed";
 export default function Gallery() {
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Gallery";
+    document.title = "The Chess Centre | Gallery";
   }, []);
 
   return (

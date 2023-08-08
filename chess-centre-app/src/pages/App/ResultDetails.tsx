@@ -18,7 +18,7 @@ const organisers = [
 ];
 
 export default function ResultDetails() {
-  document.title = "Sheffield Chess Centre | Result Information";
+  document.title = "The Chess Centre | Result Information";
 
   const { resultId } = useParams();
   const { isLoading, error, data } = useResults({ resultId });

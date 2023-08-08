@@ -138,7 +138,7 @@ export default function Dashboard() {
   const [upcomingEvents, setUpComingEvents] = useState([]);
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Dashboard";
+    document.title = "The Chess Centre | Dashboard";
 
     async function fetchMember() {
       setIsLoading(true);

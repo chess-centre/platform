@@ -8,7 +8,7 @@ export default function JuniorClub() {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Junior Club";
+    document.title = "The Chess Centre | Junior Club";
   }, []);
 
   return (
@@ -82,7 +82,7 @@ export default function JuniorClub() {
             <div className="mt-8 lg:mt-0">
               <div className="text-base max-w-prose mx-auto lg:max-w-none">
                 <p className="text-lg text-gray-500">
-                  Sheffield Chess Centre’s junior Chess Club is open to boys and girls
+                  The Chess Centre’s junior Chess Club is open to boys and girls
                   aged 6 - 16 years of age.
                 </p>
               </div>

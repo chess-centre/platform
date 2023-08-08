@@ -53,7 +53,7 @@ export default function RapidplayEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Rapidplay";
+    document.title = "The Chess Centre | Rapidplay";
 
     const fetchEvent = async () => {
       setIsLoading(true);

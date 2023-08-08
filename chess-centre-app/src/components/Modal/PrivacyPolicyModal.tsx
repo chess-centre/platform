@@ -123,7 +123,7 @@ function PrivacyPolicyModal() {
               </li>
               <li>
                 <p>
-                  <strong>Website</strong> refers to Sheffield Chess Centre,
+                  <strong>Website</strong> refers to The Chess Centre,
                   accessible from{" "}
                   <a
                     href="https://www.chesscentre.online/"

@@ -53,7 +53,7 @@ export default function BlitzEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Blitz";
+    document.title = "The Chess Centre | Blitz";
 
     const fetchEvent = async () => {
       setIsLoading(true);

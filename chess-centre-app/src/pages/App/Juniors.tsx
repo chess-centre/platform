@@ -105,7 +105,7 @@ function UsefulLinksTable() {
 
 export default function Juniors() {
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Juniors";
+    document.title = "The Chess Centre | Juniors";
   }, []);
 
   return (

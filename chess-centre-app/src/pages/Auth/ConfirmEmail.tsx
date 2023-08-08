@@ -56,7 +56,7 @@ function ConfirmEmail(props) {
   }
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Confirm Email";
+    document.title = "The Chess Centre | Confirm Email";
   }, []);
 
   return (
