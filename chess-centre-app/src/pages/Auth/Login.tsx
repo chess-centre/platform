@@ -22,7 +22,7 @@ function Login(props) {
   );
   const stripe = useStripe();
   const dispatch = useAuthDispatch();
-  const { loading, errorMessage } = useAuthState();
+  const { loading, errorMessage } = useAuthState() as any;
 
   const signIn = async () => {
     setConfirmEmail(email);
@@ -228,14 +228,14 @@ function Login(props) {
                   Forgot your password?
                 </Link>
               </p>
-              <p className="mt-1">
+              {/* <p className="mt-1">
                 <Link
                   className="text-sm font-medium text-teal-600 dark:text-teal-400 hover:underline"
                   to="/register"
                 >
                   Create account
                 </Link>
-              </p>
+              </p> */}
               <p className="mt-1">
                 <Link
                   className="text-sm font-medium text-gray-400 dark:text-gray-400 hover:underline"

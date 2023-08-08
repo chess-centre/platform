@@ -10,14 +10,14 @@ const LandingFooter = () => {
           className="-mx-5 -my-3 flex flex-wrap justify-center"
           aria-label="Footer"
         >
-          <div className="px-3 sm:px-6 py-2">
+          {/* <div className="px-3 sm:px-6 py-2">
             <Link
               to="/about"
               className="text-sm sm:text-base text-gray-500 hover:text-teal-brand"
             >
               About Us
             </Link>
-          </div>
+          </div> */}
           <div className="px-3 sm:px-6 py-2">
             <Link
               to="/developer"

@@ -12,18 +12,18 @@ const routes = [
     component: lazy(() => import("../pages/Auth/Login")),
     isPrivate: false,
   },
-  {
-    path: "/register",
-    component: lazy(() => import("../pages/Auth/Register")),
-    exact: true,
-    isPrivate: false,
-  },
-  {
-    path: "/register/confirm/:email",
-    component: lazy(() => import("../pages/Auth/ConfirmEmail")),
-    exact: true,
-    isPrivate: false,
-  },
+  // {
+  //   path: "/register",
+  //   component: lazy(() => import("../pages/Auth/Register")),
+  //   exact: true,
+  //   isPrivate: false,
+  // },
+  // {
+  //   path: "/register/confirm/:email",
+  //   component: lazy(() => import("../pages/Auth/ConfirmEmail")),
+  //   exact: true,
+  //   isPrivate: false,
+  // },
   {
     path: "/forgot-password",
     component: lazy(() => import("../pages/Auth/ForgotPassword")),
@@ -97,11 +97,11 @@ const routes = [
     component: lazy(() => import("../pages/Home/Events")),
     isPrivate: false,
   },
-  {
-    path: "/membership",
-    component: lazy(() => import("../pages/Home/Membership")),
-    isPrivate: false,
-  },
+  // {
+  //   path: "/membership",
+  //   component: lazy(() => import("../pages/Home/Membership")),
+  //   isPrivate: false,
+  // },
   {
     path: "/more-info",
     component: lazy(() => import("../pages/Home/MoreInfo")),
@@ -112,11 +112,11 @@ const routes = [
     component: lazy(() => import("../pages/Home/FAQs")),
     isPrivate: false,
   },
-  {
-    path: "/about",
-    component: lazy(() => import("../pages/Home/About")),
-    isPrivate: false,
-  },
+  // {
+  //   path: "/about",
+  //   component: lazy(() => import("../pages/Home/About")),
+  //   isPrivate: false,
+  // },
   {
     path: "/code-of-conduct",
     component: lazy(() => import("../pages/Home/CodeOfConduct")),
