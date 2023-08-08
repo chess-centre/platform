@@ -7,7 +7,7 @@ import LogoWithName from "../../assets/img/logo-light-theme.png";
 
 const headings = [
   { url: "events", title: "Events" },
-  { url: "membership", title: "Membership" },
+  // { url: "membership", title: "Membership" },
   { url: "our-mission", title: "Our Mission" },
 ];
 
@@ -16,7 +16,7 @@ const LandingNav = (props: any) => {
   const { current } = props;
   const history = useHistory();
   const dispatch = useAuthDispatch();
-  const { user } = useAuthState();
+  const { user } = useAuthState() as any;
   const [isExpanded, toggleExpansion] = React.useState(true);
   const activeMenu = "text-orange-brand";
   const selectableMenu = "text-gray-500 hover:text-orange-brand";
@@ -38,7 +38,7 @@ const LandingNav = (props: any) => {
         localStorage.removeItem("token");
       }
     };
-    if (user && user.userConfirmed) {
+    if (user && user?.userConfirmed) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
@@ -121,7 +121,7 @@ const LandingNav = (props: any) => {
                         text-base leading-4 font-medium rounded-md 
                         focus:outline-none  active:bg-gray-50 active:text-orange-700 transition duration-300 ease-in-out shadow`}
                     >
-                      <span alt="Dashboard">
+                      <span>
                         <i className="fad fa-user"></i>{" "}
                         <span className="text-gray-600 hover:text-teal-700 text-sm">
                           Dashboard
@@ -137,7 +137,7 @@ const LandingNav = (props: any) => {
                       text-base leading-4 font-medium rounded-md text-white bg-gray-400 hover:text-gray-900
                       focus:outline-none active:bg-gray-50 active:text-orange-700 transition duration-300 ease-in-out shadow`}
                     >
-                      <span alt="Logout">
+                      <span>
                         <i className="fad fa-sign-out"></i>{" "}
                         <span className="text-sm">Logout</span>
                       </span>
@@ -154,14 +154,14 @@ const LandingNav = (props: any) => {
                   >
                     <span className="text-sm">Login</span>
                   </Link>
-                  <Link
+                  {/* <Link
                     to="/register"
                     className={`inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
                     font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
                     focus:ring-offset-2 focus:ring-teal-500`}
                   >
                     <span className="text-sm">Register</span>
-                  </Link>
+                  </Link> */}
                 </div>
               )}
             </span>
@@ -241,7 +241,7 @@ const LandingNav = (props: any) => {
                     role="menuitem"
                     to="/app"
                   >
-                    <span alt="Dashboard">
+                    <span>
                       <span className="text-teal-500 hover:text-teal-700 text-sm">
                         Dashboard
                       </span>
@@ -252,9 +252,8 @@ const LandingNav = (props: any) => {
                     className={`block w-full z-20 px-5 py-4 text-center text-sm text-gray-900 bg-white hover:bg-gray-100 border-gray-300 shadow-lg
                    hover:text-teal-700 focus:outline-none focus:bg-gray-100 focus:text-teal-700`}
                     role="menuitem"
-                    to="/app"
                   >
-                    <span alt="Logout">
+                    <span>
                       <span className="text-sm">Logout</span>
                     </span>
                   </button>
