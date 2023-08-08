@@ -69,7 +69,7 @@ async function sendRatingUpdateEmail(members, erredChecks, erredMembers) {
   };
 
   const params = {
-    Source: "Sheffield Chess Centre <support@chesscentre.online>",
+    Source: "The Chess Centre <support@chesscentre.online>",
     Destination: {
       ToAddresses
     },
@@ -86,7 +86,7 @@ async function sendRatingUpdateEmail(members, erredChecks, erredMembers) {
             font-size:xx-small;
           }
         </style>
-        <h3 style="color: #047481">♟️ Sheffield Chess Centre</h3>
+        <h3 style="color: #047481">♟️ The Chess Centre</h3>
         <h4 style="color: #f0802b">📊 ECF Rating tracker complete</h4>
         <p>Total records checked: ${members.length}</p>      
         <p>📈 Standard rating changes:</p>

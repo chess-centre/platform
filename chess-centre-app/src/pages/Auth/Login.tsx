@@ -74,7 +74,7 @@ function Login(props) {
 
   useEffect(() => {
 
-    document.title = "Sheffield Chess Centre | Login";
+    document.title = "The Chess Centre | Login";
 
     const userEmail = window.localStorage.getItem("email");
     if (userEmail) {
@@ -92,13 +92,13 @@ function Login(props) {
               aria-hidden="true"
               className="hidden sm:block object-scale-down object-center h-full py-6"
               src={KingIcons}
-              alt="Sheffield Chess Centre"
+              alt="The Chess Centre"
             />
             <img
               aria-hidden="true"
               className="block sm:hidden object-scale-down object-center w-full h-full"
               src={KingIcons}
-              alt="Sheffield Chess Centre"
+              alt="The Chess Centre"
             />
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
@@ -114,7 +114,7 @@ function Login(props) {
                   <img
                     src={Logo}
                     className="object-contain h-20 sm:h-28 w-full"
-                    alt="Sheffield Chess Centre"
+                    alt="The Chess Centre"
                   />
                 </Link>
               )}

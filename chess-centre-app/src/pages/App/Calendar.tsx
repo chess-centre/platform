@@ -4,7 +4,7 @@ import Calendar from "../../components/Calendar/LeanCalendar";
 export default function AppCalendar() {
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Calendar";
+    document.title = "The Chess Centre | Calendar";
   }, []);
 
   return (

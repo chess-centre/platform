@@ -5,7 +5,7 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 function CodeOfConduct() {
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Code of Conduct"
+    document.title = "The Chess Centre | Code of Conduct"
   }, []);
 
   return (
@@ -22,7 +22,7 @@ function CodeOfConduct() {
                 Code of Conduct
               </h2>
               <p className="mt-5 text-md text-gray-500">
-                All members of Sheffield Chess Centre are expected to abide by this
+                All members of The Chess Centre are expected to abide by this
                 Code of Conduct at all times. Failure to do so may result in the
                 revocation of membership by the Management Team.
               </p>
@@ -60,12 +60,12 @@ function CodeOfConduct() {
                   </li>
                   <li>
                     Abide by the laws of chess and any specific rules in events
-                    held at Sheffield Chess Centre.
+                    held at The Chess Centre.
                   </li>
                   <li>
                     Recognise the valuable contribution made by the Management
                     Team and other volunteers. They give their time and
-                    resources to provide the service that Sheffield Chess Centre
+                    resources to provide the service that The Chess Centre
                     provides for you.
                   </li>
                   <li>Use correct and proper language at all times.</li>
@@ -84,7 +84,7 @@ function CodeOfConduct() {
                     Chess Centre premises.
                   </li>
                   <li>
-                    Promptly pay all membership fees due to Sheffield Chess Centre.
+                    Promptly pay all membership fees due to The Chess Centre.
                   </li>
                   <li>Respect the decisions of the Management Committee.</li>
                 </ol>

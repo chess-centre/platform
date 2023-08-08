@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "description" : "Upcoming event data from Sheffield Chess Centre platform",
+    "description" : "Upcoming event data from The Chess Centre platform",
     "version" : "v1",
     "title" : "API",
     "contact" : {

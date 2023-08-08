@@ -24,7 +24,7 @@ export default function FAQs() {
   };
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | FAQs";
+    document.title = "The Chess Centre | FAQs";
     window.scrollTo({
       top: 0,
       left: 0,

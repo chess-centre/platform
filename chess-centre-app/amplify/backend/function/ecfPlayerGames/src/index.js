@@ -34,7 +34,7 @@ exports.handler = async () => {
                     ...rapidGamesValidated
                 ];
             };
-            // This returns all games played checking for "Sheffield Chess Centre" as an event type:
+            // This returns all games played checking for "The Chess Centre" as an event type:
             return getAllData();
         }));
 
@@ -75,14 +75,14 @@ function eventNameCheck(game) {
         name = game.org_name;
     }
     return name
-            .replace("Sheffield Chess Centre ", "")
-            .replace("Sheffield Chess Centre - ", "")
-            .replace("Sheffield Chess Centre", ""); // You'd be surprised! example event_name "Sheffield Chess Centre Sheffield Chess Centre - August Congress"
+            .replace("The Chess Centre ", "")
+            .replace("The Chess Centre - ", "")
+            .replace("The Chess Centre", ""); // You'd be surprised! example event_name "The Chess Centre The Chess Centre - August Congress"
 }
 
 function stageGames(member, games, members, type) {
     // This function is carrying out a number of important tasks:
-    // 1. filtering games from players by "Sheffield Chess Centre" (the ecf API only gives all games)
+    // 1. filtering games from players by "The Chess Centre" (the ecf API only gives all games)
     // 2. adding our internal memberId to both: whiteMemberId & blackMemberId
     // 3. adds point in time ratings of the game record (!! assuming this runs in a timely fashion! ie soon after an event is played);
 
@@ -100,7 +100,7 @@ function stageGames(member, games, members, type) {
         const results = json.games.filter(({ event_name, org_name }) => {
             const includes = ((event, org) => {
                 try {
-                    return event.toString().includes("Sheffield Chess Centre") || org.toString().includes("Sheffield Chess Centre");
+                    return event.toString().includes("The Chess Centre") || org.toString().includes("The Chess Centre");
                 } catch (error) {
                     console.log("error", event, member);
                     return false;

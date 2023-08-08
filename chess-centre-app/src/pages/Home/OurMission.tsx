@@ -5,7 +5,7 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 
 function OurMission() {
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Our Mission";
+    document.title = "The Chess Centre | Our Mission";
   }, []);
 
   return (
@@ -96,7 +96,7 @@ function OurMission() {
               <div className="lg:grid lg:grid-cols-2 lg:gap-6">
                 <div className="prose-lg text-gray-700 lg:max-w-none">
                   <p>
-                    Sheffield Chess Centre is a dedicated, modern and comfortable
+                    The Chess Centre is a dedicated, modern and comfortable
                     facility for learning and playing Chess.
                   </p>
                   <p>
@@ -117,16 +117,16 @@ function OurMission() {
                     you.
                   </p>
                   <p>
-                    Sheffield Chess Centre is open to all, it is not a game that
+                    The Chess Centre is open to all, it is not a game that
                     discriminates, it is universal and welcomes anyone who wants
-                    to learn and play. Sheffield Chess Centre provides a range of
+                    to learn and play. The Chess Centre provides a range of
                     opportunities for those who share these aims to meet,
                     socialise and enjoy playing Chess.
                   </p>
                 </div>
                 <div className="mt-6 prose prose-lg text-gray-700 lg:mt-0">
                   <p>
-                    It is our hope that Sheffield Chess Centre can provide a
+                    It is our hope that The Chess Centre can provide a
                     blue-print for how the game of Chess can be organised,
                     modernized and made accessible to all.
                   </p>

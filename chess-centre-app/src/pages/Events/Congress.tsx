@@ -53,7 +53,7 @@ function CongressEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
-    document.title = "Sheffield Chess Centre | Congress";
+    document.title = "The Chess Centre | Congress";
 
     try {
       const fetchEvent = async () => {
@@ -130,7 +130,7 @@ function CongressEvent() {
           </div>
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
             <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
-              Sheffield Chess Centre’s “Mini-Congresses” have been tailored
+              The Chess Centre’s “Mini-Congresses” have been tailored
               specifically for our venue to provide a sophisticated and
               digitally supported congress tournament experience for our members
               and guests. Backed by our leading digital platform, competitors

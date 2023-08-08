@@ -12,7 +12,7 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Forgot password code: {####}",
-    "emailVerificationSubject": "Sheffield Chess Centre verification code",
+    "emailVerificationSubject": "The Chess Centre verification code",
     "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,

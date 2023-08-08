@@ -17,7 +17,7 @@ export default function ClubNight() {
       setClubNightDates(clubNights);
     }
 
-    document.title = "Sheffield Chess Centre | Socials";
+    document.title = "The Chess Centre | Socials";
 
   }, [data]);
 

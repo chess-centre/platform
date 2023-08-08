@@ -4,7 +4,7 @@ import { TechRoadmap } from "../../components/Roadmap/TechRoadmap";
 
 export default function AppRoadmap() {
 
-  document.title = "Sheffield Chess Centre | Roadmap";
+  document.title = "The Chess Centre | Roadmap";
 
   const brandColors = [
     "bg-blue-50",
