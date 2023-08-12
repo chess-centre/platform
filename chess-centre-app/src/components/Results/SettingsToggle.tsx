@@ -33,7 +33,7 @@ export default function Settings({ name, setEnabled, enabled }) {
           aria-hidden="true"
           className={classNames(
             enabled ? "translate-x-5" : "translate-x-0",
-            "pointer-events-none absolute left-0 inline-block h-4 w-4 border border-teal-500 rounded-full bg-teal-500 shadow transform ring-0 transition-transform ease-in-out duration-200"
+            "pointer-events-none absolute left-0 inline-block h-4 w-4 border border-yellow-400 rounded-full bg-yellow-400 shadow transform ring-0 transition-transform ease-in-out duration-200"
           )}
         />
       </Switch>

@@ -35,8 +35,8 @@ function CookieTermsModal(props) {
       <ModalFooter>
         <button
           className={`w-full items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
-          font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
-          focus:ring-offset-2 focus:ring-teal-500`}
+          font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 
+          focus:ring-offset-2 focus:ring-yellow-400`}
           onClick={() => handleAcceptTerms(true)}
         >
           Accept

@@ -68,7 +68,7 @@ export const TemplateData = {
     ],
     coverImage: "/open-rapidplay.jpg",
     tags: [
-      { name: "Rapidplay", color: "bg-teal-500" },
+      { name: "Rapidplay", color: "bg-yellow-400" },
       { name: "ECF", color: "bg-rose-500" },
       { name: "DGT Boards", color: "bg-sky-500" },
     ],
@@ -85,7 +85,7 @@ export const TemplateData = {
       "Below you will find the full details for the event including the playing schedule and current entries.",
     ],
     coverImage: "/open-blitz.jpg",
-    tags: [{ name: "Blitz", color: "bg-yellow-500" }],
+    tags: [{ name: "Blitz", color: "bg-yellow-400" }],
     organisers: [
       {
         name: "Jonathan Arnott",
@@ -108,7 +108,7 @@ export const TemplateData = {
     tags: [
       { name: "Junior", color: "bg-pink-500" },
       { name: "ECF", color: "bg-rose-500" },
-      { name: "Rapidplay", color: "bg-teal-500" },
+      { name: "Rapidplay", color: "bg-yellow-400" },
     ],
     organisers: [
       {

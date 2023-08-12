@@ -4,7 +4,7 @@ import MembershipCard from "../../components/Membership/MembershipCard";
 import { Memberships } from "../../api/data.memberships";
 
 export default function Upgrade() {
-  document.title = "The Chess Centre | Membership";
+  document.title = "Sheffield Chess Centre | Membership";
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function Upgrade() {
                   <div className="text-center text-sm font-normal text-gray-900 space-y-2">
                     <h2 className="mt-4 text-2xl font-extrabold">Still deciding?</h2>
                     <p>Come pay us a visit and see what we've got to offer. There is no charge for your first few visits and no obligation to sign-up.</p>
-                    <div><Link to="/app/faqs?tag=membership" className="text-teal-500 hover:underline hover:text-teal-700 text-lg">FAQs</Link></div>
+                    <div><Link to="/app/faqs?tag=membership" className="text-yellow-400 hover:underline hover:text-yellow-600 text-lg">FAQs</Link></div>
                   </div>
                 </div>
               </div>

@@ -34,7 +34,7 @@ export default function ChallengePlayerModal({ closeModal, data }) {
               <button
                 type="button"
                 onClick={() => handleWatchEvent(data.status.playingId)}
-                className="inline-flex items-center px-7 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-50 bg-teal-700 hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                className="inline-flex items-center px-7 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-50 bg-yellow-700 hover:bg-yellow-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
               >
                 Watch
               </button>
@@ -47,7 +47,7 @@ export default function ChallengePlayerModal({ closeModal, data }) {
             <button
               type="button"
               onClick={handleChallengeEvent}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+              className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
             >
               Challenge
             </button>
@@ -56,7 +56,7 @@ export default function ChallengePlayerModal({ closeModal, data }) {
       </ModalBody>
       <ModalFooter className="py-2 bg-gray-200">
         <button
-          className="w-full mb-2 items-center px-6 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          className="w-full mb-2 items-center px-6 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
           onClick={closeModal}
         >
           Close

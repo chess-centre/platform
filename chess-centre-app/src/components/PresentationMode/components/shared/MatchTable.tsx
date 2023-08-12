@@ -13,7 +13,7 @@ const MatchTable = ({ results, round, whiteOnOdd, showRating = false }) => {
     return (
         <div>
             <table className="w-full divide-y divide-gray-200 dark:divide-gray-700 table-auto border-gray-300 dark:border-gray-700 border shadow">
-                <thead className="bg-teal-500 dark:bg-gray-800">
+                <thead className="bg-yellow-400 dark:bg-gray-800">
                     <tr>
                         <th
                             scope="col"

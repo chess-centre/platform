@@ -51,7 +51,7 @@ function GridCalendar({
                     <span
                       className={`block w-3.5 h-3.5 border-2 border-white rounded-full z-10 ${
                         selected === month ?
-                        (isEven ? "bg-teal-brand " : "bg-orange-brand ") : "bg-gray-400"
+                        (isEven ? "bg-yellow-brand " : "bg-orange-brand ") : "bg-gray-400"
                       }`}
                     ></span>
                   </button>
@@ -111,8 +111,8 @@ function GridCalendar({
           )}
 
           {!isLoading && allDeselected && (
-            <div className="relative block w-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
-              <i className="fad fa-grip-horizontal fa-4x text-teal-500"></i>
+            <div className="relative block w-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400">
+              <i className="fad fa-grip-horizontal fa-4x text-yellow-400"></i>
               <span className="mt-2 block text-sm font-medium text-gray-900">
                 Select a filter <i className="far fa-filter"></i> to see events
               </span>
@@ -184,8 +184,8 @@ function ListCalendar({
           )}
 
           {!isLoading && allDeselected && (
-            <div className="relative sm:ml-28 block border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
-              <i className="fad fa-th-list fa-4x text-teal-500"></i>
+            <div className="relative sm:ml-28 block border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400">
+              <i className="fad fa-th-list fa-4x text-yellow-400"></i>
               <span className="mt-2 block text-sm font-medium text-gray-900">
                 Select a filter <i className="far fa-filter"></i> to see events
               </span>
@@ -245,7 +245,7 @@ export default function Calendar() {
         <div className="pb-8 pt-6 md:py-10">
           <div className="mx-auto text-center pb-4 md:pb-8">
             <h3>
-              <span className="text-teal-700">
+              <span className="text-yellow-600">
                 <i className="fad fa-calendar-alt"></i>
               </span>{" "}
               Calendar
@@ -334,7 +334,7 @@ function ListComingSoonCard() {
             Our next events will be published here soon.{" "}
           </p>
         </div>
-        <div className="bg-teal-500 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
+        <div className="bg-yellow-400 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
       </div>
     </li>
   );
@@ -353,7 +353,7 @@ function ListNoEventsRemaining({ month, setSelectedMonth }) {
           <h3 className="font-red-hat-display text-xl mb-1 text-gray-500">
             Events Complete
           </h3>
-          <p className="text-teal-500 text-sm mb-1">
+          <p className="text-yellow-400 text-sm mb-1">
             All events for {monthNames[month]} are now finished.
           </p>
           <p className="text-gray-700 text-sm mb-1">
@@ -375,7 +375,7 @@ function GridComingSoonCard() {
     >
       <div
         className={
-          "bg-teal-500 absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
+          "bg-yellow-400 absolute top-0 inset-x-0 px-4 py-1 sm:px-6 border-t text-xs rounded-t-xl"
         }
       ></div>
       <header>
@@ -420,7 +420,7 @@ function GridNoEventsRemaining({ month, setSelectedMonth }) {
       </header>
       <div className="text-gray-600 flex-grow mb-5">
         <div></div>
-        <p className="text-teal-500 text-md text-center">
+        <p className="text-yellow-400 text-md text-center">
           All events for {monthNames[month]} are now finished.{" "}
           <span className="font-semibold text-gray-700">
             Try next months...{" "}
@@ -484,7 +484,7 @@ function ListSkeleton() {
         <div className="flex-shrink-0 pr-2">
           <div
             className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
-            justify-center text-gray-300 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
+            justify-center text-gray-300 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 mr-2 sm:mr-4`}
           >
             <span className="text-gray-400">
               <i className="fas fa-info"></i>

@@ -40,7 +40,7 @@ export default function FAQs() {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center">
-              <span className="px-2 bg-gray-50 text-sm text-teal-500 font-semibold hover:text-teal-700 hover:underline">
+              <span className="px-2 bg-gray-50 text-sm text-yellow-400 font-semibold hover:text-yellow-600 hover:underline">
                 <Link to="/faqs">more</Link>
               </span>
             </div>

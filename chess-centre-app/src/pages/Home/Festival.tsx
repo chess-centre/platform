@@ -5,7 +5,6 @@ import React, { useEffect, Fragment, useState } from "react";
 import { ExclamationIcon } from "@heroicons/react/solid";
 import LandingNav from "../../components/Navigation/LandingNav";
 import FooterLanding from "../../components/Footer/LandingFooter";
-import { standardSections } from "../../api/sections";
 import FestivalMap from "../../components/Map/FestivalMap";
 import FestivalBuilding from "../../assets/img/festival_building.png";
 import QueenElizabeth from "../../assets/img/our-queen-elizabeth.png";
@@ -87,14 +86,14 @@ const getEvent = /* GraphQL */ `
 `;
 
 export default function Festival() {
-  const { id } = useParams();
+  const { id } = useParams() as any;
   const event = rounds.find(({ type }) => type === "festival");
   const [isLoading, setIsLoading] = useState(false);
   const [eventEntries, setEventEntries] = useState({});
   const [entriesCount, setEntriesCount] = useState(0);
 
   useEffect(() => {
-    document.title = "The Chess Centre | Festival";
+    document.title = "Sheffield Chess Centre | Festival";
 
     const fetchEvent = async () => {
       setIsLoading(true);
@@ -162,7 +161,7 @@ export default function Festival() {
             {/* TITLE */}
             <div className="flex flex-col-reverse">
               <div className="mt-4">
-                <h1 className="text-3xl font-extrabold tracking-tight  text-teal-brand sm:text-5xl">
+                <h1 className="text-3xl font-extrabold tracking-tight  text-yellow-brand sm:text-5xl">
                   <span className="text-orange-brand">Ilkley</span> Chess
                   Festival
                 </h1>
@@ -225,7 +224,7 @@ export default function Festival() {
                     className={({ selected }) =>
                       classNames(
                         selected
-                          ? "border-teal-600 text-teal-600"
+                          ? "border-yellow-500 text-yellow-500"
                           : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
                         "whitespace-nowrap py-6 border-b-2 font-medium text-sm focus:ring-transparent"
                       )
@@ -237,7 +236,7 @@ export default function Festival() {
                     className={({ selected }) =>
                       classNames(
                         selected
-                          ? "border-teal-600 text-teal-600"
+                          ? "border-yellow-500 text-yellow-500"
                           : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
                         "whitespace-nowrap py-6 border-b-2 font-medium text-sm focus:ring-transparent"
                       )
@@ -249,7 +248,7 @@ export default function Festival() {
                     className={({ selected }) =>
                       classNames(
                         selected
-                          ? "border-teal-600 text-teal-600"
+                          ? "border-yellow-500 text-yellow-500"
                           : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
                         "whitespace-nowrap py-6 border-b-2 font-medium text-sm focus:ring-transparent"
                       )
@@ -261,7 +260,7 @@ export default function Festival() {
                     className={({ selected }) =>
                       classNames(
                         selected
-                          ? "border-teal-600 text-teal-600"
+                          ? "border-yellow-500 text-yellow-500"
                           : "border-transparent text-gray-700 hover:text-gray-800 hover:border-gray-300",
                         "whitespace-nowrap py-6 border-b-2 font-medium text-sm focus:ring-transparent"
                       )
@@ -275,7 +274,7 @@ export default function Festival() {
                 <Tab.Panel className="-mb-10 py-5 focus:ring-transparent">
                   <div className="relative">
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
-                      <p>In loving memory of <span className="font-bold text-teal-brand">Her Majesty Queen Elizabeth II</span> we will be holding a minutes silence on Saturday morning before round 2.</p>
+                      <p>In loving memory of <span className="font-bold text-yellow-brand">Her Majesty Queen Elizabeth II</span> we will be holding a minutes silence on Saturday morning before round 2.</p>
                       <img
                         src={QueenElizabeth}
                         alt="Queen Elizabeth"
@@ -285,7 +284,7 @@ export default function Festival() {
                     </div>
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify">
                       <h2>Sections</h2>
-                      <ul className="font-medium text-teal-brand">
+                      <ul className="font-medium text-yellow-brand">
                         <li>Open</li>
                         <li>
                           Major{" "}
@@ -323,7 +322,7 @@ export default function Festival() {
                           <h3 className="text-sm font-medium text-yellow-800">
                             ECF Membership Required
                           </h3>
-                          <div className="mt-2 text-sm text-yellow-700">
+                          <div className="mt-2 text-sm text-yellow-600">
                             <p>
                               All entries <span className="italic">should</span>{" "}
                               have an ECF membership, create yours here:{" "}
@@ -331,7 +330,7 @@ export default function Festival() {
                                 target="_blank"
                                 rel="noreferrer"
                                 href={`https://www.englishchess.org.uk/ecf-membership-rates-and-joining-details/`}
-                                className="font-medium underline text-yellow-700 hover:text-yellow-600"
+                                className="font-medium underline text-yellow-600 hover:text-yellow-500"
                               >
                                 ECF Membership
                               </a>
@@ -342,7 +341,7 @@ export default function Festival() {
                     </div>
                     <div className="prose prose-blue text-gray-500 mx-auto lg:max-w-none text-justify mt-4">
                       <h2>Event Information</h2>
-                      <ul className="font-medium text-teal-brand">
+                      <ul className="font-medium text-yellow-brand">
                         <li>
                           Rounds: <span className="text-blue-brand">5</span>{" "}
                           <span className="text-gray-600 text-sm font-normal">
@@ -421,7 +420,7 @@ export default function Festival() {
 
                     {isLoading && (
                       <div className="text-gray-300 italic text-center">
-                        <i className="fas fa-spinner-third fa-spin fa-fw text-teal-500"></i>{" "}
+                        <i className="fas fa-spinner-third fa-spin fa-fw text-yellow-400"></i>{" "}
                         fetching entry details ...
                       </div>
                     )}
@@ -431,11 +430,11 @@ export default function Festival() {
                   as="dl"
                   className="text-sm text-gray-500 py-5 focus:ring-transparent"
                 >
-                  <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+                  <div className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify">
                     <h2>FAQs</h2>
                     <ul>
                       <li>
-                        <span className="font-bold text-teal-600">
+                        <span className="font-bold text-yellow-500">
                           Missing my ECF rating
                         </span>
                         <p>
@@ -447,13 +446,13 @@ export default function Festival() {
                         </p>
                       </li>
                       <li>
-                        <span className="font-bold text-teal-600">
+                        <span className="font-bold text-yellow-500">
                           Withdraw entry
                         </span>
                         <p>
                           If you are unable to make this event, please{" "}
                           <a
-                            className="text-teal-600 hover:underline"
+                            className="text-yellow-500 hover:underline"
                             href="mailto:support@chesscentre.online?subject=Withdraw%20Festival%20Entry"
                           >
                             contact us
@@ -465,7 +464,7 @@ export default function Festival() {
                         </p>
                       </li>
                       <li>
-                        <span className="font-bold text-teal-600">
+                        <span className="font-bold text-yellow-500">
                           Rating list
                         </span>
                         <p>
@@ -479,7 +478,7 @@ export default function Festival() {
                         </p>
                       </li>
                       <li>
-                        <span className="font-bold text-teal-600">
+                        <span className="font-bold text-yellow-500">
                           Anti-Cheating{" "}
                         </span>
                         <p>
@@ -559,7 +558,7 @@ const Schedule = ({ event }) => {
             </td>
             <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500">
               <span className="">{event.prizeGiving.time}</span>
-              <i className="ml-4 -mt-2 text-teal-600 fas fa-trophy-alt fa-2x"></i>
+              <i className="ml-4 -mt-2 text-yellow-500 fas fa-trophy-alt fa-2x"></i>
             </td>
           </tr>
         )}
@@ -644,7 +643,7 @@ const EntryForm = ({ id }) => {
   return (
     <div>
       <div className="mt-4 mx-auto">
-        <a rel="noreferrer" className="w-full border rounded-md py-1.5 px-8 flex items-center justify-center text-base font-medium text-blue-brand hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-teal-500"
+        <a rel="noreferrer" className="w-full border rounded-md py-1.5 px-8 flex items-center justify-center text-base font-medium text-blue-brand hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-yellow-400"
           href="https://chess-results.com/tnr665788.aspx?lan=1&art=0" target="_blank">Chess Results</a>
       </div>
       <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-4">

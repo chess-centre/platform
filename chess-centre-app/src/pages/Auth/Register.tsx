@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/img/logo.svg";
-import ImageLarge from "../../assets/img/festival-register-small.jpg";
-import ImageSmall from "../../assets/img/festival-register-small.jpg";
+import Logo from "../../assets/img/ssc-logo-black.svg";
+import ImageLarge from "../../assets/img/create-account-desktop.png";
+import ImageSmall from "../../assets/img/ssc-logo-black.svg";
 import { useAuthDispatch, useAuthState, signUpUser } from "../../context/Auth";
 import PrivacyPolicyModal from "../../components/Modal/PrivacyPolicyModal";
 import ValidateEmail from "../../utils/ValidateEmail";
 import Loading from "../../assets/img/loading.svg";
-import SpecialLoading from "../../assets/img/special-loading.gif";
 import JuniorMemberSignUpModal from "../../components/Modal/JuniorMemberSignUpModal";
 
 function Register(props) {
-  const [isSpecialLoading, setIsSpecialLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -20,10 +18,10 @@ function Register(props) {
   const [rePassword, setRePassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [isSubmitButtonActive, setSubmitButtonActive] = useState(true);
-  const dispatch = useAuthDispatch();
+  const dispatch = useAuthDispatch() as any;
 
   useEffect(() => {
-    document.title = "The Chess Centre | Register";
+    document.title = "Sheffield Chess Centre | Register";
 
     const isFormValid = () => {
       if (!email) return false;
@@ -42,7 +40,7 @@ function Register(props) {
     }
   }, [email, firstName, isChecked, password, rePassword, surname]);
 
-  const { loading, errorMessage } = useAuthState();
+  const { loading, errorMessage } = useAuthState() as any;
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -122,14 +120,12 @@ function Register(props) {
           surname
         );
         if (response) {
-          setIsSpecialLoading(true);
           props.history.push(
             `/register/confirm/${email}${props.location.search}`
           );
         } // if there's no response, the action dispatched a contextual error already
       } catch (error) {
         dispatch({ type: "LOGIN_ERROR", error });
-        setIsSpecialLoading(false);
       }
     }
   }
@@ -138,36 +134,28 @@ function Register(props) {
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
       <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div className="flex flex-col overflow-y-auto md:flex-row">
-          <div className="md:w-1/2 bg-blue-brand">
+          <div className="md:w-1/2">
             <img
               aria-hidden="true"
-              className="hidden sm:block object-scale-down w-full h-full -mt-6"
+              className="hidden sm:block object-cover w-full h-full"
               src={ImageLarge}
-              alt="Festival"
+              alt="Sheffield Chess Centre"
             />
             <img
               aria-hidden="true"
-              className="block sm:hidden  object-scale-down w-full h-18"
+              className="block sm:hidden px-24"
               src={ImageSmall}
-              alt="Festival"
-            />{" "}
+              alt="Sheffield Chess Centre"
+            />
           </div>
           <main className="flex items-center justify-center p-4 sm:p-12 md:w-1/2">
             <div className="w-full">
               <Link to="/" className="hidden sm:block">
-                {isSpecialLoading ? (
-                  <img
-                    src={SpecialLoading}
-                    className="object-contain h-24 w-full md:h-28"
-                    alt="Creating Account"
-                  />
-                ) : (
                   <img
                     src={Logo}
                     className="object-contain h-20 w-full md:h-24"
                     alt="The Chess Centre"
                   />
-                )}
               </Link>
               <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-200">
                 Register
@@ -175,14 +163,14 @@ function Register(props) {
               <div className="mb-4 text-right text-xs font-semibold text-gray-700 dark:text-gray-200">
                 Creating a junior account?{" "}
                 <span
-                  className="text-teal-600 dark:text-teal-400 hover:underline cursor-pointer"
+                  className="text-yellow-500 dark:text-yellow-400 hover:underline cursor-pointer"
                   onClick={openModal}
                 >
                   Help
                 </span>
               </div>
 
-              <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+              <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-yellow-400 focus-within:border-yellow-400">
                 <label
                   htmlFor="name"
                   className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
@@ -199,7 +187,7 @@ function Register(props) {
                 />
               </div>
 
-              <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+              <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-yellow-400 focus-within:border-yellow-400">
                 <label
                   htmlFor="name"
                   className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
@@ -216,7 +204,7 @@ function Register(props) {
                 />
               </div>
 
-              <div className="mb-8 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+              <div className="mb-8 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-yellow-400 focus-within:border-yellow-400">
                 <label
                   htmlFor="name"
                   className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
@@ -234,7 +222,7 @@ function Register(props) {
                 />
               </div>
 
-              <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+              <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-yellow-400 focus-within:border-yellow-400">
                 <label
                   htmlFor="name"
                   className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
@@ -252,7 +240,7 @@ function Register(props) {
                 />
               </div>
 
-              <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+              <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-yellow-400 focus-within:border-yellow-400">
                 <label
                   htmlFor="name"
                   className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
@@ -275,7 +263,7 @@ function Register(props) {
                   type="checkbox"
                   checked={isChecked}
                   disabled={loading}
-                  className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded cursor-pointer"
+                  className="focus:ring-yellow-400 h-4 w-4 text-yellow-500 border-gray-300 rounded cursor-pointer"
                   onChange={(e) => setPrivacyPolicyStatus(e.target.checked)}
                 />
                 <span className="ml-2 text-xs inline">
@@ -288,8 +276,8 @@ function Register(props) {
                 disabled={!isSubmitButtonActive && "disabled"}
                 block
                 className="mt-4 w-full items-center px-3 py-3 mx-auto shadow text-sm leading-4 
-                  font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
-                  focus:ring-offset-2 focus:ring-teal-500"
+                  font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 
+                  focus:ring-offset-2 focus:ring-yellow-400"
               >
                 {loading && (
                   <div className="inline-flex">
@@ -316,7 +304,7 @@ function Register(props) {
 
               <p>
                 <Link
-                  className="text-sm font-medium text-teal-600 dark:text-teal-400 hover:underline"
+                  className="text-sm font-medium text-yellow-500 dark:text-yellow-400 hover:underline"
                   to={`/login${props.location.search}`}
                 >
                   Already have an account? Login

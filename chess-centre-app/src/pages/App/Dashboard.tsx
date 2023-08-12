@@ -138,7 +138,7 @@ export default function Dashboard() {
   const [upcomingEvents, setUpComingEvents] = useState([]);
 
   useEffect(() => {
-    document.title = "The Chess Centre | Dashboard";
+    document.title = "Sheffield Chess Centre | Dashboard";
 
     async function fetchMember() {
       setIsLoading(true);
@@ -174,7 +174,7 @@ export default function Dashboard() {
   return (
     <>
       <h1 className="relative my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fad fa-chart-network text-teal-600"></i> Dashboard
+        <i className="fad fa-chart-network text-yellow-500"></i> Dashboard
         {isPaid && !isLoading && (
           <div className="inline-flex align-top top-2 ml-2">
             <span className="items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">
@@ -183,7 +183,7 @@ export default function Dashboard() {
           </div>
         )}
         {isLoading && (
-          <div className="absolute text-teal-500 mt-2 align-middle ml-2 text-sm inline-flex">
+          <div className="absolute text-yellow-400 mt-2 align-middle ml-2 text-sm inline-flex">
             <i className="fal fa-spinner-third fa-spin fa-fw"></i>
           </div>
         )}
@@ -366,7 +366,7 @@ function EventTable({ upcomingEvents, previousEvents }) {
                             }
                           >
                             <td className="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                              {hasResult ? <Link className="text-teal-600 font-medium" to={`/app/results/${resultId}`}>{event.name || event.type?.name}</Link> : event.name || event.type?.name}
+                              {hasResult ? <Link className="text-yellow-500 font-medium" to={`/app/results/${resultId}`}>{event.name || event.type?.name}</Link> : event.name || event.type?.name}
                             </td>
                             <td className="px-2 py-4 whitespace-nowrap text-sm text-gray-900 text-left">
                               {moment(event.startDate).format("ddd Do, MMM YYYY")}
@@ -381,7 +381,7 @@ function EventTable({ upcomingEvents, previousEvents }) {
                               {event.entryCount}
                             </td>
                             <td className="px-2 py-4 whitespace-nowrap text-xs text-gray-600 text-center">
-                              {hasResult ? <Link className="text-teal-600 font-medium" to={`/app/results/${resultId}`}>View</Link> : "Not Available"}
+                              {hasResult ? <Link className="text-yellow-500 font-medium" to={`/app/results/${resultId}`}>View</Link> : "Not Available"}
                             </td>
                           </tr>
                         ) })}

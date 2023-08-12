@@ -95,7 +95,7 @@ function GlobalFilter({
   }, 200);
 
   return (
-    <div className="relative bg-white border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-600 focus-within:border-teal-600">
+    <div className="relative bg-white border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-yellow-500 focus-within:border-yellow-500">
       <label
         htmlFor="name"
         className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900"
@@ -134,7 +134,7 @@ export function SelectColumnFilter({
     <label className="hidden sm:block gap-x-2 items-baseline text-sm">
       <span className="text-sm text-black">{render("Header")}: </span>
       <select
-        className="rounded-md text-sm border-gray-300 shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-200 focus:ring-opacity-50"
+        className="rounded-md text-sm border-gray-300 shadow-sm focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-50"
         name={id}
         id={id}
         value={filterValue}
@@ -153,7 +153,7 @@ export function SelectColumnFilter({
   );
 }
 
-function Table({ columns, data, searchPlaceholder = "games...", colour = "bg-teal-700" }) {
+function Table({ columns, data, searchPlaceholder = "games...", colour = "bg-yellow-700" }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -299,7 +299,7 @@ function Table({ columns, data, searchPlaceholder = "games...", colour = "bg-tea
             <label>
               <span className="sr-only">Items Per Page</span>
               <select
-                className="mt-1 block w-full text-xs rounded-md border-gray-300 shadow-sm focus:border-teal-300 focus:ring focus:ring-teal-500 focus:ring-opacity-50"
+                className="mt-1 block w-full text-xs rounded-md border-gray-300 shadow-sm focus:border-yellow-300 focus:ring focus:ring-yellow-400 focus:ring-opacity-50"
                 value={state.pageSize}
                 onChange={(e) => {
                   setPageSize(Number(e.target.value));
@@ -307,7 +307,7 @@ function Table({ columns, data, searchPlaceholder = "games...", colour = "bg-tea
               >
                 {[5, 10, 20].map((pageSize) => (
                   <option
-                    className="hover:bg-teal-200"
+                    className="hover:bg-yellow-200"
                     key={pageSize}
                     value={pageSize}
                   >

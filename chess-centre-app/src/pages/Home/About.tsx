@@ -1,13 +1,11 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import FooterLanding from "../../components/Footer/LandingFooter";
 import LandingNav from "../../components/Navigation/LandingNav";
-import Volunteers from "../../components/Volunteers";
-import MattAndyImage from "../../assets/img/matt-andy.png";
 
 const About = () => {
 
   useEffect(() => {
-    document.title = "The Chess Centre | About Us"
+    document.title = "Sheffield Chess Centre | About Us"
   }, []);
 
   return (
@@ -22,11 +20,12 @@ const About = () => {
           </h2>
           <div className="space-y-12 lg:grid lg:grid-cols-1 lg:gap-8 lg:space-y-0 mb-4">
             <div className="mb-2 m-auto object-center">
-              <img
+              {/* <img
                 className="object-cover shadow-lg rounded-lg"
                 src={MattAndyImage}
                 alt=""
-              />
+              /> */}
+              IMAGE
             </div>
           </div>
           <div className="space-y-12 lg:grid lg:grid-cols-1 lg:gap-8 lg:space-y-0 mb-8">
@@ -40,8 +39,35 @@ const About = () => {
                 <li>
                   <div className="space-y-4">
                     <div className="text-lg leading-6 font-medium space-y-1 text-center">
+                      <h3>Jonathan Arnott</h3>
+                      <p className="text-yellow-500">Founder</p>
+                    </div>
+                    <div className="text-lg text-justify">
+                      <p className="text-gray-500 mb-2">
+                        TBC
+                      </p>
+                      <p className="text-gray-500 mb-2">
+                        TBC
+                      </p>
+                    </div>
+                    <ul className="flex space-x-5">
+                      {/* <li>
+                        <a
+                          href="https://www.linkedin.com/in/"
+                          className="text-gray-400 hover:text-blue-800 fa-2x"
+                        >
+                          <span className="sr-only">LinkedIn</span>
+                          <i className="fab fa-linkedin"></i>
+                        </a>
+                      </li> */}
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <div className="space-y-4">
+                    <div className="text-lg leading-6 font-medium space-y-1 text-center">
                       <h3>Matthew Webb</h3>
-                      <p className="text-teal-600">Co-founder</p>
+                      <p className="text-yellow-500">Techie</p>
                     </div>
                     <div className="text-lg text-justify text-gray-500 mb-2">
                       <p className="mb-2">
@@ -61,14 +87,14 @@ const About = () => {
                       <p className="mb-2">
                         Matt's two favourite players are{" "}
                         <a
-                          className="text-teal-600 hover:text-teal-700 hover:underline"
+                          className="text-yellow-500 hover:text-yellow-600 hover:underline"
                           href="https://en.wikipedia.org/wiki/Rashid_Nezhmetdinov"
                         >
                           Rashid Nezhmetdinov
                         </a>{" "}
                         and{" "}
                         <a
-                          className="text-teal-600 hover:text-teal-700 hover:underline"
+                          className="text-yellow-500 hover:text-yellow-600 hover:underline"
                           href="https://en.wikipedia.org/wiki/Baadur_Jobava"
                         >
                           Baadur Jobava
@@ -95,33 +121,6 @@ const About = () => {
                         >
                           <span className="sr-only">GitHub</span>
                           <i className="fab fa-github"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <div className="space-y-4">
-                    <div className="text-lg leading-6 font-medium space-y-1 text-center">
-                      <h3>Jonathan Arnott</h3>
-                      <p className="text-teal-600">Co-founder</p>
-                    </div>
-                    <div className="text-lg text-justify">
-                      <p className="text-gray-500 mb-2">
-                        TBC
-                      </p>
-                      <p className="text-gray-500 mb-2">
-                        TBC
-                      </p>
-                    </div>
-                    <ul className="flex space-x-5">
-                      <li>
-                        <a
-                          href="https://www.linkedin.com/in/andrew-wainwright-88b60a6/"
-                          className="text-gray-400 hover:text-blue-800 fa-2x"
-                        >
-                          <span className="sr-only">LinkedIn</span>
-                          <i className="fab fa-linkedin"></i>
                         </a>
                       </li>
                     </ul>
@@ -155,6 +154,7 @@ const About = () => {
               </span>
             </div>
           </div>
+          <h1>Volunteers (TBC)</h1>
           {/* <Volunteers /> */}
         </div>
 

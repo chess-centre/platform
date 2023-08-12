@@ -59,7 +59,7 @@ export default function Admin() {
   }
 
   useEffect(() => {
-    document.title = "The Chess Centre | Admin";
+    document.title = "Sheffield Chess Centre | Admin";
 
     checkStatus();
 
@@ -277,7 +277,7 @@ function UpdateMemberECFId({ members, setMembers }) {
                       </td>
                       <td className="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
                         <a
-                          className="text-teal-500 hover:text-teal-400 font-medium"
+                          className="text-yellow-400 hover:text-yellow-400 font-medium"
                           href={`https://www.ecfrating.org.uk/v2/new/player.php?ECF_code=${member.ecfId}`}
                           target="_blank"
                           rel="noreferrer"

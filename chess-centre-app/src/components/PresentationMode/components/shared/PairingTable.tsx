@@ -11,7 +11,7 @@ export const PairingsTable = ({ format, players, results, indexer }) => {
     return (
       <div className="">
         <table className="w-full divide-y divide-gray-200 table-auto border-gray-300 border">
-          <thead className="bg-teal-500 dark:bg-gray-800">
+          <thead className="bg-yellow-400 dark:bg-gray-800">
             <tr>
               <th
                 scope="col"

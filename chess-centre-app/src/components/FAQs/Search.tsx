@@ -43,7 +43,7 @@ export const Search = ({ searchTerm, setSearchTerm, selectedTags, setSelectedTag
               defaultValue={searchTerm}
               autoComplete="off"
               id="search"
-              className="focus:outline-none focus:border-teal-600 focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 block w-full pl-10 sm:text-sm border-teal-500 rounded-md"
+              className="focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 block w-full pl-10 sm:text-sm border-yellow-400 rounded-md"
               placeholder="Search questions..."
             />
           </div>
@@ -55,13 +55,13 @@ export const Search = ({ searchTerm, setSearchTerm, selectedTags, setSelectedTag
             return (
               <div
                 key={key}
-                className="inline-flex items-center py-0.5 pl-2 pr-0.5 mr-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700"
+                className="inline-flex items-center py-0.5 pl-2 pr-0.5 mr-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-600"
               >
                 {tag}
                 <button
                   onClick={() => handleRemoveTags(tag)}
                   type="button"
-                  className="cursor-pointer flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-yellow-400 hover:bg-yellow-200 hover:text-yellow-500 focus:outline-none focus:bg-yellow-500 focus:text-white"
+                  className="cursor-pointer flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-yellow-400 hover:bg-yellow-200 hover:text-yellow-400 focus:outline-none focus:bg-yellow-400 focus:text-white"
                 >
                   <svg
                     className="h-2 w-2"

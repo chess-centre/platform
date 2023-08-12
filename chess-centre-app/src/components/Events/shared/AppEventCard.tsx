@@ -62,13 +62,13 @@ export function NoEventListed() {
   return (
     <div className="mt-6 sm:mt-2 mb-10 text-center sm:text-left">
       <span className="text-8xl sm:text-4xl">
-        <i className="fad fa-frown text-teal-700"></i>
+        <i className="fad fa-frown text-yellow-400"></i>
       </span>
       <h3 className="mt-2 text-2xl text-gray-600 font-extrabold">
         Oh, no events...
       </h3>
-      <p className="mt-6 mx-6 sm:mx-0 text-md text-teal-500">
-        Don't worry, we are busy planning our 2022 schedule.
+      <p className="mt-6 mx-6 sm:mx-0 text-md text-yellow-400">
+        Don't worry, we are busy planning our next round of events!
       </p>
     </div>
   );
@@ -156,7 +156,7 @@ export function EventCard(props: EventCardProps) {
                 <div className="flex items-center text-gray-700 space-x-2">
                   <div className="text-gray-900 text-md">
                     <span className="mr-1 text-sm">Entries</span>
-                    <span className="text-teal-600 text-md">{`${
+                    <span className="text-yellow-500 text-md">{`${
                       entryCount || 0
                     }  / ${maxEntries || type.maxEntries}`}</span>
                   </div>
@@ -178,7 +178,7 @@ export function EventCard(props: EventCardProps) {
               className="w-full text-center mx-auto rounded-md border bg-white px-2.5 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
               onClick={() => goToEventInfo(id)}
             >
-              <span className="text-teal-700">More Information</span>{" "}
+              <span className="text-yellow-600">More Information</span>{" "}
             </button>
 
             <div>
@@ -224,7 +224,7 @@ export function EventCard(props: EventCardProps) {
             </div>
           </div>
           {eventId === id && (
-            <div className="flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-yellow-100 text-yellow-500">
+            <div className="flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-yellow-100 text-yellow-400">
               <i className="fas fa-spinner-third animate-spin text-xs"></i>
               <span className="ml-2">Redirecting to payment...</span>
             </div>
@@ -243,7 +243,7 @@ function EntryFee({ price, hasRegistered, isFull, isMember, memberEntry }) {
       <div className="flex items-center text-md text-gray-900 space-x-2">
         <div className="text-gray-900">
           <span className="mr-1 text-sm">Entry Fee</span>
-          <span className="text-teal-600 text-md">CLOSED</span>
+          <span className="text-yellow-500 text-md">CLOSED</span>
         </div>
       </div>
     );
@@ -254,7 +254,7 @@ function EntryFee({ price, hasRegistered, isFull, isMember, memberEntry }) {
       <div className="flex items-center text-gray-900 space-x-2">
         <div className="text-gray-900 text-md">
           <span className="mr-1 text-sm">Entry Fee</span>
-          <span className="text-teal-600 text-md">
+          <span className="text-yellow-500 text-md">
             {isFree ? "Free" : "Paid"}
           </span>
         </div>
@@ -266,7 +266,7 @@ function EntryFee({ price, hasRegistered, isFull, isMember, memberEntry }) {
     <div className="flex items-center text-md text-gray-700 space-x-2">
       <div className="text-gray-900">
         <span className="mr-1 text-sm">Entry Fee</span>
-        <span className="text-teal-600 text-md">
+        <span className="text-yellow-500 text-md">
           {isFree ? "Free" : `£${price}`}
         </span>
       </div>
@@ -279,7 +279,7 @@ function DateBlock({ startDate, endDate }) {
     <div
       className={classNames(
         endDate && startDate !== endDate ? "px-1" : "px-4",
-        "text-center sm:text-left bg-gray-100 text-teal-800 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 shadow-inner"
+        "text-center sm:text-left bg-gray-100 text-yellow-800 sm:pb-3 sm:pt-2 sm:px-3 rounded-lg sm:overflow-hidden mr-2 sm:mr-4 shadow-inner"
       )}
     >
       <div>

@@ -56,7 +56,7 @@ export default function Register(props: RegisterProps) {
       {multipleSections && (
         <button
           className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium 
-            rounded-md shadow-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            rounded-md shadow-md text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
           onClick={() => openSectionSelectionModal()}
         >
           Register
@@ -66,7 +66,7 @@ export default function Register(props: RegisterProps) {
       {isLoadingSignUp && !multipleSections && (
         <div
           className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium 
-        rounded-md shadow-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+        rounded-md shadow-md text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
         >
           <i className="fas fa-spinner-third animate-spin"></i>
           <span className="ml-2 text-sm">Loading</span>
@@ -76,7 +76,7 @@ export default function Register(props: RegisterProps) {
       {!isLoadingSignUp && !multipleSections && (!memberEntry || !isMember) && (
         <button
           className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-sm font-medium 
-        rounded-md shadow-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+        rounded-md shadow-md text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
           onClick={() => handleRegister(id, undefined, undefined)}
         >
           Register
@@ -85,7 +85,7 @@ export default function Register(props: RegisterProps) {
 
       {!multipleSections && !isLoadingSignUp && isMember && memberEntry && (
         <button
-          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-yellow-500 shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
           onClick={() => openConfirmMemberEntryModal()}
         >
           Register

@@ -29,7 +29,7 @@ export default function Brumdcrumbs({ crumbs }) {
                 <div
                   className={classNames(
                     "ml-4 text-sm font-medium",
-                    "text-teal-500 cursor-default"
+                    "text-yellow-400 cursor-default"
                   )}
                   aria-current="page"
                 >

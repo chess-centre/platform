@@ -10,7 +10,7 @@ const FestivalCTA = () => {
           className="w-64 mx-auto"
           src={FestivalBuilding}
         />
-        <h1 className="text-3xl font-extrabold tracking-tight  text-teal-brand sm:text-5xl">
+        <h1 className="text-3xl font-extrabold tracking-tight  text-yellow-brand sm:text-5xl">
           <span className="text-orange-brand">Ilkley</span> Chess Festival
         </h1>
         <p className="text-md text-gray-600 mt-2">
@@ -27,7 +27,7 @@ const FestivalCTA = () => {
           <div className="relative flex justify-center">
             <Link
               to="/festival"
-              className="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+              className="inline-flex items-center shadow-sm px-4 py-1.5 border border-gray-300 text-sm leading-5 font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
             >
               <span>More Info</span>
             </Link>

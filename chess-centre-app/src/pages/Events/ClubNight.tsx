@@ -17,7 +17,7 @@ export default function ClubNight() {
       setClubNightDates(clubNights);
     }
 
-    document.title = "The Chess Centre | Socials";
+    document.title = "Sheffield Chess Centre | Socials";
 
   }, [data]);
 
@@ -32,7 +32,7 @@ export default function ClubNight() {
           <div className="hidden lg:block bg-gray-50 absolute top-0 bottom-0 left-3/4 w-screen" />
           <div className="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
             <div>
-              <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
+              <h2 className="text-base text-yellow-500 font-semibold tracking-wide uppercase">
               <i className="fas fa-dice"></i> All fun and games 
               </h2>
               <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -96,7 +96,7 @@ export default function ClubNight() {
                   This is a social event and thus, an opportunity to grab a few drinks, play some games and catch up with your team mates.
                 </p>
               </div>
-              <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
+              <div className="mt-5 prose prose-yellow text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                 <p>
                   We plan to run a few bespoke themed events during our club nights but primarily these will be left up to members to decide what takes their fancy to keep it fresh and interesting.
                 </p>
@@ -114,14 +114,14 @@ export default function ClubNight() {
                     <h4>Upcoming Club Nights</h4>
                     <ul>
                       { clubNightDates.map(({ startDate }, key) => {
-                          return <li key={key} className="text-sm text-teal-700">{ moment(startDate).format("Do MMMM YYYY")}</li>
+                          return <li key={key} className="text-sm text-yellow-600">{ moment(startDate).format("Do MMMM YYYY")}</li>
                       })}
                     </ul>
                   </div>
                 )}
             </div>
             <div className="text-sm text-center mt-6 sm:mt-0">
-              <Link className="text-teal-600 hover:text-teal-500" to="/">
+              <Link className="text-yellow-500 hover:text-yellow-400" to="/">
                 <i className="fad fa-long-arrow-alt-left"></i> back
               </Link>
             </div>

@@ -131,7 +131,7 @@ export default function LichessPlayersTable({ userId, players, colour, statuses 
             <button
               onClick={() => openModal({ handle: props.cell.value })}
               type="button"
-              className="w-full text-center items-center px-2.5 py-1 border border-gray-200 shadow-sm text-xs rounded text-teal-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+              className="w-full text-center items-center px-2.5 py-1 border border-gray-200 shadow-sm text-xs rounded text-yellow-500 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
             >
               @{props.cell.value}
             </button>

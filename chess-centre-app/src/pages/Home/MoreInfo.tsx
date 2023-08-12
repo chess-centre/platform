@@ -11,7 +11,7 @@ import IntegrationsMobileExample from "../../assets/img/integrations-mobile-exam
 
 export default function MoreInfo() {
   useEffect(() => {
-    document.title = "The Chess Centre | More Info";
+    document.title = "Sheffield Chess Centre | More Info";
     window.scrollTo({
       top: 0,
       left: 0,
@@ -27,7 +27,7 @@ export default function MoreInfo() {
       <div className="bg-white">
         <div className="max-w-7xl mx-auto pt-16 pb-6 px-4 sm:py-20 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-base font-semibold text-teal-700 tracking-wide uppercase">
+            <h2 className="text-base font-semibold text-yellow-600 tracking-wide uppercase">
               Feature Rich
             </h2>
             <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
@@ -49,7 +49,7 @@ export default function MoreInfo() {
             <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
               <div>
                 <div>
-                  <span className="h-12 w-12 rounded-md flex items-center justify-center bg-teal-700">
+                  <span className="h-12 w-12 rounded-md flex items-center justify-center bg-yellow-700">
                     <i className="fal fa-users-crown text-2xl text-white"></i>
                   </span>
                 </div>
@@ -109,7 +109,7 @@ export default function MoreInfo() {
             <div className="px-4 max-w-xl mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2">
               <div>
                 <div>
-                  <span className="h-12 w-12 rounded-md flex items-center justify-center bg-teal-700">
+                  <span className="h-12 w-12 rounded-md flex items-center justify-center bg-yellow-700">
                     <i className="fad fa-chart-pie text-2xl text-white"></i>
                   </span>
                 </div>
@@ -156,7 +156,7 @@ export default function MoreInfo() {
           <div className="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
             <div className="relative">
               <div className="text-center items-center object-center mx-auto">
-                <span className="h-12 w-12 rounded-md px-5 py-4 items-center justify-center bg-teal-700">
+                <span className="h-12 w-12 rounded-md px-5 py-4 items-center justify-center bg-yellow-700">
                   <i className="fas fa-chess-bishop text-2xl text-white"></i>
                 </span>
               </div>

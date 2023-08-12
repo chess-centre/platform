@@ -5,7 +5,7 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 function CodeOfConduct() {
 
   useEffect(() => {
-    document.title = "The Chess Centre | Code of Conduct"
+    document.title = "Sheffield Chess Centre | Code of Conduct"
   }, []);
 
   return (
@@ -26,7 +26,7 @@ function CodeOfConduct() {
                 Code of Conduct at all times. Failure to do so may result in the
                 revocation of membership by the Management Team.
               </p>
-              <h4 className="mt-4 font-extrabold text-teal-700">
+              <h4 className="mt-4 font-extrabold text-yellow-600">
                 Unresolved Issues
               </h4>
               <p className="mt-4 text-md text-gray-500">
@@ -40,14 +40,14 @@ function CodeOfConduct() {
                 Management Team Email:{" "}
                 <a
                   href="mailto:info@chesscentre.online"
-                  className="text-sm font-medium text-teal-600 hover:underline"
+                  className="text-sm font-medium text-yellow-500 hover:underline"
                 >
                   info@chesscentre.online
                 </a>
               </p>
             </div>
             <div className="mt-12 lg:mt-0 lg:col-span-2">
-              <div className="prose prose-teal prose-lg text-gray-500 lg:max-w-none">
+              <div className="prose prose-yellow prose-lg text-gray-500 lg:max-w-none">
                 <ol>
                   <li>
                     Act with respect towards opponents, fellow members,

@@ -20,7 +20,7 @@ const EventHeader = ({ type, icon, name, description }) => {
       case "junior": 
         return "text-pink-500";
       default:
-        return "text-yellow-500";
+        return "text-yellow-400";
     }
   };
   return (
@@ -78,8 +78,8 @@ const RegisterButton = ({ id, isLive, isFull, showSections, sections, eventType 
             to="/broadcast/live"
             className={`mt-6 
               w-full flex items-center justify-center 
-              py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
-              focus:shadow-outline-teal transition duration-150 ease-in-out`}
+              py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-yellow-700 hover:bg-yellow-800 focus:outline-none focus:border-yellow-800 
+              focus:shadow-outline-yellow transition duration-150 ease-in-out`}
           >
             <span className="flex relative h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
@@ -111,7 +111,7 @@ const RegisterButton = ({ id, isLive, isFull, showSections, sections, eventType 
                 onChange={e => setSection(e.target.value.toLowerCase())}
                 id="section"
                 name="section"
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
+                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 sm:text-sm rounded-md"
                 defaultValue="Open"
               >
                 { sections && sections.map(({ name, ratingBand }) => (
@@ -185,7 +185,7 @@ export default function EventCard({
         />
       </div>
       <div className="py-4 px-6">
-        <h3 className="text-xs font-medium text-teal-700 tracking-wide uppercase">
+        <h3 className="text-xs font-medium text-yellow-600 tracking-wide uppercase">
           Details
         </h3>
         <ul className="mt-4 space-y-2">
@@ -194,7 +194,7 @@ export default function EventCard({
               show && !empty && (
                 <li key={key} className="flex items-start">
                   <div className="flex-shrink-0">
-                    <span className="text-teal-500 ml-2">
+                    <span className="text-yellow-400 ml-2">
                       <i className={icon}></i>
                     </span>
                   </div>
@@ -209,7 +209,7 @@ export default function EventCard({
       </div>
       <div className="text-center p-2">
         <Link
-          className="text-xs text-center text-teal-500 hover:text-teal-700"
+          className="text-xs text-center text-yellow-400 hover:text-yellow-600"
           to={`${url}/${id}`}
         >
           More Info

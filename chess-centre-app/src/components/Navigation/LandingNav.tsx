@@ -1,13 +1,12 @@
 import { Auth } from "aws-amplify";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import Logo from "../../assets/img/logo.svg";
 import { useAuthState, useAuthDispatch, logout } from "../../context/Auth";
-import LogoWithName from "../../assets/img/logo-light-theme.png";
+import Logo from "../../assets/img/ssc-logo-black.svg";
+import LogoWithName from "../../assets/img/ssc-logo-black.svg";
 
 const headings = [
   { url: "events", title: "Events" },
-  // { url: "membership", title: "Membership" },
   { url: "our-mission", title: "Our Mission" },
 ];
 
@@ -18,11 +17,11 @@ const LandingNav = (props: any) => {
   const dispatch = useAuthDispatch();
   const { user } = useAuthState() as any;
   const [isExpanded, toggleExpansion] = React.useState(true);
-  const activeMenu = "text-orange-brand";
-  const selectableMenu = "text-gray-500 hover:text-orange-brand";
-  const activeMenuMobile = "text-orange-brand";
+  const activeMenu = "text-yellow-brand";
+  const selectableMenu = "text-gray-500 hover:text-yellow-brand";
+  const activeMenuMobile = "text-yellow-brand";
   const selectableMenuMobile =
-    "text-gray-700 hover:text-teal-900 hover:bg-orange-50";
+    "text-gray-700 hover:text-yellow-900 hover:bg-yellow-50";
 
   const signOut = () => {
     logout(dispatch);
@@ -114,16 +113,16 @@ const LandingNav = (props: any) => {
             <span className="inline-flex rounded-md">
               {isLoggedIn ? (
                 <div className="grid grid-cols-2">
-                  <div className="text-teal-brand bg-white hover:text-teal-700 ">
+                  <div className="text-yellow-brand bg-white hover:text-yellow-600 ">
                     <Link
                       to="/app"
                       className={`inline-flex items-center px-4 py-2 border border-transparent 
                         text-base leading-4 font-medium rounded-md 
-                        focus:outline-none  active:bg-gray-50 active:text-orange-700 transition duration-300 ease-in-out shadow`}
+                        focus:outline-none  active:bg-gray-50 active:text-yellow-700 transition duration-300 ease-in-out shadow`}
                     >
                       <span>
                         <i className="fad fa-user"></i>{" "}
-                        <span className="text-gray-600 hover:text-teal-700 text-sm">
+                        <span className="text-gray-600 hover:text-yellow-600 text-sm">
                           Dashboard
                         </span>
                       </span>
@@ -135,7 +134,7 @@ const LandingNav = (props: any) => {
                       onClick={signOut}
                       className={`inline-flex items-center px-4 py-2 border border-transparent 
                       text-base leading-4 font-medium rounded-md text-white bg-gray-400 hover:text-gray-900
-                      focus:outline-none active:bg-gray-50 active:text-orange-700 transition duration-300 ease-in-out shadow`}
+                      focus:outline-none active:bg-gray-50 active:text-yellow-700 transition duration-300 ease-in-out shadow`}
                     >
                       <span>
                         <i className="fad fa-sign-out"></i>{" "}
@@ -149,19 +148,19 @@ const LandingNav = (props: any) => {
                   <Link
                     to="/login"
                     className={`inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
-                    font-medium rounded-md text-teal-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 
-                    focus:ring-offset-2 focus:ring-teal-500`}
+                    font-medium rounded-md text-yellow-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 
+                    focus:ring-offset-2 focus:ring-yellow-400`}
                   >
                     <span className="text-sm">Login</span>
                   </Link>
-                  {/* <Link
+                  <Link
                     to="/register"
                     className={`inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
-                    font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
-                    focus:ring-offset-2 focus:ring-teal-500`}
+                    font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 
+                    focus:ring-offset-2 focus:ring-yellow-400`}
                   >
                     <span className="text-sm">Register</span>
-                  </Link> */}
+                  </Link>
                 </div>
               )}
             </span>
@@ -221,8 +220,8 @@ const LandingNav = (props: any) => {
                       (current === url
                         ? activeMenuMobile
                         : selectableMenuMobile) +
-                      ` block w-full px-5 py-4 text-center text-sm text-teal-600 hover:text-teal-700
-                      focus:outline-none focus:bg-gray-100 focus:text-teal-700`
+                      ` block w-full px-5 py-4 text-center text-sm text-yellow-500 hover:text-yellow-600
+                      focus:outline-none focus:bg-gray-100 focus:text-yellow-600`
                     }
                     role="menuitem"
                     to={`/${url}`}
@@ -236,13 +235,13 @@ const LandingNav = (props: any) => {
               {isLoggedIn ? (
                 <>
                   <Link
-                    className={`block w-full px-5 py-4 text-center text-sm text-teal-500 bg-gray-50 hover:bg-gray-100 hover:text-teal-700 border-gray-100
-                  focus:outline-none focus:bg-gray-100 focus:text-teal-700`}
+                    className={`block w-full px-5 py-4 text-center text-sm text-yellow-400 bg-gray-50 hover:bg-gray-100 hover:text-yellow-600 border-gray-100
+                  focus:outline-none focus:bg-gray-100 focus:text-yellow-600`}
                     role="menuitem"
                     to="/app"
                   >
                     <span>
-                      <span className="text-teal-500 hover:text-teal-700 text-sm">
+                      <span className="text-yellow-400 hover:text-yellow-600 text-sm">
                         Dashboard
                       </span>
                     </span>
@@ -250,7 +249,7 @@ const LandingNav = (props: any) => {
                   <button
                     onClick={signOut}
                     className={`block w-full z-20 px-5 py-4 text-center text-sm text-gray-900 bg-white hover:bg-gray-100 border-gray-300 shadow-lg
-                   hover:text-teal-700 focus:outline-none focus:bg-gray-100 focus:text-teal-700`}
+                   hover:text-yellow-600 focus:outline-none focus:bg-gray-100 focus:text-yellow-600`}
                     role="menuitem"
                   >
                     <span>
@@ -260,8 +259,8 @@ const LandingNav = (props: any) => {
                 </>
               ) : (
                 <Link
-                  className={`block w-full px-5 py-3 text-center text-sm text-teal-900 bg-gray-100 hover:bg-gray-100 hover:text-teal-700 
-                  focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out`}
+                  className={`block w-full px-5 py-3 text-center text-sm text-yellow-900 bg-gray-100 hover:bg-gray-100 hover:text-yellow-600 
+                  focus:outline-none focus:bg-gray-100 focus:text-yellow-600 transition duration-150 ease-in-out`}
                   role="menuitem"
                   to="/login"
                 >

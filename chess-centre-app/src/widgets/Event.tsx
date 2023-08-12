@@ -15,7 +15,7 @@ const EventHeader = ({ name, description, showLogo, darkTheme }) => {
         <div className="mx-auto">
           <img
             className="w-28 h-28 mx-auto"
-            alt="The Chess Centre"
+            alt="Sheffield Chess Centre"
             src={Logo}
           />
         </div>
@@ -24,14 +24,14 @@ const EventHeader = ({ name, description, showLogo, darkTheme }) => {
         className={classNames(
           !showLogo && "mt-6",
           darkTheme ? "text-gray-200" : "text-gray-900",
-          "text-3xl leading-6 font-extrabold  text-center"
+          "text-lg leading-6 font-extrabold  text-center"
         )}
       >
-        The Chess Centre
+        Sheffield Chess Centre
       </h2>
       <h2
         className={classNames(
-          darkTheme ? "text-teal-500" : "text-teal-700",
+          darkTheme ? "text-yellow-400" : "text-yellow-600",
           "mt-2 text-lg leading-6 font-medium  text-center"
         )}
       >
@@ -102,7 +102,7 @@ const EventDetails = ({ data, darkTheme }) => {
     <div className="py-4">
       <h3
         className={classNames(
-          darkTheme ? "text-teal-500" : "text-teal-700",
+          darkTheme ? "text-yellow-400" : "text-yellow-600",
           "text-xs font-medium  tracking-wide uppercase"
         )}
       >
@@ -143,7 +143,7 @@ const EventDetails = ({ data, darkTheme }) => {
                 <div className="flex-shrink-0">
                   <span
                     className={classNames(
-                      darkTheme ? "text-orange-600" : "text-teal-500",
+                      darkTheme ? "text-orange-600" : "text-yellow-400",
                       "ml-2"
                     )}
                   >
@@ -191,8 +191,8 @@ const RegisterButton = ({
             target="_blank"
             className={`mt-6 
               w-full flex items-center justify-center 
-              py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:border-teal-800 
-              focus:shadow-outline-teal transition duration-150 ease-in-out`}
+              py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-yellow-700 hover:bg-yellow-800 focus:outline-none focus:border-yellow-800 
+              focus:shadow-outline-yellow transition duration-150 ease-in-out`}
           >
             <span className="flex relative h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-500 opacity-75"></span>
@@ -236,7 +236,7 @@ const RegisterButton = ({
                   onChange={(e) => setSection(e.target.value.toLowerCase())}
                   id="section"
                   name="section"
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
+                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 sm:text-sm rounded-md"
                   defaultValue="Open"
                 >
                   {sections &&
@@ -274,7 +274,7 @@ const RegisterButton = ({
 export default function Event() {
   const location = useLocation();
   const parsed = queryString.parse(location.search);
-  const { eventId } = useParams();
+  const { eventId } = useParams() as any;
   const { isLoading, data, error } = useEvent({ eventId });
   const [bgColor, setBgColor] = useState("bg-white");
   const [showLogo, setShowLogo] = useState(true);
@@ -291,7 +291,7 @@ export default function Event() {
       case "Gray":
         return "bg-gray-50";
       case "Teal":
-        return "bg-teal-brand";
+        return "bg-yellow-brand";
       default:
         return "bg-gray-50";
     }
@@ -369,8 +369,8 @@ export default function Event() {
                 href={`https://chesscentre.online${data.type.url}/${data.id}`}
                 className={classNames(
                   darkTheme
-                    ? "text-teal-400 hover:text-teal-300"
-                    : "text-teal-500 hover:text-teal-700",
+                    ? "text-yellow-400 hover:text-yellow-300"
+                    : "text-yellow-400 hover:text-yellow-600",
                   "text-xs text-center"
                 )}
               >
@@ -382,7 +382,7 @@ export default function Event() {
       )}
 
       {isLoading && (
-        <div className="p-2 mt-10 flex w-auto justify-center text-center text-sm text-teal-500">
+        <div className="p-2 mt-10 flex w-auto justify-center text-center text-sm text-yellow-400">
           <div className="mr-2">
             <i className="fas fa-spinner-third animate-spin ml-0"></i>
           </div>

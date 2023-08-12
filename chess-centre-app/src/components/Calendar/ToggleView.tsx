@@ -6,10 +6,10 @@ export default function ToggleView({ calendarView, handleViewSwitch }) {
         type="button"
         className={`${
           calendarView === "list"
-          ? "text-teal-600 font-bold bg-gray-100"
+          ? "text-yellow-500 font-bold bg-gray-100"
           : "font-medium text-gray-500 bg-white"
         } relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm
-     hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
+     hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-yellow-400 focus:border-yellow-400`}
       >
         <span className="sr-only">List</span>
         <i className="fas fa-list"></i>
@@ -19,10 +19,10 @@ export default function ToggleView({ calendarView, handleViewSwitch }) {
         type="button"
         className={`${
           calendarView === "grid"
-            ? "text-teal-600 font-bold bg-gray-100"
+            ? "text-yellow-500 font-bold bg-gray-100"
             : "font-medium text-gray-500 bg-white"
         } -ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300  text-sm
-      hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500`}
+      hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-yellow-400 focus:border-yellow-400`}
       >
         <span className="sr-only">Grid</span>
         <i className="fas fa-th"></i>

@@ -32,7 +32,7 @@ function EventsSummaryDesktop({ title, data }) {
     <div className="hidden lg:block relative bg-white p-6 shadow rounded-lg overflow-hidden">
       <div className="grid grid-cols-8">
         <div className="col-span-2">
-          <span className="text-teal-500 text-4xl">
+          <span className="text-yellow-400 text-4xl">
             <i className="fad fa-calendar-edit"></i>
           </span>
         </div>
@@ -41,7 +41,7 @@ function EventsSummaryDesktop({ title, data }) {
           <div className="text-left text-2xl gap-2 mb-3 mt-2 font-semibold text-black">
             <div className="relative flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-500">
               Next
-              <span className="absolute text-teal-700 ml-2 right-2">
+              <span className="absolute text-yellow-600 ml-2 right-2">
                 {data.future}
               </span>
             </div>
@@ -73,7 +73,7 @@ function EventsSummaryMobile({ title, data }) {
     <div className="block lg:hidden relative text-center xl:text-left bg-white px-4 xl:pb-12 xl:pt-6 xl:px-6 shadow rounded-lg overflow-hidden">
       <div className="mb-2">
         <div className="xl:absolute p-2">
-          <span className="text-teal-500 text-3xl">
+          <span className="text-yellow-400 text-3xl">
             <i className="fad fa-calendar-edit"></i>
           </span>
         </div>
@@ -87,7 +87,7 @@ function EventsSummaryMobile({ title, data }) {
         </p>
         <p className="relative m-auto xl:m-0 flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700 mb-3 xl:ml-2 mt-6 xl:mr-2">
           Previous
-          <span className="absolute text-teal-500 ml-2 right-2">
+          <span className="absolute text-yellow-400 ml-2 right-2">
             {data.past}
           </span>
         </p>
@@ -117,16 +117,16 @@ function GamesSummaryDesktop({ title, data }) {
     <div className="hidden lg:block relative bg-white p-6 shadow rounded-lg overflow-hidden">
       <div className="grid grid-cols-8">
         <div className="col-span-2">
-          <span className="text-teal-500 text-4xl">
+          <span className="text-yellow-400 text-4xl">
             <i className="fad fa-chess"></i>
           </span>
         </div>
         <div className="col-span-3 text-left">
           <div className="text-md font-medium text-gray-500">{title}</div>
           <div className="text-left text-2xl gap-2 mb-3 mt-2 font-semibold text-black">
-            <div className="relative flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-teal-100 text-teal-700">
+            <div className="relative flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-600">
               Standard
-              <span className="absolute text-teal-500 ml-2 right-2">
+              <span className="absolute text-yellow-400 ml-2 right-2">
                 {standard}
               </span>
             </div>
@@ -169,7 +169,7 @@ function GamesSummaryMobile({ title, data }) {
     <div className="block lg:hidden relative text-center xl:text-left bg-white px-4 xl:pb-12 xl:pt-6 xl:px-6 shadow rounded-lg overflow-hidden">
       <div className="mb-2">
         <div className="xl:absolute p-2">
-          <span className="text-teal-500 text-3xl">
+          <span className="text-yellow-400 text-3xl">
             <i className="fad fa-chess"></i>
           </span>
         </div>
@@ -186,9 +186,9 @@ function GamesSummaryMobile({ title, data }) {
           )}
         </div>
 
-        <div className="relative m-auto xl:m-0 flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-teal-100 text-teal-700 mb-3 xl:ml-2 mt-6 xl:mr-2">
+        <div className="relative m-auto xl:m-0 flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-600 mb-3 xl:ml-2 mt-6 xl:mr-2">
           Standard
-          <span className="absolute text-teal-500 ml-2 right-2">
+          <span className="absolute text-yellow-400 ml-2 right-2">
             {standard}
           </span>
         </div>
@@ -267,14 +267,14 @@ function RatingSummaryDesktop({ title, data }) {
     <div className="hidden lg:block relative bg-white p-6 shadow rounded-lg overflow-hidden">
       <div className="grid grid-cols-10">
         <div className="col-span-2">
-          <span className="text-teal-500 text-4xl">
+          <span className="text-yellow-400 text-4xl">
             <i className="fad fa-chart-line"></i>
           </span>
         </div>
         <div className="col-span-5 text-left">
           <div className="text-md font-medium text-gray-500">{title}</div>
           <div className="text-left text-2xl flex gap-2 font-semibold text-black m-auto">
-            <div className="relative m-auto flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-teal-100 text-teal-700">
+            <div className="relative m-auto flex flex-none w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-600">
               Standard
             </div>
             <div>{currentStandard}</div>
@@ -356,7 +356,7 @@ function RatingSummaryMobile({ title, data }) {
     <div className="block lg:hidden relative text-center bg-white px-4 shadow rounded-lg overflow-hidden">
       <div className="mb-2">
         <div className="p-2">
-          <span className="text-teal-500 text-3xl">
+          <span className="text-yellow-400 text-3xl">
             <i className="fad fa-chart-line"></i>
           </span>
         </div>
@@ -372,7 +372,7 @@ function RatingSummaryMobile({ title, data }) {
             <Diff current={currentStandard} previous={previousStandard} />
           </div>
         </div>
-        <div className="relative m-auto w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-teal-100 text-teal-700">
+        <div className="relative m-auto w-20 text-center items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-600">
           <span>Standard</span>
         </div>
 

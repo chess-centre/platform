@@ -4,7 +4,7 @@ import { TechRoadmap } from "../../components/Roadmap/TechRoadmap";
 
 export default function AppRoadmap() {
 
-  document.title = "The Chess Centre | Roadmap";
+  document.title = "Sheffield Chess Centre | Roadmap";
 
   const brandColors = [
     "bg-blue-50",
@@ -17,16 +17,16 @@ export default function AppRoadmap() {
     "bg-blue-700",
     "bg-blue-800",
     "bg-blue-900",
-    "bg-teal-50",
-    "bg-teal-100",
-    "bg-teal-200",
-    "bg-teal-300",
-    "bg-teal-400",
-    "bg-teal-500",
-    "bg-teal-600",
-    "bg-teal-700",
-    "bg-teal-800",
-    "bg-teal-900",
+    "bg-yellow-50",
+    "bg-yellow-100",
+    "bg-yellow-200",
+    "bg-yellow-300",
+    "bg-yellow-400",
+    "bg-yellow-400",
+    "bg-yellow-500",
+    "bg-yellow-700",
+    "bg-yellow-800",
+    "bg-yellow-900",
     "bg-orange-50",
     "bg-orange-100",
     "bg-orange-200",
@@ -67,16 +67,16 @@ export default function AppRoadmap() {
     "border-blue-700",
     "border-blue-800",
     "border-blue-900",
-    "border-teal-50",
-    "border-teal-100",
-    "border-teal-200",
-    "border-teal-300",
-    "border-teal-400",
-    "border-teal-500",
-    "border-teal-600",
-    "border-teal-700",
-    "border-teal-800",
-    "border-teal-900",
+    "border-yellow-50",
+    "border-yellow-100",
+    "border-yellow-200",
+    "border-yellow-300",
+    "border-yellow-400",
+    "border-yellow-400",
+    "border-yellow-500",
+    "border-yellow-700",
+    "border-yellow-800",
+    "border-yellow-900",
     "border-orange-50",
     "border-orange-100",
     "border-orange-200",
@@ -112,7 +112,7 @@ export default function AppRoadmap() {
   return (
     <div>
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <span className="text-teal-600"><i className="fad fa-road"></i></span> Roadmap
+        <span className="text-yellow-500"><i className="fad fa-road"></i></span> Roadmap
       </h1>
       <div className="pb-5 border-b border-gray-200 dark:border-gray-700">
         <div className="-ml-2 -mt-2 flex flex-wrap items-baseline">
@@ -127,7 +127,7 @@ export default function AppRoadmap() {
       <div className="bg-white sm:mt-6 max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 rounded-lg shadow-xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 mt-10 py-6 sm:py-10">
           <div>
-            <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
+            <h2 className="text-center sm:text-left text-base font-semibold text-yellow-500 tracking-wide">
               The Centre
             </h2>
             <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">
@@ -137,7 +137,7 @@ export default function AppRoadmap() {
             <CentreRoadmap />
           </div>
           <div>
-            <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
+            <h2 className="text-center sm:text-left text-base font-semibold text-yellow-500 tracking-wide">
               The Platform
             </h2>
             <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">

@@ -42,7 +42,7 @@ export default function InstagramFeed({ count, tag }) {
       {error && (
         <div className="text-center">
           <span className="text-8xl sm:text-8xl">
-            <i className="fad fa-images text-teal-700"></i>
+            <i className="fad fa-images text-yellow-600"></i>
           </span>
           <h3 className="mt-2 text-2xl text-gray-600 font-extrabold">
             Oh, no images...

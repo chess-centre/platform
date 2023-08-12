@@ -34,7 +34,7 @@ export default function ECFPlayersTable({ players, colour }) {
         accessor: "name",
         Cell: (props) => (
           <Link
-            className="text-teal-600"
+            className="text-yellow-500"
             to={`/app/games/${props.row.values.id}`}
           >
             {props.cell.value}
@@ -72,7 +72,7 @@ export default function ECFPlayersTable({ players, colour }) {
                     return (
                       <div
                         key={key}
-                        className="bg-yellow-500 hover:bg-yellow-600 text-white text-sx text-center w-5 cursor-pointer rounded-sm"
+                        className="bg-yellow-400 hover:bg-yellow-500 text-white text-sx text-center w-5 cursor-pointer rounded-sm"
                       >
                         D
                       </div>

@@ -108,7 +108,7 @@ export default function EntriesTable(data: any) {
         </div>
       )}
 
-      <ul className="my-2 sm:mx-2 text-sm text-teal-700">{getSectionInfo()}</ul>
+      <ul className="my-2 sm:mx-2 text-sm text-yellow-600">{getSectionInfo()}</ul>
 
       <div className="overflow-x-auto">
         <table className="table-auto m-auto border border-gray-100 mb-4 mt-0 rounded w-full">
@@ -179,7 +179,7 @@ export default function EntriesTable(data: any) {
                     </td>
                     {
                       selectedSection === "open" && (
-                        <td className="px-0 py-2 whitespace-nowrap text-sm font-medium text-teal-900 text-center">
+                        <td className="px-0 py-2 whitespace-nowrap text-sm font-medium text-yellow-900 text-center">
                           {chessTitle}
                         </td>
                       )
@@ -199,10 +199,10 @@ export default function EntriesTable(data: any) {
                         <span>{rating.value}</span>
                       )}
                     </td>
-                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-yellow-600 text-center">
                       {byes ? byes !== "null" && byes?.split("").join(",") : ""}
                     </td>
-                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-yellow-600 text-center">
                       {rating.key}
                     </td>
                   </tr>
@@ -223,21 +223,21 @@ export default function EntriesTable(data: any) {
         </p>
         <p className="mb-2">Rating reference key</p>
         <p className="ml-2">
-          <span className="font-bold text-teal-700">F</span> = FIDE standard
+          <span className="font-bold text-yellow-600">F</span> = FIDE standard
           rating used
         </p>
         <p className="ml-2">
-          <span className="font-bold text-teal-700">R</span> = Rapidplay ECF
+          <span className="font-bold text-yellow-600">R</span> = Rapidplay ECF
           rating used
         </p>
         <p className="ml-2">
-          <span className="font-bold text-teal-700">E</span> = Estimated rating
+          <span className="font-bold text-yellow-600">E</span> = Estimated rating
           is used
         </p>
         <p className="ml-2 italic">
           <span className="text-orange-500">* </span> = Partial rating
         </p>
-        <p className="italic text-xs text-teal-600">
+        <p className="italic text-xs text-yellow-500">
           Ratings are automatically checked against the ECF database, you may
           initially see "unrated" while we verify your information. You do not need to email us your ECF data.
         </p>
@@ -297,7 +297,7 @@ function SectionTabs(props) {
             <span
               aria-hidden="true"
               className={classNames(
-                section.current ? "bg-teal-500" : "bg-transparent",
+                section.current ? "bg-yellow-400" : "bg-transparent",
                 "absolute inset-x-0 bottom-0 h-0.5"
               )}
             />

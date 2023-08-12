@@ -76,13 +76,13 @@ export function ListCard({ event }) {
           <div className="text-gray-600 flex-grow">
             <div>
               {event.time && (
-                <p className="inline text-sm text-teal-700 mr-2">
+                <p className="inline text-sm text-yellow-600 mr-2">
                   <i className="fad fa-clock mr-1"></i>
                   <span className="inline">{event.time}</span>{" "}
                 </p>
               )}
               {event.rounds && (
-                <p className="inline text-sm text-teal-700">
+                <p className="inline text-sm text-yellow-600">
                   <i className="fad fa-flag mr-1"></i>
                   <span className="inline">{event.rounds} rounds</span>{" "}
                 </p>
@@ -102,9 +102,9 @@ export function ListCard({ event }) {
             <Link
               to={`${event.url}/${event.id}`}
               className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
-            justify-center text-gray-400 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
+            justify-center text-gray-400 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 mr-2 sm:mr-4`}
             >
-              <span className="text-teal-500">
+              <span className="text-yellow-400">
                 <i className="fas fa-info"></i>
               </span>
             </Link>
@@ -116,7 +116,7 @@ export function ListCard({ event }) {
             <Link
               to="/broadcast/live"
               className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
-            justify-center text-gray-400 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
+            justify-center text-gray-400 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 mr-2 sm:mr-4`}
             >
               <span className="text-red-700">
                 <i className="fas fa-broadcast-tower"></i>

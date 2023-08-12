@@ -18,7 +18,7 @@ const QuestionsAndAnswers = ({ faqs, handleSelectedTags }) => {
                 <span
                   key={key}
                   onClick={() => handleSelectedTags(tag)}
-                  className="inline-flex items-center px-2 py-0.5 mr-1 rounded text-xs font-medium bg-teal-100 text-teal-800 hover:bg-teal-700 hover:text-white cursor-pointer"
+                  className="inline-flex items-center px-2 py-0.5 mr-1 rounded text-xs font-medium bg-yellow-100 text-yellow-800 hover:bg-yellow-700 hover:text-white cursor-pointer"
                 >
                   {tag}
                 </span>
@@ -32,7 +32,7 @@ const QuestionsAndAnswers = ({ faqs, handleSelectedTags }) => {
 
 const NoResultFound = () => {
   return (
-    <div className="text-center text-2xl text-teal-600">
+    <div className="text-center text-2xl text-yellow-500">
       <p className="mb-4">Can't find the answer you're looking for?</p>
       <p>
         <span className="mr-1">
@@ -40,7 +40,7 @@ const NoResultFound = () => {
         </span>{" "}
       </p>
       <p className="text-base">Contact us </p>
-      <p className="text-gray-500 hover:text-teal-500 text-base">
+      <p className="text-gray-500 hover:text-yellow-400 text-base">
         <a href="mailto:info@chesscentre.online">info@chesscentre.online</a>
       </p>
     </div>

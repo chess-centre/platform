@@ -49,7 +49,7 @@ export default function Rounds(props: any) {
                   </td>
                   <td className="px-2 sm:px-6 py-4 whitespace-nowrap text-gray-500">
                     <span className="">{event.prizeGiving.time}</span>
-                    <i className="ml-4 -mt-2 text-teal-600 fas fa-trophy-alt fa-2x"></i>
+                    <i className="ml-4 -mt-2 text-yellow-500 fas fa-trophy-alt fa-2x"></i>
                   </td>
                 </tr>
               )}

@@ -33,7 +33,7 @@ export default function EventSectionSelectionModal(props) {
           <div className="my-4 mx-10">
             <label
               htmlFor="section"
-              className="block text-md text-teal-700 text-center mb-2"
+              className="block text-md text-yellow-600 text-center mb-2"
             >
               Select your section
             </label>
@@ -41,7 +41,7 @@ export default function EventSectionSelectionModal(props) {
               onChange={(e) => setSection(e.target.value.toLocaleLowerCase())}
               id="section"
               name="section"
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 sm:text-sm rounded-md"
               defaultValue="Open"
             >
               { sections && sections.map(({ name, ratingBand }, key) => (
@@ -56,7 +56,7 @@ export default function EventSectionSelectionModal(props) {
           <div>
             {" "}
             <div
-              className="block text-md text-teal-700 text-center mt-8"
+              className="block text-md text-yellow-600 text-center mt-8"
             >
               Half point byes
             </div>
@@ -71,7 +71,7 @@ export default function EventSectionSelectionModal(props) {
                     id="round-two"
                     name="round-two"
                     type="checkbox"
-                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                    className="focus:ring-yellow-400 h-4 w-4 text-yellow-500 border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-xs">
@@ -93,7 +93,7 @@ export default function EventSectionSelectionModal(props) {
                     id="round-two"
                     name="round-two"
                     type="checkbox"
-                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                    className="focus:ring-yellow-400 h-4 w-4 text-yellow-500 border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-xs">
@@ -115,7 +115,7 @@ export default function EventSectionSelectionModal(props) {
                     id="round-three"
                     name="round-three"
                     type="checkbox"
-                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                    className="focus:ring-yellow-400 h-4 w-4 text-yellow-500 border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-xs">
@@ -137,7 +137,7 @@ export default function EventSectionSelectionModal(props) {
                     id="round-four"
                     name="round-four"
                     type="checkbox"
-                    className="focus:ring-teal-500 h-4 w-4 text-teal-600 border-gray-300 rounded"
+                    className="focus:ring-yellow-400 h-4 w-4 text-yellow-500 border-gray-300 rounded"
                   />
                 </div>
                 <div className="ml-3 text-xs">
@@ -155,7 +155,7 @@ export default function EventSectionSelectionModal(props) {
       </ModalBody>
       <ModalFooter>
         <button
-          className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
           onClick={() => confirmRegister()}
         >
           {isLoadingSignUp ? (

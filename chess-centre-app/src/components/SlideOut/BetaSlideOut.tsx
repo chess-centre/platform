@@ -50,7 +50,7 @@ export default function BetaSlideOut(props) {
                       </h2>
                       <div className="ml-3 h-7 flex items-center">
                         <button
-                          className="bg-white z-100 rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-teal-500"
+                          className="bg-white z-100 rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-yellow-400"
                           onClick={() =>
                             setIsSlideOutOpen((state) => ({
                               ...state,
@@ -84,7 +84,7 @@ export default function BetaSlideOut(props) {
                       </p>
                       <div className="mt-6">
                         <a href={mailToSupport()}
-                          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
                         >
                           <PlusIcon
                             className="-ml-1 mr-2 h-5 w-5"
@@ -105,7 +105,7 @@ export default function BetaSlideOut(props) {
                               }))
                             }
                             type="button"
-                            className="w-full text-center items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                            className="w-full text-center items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
                           >
                             Close
                           </button>
