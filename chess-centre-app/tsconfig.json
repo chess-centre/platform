@@ -10,7 +10,8 @@
     "allowJs": true,
     "moduleResolution": "node",
     "rootDir": "src",
-    "typeRoots" : ["node_modules/@types", "src/types"]
+    "typeRoots" : ["node_modules/@types", "src/types"],
+    "resolveJsonModule": true
   },
   "include": ["./src/index.d.ts"],
   "exclude": [

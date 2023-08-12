@@ -240,7 +240,7 @@ function EntriesTable(data) {
                     <td className="hidden sm:block px-2 pl-4 py-2 whitespace-nowrap text-xs text-gray-600">
                       {club}
                     </td>
-                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
+                    <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-yellow-600 text-center">
                       {rating.key}
                     </td>
                   </tr>
@@ -269,17 +269,17 @@ function EntriesTable(data) {
         <p className="mb-2">Alt Key</p>
         {isRapid || isBlitz ? (
           <p className="ml-2">
-            <span className="font-bold text-teal-700">S</span> = Standard ECF
+            <span className="font-bold text-yellow-600">S</span> = Standard ECF
             rating used
           </p>
         ) : (
           <p className="ml-2">
-            <span className="font-bold text-teal-700">R</span> = Rapidplay ECF
+            <span className="font-bold text-yellow-600">R</span> = Rapidplay ECF
             rating used
           </p>
         )}
         <p className="ml-2">
-          <span className="font-bold text-teal-700">E</span> = Estimated rating
+          <span className="font-bold text-yellow-600">E</span> = Estimated rating
           is used
         </p>
         <p className="ml-2 italic">
@@ -348,7 +348,7 @@ function SectionTabs(props: SectionTabProps) {
             <span
               aria-hidden="true"
               className={classNames(
-                section.current ? "bg-teal-500" : "bg-transparent",
+                section.current ? "bg-yellow-400" : "bg-transparent",
                 "absolute inset-x-0 bottom-0 h-0.5"
               )}
             />
@@ -432,7 +432,7 @@ export default function EventDetailsSlideOut(props: DetailProps) {
                       <div className="ml-3 h-7 flex items-center">
                         <button
                           autoFocus={false}
-                          className="bg-white z-50 rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-teal-500"
+                          className="bg-white z-50 rounded-md text-gray-400 hover:text-gray-500 focus:ring-2 focus:ring-yellow-400"
                           onClick={() =>
                             setIsSlideOutOpen((state) => ({
                               ...state,
@@ -471,7 +471,7 @@ export default function EventDetailsSlideOut(props: DetailProps) {
                     <div className="px-2 pt-2 pb-5 sm:px-0 sm:pt-0">
                       <dl className="space-y-4 px-2 sm:px-6 sm:space-y-4">
                         <div>
-                          <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                          <dt className="text-sm font-medium text-yellow-600 sm:w-40 sm:flex-shrink-0">
                             <i className="fas fa-info-square text-gray-900 mr-1"></i>{" "}
                             Description
                           </dt>
@@ -484,7 +484,7 @@ export default function EventDetailsSlideOut(props: DetailProps) {
                           </dd>
                         </div>
                         <div>
-                          <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                          <dt className="text-sm font-medium text-yellow-600 sm:w-40 sm:flex-shrink-0">
                             <i className="fad fa-map-pin text-gray-900 mr-1"></i>{" "}
                             Location
                           </dt>
@@ -493,7 +493,7 @@ export default function EventDetailsSlideOut(props: DetailProps) {
                           </dd>
                         </div>
                         <div>
-                          <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                          <dt className="text-sm font-medium text-yellow-600 sm:w-40 sm:flex-shrink-0">
                             <i className="fad fa-chess-clock text-gray-900 mr-1"></i>{" "}
                             Time Control
                           </dt>
@@ -502,7 +502,7 @@ export default function EventDetailsSlideOut(props: DetailProps) {
                           </dd>
                         </div>
                         <div>
-                          <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                          <dt className="text-sm font-medium text-yellow-600 sm:w-40 sm:flex-shrink-0">
                             <i className="fad fa-calendar-alt text-gray-900 mr-1"></i>{" "}
                             Date
                           </dt>
@@ -517,7 +517,7 @@ export default function EventDetailsSlideOut(props: DetailProps) {
                         <div>
                           {eventDetails.entries?.items.length > 0 && (
                             <>
-                              <dt className="text-sm font-medium text-teal-700 sm:w-40 sm:flex-shrink-0">
+                              <dt className="text-sm font-medium text-yellow-600 sm:w-40 sm:flex-shrink-0">
                                 <i className="fad fa-users mr-1 text-gray-900"></i>{" "}
                                 Entries{" "}
                                 <span className="text-gray-500 text-xs">{`( ${eventDetails.entries?.items.length} )`}</span>

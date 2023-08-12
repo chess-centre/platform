@@ -85,7 +85,7 @@ export default function NewsLetter() {
           </svg>
         </div>
         <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-          <div className="relative rounded-2xl px-6 py-10 bg-teal-600 overflow-hidden shadow-xl sm:px-12 sm:py-20">
+          <div className="relative rounded-2xl px-6 py-10 bg-yellow-500 overflow-hidden shadow-xl sm:px-12 sm:py-20">
             <div
               aria-hidden="true"
               className="absolute inset-0 -mt-72 sm:-mt-32 md:mt-0"
@@ -98,12 +98,12 @@ export default function NewsLetter() {
                 viewBox="0 0 1463 360"
               >
                 <path
-                  className="text-teal-500 text-opacity-40"
+                  className="text-yellow-400 text-opacity-40"
                   fill="currentColor"
                   d="M-82.673 72l1761.849 472.086-134.327 501.315-1761.85-472.086z"
                 />
                 <path
-                  className="text-teal-700 text-opacity-40"
+                  className="text-yellow-600 text-opacity-40"
                   fill="currentColor"
                   d="M-217.088 544.086L1544.761 72l134.327 501.316-1761.849 472.086z"
                 />
@@ -126,10 +126,10 @@ export default function NewsLetter() {
                   <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
                     Thank you!
                   </h2>
-                  <p className="mt-6 mx-auto max-w-2xl text-lg text-teal-100">
+                  <p className="mt-6 mx-auto max-w-2xl text-lg text-yellow-100">
                     {email}
                   </p>
-                  <p className="mt-6 mx-auto max-w-2xl text-lg text-teal-200">
+                  <p className="mt-6 mx-auto max-w-2xl text-lg text-yellow-200">
                     We look forward to sharing our future events with you.
                   </p>
                 </div>
@@ -139,7 +139,7 @@ export default function NewsLetter() {
                     <h2 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
                       Get notified about our events.
                     </h2>
-                    <p className="mt-6 mx-auto max-w-2xl text-lg text-teal-200">
+                    <p className="mt-6 mx-auto max-w-2xl text-lg text-yellow-200">
                       We're going to be hosting all kinds of fantastic events,
                       from congress to rapidplays to unique doubles tournaments
                       and four-player chess leagues.
@@ -160,14 +160,14 @@ export default function NewsLetter() {
                         name="email_address"
                         value={email}
                         type="email"
-                        className="block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-600"
+                        className="block w-full border border-transparent rounded-md px-5 py-3 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-yellow-500"
                         placeholder="Enter your email"
                       />
                     </div>
                     <div className="mt-4 sm:mt-0 sm:ml-3">
                       <button
                         type="submit"
-                        className="block w-full rounded-md border border-transparent px-5 py-3 bg-teal-500 text-base font-medium text-white shadow hover:bg-teal-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-600 sm:px-10 cursor-pointer"
+                        className="block w-full rounded-md border border-transparent px-5 py-3 bg-yellow-400 text-base font-medium text-white shadow hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-yellow-500 sm:px-10 cursor-pointer"
                       >
                         Notify me
                       </button>

@@ -18,7 +18,7 @@ const organisers = [
 ];
 
 export default function ResultDetails() {
-  document.title = "The Chess Centre | Result Information";
+  document.title = "Sheffield Chess Centre | Result Information";
 
   const { resultId } = useParams();
   const { isLoading, error, data } = useResults({ resultId });
@@ -26,7 +26,7 @@ export default function ResultDetails() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-chess-king text-teal-600"></i> Result{" "}
+        <i className="fas fa-chess-king text-yellow-500"></i> Result{" "}
         <span className="text-sm text-gray-500">standings</span>
       </h1>
       <div className="pb-4 ml-2">
@@ -87,7 +87,7 @@ function DetailsView(props: any) {
                         type="button"
                         onClick={() => setIsModalOpen(true)}
                         className="flex w-full sm:w-auto justify-center px-4 py-2 border border-gray-300 
-                        shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-600"
+                        shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                       >
                         <span>Contact Us</span>
                       </button>
@@ -168,7 +168,7 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
       <li className="flex justify-start">
         <span className="h-6 flex items-center sm:h-7 mr-1">
           <svg
-            className="flex-shrink-0 h-4 w-4 text-teal-600"
+            className="flex-shrink-0 h-4 w-4 text-yellow-500"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -183,7 +183,7 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
           <a
             target="_blank"
             rel="noreferrer"
-            className="text-teal-600 hover:text-teal-500 text-sm font-medium"
+            className="text-yellow-500 hover:text-yellow-400 text-sm font-medium"
             href={url}
           >
             {label}
@@ -203,7 +203,7 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
           </div>
           {data.endDate ? (
             <div className="text-gray-900 text-sm font-medium">
-              <span className="text-teal-600">Held on</span>{" "}
+              <span className="text-yellow-500">Held on</span>{" "}
               <time dateTime={data.startDate}>
                 {moment(data.startDate).format("Do")}
               </time>
@@ -218,7 +218,7 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
             </div>
           ) : (
             <div className="text-gray-900 text-sm font-medium">
-              <span className="text-teal-600">Held on</span>{" "}
+              <span className="text-yellow-500">Held on</span>{" "}
               <time dateTime={data.startDate}>
                 {moment(data.startDate).format("dddd Do MMMM")}
               </time>
@@ -231,7 +231,7 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
             <i className="fas fa-flag text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Rounds</span> {data.rounds}
+            <span className="text-yellow-500">Rounds</span> {data.rounds}
           </div>
         </div>
         <div className="flex items-center space-x-2">
@@ -239,7 +239,7 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
             <i className="fas fa-users text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Entries</span> {data.entryCount}
+            <span className="text-yellow-500">Entries</span> {data.entryCount}
           </div>
         </div>
 
@@ -248,7 +248,7 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
             <i className="fad fa-chess-clock text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Time Control</span>{" "}
+            <span className="text-yellow-500">Time Control</span>{" "}
             {data.timeControl ? data.timeControl : data.type.timeControl}
           </div>
         </div>
@@ -299,7 +299,7 @@ function SummaryDetails({ data, ecfLMSUrl, chess24Url, chessDotComUrl }) {
         <Link
           to={`/app/games/event/${data.id}`}
           className="inline-flex w-full justify-center rounded-md border border-gray-200
-          bg-gray-100 px-4 py-2 text-base font-medium text-teal-700 shadow-sm hover:bg-gray-200 hover:border-gray-300
+          bg-gray-100 px-4 py-2 text-base font-medium text-yellow-600 shadow-sm hover:bg-gray-200 hover:border-gray-300
           focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sm:text-sm"
         >
           Games

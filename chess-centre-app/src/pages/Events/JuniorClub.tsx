@@ -8,7 +8,7 @@ export default function JuniorClub() {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = "The Chess Centre | Junior Club";
+    document.title = "Sheffield Chess Centre | Junior Club";
   }, []);
 
   return (
@@ -22,7 +22,7 @@ export default function JuniorClub() {
           <div className="hidden lg:block bg-gray-50 absolute top-0 bottom-0 left-3/4 w-screen" />
           <div className="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
             <div>
-              <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
+              <h2 className="text-base text-yellow-500 font-semibold tracking-wide uppercase">
                 Junior Chess Club
               </h2>
               <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -86,7 +86,7 @@ export default function JuniorClub() {
                   aged 6 - 16 years of age.
                 </p>
               </div>
-              <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
+              <div className="mt-5 prose prose-yellow text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                 <p>
                   Irrespective of experience, playing strength or ability all
                   children are welcome to join our Junior Club. In the Junior
@@ -105,7 +105,7 @@ export default function JuniorClub() {
                   So if you would like to learn more about the game of Chess in
                   a fun, friendly and safe environment then please{" "}
                   <a
-                    className="text-teal-500 hover:text-teal-700 hover:underline"
+                    className="text-yellow-400 hover:text-yellow-600 hover:underline"
                     href="mailto:info@chesscentre.online"
                   >
                     contact us
@@ -116,7 +116,7 @@ export default function JuniorClub() {
             </div>
             <div className="text-sm text-center mt-6 sm:hidden">
               <button
-                className="text-teal-600 hover:text-teal-500"
+                className="text-yellow-500 hover:text-yellow-400"
                 onClick={history.goBack}
               >
                 <i className="fad fa-long-arrow-alt-left"></i> back

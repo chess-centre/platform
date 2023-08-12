@@ -10,26 +10,18 @@ const LandingFooter = () => {
           className="-mx-5 -my-3 flex flex-wrap justify-center"
           aria-label="Footer"
         >
-          {/* <div className="px-3 sm:px-6 py-2">
-            <Link
-              to="/about"
-              className="text-sm sm:text-base text-gray-500 hover:text-teal-brand"
-            >
-              About Us
-            </Link>
-          </div> */}
           <div className="px-3 sm:px-6 py-2">
             <Link
-              to="/developer"
-              className="text-sm sm:text-base text-gray-500 hover:text-teal-brand"
+              to="/about"
+              className="text-sm sm:text-base text-gray-500 hover:text-yellow-brand"
             >
-              Developer
+              About Us
             </Link>
           </div>
           <div className="px-3 sm:px-6 py-2">
             <Link
               to="/roadmap"
-              className="text-sm sm:text-base text-gray-500 hover:text-teal-brand"
+              className="text-sm sm:text-base text-gray-500 hover:text-yellow-brand"
             >
               Roadmap
             </Link>
@@ -56,7 +48,7 @@ const LandingFooter = () => {
           </a>
         </div>
         <p className="mt-6 text-center text-sm sm:text-base text-gray-400">
-          &copy; 2020 The Chess Centre. All rights reserved.
+          &copy; 2023 Sheffield Chess Centre. All rights reserved.
         </p>
         <CookieBanner />
       </div>

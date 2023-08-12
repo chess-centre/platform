@@ -71,8 +71,8 @@ export default function NormEvent() {
             <div className="py-10 bg-gray-50 overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
                     <div className="text-base max-w-prose mx-auto lg:max-w-none">
-                        <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
-                            <span className="text-teal-500">
+                        <h2 className="text-base text-yellow-500 font-semibold tracking-wide uppercase">
+                            <span className="text-yellow-400">
                                 <i className="fas fa-chess-pawn"></i>
                             </span>{" "}
                             EJCOA Invitational
@@ -86,10 +86,10 @@ export default function NormEvent() {
                     </div>
 
                     <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
-                        <p className="text-left prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
+                        <p className="text-left prose prose-yellow text-gray-500 mx-auto lg:max-w-none sm:text-justify">
                             The Chess Centre is delighted to host it's first International Master (IM) Norm event!
                         </p>
-                        <p className="mt-6 text-left prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
+                        <p className="mt-6 text-left prose prose-yellow text-gray-500 mx-auto lg:max-w-none sm:text-justify">
                             Here are the players doing battle:
                         </p>
                         <div className="mt-6 text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
@@ -129,10 +129,10 @@ export default function NormEvent() {
                                             <td className="px-2 py-3 whitespace-nowrap text-sm font-medium text-gray-900">{player.fed}</td>
                                             <td className="px-2 py-3 whitespace-nowrap text-sm text-gray-500">{player.name}</td>
                                             <td className="px-2 py-3 whitespace-nowrap text-sm text-center">
-                                                {player.title === "IM" && <span className="text-yellow-500">{player.title}</span>}
+                                                {player.title === "IM" && <span className="text-yellow-400">{player.title}</span>}
                                                 {player.title === "FM" && <span className="text-orange-900">{player.title}</span>}
                                             </td>
-                                            <td className="px-2 py-3 whitespace-nowrap text-sm text-teal-500 text-center">{player.rating}</td>
+                                            <td className="px-2 py-3 whitespace-nowrap text-sm text-yellow-400 text-center">{player.rating}</td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -141,7 +141,7 @@ export default function NormEvent() {
                     </div>
                     <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
                         <div className="relative">
-                            <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+                            <div className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify">
                                 <h3>Event Information</h3>
                                 <ul>
                                     <li>9 Rounds</li>
@@ -156,9 +156,9 @@ export default function NormEvent() {
                                     <p>Several norms are among the requirements to receive a title such as Grandmaster (GM) or International Master (IM) from FIDE.</p>
                                 </div>
                             </div>
-                            <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+                            <div className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify">
                                 <h3>Live Games</h3>
-                                <p className="text-left prose prose-teal text-gray-500 mx-auto lg:max-w-none sm:text-justify">
+                                <p className="text-left prose prose-yellow text-gray-500 mx-auto lg:max-w-none sm:text-justify">
                                     We will be broadcasting the live games during the event across multiple platforms.
                                 </p>
                                 <ul>
@@ -168,7 +168,7 @@ export default function NormEvent() {
                             </div>
                             <div className="text-sm text-left mt-6 hidden sm:block">
                                 <button
-                                    className="text-teal-600 hover:text-teal-500"
+                                    className="text-yellow-500 hover:text-yellow-400"
                                     onClick={history.goBack}
                                 >
                                     <i className="fad fa-long-arrow-alt-left"></i> back
@@ -217,7 +217,7 @@ export default function NormEvent() {
                             />
                             <div className="text-sm text-center mt-6 sm:hidden">
                                 <button
-                                    className="text-teal-600 hover:text-teal-500"
+                                    className="text-yellow-500 hover:text-yellow-400"
                                     onClick={history.goBack}
                                 >
                                     <i className="fad fa-long-arrow-alt-left"></i> back

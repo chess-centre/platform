@@ -40,7 +40,7 @@ export default function TravelInformation(props) {
         </div>
       </div>
       {!removeStyles && (
-        <div className="mt-2 relative flex items-center sm:items-start bg-teal-700 rounded-b-lg not-italic py-2 px-6 sm:pl-12 sm:pr-10"></div>
+        <div className="mt-2 relative flex items-center sm:items-start bg-yellow-700 rounded-b-lg not-italic py-2 px-6 sm:pl-12 sm:pr-10"></div>
       )}
     </div>
   );
@@ -72,7 +72,7 @@ function Tabs(props) {
           onChange={handleChange}
           id="tabs"
           name="tabs"
-          className="block w-full focus:ring-teal-500 focus:border-teal-500 border-gray-300 rounded-md"
+          className="block w-full focus:ring-yellow-400 focus:border-yellow-400 border-gray-300 rounded-md"
           defaultValue={tabs.find((tab) => tab.current).name}
         >
           {tabs.map((tab) => (
@@ -89,7 +89,7 @@ function Tabs(props) {
                 key={tab.name}
                 className={classNames(
                   tab.current
-                    ? "border-teal-500 text-teal-600"
+                    ? "border-yellow-400 text-yellow-500"
                     : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300",
                   "w-1/4 py-4 px-1 text-center border-b-2 font-medium text-sm cursor-pointer"
                 )}

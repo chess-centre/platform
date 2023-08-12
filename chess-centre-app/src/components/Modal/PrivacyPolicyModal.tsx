@@ -27,7 +27,7 @@ function PrivacyPolicyModal() {
       <Modal isOpen={isModalOpen} onClose={() => closeModal(false)}>
         <ModalHeader>Privacy Policy</ModalHeader>
         <ModalBody>
-          <div className="overflow-auto h-60 prose prose-teal prose-sm">
+          <div className="overflow-auto h-60 prose prose-yellow prose-sm">
             <p className="">Last updated: January 8, 2022</p>
             <p>
               This Privacy Policy describes Our policies and procedures on the
@@ -685,8 +685,8 @@ function PrivacyPolicyModal() {
         <ModalFooter>
           <button
             className={`w-full sm:w-auto cursor-pointer inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
-                font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
-                focus:ring-offset-2 focus:ring-teal-500`}
+                font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 
+                focus:ring-offset-2 focus:ring-yellow-400`}
             onClick={() => closeModal(true)}
           >
             Accept

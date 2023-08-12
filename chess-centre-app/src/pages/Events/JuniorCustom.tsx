@@ -55,7 +55,7 @@ export default function JuniorCustomEvent() {
   const [isClosed, setIsClosed] = useState(false);
 
   useEffect(() => {
-    document.title = "The Chess Centre | IGS Junior Event";
+    document.title = "Sheffield Chess Centre | IGS Junior Event";
 
     const fetchEvent = async () => {
       setIsLoading(true);
@@ -102,7 +102,7 @@ export default function JuniorCustomEvent() {
       <div className="py-10 bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
-            <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
+            <h2 className="text-base text-yellow-500 font-semibold tracking-wide uppercase">
               <i className="fad fa-bolt"></i> Let's go!
             </h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -115,7 +115,7 @@ export default function JuniorCustomEvent() {
               <div className="mt-3">
                 <a
                   href="/broadcast/live"
-                  className={`inline-flex items-center px-16 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-700 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400`}
+                  className={`inline-flex items-center px-16 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-yellow-700 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400`}
                 >
                   <span className="flex relative h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full rounded-full bg-orange-500 opacity-75"></span>
@@ -127,16 +127,16 @@ export default function JuniorCustomEvent() {
             )}
           </div>
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
-            <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">
+            <p className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify py-2">
               The Chess Centre brings to you our{" "}
               <span className="font-semibold">2nd Junior Rapidplay</span> held
               at the Ilkley Grammar School.
             </p>
-            <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify py-2">
+            <p className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify py-2">
               This event is open to all juniors under the age of 18 as at 1st
               September 2022.
             </p>
-            <div className="prose prose-teal text-teal-600 mx-auto lg:max-w-none text-justify">
+            <div className="prose prose-yellow text-yellow-500 mx-auto lg:max-w-none text-justify">
               <h3>Sections</h3>
               <ul>
                 <li>Open</li>
@@ -197,27 +197,27 @@ export default function JuniorCustomEvent() {
               <div className="prose text-gray-500 mx-auto lg:max-w-none text-justify">
                 <h3>Event Information</h3>
                 <p>
-                  <i className="text-teal-600 fas fa-sitemap w-8"></i> 6 Rounds
+                  <i className="text-yellow-500 fas fa-sitemap w-8"></i> 6 Rounds
                 </p>
                 <p>
-                  <i className="text-teal-600 fas fa-chess-clock w-8"></i> 25
+                  <i className="text-yellow-500 fas fa-chess-clock w-8"></i> 25
                   mins per player on the clock
                 </p>
                 <p>
-                  <i className="text-teal-600 fas fa-badge-check w-8"></i> All
+                  <i className="text-yellow-500 fas fa-badge-check w-8"></i> All
                   games will be ECF rapidplay rated
                 </p>
                 <p>
-                  <i className="text-teal-600 fas fa-trophy w-8"></i> Trophies
+                  <i className="text-yellow-500 fas fa-trophy w-8"></i> Trophies
                   in all sections for{" "}
                   <span className="font-semibold">top 3</span> finishers
                 </p>
                 <p>
-                  <i className="text-teal-600 fas fa-medal w-8"></i> Age
+                  <i className="text-yellow-500 fas fa-medal w-8"></i> Age
                   category medals per section
                 </p>
                 <p>
-                  <i className="text-teal-600 fas fa-pound-sign w-8"></i> Entry
+                  <i className="text-yellow-500 fas fa-pound-sign w-8"></i> Entry
                   fee £{defaultPrice}
                 </p>
               </div>
@@ -234,7 +234,7 @@ export default function JuniorCustomEvent() {
                     <h3 className="text-sm font-medium text-yellow-800">
                       ECF Membership Required
                     </h3>
-                    <div className="mt-2 text-sm text-yellow-700">
+                    <div className="mt-2 text-sm text-yellow-600">
                       <p>
                         All entries <span className="underline">must</span> have
                         an ECF membership. New members can create a FREE Junior
@@ -243,14 +243,14 @@ export default function JuniorCustomEvent() {
                           target="_blank"
                           rel="noreferrer"
                           href={`https://www.englishchess.org.uk/ecf-membership-rates-and-joining-details/`}
-                          className="font-medium underline text-yellow-700 hover:text-yellow-600"
+                          className="font-medium underline text-yellow-600 hover:text-yellow-500"
                         >click here</a>
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify my-4">
+              <div className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify my-4">
                 <p className="italic text-xs">
                   Entries will close on the evening of{" "}
                   <span className="font-semibold">Thursday 1st September</span>
@@ -268,7 +268,7 @@ export default function JuniorCustomEvent() {
                   />
                 </div>
               </div>
-              <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+              <div className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify">
                 <h4>Parental notes</h4>
                 <p>
                   The organisers are only responsible for juniors in the playing
@@ -276,7 +276,7 @@ export default function JuniorCustomEvent() {
                   are not playing.
                 </p>
                 <p>
-                  <i className="fas fa-camera-retro text-2xl text-teal-700"></i>{" "}
+                  <i className="fas fa-camera-retro text-2xl text-yellow-600"></i>{" "}
                   It is a condition of entry that photographs may be taken and
                   used for publicity. If you do not wish photographs of your
                   child to be used you must tell us on the day. Photos may
@@ -286,7 +286,7 @@ export default function JuniorCustomEvent() {
               </div>
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <button
-                  className="text-teal-600 hover:text-teal-500"
+                  className="text-yellow-500 hover:text-yellow-400"
                   onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back
@@ -338,7 +338,7 @@ export default function JuniorCustomEvent() {
               />
               <div className="text-sm text-center mt-6 sm:hidden">
                 <button
-                  className="text-teal-600 hover:text-teal-500"
+                  className="text-yellow-500 hover:text-yellow-400"
                   onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back

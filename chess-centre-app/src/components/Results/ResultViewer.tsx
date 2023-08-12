@@ -19,7 +19,7 @@ export function ResultViewer({ data }) {
       open: "bg-blue-festival text-orange-festival",
       major: "bg-yellow-festival text-blue-festival",
       intermediate: "bg-orange-festival text-blue-festival",
-      minor: "bg-teal-festival text-blue-festival",
+      minor: "bg-yellow-festival text-blue-festival",
     };
 
     return (
@@ -134,7 +134,7 @@ function SectionTabs(props: SectionTabProps) {
             <span
               aria-hidden="true"
               className={classNames(
-                section.current ? "bg-teal-500" : "bg-transparent",
+                section.current ? "bg-yellow-400" : "bg-transparent",
                 "absolute inset-x-0 bottom-0 h-0.5"
               )}
             />

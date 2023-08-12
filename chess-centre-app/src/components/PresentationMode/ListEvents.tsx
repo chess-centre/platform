@@ -80,7 +80,7 @@ const ListEvents = () => {
                                     scope="col"
                                     className="relative py-3 text-center text-md font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
                                 >
-                                    <span className="text-teal-700"><i className="fad fa-bullhorn"></i></span>
+                                    <span className="text-yellow-600"><i className="fad fa-bullhorn"></i></span>
                                 </th>
                                 <th
                                     scope="col"
@@ -105,7 +105,7 @@ const ListEvents = () => {
                                         </td>
                                         <td className="px-4 py-4 text-center whitespace-nowrap text-md text-gray-500 dark:text-gray-300">
                                             {data.live ? (
-                                                <span className="text-teal-500">
+                                                <span className="text-yellow-400">
                                                     <i className="fas fa-broadcast-tower"></i>
                                                 </span>
                                             ) : (

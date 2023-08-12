@@ -32,7 +32,7 @@ export default function ResultsTable({ results }) {
         accessor: "name",
         Cell: (props) => (
           <Link
-            className="text-teal-600 text-sm"
+            className="text-yellow-500 text-sm"
             to={`/app/results/${props.row.values.id}`}
           >
             {props.cell.value}
@@ -57,7 +57,7 @@ export default function ResultsTable({ results }) {
         accessor: "view",
         Cell: (props) => (
           <Link
-            className="text-teal-600 text-center sm:text-left"
+            className="text-yellow-500 text-center sm:text-left"
             to={`/app/results/${props.row.values.id}`}
           >
             view

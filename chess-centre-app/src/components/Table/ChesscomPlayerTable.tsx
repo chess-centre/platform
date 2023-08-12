@@ -112,8 +112,8 @@ export default function ChesscomPlayersTable({ players, colour }) {
             <div
               onClick={() => handleOpenProfile(props.row.values.chesscomUrl)}
               className={`w-full text-center items-center px-2.5 py-1 border border-gray-200 
-              shadow-sm text-xs rounded text-teal-600 bg-white hover:bg-gray-50 
-              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer`}
+              shadow-sm text-xs rounded text-yellow-500 bg-white hover:bg-gray-50 
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 cursor-pointer`}
             >
               @{props.cell.value}
             </div>

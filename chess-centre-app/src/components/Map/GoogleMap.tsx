@@ -5,7 +5,7 @@
 //   withGoogleMap,
 //   withScriptjs,
 // } from "@react-google-maps/api";
-// import Logo from "../../assets/img/logo-map-pin-teal.svg";
+// import Logo from "../../assets/img/logo-map-pin-yellow.svg";
 
 // const GoogleMap = withScriptjs(
 //   withGoogleMap((props) => (

@@ -69,10 +69,10 @@ export default function Header() {
 
   return (
     <header className="z-40 py-4 bg-white border-b dark:bg-gray-800">
-      <div className="container flex items-center justify-between h-full px-6 mx-auto text-teal-600 dark:text-teal-300">
+      <div className="container flex items-center justify-between h-full px-6 mx-auto text-yellow-500 dark:text-yellow-300">
         {/* <!-- Mobile hamburger --> */}
         <button
-          className="p-1 mr-5 -ml-1 rounded-md lg:hidden focus:outline-none focus:shadow-outline-teal"
+          className="p-1 mr-5 -ml-1 rounded-md lg:hidden focus:outline-none focus:shadow-outline-yellow"
           onClick={toggleSidebar}
           aria-label="Menu"
         >

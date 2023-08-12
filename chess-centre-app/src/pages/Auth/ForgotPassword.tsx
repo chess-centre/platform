@@ -69,7 +69,7 @@ function ForgotPassword(props) {
   }
 
   useEffect(() => {
-    document.title = "The Chess Centre | Forgot Password";
+    document.title = "Sheffield Chess Centre | Forgot Password";
   }, []);
 
   return (
@@ -90,7 +90,7 @@ function ForgotPassword(props) {
                 Forgot password
               </h1>
               {!forget ? (
-                <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-yellow-400 focus-within:border-yellow-400">
                   <label
                     htmlFor="name"
                     className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
@@ -102,13 +102,13 @@ function ForgotPassword(props) {
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     required
-                    className="block w-full border-0 p-0 text-teal-600 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 sm:text-sm"
+                    className="block w-full border-0 p-0 text-yellow-500 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 sm:text-sm"
                     placeholder="garry@kasparov.com"
                   />
                 </div>
               ) : (
                 <>
-                  <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                  <div className="mb-4 relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-yellow-400 focus-within:border-yellow-400">
                     <label
                       htmlFor="name"
                       className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
@@ -122,12 +122,12 @@ function ForgotPassword(props) {
                       type="number"
                       required
 
-                      className="block w-full border-0 p-0 text-teal-600 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 sm:text-sm"
+                      className="block w-full border-0 p-0 text-yellow-500 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 sm:text-sm"
                       placeholder="000000"
                     />
                   </div>
 
-                  <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+                  <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-yellow-400 focus-within:border-yellow-400">
                     <label
                       htmlFor="name"
                       className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs text-gray-900"
@@ -139,7 +139,7 @@ function ForgotPassword(props) {
                       onChange={(e) => setPassword(e.target.value)}
                       type="password"
                       required
-                      className="block w-full border-0 p-0 text-teal-600 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 sm:text-sm"
+                      className="block w-full border-0 p-0 text-yellow-500 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 sm:text-sm"
                       placeholder="***************"
                     />
                   </div>
@@ -149,8 +149,8 @@ function ForgotPassword(props) {
                 onClick={forget ? passwordForgotSubmit : passwordForgot}
                 block
                 className="mt-4 inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
-                font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
-                focus:ring-offset-2 focus:ring-teal-500"
+                font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 
+                focus:ring-offset-2 focus:ring-yellow-400"
               >
                 {forget ? "Submit Password" : "Recover password"}
               </button>
@@ -171,7 +171,7 @@ function ForgotPassword(props) {
               {forget && (
                 <p className="mt-1">
                   <Link
-                    className="text-sm font-medium text-teal-600 dark:text-gray-400 hover:underline"
+                    className="text-sm font-medium text-yellow-500 dark:text-gray-400 hover:underline"
                     disabled={loading}
                     onClick={resendCode}
                   >

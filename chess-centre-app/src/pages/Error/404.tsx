@@ -14,7 +14,7 @@ function Page404() {
         </div>
         <div className="py-10 sm:py-16">
           <div className="text-center">
-            <p className="text-4xl font-semibold text-teal-600 uppercase tracking-wide">
+            <p className="text-4xl font-semibold text-yellow-500 uppercase tracking-wide">
               404
             </p>
             <h1 className="mt-2 text-2xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">
@@ -27,13 +27,13 @@ function Page404() {
             <div className="mt-4 space-x-3">
               <Link
                 to="/"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
               >
                 Go back home
               </Link>
               <a
                 href="mailto:support@chesscentre.online"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-orange-brand bg-orange-100 hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-orange-brand bg-orange-100 hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
               >
                 Contact support
               </a>

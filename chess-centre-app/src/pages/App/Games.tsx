@@ -224,7 +224,7 @@ export default function GamesView() {
   };
 
   useEffect(() => {
-    document.title = "The Chess Centre | Games";
+    document.title = "Sheffield Chess Centre | Games";
 
     try {
       if (memberId) {
@@ -261,7 +261,7 @@ export default function GamesView() {
   return (
     <div className="overscroll-none mb-12">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-game-board-alt text-teal-600"></i> Games{" "}
+        <i className="fas fa-game-board-alt text-yellow-500"></i> Games{" "}
         <span className="text-sm text-gray-500">by player</span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
@@ -289,13 +289,13 @@ export default function GamesView() {
                 ) : (
                   <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                     <span>
-                      <i className="fal fa-chess fa-6x text-teal-500"></i>
+                      <i className="fal fa-chess fa-6x text-yellow-400"></i>
                     </span>
                     <p className="mt-2 block text-sm font-medium text-gray-600">
                       No games yet.
                     </p>
                     <p
-                      className="mt-2 text-teal-500 text-sm font-medium hover:opacity-90 cursor-pointer"
+                      className="mt-2 text-yellow-400 text-sm font-medium hover:opacity-90 cursor-pointer"
                       onClick={handleGoBack}
                     >
                       <i className="fas fa-long-arrow-alt-left mr-1"></i> Go
@@ -305,7 +305,7 @@ export default function GamesView() {
                       <p className="mt-2 block text-sm font-medium text-gray-600">
                         Enter one of our fantastic{" "}
                         <Link
-                          className="text-teal-500 font-medium hover:underline"
+                          className="text-yellow-400 font-medium hover:underline"
                           to="/app/events"
                         >
                           events
@@ -318,7 +318,7 @@ export default function GamesView() {
                       <p className="mt-2 block text-sm font-medium text-gray-600">
                         Encourage this player to enter into one of our fantastic{" "}
                         <Link
-                          className="text-teal-500 font-medium hover:underline"
+                          className="text-yellow-400 font-medium hover:underline"
                           to="/app/events"
                         >
                           events
@@ -364,13 +364,13 @@ export default function GamesView() {
               ) : (
                 <div className="relative mt-1 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                   <span>
-                    <i className="far fa-user-ninja fa-6x text-teal-500"></i>
+                    <i className="far fa-user-ninja fa-6x text-yellow-400"></i>
                   </span>
                   <p className="mt-4 block text-sm font-medium text-gray-600">
                     No overview profile
                   </p>
                   <p className="mt-6">
-                    <i className="far fal fa-chart-bar fa-3x text-teal-500"></i>
+                    <i className="far fal fa-chart-bar fa-3x text-yellow-400"></i>
                   </p>
                 </div>
               )}

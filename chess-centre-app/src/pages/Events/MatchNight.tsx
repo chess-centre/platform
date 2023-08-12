@@ -8,7 +8,7 @@ export default function MatchNight() {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = "The Chess Centre | Match Night";
+    document.title = "Sheffield Chess Centre | Match Night";
   }, []);
 
   return (
@@ -22,7 +22,7 @@ export default function MatchNight() {
           <div className="hidden lg:block bg-gray-50 absolute top-0 bottom-0 left-3/4 w-screen" />
           <div className="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
             <div>
-              <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
+              <h2 className="text-base text-yellow-500 font-semibold tracking-wide uppercase">
                 Put your skills to the test
               </h2>
               <h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -90,7 +90,7 @@ export default function MatchNight() {
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    className="text-teal-500 hover:text-teal-700 no-underline"
+                    className="text-yellow-400 hover:text-yellow-600 no-underline"
                     href="https://www.bradfordchess.co.uk/"
                   >
                     BDCA Bradford Chess League
@@ -99,7 +99,7 @@ export default function MatchNight() {
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    className="text-teal-500 hover:text-teal-700 no-underline"
+                    className="text-yellow-400 hover:text-yellow-600 no-underline"
                     href="https://mannchess.org.uk/YCA.htm"
                   >
                     YCA Yorkshire Leagues
@@ -108,7 +108,7 @@ export default function MatchNight() {
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    className="text-teal-500 hover:text-teal-700 no-underline"
+                    className="text-yellow-400 hover:text-yellow-600 no-underline"
                     href="https://www.4ncl.co.uk/"
                   >
                     4NCL
@@ -116,7 +116,7 @@ export default function MatchNight() {
                   .
                 </p>
               </div>
-              <div className="mt-5 prose prose-teal text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
+              <div className="mt-5 prose prose-yellow text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-1">
                 <p>
                   Each upcoming match will be listed and detailed within our
                   website and visible when logged in. Here you can find
@@ -131,7 +131,7 @@ export default function MatchNight() {
                 </ul>
                 <div className="text-sm text-left mt-6 hidden sm:block">
                   <button
-                    className="text-teal-600 hover:text-teal-500"
+                    className="text-yellow-500 hover:text-yellow-400"
                     onClick={history.goBack}
                   >
                     <i className="fad fa-long-arrow-alt-left"></i> back
@@ -141,7 +141,7 @@ export default function MatchNight() {
             </div>
             <div className="text-sm text-center mt-6 sm:hidden">
               <button
-                className="text-teal-600 hover:text-teal-500"
+                className="text-yellow-500 hover:text-yellow-400"
                 onClick={history.goBack}
               >
                 <i className="fad fa-long-arrow-alt-left"></i> back

@@ -80,7 +80,7 @@ export default function EventDetails() {
   const { isLoading, error, data } = useEvents();
 
   useEffect(() => {
-    document.title = "The Chess Centre | Event Information";
+    document.title = "Sheffield Chess Centre | Event Information";
     let isMounted = true;
     if (!isLoading && isMounted) {
       const e: Event = data.find((event: Event) => event.id === eventId);
@@ -145,7 +145,7 @@ export default function EventDetails() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-chess-king text-teal-600"></i> Event{" "}
+        <i className="fas fa-chess-king text-yellow-500"></i> Event{" "}
         <span className="text-sm text-gray-500">information</span>
       </h1>
       <div className="pb-4 ml-2">
@@ -459,7 +459,7 @@ function Tabs(props: any) {
                 key={tab.name}
                 className={classNames(
                   tab.current
-                    ? "border-teal-500 text-teal-600"
+                    ? "border-yellow-400 text-yellow-500"
                     : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-200",
                   "whitespace-nowrap flex py-4 px-1 border-b-2 font-medium text-sm cursor-pointer"
                 )}
@@ -470,7 +470,7 @@ function Tabs(props: any) {
                   <span
                     className={classNames(
                       tab.current
-                        ? "bg-teal-100 text-teal-600"
+                        ? "bg-yellow-100 text-yellow-500"
                         : "bg-gray-100 text-gray-900",
                       "hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block"
                     )}
@@ -531,7 +531,7 @@ function SummaryDetails({
             <i className="fas fa-calendar-alt text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Start</span>{" "}
+            <span className="text-yellow-500">Start</span>{" "}
             <time dateTime={data.startDate}>
               {moment(data.startDate).format("dddd, MMMM Do")}
             </time>
@@ -543,7 +543,7 @@ function SummaryDetails({
               <i className="fas fa-calendar-alt text-gray-400"></i>
             </div>
             <div className="text-gray-900 text-sm font-medium">
-              <span className="text-teal-600">End</span>{" "}
+              <span className="text-yellow-500">End</span>{" "}
               <time dateTime={data.endDate}>
                 {moment(data.endDate).format("dddd, MMMM Do")}
               </time>
@@ -555,7 +555,7 @@ function SummaryDetails({
             <i className="fas fa-flag text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Rounds</span> {data.rounds}
+            <span className="text-yellow-500">Rounds</span> {data.rounds}
           </div>
         </div>
 
@@ -564,7 +564,7 @@ function SummaryDetails({
             <i className="fas fa-users text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Entries</span> {data.entryCount}
+            <span className="text-yellow-500">Entries</span> {data.entryCount}
           </div>
         </div>
 
@@ -573,7 +573,7 @@ function SummaryDetails({
             <i className="fad fa-chess-clock text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Time Control</span>{" "}
+            <span className="text-yellow-500">Time Control</span>{" "}
             {data.timeControl ? data.timeControl : data.type.timeControl}
           </div>
         </div>
@@ -583,7 +583,7 @@ function SummaryDetails({
             <i className="fad fa-credit-card text-gray-400"></i>
           </div>
           <div className="text-gray-900 text-sm font-medium">
-            <span className="text-teal-600">Entry Fee</span> £
+            <span className="text-yellow-500">Entry Fee</span> £
             {data.type.defaultPrice}
           </div>
         </div>
@@ -670,7 +670,7 @@ function SummaryDetails({
               <a
                 className="inline-flex items-center 
                 rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs 
-                font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
                 href={broadcastLink}
                 rel="noreferrer"
                 target="_blank"
@@ -804,7 +804,7 @@ function RegisterButton(props: RegisterButtonProps) {
     <div>
       {multipleSections && (
         <button
-          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-yellow-500 shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
           onClick={() => openSectionSelectionModal()}
         >
           Register
@@ -812,7 +812,7 @@ function RegisterButton(props: RegisterButtonProps) {
       )}
 
       {isLoadingSignUp && !multipleSections && (
-        <div className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+        <div className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-yellow-500 shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400">
           <div className="mr-2">
             <i className="fas fa-spinner-third animate-spin -ml-4 sm:ml-0"></i>
           </div>
@@ -823,7 +823,7 @@ function RegisterButton(props: RegisterButtonProps) {
       {/* All directly payable events */}
       {!multipleSections && !isLoadingSignUp && (!memberEntry || !isMember) && (
         <button
-          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-yellow-500 shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
           onClick={() => handleRegister(id, undefined, undefined)}
         >
           Register
@@ -833,7 +833,7 @@ function RegisterButton(props: RegisterButtonProps) {
       {/* Free events for members */}
       {!multipleSections && !isLoadingSignUp && isMember && memberEntry && (
         <button
-          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-teal-600 shadow-sm text-sm font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          className="inline-flex w-full sm:w-auto justify-center px-4 py-2 border border-yellow-500 shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
           onClick={() => openConfirmMemberEntryModal()}
         >
           Register

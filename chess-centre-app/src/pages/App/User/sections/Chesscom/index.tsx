@@ -93,14 +93,14 @@ export default function ChesscomFetch({
                 name="chesscomUsername"
                 id="chesscomUsername"
                 defaultValue={username}
-                className="focus:ring-teal-500 focus:border-teal-500 block w-full rounded-none rounded-l-md pl-10 text-xs sm:text-sm border-gray-300"
+                className="focus:ring-yellow-400 focus:border-yellow-400 block w-full rounded-none rounded-l-md pl-10 text-xs sm:text-sm border-gray-300"
                 placeholder="add your username"
               />
             </div>
             <button
               onClick={getChesscomData}
               type="button"
-              className="-ml-px relative inline-flex items-center space-x-2 px-2 sm:px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
+              className="-ml-px relative inline-flex items-center space-x-2 px-2 sm:px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-yellow-400 focus:border-yellow-400"
             >
               {isFetching ? (
                 <div className="flex">
@@ -109,7 +109,7 @@ export default function ChesscomFetch({
                 </div>
               ) : (
                 <>
-                  <i className="text-teal-500 fal fa-sync"></i>
+                  <i className="text-yellow-400 fal fa-sync"></i>
                   <span>Sync</span>{" "}
                 </>
               )}
@@ -123,7 +123,7 @@ export default function ChesscomFetch({
             <div className="flex">Bullet</div>
             <input
               className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500`}
+                      focus:outline-none focus:ring-yellow-400 focus:border-yellow-400`}
               disabled
               value={bullet}
               type="text"
@@ -136,7 +136,7 @@ export default function ChesscomFetch({
 
             <input
               className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500`}
+                      focus:outline-none focus:ring-yellow-400 focus:border-yellow-400`}
               disabled
               value={blitz}
               type="text"
@@ -149,7 +149,7 @@ export default function ChesscomFetch({
 
             <input
               className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500`}
+                      focus:outline-none focus:ring-yellow-400 focus:border-yellow-400`}
               disabled
               value={rapid}
               type="text"

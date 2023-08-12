@@ -84,7 +84,7 @@ function MembershipCard({
           {benefits.map((benefit, key) => (
             <li key={key} className="flex items-start">
               <div className="flex-shrink-0">
-                <span className="text-teal-500 ml-2">
+                <span className="text-yellow-400 ml-2">
                   <i className={benefit.iconClasses}></i>
                 </span>
               </div>

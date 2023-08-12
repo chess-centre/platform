@@ -1,11 +1,7 @@
 import React, { useHistory, Link } from "react-router-dom";
 import moment from "moment";
 import { bgColor700 } from "tailwind-dynamic-classes";
-import {
-  prettyDate,
-} from "../../../utils/DateFormating";
 import { classNames } from "../../../utils/Classes";
-
 
 export function GridCard({ event }) {
   const history = useHistory();
@@ -37,7 +33,7 @@ export function GridCard({ event }) {
       </header>
       <div className="text-gray-600 flex-grow mb-5 text-center">
         <div>
-          <p className="sm:inline mr-1 text-sm text-teal-700">
+          <p className="sm:inline mr-1 text-sm text-yellow-600">
             <i className="fad fa-calendar-alt mr-1"></i>
             <span className="inline">
             { event.endDate && `${moment(event.startDate).format("ddd Do")} - ${moment(event.endDate).format("ddd Do, MMM")}`}
@@ -45,13 +41,13 @@ export function GridCard({ event }) {
             </span>
           </p>
           {event.time && event.time !== "various" && (
-            <p className="sm:inline text-sm text-teal-700">
+            <p className="sm:inline text-sm text-yellow-600">
               <i className="fad fa-clock mr-1"></i>
               <span className="inline">{event.time}</span>{" "}
             </p>
           )}
           {event.rounds && (
-            <p className="sm:inline text-sm text-teal-700">
+            <p className="sm:inline text-sm text-yellow-600">
               <i className="fad fa-flag mr-1"></i>
               <span className="inline">{event.rounds} rounds</span>{" "}
             </p>
@@ -66,9 +62,9 @@ export function GridCard({ event }) {
       >
         {event.url && (
           <div className="text-center align-middle">
-            <div className="text-sm text-teal-500 hover:underline cursor-pointer">
+            <div className="text-sm text-yellow-400 hover:underline cursor-pointer">
               <Link
-                className="inline-flex items-center text-teal-500 "
+                className="inline-flex items-center text-yellow-400 "
                 to={`${event.url}/${event.id}`}
               >
                 More Info

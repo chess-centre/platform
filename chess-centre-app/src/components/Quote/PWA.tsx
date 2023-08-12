@@ -1,9 +1,10 @@
+import React from 'react';
 import mobileApp from "../../assets/img/mobile-app.png";
 
 function DownloadPWA() {
   return (
     <div className="bg-white pt-10 lg:py-10">
-      <div className="pb-16 bg-gradient-to-r from-teal-600 to-teal-400 lg:pb-0 lg:z-10 lg:relative">
+      <div className="pb-16 bg-gradient-to-r from-yellow-500 to-yellow-400 lg:pb-0 lg:z-10 lg:relative">
         <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-8">
           <div className="relative lg:-my-8">
             <div
@@ -18,7 +19,6 @@ function DownloadPWA() {
                   alt="Mobile App"
                   width="384"
                   height="432"
-                  layout="responsive"
                 />
               </div>
             </div>
@@ -45,7 +45,7 @@ function DownloadPWA() {
                     Jonathan &amp; Matt
                   </p>
                   <p className="text-base font-md text-gray-50">
-                    Co-Founders @ <span className="font-bold text-gray-900"><i className="fak fa-chess-centre"></i> The Chess Centre </span>
+                    <span className="font-bold text-gray-900"><i className="fak fa-chess-centre"></i> Sheffield Chess Centre </span>
                   </p>
                 </footer>
               </blockquote>

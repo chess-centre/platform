@@ -51,7 +51,7 @@ export default function Players() {
       {
         name: "ECF",
         ref: "ecf",
-        colour: "bg-teal-700",
+        colour: "bg-yellow-700",
         current: true,
       },
       {
@@ -69,7 +69,7 @@ export default function Players() {
     ],
     selectedTab: {
       ref: "ecf",
-      colour: "bg-teal-700",
+      colour: "bg-yellow-700",
     },
   });
 
@@ -300,7 +300,7 @@ export default function Players() {
   };
 
   useEffect(() => {
-    document.title = "The Chess Centre | Players";
+    document.title = "Sheffield Chess Centre | Players";
 
     const fetchRatedPlayers = async () => {
       setState((state) => ({ ...state, isLoading: true, isError: false }));
@@ -344,7 +344,7 @@ export default function Players() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-chess-king text-teal-600"></i> Players
+        <i className="fas fa-chess-king text-yellow-500"></i> Players
       </h1>
       <div className="pb-5 border-b border-gray-200">
         <div className="md:flex md:items-center md:justify-between">

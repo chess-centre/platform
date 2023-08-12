@@ -42,7 +42,7 @@ export default function ResultView() {
   const [isErrorResult, setIsErrorResult] = useState(false);
   const [results, setResults] = useState<any[]>([]);
 
-  document.title = "The Chess Centre | Results";
+  document.title = "Sheffield Chess Centre | Results";
 
   useEffect(() => {
     
@@ -102,7 +102,7 @@ export default function ResultView() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-chess-king text-teal-600"></i> Results{" "}
+        <i className="fas fa-chess-king text-yellow-500"></i> Results{" "}
         <span className="text-sm text-gray-500">from events</span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
@@ -125,7 +125,7 @@ export default function ResultView() {
             ) : (
               <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                 <span>
-                  <i className="fal fa-chess fa-6x text-teal-500"></i>
+                  <i className="fal fa-chess fa-6x text-yellow-400"></i>
                 </span>
                 <p className="mt-2 block text-sm font-medium text-gray-600">
                   No results found!
@@ -138,7 +138,7 @@ export default function ResultView() {
         {isLoadingResults && (
           <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
             <span className="animate-pulse">
-              <i className="aninmal-pulse fal fa-chess-board fa-10x text-teal-500 opacity-50"></i>
+              <i className="aninmal-pulse fal fa-chess-board fa-10x text-yellow-400 opacity-50"></i>
             </span>
             <p className="mt-2 block text-sm font-medium text-gray-600">
               Loading results...

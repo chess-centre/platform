@@ -4,15 +4,15 @@ export const CentreRoadmap = () => {
   return (
     <div className="relative m-8 text-sm sm:text-base">
       <div
-        className="border-r-2 border-teal-500 absolute h-full top-2"
+        className="border-r-2 border-yellow-400 absolute h-full top-2"
         style={{ left: "7.5px" }}
       ></div>
       <ul className="list-none m-0 p-0">
         <li className="mb-2">
           <div className="flex items-center mb-1">
-            <div className="bg-teal-600 rounded-full h-4 w-4 z-0"></div>
+            <div className="bg-yellow-500 rounded-full h-4 w-4 z-0"></div>
             <div className="flex-1 ml-4 font-medium">
-              <span className="mr-2 bg-teal-200 text-teal-700 p-1 rounded leading-none">
+              <span className="mr-2 bg-yellow-200 text-yellow-600 p-1 rounded leading-none">
                 Horizon
               </span>
             </div>
@@ -50,7 +50,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="ml-5">
-              <li><span className="text-teal-600 text-sm">September 2022</span></li>
+              <li><span className="text-yellow-500 text-sm">September 2022</span></li>
             </ul>
             <ul className="list-disc ml-5">
               <li>Ilkley Chess Festival 🚀</li>
@@ -69,14 +69,14 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="ml-5">
-              <li><span className="text-teal-600 text-sm">April 2022</span></li>
+              <li><span className="text-yellow-500 text-sm">April 2022</span></li>
             </ul>
             <ul className="list-disc ml-5">
               <li>1st Ilkley Grammar School Congress 🤓</li>
               <li>Chess Centre Swag - Hoodies 👕</li>
             </ul>
             <ul className="ml-5">
-              <li><span className="text-teal-600 text-sm">March 2022</span></li>
+              <li><span className="text-yellow-500 text-sm">March 2022</span></li>
             </ul>
             <ul className="list-disc ml-5">
               <li>New Wharfdale league</li>
@@ -95,7 +95,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="ml-5">
-              <li><span className="text-teal-600 text-sm">February 2022</span></li>
+              <li><span className="text-yellow-500 text-sm">February 2022</span></li>
             </ul>
             <ul className="list-disc ml-5">
               <li>First IM Norm Event</li>
@@ -113,7 +113,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="ml-5">
-              <li><span className="text-teal-600 text-sm">September 2021</span></li>
+              <li><span className="text-yellow-500 text-sm">September 2021</span></li>
             </ul>
             <ul className="list-disc ml-5">
               <li>First Blitz Event</li>
@@ -131,7 +131,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="ml-5">
-              <li><span className="text-teal-600 text-sm">Agust 2021</span></li>
+              <li><span className="text-yellow-500 text-sm">Agust 2021</span></li>
             </ul>
             <ul className="list-disc ml-5">
               <li>Donated Chess sets to Schools ♟️</li>
@@ -149,7 +149,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="ml-5">
-              <li><span className="text-teal-600 text-sm">July 2021</span></li>
+              <li><span className="text-yellow-500 text-sm">July 2021</span></li>
             </ul>
             <ul className="list-disc ml-5">
               <li>License approval 🍺</li>
@@ -168,7 +168,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="ml-5">
-              <li><span className="text-teal-600 text-sm">June 2021</span></li>
+              <li><span className="text-yellow-500 text-sm">June 2021</span></li>
             </ul>
             <ul className="list-disc ml-5">
               <li>First all-play-all congress</li>
@@ -186,7 +186,7 @@ export const CentreRoadmap = () => {
           </div>
           <div className="ml-12">
             <ul className="ml-5">
-              <li><span className="text-teal-600 text-sm">May 2021</span></li>
+              <li><span className="text-yellow-500 text-sm">May 2021</span></li>
             </ul>
             <ul className="list-disc ml-5">
               <li>Junior club begins</li>

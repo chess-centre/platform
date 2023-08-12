@@ -86,7 +86,7 @@ export default function Profile() {
 
   useEffect(() => {
 
-    document.title = "The Chess Centre | Profile";
+    document.title = "Sheffield Chess Centre | Profile";
 
     const getCustomerPortal = async () => {
       const returnUrl = `${window.location.origin}/app/profile`;
@@ -140,7 +140,7 @@ export default function Profile() {
         <nav className="space-y-1">
           <Link
             to="#"
-            className={`dark:bg-gray-800 text-teal-700 dark:text-teal-400 hover:text-teal-700 
+            className={`dark:bg-gray-800 text-yellow-600 dark:text-yellow-400 hover:text-yellow-600 
             bg-white group rounded-md flex items-center
               shadow
             `}
@@ -148,7 +148,7 @@ export default function Profile() {
           >
             <div className="flex text-center pt-3 pl-3 pr-3 pb-3">
               <div className="text-sm inline-block font-medium">
-                <i className="fas fa-1x fa-user-circle mr-2 text-teal-500 dark:text-teal-400"></i>{" "}
+                <i className="fas fa-1x fa-user-circle mr-2 text-yellow-400 dark:text-yellow-400"></i>{" "}
                 <span className="">
                   Account
                   {isPaid && (
@@ -161,7 +161,7 @@ export default function Profile() {
                 </span>
               </div>
               {isLoadingProfile && (
-                <div className="text-teal-500 ml-2 text-sm inline-block">
+                <div className="text-yellow-400 ml-2 text-sm inline-block">
                   <i className="fal fa-spinner-third fa-spin fa-fw"></i>{" "}
                   <span className="sm:hidden ml-2 text-xs text-gray-600">
                     fetching details...
@@ -174,13 +174,13 @@ export default function Profile() {
           {customerPortalUrl && (
             <a
               href={customerPortalUrl}
-              className="text-teal-700 dark:text-teal-400 hover:text-teal-700 
+              className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-600 
               bg-gray-50 hover:shadow hover:bg-white group rounded-md flex items-center
                 "
             >
               <span className="text-gray-500 inline-block align-middle p-2">
                 <span className="truncate text-sm inline-block align-middle font-medium">
-                  <i className="text-teal-500 fa-1x fas fa-credit-card mr-2"></i>{" "}
+                  <i className="text-yellow-400 fa-1x fas fa-credit-card mr-2"></i>{" "}
                   <span className="inline-block align-baseline">
                     Subscription
                   </span>
@@ -196,7 +196,7 @@ export default function Profile() {
           expires={member?.stripeCurrentPeriodEnd}
         />
         <ChessProfile {...member} isLoading={isLoadingProfile} />
-        <IntegrationProfile {...member} isLoading={isLoadingProfile} />
+        {/* <IntegrationProfile {...member} isLoading={isLoadingProfile} /> */}
         <div className="text-right">
           <QuickSearch tag="membership" />
         </div>

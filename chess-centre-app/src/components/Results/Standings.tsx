@@ -67,7 +67,7 @@ export const Standings = ({
             <tr>
               <th
                 scope="col"
-                className="px-1 py-3 text-center text-xs font-medium text-teal-brand uppercase tracking-wider"
+                className="px-1 py-3 text-center text-xs font-medium text-yellow-brand uppercase tracking-wider"
               >
                 <i className="fad fa-chart-pie-alt"></i>
               </th>
@@ -147,14 +147,14 @@ export const Standings = ({
                     key={key}
                     className={classNames(
                       hightLightOpponent
-                        ? "bg-teal-300"
+                        ? "bg-yellow-300"
                         : isEven && !isWinner
                         ? "bg-white"
                         : isWinner
                         ? "bg-yellow-50 border border-b border-white"
                         : "bg-slate-50",
                       showOpponents && "cursor-pointer",
-                      "hover:bg-teal-100"
+                      "hover:bg-yellow-100"
                     )}
                   >
                     <td className="border-r border-slate-50 px-1 py-3 text-sm sm:text-md whitespace-nowrap text-center text-slate-400">
@@ -174,7 +174,7 @@ export const Standings = ({
                         </span>
                       </td>
                     )}
-                    <td className="pl-4 text-left px-2 py-3 whitespace-nowrap text-sm sm:text-md text-teal-600 hover:text-teal-700">
+                    <td className="pl-4 text-left px-2 py-3 whitespace-nowrap text-sm sm:text-md text-yellow-500 hover:text-yellow-600">
                       {data.name}
                       {isWinner && (
                         <span className="ml-2 text-yellow-400">
@@ -183,7 +183,7 @@ export const Standings = ({
                       )}
                     </td>
                     <td className="px-1 py-3 text-sm sm:text-md whitespace-nowrap text-center text-white">
-                      <span className="text-teal-700">
+                      <span className="text-yellow-600">
                         {data.rating ? data.rating : "unrated"}
                       </span>
                     </td>
@@ -351,7 +351,7 @@ function ResultCell({
     return (
       <div key={idx} className="relative px-2">
         <PairingColor />
-        <span className="text-teal-500">½</span>
+        <span className="text-yellow-400">½</span>
         <OpponentPairing />
       </div>
     );
@@ -436,25 +436,25 @@ function StatisticsTable({ data, updatePerformanceRating }) {
           <tr>
             <th
               scope="col"
-              className="text-center font-thin text-sm text-teal-600 px-1"
+              className="text-center font-thin text-sm text-yellow-500 px-1"
             >
               #
             </th>
             <th
               scope="col"
-              className="py-1 pl-2 text-left font-thin text-sm text-teal-600"
+              className="py-1 pl-2 text-left font-thin text-sm text-yellow-500"
             >
               Name
             </th>
             <th
               scope="col"
-              className="py-1 px-2 text-center font-thin text-sm text-teal-600"
+              className="py-1 px-2 text-center font-thin text-sm text-yellow-500"
             >
               Rating
             </th>
             <th
               scope="col"
-              className="py-1 px-2 text-center font-thin text-xs mx-auto text-teal-600"
+              className="py-1 px-2 text-center font-thin text-xs mx-auto text-yellow-500"
             >
               <span>
                 <FiftyFiftyIcon className="w-2.5 h-2.5 mx-auto" />
@@ -462,7 +462,7 @@ function StatisticsTable({ data, updatePerformanceRating }) {
             </th>
             <th
               scope="col"
-              className="py-1 px-2 text-center font-thin text-xs text-teal-600"
+              className="py-1 px-2 text-center font-thin text-xs text-yellow-500"
             >
               <span>
                 <i className="fas fa-swords"></i>
@@ -470,7 +470,7 @@ function StatisticsTable({ data, updatePerformanceRating }) {
             </th>
             <th
               scope="col"
-              className="py-1 px-2 text-center font-thin text-sm text-teal-600"
+              className="py-1 px-2 text-center font-thin text-sm text-yellow-500"
             >
               +/-
             </th>
@@ -583,7 +583,7 @@ function StatisticsSummary({ perf, idx }) {
 
       <div className="-mt-10">
         <div className="text-xs text-slate-400 mb-2">Rating Perf.</div>
-        <div className="text-teal-600 text-3xl sm:text-5xl">
+        <div className="text-yellow-500 text-3xl sm:text-5xl">
           {perf[idx].tpr}
         </div>
         <div className="text-xs text-slate-400 mt-2">
