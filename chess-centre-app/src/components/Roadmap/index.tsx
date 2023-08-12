@@ -13,7 +13,7 @@ const Roadmap = () => {
         <div className="bg-white z-10">
           <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
+              <h2 className="text-base font-semibold text-yellow-500 tracking-wide uppercase">
                 Roadmap
               </h2>
               <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
@@ -32,7 +32,7 @@ const Roadmap = () => {
         <div className="sm:mt-12 max-w-7xl mx-auto px-4 sm:px-8 lg:px-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 mt-10">
             <div>
-              <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
+              <h2 className="text-center sm:text-left text-base font-semibold text-yellow-500 tracking-wide">
                 The Centre
               </h2>
               <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">
@@ -42,7 +42,7 @@ const Roadmap = () => {
               <CentreRoadmap />
             </div>
             <div>
-              <h2 className="text-center sm:text-left text-base font-semibold text-teal-600 tracking-wide">
+              <h2 className="text-center sm:text-left text-base font-semibold text-yellow-500 tracking-wide">
                 The Platform
               </h2>
               <p className="text-center sm:text-left text-base max-w-xl mt-5 mx-auto sm:text-md text-gray-500 md:pr-4">

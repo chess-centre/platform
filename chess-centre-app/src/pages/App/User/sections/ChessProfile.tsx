@@ -49,7 +49,7 @@ export default function ChessProfile(props) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <i className="fad fa-question-circle ml-1 text-teal-600 hover:text-teal-700"></i>
+                      <i className="fad fa-question-circle ml-1 text-yellow-500 hover:text-yellow-600"></i>
                     </a>
                   </div>
                 </label>
@@ -57,7 +57,7 @@ export default function ChessProfile(props) {
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
                     className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-                    focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
+                    focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
                     disabled
                     defaultValue={ecfId}
                     type="text"
@@ -73,7 +73,7 @@ export default function ChessProfile(props) {
                     <div className="flex">Standard</div>
                     <input
                       className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
+                      focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
                       disabled
                       defaultValue={ecfRating}
                       type="text"
@@ -85,7 +85,7 @@ export default function ChessProfile(props) {
                     <div className="flex">Rapidplay</div>
                     <input
                       className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-                      focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
+                      focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
                       disabled
                       defaultValue={ecfRapid}
                       type="text"
@@ -109,14 +109,14 @@ export default function ChessProfile(props) {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <i className="fad fa-question-circle ml-1 text-teal-600 hover:text-teal-700"></i>
+                      <i className="fad fa-question-circle ml-1 text-yellow-500 hover:text-yellow-600"></i>
                     </a>
                   </div>
                 </label>
                 <div className="mt-1 rounded-md shadow-sm flex">
                   <input
                     className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-                    focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
+                    focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
                     disabled
                     defaultValue={fideId}
                     type="text"
@@ -150,7 +150,7 @@ export default function ChessProfile(props) {
             These fields are automatically populated, our schedule runs daily to check against the{" "}
             <span className="block sm:hidden"></span>
             <a
-              className="text-teal-600 hover:text-teal-500 text-"
+              className="text-yellow-500 hover:text-yellow-400 text-"
               href="https://www.englishchess.org.uk/"
               target="_blank"
               rel="noreferrer"

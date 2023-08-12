@@ -6,14 +6,12 @@ import Calendar from "../../components/Calendar/ComingEvents";
 import FAQs from "../../components/FAQs/Faqs";
 import FindUs from "../../components/Map/FindUs";
 import DownloadPWA from "../../components/Quote/PWA";
-import GamesSignUp from "../../components/CTA/SignUp";
 import Integrations from "../../components/Integrations";
-import EmbeddedVideo from "../../components/Video/Embedded";
 
 const Home = () => {
 
   useEffect(() => {
-    document.title = "The Chess Centre | Welcome";
+    document.title = "Sheffield Chess Centre | Welcome";
   }, []);
 
   return (
@@ -100,12 +98,12 @@ const Home = () => {
                   <i className="fas fa-chess"></i>
                 </span>
               </h2>
-              <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
+              <h2 className="text-3xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
                 <span className="font-light">Welcome to</span>
                 <br className="xl:hidden" />
-                <span className="bg-gradient-to-r text-gradient from-teal-600 to-teal-400">
+                <span className="bg-gradient-to-r text-gradient from-yellow-500 to-yellow-400">
                   {" "}
-                  The Chess Centre
+                  Sheffield Chess Centre
                 </span>
               </h2>
 
@@ -116,7 +114,7 @@ const Home = () => {
                 <div className="rounded-md shadow">
                   <Link
                     to="/register"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal transition duration-150 ease-in-out md:text-lg md:px-12"
+                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:border-yellow-700 focus:shadow-outline-yellow transition duration-150 ease-in-out md:text-lg md:px-12"
                   >
                     Create Account
                   </Link>
@@ -126,9 +124,7 @@ const Home = () => {
           </main>
         </div>
       </div>
-      <EmbeddedVideo />
       <Calendar />
-      <GamesSignUp />
       <FAQs />
       <FindUs />
       <DownloadPWA />

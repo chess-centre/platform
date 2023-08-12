@@ -1,5 +1,3 @@
-import moment from "moment";
-
 export const Memberships = [
   {
     title: "Adult",
@@ -27,7 +25,7 @@ export const Memberships = [
       iconClasses: "fad fa-analytics"
     }
     ],
-    buttonColour: "bg-teal-600 hover:bg-teal-500",
+    buttonColour: "bg-yellow-500 hover:bg-yellow-400",
     pillColour: "bg-pink-700",
     plan: "adult",
   },
@@ -57,7 +55,7 @@ export const Memberships = [
         iconClasses: "far fa-user-chart"
       }
     ],
-    buttonColour: "bg-teal-600 hover:bg-teal-500",
+    buttonColour: "bg-yellow-500 hover:bg-yellow-400",
     pillColour: "bg-pink-700",
     plan: "junior",
   },

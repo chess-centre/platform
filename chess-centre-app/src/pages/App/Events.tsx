@@ -7,7 +7,7 @@ function Events() {
 
   useEffect(() => {
     
-    document.title = "The Chess Centre | Events";
+    document.title = "Sheffield Chess Centre | Events";
 
     async function fetchMember() {
       const membershipStatus = await isPaidMember();
@@ -19,7 +19,7 @@ function Events() {
   return (
     <>
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fad fa-calendar-edit text-teal-600"></i> Events
+        <i className="fad fa-calendar-edit text-yellow-500"></i> Events
         {isPaid && (
           <div className="inline-flex align-top top-2">
           <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-800 top-2">

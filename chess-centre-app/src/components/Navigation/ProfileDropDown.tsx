@@ -10,7 +10,7 @@ export default function ProfileDropDown(props) {
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="inline-flex justify-center w-full rounded-lg border-2 border-teal-500 shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-teal-500">
+            <Menu.Button className="inline-flex justify-center w-full rounded-lg border-2 border-yellow-400 shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-yellow-400">
               {avatarUrl ? (
                 <img
                   className="rounded-md h-8 w-8"
@@ -43,7 +43,7 @@ export default function ProfileDropDown(props) {
           >
             <Menu.Items
               static
-              className="origin-top-right absolute right-0 mt-2 w-32 sm:w-44 rounded-md shadow-lg bg-white border border-teal-500 ring-black ring-opacity-100 focus:outline-none"
+              className="origin-top-right absolute right-0 mt-2 w-32 sm:w-44 rounded-md shadow-lg bg-white border border-yellow-400 ring-black ring-opacity-100 focus:outline-none"
             >
               <div className="py-1">
                 <Menu.Item>

@@ -46,8 +46,8 @@ export default function EventContactUsModal({ open, setOpen, eventName, eventSta
             >
               <Dialog.Panel className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full sm:p-6">
                 <div>
-                  <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-teal-100">
-                    <i className="fas fa-headset text-teal-600"></i>
+                  <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-yellow-100">
+                    <i className="fas fa-headset text-yellow-500"></i>
                   </div>
                   <div className="mt-3 text-center sm:mt-5">
                     <Dialog.Title
@@ -69,7 +69,7 @@ export default function EventContactUsModal({ open, setOpen, eventName, eventSta
                               <p className="text-sm font-medium text-gray-900">
                                 {contact.name}
                               </p>
-                              <p className="text-sm text-teal-500">
+                              <p className="text-sm text-yellow-400">
                                 <a href={`mailto:${contact.email}?subject=Event%20Enquiry%20|%20${eventName}%20${moment(eventStart).format("Do MMMM")}`}>{contact.email}</a>
                               </p>
                               <p className="text-xs space-x-2 mt-2 text-gray-500">
@@ -86,7 +86,7 @@ export default function EventContactUsModal({ open, setOpen, eventName, eventSta
                 <div className="mt-5 sm:mt-6">
                   <button
                     type="button"
-                    className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-teal-600 text-base font-medium text-white hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 sm:text-sm"
+                    className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-500 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 sm:text-sm"
                     onClick={() => setOpen(false)}
                   >
                     Close

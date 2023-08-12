@@ -5,7 +5,7 @@ import FooterLanding from "../../components/Footer/LandingFooter";
 
 function OurMission() {
   useEffect(() => {
-    document.title = "The Chess Centre | Our Mission";
+    document.title = "Sheffield Chess Centre | Our Mission";
   }, []);
 
   return (
@@ -17,7 +17,7 @@ function OurMission() {
         <div className="max-w-max lg:max-w-7xl mx-auto">
           <div className="relative mb-8 md:mb-2 md:px-6">
             <div className="text-base max-w-prose lg:max-w-none">
-              <h2 className="leading-6 text-teal-600 font-semibold tracking-wide uppercase">
+              <h2 className="leading-6 text-yellow-500 font-semibold tracking-wide uppercase">
                 Our Mission
               </h2>
               <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -107,7 +107,7 @@ function OurMission() {
                     We,{" "}
                     <Link
                       to="/about"
-                      className="text-teal-500 hover:text-teal-700"
+                      className="text-yellow-400 hover:text-yellow-600"
                     >
                       the founders
                     </Link>
@@ -150,7 +150,7 @@ function OurMission() {
                 <div className="object-center text-center mt-10 sm:-mt-10">
                   <Link
                     to="/roadmap"
-                    className="sm:float-right flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700"
+                    className="sm:float-right flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-700"
                   >
                     Our Roadmap
                   </Link>

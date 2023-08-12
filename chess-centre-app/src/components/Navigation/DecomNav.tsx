@@ -18,7 +18,7 @@ const LandingNav = (props: any) => {
   const selectableMenu = "text-gray-500 hover:text-orange-brand";
   const activeMenuMobile = "text-orange-brand";
   const selectableMenuMobile =
-    "text-gray-700 hover:text-teal-900 hover:bg-orange-50";
+    "text-gray-700 hover:text-yellow-900 hover:bg-orange-50";
 
   const signOut = () => {
     logout(dispatch);
@@ -112,8 +112,8 @@ const LandingNav = (props: any) => {
                   <Link
                     to="/login"
                     className={`inline-flex items-center px-3 py-2 border border-transparent shadow text-sm leading-4 
-                    font-medium rounded-md text-teal-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 
-                    focus:ring-offset-2 focus:ring-teal-500`}
+                    font-medium rounded-md text-yellow-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 
+                    focus:ring-offset-2 focus:ring-yellow-400`}
                   >
                     <span className="text-sm">Login</span>
                   </Link>
@@ -175,8 +175,8 @@ const LandingNav = (props: any) => {
                       (current === url
                         ? activeMenuMobile
                         : selectableMenuMobile) +
-                      ` block w-full px-5 py-4 text-center text-sm text-teal-600 hover:text-teal-700
-                      focus:outline-none focus:bg-gray-100 focus:text-teal-700`
+                      ` block w-full px-5 py-4 text-center text-sm text-yellow-500 hover:text-yellow-600
+                      focus:outline-none focus:bg-gray-100 focus:text-yellow-600`
                     }
                     role="menuitem"
                     to={`/${url}`}
@@ -188,8 +188,8 @@ const LandingNav = (props: any) => {
             </div>
             <div>
                 <Link
-                  className={`block w-full px-5 py-3 text-center text-sm text-teal-900 bg-gray-100 hover:bg-gray-100 hover:text-teal-700 
-                  focus:outline-none focus:bg-gray-100 focus:text-teal-700 transition duration-150 ease-in-out`}
+                  className={`block w-full px-5 py-3 text-center text-sm text-yellow-900 bg-gray-100 hover:bg-gray-100 hover:text-yellow-600 
+                  focus:outline-none focus:bg-gray-100 focus:text-yellow-600 transition duration-150 ease-in-out`}
                   role="menuitem"
                   to="/login"
                 >

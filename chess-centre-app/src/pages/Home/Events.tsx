@@ -55,7 +55,7 @@ export default function Events() {
   }, [data, eventType]);
 
   useEffect(() => {
-    document.title = "The Chess Centre | Events"
+    document.title = "Sheffield Chess Centre | Events"
   }, []);
 
   return (
@@ -136,7 +136,7 @@ export default function Events() {
           </div>
           <div className="max-w-7xl mx-auto py-16 px-4 sm:py-28 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
+              <h2 className="text-base font-semibold text-yellow-500 tracking-wide uppercase">
                 Events
               </h2>
               <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
@@ -148,7 +148,7 @@ export default function Events() {
               <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
                 Create your{" "}
                 <Link
-                  className="text-teal-500 hover:text-teal-700 no-underline"
+                  className="text-yellow-400 hover:text-yellow-600 no-underline"
                   to="/register"
                 >
                   free account
@@ -260,7 +260,7 @@ export default function Events() {
                     )
                 ) : (
                   <div className="m-auto text-center mt-10 mb-10">
-                    <div className="text-teal-500 mb-2">
+                    <div className="text-yellow-400 mb-2">
                       <i className="fal fa-spinner-third fa-spin fa-2x fa-fw"></i>
                     </div>
                     <div className="italic text-gray-500">
@@ -294,10 +294,10 @@ const EventTabs = ({
     // No Events  (one === default "all")
     return (
       <div className="text-center mt-12 sm:mt-20 mb-10">
-        <span className="text-7xl sm:text-9xl"><i className="fad fa-frown text-teal-700"></i></span>
+        <span className="text-7xl sm:text-9xl"><i className="fad fa-frown text-yellow-400"></i></span>
         <h3 className="mt-2 text-2xl text-gray-600 font-extrabold">Oh, no events...</h3>
-        <p className="mt-6 mx-10 text-md text-teal-500">
-          Don't worry, we are busy planning our 2022 schedule.
+        <p className="mt-6 mx-10 text-md text-yellow-400">
+          Don't worry, we are busy planning our next round of events!
         </p>
         <p className="mt-6 mx-10 text-md text-gray-500">
           Check back here soon!
@@ -317,10 +317,10 @@ const EventTabs = ({
               type="button"
               className={`${
                 type === selectedEventType
-                  ? "bg-white border-gray-200 text-teal-500"
+                  ? "bg-white border-gray-200 text-yellow-400"
                   : ""
               } relative w-1/2 px-2 border sm:border-none rounded-md shadow-sm py-2 text-xs sm:text-sm sm:font-medium text-gray-700
-            whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-teal-500 focus:z-10 sm:w-auto sm:px-6`}
+            whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:z-10 sm:w-auto sm:px-6`}
             >
               {`${type.charAt(0).toUpperCase()}${type
                 .slice(1)

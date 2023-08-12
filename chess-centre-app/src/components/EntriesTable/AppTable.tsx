@@ -202,7 +202,7 @@ export default function EntriesTable(data: any) {
           <div className="my-4">
             <SectionTabs handleSelectionSelect={handleSelectionSelect} />
           </div>
-          <ul className="my-6 sm:mx-2 text-sm text-teal-700">
+          <ul className="my-6 sm:mx-2 text-sm text-yellow-600">
             <li>{getSectionInfo(eventDetails.name.includes("Junior"))}</li>
           </ul>
         </>
@@ -279,7 +279,7 @@ export default function EntriesTable(data: any) {
                         {key + 1}
                       </td>
                       {showTitled.current && (
-                        <td className="px-0 py-2 whitespace-nowrap text-sm font-medium text-teal-900 text-center">
+                        <td className="px-0 py-2 whitespace-nowrap text-sm font-medium text-yellow-900 text-center">
                           {chessTitle}
                         </td>
                       )}
@@ -300,14 +300,14 @@ export default function EntriesTable(data: any) {
                         )}
                       </td>
                       {showByes.current && (
-                        <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
+                        <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-yellow-600 text-center">
                           {byes
                             ? byes !== "null" && byes?.split("").join(",")
                             : ""}
                         </td>
                       )}
                       {showRatingKey && (
-                        <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-teal-700 text-center">
+                        <td className="px-2 pl-4 py-2 whitespace-nowrap text-xs align-middle font-medium text-yellow-600 text-center">
                           { rating.key ? <span className="cursor-pointer" onClick={() => showRatingModal(true)}>{rating.key}</span> : "" }
                         </td>
                       )}
@@ -376,7 +376,7 @@ function SectionTabs(props) {
             <span
               aria-hidden="true"
               className={classNames(
-                section.current ? "bg-teal-500" : "bg-transparent",
+                section.current ? "bg-yellow-400" : "bg-transparent",
                 "absolute inset-x-0 bottom-0 h-0.5"
               )}
             />
@@ -389,16 +389,16 @@ function SectionTabs(props) {
 
 function RatingAlert() {
   return (
-    <div className="bg-teal-50 border-l-4 border-teal-400 p-2 xl:p-3">
+    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-2 xl:p-3">
       <div className="flex">
         <div className="flex-shrink-0">
           <ExclamationIcon
-            className="h-5 w-5 text-teal-400"
+            className="h-5 w-5 text-yellow-400"
             aria-hidden="true"
           />
         </div>
         <div className="ml-3">
-          <p className="text-xs xl:text-sm text-teal-700">
+          <p className="text-xs xl:text-sm text-yellow-600">
             Ratings are automatically checked against the ECF database, you may
             initially see "unrated" while we verify your info.
           </p>

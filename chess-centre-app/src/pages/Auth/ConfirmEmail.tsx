@@ -14,8 +14,8 @@ function ConfirmEmail(props) {
   const { addToast } = useToasts();
   const email = props?.match.params.email;
   const [code, setCode] = useState("");
-  const dispatch = useAuthDispatch();
-  const { errorMessage, loading } = useAuthState();
+  const dispatch = useAuthDispatch() as any;
+  const { errorMessage, loading } = useAuthState() as any;
 
   async function submitActivationCode() {
     if (!code) {
@@ -56,7 +56,7 @@ function ConfirmEmail(props) {
   }
 
   useEffect(() => {
-    document.title = "The Chess Centre | Confirm Email";
+    document.title = "Sheffield Chess Centre | Confirm Email";
   }, []);
 
   return (
@@ -83,7 +83,7 @@ function ConfirmEmail(props) {
                 Account activation
               </h1>
 
-              <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-teal-500 focus-within:border-teal-500">
+              <div className="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-yellow-400 focus-within:border-yellow-400">
                 <label
                   htmlFor="name"
                   className="absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-sm text-gray-900"
@@ -97,7 +97,7 @@ function ConfirmEmail(props) {
                     type="text"
                     placeholder="000000"
                     onKeyDown={handleKeyDown}
-                    className="block w-full border-0 p-0 text-teal-600 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
+                    className="block w-full border-0 p-0 text-yellow-500 placeholder-gray-500 placeholder-opacity-50 focus:ring-0 text-sm"
                   />
                 </div>
                 
@@ -108,8 +108,8 @@ function ConfirmEmail(props) {
                 <p className="text-xxs text-gray-500">This code has have been sent to your email address</p>
                 <button
                   className="mt-4 w-full right-0 items-center px-4 py-2 border border-transparent shadow text-sm leading-4 
-                font-medium rounded-md text-white bg-teal-600 hover:bg-teal-500 focus:outline-none focus:ring-2 
-                focus:ring-offset-2 focus:ring-teal-500"
+                font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:ring-2 
+                focus:ring-offset-2 focus:ring-yellow-400"
                   disabled={loading}
                   onClick={submitActivationCode}
                 >
@@ -123,7 +123,7 @@ function ConfirmEmail(props) {
               <hr className="my-8" />
               <div className="mt-4">
                 <div
-                  className="text-sm font-medium text-teal-600 hover:underline cursor-pointer"
+                  className="text-sm font-medium text-yellow-500 hover:underline cursor-pointer"
                   onClick={resendCode}
                 >
                   Resend

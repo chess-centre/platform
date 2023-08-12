@@ -85,7 +85,7 @@ export default function Parking({ alignLeft = true }) {
                         target="_blank"
                         rel="noreferrer"
                         type="button"
-                        className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                        className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400"
                       >
                         <i className="far fa-map-marker-alt text-white"></i>
                       </a>
@@ -102,7 +102,7 @@ export default function Parking({ alignLeft = true }) {
             </p>
             <div className="mt-3">
               <a
-                className="text-teal-500 underline"
+                className="text-yellow-400 underline"
                 href="https://www.bradford.gov.uk/transport-and-travel/parking/car-parks-in-ilkley/"
               >
                 more info
@@ -119,7 +119,7 @@ export default function Parking({ alignLeft = true }) {
           <span className="">
             <i className="fal fa-cars fa-8x text-gray-200"></i>
           </span>
-          <span className="animate-pluse mt-2 block text-sm font-medium text-teal-500">
+          <span className="animate-pluse mt-2 block text-sm font-medium text-yellow-400">
             Loading...
           </span>
         </div>

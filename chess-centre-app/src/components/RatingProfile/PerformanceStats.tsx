@@ -56,7 +56,7 @@ export default function PerformanceStats({
 
         <div className="mt-3 grid grid-cols-2 gap-4 sm:gap-4 lg:grid-cols-2">
           <div className="relative border border-gray-200 bg-white rounded-md">
-            <div className="bg-teal-700 rounded-t-md text-white uppercase font-medium text-sm py-2 mb-2">
+            <div className="bg-yellow-700 rounded-t-md text-white uppercase font-medium text-sm py-2 mb-2">
               Standard
             </div>
             <div className="text-lg font-medium">
@@ -92,7 +92,7 @@ export default function PerformanceStats({
             <button
               type="button"
               className="inline-flex w-full justify-center rounded-md border border-gray-200
-              bg-gray-100 px-4 py-2 text-base font-medium text-teal-700 shadow-sm hover:bg-gray-200 hover:border-gray-300
+              bg-gray-100 px-4 py-2 text-base font-medium text-yellow-600 shadow-sm hover:bg-gray-200 hover:border-gray-300
               focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sm:text-sm"
               onClick={() => downloadPGNs(playerInfo.username, games)}
             >
@@ -169,9 +169,9 @@ const PerformanceCard = ({ playerInfo, games, type }) => {
   return (
     <dl className="mt-2 flex-grow flex flex-col justify-between text-gray-600">
       <dt className="text-sm font-medium">Games</dt>
-      <dd className="text-lg font-medium text-teal-600">{stats.games}</dd>
+      <dd className="text-lg font-medium text-yellow-500">{stats.games}</dd>
       <dt className="text-sm font-medium">Points</dt>
-      <dd className="text-lg font-medium text-teal-600">{stats.points}</dd>
+      <dd className="text-lg font-medium text-yellow-500">{stats.points}</dd>
       <dt className="text-sm font-medium">Perf. Rating</dt>
       <dd className="m-3">
         <PerformanceRating performance={stats.performanceRating} currentRating={rating} />
@@ -322,7 +322,7 @@ const FormTimeLine = ({ form }) => {
         );
       case 0.5:
         return (
-          <div className=" bg-yellow-500 hover:bg-yellow-600 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5">
+          <div className=" bg-yellow-400 hover:bg-yellow-500 text-white text-sx text-center cursor-pointer rounded-sm w-3.5 py-0.5">
             D
           </div>
         );

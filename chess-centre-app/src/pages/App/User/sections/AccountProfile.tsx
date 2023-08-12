@@ -56,7 +56,7 @@ export default function AccountProfile(props) {
             </label>
             <input
               className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-              focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
+              focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
               disabled
               value={user.given_name}
               type="text"
@@ -81,7 +81,7 @@ export default function AccountProfile(props) {
               id={LAST_NAME}
               autoComplete="off"
               className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-              focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
+              focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
             />
           </div>
 
@@ -100,7 +100,7 @@ export default function AccountProfile(props) {
               id={EMAIL_ADDRESS}
               autoComplete="off"
               className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-              focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
+              focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
             />
           </div>
           {user.email_verified && (
@@ -143,7 +143,7 @@ export default function AccountProfile(props) {
                     id="renewal"
                     autoComplete="off"
                     className={`text-xs sm:text-sm mt-1 block w-full border bg-gray-100 border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 sm:text-gray-500 cursor-not-allowed
-                          focus:outline-none focus:ring-teal-500 focus:border-teal-500 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
+                          focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800`}
                   />
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function AccountProfile(props) {
       <div className="px-4 py-3 bg-gray-50 dark:bg-gray-900 text-center sm:text-right text-xs sm:text-sm sm:px-6 border-t border-gray-50 dark:border-gray-700 italic">
           {/* Need to update these details?{" "} */}
           <a
-            className="text-teal-600 hover:text-teal-500"
+            className="text-yellow-500 hover:text-yellow-400"
             href={`mailto:support@chesscentre.online?subject=Account%20Update%20(MemberId:%20${user.id})`}
           >
             support@chesscentre.online

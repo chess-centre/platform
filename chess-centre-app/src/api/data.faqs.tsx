@@ -32,7 +32,7 @@ export const faqData = (type: Type): Faq[] =>
         <span>
           Yes, absolutely! We welcome anyone to come visit us on our{" "}
           <Link
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             to={`/events/club`}
           >
             Thursday club night
@@ -40,7 +40,7 @@ export const faqData = (type: Type): Faq[] =>
           , here we can show you the basics and go from there! Alternatively, we
           also have our{" "}
           <Link
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             to={`/events/junior-club`}
           >
             Junior Club
@@ -70,7 +70,7 @@ export const faqData = (type: Type): Faq[] =>
         <span>
           No. All our events are open for all to join, register your free account to the sign up for any of our published{" "}
           <Link
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             to={`/events`}
           >events</Link>
         </span>
@@ -84,7 +84,7 @@ export const faqData = (type: Type): Faq[] =>
         <span>
           Absolutely! We will be running all kinds of events but our{" "}
           <Link
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             to="/events/club"
           >
             Thursday club night
@@ -115,7 +115,7 @@ export const faqData = (type: Type): Faq[] =>
         <span>
           We know at times things won't always go to plan. No problem,{" "}
           <a
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             href="mailto:support@chesscentre.online"
           >
             send us a message
@@ -158,7 +158,7 @@ export const faqData = (type: Type): Faq[] =>
         <span>
           We encourage you to drop us an{" "}
           <a
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             href="mailto:info@chesscentre.online?subject=Junior%20Club%20Enquiry"
           >
             email
@@ -326,7 +326,7 @@ export const faqData = (type: Type): Faq[] =>
           Yes. We do treat each enquiry individually depending on your
           requirements and availablity. Please speak to us in the club or{" "}
           <a
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             href="mailto:info@chesscentre.online?subject=Coaching"
           >
             send us a message
@@ -355,7 +355,7 @@ export const faqData = (type: Type): Faq[] =>
         <span>
           You can find our membership pricing here:{" "}
           <Link
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             to={`/membership`}
           >
             membership
@@ -370,10 +370,10 @@ export const faqData = (type: Type): Faq[] =>
       Answer: () => (
         <span>
           Look out for the{" "}
-          <i className="text-teal-500 hover:text-gray-600 fa fa-flag"></i> icon,
+          <i className="text-yellow-400 hover:text-gray-600 fa fa-flag"></i> icon,
           click on this to reveal the details of the round times or see the{" "}
           <Link
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             to={`/events`}
           >
             more info
@@ -393,7 +393,7 @@ export const faqData = (type: Type): Faq[] =>
           are rated and this still is not showing, let us know so we can check
           for you.{" "}
           <a
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             href="mailto:support@chesscentre.online?subject=Missing%20Games"
           >
             Send us a message
@@ -414,7 +414,7 @@ export const faqData = (type: Type): Faq[] =>
           have captured it correctly then we make sure we add these to your
           profile. Feel free to contact us about adding any missing data.{" "}
           <a
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             href="mailto:support@chesscentre.online?subject=Add%20Games"
           >
             Send us a message
@@ -431,7 +431,7 @@ export const faqData = (type: Type): Faq[] =>
           You can add your <span className="font-medium">chess.com</span> and{" "}
           <span className="font-medium">lichess.com</span> via your{" "}
           <Link
-            className="text-base font-medium text-teal-600 dark:text-teal-700 hover:underline"
+            className="text-base font-medium text-yellow-500 dark:text-yellow-600 hover:underline"
             to="/app/profile"
           >
             profile.

@@ -46,7 +46,7 @@ export default function Volunteers() {
                     <div className="space-y-4">
                       <div className="text-lg leading-6 font-medium space-y-1">
                         <h3>{name}</h3>
-                        <p className="text-teal-600">{role}</p>
+                        <p className="text-yellow-500">{role}</p>
                       </div>
                       <div className="text-lg">
                         <p className="text-gray-500 text-justify">{bio}</p>

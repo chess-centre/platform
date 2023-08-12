@@ -35,7 +35,7 @@ export default function Trains({ eventId, eventType, alignLeft = true }) {
     <div className="mt-4 p-2 text-sm">
       <h1 className="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-200 text-left">
         Departures <span className="text-xs text-gray-500">from Ilkley</span>{" "}
-        <i className="fad fa-map-signs text-teal-500"></i>
+        <i className="fad fa-map-signs text-yellow-400"></i>
       </h1>
       {trainInfo && !isLoading && !isError && (
         <div>
@@ -101,7 +101,7 @@ export default function Trains({ eventId, eventType, alignLeft = true }) {
           <span>
             <i className="animate-bounce fal fa-train fa-3x sm:fa-8x text-gray-200"></i>
           </span>
-          <span className="mt-2 block text-sm font-medium text-teal-600">
+          <span className="mt-2 block text-sm font-medium text-yellow-500">
             Checking Train times...
           </span>
         </div>

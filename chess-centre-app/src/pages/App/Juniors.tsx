@@ -50,7 +50,7 @@ function UsefulLinksTable() {
       <div className="inline-block min-w-full">
         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
           <table className="divide-y divide-gray-200">
-            <thead className="bg-teal-700">
+            <thead className="bg-yellow-700">
               <tr>
                 <th
                   scope="col"
@@ -84,7 +84,7 @@ function UsefulLinksTable() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       <a
-                        className="text-teal-500 hover:text-teal-700 hover:underline"
+                        className="text-yellow-400 hover:text-yellow-600 hover:underline"
                         target="_blank"
                         rel="noreferrer"
                         href={url}
@@ -105,15 +105,15 @@ function UsefulLinksTable() {
 
 export default function Juniors() {
   useEffect(() => {
-    document.title = "The Chess Centre | Juniors";
+    document.title = "Sheffield Chess Centre | Juniors";
   }, []);
 
   return (
     <>
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fad fa-joystick text-teal-600"></i> Juniors
+        <i className="fad fa-joystick text-yellow-500"></i> Juniors
         <div className="inline-flex align-top top-2">
-          <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-teal-100 text-teal-700 top-2">
+          <span className="ml-2 items-center px-2.5 py-0.5 rounded-md text-xs sm:text-sm font-medium bg-yellow-100 text-yellow-600 top-2">
             Resources
           </span>
         </div>

@@ -78,13 +78,13 @@ function ListCard({ event }) {
           <div className="text-gray-600 flex-grow">
             <div>
               {event.time && (
-                <p className="inline text-sm text-teal-700 mr-2">
+                <p className="inline text-sm text-yellow-600 mr-2">
                   <i className="fad fa-clock mr-1"></i>
                   <span className="inline">{event.time}</span>{" "}
                 </p>
               )}
               {event.rounds && (
-                <p className="inline text-sm text-teal-700">
+                <p className="inline text-sm text-yellow-600">
                   <i className="fad fa-flag mr-1"></i>
                   <span className="inline">{event.rounds} rounds</span>{" "}
                 </p>
@@ -151,8 +151,8 @@ function ListCalendar({
           )}
 
           {!isLoading && allDeselected && (
-            <div className="relative block border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
-              <i className="fad fa-th-list fa-4x text-teal-500"></i>
+            <div className="relative block border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400">
+              <i className="fad fa-th-list fa-4x text-yellow-400"></i>
               <span className="mt-2 block text-sm font-medium text-gray-900">
                 Select a filter <i className="far fa-filter"></i> to see events
               </span>
@@ -258,7 +258,7 @@ function ListComingSoonCard() {
             Our next events will be published here soon.{" "}
           </p>
         </div>
-        <div className="bg-teal-500 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
+        <div className="bg-yellow-400 absolute right-0 inset-y-0 px-1 text-xs rounded-r-lg"></div>
       </div>
     </li>
   );
@@ -271,7 +271,7 @@ function ListNoEventsRemaining({ month, setSelectedMonth }) {
       <div className="relative z-0 flex-1 flex items-center justify-between border-t border-b border-l border-gray-200 bg-white hover:bg-gray-50 rounded-lg truncate shadow">
         <div className="px-4 sm:px-6 py-2 sm:py-6 text-sm truncate rounded-l-lg">
           <h3 className="font-red-hat-display text-xl mb-1 text-gray-500">Events Complete</h3>
-          <p className="text-teal-500 text-sm mb-1">
+          <p className="text-yellow-400 text-sm mb-1">
             All events for {monthNames[month]} are now finished.
           </p>
           <p className="text-gray-700 text-sm mb-1"><span className="font-semibold">Try next months...{" "}</span></p>
@@ -330,7 +330,7 @@ function ListSkeleton() {
         <div className="flex-shrink-0 pr-2">
           <div
             className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 inline-flex items-center
-            justify-center text-gray-300 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mr-2 sm:mr-4`}
+            justify-center text-gray-300 rounded-lg hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 mr-2 sm:mr-4`}
           >
             <span className="text-gray-400">
               <i className="fas fa-info"></i>

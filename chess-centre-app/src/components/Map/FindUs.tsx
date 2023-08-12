@@ -61,7 +61,7 @@ const OpeningTime = (props) => {
       <span className="text-xl font-bold">{day}</span>
       {slots.map(({ time, type }, key) => (
         <div key={key} className="mb-2 py-1">
-          <p className="sm:text-sm text-teal-500">{type}</p>
+          <p className="sm:text-sm text-yellow-400">{type}</p>
           <p className="sm:text-xs text-gray-700">{time}</p>
         </div>
       ))}

@@ -14,7 +14,6 @@ if (process.env.NODE_ENV === "production") {
   const trackingId = "UA-194757154-1";
   ReactGA.initialize(trackingId);
 }
-const FESTIVAL_ID = process.env.REACT_APP_FESTIVAL_ID;
 const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY || "";
 
 const stripePromise = loadStripe(STRIPE_KEY);
@@ -46,7 +45,6 @@ export default function App() {
                       exact={route.exact}
                     />
                   ))}
-                  <Redirect exact from="/festival" to={`/events/festival/${FESTIVAL_ID}`} />
                   <Route component={Page404} />
                 </Switch>
               </Router>

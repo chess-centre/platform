@@ -36,10 +36,10 @@ export default function FilterMenu(props) {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button
-            className={classNames(someSelected ? 'text-teal-600 bg-gray-100' : 'text-gray-500 bg-white hover:bg-gray-50', `ml-2 relative inline-flex items-center px-2 py-2 shadow-md 
-                      rounded-md border border-gray-300 text-sm ring-teal-500
+            className={classNames(someSelected ? 'text-yellow-500 bg-gray-100' : 'text-gray-500 bg-white hover:bg-gray-50', `ml-2 relative inline-flex items-center px-2 py-2 shadow-md 
+                      rounded-md border border-gray-300 text-sm ring-yellow-400
                        focus:z-10 focus:outline-none 
-                      focus:ring-1 focus:ring-teal-500 focus:border-teal-500`)}
+                      focus:ring-1 focus:ring-yellow-400 focus:border-yellow-400`)}
           >
             <span className="sr-only">Filter</span>
             <i className="fas fa-filter"></i>
@@ -63,7 +63,7 @@ export default function FilterMenu(props) {
                         type="checkbox"
                         onChange={() => { }}
                         checked={filters[filterName]}
-                        className="mr-3 focus:ring-teal-500 h-4 w-4 text-teal-600 rounded cursor-pointer"
+                        className="mr-3 focus:ring-yellow-400 h-4 w-4 text-yellow-500 rounded cursor-pointer"
                       />
                       {`${filterName[0].toUpperCase()}${filterName.slice(1)}`}
                     </div>

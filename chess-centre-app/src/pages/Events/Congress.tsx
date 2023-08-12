@@ -53,7 +53,7 @@ function CongressEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
-    document.title = "The Chess Centre | Congress";
+    document.title = "Sheffield Chess Centre | Congress";
 
     try {
       const fetchEvent = async () => {
@@ -103,7 +103,7 @@ function CongressEvent() {
       <div className="py-10 bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
-            <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
+            <h2 className="text-base text-yellow-500 font-semibold tracking-wide uppercase">
               <i className="fad fa-rocket-launch"></i> Take it to the next
               level?
             </h2>
@@ -117,7 +117,7 @@ function CongressEvent() {
               <div className="mt-3">
                 <a
                   href="/broadcast/live"
-                  className={`inline-flex items-center px-16 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-700 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400`}
+                  className={`inline-flex items-center px-16 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-yellow-700 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400`}
                 >
                   <span className="flex relative h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full rounded-full bg-orange-500 opacity-75"></span>
@@ -129,7 +129,7 @@ function CongressEvent() {
             )}
           </div>
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
-            <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+            <p className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify">
               The Chess Centre’s “Mini-Congresses” have been tailored
               specifically for our venue to provide a sophisticated and
               digitally supported congress tournament experience for our members
@@ -140,7 +140,7 @@ function CongressEvent() {
           </div>
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             <div className="relative">
-              <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+              <div className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify">
                 <p>
                   When competitors visit our Chess Centre for the first time to
                   play in a Congress events, we hope that they are impressed by
@@ -183,13 +183,13 @@ function CongressEvent() {
                       <i className="fal fa-info-circle text-yellow-400 fa-2x"></i>
                     </div>
                     <div className="ml-3">
-                      <p className="text-sm text-yellow-700 sm:mt-2">
+                      <p className="text-sm text-yellow-600 sm:mt-2">
                         There are currently {entryCount}{" "}
                         {entryCount === 1 ? "entry" : "entries"}.
                         <br className="block sm:hidden" />
                         <Link
                           to={`/app/events/${id}`}
-                          className="font-medium underline text-yellow-700 hover:text-yellow-600 sm:ml-2"
+                          className="font-medium underline text-yellow-600 hover:text-yellow-500 sm:ml-2"
                         >
                           Login to see the full list
                         </Link>
@@ -203,7 +203,7 @@ function CongressEvent() {
 
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <Link
-                  className="text-teal-600 hover:text-teal-500"
+                  className="text-yellow-500 hover:text-yellow-400"
                   to="/events"
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back
@@ -255,7 +255,7 @@ function CongressEvent() {
               </div>
               <div className="text-sm text-center mt-6 sm:hidden">
                 <button
-                  className="text-teal-600 hover:text-teal-500"
+                  className="text-yellow-500 hover:text-yellow-400"
                   onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back

@@ -53,7 +53,7 @@ export default function RapidplayEvent() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
-    document.title = "The Chess Centre | Rapidplay";
+    document.title = "Sheffield Chess Centre | Rapidplay";
 
     const fetchEvent = async () => {
       setIsLoading(true);
@@ -97,8 +97,8 @@ export default function RapidplayEvent() {
       <div className="py-10 bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8">
           <div className="text-base max-w-prose mx-auto lg:max-w-none">
-            <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">
-              <span className="text-teal-500">
+            <h2 className="text-base text-yellow-500 font-semibold tracking-wide uppercase">
+              <span className="text-yellow-400">
                 <i className="fad fa-stopwatch"></i>
               </span>{" "}
               No time to waste
@@ -113,7 +113,7 @@ export default function RapidplayEvent() {
               <div className="mt-3">
                 <a
                   href="/broadcast/live"
-                  className={`inline-flex items-center px-16 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-teal-700 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400`}
+                  className={`inline-flex items-center px-16 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-yellow-700 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400`}
                 >
                   <span className="flex relative h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full rounded-full bg-orange-500 opacity-75"></span>
@@ -126,7 +126,7 @@ export default function RapidplayEvent() {
           </div>
 
           <div className="relative text-base max-w-prose mx-auto lg:max-w-5xl lg:mx-0 lg:pr-72">
-            <p className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+            <p className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify">
               Want to test yourself, but don&#8217;t have time for a full
               weekend tournament? Then look no further, as our 1 day, 5 round
               Rapidplay tournaments are ideal for new and returning players who
@@ -135,14 +135,14 @@ export default function RapidplayEvent() {
             </p>
             <img
               alt="Gawain Ako - Blitz Chess"
-              className="mt-4 mx-auto rounded-full w-44 sm:w-52 border-4 border-teal-500"
+              className="mt-4 mx-auto rounded-full w-44 sm:w-52 border-4 border-yellow-400"
               src={KevinWinterRapid}
             />
           </div>
 
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
             <div className="relative">
-              <div className="prose prose-teal text-gray-500 mx-auto lg:max-w-none text-justify">
+              <div className="prose prose-yellow text-gray-500 mx-auto lg:max-w-none text-justify">
                 <p>
                   Our Open Rapidplay Tournaments also tend to follow our favored
                   “all-play-all” format of players competing in rated groups of
@@ -171,13 +171,13 @@ export default function RapidplayEvent() {
                       <i className="fal fa-info-circle text-yellow-400 fa-2x"></i>
                     </div>
                     <div className="ml-3">
-                      <p className="text-sm text-yellow-700 sm:mt-2">
+                      <p className="text-sm text-yellow-600 sm:mt-2">
                         There are currently {entryCount}{" "}
                         {entryCount === 1 ? "entry" : "entries"}.
                         <br className="block sm:hidden" />
                         <Link
                           to={`/app/events/${id}`}
-                          className="font-medium underline text-yellow-700 hover:text-yellow-600 sm:ml-2"
+                          className="font-medium underline text-yellow-600 hover:text-yellow-500 sm:ml-2"
                         >
                           Login to see the full list
                         </Link>
@@ -189,7 +189,7 @@ export default function RapidplayEvent() {
               <VenueInfo />
               <div className="text-sm text-left mt-6 hidden sm:block">
                 <button
-                  className="text-teal-600 hover:text-teal-500"
+                  className="text-yellow-500 hover:text-yellow-400"
                   onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back
@@ -243,7 +243,7 @@ export default function RapidplayEvent() {
 
               <div className="text-sm text-center mt-6 sm:hidden">
                 <button
-                  className="text-teal-600 hover:text-teal-500"
+                  className="text-yellow-500 hover:text-yellow-400"
                   onClick={history.goBack}
                 >
                   <i className="fad fa-long-arrow-alt-left"></i> back

@@ -110,7 +110,7 @@ export default function EventGamesView() {
   const [averageRating, setAverageRating] = useState<number>(0);
 
   useEffect(() => {
-    document.title = "The Chess Centre | Games by Event";
+    document.title = "Sheffield Chess Centre | Games by Event";
 
     const fetchGames = async () => {
       setIsLoadingGames(true);
@@ -222,7 +222,7 @@ export default function EventGamesView() {
   return (
     <div className="overscroll-none">
       <h1 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        <i className="fas fa-game-board-alt text-teal-600"></i> Games{" "}
+        <i className="fas fa-game-board-alt text-yellow-500"></i> Games{" "}
         <span className="text-sm text-gray-500">by event</span>
       </h1>
       <div className="pb-5 border-b border-gray-200">
@@ -250,7 +250,7 @@ export default function EventGamesView() {
                 ) : (
                   <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                     <span>
-                      <i className="fal fa-chess fa-6x text-teal-500"></i>
+                      <i className="fal fa-chess fa-6x text-yellow-400"></i>
                     </span>
                     <p className="mt-2 block text-sm font-medium text-gray-600">
                       No games for this event.
@@ -263,7 +263,7 @@ export default function EventGamesView() {
             {isLoadingGames && (
               <div className="relative mt-6 block w-full border-2 border-gray-300 border-dashed rounded-sm p-12 text-center">
                 <span className="animate-pulse">
-                  <i className="aninmal-pulse fal fa-chess-board fa-10x text-teal-500 opacity-50"></i>
+                  <i className="aninmal-pulse fal fa-chess-board fa-10x text-yellow-400 opacity-50"></i>
                 </span>
                 <p className="mt-2 block text-sm font-medium text-gray-600">
                   Loading games...
@@ -291,18 +291,18 @@ export default function EventGamesView() {
             </h3>
             <dl className="mt-2 flex-grow flex flex-col justify-between text-gray-600 bg-white p-6 shadow rounded-lg">
               <dt className="text-sm font-medium">Total Games</dt>
-              <dd className="text-8xl font-medium text-teal-600">
+              <dd className="text-8xl font-medium text-yellow-500">
                 {games.length}
               </dd>
               <dt className="text-sm font-medium">Average Rating</dt>
-              <dd className="text-3xl font-medium text-teal-600">{ averageRating.toFixed(0) }</dd>
+              <dd className="text-3xl font-medium text-yellow-500">{ averageRating.toFixed(0) }</dd>
             </dl>
             <div className="mb-2 mt-4">
               {eventInfo && eventInfo?.results?.items[0]?.complete && (
                 <Link
                   to={`/app/results/${eventInfo?.results?.items[0]?.id}`}
                   className="inline-flex w-full justify-center rounded-md border border-gray-200
-                  bg-teal-600 px-4 py-2 text-base font-medium text-gray-100 shadow-sm hover:bg-teal-500 hover:border-gray-300
+                  bg-yellow-500 px-4 py-2 text-base font-medium text-gray-100 shadow-sm hover:bg-yellow-400 hover:border-gray-300
                   focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sm:text-sm"
                 >
                   See Standings
@@ -315,7 +315,7 @@ export default function EventGamesView() {
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md border border-gray-200
-                  bg-gray-100 px-4 py-2 text-base font-medium text-teal-700 shadow-sm hover:bg-gray-200 hover:border-gray-300
+                  bg-gray-100 px-4 py-2 text-base font-medium text-yellow-600 shadow-sm hover:bg-gray-200 hover:border-gray-300
                   focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 sm:text-sm"
                     onClick={() => downloadPGNs(eventName, games)}
                   >

@@ -10,7 +10,7 @@ import "../../assets/css/swagger-custom.css";
 import { classNames } from "../../utils/Classes";
 
 const Developer = () => {
-  document.title = "The Chess Centre | Developer";
+  document.title = "Sheffield Chess Centre | Developer";
 
   const { isLoading, error, data } = useEventsLite();
   const [eventUrl, setEventUrl] = useState<string>("");
@@ -170,7 +170,7 @@ const Developer = () => {
           </div>
           <div className="max-w-7xl mx-auto py-16 px-4 sm:py-28 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
+              <h2 className="text-base font-semibold text-yellow-500 tracking-wide uppercase">
                 Developer
               </h2>
               <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
@@ -185,7 +185,7 @@ const Developer = () => {
         <div className="w-full bg-gray-50 mt-10">
           <div className="max-w-7xl mx-auto">
             <div className="mt-10 py-6 px-10 sm:px-32">
-              <h2 className="text-base font-semibold text-teal-600 tracking-wide uppercase">
+              <h2 className="text-base font-semibold text-yellow-500 tracking-wide uppercase">
                 Widgets
               </h2>
               {!isLoading && !error && (
@@ -208,7 +208,7 @@ const Developer = () => {
                           onChange={(event) => handleEventSelect(event)}
                           id="events"
                           name="events"
-                          className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 max-w-xs text-sm"
+                          className="block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-400 focus:ring-yellow-400 max-w-xs text-sm"
                         >
                           {data.map((event) => (
                             <option
@@ -238,7 +238,7 @@ const Developer = () => {
                             }
                             id="colour"
                             name="colour"
-                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 max-w-xs text-sm"
+                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-400 focus:ring-yellow-400 max-w-xs text-sm"
                           >
                             <option>Gray</option>
                             <option>White</option>
@@ -268,7 +268,7 @@ const Developer = () => {
                           id="embed"
                           name="embed"
                           rows={6}
-                          className="block w-full max-w-lg rounded-md text-black border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 text-xs"
+                          className="block w-full max-w-lg rounded-md text-black border-gray-300 shadow-sm focus:border-yellow-400 focus:ring-yellow-400 text-xs"
                           defaultValue={embedCode}
                         />
                       </div>
@@ -321,8 +321,8 @@ function LogoToggle({ enabled, setEnabled }) {
         checked={enabled}
         onChange={setEnabled}
         className={classNames(
-          enabled ? "bg-teal-600" : "bg-gray-200",
-          "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+          enabled ? "bg-yellow-500" : "bg-gray-200",
+          "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
         )}
       >
         <span
@@ -347,8 +347,8 @@ function ThemeToggle({ enabled, setEnabled }) {
         checked={enabled}
         onChange={setEnabled}
         className={classNames(
-          enabled ? "bg-teal-600" : "bg-gray-200",
-          "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+          enabled ? "bg-yellow-500" : "bg-gray-200",
+          "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2"
         )}
       >
         <span

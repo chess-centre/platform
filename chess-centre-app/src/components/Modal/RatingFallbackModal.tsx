@@ -50,7 +50,7 @@ export default function RatingFallbackModal({
                       <div className="text-xs py-1 px-2 mt-3 text-justify">
                         <p className="mb-2">
                           The latest{" "}
-                          <span className="text-teal-700">ECF {eventType}</span>{" "}
+                          <span className="text-yellow-600">ECF {eventType}</span>{" "}
                           ratings are used for this event, where we cannot find
                           one, we use the below (in order of precedence) to
                           determine playing strength and seeding on our entry
@@ -59,22 +59,22 @@ export default function RatingFallbackModal({
                         <p className="mb-2">Rating reference key</p>
                         {eventType !== "rapidplay" && (
                           <p className="ml-2 mb-2">
-                            <span className="font-bold text-teal-700">R</span> =
+                            <span className="font-bold text-yellow-600">R</span> =
                             Rapidplay ECF rating used
                           </p>
                         )}
                         {eventType !== "standard" && (
                           <p className="ml-2 mb-2">
-                            <span className="font-bold text-teal-700">S</span> =
+                            <span className="font-bold text-yellow-600">S</span> =
                             Standard ECF rating used
                           </p>
                         )}
                         <p className="ml-2 mb-2">
-                          <span className="font-bold text-teal-700">F</span> =
+                          <span className="font-bold text-yellow-600">F</span> =
                           FIDE standard rating used
                         </p>
                         <p className="ml-2 mb-2">
-                          <span className="font-bold text-teal-700">E</span> =
+                          <span className="font-bold text-yellow-600">E</span> =
                           Estimated rating is used
                         </p>
                         <p className="ml-2 mb-2">
@@ -84,7 +84,7 @@ export default function RatingFallbackModal({
                         <p className="text-xs text-center text-gray-900 mt-2">
                           Ratings last updated
                         </p>
-                        <p className="text-xs text-center text-teal-600">
+                        <p className="text-xs text-center text-yellow-500">
                           {moment(lastUpdated).format("MMMM Do YYYY, h:mm a")}
                         </p>
                         <p className="mb-2 mt-4 text-center">

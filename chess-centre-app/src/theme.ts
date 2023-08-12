@@ -81,7 +81,7 @@ const theme = {
     danger: "text-red-700 bg-red-100 dark:text-red-100 dark:bg-red-700",
     warning: "text-orange-700 bg-orange-100 dark:text-white dark:bg-orange-600",
     neutral: "text-gray-700 bg-gray-100 dark:text-gray-100 dark:bg-gray-700",
-    primary: "text-teal-700 bg-teal-100 dark:text-white dark:bg-teal-600",
+    primary: "text-yellow-600 bg-yellow-100 dark:text-white dark:bg-yellow-500",
   },
   // Backdrop
   backdrop: {
@@ -93,7 +93,7 @@ const theme = {
     base:
       "block w-full text-sm dark:text-gray-300 form-textarea focus:outline-none",
     active:
-      "focus:border-teal-400 dark:border-gray-600 dark:focus:border-gray-600 dark:bg-gray-700 dark:focus:shadow-outline-gray focus:shadow-outline-teal",
+      "focus:border-yellow-400 dark:border-gray-600 dark:focus:border-gray-600 dark:bg-gray-700 dark:focus:shadow-outline-gray focus:shadow-outline-yellow",
     disabled: "cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800",
     valid:
       "border-green-600 dark:bg-gray-700 focus:border-green-400 dark:focus:border-green-400 focus:shadow-outline-green dark:focus:shadow-outline-green",
@@ -104,7 +104,7 @@ const theme = {
   select: {
     base: "block w-full text-sm dark:text-gray-300 focus:outline-none",
     active:
-      "focus:border-teal-400 dark:border-gray-600 dark:bg-gray-700 focus:shadow-outline-teal dark:focus:shadow-outline-gray dark:focus:border-gray-600",
+      "focus:border-yellow-400 dark:border-gray-600 dark:bg-gray-700 focus:shadow-outline-yellow dark:focus:shadow-outline-gray dark:focus:border-gray-600",
     select: "form-select leading-5",
     multiple: "form-multiselect",
     disabled: "cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800",
@@ -125,16 +125,16 @@ const theme = {
     base:
       "block w-full text-sm focus:outline-none dark:text-gray-300 form-input leading-5",
     active:
-      "focus:border-teal-400 dark:border-gray-600 focus:shadow-outline-teal dark:focus:border-gray-600 dark:focus:shadow-outline-gray dark:bg-gray-700",
+      "focus:border-yellow-400 dark:border-gray-600 focus:shadow-outline-yellow dark:focus:border-gray-600 dark:focus:shadow-outline-gray dark:bg-gray-700",
     disabled: "cursor-not-allowed opacity-50 bg-gray-300 dark:bg-gray-800",
     valid:
       "border-green-600 dark:bg-gray-700 focus:border-green-400 dark:focus:border-green-400 focus:shadow-outline-green dark:focus:shadow-outline-green",
     invalid:
       "border-red-600 dark:bg-gray-700 focus:border-red-400 dark:focus:border-red-400 focus:shadow-outline-red dark:focus:shadow-outline-red",
     radio:
-      "text-teal-600 form-radio focus:border-teal-400 focus:outline-none focus:shadow-outline-teal dark:focus:shadow-outline-gray",
+      "text-yellow-500 form-radio focus:border-yellow-400 focus:outline-none focus:shadow-outline-yellow dark:focus:shadow-outline-gray",
     checkbox:
-      "text-teal-600 form-checkbox focus:border-teal-400 focus:outline-none focus:shadow-outline-teal dark:focus:shadow-outline-gray",
+      "text-yellow-500 form-checkbox focus:border-yellow-400 focus:outline-none focus:shadow-outline-yellow dark:focus:shadow-outline-gray",
   },
   // HelperText
   helperText: {
@@ -177,8 +177,8 @@ const theme = {
       right: "ml-2 -mr-1",
     },
     primary: {
-      base: "text-white bg-teal-600 border border-transparent",
-      active: "active:bg-teal-600 hover:bg-teal-700 focus:shadow-outline-teal",
+      base: "text-white bg-yellow-500 border border-transparent",
+      active: "active:bg-yellow-500 hover:bg-yellow-700 focus:shadow-outline-yellow",
       disabled: "opacity-50 cursor-not-allowed",
     },
     secondard: {
