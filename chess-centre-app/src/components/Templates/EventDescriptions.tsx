@@ -32,7 +32,7 @@ export const TemplateData = {
     organisers: [
       {
         name: "Jonathan Arnott",
-        imgUrl: "/andy.png",
+        imgUrl: "/jonathan.png",
       },
       {
         name: "Matthew Webb",
@@ -55,7 +55,7 @@ export const TemplateData = {
       { name: "ECF", color: "bg-rose-500" },
     ],
     organisers: [
-      { name: "Jonathan Arnott", imgUrl: "/andy.png" },
+      { name: "Jonathan Arnott", imgUrl: "/jonathan.png" },
       { name: "Matthew Webb", imgUrl: "/matt.png" },
     ],
   },
@@ -73,7 +73,7 @@ export const TemplateData = {
       { name: "DGT Boards", color: "bg-sky-500" },
     ],
     organisers: [
-      { name: "Jonathan Arnott", imgUrl: "/andy.png" },
+      { name: "Jonathan Arnott", imgUrl: "/jonathan.png" },
       { name: "Matthew Webb", imgUrl: "/matt.png" },
     ],
   },
@@ -89,7 +89,7 @@ export const TemplateData = {
     organisers: [
       {
         name: "Jonathan Arnott",
-        imgUrl: "/andy.png",
+        imgUrl: "/jonathan.png",
       },
       {
         name: "Matthew Webb",
@@ -113,7 +113,7 @@ export const TemplateData = {
     organisers: [
       {
         name: "Jonathan Arnott",
-        imgUrl: "/andy.png",
+        imgUrl: "/jonathan.png",
       },
       {
         name: "Matthew Webb",

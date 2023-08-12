@@ -6,7 +6,7 @@ const contacts = [
   {
     name: "Jonathan Arnott",
     email: "info@chesscentre.online",
-    image: "/andy.png",
+    image: "/jonathan.png",
     enquiryType: ["general", "membership", "juniors"]
   },
   {

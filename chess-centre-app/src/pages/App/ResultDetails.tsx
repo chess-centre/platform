@@ -9,7 +9,7 @@ import { ResultViewer } from "../../components/Results";
 const organisers = [
   {
     name: "Andrew Wainwright",
-    imgUrl: "/andy.png",
+    imgUrl: "/jonathan.png",
   },
   {
     name: "Matthew Webb",
