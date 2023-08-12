@@ -6,7 +6,7 @@ function ThemedSuspense() {
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
       <div className="m-auto">
         <p className="mb-10">
-          <img className="animate-spin max-w-sm" src={Logo} alt="Loading" />
+          <img className="animate-pulse w-10" src={Logo} alt="Loading" />
         </p>
         <p className="animate-bounce text-yellow-600 dark:text-yellow-400">Loading...</p>
       </div>
