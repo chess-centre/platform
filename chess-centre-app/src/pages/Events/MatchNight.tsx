@@ -91,9 +91,9 @@ export default function MatchNight() {
                     target="_blank"
                     rel="noreferrer"
                     className="text-yellow-400 hover:text-yellow-600 no-underline"
-                    href="https://www.bradfordchess.co.uk/"
+                    href="https://www.Sheffieldchess.co.uk/"
                   >
-                    BDCA Bradford Chess League
+                    BDCA Sheffield Chess League
                   </a>
                   , the{" "}
                   <a

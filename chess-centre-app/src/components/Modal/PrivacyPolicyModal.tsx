@@ -61,7 +61,7 @@ function PrivacyPolicyModal() {
                 <p>
                   <strong>Company</strong> (referred to as either &quot;the
                   Company&quot;, &quot;We&quot;, &quot;Us&quot; or
-                  &quot;Our&quot; in this Agreement) refers to Bradford Chess
+                  &quot;Our&quot; in this Agreement) refers to Sheffield Chess
                   Centre Limited, 8 Crescent Court.
                 </p>
               </li>

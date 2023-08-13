@@ -4,7 +4,7 @@ import moment from "moment";
 
 const contacts = [
   {
-    name: "Andy Wainwright",
+    name: "Jonathan Arnott",
     email: "info@chesscentre.online",
     image: "/jonathan.png",
     enquiryType: ["general", "travel", "juniors"]
@@ -74,7 +74,7 @@ export default function EventContactUsModal({ open, setOpen, eventName, eventSta
                               </p>
                               <p className="text-xs space-x-2 mt-2 text-gray-500">
                                 Enquiry{" "}
-                                {contact.enquiryType?.map((type, key) => <span key={key} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-pink-100 text-pink-800">{ type }</span>)}
+                                {contact.enquiryType?.map((type, key) => <span key={key} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">{ type }</span>)}
                               </p>
                             </div>
                           </li>
