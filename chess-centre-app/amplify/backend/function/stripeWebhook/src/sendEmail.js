@@ -6,10 +6,14 @@ const SES = new AWS.SES({ region: region });
 async function sendMembershipEmailInternal({ email, name, stripeEmail, price, stripeFriendlyProductName }) {
   console.log("Sending internal membership email to us:", name, email, env);
 
-  const ToAddresses = ["Matt <matt@chesscentre.online>", "Jonathan <jonathan@chesscentre.online>"];
+  const ToAddresses = ["Matt <matt@chesscentre.online>"];
   
+  if(env.includes("prod")) {
+    ToAddresses.push("Andy <andy@chesscentre.online>")
+  }
+
   const params = {
-    Source: "Sheffield Chess Centre <support@chesscentre.online>",
+    Source: "The Chess Centre <support@chesscentre.online>",
     Destination: {
       ToAddresses
     },
@@ -35,22 +39,22 @@ async function sendMembershipEmailInternal({ email, name, stripeEmail, price, st
 async function sendMembershipEmailToMember({ email, name }) {
   console.log("Sending membership email to new member:", name, email);
   const params = {
-    Source: "Sheffield Chess Centre <support@chesscentre.online>",
+    Source: "The Chess Centre <support@chesscentre.online>",
     Destination: {
       BccAddresses: [
-        "Sheffield Chess Centre <support@chesscentre.online>",
+        "The Chess Centre <support@chesscentre.online>",
       ],
       ToAddresses: [email],
     },
     Message: {
-      Subject: { Data: `Sheffield Chess Centre | Membership Confirmed` },
+      Subject: { Data: `The Chess Centre | Membership Confirmed` },
       Body: {
-        Text: { Data: `Hi ${name},\r\n Thank you for joining Sheffield Chess Centre! More information to come.` },
-        Html: { Data: `<h2 style="color: #047481">♟️ Sheffield Chess Centre</h2>
+        Text: { Data: `Hi ${name},\r\n Thank you for joining The Chess Centre! More information to come.` },
+        Html: { Data: `<h2 style="color: #047481">♟️ The Chess Centre</h2>
         <p>Hello ${name} 👋</p>
         <p>This email is to confirm your membership sign up.</p> 
         <p>Thank you for joining our fantastic chess community ❤️</p> 
-        <p>🏠 Our location: <span style="color: #047481">329A Coleford Road, Sheffield, S9 5NF</span></p>
+        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
         <p>If you have any questions please don't hesitate to email us at: info@chesscentre.online</p>
         <p>We look forward to seeing you soon! 🚀</p>
         <p style="color: #9da4a5;font-size:10px;">ps. Memberships can be cancelled at anytime, no questions asked. If you have any problems just pop us a quick email and we'll gladly assist.</p>
@@ -65,10 +69,10 @@ async function sendMembershipEmailToMember({ email, name }) {
 async function sendRegisteredEventEmailToMember({ email, name, eventName, eventType, eventId, startDate, arrivalTime }) {
   console.log("Sending member registration email to:", name, email, eventName);
   const params = {
-    Source: "Sheffield Chess Centre <support@chesscentre.online>",
+    Source: "The Chess Centre <support@chesscentre.online>",
     Destination: {
       BccAddresses: [
-        "Sheffield Chess Centre <support@chesscentre.online>"
+        "The Chess Centre <support@chesscentre.online>"
       ],
       ToAddresses: [email],
     },
@@ -76,15 +80,15 @@ async function sendRegisteredEventEmailToMember({ email, name, eventName, eventT
       Subject: { Data: `${eventName} | Entry Confirmed` },
       Body: {
         Text: { Data: `Hi ${name},\r\n Thank you for registering for our ${eventName} on ${startDate}.` },
-        Html: { Data: `<h2 style="color: #047481">♟️ Sheffield Chess Centre</h2>
+        Html: { Data: `<h2 style="color: #047481">♟️ The Chess Centre</h2>
         <p>Hello ${name} 👋</p>
         <p>Thank you for registering for our <strong>${eventName}</strong>.</p> 
         <p>The key details for this event:</p>
         <p>📅 Date: ${formatDate(startDate)}</p>
         ${arrivalTime ? `<p>⌚ Arrival Time: ${arrivalTime}</p>` : ""}
-        <p>🏠 Our location: <span style="color: #047481">329A Coleford Road, Sheffield, S9 5NF</span></p>
+        <p>🏠 Our location: <span style="color: #047481">Unit 8, Crescent Court, Ilkley, LS29 8DE</span></p>
         <p>More details can be found here:
-          <a href="https://sheffield.chesscentre.online/events/${eventType}/${eventId}">chesscentre.online/${eventType}</a>
+          <a href="https://www.chesscentre.online/events/${eventType}/${eventId}">chesscentre.online/${eventType}</a>
         </p>
         <p>If you have any questions or need to withdraw your entry, please email us at: info@chesscentre.online</p>
         <p>We look forward to seeing you soon! 🚀</p>
@@ -101,10 +105,10 @@ async function sendRegisteredEventEmailToMember({ email, name, eventName, eventT
 async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, eventName, eventType, eventId, startDate, arrivalTime, section }) {
   console.log("Sending member registration email to:", name, email, eventName);
   const params = {
-    Source: "Sheffield Chess Centre <support@chesscentre.online>",
+    Source: "The Chess Centre <support@chesscentre.online>",
     Destination: {
       BccAddresses: [
-        "Sheffield Chess Centre <support@chesscentre.online>"
+        "The Chess Centre <support@chesscentre.online>"
       ],
       ToAddresses: [email],
     },
@@ -119,14 +123,57 @@ async function sendRegisteredEventEmailToMemberJuniorCustom({ email, name, event
         <p>📅 Date: ${formatDate(startDate)}</p>
         ${arrivalTime ? `<p>⌚ Arrival Time: ${arrivalTime}</p>` : ""}
         <p>🤓 Section entered: ${section}</p> 
-        <p>🏫 Event location: <span style="color: #047481;">TBC</span></p>
-        <p style="font-style: italic;">TBC</p>
+        <p>🏫 Event location: <span style="color: #047481;">Ilkley Grammar School, Armitage Hall, LS29 8TH</span></p>
+        <p style="font-style: italic;">Entrance via Springs Lane</p>
+        <p>ℹ️ More details can be found here:
+          <a href="https://www.chesscentre.online/events/igs-junior/${eventId}">chesscentre.online/${eventType}</a>
+        </p>
         <p>If you have any questions or need to withdraw your entry, please email us at: 
           <a href="mailto:info@chesscentre.online?subject=${eventName}%20|%20Entry%20Enquiry%20(${name})">info@chesscentre.online</a>
         </p>
         <p>We look forward to seeing you soon! 🚀</p>
         <p></p>
-        <p style="color: #047481">This event was brought to you by Sheffield Chess Centre ❤️</p>
+        <p style="color: #047481">This event was brought to you by The Chess Centre, Ilkley ❤️</p>
+        <p style="color: #9da4a5;font-size:12px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
+        `
+      }
+      }
+    }
+  };
+  return SES.sendEmail(params).promise();
+}
+
+async function sendRegisteredEventEmailToMemberFestival({ email, name, eventName, eventType, eventId, startDate, endDate, section }) {
+  console.log("Sending member registration email to:", name, email, eventName);
+  const params = {
+    Source: "The Chess Centre <support@chesscentre.online>",
+    Destination: {
+      BccAddresses: [
+        "The Chess Centre <support@chesscentre.online>"
+      ],
+      ToAddresses: [email],
+    },
+    Message: {
+      Subject: { Data: `${eventName} | Entry Confirmed` },
+      Body: {
+        Text: { Data: `Hi ${name},\r\n Thank you for registering for our ${eventName} on ${startDate}.` },
+        Html: { Data: `
+        <p>👋 Hello ${name}</p>
+        <p>Thank you for registering for our <strong>${eventName}</strong>.</p>
+        <p>The key details for this event:</p>  
+        <p>📅 <strong>Date:</strong> ${formatDate(startDate)} - ${formatDate(endDate)}</p>
+        <p>🤓 <strong>Section entered:</strong> ${section}</p>
+        <p>🏫 <strong>Event location:</strong> <span style="color: #047481;">King's Hall & Winter Garden, Station Road, Ilkley, LS29 8HB</span></p>
+        <p>📊 <strong>ECF rating:</strong> Newly registered accounts will have their rating automatically checked (if you have one).<p>
+        <p>ℹ️ More details can be found here:
+          <a href="https://www.chesscentre.online/events/festival/${eventId}">chesscentre.online/${eventType}</a>
+        </p>
+        <p>If you have any questions or need to withdraw your entry, please email us at: 
+          <a href="mailto:info@chesscentre.online?subject=${eventName}%20|%20Entry%20Enquiry%20(${name})">info@chesscentre.online</a>
+        </p>
+        <p>We look forward to seeing you soon! 🚀</p>
+        <p></p>
+        <p>This event was brought to you by <span style="color: #047481"><strong>The Chess Centre</strong></span>, Ilkley ❤️</p>
         <p style="color: #9da4a5;font-size:12px;">ps. If you don't see your entry on our list, this maybe because the payment didn't succeed, just drop us a quick email and we can help.</p>
         `
       }
@@ -140,6 +187,10 @@ async function sendRegisteredEventEmailInternal({ email, name, eventName, eventT
   console.log("Sending internal registration email to:", name, email, eventName, env);
 
   const ToAddresses = ["Matt <matt@chesscentre.online>"];
+
+  if(env.includes("prod")) {
+    ToAddresses.push("Andy <andy@chesscentre.online>");
+  }
 
   const params = {
     Source: "The Chess Centre <support@chesscentre.online>",

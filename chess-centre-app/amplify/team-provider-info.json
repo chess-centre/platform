@@ -21,15 +21,15 @@
       "function": {
         "stripeCheckout": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeCheckout-75627a636d4c4c454e62-build.zip"
+          "s3Key": "amplify-builds/stripeCheckout-5738512b4a685464392b-build.zip"
         },
         "stripeWebhook": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeWebhook-7a304f4f444f67315574-build.zip"
+          "s3Key": "amplify-builds/stripeWebhook-776d335173657375642f-build.zip"
         },
         "platformchesscentreappPostConfirmation": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-53655a734a534e547652-build.zip"
+          "s3Key": "amplify-builds/platformchesscentreappPostConfirmation-36704b78786d41307346-build.zip"
         },
         "platformchesscentreappPreTokenGeneration": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -37,11 +37,11 @@
         },
         "stripeCustomerPortal": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/stripeCustomerPortal-6d4b394e38684c334d4a-build.zip"
+          "s3Key": "amplify-builds/stripeCustomerPortal-36586765594d43577078-build.zip"
         },
         "eventRegister": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/eventRegister-58366549336e3468544c-build.zip"
+          "s3Key": "amplify-builds/eventRegister-44675732614945674665-build.zip"
         },
         "ecfPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -57,11 +57,11 @@
         },
         "getChesscomPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/getChesscomPlayer-695045483273364e4b34-build.zip"
+          "s3Key": "amplify-builds/getChesscomPlayer-52465864575a6b684873-build.zip"
         },
         "getLichessPlayer": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/getLichessPlayer-4f6f4c6c745665454631-build.zip"
+          "s3Key": "amplify-builds/getLichessPlayer-33765a4b6e577742492f-build.zip"
         },
         "ecfHistoricRating": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -85,7 +85,7 @@
         },
         "ecfRatingScraper": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfRatingScraper-49327271544e66646461-build.zip"
+          "s3Key": "amplify-builds/ecfRatingScraper-31734f5157576a6c395a-build.zip"
         },
         "getInstagramFeed": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
@@ -121,13 +121,16 @@
         },
         "ecfRatingUpdater": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/ecfRatingUpdater-705345784e6f5972484d-build.zip"
+          "s3Key": "amplify-builds/ecfRatingUpdater-2f6f55514349474b4e6d-build.zip"
         },
         "updateCalendarSchedule": {
           "deploymentBucketName": "amplify-platformchesscentrea-dev-45655-deployment",
-          "s3Key": "amplify-builds/updateCalendarSchedule-6a79484b31573149566d-build.zip"
+          "s3Key": "amplify-builds/updateCalendarSchedule-33472b5637744861574f-build.zip"
         },
         "createGameRecords": {}
+      },
+      "storage": {
+        "pgn": {}
       }
     }
   },

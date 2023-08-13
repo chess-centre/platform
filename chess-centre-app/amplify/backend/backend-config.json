@@ -301,11 +301,6 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "createGameRecords": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "ecfHistoricRating": {
       "build": true,
       "providerPlugin": "awscloudformation",

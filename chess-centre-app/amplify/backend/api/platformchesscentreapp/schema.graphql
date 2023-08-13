@@ -14,34 +14,17 @@ type Broadcast @model @auth(rules: [{allow: private}]) {
   dgtUrl: String
 }
 
-type External @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) {
+type Result @model @auth(rules: [{allow: private}]) @key(name: "byEvent", fields: ["eventID"]) {
   id: ID!
-  eventId: ID!
-  chessdotcom: String
-  lichess: String
-  chess24: String
-  chessresults: String
-  dgtlive: String
-  ecfratings: String
-  ecflms: String
-}
-
-type Result @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventID"]) @key(name: "byExternal", fields: ["externalId"])  {
-  id: ID!
-  resultInfo: AWSJSON
+  pairings: AWSJSON
+  results: AWSJSON
+  players: AWSJSON
   eventID: ID
-  event: Event @connection(fields: ["eventID"])
-  eventType: String
   name: String
   complete: Boolean
-  isLive: Boolean
-  winners: String
+  live: Boolean
+  winner: String
   dgtCloudUrl: String
-  ecfLMSUrl: String
-  chess24Url: String
-  chessDotComUrl: String
-  externalId: ID
-  external: External @connection(fields: ["externalId"])
 }
 
 type S3Object {
@@ -62,7 +45,6 @@ type Game @model @auth(rules: [{allow: private}, {allow: public}, {allow: public
   blackName: String
   blackRating: Int
   round: Int
-  event: Event @connection(fields: ["eventId"])
   whiteMember: Member @connection(fields: ["whiteMemberId"])
   blackMember: Member @connection(fields: ["blackMemberId"])
   result: String
