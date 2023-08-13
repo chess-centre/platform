@@ -14,10 +14,9 @@ type Broadcast @model @auth(rules: [{allow: private}]) {
   dgtUrl: String
 }
 
-type External @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventId"]) {
+type External @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) {
   id: ID!
   eventId: ID!
-  event: Event @connection(fields: ["eventId"])
   chessdotcom: String
   lichess: String
   chess24: String
