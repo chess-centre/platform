@@ -103,7 +103,7 @@ export default function Parking({ alignLeft = true }) {
             <div className="mt-3">
               <a
                 className="text-yellow-400 underline"
-                href="https://www.bradford.gov.uk/transport-and-travel/parking/car-parks-in-ilkley/"
+                href="https://www.Sheffield.gov.uk/transport-and-travel/parking/car-parks-in-ilkley/"
               >
                 more info
               </a>

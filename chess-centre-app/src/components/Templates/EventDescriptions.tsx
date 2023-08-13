@@ -3,9 +3,9 @@ import { standardSections, juniorSections } from "../../api/sections";
 
 export const TemplateData = {
   festival: {
-    address: "King's Hall & Winter Garden, Ilkley, LS29 8HB",
+    address: "329A Coleford Road, Sheffield, S9 5NF",
     paragraphs: [
-      "Join us for our biggest event yet! Our Ilkley Chess Festival will be held at the beautiful Kings Hall & Winter Gardens.",
+      "Join us for our biggest event yet! Our Sheffield Chess Festival will be held at the beautiful Kings Hall & Winter Gardens.",
       "This is just the beginning of many great events to be held in West Yorkshire!",
       "Section details:",
       "Below you will find the full details for the event including the playing schedule and current entries.",
@@ -98,7 +98,7 @@ export const TemplateData = {
     ],
   },
   junior: {
-    address: "Ilkley Grammar School, Armitage Hall, LS29 8TH",
+    address: "329A Coleford Road, Sheffield, S9 5NF",
     paragraphs: [
       "Our dedicated Junior Rapidplay events are the perfect first event for any aspiring young chess player!",
       "We offer a range of rated sections which allows us to divide the children in bands according to their current playing strength.",
