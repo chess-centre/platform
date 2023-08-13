@@ -50,7 +50,7 @@ type S3Object {
   key: String!
 }
 
-type Game @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventId"], queryField: "listGamesByEvent") @key(name: "byWhite", fields: ["whiteMemberId"], queryField: "listGamesByWhiteMember") @key(name: "byBlack", fields: ["blackMemberId"], queryField: "listGamesByBlackMember") {
+type Game @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) @key(name: "byWhite", fields: ["whiteMemberId"], queryField: "listGamesByWhiteMember") @key(name: "byBlack", fields: ["blackMemberId"], queryField: "listGamesByBlackMember") {
   id: ID!
   eventId: ID!
   eventName: String
@@ -62,7 +62,6 @@ type Game @model @auth(rules: [{allow: private}, {allow: public}, {allow: public
   blackName: String
   blackRating: Int
   round: Int
-  event: Event @connection(fields: ["eventId"])
   whiteMember: Member @connection(fields: ["whiteMemberId"])
   blackMember: Member @connection(fields: ["blackMemberId"])
   result: String
