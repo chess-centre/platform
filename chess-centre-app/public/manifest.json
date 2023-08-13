@@ -1,6 +1,6 @@
 {
-  "name": "The Chess Centre",
-  "short_name": "The Chess Centre",
+  "name": "Sheffield Chess Centre",
+  "short_name": "Sheffield Chess",
   "description": "A dedicated centre for over the board chess.",
   "icons": [
     {
@@ -33,13 +33,6 @@
       "description": "View our upcoming list of Chess events",
       "url": "/events",
       "icons": [{ "src": "logo192.png", "sizes": "192x192" }]
-    }
-  ],
-  "screenshots" : [
-    {
-      "src": "home-screen.webp",
-      "sizes": "1280x720",
-      "type": "image/webp"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import React, { Link } from "react-router-dom";
 import FestivalBuilding from "../../assets/img/festival_building.png";
 
 const FestivalCTA = () => {
@@ -11,7 +11,7 @@ const FestivalCTA = () => {
           src={FestivalBuilding}
         />
         <h1 className="text-3xl font-extrabold tracking-tight  text-yellow-brand sm:text-5xl">
-          <span className="text-orange-brand">Ilkley</span> Chess Festival
+          <span className="text-orange-brand">Sheffield</span> Chess Festival
         </h1>
         <p className="text-md text-gray-600 mt-2">
           <time dateTime="2022-09-16">September 16th - 18th</time>

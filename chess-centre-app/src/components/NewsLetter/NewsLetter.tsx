@@ -141,8 +141,7 @@ export default function NewsLetter() {
                     </h2>
                     <p className="mt-6 mx-auto max-w-2xl text-lg text-yellow-200">
                       We're going to be hosting all kinds of fantastic events,
-                      from congress to rapidplays to unique doubles tournaments
-                      and four-player chess leagues.
+                      so stay tuned for great things to come!
                     </p>
                   </div>
 

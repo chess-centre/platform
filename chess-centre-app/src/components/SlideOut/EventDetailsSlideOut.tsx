@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XIcon } from "@heroicons/react/outline";
 import { borderColor600 } from "tailwind-dynamic-classes";
@@ -386,13 +386,7 @@ export default function EventDetailsSlideOut(props: DetailProps) {
 
   // TODO: add address information to event details:
   function addressLookup(name: string): string {
-    if (name?.includes("IGS")) {
-      return "Ilkley Grammar School, Armitage Hall, LS29 8TH";
-    }
-    if (name?.includes("Festival") && !name?.includes("Blitz")) {
-      return "King's Hall & Winter Garden, Station Road, Ilkley, LS29 8HB";
-    }
-    return "Unit 8, Crescent Court, Ilkely, LS29 8DE";
+    return "329A Coleford Road, Sheffield, S9 5NF";
   }
 
   return (

@@ -238,7 +238,7 @@ export const faqData = (type: Type): Faq[] =>
       Answer: () => (
         <span>
           Yes. The central Ilkley train station is only 2 minutes walk from us
-          with regular Trains to Bradford and Leeds.
+          with regular Trains to Sheffield and Leeds.
         </span>
       ),
       tags: [Topic.GENERAL],
@@ -269,7 +269,7 @@ export const faqData = (type: Type): Faq[] =>
           Yes. We would be delighted for you to join one of our teams, to do so
           you would be required to sign up as a subscribed member. Not only
           that, we are also in close contact with many other club captains
-          around the Bradford and Leeds area so, should there a more convenient
+          around the Sheffield and Leeds area so, should there a more convenient
           venue for you to join a league team, we will happily put you in touch
           with that club captain.
         </span>
