@@ -14,17 +14,34 @@ type Broadcast @model @auth(rules: [{allow: private}]) {
   dgtUrl: String
 }
 
-type Result @model @auth(rules: [{allow: private}]) @key(name: "byEvent", fields: ["eventID"]) {
+type External @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) {
   id: ID!
-  pairings: AWSJSON
-  results: AWSJSON
-  players: AWSJSON
+  eventId: ID!
+  chessdotcom: String
+  lichess: String
+  chess24: String
+  chessresults: String
+  dgtlive: String
+  ecfratings: String
+  ecflms: String
+}
+
+type Result @model @auth(rules: [{allow: private}, {allow: public}, {allow: public, provider: iam, operations: [read]}]) @key(name: "byEvent", fields: ["eventID"]) @key(name: "byExternal", fields: ["externalId"])  {
+  id: ID!
+  resultInfo: AWSJSON
   eventID: ID
+  event: Event @connection(fields: ["eventID"])
+  eventType: String
   name: String
   complete: Boolean
-  live: Boolean
-  winner: String
+  isLive: Boolean
+  winners: String
   dgtCloudUrl: String
+  ecfLMSUrl: String
+  chess24Url: String
+  chessDotComUrl: String
+  externalId: ID
+  external: External @connection(fields: ["externalId"])
 }
 
 type S3Object {
@@ -45,6 +62,7 @@ type Game @model @auth(rules: [{allow: private}, {allow: public}, {allow: public
   blackName: String
   blackRating: Int
   round: Int
+  event: Event @connection(fields: ["eventId"])
   whiteMember: Member @connection(fields: ["whiteMemberId"])
   blackMember: Member @connection(fields: ["blackMemberId"])
   result: String
@@ -88,7 +106,6 @@ type Member @model @auth(rules: [{allow: private, provider: iam}, {allow: owner,
   surname: String
   email: String
   entries: [Entry!] @connection(keyName: "byMember", fields: ["id"])
-  games: [Game!] @function(name: "getMemberGames-${env}")
   stripeCustomerId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   stripeCurrentPeriodEnd: Float @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
   stripePriceId: ID @auth(rules: [{allow: owner, ownerField: "id", operations: [read]}, {allow: private, operations: [read]}, {allow: private, provider: iam}])
@@ -127,7 +144,6 @@ type Event @model @auth(rules: [{allow: private}, {allow: private, provider: iam
   startDate: AWSDate!
   endDate: AWSDate
   entries: [Entry!] @connection(keyName: "byEvent", fields: ["id"])
-  games: [Game!] @connection(keyName: "byEvent", fields: ["id"])
   maxEntries: Int
   entryCount: Int
   complete: Boolean
