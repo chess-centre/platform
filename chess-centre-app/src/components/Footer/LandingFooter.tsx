@@ -18,16 +18,16 @@ const LandingFooter = () => {
               About Us
             </Link>
           </div>
-          <div className="px-3 sm:px-6 py-2">
+          {/* <div className="px-3 sm:px-6 py-2">
             <Link
               to="/roadmap"
               className="text-sm sm:text-base text-gray-500 hover:text-yellow-brand"
             >
               Roadmap
             </Link>
-          </div>
+          </div> */}
         </nav>
-        <div className="mt-6 flex justify-center space-x-6">
+        {/* <div className="mt-6 flex justify-center space-x-6">
           <a
             target="_blank"
             rel="noreferrer"
@@ -46,7 +46,7 @@ const LandingFooter = () => {
             <span className="sr-only">GitHub</span>
             <i className="fab fa-github fa-2x"></i>
           </a>
-        </div>
+        </div> */}
         <p className="mt-6 text-center text-sm sm:text-base text-gray-400">
           &copy; 2023 Sheffield Chess Centre. All rights reserved.
         </p>

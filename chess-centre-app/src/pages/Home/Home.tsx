@@ -99,36 +99,36 @@ const Home = () => {
                 </span>
               </h2>
               <h2 className="text-3xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
-                <span className="font-light">Welcome to</span>
-                <br className="xl:hidden" />
+                <span className="font-light text-2xl -mt-6">Welcome to</span>
+                <br />
                 <span className="bg-gradient-to-r text-gradient from-yellow-500 to-yellow-400">
                   {" "}
                   Sheffield Chess Centre
                 </span>
               </h2>
 
-              <div className="mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+              <div className="mb-6 sm:mb-10 mt-3 sm:mt-3 sm:max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                 It's time things changed around here <span role="img">🚀</span>
               </div>
               <div className="mt-2 max-w-md mx-auto sm:flex sm:justify-center md:mt-4">
                 <div className="rounded-md shadow">
-                  <Link
+                  {/* <Link
                     to="/register"
                     className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-400 focus:outline-none focus:border-yellow-700 focus:shadow-outline-yellow transition duration-150 ease-in-out md:text-lg md:px-12"
                   >
                     Create Account
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
           </main>
         </div>
       </div>
-      <Calendar />
-      <FAQs />
+      {/* <Calendar /> */}
+      {/* <FAQs /> */}
       <FindUs />
-      <DownloadPWA />
-      <Integrations />
+      {/* <DownloadPWA />
+      <Integrations /> */}
       <FooterLanding />
     </div>
   );

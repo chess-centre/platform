@@ -18,144 +18,17 @@ const About = () => {
           <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl mb-6 text-center">
             About us
           </h2>
-          <div className="space-y-12 lg:grid lg:grid-cols-1 lg:gap-8 lg:space-y-0 mb-4">
-            <div className="mb-2 m-auto object-center">
-              {/* <img
-                className="object-cover shadow-lg rounded-lg"
-                src={MattAndyImage}
-                alt=""
-              /> */}
-              IMAGE
-            </div>
-          </div>
-          <div className="space-y-12 lg:grid lg:grid-cols-1 lg:gap-8 lg:space-y-0 mb-8">
-            <p className="text-xl text-gray-500 text-center sm:px-52">
-              TBC
+          <div className="mx-auto space-y-12 lg:grid lg:grid-cols-1 prose">
+            <p>
+              The Sheffield Chess Centre is a new venture. We’re a hub for chess in the Sheffield area for both juniors and adults.
+              We recognise that our junior players are the future of the game, and our Monday and Tuesday sessions are for children only.
+            </p>
+            <p>
+              We aim to work together with the Sheffield & District Chess Association to run events for a wide variety of abilities, and provide a home for Sheffield teams in the Yorkshire leagues. Our Wednesday, Thursday and Friday sessions are aimed at adults (juniors are still welcome).
+              We have no desire to take players away from traditional pub-based chess clubs, but we do want to help new players to get involved with over-the-board chess.
             </p>
           </div>
-          <div className="space-y-12 lg:grid lg:grid-cols-2 lg:gap-8 lg:space-y-0">
-            <div className="lg:col-span-2">
-              <ul className="space-y-12 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:gap-x-8">
-                <li>
-                  <div className="space-y-4">
-                    <div className="text-lg leading-6 font-medium space-y-1 text-center">
-                      <h3>Jonathan Arnott</h3>
-                      <p className="text-yellow-500">Founder</p>
-                    </div>
-                    <div className="text-lg text-justify">
-                      <p className="text-gray-500 mb-2">
-                        TBC
-                      </p>
-                      <p className="text-gray-500 mb-2">
-                        TBC
-                      </p>
-                    </div>
-                    <ul className="flex space-x-5">
-                      {/* <li>
-                        <a
-                          href="https://www.linkedin.com/in/"
-                          className="text-gray-400 hover:text-blue-800 fa-2x"
-                        >
-                          <span className="sr-only">LinkedIn</span>
-                          <i className="fab fa-linkedin"></i>
-                        </a>
-                      </li> */}
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <div className="space-y-4">
-                    <div className="text-lg leading-6 font-medium space-y-1 text-center">
-                      <h3>Matthew Webb</h3>
-                      <p className="text-yellow-500">Techie</p>
-                    </div>
-                    <div className="text-lg text-justify text-gray-500 mb-2">
-                      <p className="mb-2">
-                        Matt has competed in Chess events all across the World,
-                        taking a year out of professional working life to
-                        compete in competitions far and wide. Matt has won
-                        numerous UK Open Congresses and has represented
-                        Yorkshire (Open) team on top board, winning three county
-                        championships.
-                      </p>
-                      <p className="mb-2">
-                        When not building our digital Chess Centre experience,
-                        Matt is a Head of Software Engineering within the retail industry. He enjoys spending time with his Nieces
-                        &#38; Nephews and also travelling to Las Vegas to play
-                        in the World Series of Poker.
-                      </p>
-                      <p className="mb-2">
-                        Matt's two favourite players are{" "}
-                        <a
-                          className="text-yellow-500 hover:text-yellow-600 hover:underline"
-                          href="https://en.wikipedia.org/wiki/Rashid_Nezhmetdinov"
-                        >
-                          Rashid Nezhmetdinov
-                        </a>{" "}
-                        and{" "}
-                        <a
-                          className="text-yellow-500 hover:text-yellow-600 hover:underline"
-                          href="https://en.wikipedia.org/wiki/Baadur_Jobava"
-                        >
-                          Baadur Jobava
-                        </a>{" "}
-                        as they appeal to his natural attacking style.
-                      </p>
-                      <p></p>
-                    </div>
 
-                    <ul className="flex space-x-5">
-                      <li>
-                        <a
-                          href="https://www.linkedin.com/in/matt-d-webb/"
-                          className="text-gray-400 hover:text-blue-800 fa-2x"
-                        >
-                          <span className="sr-only">LinkedIn</span>
-                          <i className="fab fa-linkedin"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://github.com/matt-d-webb"
-                          className="text-gray-400 hover:text-gray-900 fa-2x"
-                        >
-                          <span className="sr-only">GitHub</span>
-                          <i className="fab fa-github"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="relative mt-4">
-            <div
-              className="absolute inset-0 flex items-center"
-              aria-hidden="true"
-            >
-              <div className="w-full border-t border-gray-300" />
-            </div>
-            <div className="relative flex justify-center">
-              <span className="bg-white px-2 text-gray-500">
-                <svg
-                  className="h-5 w-5 text-gray-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill="#6B7280"
-                    fillRule="evenodd"
-                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </span>
-            </div>
-          </div>
-          <h1>Volunteers (TBC)</h1>
-          {/* <Volunteers /> */}
         </div>
 
         <FooterLanding></FooterLanding>

@@ -5,10 +5,7 @@ import { useAuthState, useAuthDispatch, logout } from "../../context/Auth";
 import Logo from "../../assets/img/ssc-logo-black.svg";
 import LogoWithName from "../../assets/img/ssc-logo-black.svg";
 
-const headings = [
-  { url: "events", title: "Events" },
-  { url: "our-mission", title: "Our Mission" },
-];
+const headings = [];
 
 const LandingNav = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -109,7 +106,7 @@ const LandingNav = (props: any) => {
               );
             })}
           </div>
-          <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+          {/* <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
             <span className="inline-flex rounded-md">
               {isLoggedIn ? (
                 <div className="grid grid-cols-2">
@@ -164,7 +161,7 @@ const LandingNav = (props: any) => {
                 </div>
               )}
             </span>
-          </div>
+          </div> */}
         </nav>
       </div>
 
@@ -231,7 +228,7 @@ const LandingNav = (props: any) => {
                 );
               })}
             </div>
-            <div>
+            {/* <div>
               {isLoggedIn ? (
                 <>
                   <Link
@@ -269,7 +266,7 @@ const LandingNav = (props: any) => {
                   </span>
                 </Link>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
