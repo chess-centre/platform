@@ -30,8 +30,13 @@ const routes = [
     isPrivate: false,
   },
   {
-    path: "/our-mission",
-    component: lazy(() => import("../pages/Home/OurMission")),
+    path: "/our-vision",
+    component: lazy(() => import("../pages/Home/OurVision")),
+    isPrivate: false,
+  },
+  {
+    path: "/our-coaches",
+    component: lazy(() => import("../pages/Home/OurCoaches")),
     isPrivate: false,
   },
   {

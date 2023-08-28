@@ -5,7 +5,10 @@ import { useAuthState, useAuthDispatch, logout } from "../../context/Auth";
 import Logo from "../../assets/img/ssc-logo-black.svg";
 import LogoWithName from "../../assets/img/ssc-logo-black.svg";
 
-const headings = [];
+const headings = [
+  { url: "our-vision", title: "Our Vision" },
+  { url: "our-coaches", title: "Our Coaches" },
+];
 
 const LandingNav = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
