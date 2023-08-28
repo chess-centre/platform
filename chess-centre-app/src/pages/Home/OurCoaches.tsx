@@ -37,28 +37,28 @@ const vistors = [
     {
         name: 'Gawain Jones',
         role: 'Grandmaster',
-        imageUrl: process.env.PUBLIC_URL + '/gawain-jones.jpeg',
+        imageUrl: process.env.PUBLIC_URL + '/gawain-jones.jpg',
     },
     {
         name: 'Andrew Ledger',
         role: 'International Master',
-        imageUrl: process.env.PUBLIC_URL + '/andrew-ledger.jpeg',
+        imageUrl: process.env.PUBLIC_URL + '/andrew-ledger.jpg',
     },
     {
         name: 'Richard Palliser',
         role: 'International Master',
-        imageUrl: process.env.PUBLIC_URL + '/richard-palliser.jpeg',
+        imageUrl: process.env.PUBLIC_URL + '/richard-palliser.jpg',
     },
     {
         name: 'Peter Gayson',
         role: 'FIDE Master',
-        imageUrl: process.env.PUBLIC_URL + '/peter-gayson.jpeg',
+        imageUrl: process.env.PUBLIC_URL + '/peter-gayson.jpg',
     },
     ,
     {
         name: 'Are you a coach?',
         role: 'Contact Us!',
-        imageUrl: '/unknown.jpeg',
+        imageUrl: '/unknown.jpg',
     },
 ];
 
