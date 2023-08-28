@@ -184,10 +184,11 @@ const LandingNav = (props: any) => {
           >
             <div className="px-5 pt-4 flex items-center justify-between">
               <img
-                className={"object-centre m-auto h-7 w-auto"}
+                className={"object-centre h-7"}
                 src={LogoWithName}
                 alt="Logo"
               />
+              <h1 className="font-bold">Sheffield Chess Centre</h1>
               <div className="-mr-2">
                 <button
                   onClick={() => toggleExpansion(!isExpanded)}
