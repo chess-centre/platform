@@ -37,29 +37,29 @@ const vistors = [
     {
         name: 'Gawain Jones',
         role: 'Grandmaster',
-        imageUrl: '/gawain-jones.jpeg',
+        imageUrl: process.env.PUBLIC_URL + '/gawain-jones.jpeg',
     },
     {
         name: 'Andrew Ledger',
         role: 'International Master',
-        imageUrl: '/andrew-ledger.jpeg',
+        imageUrl: process.env.PUBLIC_URL + '/andrew-ledger.jpeg',
     },
     {
         name: 'Richard Palliser',
         role: 'International Master',
-        imageUrl: '/richard-palliser.jpeg',
+        imageUrl: process.env.PUBLIC_URL + '/richard-palliser.jpeg',
     },
     {
         name: 'Peter Gayson',
         role: 'FIDE Master',
-        imageUrl: '/peter-gayson.jpeg',
+        imageUrl: process.env.PUBLIC_URL + '/peter-gayson.jpeg',
     },
     ,
     {
         name: 'Are you a coach?',
         role: 'Contact Us!',
         imageUrl: '/unknown.jpeg',
-    }
+    },
 ];
 
 export default function OurCoaches() {
@@ -117,11 +117,11 @@ function VisitingCoaches() {
                     role="list"
                     className="mx-auto mt-20 grid max-w-2xl grid-cols-2 gap-x-8 gap-y-16 text-center sm:grid-cols-3 md:grid-cols-4 lg:mx-0 lg:max-w-none lg:grid-cols-5 xl:grid-cols-6"
                 >
-                    {vistors.map((coach) => (
-                        <li key={coach.name}>
-                            <img className="mx-auto h-24 w-24 rounded-full" src={coach.imageUrl} alt="" />
-                            <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">{coach.name}</h3>
-                            <p className="text-sm leading-6 text-gray-600">{coach.role}</p>
+                    {vistors.map((vistor) => (
+                        <li key={vistor.name}>
+                            <img className="mx-auto h-24 w-24 rounded-full" src={vistor.imageUrl} alt="" />
+                            <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">{vistor.name}</h3>
+                            <p className="text-sm leading-6 text-gray-600">{vistor.role}</p>
                         </li>
                     ))}
                 </ul>
