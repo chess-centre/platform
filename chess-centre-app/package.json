@@ -4,6 +4,7 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
+    "@aws-sdk/util-middleware": "^3.374.0",
     "@babel/core": "^7.16.5",
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.1",
