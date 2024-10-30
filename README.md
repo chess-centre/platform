@@ -36,7 +36,7 @@ This project contains the core source code of **The OTB Chess** application incl
 
 <span style="color:#5499ab; font-weight: bold;">OTB Chess</span> was born through a love of Chess and built for the amazing community which surrounds it. Here we will provide keen chess players who enjoy playing over-the-board chess with a platform to utilise modern, accessible and easy to use features that enables them to easily find upcoming events, register and effortlessly track results of their games and those of others.
 
-- ♟️ website: [demo.chesscentre.online](https://demo.chesscentre.online)
+- ♟️ website: ~[demo.chesscentre.online](https://demo.chesscentre.online)~
 
 Our mission is entirely <span style="color:#f0802b;">**#NotForProfit**</span> so we gladly welcome volunteers.
   
