@@ -1,6 +1,8 @@
+> **DEPRECATED:** This project is no longer maintained.
+
 <p align="center">
   <img src="img/cc-logo.png" width="120" />
-  <h1 align="center">OTB Chess</h1>
+  <h1 align="center">The Chess Centre</h1>
   <h2 align="center">Platform</h2>
 </p>
 
@@ -14,7 +16,7 @@
   
 </div>
   
-This project contains the core source code of **The OTB Chess** application including its associated services and deployment configuration.
+This project contains the core source code of **The Chess Centre** application including its associated services and deployment configuration.
 
 ### Table of Contents
 - [Motivation](#motivation)
@@ -34,7 +36,7 @@ This project contains the core source code of **The OTB Chess** application incl
 
 ## Motivation
 
-<span style="color:#5499ab; font-weight: bold;">OTB Chess</span> was born through a love of Chess and built for the amazing community which surrounds it. Here we will provide keen chess players who enjoy playing over-the-board chess with a platform to utilise modern, accessible and easy to use features that enables them to easily find upcoming events, register and effortlessly track results of their games and those of others.
+<span style="color:#5499ab; font-weight: bold;">The Chess Centre</span> was born through a love of Chess and built for the amazing community which surrounds it. Here we will provide keen chess players who enjoy playing over-the-board chess with a platform to utilise modern, accessible and easy to use features that enables them to easily find upcoming events, register and effortlessly track results of their games and those of others.
 
 - ♟️ website: ~[demo.chesscentre.online](https://demo.chesscentre.online)~
 
